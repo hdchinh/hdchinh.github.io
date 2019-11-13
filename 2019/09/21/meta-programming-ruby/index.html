@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="IMAGES          RUBY OBJECT MODELOpen Classesrails g model Movie title:string director:string 1class Movie &amp;lt; ActiveRecord:Base; end  1) What about methods such as title= and title, which access obj">
+<meta name="keywords" content="ruby">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Book Notes: Mateprograming Ruby 2">
+<meta property="og:url" content="https:&#x2F;&#x2F;hdchinh.github.io&#x2F;2019&#x2F;09&#x2F;21&#x2F;meta-programming-ruby&#x2F;index.html">
+<meta property="og:site_name" content="Chinh&#39;s Notes">
+<meta property="og:description" content="IMAGES          RUBY OBJECT MODELOpen Classesrails g model Movie title:string director:string 1class Movie &amp;lt; ActiveRecord:Base; end  1) What about methods such as title= and title, which access obj">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https:&#x2F;&#x2F;hdchinh.github.io&#x2F;images&#x2F;meta2&#x2F;1.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;hdchinh.github.io&#x2F;images&#x2F;meta2&#x2F;2.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;hdchinh.github.io&#x2F;images&#x2F;meta2&#x2F;3.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;hdchinh.github.io&#x2F;images&#x2F;meta2&#x2F;4.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;hdchinh.github.io&#x2F;images&#x2F;meta2&#x2F;5.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;hdchinh.github.io&#x2F;images&#x2F;meta2&#x2F;7.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;hdchinh.github.io&#x2F;images&#x2F;meta2&#x2F;8.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;hdchinh.github.io&#x2F;images&#x2F;meta2&#x2F;9.png">
+<meta property="og:updated_time" content="2019-11-13T11:59:42.647Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;hdchinh.github.io&#x2F;images&#x2F;meta2&#x2F;1.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Book Notes: Mateprograming Ruby 2</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+          <li><a href="/projects/">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/11/12/hello-hexo/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2019/09/20/2019-09-20-vscode-extension/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/09/21/meta-programming-ruby/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/09/21/meta-programming-ruby/&text=Book Notes: Mateprograming Ruby 2" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/09/21/meta-programming-ruby/&title=Book Notes: Mateprograming Ruby 2" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/09/21/meta-programming-ruby/&is_video=false&description=Book Notes: Mateprograming Ruby 2" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Book Notes: Mateprograming Ruby 2&body=Check out this article: https://hdchinh.github.io/2019/09/21/meta-programming-ruby/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/09/21/meta-programming-ruby/&title=Book Notes: Mateprograming Ruby 2" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/09/21/meta-programming-ruby/&title=Book Notes: Mateprograming Ruby 2" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/09/21/meta-programming-ruby/&title=Book Notes: Mateprograming Ruby 2" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/09/21/meta-programming-ruby/&title=Book Notes: Mateprograming Ruby 2" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/09/21/meta-programming-ruby/&name=Book Notes: Mateprograming Ruby 2&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#IMAGES"><span class="toc-number">1.</span> <span class="toc-text">IMAGES</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RUBY-OBJECT-MODEL"><span class="toc-number">2.</span> <span class="toc-text">RUBY OBJECT MODEL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Open-Classes"><span class="toc-number">2.1.</span> <span class="toc-text">Open Classes</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Inside-the-Object-Model"><span class="toc-number">2.2.</span> <span class="toc-text">Inside the Object Model</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#What-Happens-When-You-Call-a-Method"><span class="toc-number">2.3.</span> <span class="toc-text">What Happens When You Call a Method?</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#METHODS"><span class="toc-number">3.</span> <span class="toc-text">METHODS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Dynamic-Methods"><span class="toc-number">3.1.</span> <span class="toc-text">Dynamic Methods</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#method-missing"><span class="toc-number">3.2.</span> <span class="toc-text">method_missing</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Blank-Slates"><span class="toc-number">3.3.</span> <span class="toc-text">Blank Slates</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BLOCKS"><span class="toc-number">4.</span> <span class="toc-text">BLOCKS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Blocks-Are-Closures"><span class="toc-number">4.1.</span> <span class="toc-text">Blocks Are Closures</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#instance-eval"><span class="toc-number">4.2.</span> <span class="toc-text">instance_eval()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Callable-Objects"><span class="toc-number">4.3.</span> <span class="toc-text">Callable Objects</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Writing-a-Domain-Specific-Language"><span class="toc-number">4.4.</span> <span class="toc-text">Writing a Domain-Specific Language</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CLASS-DEFINITIONS"><span class="toc-number">5.</span> <span class="toc-text">CLASS DEFINITIONS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Class-Definitions-Demystified"><span class="toc-number">5.1.</span> <span class="toc-text">Class Definitions Demystified</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Singleton-Methods"><span class="toc-number">5.2.</span> <span class="toc-text">Singleton Methods</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Singleton-Classes"><span class="toc-number">5.3.</span> <span class="toc-text">Singleton Classes</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Method-Wrappers"><span class="toc-number">5.4.</span> <span class="toc-text">Method Wrappers</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Book Notes: Mateprograming Ruby 2
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Chinh's Notes</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-09-20T17:00:00.000Z" itemprop="datePublished">2019-09-21</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/til/">til</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/ruby/" rel="tag">ruby</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="IMAGES"><a href="#IMAGES" class="headerlink" title="IMAGES"></a>IMAGES</h2><p><img src="/images/meta2/1.png" alt="hoa"></p>
+<p><img src="/images/meta2/2.png" alt="hoa"></p>
+<p><img src="/images/meta2/3.png" alt="hoa"></p>
+<p><img src="/images/meta2/4.png" alt="hoa"></p>
+<p><img src="/images/meta2/5.png" alt="hoa"></p>
+<!-- ![hoa](/images/meta2/6.png) -->
+
+<p><img src="/images/meta2/7.png" alt="hoa"></p>
+<p><img src="/images/meta2/8.png" alt="hoa"></p>
+<p><img src="/images/meta2/9.png" alt="hoa"></p>
+<h2 id="RUBY-OBJECT-MODEL"><a href="#RUBY-OBJECT-MODEL" class="headerlink" title="RUBY OBJECT MODEL"></a>RUBY OBJECT MODEL</h2><h3 id="Open-Classes"><a href="#Open-Classes" class="headerlink" title="Open Classes"></a>Open Classes</h3><p><code>rails g model Movie title:string director:string</code></p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Movie</span> &lt; ActiveRecord:<span class="title">Base</span>;</span> <span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>1) What about methods such as <code>title=</code> and title, which access object attributes (accessor methods for short)? This is where metaprogramming comes in: Bob doesn’t have to write those methods. Active Record defines them automatically, after inferring their names from the database schema. ActiveRecord::Base reads the schema at runtime, discovers that the movies table has two columns named title and director, and defines accessor methods for two attributes of the same name. This means that Active Record defines methods such as <code>Movie#title</code> and <code>Movie#director=</code> out of thin air while the program runs.</p>
+<p>Open Class</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Numeric</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">to_money</span><span class="params">(currency = <span class="literal">nil</span>)</span></span></span><br><span class="line">    Money.from_numeric(<span class="keyword">self</span>, currency <span class="params">||</span> Money.default_currency)</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>2) As cool as they are, however, Open Classes have a dark side—one that you’re about to experience.</p>
+<p>| This can override the method of superclass and make wrong result in somewhere (monkeypath). So we need be careful when set the name for the override method.</p>
+<h3 id="Inside-the-Object-Model"><a href="#Inside-the-Object-Model" class="headerlink" title="Inside the Object Model"></a>Inside the Object Model</h3><p>3) Objects that share the same class also share the same methods, so the methods must be stored in the class, not the object.</p>
+<p>4) The “false” argument here means: ignore inherited methods Class.instance_methods(false) # =&gt; [:allocate, :new, :superclass]</p>
+<p>5) The superclass of Class is Module—which is to say, every class is also a module.<br>To be precise, a class is a module with three additional instance methods (new, allocate, and superclass)</p>
+<p>6) All the constants in a program are arranged in a tree similar to a file system.</p>
+<p>7) The Module class also provides an instance method and a class method that, confusingly, are both called constants.</p>
+<p>8) What’s an object? It’s a bunch of instance variables, plus a link to a class. The object’s methods don’t live in the object—they live in the object’s class, where they’re called the instance methods of the class.</p>
+<p>9) What’s a class? It’s an object (an instance of Class), plus a list of instance methods and a link to a superclass. Class is a subclass of Module, so a class is also a module</p>
+<p>10) These are instance methods of the Class class. Like any object, a class has its own methods, such as new. Also like any object, classes must be accessed through references. You already have a constant reference to each class: the class’s name.</p>
+<p>11) Using load, however, has a side effect. The motd.rb file probably defines variables and classes. Although variables fall out of scope when the file has finished loading, constants don’t. As a result, motd.rb can pollute your program with the names of its own constants—in particular, class names. You can force motd.rb to keep its constants to itself by passing a second, optional argument to load: <code>load(&#39;motd.rb&#39;, true)</code> If you load a file this way, Ruby creates <strong>an anonymous module</strong>, uses that module as a Namespace to contain all the constants from motd.rb, and then destroys the module. The require method is quite similar to load, but it’s meant for a different purpose. You use load to execute code, and you use require to import libraries. That’s why require has no second argument: those leftover class names are probably the reason why you imported the file in the first place. Also, that’s why require tries only once to load each file, while load executes the file again every time you call it.</p>
+<p>What’s the class of Object?<br>What’s the superclass of Module?<br>What’s the class of Class?</p>
+<h3 id="What-Happens-When-You-Call-a-Method"><a href="#What-Happens-When-You-Call-a-Method" class="headerlink" title="What Happens When You Call a Method?"></a>What Happens When You Call a Method?</h3><p>12) When you call a method, Ruby does two things:</p>
+<ol>
+<li>It finds the method. This is a process called method lookup.</li>
+<li>It executes the method. To do that, Ruby needs something called self.</li>
+</ol>
+<p>13) Before you look at a more complicated example, though, you need to know about two new concepts: the receiver and the ancestors chain.The receiver is the object that you call a method on. For example, if you write <code>my_string.reverse()</code>, then <code>my_string</code> is the receiver. To understand the concept of an ancestors chain, look at any Ruby class. Then imagine moving from the class into its superclass, then into the superclass’s superclass, and so on, until you reach BasicObject, the root of the Ruby class hierarchy. The path of classes you just traversed is the ancestors chain of the class.<br>MySubclass.ancestors # =&gt; [MySubclass, MyClass, Object, Kernel, BasicObject]</p>
+<p>14) When you include a module in a class (or even in another module), Ruby inserts the module in the ancestors chain, right above the including class itself:</p>
+<p>15) Starting from Ruby 2.0, you also have a second way to insert a module in a class’s chain of ancestors: <strong>the prepend method</strong>. It works like include, but it inserts the module below the including class (sometimes called the includer).</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C2</span></span></span><br><span class="line"> prepend M2</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">D2</span> &lt; C2;</span> <span class="keyword">end</span></span><br><span class="line">D2.ancestors <span class="comment"># =&gt; [D2, M2, C2, Object, Kernel, BasicObject]</span></span><br></pre></td></tr></table></figure>
+
+<p>16) This is true every time you include or prepend a module: if that module is already in the chain, Ruby silently ignores the second inclusion.</p>
+<p>Kernel.private_instance_methods.grep(/^pr/) # =&gt; [:printf, :print, :proc]</p>
+<p>17) The trick here is that class Object includes Kernel, so Kernel gets into every object’s ancestors chain. Every line of Ruby is always executed inside an object, so you can call the instance methods in Kernel from anywhere.</p>
+<p>18) You can take advantage of this mechanism yourself: if you add a method to Spell: Kernel Method Kernel, this Kernel Method will be available to all objects. To prove that Kernel Methods are actually useful, you can look at the way some Ruby libraries use them.</p>
+<p>19) Every line of Ruby code is executed inside an object—the so-called current object. The current object is also known as self, because you can access it with the self keyword.</p>
+<p>20) Only one object can take the role of self at a given time, but no object holds that role for a long time. In particular, when you call a method, the receiver becomes self. From that moment on, all instance variables are instance variables of self, and all methods called without an explicit receiver are called on self.</p>
+<p>21) As soon as you start a Ruby program, you’re sitting within an object named main that the Ruby interpreter created for you. This object is sometimes called the top-level context, because it’s the object you’re in when you’re at the top level of the call stack: either you haven’t called any method yet or all the methods that you called have returned.</p>
+<p>22) This code refines the String class with a new to_alphanumeric method. Differently from a regular Open Class, however, a Refinement is not active by default. If you try to call   <code>String#to_alphanumeric</code>, you’ll get an error: <code>&quot;my *1st* refinement!&quot;.to_alphanumeric ❮ NoMethodError: undefined method &#39;to_alphanumeric&#39; [...]</code> To activate the changes, you have to do so explicitly, with the using method: using StringExtensions</p>
+<p>23) you can call refine in a regular module, but you cannot call it in a class, even if a class is itself a module.</p>
+<h2 id="METHODS"><a href="#METHODS" class="headerlink" title="METHODS"></a>METHODS</h2><h3 id="Dynamic-Methods"><a href="#Dynamic-Methods" class="headerlink" title="Dynamic Methods"></a>Dynamic Methods</h3><p>24) If that kind of breaching of encapsulation makes you uneasy, you can use public_send instead. It’s like send, but it makes a point of respecting the receiver’s privacy. Be prepared, however, for the fact that Ruby code in the wild rarely bothers with this concern. If anything, a lot of Ruby programmers use send exactly because it allows calling private methods, not in spite of that</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DS</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">initialize</span> <span class="comment"># connect to data source...</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">get_cpu_info</span><span class="params">(workstation_id)</span></span> <span class="comment"># ...</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">get_cpu_price</span><span class="params">(workstation_id)</span></span> <span class="comment"># ...</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">get_mouse_info</span><span class="params">(workstation_id)</span></span> <span class="comment"># ...</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">get_mouse_price</span><span class="params">(workstation_id)</span></span> <span class="comment"># ...</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">get_keyboard_info</span><span class="params">(workstation_id)</span></span> <span class="comment"># ...</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">get_keyboard_price</span><span class="params">(workstation_id)</span></span> <span class="comment"># ...</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">get_display_info</span><span class="params">(workstation_id)</span></span> <span class="comment"># ...</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">get_display_price</span><span class="params">(workstation_id)</span></span> <span class="comment"># ...</span></span><br><span class="line">  <span class="comment"># ...and so on</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Computer</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">initialize</span><span class="params">(computer_id, data_source)</span></span></span><br><span class="line">    @id = computer_id</span><br><span class="line">    @data_source = data_source</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">mouse</span></span></span><br><span class="line">    info = @data_source.get_mouse_info(@id)</span><br><span class="line">    price = @data_source.get_mouse_price(@id)</span><br><span class="line">    result = <span class="string">"Mouse: <span class="subst">#&#123;info&#125;</span> ($<span class="subst">#&#123;price&#125;</span>)"</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">"* <span class="subst">#&#123;result&#125;</span>"</span> <span class="keyword">if</span> price &gt;= <span class="number">100</span></span><br><span class="line">    result</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">   </span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">cpu</span></span></span><br><span class="line">    info = @data_source.get_cpu_info(@id)</span><br><span class="line">    price = @data_source.get_cpu_price(@id)</span><br><span class="line">    result = <span class="string">"Cpu: <span class="subst">#&#123;info&#125;</span> ($<span class="subst">#&#123;price&#125;</span>)"</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">"* <span class="subst">#&#123;result&#125;</span>"</span> <span class="keyword">if</span> price &gt;= <span class="number">100</span></span><br><span class="line">    result</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">    </span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">keyboard</span></span></span><br><span class="line">    info = @data_source.get_keyboard_info(@id)</span><br><span class="line">    price = @data_source.get_keyboard_price(@id)</span><br><span class="line">    result = <span class="string">"Keyboard: <span class="subst">#&#123;info&#125;</span> ($<span class="subst">#&#123;price&#125;</span>)"</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">"* <span class="subst">#&#123;result&#125;</span>"</span> <span class="keyword">if</span> price &gt;= <span class="number">100</span></span><br><span class="line">    result</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">   <span class="comment"># ...</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>DYNAMIC DISPATCH</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Computer</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">initialize</span><span class="params">(computer_id, data_source)</span></span></span><br><span class="line">  @id = computer_id</span><br><span class="line">  @data_source = data_source</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">mouse</span></span></span><br><span class="line">    component <span class="symbol">:mouse</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">cpu</span></span></span><br><span class="line">    component <span class="symbol">:cpu</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">    </span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">keyboard</span></span></span><br><span class="line">    component <span class="symbol">:keyboard</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">    </span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">component</span><span class="params">(name)</span></span></span><br><span class="line">    info = @data_source.send <span class="string">"get_<span class="subst">#&#123;name&#125;</span>_info"</span>, @id</span><br><span class="line">    price = @data_source.send <span class="string">"get_<span class="subst">#&#123;name&#125;</span>_price"</span>, @id</span><br><span class="line">    result = <span class="string">"<span class="subst">#&#123;name.capitalize&#125;</span>: <span class="subst">#&#123;info&#125;</span> ($<span class="subst">#&#123;price&#125;</span>)"</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">"* <span class="subst">#&#123;result&#125;</span>"</span> <span class="keyword">if</span> price &gt;= <span class="number">100</span></span><br><span class="line">    result</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>DYNAMIC METHOD</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Computer</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">initialize</span><span class="params">(computer_id, data_source)</span></span></span><br><span class="line">    @id = computer_id</span><br><span class="line">    @data_source = data_source</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">define_component</span><span class="params">(name)</span></span></span><br><span class="line">    define_method(name) <span class="keyword">do</span></span><br><span class="line">      info = @data_source.send <span class="string">"get_<span class="subst">#&#123;name&#125;</span>_info"</span>, @id</span><br><span class="line">      price = @data_source.send <span class="string">"get_<span class="subst">#&#123;name&#125;</span>_price"</span>, @id</span><br><span class="line">      result = <span class="string">"<span class="subst">#&#123;name.capitalize&#125;</span>: <span class="subst">#&#123;info&#125;</span> ($<span class="subst">#&#123;price&#125;</span>)"</span></span><br><span class="line">      <span class="keyword">return</span> <span class="string">"* <span class="subst">#&#123;result&#125;</span>"</span> <span class="keyword">if</span> price &gt;= <span class="number">100</span></span><br><span class="line">      result</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">     </span><br><span class="line">  define_component <span class="symbol">:mouse</span></span><br><span class="line">  define_component <span class="symbol">:cpu</span></span><br><span class="line">  define_component <span class="symbol">:keyboard</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>BEST WAY</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Computer</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">initialize</span><span class="params">(computer_id, data_source)</span></span></span><br><span class="line">    @id = computer_id</span><br><span class="line">    @data_source = data_source</span><br><span class="line">    data_source.methods.grep(<span class="regexp">/^get_(.*)_info$/</span>) &#123; Computer.define_component $1 &#125;</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">    </span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">define_component</span><span class="params">(name)</span></span></span><br><span class="line">    define_method(name) <span class="keyword">do</span></span><br><span class="line">      <span class="comment"># ...</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="method-missing"><a href="#method-missing" class="headerlink" title="method_missing"></a>method_missing</h3><p>25) The Hashie gem contains a little bit of magic called Hashie::Mash. A Mash is a more powerful version of Ruby’s standard OpenStruct class: a hash-like object whose attributes work like Ruby variables. If you want a new attribute, just assign a value to the attribute, and it will spring into existence:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">require</span> <span class="string">'hashie'</span></span><br><span class="line">icecream = Hashie::Mash.new</span><br><span class="line">icecream.flavor = <span class="string">"strawberry"</span></span><br><span class="line">icecream.flavor <span class="comment"># =&gt; "strawberry"</span></span><br></pre></td></tr></table></figure>
+
+<p>What hanppen inside?</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">module</span> <span class="title">Hashie</span></span></span><br><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">Mash</span> &lt; Hashie::Hash</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">method_missing</span><span class="params">(method_name, *args, &amp;blk)</span></span></span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">self</span>.[](method_name, &amp;blk) <span class="keyword">if</span> key?(method_name)</span><br><span class="line">      match = method_name.to_s.match(<span class="regexp">/(.*?)([?=!]?)$/</span>)</span><br><span class="line">      <span class="keyword">case</span> match[<span class="number">2</span>]</span><br><span class="line">      <span class="keyword">when</span> <span class="string">"="</span></span><br><span class="line">      <span class="keyword">self</span>[match[<span class="number">1</span>]] = args.first</span><br><span class="line">      <span class="comment"># ...</span></span><br><span class="line">      <span class="keyword">else</span></span><br><span class="line">      default(method_name, *args, &amp;blk)</span><br><span class="line">      <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="comment"># ...</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>26) <strong>Ghost Methods</strong> (57) are usually icing on the cake, but some objects actually rely almost exclusively on them. These objects are often wrappers for something else—maybe another object, a web service, or code written in a different language. They collect method calls through method_missing and forward them to the wrapped object. Let’s look at a complex real-life example.</p>
+<p>Refactor:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Computer</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">initialize</span><span class="params">(computer_id, data_source)</span></span></span><br><span class="line">    @id = computer_id</span><br><span class="line">    @data_source = data_source</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">method_missing</span><span class="params">(name)</span></span></span><br><span class="line">    <span class="keyword">super</span> <span class="keyword">if</span> !@data_source.respond_to?(<span class="string">"get_<span class="subst">#&#123;name&#125;</span>_info"</span>)</span><br><span class="line">    info = @data_source.send(<span class="string">"get_<span class="subst">#&#123;name&#125;</span>_info"</span>, @id)</span><br><span class="line">    price = @data_source.send(<span class="string">"get_<span class="subst">#&#123;name&#125;</span>_price"</span>, @id)</span><br><span class="line">    result = <span class="string">"<span class="subst">#&#123;name.capitalize&#125;</span>: <span class="subst">#&#123;info&#125;</span> ($<span class="subst">#&#123;price&#125;</span>)"</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">"* <span class="subst">#&#123;result&#125;</span>"</span> <span class="keyword">if</span> price &gt;= <span class="number">100</span></span><br><span class="line">    result</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>27) Khi dùng ghost method, giả sử trong method_missing chúng ta muốn tạo ra 1 method x, tuy nhiên x lại có trong cây kế thừa =&gt; x trong method missing sẽ không được gọi. Lúc này ta cần Blank Slates.</p>
+<h3 id="Blank-Slates"><a href="#Blank-Slates" class="headerlink" title="Blank Slates"></a>Blank Slates</h3><p>28) If you don’t need the inherited method, you can fix the problem by removing it. While you’re at it, you might want to remove most methods from the class, preventing such name clashes from ever happening again. A skinny class Spell: Blank Slate with a minimal number of methods is called a Blank Slate. As it turns out, Ruby has a ready-made Blank Slate for you to use</p>
+<p>29) If you don’t specify a superclass, your classes inherit by default from Object, which is itself a subclass of BasicObject. If you want a Blank Slate (66), you can inherit directly from BasicObject instead. For example, if Computer inherited directly from BasicObject, then it wouldn’t have a problematic display method.<br>=&gt; không lấy nhầm method trong class Object, vì lớp Computer được kế thừa trực tiếp từ BasicObject</p>
+<p>30) Inheriting from BasicObject is the quicker way to define a Blank Slate in Ruby.<br><code>class Computer &lt; BasicObject</code></p>
+<p>31) You can remove a method from a class by using either Module#undef_method or Module#remove_method. The drastic undef_method removes any method, including the inherited ones. The kinder remove_method removes the method from the receiver, but it leaves inherited methods alone. Let’s look at a real-life library that uses undef_method to create a Blank Slate.</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BlankSlate</span></span></span><br><span class="line">  <span class="comment"># Hide the method named +name+ in the BlankSlate class. Don't</span></span><br><span class="line">  <span class="comment"># hide +instance_eval+ or any method beginning with "__".</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">hide</span><span class="params">(name)</span></span></span><br><span class="line">    <span class="comment"># ...</span></span><br><span class="line">    <span class="keyword">if</span> instance_methods.<span class="keyword">include</span>?(name._blankslate_as_name) &amp;&amp;</span><br><span class="line">      name !~ <span class="regexp">/^(__|instance_eval$)/</span></span><br><span class="line">      undef_method name</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">  <span class="comment"># ...</span></span><br><span class="line">  instance_methods.each &#123; <span class="params">|m|</span> hide(m) &#125;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>32) <strong>use Dynamic Methods if you can and Ghost Methods if you have to</strong></p>
+<h2 id="BLOCKS"><a href="#BLOCKS" class="headerlink" title="BLOCKS"></a>BLOCKS</h2><h3 id="Blocks-Are-Closures"><a href="#Blocks-Are-Closures" class="headerlink" title="Blocks Are Closures"></a>Blocks Are Closures</h3><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">my_method</span></span></span><br><span class="line">  x = <span class="string">"Goodbye"</span></span><br><span class="line">  <span class="keyword">yield</span>(<span class="string">"cruel"</span>)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">x = <span class="string">"Hello"</span></span><br><span class="line">my_method &#123;<span class="params">|y|</span> <span class="string">"<span class="subst">#&#123;x&#125;</span>, <span class="subst">#&#123;y&#125;</span> world"</span> &#125; <span class="comment"># =&gt; "Hello, cruel world"</span></span><br></pre></td></tr></table></figure>
+
+<p>33) When you create the block, you capture the local bindings, such as x. Then you pass the block to a method that has its own separate set of bindings. In the previous example, those bindings also include a variable named x. Still, the code in the block sees the x that was around when the block was defined, not the method’s x, which is not visible at all in the block.</p>
+<p>34) khi gọi 1 block, nó lưu vết lại các ràng buộc cục bộ nơi block được gọi, sau đó block được truyền cho 1 method, mà method đó sẽ có các ràng cuộc cục bộ của riêng nó, và block sẽ sử dụng ràng buộc của mình (ví dụ như biến x ở trên).</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">just_yield</span></span></span><br><span class="line">  <span class="keyword">yield</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">top_level_variable = <span class="number">1</span></span><br><span class="line">just_yield <span class="keyword">do</span></span><br><span class="line">  top_level_variable += <span class="number">1</span></span><br><span class="line">  local_to_block = <span class="number">1</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">top_level_variable <span class="comment"># =&gt; 2</span></span><br><span class="line">local_to_block <span class="comment"># =&gt; Error!</span></span><br></pre></td></tr></table></figure>
+<p>Trong ví dụ này thì local_to_block là 1 binding thuộc block, và ra ngoài ngữ cảnh block nó không có giá trị.</p>
+<p>35) This example shows how scope changes as your program runs, tracking the names of bindings with the Kernel#local_variables method:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">v1 = <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span></span></span><br><span class="line">  v2 = <span class="number">2</span></span><br><span class="line">  local_variables <span class="comment"># =&gt; [:v2]</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">my_method</span></span></span><br><span class="line">    v3 = <span class="number">3</span></span><br><span class="line">    local_variables</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">  local_variables <span class="comment"># =&gt; [:v2]</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">  </span><br><span class="line">obj = MyClass.new</span><br><span class="line">obj.my_method <span class="comment"># =&gt; [:v3]</span></span><br><span class="line">obj.my_method <span class="comment"># =&gt; [:v3]</span></span><br><span class="line">local_variables <span class="comment"># =&gt; [:v1, :obj]</span></span><br></pre></td></tr></table></figure>
+
+<p>36) There are exactly three places where a program leaves the previous scope behind and opens a new one:<br>Class definitions<br>Module definitions<br>Methods</p>
+<p>37) Scope changes whenever the program enters (or exits) a class or module definition or a method. These three borders are marked by the keywords class, module, and def, respectively. Each of these keywords acts like a <strong>Scope Gate</strong>.</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">v1 = <span class="number">1</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span> <span class="comment"># SCOPE GATE: entering class</span></span></span><br><span class="line">  v2 = <span class="number">2</span></span><br><span class="line">  local_variables <span class="comment"># =&gt; ["v2"]</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">my_method</span> <span class="comment"># SCOPE GATE: entering def</span></span></span><br><span class="line">    v3 = <span class="number">3</span></span><br><span class="line">    local_variables</span><br><span class="line">  <span class="keyword">end</span> <span class="comment"># SCOPE GATE: leaving def</span></span><br><span class="line">  </span><br><span class="line">  local_variables <span class="comment"># =&gt; ["v2"]</span></span><br><span class="line"><span class="keyword">end</span> <span class="comment"># SCOPE GATE: leaving class</span></span><br><span class="line">  </span><br><span class="line">obj = MyClass.new</span><br><span class="line">obj.my_method <span class="comment"># =&gt; [:v3]</span></span><br><span class="line">local_variables <span class="comment"># =&gt; [:v1, :obj]</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">my_var = <span class="string">"Success"</span></span><br><span class="line">  </span><br><span class="line">MyClass = Class.new <span class="keyword">do</span></span><br><span class="line">  <span class="string">"<span class="subst">#&#123;my_var&#125;</span> in the class definition"</span></span><br><span class="line">  </span><br><span class="line">  define_method <span class="symbol">:my_method</span> <span class="keyword">do</span></span><br><span class="line">    <span class="string">"<span class="subst">#&#123;my_var&#125;</span> in the method"</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>khai báo thông thường thì my_var không thể sử dụng trong class hoặc def (vì nó mở ra  1 scope mới). Nên dùng call method gọi là <strong>flat scope</strong>.</p>
+<p>38) If you replace Scope Gates with method calls, you allow one scope to see variables from another scope. Technically, this trick should be called nested lexical scopes, but many Ruby coders refer to it simply as “flattening the scope,” meaning that the two scopes share variables as if the scopes were squeezed together. For short, you can call this spell a Flat Scope.</p>
+<p>39) Once you know about Flat Scopes (83), you can do pretty much whatever you want with scopes. For example, assume that you want to share a variable among a few methods, and you don’t want anybody else to see that variable. You can do that by defining all the methods in the same Flat Scope as the variable:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">define_methods</span></span></span><br><span class="line">  shared = <span class="number">0</span></span><br><span class="line">  Kernel.send <span class="symbol">:define_method</span>, <span class="symbol">:counter</span> <span class="keyword">do</span></span><br><span class="line">    shared</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  Kernel.send <span class="symbol">:define_method</span>, <span class="symbol">:inc</span> <span class="keyword">do</span> <span class="params">|x|</span></span><br><span class="line">    shared += x</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">Muốn chỉ share variable cho <span class="number">1</span> vài method nhất định, dùng các phương thức support bởi kernel và gọi đây là **Flat Scope**.</span><br></pre></td></tr></table></figure>
+
+<h3 id="instance-eval"><a href="#instance-eval" class="headerlink" title="instance_eval()"></a>instance_eval()</h3><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">v = <span class="number">2</span></span><br><span class="line">obj.instance_eval &#123; @v = v &#125;</span><br><span class="line">obj.instance_eval &#123; @v &#125; <span class="comment"># =&gt; 2</span></span><br></pre></td></tr></table></figure>
+
+<p>40) The three lines in the previous example are evaluated in the same Flat Scope (83), so they can all access the local variable v—but the blocks are evaluated with the object as self, so they can also access obj’s instance variable @v. In all these cases, you can call the block that you pass to instance_eval a Context Probe, because it’s like a snippet of code that you dip inside an object to do Spell: Context Probe something in there</p>
+<p>41) To solve this problem Ruby provides the standard library class Proc.<br>A Proc isa block that has been turned into an object. You can create a Proc by passing<br>the block to Proc.new</p>
+<h3 id="Callable-Objects"><a href="#Callable-Objects" class="headerlink" title="Callable Objects"></a>Callable Objects</h3><p>42) To attach a binding to the block, you can add one special argument to the method. This argument must be the last in the list of arguments and prefixed by an &amp; sign.</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">my_method</span><span class="params">(&amp;the_proc)</span></span></span><br><span class="line">  the_proc</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">    </span><br><span class="line">p = my_method &#123;<span class="params">|name|</span> <span class="string">"Hello, <span class="subst">#&#123;name&#125;</span>!"</span> &#125;</span><br><span class="line">p<span class="class">.<span class="keyword">class</span> <span class="comment"># =&gt; Proc</span></span></span><br><span class="line">p.call(<span class="string">"Bill"</span>) <span class="comment"># =&gt; "Hello, Bill!"</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">my_method</span><span class="params">(greeting)</span></span></span><br><span class="line">  <span class="string">"<span class="subst">#&#123;greeting&#125;</span>, <span class="subst">#&#123;<span class="keyword">yield</span>&#125;</span>!"</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">    </span><br><span class="line">my_proc = proc &#123; <span class="string">"Bill"</span> &#125;</span><br><span class="line">my_method(<span class="string">"Hello"</span>, &amp;my_proc)</span><br></pre></td></tr></table></figure>
+<p>When you call my_method, the &amp; converts my_proc to a block and passes that block to the method.</p>
+<p>43) There are two differences between procs and lambdas. One has to do with the return keyword, and the other concerns the checking of arguments.</p>
+<p>In a lambda, return just returns from the lambda.<br>In a proc, return behaves differently. Rather than return from the proc, it returns from the scope where the proc itself was defined:</p>
+<p>lambdas tend to be less tolerant than procs (and regular blocks) when it comes to arguments. Call a lambda with the wrong arity, and it fails with an ArgumentError. On the other hand, a proc fits the argument list to its own expectations:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">initialize</span><span class="params">(value)</span></span></span><br><span class="line">    @x = value</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">    </span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">my_method</span></span></span><br><span class="line">    @x</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">    </span><br><span class="line">object = MyClass.new(<span class="number">1</span>)</span><br><span class="line">m = object.method <span class="symbol">:my_method</span></span><br><span class="line">m.call <span class="comment"># =&gt; 1</span></span><br></pre></td></tr></table></figure>
+
+<p>44) By calling Kernel#method, you get the method itself as a Method object, which you can later execute with Method#call.</p>
+<h3 id="Writing-a-Domain-Specific-Language"><a href="#Writing-a-Domain-Specific-Language" class="headerlink" title="Writing a Domain-Specific Language"></a>Writing a Domain-Specific Language</h3><p>N/A</p>
+<h2 id="CLASS-DEFINITIONS"><a href="#CLASS-DEFINITIONS" class="headerlink" title="CLASS DEFINITIONS"></a>CLASS DEFINITIONS</h2><h3 id="Class-Definitions-Demystified"><a href="#Class-Definitions-Demystified" class="headerlink" title="Class Definitions Demystified"></a>Class Definitions Demystified</h3><h3 id="Singleton-Methods"><a href="#Singleton-Methods" class="headerlink" title="Singleton Methods"></a>Singleton Methods</h3><h3 id="Singleton-Classes"><a href="#Singleton-Classes" class="headerlink" title="Singleton Classes"></a>Singleton Classes</h3><h3 id="Method-Wrappers"><a href="#Method-Wrappers" class="headerlink" title="Method Wrappers"></a>Method Wrappers</h3><p>45) At the top level of your program, the current class is Object, the class of main. (<strong>That’s why, if you define a method at the top level, that method becomes an instance method of Object.</strong>)</p>
+<p>46) Module#class_eval is very different from BasicObject#instance_eval, which you learned about earlier in instance_eval(), on page 85. instance_eval only changes self, <strong>while class_eval changes both self and the current class.</strong></p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add_method_to</span><span class="params">(a_class)</span></span></span><br><span class="line">  a_class.class_eval <span class="keyword">do</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">m</span>;</span> <span class="string">'Hello!'</span>; <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">add_method_to String</span><br><span class="line"><span class="string">"abc"</span>.m <span class="comment"># =&gt; "Hello!"</span></span><br></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/projects/">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#IMAGES"><span class="toc-number">1.</span> <span class="toc-text">IMAGES</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RUBY-OBJECT-MODEL"><span class="toc-number">2.</span> <span class="toc-text">RUBY OBJECT MODEL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Open-Classes"><span class="toc-number">2.1.</span> <span class="toc-text">Open Classes</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Inside-the-Object-Model"><span class="toc-number">2.2.</span> <span class="toc-text">Inside the Object Model</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#What-Happens-When-You-Call-a-Method"><span class="toc-number">2.3.</span> <span class="toc-text">What Happens When You Call a Method?</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#METHODS"><span class="toc-number">3.</span> <span class="toc-text">METHODS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Dynamic-Methods"><span class="toc-number">3.1.</span> <span class="toc-text">Dynamic Methods</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#method-missing"><span class="toc-number">3.2.</span> <span class="toc-text">method_missing</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Blank-Slates"><span class="toc-number">3.3.</span> <span class="toc-text">Blank Slates</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BLOCKS"><span class="toc-number">4.</span> <span class="toc-text">BLOCKS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Blocks-Are-Closures"><span class="toc-number">4.1.</span> <span class="toc-text">Blocks Are Closures</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#instance-eval"><span class="toc-number">4.2.</span> <span class="toc-text">instance_eval()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Callable-Objects"><span class="toc-number">4.3.</span> <span class="toc-text">Callable Objects</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Writing-a-Domain-Specific-Language"><span class="toc-number">4.4.</span> <span class="toc-text">Writing a Domain-Specific Language</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CLASS-DEFINITIONS"><span class="toc-number">5.</span> <span class="toc-text">CLASS DEFINITIONS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Class-Definitions-Demystified"><span class="toc-number">5.1.</span> <span class="toc-text">Class Definitions Demystified</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Singleton-Methods"><span class="toc-number">5.2.</span> <span class="toc-text">Singleton Methods</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Singleton-Classes"><span class="toc-number">5.3.</span> <span class="toc-text">Singleton Classes</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Method-Wrappers"><span class="toc-number">5.4.</span> <span class="toc-text">Method Wrappers</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/09/21/meta-programming-ruby/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/09/21/meta-programming-ruby/&text=Book Notes: Mateprograming Ruby 2" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/09/21/meta-programming-ruby/&title=Book Notes: Mateprograming Ruby 2" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/09/21/meta-programming-ruby/&is_video=false&description=Book Notes: Mateprograming Ruby 2" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Book Notes: Mateprograming Ruby 2&body=Check out this article: https://hdchinh.github.io/2019/09/21/meta-programming-ruby/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/09/21/meta-programming-ruby/&title=Book Notes: Mateprograming Ruby 2" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/09/21/meta-programming-ruby/&title=Book Notes: Mateprograming Ruby 2" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/09/21/meta-programming-ruby/&title=Book Notes: Mateprograming Ruby 2" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/09/21/meta-programming-ruby/&title=Book Notes: Mateprograming Ruby 2" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/09/21/meta-programming-ruby/&name=Book Notes: Mateprograming Ruby 2&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 Duy Chinh
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/projects/">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/lib/clipboard/clipboard.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight .code pre").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      target: function(trigger) {
+        return trigger.nextElementSibling;
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

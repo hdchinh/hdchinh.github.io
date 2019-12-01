@@ -9,12 +9,12 @@
     <meta name="description" content="1. Generate keys1ssh-keygen -t rsa -C &quot;YOUr_EMAIL_OR_YOUR_INFO&quot; -f &quot;YOUR_NAME_YOU_WANT_TO_SET_FOR_THIS_KEY&quot;  eg. 1ssh-keygen -t rsa -C &quot;hduychinh@gmail.com&quot; -f &quot;primary_github&quot;   2. Add keyeg. 1ssh-ad">
 <meta name="keywords" content="TIL">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Use multi accounts with SSH">
+<meta property="og:title" content="Use multiple accounts with SSH">
 <meta property="og:url" content="https:&#x2F;&#x2F;hdchinh.github.io&#x2F;2019&#x2F;12&#x2F;01&#x2F;2019-12-01-how-to-use-multi-account-with-ssh&#x2F;index.html">
 <meta property="og:site_name" content="Chinh&#39;s Notes">
 <meta property="og:description" content="1. Generate keys1ssh-keygen -t rsa -C &quot;YOUr_EMAIL_OR_YOUR_INFO&quot; -f &quot;YOUR_NAME_YOU_WANT_TO_SET_FOR_THIS_KEY&quot;  eg. 1ssh-keygen -t rsa -C &quot;hduychinh@gmail.com&quot; -f &quot;primary_github&quot;   2. Add keyeg. 1ssh-ad">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-12-01T11:31:45.695Z">
+<meta property="og:updated_time" content="2019-12-01T12:47:31.746Z">
 <meta name="twitter:card" content="summary">
     
     
@@ -35,7 +35,7 @@
         
     
     <!-- title -->
-    <title>Use multi accounts with SSH</title>
+    <title>Use multiple accounts with SSH</title>
     <!-- styles -->
     <link rel="stylesheet" href="/css/style.css">
     <!-- persian styles -->
@@ -71,10 +71,8 @@
     <span id="actions">
       <ul>
         
-        <li><a class="icon" href="/2019/12/01/2019-12-01-basic-bash-file-to-deploy-my-blog/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
-        
-        <li><a class="icon" href="/2019/12/01/2019-12-01-simple-bst-in-ruby/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" href="/2019/12/01/2019-12-01-basic-bash-file-to-deploy-my-blog/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
         <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
@@ -88,15 +86,15 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/12/01/2019-12-01-how-to-use-multi-account-with-ssh/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/12/01/2019-12-01-how-to-use-multi-account-with-ssh/&text=Use multi accounts with SSH" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/12/01/2019-12-01-how-to-use-multi-account-with-ssh/&title=Use multi accounts with SSH" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/12/01/2019-12-01-how-to-use-multi-account-with-ssh/&is_video=false&description=Use multi accounts with SSH" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Use multi accounts with SSH&body=Check out this article: https://hdchinh.github.io/2019/12/01/2019-12-01-how-to-use-multi-account-with-ssh/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/12/01/2019-12-01-how-to-use-multi-account-with-ssh/&title=Use multi accounts with SSH" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/12/01/2019-12-01-how-to-use-multi-account-with-ssh/&title=Use multi accounts with SSH" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/12/01/2019-12-01-how-to-use-multi-account-with-ssh/&title=Use multi accounts with SSH" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/12/01/2019-12-01-how-to-use-multi-account-with-ssh/&title=Use multi accounts with SSH" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/12/01/2019-12-01-how-to-use-multi-account-with-ssh/&name=Use multi accounts with SSH&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/12/01/2019-12-01-how-to-use-multi-account-with-ssh/&text=Use multiple accounts with SSH" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/12/01/2019-12-01-how-to-use-multi-account-with-ssh/&title=Use multiple accounts with SSH" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/12/01/2019-12-01-how-to-use-multi-account-with-ssh/&is_video=false&description=Use multiple accounts with SSH" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Use multiple accounts with SSH&body=Check out this article: https://hdchinh.github.io/2019/12/01/2019-12-01-how-to-use-multi-account-with-ssh/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/12/01/2019-12-01-how-to-use-multi-account-with-ssh/&title=Use multiple accounts with SSH" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/12/01/2019-12-01-how-to-use-multi-account-with-ssh/&title=Use multiple accounts with SSH" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/12/01/2019-12-01-how-to-use-multi-account-with-ssh/&title=Use multiple accounts with SSH" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/12/01/2019-12-01-how-to-use-multi-account-with-ssh/&title=Use multiple accounts with SSH" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/12/01/2019-12-01-how-to-use-multi-account-with-ssh/&name=Use multiple accounts with SSH&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -113,7 +111,7 @@
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
-        Use multi accounts with SSH
+        Use multiple accounts with SSH
     </h1>
 
 
@@ -195,15 +193,15 @@
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/12/01/2019-12-01-how-to-use-multi-account-with-ssh/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/12/01/2019-12-01-how-to-use-multi-account-with-ssh/&text=Use multi accounts with SSH" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/12/01/2019-12-01-how-to-use-multi-account-with-ssh/&title=Use multi accounts with SSH" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/12/01/2019-12-01-how-to-use-multi-account-with-ssh/&is_video=false&description=Use multi accounts with SSH" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Use multi accounts with SSH&body=Check out this article: https://hdchinh.github.io/2019/12/01/2019-12-01-how-to-use-multi-account-with-ssh/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/12/01/2019-12-01-how-to-use-multi-account-with-ssh/&title=Use multi accounts with SSH" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/12/01/2019-12-01-how-to-use-multi-account-with-ssh/&title=Use multi accounts with SSH" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/12/01/2019-12-01-how-to-use-multi-account-with-ssh/&title=Use multi accounts with SSH" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/12/01/2019-12-01-how-to-use-multi-account-with-ssh/&title=Use multi accounts with SSH" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/12/01/2019-12-01-how-to-use-multi-account-with-ssh/&name=Use multi accounts with SSH&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/12/01/2019-12-01-how-to-use-multi-account-with-ssh/&text=Use multiple accounts with SSH" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/12/01/2019-12-01-how-to-use-multi-account-with-ssh/&title=Use multiple accounts with SSH" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/12/01/2019-12-01-how-to-use-multi-account-with-ssh/&is_video=false&description=Use multiple accounts with SSH" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Use multiple accounts with SSH&body=Check out this article: https://hdchinh.github.io/2019/12/01/2019-12-01-how-to-use-multi-account-with-ssh/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/12/01/2019-12-01-how-to-use-multi-account-with-ssh/&title=Use multiple accounts with SSH" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/12/01/2019-12-01-how-to-use-multi-account-with-ssh/&title=Use multiple accounts with SSH" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/12/01/2019-12-01-how-to-use-multi-account-with-ssh/&title=Use multiple accounts with SSH" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/12/01/2019-12-01-how-to-use-multi-account-with-ssh/&title=Use multiple accounts with SSH" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/12/01/2019-12-01-how-to-use-multi-account-with-ssh/&name=Use multiple accounts with SSH&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

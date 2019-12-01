@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="1. Generate keysssh-keygen -t rsa -C &amp;quot;YOUr_EMAIL_OR_YOUR_INFO&amp;quot; -f &amp;quot;YOUR_NAME_YOU_WANT_TO_SET_FOR_THIS_KEY&amp;quot; eg. ssh-keygen -t rsa -C &amp;quot;hduychinh@gmail.com&amp;quot; -f &amp;quot;primary">
+    <meta name="description" content="1. Generate keys1ssh-keygen -t rsa -C &quot;YOUr_EMAIL_OR_YOUR_INFO&quot; -f &quot;YOUR_NAME_YOU_WANT_TO_SET_FOR_THIS_KEY&quot;  eg. 1ssh-keygen -t rsa -C &quot;hduychinh@gmail.com&quot; -f &quot;primary_github&quot;   2. Add keyeg. 1ssh-ad">
 <meta name="keywords" content="TIL">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Use multi accounts with SSH">
 <meta property="og:url" content="https:&#x2F;&#x2F;hdchinh.github.io&#x2F;2019&#x2F;12&#x2F;01&#x2F;2019-12-01-how-to-use-multi-account-with-ssh&#x2F;index.html">
 <meta property="og:site_name" content="Chinh&#39;s Notes">
-<meta property="og:description" content="1. Generate keysssh-keygen -t rsa -C &amp;quot;YOUr_EMAIL_OR_YOUR_INFO&amp;quot; -f &amp;quot;YOUR_NAME_YOU_WANT_TO_SET_FOR_THIS_KEY&amp;quot; eg. ssh-keygen -t rsa -C &amp;quot;hduychinh@gmail.com&amp;quot; -f &amp;quot;primary">
+<meta property="og:description" content="1. Generate keys1ssh-keygen -t rsa -C &quot;YOUr_EMAIL_OR_YOUR_INFO&quot; -f &quot;YOUR_NAME_YOU_WANT_TO_SET_FOR_THIS_KEY&quot;  eg. 1ssh-keygen -t rsa -C &quot;hduychinh@gmail.com&quot; -f &quot;primary_github&quot;   2. Add keyeg. 1ssh-ad">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-12-01T10:57:43.848Z">
+<meta property="og:updated_time" content="2019-12-01T11:31:45.695Z">
 <meta name="twitter:card" content="summary">
     
     
@@ -71,10 +71,8 @@
     <span id="actions">
       <ul>
         
-        <li><a class="icon" href="/2019/12/01/2019-12-01-simple-bst-in-ruby/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
-        
-        <li><a class="icon" href="/2019/11/12/hello-hexo/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" href="/2019/12/01/2019-12-01-simple-bst-in-ruby/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
         <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
@@ -145,14 +143,25 @@
   
 
   <div class="content" itemprop="articleBody">
-    <h2 id="1-Generate-keys"><a href="#1-Generate-keys" class="headerlink" title="1. Generate keys"></a>1. Generate keys</h2><p><code>ssh-keygen -t rsa -C &quot;YOUr_EMAIL_OR_YOUR_INFO&quot; -f &quot;YOUR_NAME_YOU_WANT_TO_SET_FOR_THIS_KEY&quot;</code></p>
-<p>eg. <code>ssh-keygen -t rsa -C &quot;hduychinh@gmail.com&quot; -f &quot;primary_github&quot;</code></p>
-<h2 id="2-Add-key"><a href="#2-Add-key" class="headerlink" title="2. Add key"></a>2. Add key</h2><p>eg. <code>ssh-add ~/.ssh/primary_github</code></p>
-<h2 id="3-Cache"><a href="#3-Cache" class="headerlink" title="3. Cache"></a>3. Cache</h2><p>Remove cache: <code>ssh-add -D</code></p>
-<p>Show cache: <code>ssh-add -l</code></p>
+    <h2 id="1-Generate-keys"><a href="#1-Generate-keys" class="headerlink" title="1. Generate keys"></a>1. Generate keys</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">"YOUr_EMAIL_OR_YOUR_INFO"</span> -f <span class="string">"YOUR_NAME_YOU_WANT_TO_SET_FOR_THIS_KEY"</span></span><br></pre></td></tr></table></figure>
+
+<p>eg.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">"hduychinh@gmail.com"</span> -f <span class="string">"primary_github"</span></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="2-Add-key"><a href="#2-Add-key" class="headerlink" title="2. Add key"></a>2. Add key</h2><p>eg.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-add ~/.ssh/primary_github</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-Cache"><a href="#3-Cache" class="headerlink" title="3. Cache"></a>3. Cache</h2><p>Remove cache:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-add -D</span><br></pre></td></tr></table></figure>
+
+<p>Show cache:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-add -l</span><br></pre></td></tr></table></figure>
+
 <h2 id="4-Create-config-file"><a href="#4-Create-config-file" class="headerlink" title="4. Create config file"></a>4. Create config file</h2><p>eg.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Host primary_github.github.com</span><br><span class="line">HostName github.com</span><br><span class="line">PreferredAuthentications publickey</span><br><span class="line">IdentityFile ~/.ssh/primary_github</span><br><span class="line"></span><br><span class="line">Host secondary_github.github.com</span><br><span class="line">HostName github.com</span><br><span class="line">PreferredAuthentications publickey</span><br><span class="line">IdentityFile ~/.ssh/secondary_github</span><br></pre></td></tr></table></figure>
-<h2 id="5-Add-remote-with-prefix"><a href="#5-Add-remote-with-prefix" class="headerlink" title="5. Add remote with prefix"></a>5. Add remote with prefix</h2><p>eg: <code>git remote add origin git@primary_github.github.com:1312047/nus-overview.git</code></p>
+<h2 id="5-Add-remote-with-prefix"><a href="#5-Add-remote-with-prefix" class="headerlink" title="5. Add remote with prefix"></a>5. Add remote with prefix</h2><p>eg:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin git@primary_github.github.com:1312047/nus-overview.git</span><br></pre></td></tr></table></figure>
 
   </div>
 </article>

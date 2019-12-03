@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="Chinh&#39;s Notes">
 <meta property="og:description" content="1. Example1234567891011121314151617181920212223#!&#x2F;bin&#x2F;bashGREEN=&amp;apos;\033[0;32m&amp;apos;NC=&amp;apos;\033[0m&amp;apos;hexo_clean=&quot;hexo clean&quot;hexo_generate=&quot;hexo generate&quot;cd_public=&quot;cd public&quot;create_file=&quot;touch CNAME&quot;add_content=&quot;e">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-12-01T12:44:08.980Z">
+<meta property="og:updated_time" content="2019-12-03T11:29:48.900Z">
 <meta name="twitter:card" content="summary">
     
     
@@ -71,10 +71,10 @@
     <span id="actions">
       <ul>
         
-        <li><a class="icon" href="/2019/12/01/2019-12-01-how-to-use-multi-account-with-ssh/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li><a class="icon" href="/2019/12/01/2019-12-01-simple-bst-in-ruby/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
-        <li><a class="icon" href="/2019/12/01/2019-12-01-simple-bst-in-ruby/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" href="/2019/11/12/hello-hexo/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
         <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
@@ -150,14 +150,7 @@
 <h2 id="2-Use-multiple-command-in-oneline"><a href="#2-Use-multiple-command-in-oneline" class="headerlink" title="2. Use multiple command in oneline"></a>2. Use multiple command in oneline</h2><p>We have two commands need to execute:</p>
 <p>eg: A, B</p>
 <p>We have three ways to execute A, B in one line.</p>
-<ol>
-<li><p>A; B (always run A, B)</p>
-</li>
-<li><p>A &amp;&amp; B (run B if A execute successful)</p>
-</li>
-<li><p>A || B (run B if A execute failure)</p>
-</li>
-</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">A; B (always run A, B)</span><br><span class="line"></span><br><span class="line">A &amp;&amp; B (run B <span class="keyword">if</span> A execute successful)</span><br><span class="line"></span><br><span class="line">A || B (run B <span class="keyword">if</span> A execute failure)</span><br></pre></td></tr></table></figure>
 
   </div>
 </article>

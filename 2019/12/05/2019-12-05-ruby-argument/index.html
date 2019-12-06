@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="How Many Kind Of Arguments In Ruby?We can answer: Three  Required arguments  eg: 123def hello(name)  puts &quot;Hello #&amp;#123;name&amp;#125;&quot;end  In there, name is a required argument. it mean if you call hello">
+<meta name="keywords" content="RUBY,TIL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How To Use Arguments In Ruby">
+<meta property="og:url" content="https:&#x2F;&#x2F;hdchinh.github.io&#x2F;2019&#x2F;12&#x2F;05&#x2F;2019-12-05-ruby-argument&#x2F;index.html">
+<meta property="og:site_name" content="Chinh&#39;s Notes">
+<meta property="og:description" content="How Many Kind Of Arguments In Ruby?We can answer: Three  Required arguments  eg: 123def hello(name)  puts &quot;Hello #&amp;#123;name&amp;#125;&quot;end  In there, name is a required argument. it mean if you call hello">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-12-06T15:31:22.772Z">
+<meta name="twitter:card" content="summary">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>How To Use Arguments In Ruby</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+          <li><a href="/projects/">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/12/06/2019-12-06-linked-list-with-ruby/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2019/12/01/2019-12-01-basic-bash-file-to-deploy-my-blog/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/12/05/2019-12-05-ruby-argument/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/12/05/2019-12-05-ruby-argument/&text=How To Use Arguments In Ruby" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/12/05/2019-12-05-ruby-argument/&title=How To Use Arguments In Ruby" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/12/05/2019-12-05-ruby-argument/&is_video=false&description=How To Use Arguments In Ruby" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=How To Use Arguments In Ruby&body=Check out this article: https://hdchinh.github.io/2019/12/05/2019-12-05-ruby-argument/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/12/05/2019-12-05-ruby-argument/&title=How To Use Arguments In Ruby" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/12/05/2019-12-05-ruby-argument/&title=How To Use Arguments In Ruby" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/12/05/2019-12-05-ruby-argument/&title=How To Use Arguments In Ruby" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/12/05/2019-12-05-ruby-argument/&title=How To Use Arguments In Ruby" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/12/05/2019-12-05-ruby-argument/&name=How To Use Arguments In Ruby&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#How-Many-Kind-Of-Arguments-In-Ruby"><span class="toc-number">1.</span> <span class="toc-text">How Many Kind Of Arguments In Ruby?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Keyword-Arguments"><span class="toc-number">2.</span> <span class="toc-text">Keyword Arguments</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        How To Use Arguments In Ruby
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Chinh's Notes</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-12-04T17:00:00.000Z" itemprop="datePublished">2019-12-05</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/RUBY/" rel="tag">RUBY</a>, <a class="tag-link" href="/tags/TIL/" rel="tag">TIL</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="How-Many-Kind-Of-Arguments-In-Ruby"><a href="#How-Many-Kind-Of-Arguments-In-Ruby" class="headerlink" title="How Many Kind Of Arguments In Ruby?"></a>How Many Kind Of Arguments In Ruby?</h2><p>We can answer: <strong>Three</strong></p>
+<ol>
+<li>Required arguments</li>
+</ol>
+<p>eg:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello</span><span class="params">(name)</span></span></span><br><span class="line">  puts <span class="string">"Hello <span class="subst">#&#123;name&#125;</span>"</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>In there, <em>name</em> is a required argument. it mean if you call <strong>hello</strong> method and do not pass an argument, the output that you see should like:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hello()</span><br><span class="line"></span><br><span class="line">=&gt; <span class="symbol">ArgumentError:</span> wrong number of arguments (given <span class="number">0</span>, expected <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<p>Let pass an argument and this error will gone.</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hello(<span class="string">'Meo Meo'</span>)</span><br><span class="line"></span><br><span class="line">=&gt; <span class="string">"Hello Meo Meo"</span></span><br></pre></td></tr></table></figure>
+
+<p>It’s very simple, I think we are make sence now.</p>
+<ol start="2">
+<li>Default arguments</li>
+</ol>
+<p>Almost like <strong>Required arguments</strong>. It has one more thing different:</p>
+<p>That is when we pass argument in a method, we can set default value for it, and then when you call this method and unlucky forgot pass arguments for this method, your method still working, if it’s not received arguments when it is called, it will use the default value.</p>
+<p>eg:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello</span><span class="params">(name = <span class="string">"Meo Meo"</span>)</span></span></span><br><span class="line">  puts <span class="string">"Hello <span class="subst">#&#123;name&#125;</span>"</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">hello(<span class="string">"Chinh"</span>)</span><br><span class="line">=&gt; <span class="string">"Hello Chinh"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># if you don't pass an argument</span></span><br><span class="line">hello()</span><br><span class="line">=&gt; <span class="string">"Hello Meo Meo"</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>Optional arguments</li>
+</ol>
+<p>Do you ever want to create a method and have no idea how many arguments does this method need?</p>
+<p>Yes, we use optional arguments for this case, take a looke at the example below:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello</span><span class="params">(*family)</span></span></span><br><span class="line">  family.each <span class="keyword">do</span> <span class="params">|name|</span></span><br><span class="line">    puts <span class="string">"Hello <span class="subst">#&#123;name&#125;</span>\n"</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">hello(<span class="string">'Chinh'</span>, <span class="string">'Chuot'</span>, <span class="string">'Cho'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># The output:</span></span><br><span class="line"><span class="comment"># Hello Chinh</span></span><br><span class="line"><span class="comment"># Hello Chuot</span></span><br><span class="line"><span class="comment"># Hello Cho</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Keyword-Arguments"><a href="#Keyword-Arguments" class="headerlink" title="Keyword Arguments"></a>Keyword Arguments</h2><p>It’s a new feature has come from ruby 2.0 to higher. It like pass arguments as a hash but more powerful.</p>
+<p>eg:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello</span><span class="params">(<span class="symbol">name:</span> <span class="string">'Chinh'</span>, <span class="symbol">age:</span> <span class="number">25</span>)</span></span></span><br><span class="line">  puts <span class="string">"Name: <span class="subst">#&#123;name&#125;</span> - Age: <span class="subst">#&#123;age&#125;</span>\n"</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>if you call <strong>hello</strong> method with no arguments:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hello()</span><br></pre></td></tr></table></figure>
+
+<p>It will use default value.</p>
+<p>And then</p>
+<p>If you pass argumets for it:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hello(<span class="string">'Chinh'</span>, <span class="number">25</span>)</span><br></pre></td></tr></table></figure>
+
+<p>what will it return?</p>
+<p><strong>Error</strong>: yes, it will response a error, but why?</p>
+<p>Because, with <strong>keyword arguments</strong>, you need to pass argumetns like a hash you declare when initial method. (<strong>same key</strong>).</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">hello(<span class="symbol">name:</span> <span class="string">'Meo'</span>)</span><br><span class="line"><span class="comment"># Hello Meo - Age: 25</span></span><br><span class="line"></span><br><span class="line">hello(<span class="symbol">age:</span> <span class="number">10</span>)</span><br><span class="line"><span class="comment"># Hello Chinh - Age: 10</span></span><br><span class="line"></span><br><span class="line">hello(<span class="symbol">name:</span> <span class="string">'Chuot'</span>, <span class="symbol">age:</span> <span class="number">11</span>)</span><br><span class="line"><span class="comment"># Hello Chuot - Age: 11</span></span><br></pre></td></tr></table></figure>
+
+<p>If you want to required an argument with no default value, try this:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello</span><span class="params">(<span class="symbol">name:</span>, <span class="symbol">age:</span>)</span></span></span><br><span class="line">  puts <span class="string">"Name: <span class="subst">#&#123;name&#125;</span> - Age: <span class="subst">#&#123;age&#125;</span>\n"</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>It mean the method need to receive “a hash” with two key <em>name</em> and <em>age</em>. if it does not revieve, error will raise.</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/projects/">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#How-Many-Kind-Of-Arguments-In-Ruby"><span class="toc-number">1.</span> <span class="toc-text">How Many Kind Of Arguments In Ruby?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Keyword-Arguments"><span class="toc-number">2.</span> <span class="toc-text">Keyword Arguments</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/12/05/2019-12-05-ruby-argument/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/12/05/2019-12-05-ruby-argument/&text=How To Use Arguments In Ruby" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/12/05/2019-12-05-ruby-argument/&title=How To Use Arguments In Ruby" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/12/05/2019-12-05-ruby-argument/&is_video=false&description=How To Use Arguments In Ruby" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=How To Use Arguments In Ruby&body=Check out this article: https://hdchinh.github.io/2019/12/05/2019-12-05-ruby-argument/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/12/05/2019-12-05-ruby-argument/&title=How To Use Arguments In Ruby" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/12/05/2019-12-05-ruby-argument/&title=How To Use Arguments In Ruby" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/12/05/2019-12-05-ruby-argument/&title=How To Use Arguments In Ruby" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/12/05/2019-12-05-ruby-argument/&title=How To Use Arguments In Ruby" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/12/05/2019-12-05-ruby-argument/&name=How To Use Arguments In Ruby&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 Duy Chinh
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/projects/">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/lib/clipboard/clipboard.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight .code pre").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      target: function(trigger) {
+        return trigger.nextElementSibling;
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

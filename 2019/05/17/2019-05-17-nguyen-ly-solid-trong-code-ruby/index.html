@@ -7,7 +7,7 @@
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="Đặt vấn đềCách đây một thời gian, tôi có làm một ứng dụng nhỏ với vỏn vẹn tổng cộng tầm 500 dòng code. Khi bắt đầu tôi đã mường tượng rằng đây chỉ là một chương trình đơn giản nên không cần phân chia">
-<meta name="keywords" content="ruby,solid">
+<meta name="keywords" content="RUBY,SOLID">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Tổng Quan Nguyên Lý SOLID">
 <meta property="og:url" content="https:&#x2F;&#x2F;hdchinh.github.io&#x2F;2019&#x2F;05&#x2F;17&#x2F;2019-05-17-nguyen-ly-solid-trong-code-ruby&#x2F;index.html">
@@ -20,7 +20,7 @@
 <meta property="og:image" content="https:&#x2F;&#x2F;hdchinh.github.io&#x2F;images&#x2F;lsp.jpg">
 <meta property="og:image" content="https:&#x2F;&#x2F;hdchinh.github.io&#x2F;images&#x2F;isp.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;hdchinh.github.io&#x2F;images&#x2F;dip.jpg">
-<meta property="og:updated_time" content="2019-11-13T04:07:00.000Z">
+<meta property="og:updated_time" content="2019-12-06T15:39:12.027Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;hdchinh.github.io&#x2F;images&#x2F;solid.png">
     
@@ -108,7 +108,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Dat-van-de"><span class="toc-number">1.</span> <span class="toc-text">Đặt vấn đề</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Luan-ban"><span class="toc-number">2.</span> <span class="toc-text">Luận bàn</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-Dinh-nghia-va-muc-tieu-su-dung"><span class="toc-number">3.</span> <span class="toc-text">1. Định nghĩa và mục tiêu sử dụng</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-Single-Responsibility-Principle"><span class="toc-number">4.</span> <span class="toc-text">2. Single Responsibility Principle</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-Open-Closed-Principle"><span class="toc-number">5.</span> <span class="toc-text">3. Open/Closed Principle</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-Liskov-Substitution-Principle"><span class="toc-number">6.</span> <span class="toc-text">4. Liskov Substitution Principle</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-Interface-Segregation-Principle"><span class="toc-number">7.</span> <span class="toc-text">5. Interface Segregation Principle</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-Dependency-Inversion-Principle"><span class="toc-number">8.</span> <span class="toc-text">6. Dependency Inversion Principle</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Ket-luan"><span class="toc-number">9.</span> <span class="toc-text">Kết luận</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Dat-van-de"><span class="toc-number">1.</span> <span class="toc-text">Đặt vấn đề</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Luan-ban"><span class="toc-number">2.</span> <span class="toc-text">Luận bàn</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Dinh-nghia-va-muc-tieu-su-dung"><span class="toc-number">3.</span> <span class="toc-text">1. Định nghĩa và mục tiêu sử dụng</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Single-Responsibility-Principle"><span class="toc-number">4.</span> <span class="toc-text">2. Single Responsibility Principle</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Open-Closed-Principle"><span class="toc-number">5.</span> <span class="toc-text">3. Open/Closed Principle</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Liskov-Substitution-Principle"><span class="toc-number">6.</span> <span class="toc-text">4. Liskov Substitution Principle</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Interface-Segregation-Principle"><span class="toc-number">7.</span> <span class="toc-text">5. Interface Segregation Principle</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-Dependency-Inversion-Principle"><span class="toc-number">8.</span> <span class="toc-text">6. Dependency Inversion Principle</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ket-luan"><span class="toc-number">9.</span> <span class="toc-text">Kết luận</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -141,14 +141,14 @@
       
     <div class="article-category">
         <i class="fas fa-archive"></i>
-        <a class="category-link" href="/categories/ruby-notes/">ruby notes</a> › <a class="category-link" href="/categories/ruby-notes/programming/">programming</a>
+        <a class="category-link" href="/categories/RUBY/">RUBY</a> › <a class="category-link" href="/categories/RUBY/PROGRAMMING/">PROGRAMMING</a>
     </div>
 
 
       
     <div class="article-tag">
         <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/ruby/" rel="tag">ruby</a>, <a class="tag-link" href="/tags/solid/" rel="tag">solid</a>
+        <a class="tag-link" href="/tags/RUBY/" rel="tag">RUBY</a>, <a class="tag-link" href="/tags/SOLID/" rel="tag">SOLID</a>
     </div>
 
 
@@ -157,10 +157,10 @@
   
 
   <div class="content" itemprop="articleBody">
-    <h1 id="Dat-van-de"><a href="#Dat-van-de" class="headerlink" title="Đặt vấn đề"></a>Đặt vấn đề</h1><p>Cách đây một thời gian, tôi có làm một ứng dụng nhỏ với vỏn vẹn tổng cộng tầm 500 dòng code. Khi bắt đầu tôi đã mường tượng rằng đây chỉ là một chương trình đơn giản nên không cần phân chia gì cho tốn công sức màu mè. Vì vậy tôi chỉ code trên vài file nhất định.</p>
+    <h2 id="Dat-van-de"><a href="#Dat-van-de" class="headerlink" title="Đặt vấn đề"></a>Đặt vấn đề</h2><p>Cách đây một thời gian, tôi có làm một ứng dụng nhỏ với vỏn vẹn tổng cộng tầm 500 dòng code. Khi bắt đầu tôi đã mường tượng rằng đây chỉ là một chương trình đơn giản nên không cần phân chia gì cho tốn công sức màu mè. Vì vậy tôi chỉ code trên vài file nhất định.</p>
 <p>Một thời gian sau, tôi cần mở rộng thêm 1 vài chức năng nữa, rất tệ là lúc này tôi đã gần như quên luôn các logic mình đã làm trong đống code cũ, cắn răng đọc lại từng dòng, từng dòng, và tốn thời gian gấp 3 gấp 4 lần để hệ thống lại cho dễ hiểu hơn. Một bài học không phải cay đắng lắm cho tôi, nó chỉ tôi hiểu rằng việc cấu trúc và cách tiếp cận khi lập trình quan trọng đến thế nào.</p>
 <p>Phần lớn thời gian một ứng dụng trên tay dev là để maintain, vậy nên việc ngày hôm nay bạn làm nó ra sao ảnh hưởng rất lớn đến sau này. Đó là một phần lý do mà tôi phải tìm đường cách mạng qua SOLID và những mẫu design pattern, những thứ văn vở mà ngày xưa tôi rất ghét và thấy thừa thãi, nhưng giờ đây nó như một bầu trời chân lý sáng chói loé qua tim.</p>
-<h1 id="Luan-ban"><a href="#Luan-ban" class="headerlink" title="Luận bàn"></a>Luận bàn</h1><h1 id="1-Dinh-nghia-va-muc-tieu-su-dung"><a href="#1-Dinh-nghia-va-muc-tieu-su-dung" class="headerlink" title="1. Định nghĩa và mục tiêu sử dụng"></a>1. Định nghĩa và mục tiêu sử dụng</h1><p><img src="/images/solid.png" alt="hoa"></p>
+<h2 id="Luan-ban"><a href="#Luan-ban" class="headerlink" title="Luận bàn"></a>Luận bàn</h2><h2 id="1-Dinh-nghia-va-muc-tieu-su-dung"><a href="#1-Dinh-nghia-va-muc-tieu-su-dung" class="headerlink" title="1. Định nghĩa và mục tiêu sử dụng"></a>1. Định nghĩa và mục tiêu sử dụng</h2><p><img src="/images/solid.png" alt="hoa"></p>
 <p>Trước tiên, hãy xem SOLID là viết tắt của những cụm từ gì.</p>
 <p>:one: <strong>S</strong>ingle Responsibility Principle</p>
 <p>:two: <strong>O</strong>pen/Closed Principle</p>
@@ -173,7 +173,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- app</span><br><span class="line">  - signin.rb</span><br><span class="line">  - signup.rb</span><br><span class="line">  - checkout.rb</span><br></pre></td></tr></table></figure>
 
 <p>Trong đó signin chứa mã nguồn thực hiện chức năng đăng nhập, signup chứa mã thực hiện chức năng đăng ký và checkout chứa mã thực hiện chức năng thanh toán.</p>
-<h1 id="2-Single-Responsibility-Principle"><a href="#2-Single-Responsibility-Principle" class="headerlink" title="2. Single Responsibility Principle"></a>2. <strong>S</strong>ingle Responsibility Principle</h1><p><img src="/images/srp.jpg" alt="hoa"></p>
+<h2 id="2-Single-Responsibility-Principle"><a href="#2-Single-Responsibility-Principle" class="headerlink" title="2. Single Responsibility Principle"></a>2. <strong>S</strong>ingle Responsibility Principle</h2><p><img src="/images/srp.jpg" alt="hoa"></p>
 <p>Nguyên lý này được phát biểu như sau:</p>
 <blockquote>
 <p>Every class should have a single responsibility, and that responsibility should be entirely encapsulated by the class.</p>
@@ -203,7 +203,7 @@
 
 <p>Cách tổ chức này đã là tốt nhất hay chưa? câu trả lời là chưa chắc, mọi thứ lại phụ thuộc vào ngữ cảnh.<br>Nguyên lý SRP có thể sai hay đúng trong một số trường hợp là rất mập mờ, tuỳ theo cái mà nhà phát triển định nghĩa cho responsibility mà họ xây dựng.</p>
 <p>Note: Nhưng cuối cùng nguyên lý SRP cũng chỉ có một mục đích duy nhất để cấu trúc dự án dễ sửa đổi và bảo trì, vì vậy trong từng tình huống sẽ có những cách khác nhau để phân chia tổ chức mã nguồn, dựa vào chức năng, dựa vào yêu cầu khách hàng, dựa vào tiềm năng phát triển dự án…</p>
-<h1 id="3-Open-Closed-Principle"><a href="#3-Open-Closed-Principle" class="headerlink" title="3. Open/Closed Principle"></a>3. <strong>O</strong>pen/Closed Principle</h1><p><img src="/images/ocp.jpg" alt="hoa"></p>
+<h2 id="3-Open-Closed-Principle"><a href="#3-Open-Closed-Principle" class="headerlink" title="3. Open/Closed Principle"></a>3. <strong>O</strong>pen/Closed Principle</h2><p><img src="/images/ocp.jpg" alt="hoa"></p>
 <p>Nguyên lý này được phát biểu như sau:</p>
 <blockquote>
 <p>One software entity (class/module) must be open for extension but closed for modification.</p>
@@ -235,7 +235,7 @@
 <p>Ví dụ bổ sung thêm rule promotion_type_x.rb với nội dung:</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PromotionTypeX</span> &lt; Promotion</span></span><br><span class="line">  <span class="comment"># do something</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 
-<h1 id="4-Liskov-Substitution-Principle"><a href="#4-Liskov-Substitution-Principle" class="headerlink" title="4. Liskov Substitution Principle"></a>4. <strong>L</strong>iskov Substitution Principle</h1><p><img src="/images/lsp.jpg" alt="hoa"></p>
+<h2 id="4-Liskov-Substitution-Principle"><a href="#4-Liskov-Substitution-Principle" class="headerlink" title="4. Liskov Substitution Principle"></a>4. <strong>L</strong>iskov Substitution Principle</h2><p><img src="/images/lsp.jpg" alt="hoa"></p>
 <p>Nguyên lý này được phát biểu như sau:</p>
 <blockquote>
 <p>If S is a subtype of T, then objects of type T may be replaced with objects of type S (i.e., objects of type S may substitute objects of type T) without altering any of the desirable properties of that program (correctness, task performed, etc.).</p>
@@ -258,7 +258,7 @@
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">temp = Animal.new</span><br><span class="line">temp.animal_hello</span><br><span class="line"><span class="comment"># kết quả trả về là: "Animal say hello"</span></span><br><span class="line"></span><br><span class="line">temp = Cat.new</span><br><span class="line">temp.animal_hello</span><br><span class="line"><span class="comment"># kết quả trả về là: "Cat say hello"</span></span><br></pre></td></tr></table></figure>
 
 <p>Ta có thể thấy, instance của class Cat khi gọi tới method animal_hello đã không còn trả về kết quả tương tự như một instance Animal nữa rồi, vì lý do ở class Cat, class này đã override lại phương thức animal_hello, và từ đó dẫn tới vi phạm nguyên tắc Liskov.</p>
-<h1 id="5-Interface-Segregation-Principle"><a href="#5-Interface-Segregation-Principle" class="headerlink" title="5. Interface Segregation Principle"></a>5. <strong>I</strong>nterface Segregation Principle</h1><p><img src="/images/isp.png" alt="hoa"></p>
+<h2 id="5-Interface-Segregation-Principle"><a href="#5-Interface-Segregation-Principle" class="headerlink" title="5. Interface Segregation Principle"></a>5. <strong>I</strong>nterface Segregation Principle</h2><p><img src="/images/isp.png" alt="hoa"></p>
 <p>Nguyên lý này được phát biểu như sau:</p>
 <blockquote>
 <p>No client should be forced to depend on methods it does not use.</p>
@@ -306,7 +306,7 @@
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">module</span> <span class="title">YellowCatHelper</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">yellow_cat_helper</span></span></span><br><span class="line">    <span class="comment"># do something</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 
 <p>Ok, vậy là look good rồi :smile: Lúc này class Animal chỉ được include những method mà nó cần và class YellowCat cũng vậy.</p>
-<h1 id="6-Dependency-Inversion-Principle"><a href="#6-Dependency-Inversion-Principle" class="headerlink" title="6. Dependency Inversion Principle"></a>6. <strong>D</strong>ependency Inversion Principle</h1><p><img src="/images/dip.jpg" alt="hoa"></p>
+<h2 id="6-Dependency-Inversion-Principle"><a href="#6-Dependency-Inversion-Principle" class="headerlink" title="6. Dependency Inversion Principle"></a>6. <strong>D</strong>ependency Inversion Principle</h2><p><img src="/images/dip.jpg" alt="hoa"></p>
 <p>Nguyên lý này được phát biểu như sau:</p>
 <blockquote>
 <ol>
@@ -330,7 +330,7 @@
 <p>Để giải quyết vấn đề này ta có thể viết lại mã nguồn như sau:</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># app/checkout.rb</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Checkout</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">get_bill</span><span class="params">(cart, PromotionType)</span></span></span><br><span class="line">    PromotionType.get_promotion(cart)</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># app/promotion/promotion_type_a.rb</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PromotionTypeA</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">get_promotion</span><span class="params">(cart)</span></span></span><br><span class="line">    <span class="comment"># do something</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># get_bill với PromotionTypeA</span></span><br><span class="line">Checkout.new.get_bill(cart, PromotionTypeA)</span><br><span class="line"></span><br><span class="line"><span class="comment"># để viết thêm PromotionTypeB, ta viết thêm một class PromotionTypeB và truyền PromotionTypeB vào get_bill method.</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># app/promotion/promotion_type_a.rb</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PromotionTypeB</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">get_promotion</span><span class="params">(cart)</span></span></span><br><span class="line">    <span class="comment"># do something</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">Checkout.new.get_bill(cart, PromotionTypeB)</span><br></pre></td></tr></table></figure>
 
-<h1 id="Ket-luan"><a href="#Ket-luan" class="headerlink" title="Kết luận"></a>Kết luận</h1><p>Trên đây là 1 cái nhìn tổng quan về hệ thống nguyên lý SOLID nổi tiếng, việc áp dụng nguyên lý này sẽ không chắc giúp mã nguồn bạn thành công, nhưng nó sẽ giảm thiểu rủi ro hơn là khi code bất chấp, lý thuyết chỉ là một phần nhỏ, nắm lý thuyết giúp chúng ta có cái nhìn tổng quát, trích rút lại thì thứ làm cho nguyên lý này có giá trị nằm ở kinh nghiệm sử dụng của nhà phát triển, không phải luôn luôn tuân thủ mọi quy tắc đã là tốt trong mọi trường hợp.</p>
+<h2 id="Ket-luan"><a href="#Ket-luan" class="headerlink" title="Kết luận"></a>Kết luận</h2><p>Trên đây là 1 cái nhìn tổng quan về hệ thống nguyên lý SOLID nổi tiếng, việc áp dụng nguyên lý này sẽ không chắc giúp mã nguồn bạn thành công, nhưng nó sẽ giảm thiểu rủi ro hơn là khi code bất chấp, lý thuyết chỉ là một phần nhỏ, nắm lý thuyết giúp chúng ta có cái nhìn tổng quát, trích rút lại thì thứ làm cho nguyên lý này có giá trị nằm ở kinh nghiệm sử dụng của nhà phát triển, không phải luôn luôn tuân thủ mọi quy tắc đã là tốt trong mọi trường hợp.</p>
 <p>Nguồn tham khảo:</p>
 <p>[1] <a href="https://en.wikipedia.org/wiki/SOLID" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/SOLID</a></p>
 
@@ -358,7 +358,7 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Dat-van-de"><span class="toc-number">1.</span> <span class="toc-text">Đặt vấn đề</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Luan-ban"><span class="toc-number">2.</span> <span class="toc-text">Luận bàn</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-Dinh-nghia-va-muc-tieu-su-dung"><span class="toc-number">3.</span> <span class="toc-text">1. Định nghĩa và mục tiêu sử dụng</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-Single-Responsibility-Principle"><span class="toc-number">4.</span> <span class="toc-text">2. Single Responsibility Principle</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-Open-Closed-Principle"><span class="toc-number">5.</span> <span class="toc-text">3. Open/Closed Principle</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-Liskov-Substitution-Principle"><span class="toc-number">6.</span> <span class="toc-text">4. Liskov Substitution Principle</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-Interface-Segregation-Principle"><span class="toc-number">7.</span> <span class="toc-text">5. Interface Segregation Principle</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-Dependency-Inversion-Principle"><span class="toc-number">8.</span> <span class="toc-text">6. Dependency Inversion Principle</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Ket-luan"><span class="toc-number">9.</span> <span class="toc-text">Kết luận</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Dat-van-de"><span class="toc-number">1.</span> <span class="toc-text">Đặt vấn đề</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Luan-ban"><span class="toc-number">2.</span> <span class="toc-text">Luận bàn</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Dinh-nghia-va-muc-tieu-su-dung"><span class="toc-number">3.</span> <span class="toc-text">1. Định nghĩa và mục tiêu sử dụng</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Single-Responsibility-Principle"><span class="toc-number">4.</span> <span class="toc-text">2. Single Responsibility Principle</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Open-Closed-Principle"><span class="toc-number">5.</span> <span class="toc-text">3. Open/Closed Principle</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Liskov-Substitution-Principle"><span class="toc-number">6.</span> <span class="toc-text">4. Liskov Substitution Principle</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Interface-Segregation-Principle"><span class="toc-number">7.</span> <span class="toc-text">5. Interface Segregation Principle</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-Dependency-Inversion-Principle"><span class="toc-number">8.</span> <span class="toc-text">6. Dependency Inversion Principle</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ket-luan"><span class="toc-number">9.</span> <span class="toc-text">Kết luận</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">

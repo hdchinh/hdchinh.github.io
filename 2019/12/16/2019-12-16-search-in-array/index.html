@@ -6,14 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="title: Searching In Arraydate: 2019-12-16tags: [“RUBY”]  Binary Search123456789101112131415161718192021a = [1, 2, 3, 4, 5, 6, 7, 8, 9]def binary_search(nums, left, right, target)  while left &amp;lt;= ri">
+    <meta name="description" content="Binary Search123456789101112131415161718192021a = [1, 2, 3, 4, 5, 6, 7, 8, 9]def binary_search(nums, left, right, target)  while left &amp;lt;= right    mid = (left + right) &#x2F; 2    return mid if nums[mid]">
+<meta name="keywords" content="RUBY">
 <meta property="og:type" content="article">
-<meta property="og:title" content="2019-12-16-search-in-array">
+<meta property="og:title" content="Searching In Array">
 <meta property="og:url" content="https:&#x2F;&#x2F;hdchinh.github.io&#x2F;2019&#x2F;12&#x2F;16&#x2F;2019-12-16-search-in-array&#x2F;index.html">
 <meta property="og:site_name" content="Chinh&#39;s Notes">
-<meta property="og:description" content="title: Searching In Arraydate: 2019-12-16tags: [“RUBY”]  Binary Search123456789101112131415161718192021a = [1, 2, 3, 4, 5, 6, 7, 8, 9]def binary_search(nums, left, right, target)  while left &amp;lt;= ri">
+<meta property="og:description" content="Binary Search123456789101112131415161718192021a = [1, 2, 3, 4, 5, 6, 7, 8, 9]def binary_search(nums, left, right, target)  while left &amp;lt;= right    mid = (left + right) &#x2F; 2    return mid if nums[mid]">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-12-16T14:17:36.145Z">
+<meta property="og:updated_time" content="2019-12-16T14:23:42.597Z">
 <meta name="twitter:card" content="summary">
     
     
@@ -34,7 +35,7 @@
         
     
     <!-- title -->
-    <title>2019-12-16-search-in-array</title>
+    <title>Searching In Array</title>
     <!-- styles -->
     <link rel="stylesheet" href="/css/style.css">
     <!-- persian styles -->
@@ -85,15 +86,15 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/&text=2019-12-16-search-in-array" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/&title=2019-12-16-search-in-array" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/&is_video=false&description=2019-12-16-search-in-array" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=2019-12-16-search-in-array&body=Check out this article: https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/&title=2019-12-16-search-in-array" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/&title=2019-12-16-search-in-array" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/&title=2019-12-16-search-in-array" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/&title=2019-12-16-search-in-array" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/&name=2019-12-16-search-in-array&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/&text=Searching In Array" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/&title=Searching In Array" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/&is_video=false&description=Searching In Array" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Searching In Array&body=Check out this article: https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/&title=Searching In Array" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/&title=Searching In Array" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/&title=Searching In Array" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/&title=Searching In Array" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/&name=Searching In Array&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -110,7 +111,7 @@
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
-        2019-12-16-search-in-array
+        Searching In Array
     </h1>
 
 
@@ -122,7 +123,7 @@
       
     <div class="postdate">
       
-        <time datetime="2019-12-16T14:16:31.002Z" itemprop="datePublished">2019-12-16</time>
+        <time datetime="2019-12-15T17:00:00.000Z" itemprop="datePublished">2019-12-16</time>
         
       
     </div>
@@ -131,16 +132,18 @@
       
 
       
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/RUBY/" rel="tag">RUBY</a>
+    </div>
+
 
     </div>
   </header>
   
 
   <div class="content" itemprop="articleBody">
-    <hr>
-<p>title: Searching In Array<br>date: 2019-12-16<br>tags: [“RUBY”]</p>
-<hr>
-<h2 id="Binary-Search"><a href="#Binary-Search" class="headerlink" title="Binary Search"></a>Binary Search</h2><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">binary_search</span><span class="params">(nums, left, right, target)</span></span></span><br><span class="line">  <span class="keyword">while</span> left &lt;= right</span><br><span class="line">    mid = (left + right) / <span class="number">2</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> mid <span class="keyword">if</span> nums[mid] == target</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> target &lt; nums[mid]</span><br><span class="line">      right = mid - <span class="number">1</span></span><br><span class="line">      <span class="keyword">return</span> binary_search(nums, left, right, target)</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      left = mid + <span class="number">1</span></span><br><span class="line">      <span class="keyword">return</span> binary_search(nums, left, right, target)</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">binary_search(a, <span class="number">0</span>, <span class="number">8</span>, <span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+    <h2 id="Binary-Search"><a href="#Binary-Search" class="headerlink" title="Binary Search"></a>Binary Search</h2><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">binary_search</span><span class="params">(nums, left, right, target)</span></span></span><br><span class="line">  <span class="keyword">while</span> left &lt;= right</span><br><span class="line">    mid = (left + right) / <span class="number">2</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> mid <span class="keyword">if</span> nums[mid] == target</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> target &lt; nums[mid]</span><br><span class="line">      right = mid - <span class="number">1</span></span><br><span class="line">      <span class="keyword">return</span> binary_search(nums, left, right, target)</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      left = mid + <span class="number">1</span></span><br><span class="line">      <span class="keyword">return</span> binary_search(nums, left, right, target)</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">binary_search(a, <span class="number">0</span>, <span class="number">8</span>, <span class="number">5</span>)</span><br></pre></td></tr></table></figure>
 
   </div>
 </article>
@@ -172,15 +175,15 @@
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/&text=2019-12-16-search-in-array" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/&title=2019-12-16-search-in-array" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/&is_video=false&description=2019-12-16-search-in-array" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=2019-12-16-search-in-array&body=Check out this article: https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/&title=2019-12-16-search-in-array" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/&title=2019-12-16-search-in-array" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/&title=2019-12-16-search-in-array" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/&title=2019-12-16-search-in-array" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/&name=2019-12-16-search-in-array&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/&text=Searching In Array" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/&title=Searching In Array" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/&is_video=false&description=Searching In Array" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Searching In Array&body=Check out this article: https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/&title=Searching In Array" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/&title=Searching In Array" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/&title=Searching In Array" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/&title=Searching In Array" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/&name=Searching In Array&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

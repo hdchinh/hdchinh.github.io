@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="Chinh&#39;s Notes">
 <meta property="og:description" content="How Many Kind Of Arguments In Ruby?We can answer: Three  Required arguments  eg: 123def hello(name)  puts &quot;Hello #&amp;#123;name&amp;#125;&quot;end  In there, name is a required argument. it mean if you call hello">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-12-06T15:31:22.772Z">
+<meta property="og:updated_time" content="2019-12-28T06:59:01.238Z">
 <meta name="twitter:card" content="summary">
     
     
@@ -187,7 +187,7 @@
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hello(<span class="string">'Chinh'</span>, <span class="number">25</span>)</span><br></pre></td></tr></table></figure>
 
 <p>what will it return?</p>
-<p><strong>Error</strong>: yes, it will response a error, but why?</p>
+<p><strong>Error</strong>: yes, it will response an error, but why?</p>
 <p>Because, with <strong>keyword arguments</strong>, you need to pass argumetns like a hash you declare when initial method. (<strong>same key</strong>).</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">hello(<span class="symbol">name:</span> <span class="string">'Meo'</span>)</span><br><span class="line"><span class="comment"># Hello Meo - Age: 25</span></span><br><span class="line"></span><br><span class="line">hello(<span class="symbol">age:</span> <span class="number">10</span>)</span><br><span class="line"><span class="comment"># Hello Chinh - Age: 10</span></span><br><span class="line"></span><br><span class="line">hello(<span class="symbol">name:</span> <span class="string">'Chuot'</span>, <span class="symbol">age:</span> <span class="number">11</span>)</span><br><span class="line"><span class="comment"># Hello Chuot - Age: 11</span></span><br></pre></td></tr></table></figure>
 

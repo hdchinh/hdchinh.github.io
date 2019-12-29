@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="1. Đặt vấn đềRails có phải là một framework tuyệt vời hay không? Chắc chắn là có rồi, với tôi là như vậy, mặc dù nó tốn Ram quá nhiều và chạy cũng hơi chậm, mọi thứ khác thật sự tuyệt vời. Nếu cần phả">
+    <meta name="description" content="1. IntroDoes ROR is a great framework? Yes, it does, to me, it’s lighting and very powerful. Although, the ROR project needs more RAM than most other frameworks and also difficult to scale up. But ROR">
 <meta name="keywords" content="RUBY,ORM">
 <meta property="og:type" content="article">
-<meta property="og:title" content="A Simple ORM">
-<meta property="og:url" content="https:&#x2F;&#x2F;hdchinh.github.io&#x2F;2019&#x2F;06&#x2F;26&#x2F;2019-06-25-xay-dung-mot-orm-don-gian-bang-ruby&#x2F;index.html">
+<meta property="og:title" content="Build A Simple ORM">
+<meta property="og:url" content="https:&#x2F;&#x2F;hdchinh.github.io&#x2F;2019&#x2F;06&#x2F;26&#x2F;2019-06-25-build-a-simple-orm-with-ruby&#x2F;index.html">
 <meta property="og:site_name" content="The Notes Of A Cat&#39;s Family">
-<meta property="og:description" content="1. Đặt vấn đềRails có phải là một framework tuyệt vời hay không? Chắc chắn là có rồi, với tôi là như vậy, mặc dù nó tốn Ram quá nhiều và chạy cũng hơi chậm, mọi thứ khác thật sự tuyệt vời. Nếu cần phả">
+<meta property="og:description" content="1. IntroDoes ROR is a great framework? Yes, it does, to me, it’s lighting and very powerful. Although, the ROR project needs more RAM than most other frameworks and also difficult to scale up. But ROR">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-12-06T15:40:26.844Z">
+<meta property="og:updated_time" content="2019-12-29T07:00:18.962Z">
 <meta name="twitter:card" content="summary">
     
     
@@ -35,7 +35,7 @@
         
     
     <!-- title -->
-    <title>A Simple ORM</title>
+    <title>Build A Simple ORM</title>
     <!-- styles -->
     <link rel="stylesheet" href="/css/style.css">
     <!-- persian styles -->
@@ -87,21 +87,21 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/06/26/2019-06-25-xay-dung-mot-orm-don-gian-bang-ruby/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/06/26/2019-06-25-xay-dung-mot-orm-don-gian-bang-ruby/&text=A Simple ORM" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/06/26/2019-06-25-xay-dung-mot-orm-don-gian-bang-ruby/&title=A Simple ORM" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/06/26/2019-06-25-xay-dung-mot-orm-don-gian-bang-ruby/&is_video=false&description=A Simple ORM" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=A Simple ORM&body=Check out this article: https://hdchinh.github.io/2019/06/26/2019-06-25-xay-dung-mot-orm-don-gian-bang-ruby/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/06/26/2019-06-25-xay-dung-mot-orm-don-gian-bang-ruby/&title=A Simple ORM" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/06/26/2019-06-25-xay-dung-mot-orm-don-gian-bang-ruby/&title=A Simple ORM" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/06/26/2019-06-25-xay-dung-mot-orm-don-gian-bang-ruby/&title=A Simple ORM" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/06/26/2019-06-25-xay-dung-mot-orm-don-gian-bang-ruby/&title=A Simple ORM" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/06/26/2019-06-25-xay-dung-mot-orm-don-gian-bang-ruby/&name=A Simple ORM&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/06/26/2019-06-25-build-a-simple-orm-with-ruby/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/06/26/2019-06-25-build-a-simple-orm-with-ruby/&text=Build A Simple ORM" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/06/26/2019-06-25-build-a-simple-orm-with-ruby/&title=Build A Simple ORM" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/06/26/2019-06-25-build-a-simple-orm-with-ruby/&is_video=false&description=Build A Simple ORM" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Build A Simple ORM&body=Check out this article: https://hdchinh.github.io/2019/06/26/2019-06-25-build-a-simple-orm-with-ruby/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/06/26/2019-06-25-build-a-simple-orm-with-ruby/&title=Build A Simple ORM" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/06/26/2019-06-25-build-a-simple-orm-with-ruby/&title=Build A Simple ORM" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/06/26/2019-06-25-build-a-simple-orm-with-ruby/&title=Build A Simple ORM" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/06/26/2019-06-25-build-a-simple-orm-with-ruby/&title=Build A Simple ORM" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/06/26/2019-06-25-build-a-simple-orm-with-ruby/&name=Build A Simple ORM&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-Dat-van-de"><span class="toc-number">1.</span> <span class="toc-text">1. Đặt vấn đề</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-Ma-nguon"><span class="toc-number">2.</span> <span class="toc-text">2. Mã nguồn</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-Giai-thich"><span class="toc-number">3.</span> <span class="toc-text">3. Giải thích</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-Ket-luan"><span class="toc-number">4.</span> <span class="toc-text">4. Kết luận</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Intro"><span class="toc-number">1.</span> <span class="toc-text">1. Intro</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Source-Code"><span class="toc-number">2.</span> <span class="toc-text">2. Source Code</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Explaintion"><span class="toc-number">3.</span> <span class="toc-text">3. Explaintion</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#References"><span class="toc-number">4.</span> <span class="toc-text">References</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -113,7 +113,7 @@
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
-        A Simple ORM
+        Build A Simple ORM
     </h1>
 
 
@@ -150,62 +150,52 @@
   
 
   <div class="content" itemprop="articleBody">
-    <h1 id="1-Dat-van-de"><a href="#1-Dat-van-de" class="headerlink" title="1. Đặt vấn đề"></a>1. Đặt vấn đề</h1><p>Rails có phải là một framework tuyệt vời hay không? Chắc chắn là có rồi, với tôi là như vậy, mặc dù nó tốn Ram quá nhiều và chạy cũng hơi chậm, mọi thứ khác thật sự tuyệt vời.</p>
-<p>Nếu cần phải xây dựng một ứng dụng CRUD, có lẽ Rails sẽ là một lựa chọn hàng đầu, vì thời gian xây dựng nhanh chóng để cho ra một sản phẩm tuy không phải là “ích seo lừn” nhưng cũng đủ good để work production.</p>
-<p>Một trong những yếu tố làm cho Rails xây dựng các ứng dụng một cách nhanh chóng như vậy chính là gem ActiveRecord, một ORM mặc định và vô cùng mạnh mẽ trong Rails.</p>
-<p>Như nhiều người khác, khi mới tiếp cận Framework này, tôi cũng sử dụng các lệnh command, các phương thức được support mà cũng không quan tâm đến cách mà nó vận hành.</p>
-<p>Nhưng nghĩ đi nghĩ lại thấy cũng kì, làm mà không hiểu kì cục lắm :smile:</p>
-<p>Vậy thôi, chúng ta hãy cùng thử xây dựng một ORM rất đơn giản, để coi thử magic gì đã xảy ra sau mỗi dòng lệnh.</p>
-<h1 id="2-Ma-nguon"><a href="#2-Ma-nguon" class="headerlink" title="2. Mã nguồn"></a>2. Mã nguồn</h1><blockquote>
-<p>Mã nguồn của ứng dụng này, bạn có thể tham khảo <a href="https://github.com/hdchinh/simple-orm-ruby" target="_blank" rel="noopener">tại đây</a></p>
+    <h2 id="1-Intro"><a href="#1-Intro" class="headerlink" title="1. Intro"></a>1. Intro</h2><p>Does ROR is a great framework? Yes, it does, to me, it’s lighting and very powerful. Although, the ROR project needs more RAM than most other frameworks and also difficult to scale up.</p>
+<p>But ROR is stale, high security and has very very library supported. And the last one, ROR is the first technology I learn after I graduated from university, therefore I love Rails.</p>
+<p>one of the reasons why many people love and use Rails today is ActiveRecord. The default ORM of Rails, more powerful and easy to use. It helps too much for us when we want to build a web app without deep experiences in SQL.</p>
+<p>Like many developers, when I start to learn Rails, I used a few methods of ActiveRecord and don’t care what’s happening after these methods.  Not bad for a beginner, but if I want to become a   good developer, I need to know more details behind these methods, know deep enough to use them better.</p>
+<h2 id="2-Source-Code"><a href="#2-Source-Code" class="headerlink" title="2. Source Code"></a>2. Source Code</h2><blockquote>
+<p>The resource of this post you can see <a href="https://github.com/hdchinh/simple-orm-ruby" target="_blank" rel="noopener">here</a></p>
 </blockquote>
-<h1 id="3-Giai-thich"><a href="#3-Giai-thich" class="headerlink" title="3. Giải thích"></a>3. Giải thích</h1><p>Note: Trước hết chúng ta nên đọc trước về định nghĩa của ORM <a href="https://en.wikipedia.org/wiki/Object-relational_mapping" target="_blank" rel="noopener">tại đây</a></p>
-<p>Để xây dựng 1 ORM và chạy một vài ví dụ đơn giản được thì chúng ta có 2 nhiềm vụ phải làm:</p>
-<ul>
-<li><p>Kết nối với cơ sở dữ liệu (ở đây là postgresql).</p>
-</li>
-<li><p>Xây dựng các class bằng Ruby với các phương thức tương ứng để xử lý trên cơ sở dữ liệu đã kết nối ở bước 1.</p>
-</li>
-</ul>
-<p><strong>STEP 1: Tạo project</strong></p>
-<p>Tạo một project trống với 1 file Gemfile có nội dung như sau:</p>
+<h2 id="3-Explaintion"><a href="#3-Explaintion" class="headerlink" title="3. Explaintion"></a>3. Explaintion</h2><blockquote>
+<p>The first action we need to do after read more is known what is ORM. You can read more about ORM by <a href="https://en.wikipedia.org/wiki/Object-relational_mapping" target="_blank" rel="noopener">article</a>.</p>
+</blockquote>
+<p>To build a simple ORM and run a few basic methods, we need to do 2 things:</p>
+<ol>
+<li>Connect database (I use Postgresql for my example).</li>
+<li>Create Class using any languages that you familiar with, for me I use Ruby.</li>
+</ol>
+<p><strong>STEP 1: Create project</strong></p>
+<p>Create an empty project with single Gemfile with the content below:</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">source <span class="string">'https://rubygems.org'</span></span><br><span class="line"></span><br><span class="line">gem <span class="string">'pg'</span></span><br></pre></td></tr></table></figure>
 
-<p>Cài đặt gem bằng lệnh: <code>bundle install</code>.</p>
-<p>Nếu có lỗi xảy ra hãy tham khảo các tài liệu về cài đặt và sử dụng gem bundler.</p>
-<p><strong>STEP 2: Kết nối cơ sở dữ liệu.</strong></p>
-<p>Khi bắt đầu và quen thuộc với việc sử dụng command trong rails, việc duy nhất chúng ta còn thực sự sử dụng đó là sửa file <code>database.yml</code>, và đó là tất cả những gì cần thiết để đem ứng dụng của chúng ta kết nối với 1 hệ quản trị cơ sở dữ liệu nào đó trên máy. (Thực ra là vẫn còn nhiều điều xảy ra lắm, nhưng hãy cứ tạm chấp nhận như vậy).</p>
-<p>Nhưng nếu không sử dụng Framework Rails, trong trường hợp này, khi tôi kết nối với Postgresql thì tôi sẽ sử dụng một gem tên <code>pg</code> đã cài đặt ở bước 1, và require nó vào file <code>connection.rb</code> có tác dụng kết nối như sau:</p>
+<p>Install gem by command <strong>bundle install</strong></p>
+<p>If you get errors. let’s read more about bundler gem.</p>
+<p><strong>STEP 2: Connect to Database.</strong></p>
+<p>Create a file for the connection. I named this file is <strong>connection.rb</strong>:</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">require</span> <span class="string">'pg'</span></span><br><span class="line"></span><br><span class="line">$conn = PG::Connection.connect(</span><br><span class="line">  <span class="symbol">:hostaddr=&gt;<span class="string">"127.0.0.1"</span></span>, <span class="symbol">:port=&gt;</span><span class="number">5432</span>,</span><br><span class="line">  <span class="symbol">:dbname=&gt;<span class="string">"test-psql_development"</span></span>,</span><br><span class="line">  <span class="symbol">:user=&gt;<span class="string">"admin"</span></span>,</span><br><span class="line">  <span class="symbol">:password=&gt;<span class="string">''</span></span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-<p>Note: Bạn cần thay đổi các giá trị ở trên để phù hợp với database mà bạn muốn kết nối trên máy của bạn.</p>
-<p>Lúc này project của chúng ta có cấu trúc:</p>
+
+<p>Note: The content above is my info login of my Database, You must change for your Database.</p>
+<p>At this time, our project has the structure:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-- simple-orm</span><br><span class="line">  -- Gemfile</span><br><span class="line">  -- Gemfile.lock (sinh ra sau lệnh `bundle install`)</span><br><span class="line">  -- connection.rb</span><br></pre></td></tr></table></figure>
 
-<p>Note: Trong file <code>connection.rb</code> tôi khai báo biến conn dưới dạng biến toàn cục, để dễ ràng require trong các file khác trong project.</p>
-<p><strong>STEP 3: Xây dựng Class chứa chức năng chính.</strong></p>
-<p>Tạo file <code>mybase.rb</code> với nội dung như sau:</p>
+<p><strong>STEP 3: Create Main Class.</strong></p>
+<p>Create the main class, I named this file is <strong>mybase.rb</strong>. You can name it with any names you like, don’t matter:</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">require_relative <span class="string">'connection.rb'</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyBase</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">all</span></span></span><br><span class="line">    term = <span class="string">"SELECT * FROM <span class="subst">#&#123;<span class="keyword">self</span>.name.downcase&#125;</span>"</span></span><br><span class="line">    res = $conn.exec(term)</span><br><span class="line"></span><br><span class="line">    res.each&#123; <span class="params">|row|</span></span><br><span class="line">      puts <span class="string">"<span class="subst">#&#123;row&#125;</span>\n"</span></span><br><span class="line">    &#125;</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">find</span><span class="params">(id)</span></span></span><br><span class="line">    term = <span class="string">"SELECT * FROM <span class="subst">#&#123;<span class="keyword">self</span>.name.downcase&#125;</span> where id = <span class="subst">#&#123;id&#125;</span>"</span></span><br><span class="line">    res = $conn.exec(term)</span><br><span class="line"></span><br><span class="line">    res.each&#123; <span class="params">|row|</span></span><br><span class="line">      puts <span class="string">"<span class="subst">#&#123;row&#125;</span>\n"</span></span><br><span class="line">    &#125;</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 
-<p>require file <code>connection.rb</code> vào để sử dụng biến conn.</p>
-<p>Trong class này xây dựng 2 class method là <code>all</code> và <code>find</code>, ứng với 2 phương thức trong ActiveRecord.</p>
-<p><code>all</code>: Trả về toàn bộ record trong table.<br><code>find</code>: Trả về record ứng với id được truyền vào.</p>
-<p><strong>STEP 4: Xây dựng class con kế thừa lớp Base ở bước 3 và sử dụng</strong></p>
-<p>Trong cơ sở dữ liệu mà tôi kết nối có table tên <code>comics</code>. Tôi tạo file comics.rb có nội dung như sau:</p>
+<p>In this example above, I create two methods:</p>
+<p><strong>all</strong>: To return all records of this Class.<br><strong>find</strong>: To find a record by ID.</p>
+<p><strong>STEP 4: Create Child Class Of Main Class.</strong></p>
+<p>In my Database, I have a table called comics. So I create a file named <strong>comics.rb</strong> to handle the comics table:</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">require_relative <span class="string">'mybase.rb'</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Comics</span> &lt; MyBase;</span> <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">puts <span class="string">"All record in comics table:\n"</span></span><br><span class="line">Comics.all</span><br><span class="line">puts <span class="string">"Find record has id is 6:\n"</span></span><br><span class="line">Comics.find(<span class="number">6</span>)</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li><p>Tôi require file <code>mybase.rb</code> đã viết ở bước 3 vào file này.</p>
-</li>
-<li><p>Tạo class <code>Comics</code> và cho nó kế thừa class <code>MyBase</code></p>
-</li>
-<li><p>In ra màn hình console các dòng lệnh đã xây dựng để xem kết quả (với lệnh <code>ruby  comics.rb</code> ta sẽ chạy file comics.rb và xuất kết quả ra màn hình console).</p>
-</li>
-</ul>
-<p>Cuối cùng project của chúng ta có dạng như sau:</p>
+<p>Finally, my project has the structure below:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">-- simple-orm</span><br><span class="line">  -- Gemfile</span><br><span class="line">  -- Gemfile.lock (sinh ra sau lệnh `bundle install`)</span><br><span class="line">  -- connection.rb</span><br><span class="line">  -- mybase.rb (main chính chứa các phương thức)</span><br><span class="line">  -- comics.rb (class ứng với table comics trong csdl, kế thừa MyBase)</span><br></pre></td></tr></table></figure>
 
-<p>Chạy file <code>comics.rb</code> với lệnh chạy ruby <code>ruby comics.rb</code> ta sẽ xem được thành quả nhỏ của quá trình xây dựng kể trên.</p>
-<h1 id="4-Ket-luan"><a href="#4-Ket-luan" class="headerlink" title="4. Kết luận"></a>4. Kết luận</h1><p>Trên là một ví dụ đơn giản về ORM với ngôn ngữ Ruby, các ORM trong thực tế sẽ phức tạp và tinh tế hơn rất rất nhiều. Hy vọng qua bài viết sẽ giúp bạn đọc có được thêm kiến thức với ORM và cách nó vận hành trong framework như Rails.</p>
+<p>Run <strong>comics.rb</strong> file with command <strong>ruby comics.rb</strong> to see what’s happening (please create your sample data first.)</p>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><p>[1]<a href="https://en.wikipedia.org/wiki/Object-relational_mapping" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Object-relational_mapping</a></p>
+<p>[2]<a href="https://medium.com/@violetmoon/understanding-orm-frameworks-with-ruby-and-activerecord-83a9e9d8490e" target="_blank" rel="noopener">https://medium.com/@violetmoon/understanding-orm-frameworks-with-ruby-and-activerecord-83a9e9d8490e</a></p>
+<p>[3]<a href="https://stackoverflow.com/questions/2194915/what-is-orm-as-related-to-ruby-on-rails" target="_blank" rel="noopener">https://stackoverflow.com/questions/2194915/what-is-orm-as-related-to-ruby-on-rails</a></p>
 
   </div>
 </article>
@@ -231,21 +221,21 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-Dat-van-de"><span class="toc-number">1.</span> <span class="toc-text">1. Đặt vấn đề</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-Ma-nguon"><span class="toc-number">2.</span> <span class="toc-text">2. Mã nguồn</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-Giai-thich"><span class="toc-number">3.</span> <span class="toc-text">3. Giải thích</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-Ket-luan"><span class="toc-number">4.</span> <span class="toc-text">4. Kết luận</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Intro"><span class="toc-number">1.</span> <span class="toc-text">1. Intro</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Source-Code"><span class="toc-number">2.</span> <span class="toc-text">2. Source Code</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Explaintion"><span class="toc-number">3.</span> <span class="toc-text">3. Explaintion</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#References"><span class="toc-number">4.</span> <span class="toc-text">References</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/06/26/2019-06-25-xay-dung-mot-orm-don-gian-bang-ruby/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/06/26/2019-06-25-xay-dung-mot-orm-don-gian-bang-ruby/&text=A Simple ORM" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/06/26/2019-06-25-xay-dung-mot-orm-don-gian-bang-ruby/&title=A Simple ORM" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/06/26/2019-06-25-xay-dung-mot-orm-don-gian-bang-ruby/&is_video=false&description=A Simple ORM" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=A Simple ORM&body=Check out this article: https://hdchinh.github.io/2019/06/26/2019-06-25-xay-dung-mot-orm-don-gian-bang-ruby/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/06/26/2019-06-25-xay-dung-mot-orm-don-gian-bang-ruby/&title=A Simple ORM" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/06/26/2019-06-25-xay-dung-mot-orm-don-gian-bang-ruby/&title=A Simple ORM" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/06/26/2019-06-25-xay-dung-mot-orm-don-gian-bang-ruby/&title=A Simple ORM" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/06/26/2019-06-25-xay-dung-mot-orm-don-gian-bang-ruby/&title=A Simple ORM" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/06/26/2019-06-25-xay-dung-mot-orm-don-gian-bang-ruby/&name=A Simple ORM&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/06/26/2019-06-25-build-a-simple-orm-with-ruby/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/06/26/2019-06-25-build-a-simple-orm-with-ruby/&text=Build A Simple ORM" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/06/26/2019-06-25-build-a-simple-orm-with-ruby/&title=Build A Simple ORM" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/06/26/2019-06-25-build-a-simple-orm-with-ruby/&is_video=false&description=Build A Simple ORM" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Build A Simple ORM&body=Check out this article: https://hdchinh.github.io/2019/06/26/2019-06-25-build-a-simple-orm-with-ruby/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/06/26/2019-06-25-build-a-simple-orm-with-ruby/&title=Build A Simple ORM" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/06/26/2019-06-25-build-a-simple-orm-with-ruby/&title=Build A Simple ORM" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/06/26/2019-06-25-build-a-simple-orm-with-ruby/&title=Build A Simple ORM" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/06/26/2019-06-25-build-a-simple-orm-with-ruby/&title=Build A Simple ORM" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/06/26/2019-06-25-build-a-simple-orm-with-ruby/&name=Build A Simple ORM&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

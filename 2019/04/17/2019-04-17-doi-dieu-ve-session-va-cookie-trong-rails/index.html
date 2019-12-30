@@ -7,14 +7,14 @@
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="Đặt vấn đềsession[:user_id] = @user.id, dòng code này thật quen thuộc? khi làm chức năng đăng nhập trong những ngày nhập môn, hẳn ai cũng đã từng làm qua hoặc làm gần giống như vậy, ta được dạy rằng,">
-<meta name="keywords" content="rails,secure">
+<meta name="keywords" content="RAILS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Session Vs Cookies Trong Rails">
 <meta property="og:url" content="https:&#x2F;&#x2F;hdchinh.github.io&#x2F;2019&#x2F;04&#x2F;17&#x2F;2019-04-17-doi-dieu-ve-session-va-cookie-trong-rails&#x2F;index.html">
 <meta property="og:site_name" content="The Notes Of A Cat&#39;s Family">
 <meta property="og:description" content="Đặt vấn đềsession[:user_id] = @user.id, dòng code này thật quen thuộc? khi làm chức năng đăng nhập trong những ngày nhập môn, hẳn ai cũng đã từng làm qua hoặc làm gần giống như vậy, ta được dạy rằng,">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-13T04:04:32.000Z">
+<meta property="og:updated_time" content="2019-12-29T13:28:49.304Z">
 <meta name="twitter:card" content="summary">
     
     
@@ -132,16 +132,11 @@
 
 
       
-    <div class="article-category">
-        <i class="fas fa-archive"></i>
-        <a class="category-link" href="/categories/rails-notes/">rails notes</a>
-    </div>
-
 
       
     <div class="article-tag">
         <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/rails/" rel="tag">rails</a>, <a class="tag-link" href="/tags/secure/" rel="tag">secure</a>
+        <a class="tag-link" href="/tags/RAILS/" rel="tag">RAILS</a>
     </div>
 
 
@@ -151,6 +146,9 @@
 
   <div class="content" itemprop="articleBody">
     <h1 id="Dat-van-de"><a href="#Dat-van-de" class="headerlink" title="Đặt vấn đề"></a>Đặt vấn đề</h1><p><code>session[:user_id] = @user.id</code>, dòng code này thật quen thuộc? khi làm chức năng đăng nhập trong những ngày nhập môn, hẳn ai cũng đã từng làm qua hoặc làm gần giống như vậy, ta được dạy rằng, <code>http</code> là 1 giao thức không có trạng thái nên request thứ <code>N + 1</code> sẽ chẳng thể biết được request thứ <code>N</code> đã làm gì, vậy nếu ở lần request thứ <code>N</code> chúng ta đã thực hiện hành vi đăng nhập, và <code>http</code> thì không có lưu vết lại điều đó, hệ quả là ở lần request tiếp theo, website hiểu như bạn chưa đăng nhập, rất đáng buồn.</p>
+<p>Do you familiar with the logic below:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">session[<span class="symbol">:user_id</span>] = @user.id</span><br></pre></td></tr></table></figure>
+
 <p>Cũng theo những gì được dạy, <code>session/cookies</code> được tạo ra với mục đích làm cho http request có “trạng thái”. Vì sao lại để từ trạng thái trong nháy kép, vì thực sự là <code>http</code> không bao giờ có trạng thái cả, mà <code>session/cookies</code> với khả năng lưu vết của mình có thể giúp website nắm được một số <strong>thông tin</strong> từ client đã request trước đó và làm chúng giống như <code>http</code> đã có trạng thái.</p>
 <p>Quá mơ hồ? đúng vậy, khi được dạy điều này tôi cũng thấy thật mơ hồ, wth is trạng thái? phi trạng thái? lưu vết?… Hy vọng bài viết này sẽ giúp người đọc có 1 cái nhìn dễ hiểu hơn về 2 đối tượng này trong ruby on rails.</p>
 <h1 id="Luan-ban"><a href="#Luan-ban" class="headerlink" title="Luận bàn"></a>Luận bàn</h1><h1 id="1-Flow-hoat-dong"><a href="#1-Flow-hoat-dong" class="headerlink" title="1. Flow hoạt động"></a>1. Flow hoạt động</h1><p>Một cách ngắn gọn cookies sẽ được vận hành như sau:</p>

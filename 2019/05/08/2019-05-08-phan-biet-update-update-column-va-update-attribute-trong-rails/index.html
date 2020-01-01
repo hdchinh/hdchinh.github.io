@@ -7,14 +7,14 @@
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="Đặt vấn đềNgoài phương thức thông dụng update để cập nhật dữ liệu. Rails nói chung hay Activerecord nói riêng còn cung cấp 1 số phương thức khác để thay đổi dữ liệu hiện có, hãy cùng tìm hiểu về chúng">
-<meta name="keywords" content="rails,activerecord">
+<meta name="keywords" content="RAILS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Cập Nhật Dữ Liệu Với ActiveRecord">
 <meta property="og:url" content="https:&#x2F;&#x2F;hdchinh.github.io&#x2F;2019&#x2F;05&#x2F;08&#x2F;2019-05-08-phan-biet-update-update-column-va-update-attribute-trong-rails&#x2F;index.html">
-<meta property="og:site_name" content="The Cat&#39;s Family">
+<meta property="og:site_name" content="Notes">
 <meta property="og:description" content="Đặt vấn đềNgoài phương thức thông dụng update để cập nhật dữ liệu. Rails nói chung hay Activerecord nói riêng còn cung cấp 1 số phương thức khác để thay đổi dữ liệu hiện có, hãy cùng tìm hiểu về chúng">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-13T04:05:26.000Z">
+<meta property="og:updated_time" content="2020-01-01T08:31:18.316Z">
 <meta name="twitter:card" content="summary">
     
     
@@ -101,7 +101,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Dat-van-de"><span class="toc-number">1.</span> <span class="toc-text">Đặt vấn đề</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Luan-ban"><span class="toc-number">2.</span> <span class="toc-text">Luận bàn</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-Phuong-thuc-update"><span class="toc-number">3.</span> <span class="toc-text">1. Phương thức update</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-Phuong-thuc-update-attribute-va-update-attributes"><span class="toc-number">4.</span> <span class="toc-text">2. Phương thức update_attribute và update_attributes</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-Phuong-update-column-va-update-columns"><span class="toc-number">5.</span> <span class="toc-text">3. Phương update_column và update_columns</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Ket-luan"><span class="toc-number">6.</span> <span class="toc-text">Kết luận</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Dat-van-de"><span class="toc-number">1.</span> <span class="toc-text">Đặt vấn đề</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Luan-ban"><span class="toc-number">2.</span> <span class="toc-text">Luận bàn</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Phuong-thuc-update"><span class="toc-number">3.</span> <span class="toc-text">1. Phương thức update</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Phuong-thuc-update-attribute-va-update-attributes"><span class="toc-number">4.</span> <span class="toc-text">2. Phương thức update_attribute và update_attributes</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Phuong-update-column-va-update-columns"><span class="toc-number">5.</span> <span class="toc-text">3. Phương update_column và update_columns</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ket-luan"><span class="toc-number">6.</span> <span class="toc-text">Kết luận</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -120,7 +120,7 @@
 
     <div class="meta">
       <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span itemprop="name">The Cat's Family</span>
+        <span itemprop="name">Notes</span>
       </span>
       
     <div class="postdate">
@@ -132,16 +132,11 @@
 
 
       
-    <div class="article-category">
-        <i class="fas fa-archive"></i>
-        <a class="category-link" href="/categories/rails-notes/">rails notes</a>
-    </div>
-
 
       
     <div class="article-tag">
         <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/activerecord/" rel="tag">activerecord</a>, <a class="tag-link" href="/tags/rails/" rel="tag">rails</a>
+        <a class="tag-link" href="/tags/RAILS/" rel="tag">RAILS</a>
     </div>
 
 
@@ -150,12 +145,12 @@
   
 
   <div class="content" itemprop="articleBody">
-    <h1 id="Dat-van-de"><a href="#Dat-van-de" class="headerlink" title="Đặt vấn đề"></a>Đặt vấn đề</h1><p>Ngoài phương thức thông dụng <code>update</code> để cập nhật dữ liệu. Rails nói chung hay Activerecord nói riêng còn cung cấp 1 số phương thức khác để thay đổi dữ liệu hiện có, hãy cùng tìm hiểu về chúng.</p>
-<h1 id="Luan-ban"><a href="#Luan-ban" class="headerlink" title="Luận bàn"></a>Luận bàn</h1><p><strong>Chuẩn bị:</strong></p>
+    <h2 id="Dat-van-de"><a href="#Dat-van-de" class="headerlink" title="Đặt vấn đề"></a>Đặt vấn đề</h2><p>Ngoài phương thức thông dụng <strong>update</strong> để cập nhật dữ liệu. Rails nói chung hay Activerecord nói riêng còn cung cấp 1 số phương thức khác để thay đổi dữ liệu hiện có, hãy cùng tìm hiểu về chúng.</p>
+<h2 id="Luan-ban"><a href="#Luan-ban" class="headerlink" title="Luận bàn"></a>Luận bàn</h2><p><strong>Chuẩn bị:</strong></p>
 <ol>
-<li><p>Tôi có một model <code>Cat</code> với 2 thuộc tính là <code>age</code> và <code>name</code>.</p>
+<li><p>Tôi có một model <strong>Cat</strong> với 2 thuộc tính là <strong>age</strong> và <strong>name</strong>.</p>
 </li>
-<li><p>Trong model Cat tôi có 1 <code>validation</code> và 1 <code>callback</code> đơn giản.</p>
+<li><p>Trong model Cat tôi có 1 <strong>validation</strong> và 1 <strong>callback</strong> đơn giản.</p>
 </li>
 </ol>
 <p><strong>Để so sánh các phương thức chúng ta chú ý đến một số điểm sau:</strong></p>
@@ -171,7 +166,7 @@
 <li><p>Trường update_at có được cập nhật hay không?</p>
 </li>
 </ol>
-<h1 id="1-Phuong-thuc-update"><a href="#1-Phuong-thuc-update" class="headerlink" title="1. Phương thức update"></a>1. Phương thức update</h1><p><strong>Instance method:</strong></p>
+<h2 id="1-Phuong-thuc-update"><a href="#1-Phuong-thuc-update" class="headerlink" title="1. Phương thức update"></a>1. Phương thức update</h2><p><strong>Instance method:</strong></p>
 <p>Là phương thức được gọi thông qua một instance. Ta truyền vào field name cần cập nhật và giá trị mới sau cập nhật. Ta có thể truyền tham số dưới dạng hash.</p>
 <p>Ví dụ:</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cat = Cat.first</span><br><span class="line">cat.update(<span class="symbol">name:</span> <span class="string">'change name'</span>)</span><br></pre></td></tr></table></figure>
@@ -196,10 +191,10 @@
 </li>
 <li><p>Validate và callback đều được chạy.</p>
 </li>
-<li><p>Class method <code>update</code> thì có thể cập nhật nhiều record một lúc.</p>
+<li><p>Class method <strong>update</strong> thì có thể cập nhật nhiều record một lúc.</p>
 </li>
 </ol>
-<h1 id="2-Phuong-thuc-update-attribute-va-update-attributes"><a href="#2-Phuong-thuc-update-attribute-va-update-attributes" class="headerlink" title="2. Phương thức update_attribute và update_attributes"></a>2. Phương thức update_attribute và update_attributes</h1><p>Phương thức update_attribute nhận 2 tham số truyền vào, với tham số thứ nhất là field cần cập nhật và tham số thứ 2 là giá trị cập nhật (Khác với update, thì tham số truyền vào không thể để dưới dạng hash).</p>
+<h2 id="2-Phuong-thuc-update-attribute-va-update-attributes"><a href="#2-Phuong-thuc-update-attribute-va-update-attributes" class="headerlink" title="2. Phương thức update_attribute và update_attributes"></a>2. Phương thức update_attribute và update_attributes</h2><p>Phương thức update_attribute nhận 2 tham số truyền vào, với tham số thứ nhất là field cần cập nhật và tham số thứ 2 là giá trị cập nhật (Khác với update, thì tham số truyền vào không thể để dưới dạng hash).</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cat = Cat.first</span><br><span class="line">cat.update_attribute(<span class="symbol">:name</span>, <span class="string">'change name'</span>)</span><br></pre></td></tr></table></figure>
 
 <p>Phương thức update_attributes khác với update_attribute là nó nhận 1 tham số chứ không phải 2. Ta truyền tham số dưới hạng một hash cho phương này với giá trị key-value tương ứng field cần update và giá trị cần cập nhật.</p>
@@ -214,7 +209,7 @@
 <li><p>update_attribute dùng cho cập nhật 1 field còn update_attributes cần khi cập nhật nhiều field.</p>
 </li>
 </ol>
-<h1 id="3-Phuong-update-column-va-update-columns"><a href="#3-Phuong-update-column-va-update-columns" class="headerlink" title="3. Phương update_column và update_columns"></a>3. Phương update_column và update_columns</h1><p>Phương thức update_column có cú pháp giống như update_attribute, còn phương thức update_columns thì có cú pháp tương tự như update_attributes.</p>
+<h2 id="3-Phuong-update-column-va-update-columns"><a href="#3-Phuong-update-column-va-update-columns" class="headerlink" title="3. Phương update_column và update_columns"></a>3. Phương update_column và update_columns</h2><p>Phương thức update_column có cú pháp giống như update_attribute, còn phương thức update_columns thì có cú pháp tương tự như update_attributes.</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cat = Cat.first</span><br><span class="line">cat.update_column(<span class="symbol">:name</span>, <span class="string">'change name'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># với update_columns</span></span><br><span class="line">cat.update_columns(<span class="symbol">name:</span> <span class="string">'change name'</span>, <span class="symbol">age:</span> <span class="number">10</span>)</span><br><span class="line"><span class="comment"># or</span></span><br><span class="line">cat.update_columns(<span class="symbol">:name</span> =&gt; <span class="string">'change name'</span>, <span class="symbol">:age</span> =&gt; <span class="number">10</span>)</span><br></pre></td></tr></table></figure>
 
 <p>Tuy nhiên ta có một số điểm khác biệt cơ bản cần lưu ý với update_attribute và update_attributes cần lưu ý.</p>
@@ -225,10 +220,8 @@
 <li><p>Callback và validate đều <strong>không</strong> được chạy.</p>
 </li>
 </ol>
-<h1 id="Ket-luan"><a href="#Ket-luan" class="headerlink" title="Kết luận"></a>Kết luận</h1><p>Trên đây là một số nội dung cơ bản cần nắm bắt về cách cập nhật cơ sở dữ liệu với activerecord trong rails. Nhìn qua thì những phương thức này có vẻ khá giống nhau và đôi lúc bạn tự hỏi là lý do gì khiến phải sinh ra nhiều phương thức như vậy trong khi chỉ riêng phương thức <code>update</code> đã gần như làm được tất cả những gì mà chúng ta nghĩ là cần.</p>
-<p>Cách đây ít lâu tôi có làm 1 ứng dụng nhỏ, trong đó có một model chính gọi là X, trong model này tôi có viết một callback tên Y được thực hiện sau khi record được save (với method after_save). Trong callback Y tôi sử dụng method <code>update</code>.</p>
-<p>Đáng buồn thay là đoạn code của tôi không hoạt động một cách bình thường, sau khi save record thì terminal bị crash với một vòng lặp bất tận, chợt nhận ra là khi sử dụng <code>update</code> thì callback được gọi lại, vậy là nó tạo ra một vòng lặp vĩnh viễn, save record(1) -&gt; callback được gọi(2) -&gt; trong callback có phương thức update(3) -&gt; update được gọi(4) -&gt; update lại gọi lại callback(2).<br>Để khắc phục thì cần chuyển <code>update</code> thành <code>update_column</code> hoặc <code>update_columns</code>.</p>
-<p>Đây là một ví dụ nhỏ về việc cần thiết cuả những phương thức kể trên, mỗi phương thức sẽ là tốt hoặc là duy nhất có thể trong từng trường hợp. Hãy cân nhắc kỹ.</p>
+<h2 id="Ket-luan"><a href="#Ket-luan" class="headerlink" title="Kết luận"></a>Kết luận</h2><p>Cách đây ít lâu tôi có làm 1 ứng dụng nhỏ, trong đó có một model chính gọi là X, trong model này tôi có viết một callback tên Y được thực hiện sau khi record được save (với method after_save). Trong callback Y tôi sử dụng method <strong>update</strong>.</p>
+<p>Đáng buồn thay là đoạn code của tôi không hoạt động một cách bình thường, sau khi save record thì terminal bị crash với một vòng lặp bất tận, chợt nhận ra là khi sử dụng <strong>update</strong> thì callback được gọi lại, vậy là nó tạo ra một vòng lặp vĩnh viễn, save record(1) -&gt; callback được gọi(2) -&gt; trong callback có phương thức update(3) -&gt; update được gọi(4) -&gt; update lại gọi lại callback(2).<br>Để khắc phục thì cần chuyển <strong>update</strong> thành <strong>update_column</strong> hoặc <strong>update_columns</strong>.</p>
 
   </div>
 </article>
@@ -254,7 +247,7 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Dat-van-de"><span class="toc-number">1.</span> <span class="toc-text">Đặt vấn đề</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Luan-ban"><span class="toc-number">2.</span> <span class="toc-text">Luận bàn</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-Phuong-thuc-update"><span class="toc-number">3.</span> <span class="toc-text">1. Phương thức update</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-Phuong-thuc-update-attribute-va-update-attributes"><span class="toc-number">4.</span> <span class="toc-text">2. Phương thức update_attribute và update_attributes</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-Phuong-update-column-va-update-columns"><span class="toc-number">5.</span> <span class="toc-text">3. Phương update_column và update_columns</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Ket-luan"><span class="toc-number">6.</span> <span class="toc-text">Kết luận</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Dat-van-de"><span class="toc-number">1.</span> <span class="toc-text">Đặt vấn đề</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Luan-ban"><span class="toc-number">2.</span> <span class="toc-text">Luận bàn</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Phuong-thuc-update"><span class="toc-number">3.</span> <span class="toc-text">1. Phương thức update</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Phuong-thuc-update-attribute-va-update-attributes"><span class="toc-number">4.</span> <span class="toc-text">2. Phương thức update_attribute và update_attributes</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Phuong-update-column-va-update-columns"><span class="toc-number">5.</span> <span class="toc-text">3. Phương update_column và update_columns</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ket-luan"><span class="toc-number">6.</span> <span class="toc-text">Kết luận</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">

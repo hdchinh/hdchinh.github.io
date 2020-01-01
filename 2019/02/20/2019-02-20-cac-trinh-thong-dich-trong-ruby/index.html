@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="Đặt vấn đềĐây lại là một bài viết về chủ đề core, phức tạp hoá những thứ mà bình thường đi làm coder ta đa phần là không cần dùng đến. Hôm nay sẽ là các trình thông dịch trong ruby. Luận bàn1. Ruby ch">
-<meta name="keywords" content="ruby">
+    <meta name="description" content="1. Ruby chạy code của bạn như nào?Trước khi nói về các trình thông dịch, tôi xin nêu khái quát về quá trình ruby thực thi mã code của bạn.Với bất cứ đoạn mã ruby nào, mã nguồn bạn viết sẽ trải qua các">
+<meta name="keywords" content="RUBY">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Vài Trình Thông Dịch Cho Ruby">
 <meta property="og:url" content="https:&#x2F;&#x2F;hdchinh.github.io&#x2F;2019&#x2F;02&#x2F;20&#x2F;2019-02-20-cac-trinh-thong-dich-trong-ruby&#x2F;index.html">
-<meta property="og:site_name" content="The Cat&#39;s Family">
-<meta property="og:description" content="Đặt vấn đềĐây lại là một bài viết về chủ đề core, phức tạp hoá những thứ mà bình thường đi làm coder ta đa phần là không cần dùng đến. Hôm nay sẽ là các trình thông dịch trong ruby. Luận bàn1. Ruby ch">
+<meta property="og:site_name" content="Notes">
+<meta property="og:description" content="1. Ruby chạy code của bạn như nào?Trước khi nói về các trình thông dịch, tôi xin nêu khái quát về quá trình ruby thực thi mã code của bạn.Với bất cứ đoạn mã ruby nào, mã nguồn bạn viết sẽ trải qua các">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-13T04:00:24.000Z">
+<meta property="og:updated_time" content="2020-01-01T08:16:05.277Z">
 <meta name="twitter:card" content="summary">
     
     
@@ -101,7 +101,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Dat-van-de"><span class="toc-number">1.</span> <span class="toc-text">Đặt vấn đề</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Luan-ban"><span class="toc-number">2.</span> <span class="toc-text">Luận bàn</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-Ruby-chay-code-cua-ban-nhu-nao"><span class="toc-number">3.</span> <span class="toc-text">1. Ruby chạy code của bạn như nào?</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-CRuby-MRI-YARV-KRI"><span class="toc-number">4.</span> <span class="toc-text">2. CRuby, MRI, YARV, KRI</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-JRuby"><span class="toc-number">5.</span> <span class="toc-text">3. JRuby</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Ket-luan"><span class="toc-number">6.</span> <span class="toc-text">Kết luận</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Ruby-chay-code-cua-ban-nhu-nao"><span class="toc-number">1.</span> <span class="toc-text">1. Ruby chạy code của bạn như nào?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-CRuby-MRI-YARV-KRI"><span class="toc-number">2.</span> <span class="toc-text">2. CRuby, MRI, YARV, KRI</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-JRuby"><span class="toc-number">3.</span> <span class="toc-text">3. JRuby</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Tham-khao"><span class="toc-number">4.</span> <span class="toc-text">4. Tham khảo</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -120,7 +120,7 @@
 
     <div class="meta">
       <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span itemprop="name">The Cat's Family</span>
+        <span itemprop="name">Notes</span>
       </span>
       
     <div class="postdate">
@@ -132,16 +132,11 @@
 
 
       
-    <div class="article-category">
-        <i class="fas fa-archive"></i>
-        <a class="category-link" href="/categories/ruby-notes/">ruby notes</a>
-    </div>
-
 
       
     <div class="article-tag">
         <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/ruby/" rel="tag">ruby</a>
+        <a class="tag-link" href="/tags/RUBY/" rel="tag">RUBY</a>
     </div>
 
 
@@ -150,31 +145,39 @@
   
 
   <div class="content" itemprop="articleBody">
-    <h1 id="Dat-van-de"><a href="#Dat-van-de" class="headerlink" title="Đặt vấn đề"></a>Đặt vấn đề</h1><p>Đây lại là một bài viết về chủ đề <code>core</code>, phức tạp hoá những thứ mà bình thường đi làm coder ta đa phần là không cần dùng đến. Hôm nay sẽ là các trình thông dịch trong ruby.</p>
-<h1 id="Luan-ban"><a href="#Luan-ban" class="headerlink" title="Luận bàn"></a>Luận bàn</h1><h1 id="1-Ruby-chay-code-cua-ban-nhu-nao"><a href="#1-Ruby-chay-code-cua-ban-nhu-nao" class="headerlink" title="1. Ruby chạy code của bạn như nào?"></a>1. Ruby chạy code của bạn như nào?</h1><p>Trước khi nói về các trình thông dịch, tôi xin nêu khái quát về quá trình ruby thực thi mã code của bạn.<br>Với bất cứ đoạn mã ruby nào, mã nguồn bạn viết sẽ trải qua các bước sau để có thể tới được trình thông dịch (chủ đề mà ta đang tìm hiểu).</p>
-<p><code>Token</code>: Chuyển đổi mã nguồn ruby thành một dạng keyword. Hiểu đơn giản, ruby sẽ quét qua mã nguồn bạn viết và so sánh với một symbol table nào đó (giả dụ như vậy), để xác định xem trong mã nguồn bạn viết gồm những thành phần nào (để xác định đâu là biến, đâu là keyword, đâu là từ khoá). Ví dụ việc từ <code>do</code> xuất hiện trong mã nguồn, có thể nó là một biến local, hoặc nó là một keyword trong một <code>block</code>, <code>Token</code> sẽ quét mã nguồn và đảm bảo xác định đúng <code>type</code> của từng thành phần trong code của bạn, chú ý là <code>type</code> nhé, ở bước này ruby chỉ quan tâm đến xác định <code>type</code>.</p>
-<p><code>Parse</code>: Qua bước đầu tiên, ta đã có một token, đến bước thứ hai nó sẽ chuyển đổi token đó thành một AST (Abstract Syntax Tree).</p>
-<p><code>Compile</code>: Đến bước này, ruby sẽ biên dịch kết quả ở bước 2 thành <code>bytecode</code> và truyền kết quả biên dịch được sang cho máy ảo ruby (là phần mà chúng ta đang tìm hiểu trong bài viết).</p>
-<h1 id="2-CRuby-MRI-YARV-KRI"><a href="#2-CRuby-MRI-YARV-KRI" class="headerlink" title="2. CRuby, MRI, YARV, KRI"></a>2. CRuby, MRI, YARV, KRI</h1><p>Để kiểm tra xem ruby trên máy tính của bạn đang sử dụng trình thông dịch nào, hãy mở <code>irb</code> và sử dụng lệnh sau:</p>
+    <h2 id="1-Ruby-chay-code-cua-ban-nhu-nao"><a href="#1-Ruby-chay-code-cua-ban-nhu-nao" class="headerlink" title="1. Ruby chạy code của bạn như nào?"></a>1. Ruby chạy code của bạn như nào?</h2><p>Trước khi nói về các trình thông dịch, tôi xin nêu khái quát về quá trình ruby thực thi mã code của bạn.<br>Với bất cứ đoạn mã ruby nào, mã nguồn bạn viết sẽ trải qua các bước sau để có thể tới được trình thông dịch (chủ đề mà ta đang tìm hiểu).</p>
+<p><strong>Token</strong>: Chuyển đổi mã nguồn ruby thành một dạng keyword. Hiểu đơn giản, ruby sẽ quét qua mã nguồn bạn viết và so sánh với một symbol table nào đó (giả dụ như vậy), để xác định xem trong mã nguồn bạn viết gồm những thành phần nào (để xác định đâu là biến, đâu là keyword, đâu là từ khoá). Ví dụ việc từ <strong>do</strong> xuất hiện trong mã nguồn, có thể nó là một biến local, hoặc nó là một keyword trong một <strong>block</strong>, <strong>Token</strong> sẽ quét mã nguồn và đảm bảo xác định đúng <strong>type</strong> của từng thành phần trong code của bạn, chú ý là <strong>type</strong> nhé, ở bước này ruby chỉ quan tâm đến xác định <strong>type</strong>.</p>
+<p><strong>Parse</strong>: Qua bước đầu tiên, ta đã có một token, đến bước thứ hai nó sẽ chuyển đổi token đó thành một AST (Abstract Syntax Tree).</p>
+<p><strong>Compile</strong>: Đến bước này, ruby sẽ biên dịch kết quả ở bước 2 thành <strong>bytecode</strong> và truyền kết quả biên dịch được sang cho máy ảo ruby (là phần mà chúng ta đang tìm hiểu trong bài viết).</p>
+<h2 id="2-CRuby-MRI-YARV-KRI"><a href="#2-CRuby-MRI-YARV-KRI" class="headerlink" title="2. CRuby, MRI, YARV, KRI"></a>2. CRuby, MRI, YARV, KRI</h2><p>Để kiểm tra xem ruby trên máy tính của bạn đang sử dụng trình thông dịch nào, hãy mở <strong>irb</strong> và sử dụng lệnh sau:</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">RbConfig::CONFIG[<span class="string">"RUBY_INSTALL_NAME"</span>]</span><br><span class="line"><span class="comment">#=&gt; kết quả trả về trên máy của tôi là: ruby</span></span><br></pre></td></tr></table></figure>
-<p>Điều này có nghĩa tôi đang sử dụng trình thông dịch mặc định trong ruby. Được gọi là <code>MRI</code>/<code>CRuby</code> hay phiên bản nâng cấp sau này là <code>YARV</code>/<code>KRI</code>. Giải thích về việc có nhiều tên gọi như trên, tôi xin trích dẫn các thông tin trên wiki và trình thông dịch này:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Matz&apos;s Ruby Interpreter or Ruby MRI (also called CRuby)</span><br><span class="line">was the reference implementation of the Ruby programming language</span><br><span class="line">named after Ruby creator Yukihiro Matsumoto (&quot;Matz&quot;)</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">YARV (Yet another Ruby VM) is a bytecode interpreter that</span><br><span class="line">was developed for the Ruby programming language by Koichi Sasada.</span><br><span class="line">The goal of the project was to greatly reduce the execution time of Ruby programs.</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Since YARV has become the official Ruby interpreter for Ruby 1.9,</span><br><span class="line">it is also named KRI (Koichi&apos;s Ruby Interpreter),</span><br><span class="line">in the same vein as the original Ruby MRI,</span><br><span class="line">named for Ruby&apos;s creator Yukihiro Matsumoto.</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">YARV was merged into the Ruby Subversion repository on January 1, 2007.</span><br><span class="line">It was released as part of Ruby 1.9.0 on December 26, 2007, replacing Ruby MRI.</span><br></pre></td></tr></table></figure>
-
-<p>Qua vài trích dẫn kể trên, bạn có thể thấy đơn giản những khái niệm <code>CRuby</code>, <code>YARV</code>, <code>MRI</code>, <code>KRI</code> đều nhằm mô tả về một trình thông dịch được sử dụng mặc định cho ruby (tuỳ phiên bản sẽ có khác nhau, hiểu theo nghĩa là một sự update thay vì là thay thế).</p>
-<h1 id="3-JRuby"><a href="#3-JRuby" class="headerlink" title="3. JRuby"></a>3. JRuby</h1><p>Còn một vài trình thông dịch khác mà tôi đã đọc được, nhưng <code>JRuby</code> là phần cuối mà chúng ta sẽ tìm hiểu, vì những những trình thông dịch còn lại không được phổ biến cho lắm.</p>
-<p><code>JRuby</code> = <code>Java</code> + <code>Ruby</code></p>
-<p>Tức là dùng phần java làm core để chạy máy ảo xử lý code ruby. Sự khác biệt với mục 2,chính là ở mục 2, dù dưới tên gọi hay phiên bản nào, thì những trình thông dịch đó đều sử dụng <code>C</code> làm ngôn ngữ xây dựng.</p>
-<p>Một số ý kiến xoay quanh <code>JRuby</code></p>
-<p>| 1: JRuby nhanh hơn đáng kể với trình thông dịch mặc định trong ruby, có lợi thế mạnh mẽ khi xử lý đa luồng.</p>
-<p>| 2: Tuy nhiên đồng nghĩa với điều đó là việc <code>JRuby</code> chiếm dụng bộ nhớ nhiều hơn và mất thời gian hơn để khởi động.</p>
-<p>Vậy sẽ là một thảm hoạ nếu sử dụng <code>JRuby</code> để làm trình thông dịch cho ruby trong những ứng dụng nhỏ, hoạt động đơn giản và không cần tốc độ quá cao.</p>
-<h1 id="Ket-luan"><a href="#Ket-luan" class="headerlink" title="Kết luận"></a>Kết luận</h1><p>Trên đây là một số khái quát về lịch sử và hành trình của các trình thông dịch Ruby. Nếu có sai xót, xin hãy để lại bình luận ở dưới bài viết.</p>
+<p>Điều này có nghĩa tôi đang sử dụng trình thông dịch mặc định trong ruby. Được gọi là <strong>MRI</strong>/<strong>CRuby</strong> hay phiên bản nâng cấp sau này là <strong>YARV</strong>/<strong>KRI</strong>. Giải thích về việc có nhiều tên gọi như trên, tôi xin trích dẫn các thông tin trên wiki và trình thông dịch này:</p>
+<blockquote>
+<p>Matz’s Ruby Interpreter or Ruby MRI (also called CRuby) was the reference implementation of the Ruby programming language named after Ruby creator Yukihiro Matsumoto (“Matz”)</p>
+</blockquote>
+<blockquote>
+<p>YARV (Yet another Ruby VM) is a bytecode interpreter that was developed for the Ruby programming language by Koichi Sasada. The goal of the project was to greatly reduce the execution time of Ruby programs.</p>
+</blockquote>
+<blockquote>
+<p>Since YARV has become the official Ruby interpreter for Ruby 1.9, it is also named KRI (Koichi’s Ruby Interpreter), in the same vein as the original Ruby MRI, named for Ruby’s creator Yukihiro Matsumoto.</p>
+</blockquote>
+<blockquote>
+<p>YARV was merged into the Ruby Subversion repository on January 1, 2007. It was released as part of Ruby 1.9.0 on December 26, 2007, replacing Ruby MRI.</p>
+</blockquote>
+<p>Qua vài trích dẫn kể trên, chúng ta có thể thấy đơn giản những khái niệm <strong>CRuby</strong>, <strong>YARV</strong>, <strong>MRI</strong>, <strong>KRI</strong> đều nhằm mô tả về một trình thông dịch được sử dụng mặc định cho ruby (tuỳ phiên bản sẽ có khác nhau, hiểu theo nghĩa là một sự update thay vì là thay thế).</p>
+<h2 id="3-JRuby"><a href="#3-JRuby" class="headerlink" title="3. JRuby"></a>3. JRuby</h2><p>Còn một vài trình thông dịch khác mà tôi đã đọc được, nhưng <strong>JRuby</strong> là phần cuối mà chúng ta sẽ tìm hiểu, vì những những trình thông dịch còn lại không được phổ biến cho lắm.</p>
+<p><strong>JRuby</strong> = <strong>Java</strong> + <strong>Ruby</strong></p>
+<p>Tức là dùng phần java làm core để chạy máy ảo xử lý code ruby. Sự khác biệt với mục 2,chính là ở mục 2, dù dưới tên gọi hay phiên bản nào, thì những trình thông dịch đó đều sử dụng <strong>C</strong> làm ngôn ngữ xây dựng.</p>
+<p>Một số ý kiến xoay quanh <strong>JRuby</strong></p>
+<ol>
+<li><p>JRuby nhanh hơn đáng kể với trình thông dịch mặc định trong ruby, có lợi thế mạnh mẽ khi xử lý đa luồng.</p>
+</li>
+<li><p>Tuy nhiên đồng nghĩa với điều đó là việc <strong>JRuby</strong> chiếm dụng bộ nhớ nhiều hơn và mất thời gian hơn để khởi động.</p>
+</li>
+</ol>
+<p>Vậy sẽ là một thảm hoạ nếu sử dụng <strong>JRuby</strong> để làm trình thông dịch cho ruby trong những ứng dụng nhỏ, hoạt động đơn giản và không cần tốc độ quá cao.</p>
+<h2 id="4-Tham-khao"><a href="#4-Tham-khao" class="headerlink" title="4. Tham khảo"></a>4. Tham khảo</h2><p>[1] <a href="https://en.wikipedia.org/wiki/Ruby_MRI" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Ruby_MRI</a></p>
+<p>[2] <a href="https://en.wikipedia.org/wiki/JRuby" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/JRuby</a></p>
 
   </div>
 </article>
@@ -200,7 +203,7 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Dat-van-de"><span class="toc-number">1.</span> <span class="toc-text">Đặt vấn đề</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Luan-ban"><span class="toc-number">2.</span> <span class="toc-text">Luận bàn</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-Ruby-chay-code-cua-ban-nhu-nao"><span class="toc-number">3.</span> <span class="toc-text">1. Ruby chạy code của bạn như nào?</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-CRuby-MRI-YARV-KRI"><span class="toc-number">4.</span> <span class="toc-text">2. CRuby, MRI, YARV, KRI</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-JRuby"><span class="toc-number">5.</span> <span class="toc-text">3. JRuby</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Ket-luan"><span class="toc-number">6.</span> <span class="toc-text">Kết luận</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Ruby-chay-code-cua-ban-nhu-nao"><span class="toc-number">1.</span> <span class="toc-text">1. Ruby chạy code của bạn như nào?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-CRuby-MRI-YARV-KRI"><span class="toc-number">2.</span> <span class="toc-text">2. CRuby, MRI, YARV, KRI</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-JRuby"><span class="toc-number">3.</span> <span class="toc-text">3. JRuby</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Tham-khao"><span class="toc-number">4.</span> <span class="toc-text">4. Tham khảo</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">

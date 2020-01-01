@@ -11,10 +11,10 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="Cơ Chế Autoloading Và Reloading">
 <meta property="og:url" content="https:&#x2F;&#x2F;hdchinh.github.io&#x2F;2019&#x2F;04&#x2F;17&#x2F;2019-05-16-autoloading-va-reloading-constants-trong-rails&#x2F;index.html">
-<meta property="og:site_name" content="The Cat&#39;s Family">
+<meta property="og:site_name" content="Notes">
 <meta property="og:description" content="Đặt vấn đề123class CatsController &amp;lt; ApplicationController  # do somethingend  Đoạn mã trên là một đoạn mã rất quen thuộc khi sử dụng rails framework, một câu hỏi đó là tại sao trong class CatsContr">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-13T04:06:16.000Z">
+<meta property="og:updated_time" content="2020-01-01T08:27:02.590Z">
 <meta name="twitter:card" content="summary">
     
     
@@ -101,7 +101,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Dat-van-de"><span class="toc-number">1.</span> <span class="toc-text">Đặt vấn đề</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Luan-ban"><span class="toc-number">2.</span> <span class="toc-text">Luận bàn</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Ket-luan"><span class="toc-number">3.</span> <span class="toc-text">Kết luận</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Dat-van-de"><span class="toc-number">1.</span> <span class="toc-text">Đặt vấn đề</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Luan-ban"><span class="toc-number">2.</span> <span class="toc-text">Luận bàn</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ket-luan"><span class="toc-number">3.</span> <span class="toc-text">Kết luận</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -120,7 +120,7 @@
 
     <div class="meta">
       <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span itemprop="name">The Cat's Family</span>
+        <span itemprop="name">Notes</span>
       </span>
       
     <div class="postdate">
@@ -150,10 +150,10 @@
   
 
   <div class="content" itemprop="articleBody">
-    <h1 id="Dat-van-de"><a href="#Dat-van-de" class="headerlink" title="Đặt vấn đề"></a>Đặt vấn đề</h1><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CatsController</span> &lt; ApplicationController</span></span><br><span class="line">  <span class="comment"># do something</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+    <h2 id="Dat-van-de"><a href="#Dat-van-de" class="headerlink" title="Đặt vấn đề"></a>Đặt vấn đề</h2><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CatsController</span> &lt; ApplicationController</span></span><br><span class="line">  <span class="comment"># do something</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 
 <p>Đoạn mã trên là một đoạn mã rất quen thuộc khi sử dụng rails framework, một câu hỏi đó là tại sao trong class CatsController không require file chưa class ApplicationController nhưng ta vẫn có thể sử dụng. Câu trả lời nằm ở việc rails có cơ chế autoloading một số folder nhất định để support cho việc coding và vận hành, bài viết này sẽ nêu một cách khái quát về giải pháp này trong rails.</p>
-<h1 id="Luan-ban"><a href="#Luan-ban" class="headerlink" title="Luận bàn"></a>Luận bàn</h1><p>Như bài viết trước đã đề cập về cách mà phương thức require hoạt động:</p>
+<h2 id="Luan-ban"><a href="#Luan-ban" class="headerlink" title="Luận bàn"></a>Luận bàn</h2><p>Như bài viết trước đã đề cập về cách mà phương thức require hoạt động:</p>
 <ol>
 <li><p>Tìm file được require theo các đường dẫn được lưu trong biến $LOAD_PATH (biến này là 1 mảng các đường dẫn).</p>
 </li>
@@ -172,7 +172,7 @@
 </li>
 </ol>
 <p>Ta có thể xem danh sách này bằng câu lệnh:</p>
-<p><code>bin/rails r &#39;puts ActiveSupport::Dependencies.autoload_paths&#39;</code></p>
+<p><strong>bin/rails r ‘puts ActiveSupport::Dependencies.autoload_paths’</strong></p>
 <p><strong>eager_load_paths</strong> hoàn toàn giống như khái niệm về autoload_paths đã nêu ở trên. Điểm chúng ta cần lưu ý đó là:</p>
 <ol>
 <li><p>Những thư mục nằm trong eager_load_paths sẽ được load một lần duy nhất TRƯỚC khi ứng dụng của bạn khởi chạy.</p>
@@ -181,14 +181,14 @@
 </li>
 </ol>
 <p>Ta có 2 từ in hoa, đó là phần quan trọng, để đảm bảo tính nhất quán và hoạt động một cách ổn định và chính xác, trong môi trường production ta sử dụng eager_load_paths để load toàn bộ những file cần thiết cho các hệ thống cần thì sử dụng, còn ở môi trường phát triển, để khởi chạy ứng dụng nhanh chóng hơn và dễ dàng cập nhật các thay đổi thì ta sử dụng autoload_paths.</p>
-<p>Việc thiết lập này phụ thuộc vào cấu hình của bạn trong thư mục <code>app/config/envirements/...</code> với 2 cấu hình là:</p>
-<ul>
+<p>Việc thiết lập này phụ thuộc vào cấu hình của bạn trong thư mục <strong>app/config/envirements/…</strong> với 2 cấu hình là:</p>
+<ol>
 <li><p>config.cache_classes</p>
 </li>
 <li><p>config.eager_load</p>
 </li>
-</ul>
-<h1 id="Ket-luan"><a href="#Ket-luan" class="headerlink" title="Kết luận"></a>Kết luận</h1><p>Tham khảo:</p>
+</ol>
+<h2 id="Ket-luan"><a href="#Ket-luan" class="headerlink" title="Kết luận"></a>Kết luận</h2><p>Tham khảo:</p>
 <p>[1] <a href="https://guides.rubyonrails.org/autoloading_and_reloading_constants.html" target="_blank" rel="noopener">autoloading_and_reloading_constants</a></p>
 
   </div>
@@ -215,7 +215,7 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Dat-van-de"><span class="toc-number">1.</span> <span class="toc-text">Đặt vấn đề</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Luan-ban"><span class="toc-number">2.</span> <span class="toc-text">Luận bàn</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Ket-luan"><span class="toc-number">3.</span> <span class="toc-text">Kết luận</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Dat-van-de"><span class="toc-number">1.</span> <span class="toc-text">Đặt vấn đề</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Luan-ban"><span class="toc-number">2.</span> <span class="toc-text">Luận bàn</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ket-luan"><span class="toc-number">3.</span> <span class="toc-text">Kết luận</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">

@@ -6,17 +6,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="Đặt vấn đềPhần lớn thời gian thời đại học, tôi được học trên nền tảng window với bộ công cụ visual studio và ms sql server. Mọi thứ đều ổn cho đến khi ra trường và đi làm. Môi trường làm việc không cò">
-<meta name="keywords" content="unix">
+    <meta name="description" content="1.File permission là gì?Tương tự như ngôi nhà của bạn, bạn sống cùng gia đình và thi thoảng có những vị khách ghé thăm. Có những vật dụng trong nhà mà bạn chỉ muốn riêng mình bạn có thể sử dụng, cũng">
+<meta name="keywords" content="UNIX">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Permission Trong Unix Là Gì?">
+<meta property="og:title" content="Tổng Quan Về Permission Trong UNIX">
 <meta property="og:url" content="https:&#x2F;&#x2F;hdchinh.github.io&#x2F;2018&#x2F;01&#x2F;01&#x2F;2018-01-01-file-permission-in-linux&#x2F;index.html">
-<meta property="og:site_name" content="The Cat&#39;s Family">
-<meta property="og:description" content="Đặt vấn đềPhần lớn thời gian thời đại học, tôi được học trên nền tảng window với bộ công cụ visual studio và ms sql server. Mọi thứ đều ổn cho đến khi ra trường và đi làm. Môi trường làm việc không cò">
+<meta property="og:site_name" content="Notes">
+<meta property="og:description" content="1.File permission là gì?Tương tự như ngôi nhà của bạn, bạn sống cùng gia đình và thi thoảng có những vị khách ghé thăm. Có những vật dụng trong nhà mà bạn chỉ muốn riêng mình bạn có thể sử dụng, cũng">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http:&#x2F;&#x2F;www.macinstruct.com&#x2F;images&#x2F;permissions&#x2F;permissions1.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;hdchinh.github.io&#x2F;images&#x2F;file_permission.gif">
-<meta property="og:updated_time" content="2019-11-13T03:55:24.000Z">
+<meta property="og:updated_time" content="2020-01-01T07:53:34.242Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;www.macinstruct.com&#x2F;images&#x2F;permissions&#x2F;permissions1.png">
     
@@ -38,7 +37,7 @@
         
     
     <!-- title -->
-    <title>Permission Trong Unix Là Gì?</title>
+    <title>Tổng Quan Về Permission Trong UNIX</title>
     <!-- styles -->
     <link rel="stylesheet" href="/css/style.css">
     <!-- persian styles -->
@@ -89,20 +88,20 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/&text=Permission Trong Unix Là Gì?" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/&title=Permission Trong Unix Là Gì?" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/&is_video=false&description=Permission Trong Unix Là Gì?" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Permission Trong Unix Là Gì?&body=Check out this article: https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/&title=Permission Trong Unix Là Gì?" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/&title=Permission Trong Unix Là Gì?" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/&title=Permission Trong Unix Là Gì?" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/&title=Permission Trong Unix Là Gì?" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/&name=Permission Trong Unix Là Gì?&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/&text=Tổng Quan Về Permission Trong UNIX" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/&title=Tổng Quan Về Permission Trong UNIX" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/&is_video=false&description=Tổng Quan Về Permission Trong UNIX" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Tổng Quan Về Permission Trong UNIX&body=Check out this article: https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/&title=Tổng Quan Về Permission Trong UNIX" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/&title=Tổng Quan Về Permission Trong UNIX" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/&title=Tổng Quan Về Permission Trong UNIX" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/&title=Tổng Quan Về Permission Trong UNIX" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/&name=Tổng Quan Về Permission Trong UNIX&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Dat-van-de"><span class="toc-number">1.</span> <span class="toc-text">Đặt vấn đề</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Luan-ban"><span class="toc-number">2.</span> <span class="toc-text">Luận bàn</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-File-permission-la-gi"><span class="toc-number">3.</span> <span class="toc-text">1.File permission là gì?</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-Su-dung-la-su-dung-the-nao"><span class="toc-number">4.</span> <span class="toc-text">2.Sử dụng là sử dụng thế nào?</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-Cac-loai-nguoi-dung"><span class="toc-number">5.</span> <span class="toc-text">3.Các loại người dùng.</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-Cach-phan-quyen"><span class="toc-number">6.</span> <span class="toc-text">4.Cách phân quyền</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-Tham-khao"><span class="toc-number">7.</span> <span class="toc-text">5.Tham khảo</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Ket-luan"><span class="toc-number">8.</span> <span class="toc-text">Kết luận</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-File-permission-la-gi"><span class="toc-number">1.</span> <span class="toc-text">1.File permission là gì?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Su-dung-la-su-dung-the-nao"><span class="toc-number">2.</span> <span class="toc-text">2.Sử dụng là sử dụng thế nào?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Cac-loai-nguoi-dung"><span class="toc-number">3.</span> <span class="toc-text">3.Các loại người dùng.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Cach-phan-quyen"><span class="toc-number">4.</span> <span class="toc-text">4.Cách phân quyền</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Tham-khao"><span class="toc-number">5.</span> <span class="toc-text">5.Tham khảo</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -114,14 +113,14 @@
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
-        Permission Trong Unix Là Gì?
+        Tổng Quan Về Permission Trong UNIX
     </h1>
 
 
 
     <div class="meta">
       <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span itemprop="name">The Cat's Family</span>
+        <span itemprop="name">Notes</span>
       </span>
       
     <div class="postdate">
@@ -135,14 +134,14 @@
       
     <div class="article-category">
         <i class="fas fa-archive"></i>
-        <a class="category-link" href="/categories/he-dieu-hanh/">hệ điều hành</a>
+        <a class="category-link" href="/categories/OS/">OS</a>
     </div>
 
 
       
     <div class="article-tag">
         <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/unix/" rel="tag">unix</a>
+        <a class="tag-link" href="/tags/UNIX/" rel="tag">UNIX</a>
     </div>
 
 
@@ -151,42 +150,58 @@
   
 
   <div class="content" itemprop="articleBody">
-    <h1 id="Dat-van-de"><a href="#Dat-van-de" class="headerlink" title="Đặt vấn đề"></a>Đặt vấn đề</h1><p>Phần lớn thời gian thời đại học, tôi được học trên nền tảng window với bộ công cụ visual studio và ms sql server. Mọi thứ đều ổn cho đến khi ra trường và đi làm. Môi trường làm việc không còn là window nữa mà chuyển sang gia đình linux-unix. Rất nhiều thứ lạ lẫm, tuy nhiên, cũng như nhiều lập trình viên khác. Copy paste không có gì khó khăn với tôi.</p>
-<p>Từ những tutorial trên mạng, với những dòng lệnh tôi không hiểu, nhưng đâu thành vấn đề gì? Nó đang chạy và vậy là đã đủ hạnh phúc cho một cậu lập trình viên thiếu kinh nghiệm mới ra trường rồi. Tuy nhiên, việc phải làm những công việc lặp đi lặp lại hàng ngày mà không thực sự hiểu chúng khiến chúng ta khó chịu. Chẳng hạn như những câu lệnh set permission chẳng hạn.</p>
-<h1 id="Luan-ban"><a href="#Luan-ban" class="headerlink" title="Luận bàn"></a>Luận bàn</h1><h1 id="1-File-permission-la-gi"><a href="#1-File-permission-la-gi" class="headerlink" title="1.File permission là gì?"></a>1.File permission là gì?</h1><p>Tương tự như ngôi nhà của bạn, bạn sống cùng gia đình và thi thoảng có những vị khách ghé thăm. Có những vật dụng trong nhà mà bạn chỉ muốn riêng mình bạn có thể sử dụng, cũng có những đồ vật khác, thứ mà chỉ bạn và gia đình được phép sử dụng, và cũng có những đồ vật mà bạn, gia đình và cả những vị khách đều có thể sử dụng.</p>
-<p>Tài nguyên trong unix tương tự như vậy, mọi thứ trong unix đều là file. Vậy nên có những file quan trọng chỉ mình bạn có thể xài, cũng có những file mà bạn có thể chia sẻ thêm cho 1 nhóm nào đó. Còn những thứ không quá quan trọng bạn có thể mở cửa cho ai cũng có thể sử dụng.</p>
-<p>=&gt; Đó là lý do permission cần tồn tại.</p>
-<h1 id="2-Su-dung-la-su-dung-the-nao"><a href="#2-Su-dung-la-su-dung-the-nao" class="headerlink" title="2.Sử dụng là sử dụng thế nào?"></a>2.Sử dụng là sử dụng thế nào?</h1><p>Hiểu đơn giản như thế này, nhà của bạn, bạn cho tôi vào và cho phép tôi ngồi ghế uống nước xem tivi, nhưng không đồng nghĩa với việc tôi muốn làm gì cái ghế hay cái tivi cũng được. Tôi chỉ có thể sử dụng chứ không được phép thay đổi hay đập phá đồ đạc của bạn.</p>
-<p>Trong unix có 3 quyền sử dụng:</p>
+    <h2 id="1-File-permission-la-gi"><a href="#1-File-permission-la-gi" class="headerlink" title="1.File permission là gì?"></a>1.File permission là gì?</h2><p>Tương tự như ngôi nhà của bạn, bạn sống cùng gia đình và thi thoảng có những vị khách ghé thăm. Có những vật dụng trong nhà mà bạn chỉ muốn riêng mình bạn có thể sử dụng, cũng có những đồ vật khác, thứ mà chỉ bạn và gia đình được phép sử dụng, và cũng có những đồ vật mà bạn, gia đình và cả những vị khách đều có thể sử dụng.</p>
+<p>Tài nguyên trong UNIX tương tự như vậy, mọi thứ trong UNIX đều là file. Vậy nên có những file quan trọng chỉ mình bạn có thể xài, cũng có những file mà bạn có thể chia sẻ thêm cho 1 nhóm nào đó. Còn những thứ không quá quan trọng bạn có thể mở cửa cho ai cũng có thể sử dụng.</p>
+<blockquote>
+<p>Đó là lý do permission cần tồn tại. Cho 1 người được đụng vào thứ mà họ được phép đụng vào. Không hơn, mục tiêu cao cả là vậy.</p>
+</blockquote>
+<h2 id="2-Su-dung-la-su-dung-the-nao"><a href="#2-Su-dung-la-su-dung-the-nao" class="headerlink" title="2.Sử dụng là sử dụng thế nào?"></a>2.Sử dụng là sử dụng thế nào?</h2><p>Hiểu đơn giản như thế này, nhà của bạn, bạn cho tôi vào và cho phép tôi ngồi ghế uống nước xem tivi, nhưng không đồng nghĩa với việc tôi muốn làm gì cái ghế hay cái tivi cũng được. Tôi chỉ có thể sử dụng chứ không được phép thay đổi hay đập phá đồ đạc của bạn.</p>
+<p>Trong UNIX có 3 quyền sử dụng:</p>
 <ol>
-<li>Quyền đọc.</li>
-<li>Quyền ghi.</li>
-<li>Quyền thực thi.</li>
+<li>Quyền đọc (read).</li>
+<li>Quyền ghi (write).</li>
+<li>Quyền thực thi (excute).</li>
 </ol>
-<h1 id="3-Cac-loai-nguoi-dung"><a href="#3-Cac-loai-nguoi-dung" class="headerlink" title="3.Các loại người dùng."></a>3.Các loại người dùng.</h1><ol>
+<h2 id="3-Cac-loai-nguoi-dung"><a href="#3-Cac-loai-nguoi-dung" class="headerlink" title="3.Các loại người dùng."></a>3.Các loại người dùng.</h2><ol>
 <li>Owner (người sở hữu file đó - người tạo ra file đó).</li>
 <li>Group (nhóm sở hữu file).</li>
 <li>Other (phần còn lại của hệ thống có thể là guest).</li>
 </ol>
-<p>| Ngoài ra trên unix thì còn 1 người dùng thứ 4 gọi là root. Đây là người dùng siêu quyền lực và không thể bị ảnh hưởng bởi mấy lệnh phân quyền của bạn</p>
-<p>Hiểu đơn giản như việc bạn ở nhà của mình và nghĩ bạn có thể làm mọi việc với căn nhà đó mà không ai có thể can thiệp. Tuy nhiên khi mở sổ đỏ ra thì bạn sẽ thấy là bạn chỉ đang có quyền sử dụng đất chứ không phải sở hữu đất. Mọi đất đai đều thuộc quyền sở hữu của nhà nước.</p>
-<p>Đây chính là root trong trường hợp này, và nếu nhà nước thích thì quyền sở hữu nhà hay mọi tài nguyên trong nhà của bạn có thể bay màu.</p>
-<p>| Vì vậy hãy thật cẩn thận khi sử dụng quyền root trên máy tính. Trong trường hợp máy tính, thì chúng ta là chủ sở hữu nên chúng ta có thể enable hay disable root đi. Trên Mac thì mặc định là disable.</p>
-<h1 id="4-Cach-phan-quyen"><a href="#4-Cach-phan-quyen" class="headerlink" title="4.Cách phân quyền"></a>4.Cách phân quyền</h1><p><code>chmod xyz file/folder</code></p>
-<p>Ví dụ:  <code>chmod 007 duychinh.bin</code></p>
-<p>Giải thích câu lệnh trên:<br>-xyz là 3 số nguyên liền nhau( giá trị của ba số này có thể là 0,1,2,3,4,5,6,7).<br>Với x ứng với quyền phân cho owner, y ứng với quyền phân cho group và z là cho everyone.</p>
-<p>:zero: không có quyền gì cả.</p>
-<p>:one: quyền thực thi tập tin.</p>
-<p>:two: quyền write only.</p>
-<p>:four: quyền read only.</p>
-<p>Với 4 số trên ta có thể cộng lại và ra 1 số mới với permission được cộng dồn.<br>Ví dụ: 7 = 4 + 2 + 1 =&gt; tất cả các quyền. Tương tự với cả tổ hợp khác.</p>
-<p>Suy ra với lệnh <code>chmod 777 file_name</code> –&gt; Ta đã gán tất cả quyền cho cả 3 loại user(như liệt kê ở mục 3).</p>
+<blockquote>
+<p>Ngoài ra trên UNIX thì còn 1 người dùng thứ 4 gọi là root. Đây là người dùng siêu quyền lực và không thể bị ảnh hưởng bởi mấy lệnh phân quyền của bạn</p>
+</blockquote>
+<p>Hiểu cơ bản như việc bạn ở nhà của mình và nghĩ bạn có thể làm mọi việc với căn nhà đó mà không ai có thể can thiệp. Tuy nhiên khi mở sổ đỏ ra thì bạn sẽ thấy là bạn chỉ đang có quyền sử dụng đất chứ không phải sở hữu đất. Mọi đất đai đều thuộc quyền sở hữu của nhà nước.</p>
+<p>Đây chính là root trong trường hợp này.</p>
+<blockquote>
+<p>Vì vậy hãy thật cẩn thận khi sử dụng quyền root trên máy tính. Trong trường hợp máy tính, thì chúng ta là chủ sở hữu nên chúng ta có thể enable hay disable root đi. Trên Mac thì mặc định là disable.</p>
+</blockquote>
+<h2 id="4-Cach-phan-quyen"><a href="#4-Cach-phan-quyen" class="headerlink" title="4.Cách phân quyền"></a>4.Cách phân quyền</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod xyz file/folder</span><br></pre></td></tr></table></figure>
+
+<p>Ví dụ:  <strong>chmod 007 duychinh.bin</strong></p>
+<p>Giải thích câu lệnh trên:</p>
+<ul>
+<li>xyz là 3 số nguyên liền nhau (giá trị của ba số này có thể là 0,1,2,3,4,5,6,7).<br>Với x ứng với quyền phân cho <strong>owner</strong>, y ứng với quyền phân cho <strong>group</strong> và z là cho <strong>everyone</strong>.</li>
+</ul>
+<p><strong>0:</strong> không có quyền gì cả.</p>
+<p><strong>1:</strong> quyền thực thi tập tin.</p>
+<p><strong>2:</strong> quyền write only.</p>
+<p><strong>4:</strong> quyền read only.</p>
+<p>Thể hiện dưới dạng nhị phận:</p>
+<ul>
+<li><strong>0:</strong> 0000</li>
+<li><strong>1:</strong> 0001</li>
+<li><strong>2:</strong> 0010</li>
+<li><strong>4:</strong> 0100</li>
+</ul>
+<p>Với 4 số trên ta có thể cộng lại và ra 1 số mới với permission được cộng dồn:</p>
+<p>Ví dụ: 7 = 4 + 2 + 1 =&gt; tất cả các quyền. Tính toán tương tự với cả tổ hợp khác.<br>Suy ra với lệnh <strong>chmod 777 file_name</strong>:</p>
+<ul>
+<li>Ta đã gán tất cả quyền cho cả 3 loại user (như liệt kê ở mục 3).</li>
+</ul>
 <p>Hình ảnh minh hoạ:</p>
 <p><img src="http://www.macinstruct.com/images/permissions/permissions1.png" alt="Branching"></p>
-<p>Trong nhiều trường hợp để có thể thực hiện được lệnh set permission kể trên, ta phải thêm câu lệnh <code>sudo</code><br>vào phía trước. Trong các bài tiếp theo sẽ giải thích về ý nghĩa của câu lệnh này.</p>
-<h1 id="5-Tham-khao"><a href="#5-Tham-khao" class="headerlink" title="5.Tham khảo"></a>5.Tham khảo</h1><p>[1] <a href="https://www.guru99.com/file-permissions.html" target="_blank" rel="noopener">guru99</a></p>
-<h1 id="Ket-luan"><a href="#Ket-luan" class="headerlink" title="Kết luận"></a>Kết luận</h1><p>Trên là 1 cái nhìn tổng quan về phân quyền trên linux. Thế giới unix còn rất nhiều điều thú vị, hi vọng trong thời gian tôi có thể có thời gian để tìm hiểu sâu sắc hơn về nền tảng này.</p>
-<p><img src="/images/file_permission.gif" alt="File Permission"></p>
+<p>Trong nhiều trường hợp để có thể thực hiện được lệnh set permission kể trên, ta phải thêm câu lệnh <strong>sudo</strong>.<br>vào phía trước. Trong các bài tiếp theo sẽ giải thích về ý nghĩa của câu lệnh này.</p>
+<h2 id="5-Tham-khao"><a href="#5-Tham-khao" class="headerlink" title="5.Tham khảo"></a>5.Tham khảo</h2><p>[1] <a href="https://www.guru99.com/file-permissions.html" target="_blank" rel="noopener">https://www.guru99.com/file-permissions.html</a></p>
 
   </div>
 </article>
@@ -212,21 +227,21 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Dat-van-de"><span class="toc-number">1.</span> <span class="toc-text">Đặt vấn đề</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Luan-ban"><span class="toc-number">2.</span> <span class="toc-text">Luận bàn</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-File-permission-la-gi"><span class="toc-number">3.</span> <span class="toc-text">1.File permission là gì?</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-Su-dung-la-su-dung-the-nao"><span class="toc-number">4.</span> <span class="toc-text">2.Sử dụng là sử dụng thế nào?</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-Cac-loai-nguoi-dung"><span class="toc-number">5.</span> <span class="toc-text">3.Các loại người dùng.</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-Cach-phan-quyen"><span class="toc-number">6.</span> <span class="toc-text">4.Cách phân quyền</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-Tham-khao"><span class="toc-number">7.</span> <span class="toc-text">5.Tham khảo</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Ket-luan"><span class="toc-number">8.</span> <span class="toc-text">Kết luận</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-File-permission-la-gi"><span class="toc-number">1.</span> <span class="toc-text">1.File permission là gì?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Su-dung-la-su-dung-the-nao"><span class="toc-number">2.</span> <span class="toc-text">2.Sử dụng là sử dụng thế nào?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Cac-loai-nguoi-dung"><span class="toc-number">3.</span> <span class="toc-text">3.Các loại người dùng.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Cach-phan-quyen"><span class="toc-number">4.</span> <span class="toc-text">4.Cách phân quyền</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Tham-khao"><span class="toc-number">5.</span> <span class="toc-text">5.Tham khảo</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/&text=Permission Trong Unix Là Gì?" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/&title=Permission Trong Unix Là Gì?" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/&is_video=false&description=Permission Trong Unix Là Gì?" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Permission Trong Unix Là Gì?&body=Check out this article: https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/&title=Permission Trong Unix Là Gì?" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/&title=Permission Trong Unix Là Gì?" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/&title=Permission Trong Unix Là Gì?" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/&title=Permission Trong Unix Là Gì?" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/&name=Permission Trong Unix Là Gì?&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/&text=Tổng Quan Về Permission Trong UNIX" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/&title=Tổng Quan Về Permission Trong UNIX" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/&is_video=false&description=Tổng Quan Về Permission Trong UNIX" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Tổng Quan Về Permission Trong UNIX&body=Check out this article: https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/&title=Tổng Quan Về Permission Trong UNIX" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/&title=Tổng Quan Về Permission Trong UNIX" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/&title=Tổng Quan Về Permission Trong UNIX" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/&title=Tổng Quan Về Permission Trong UNIX" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/&name=Tổng Quan Về Permission Trong UNIX&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

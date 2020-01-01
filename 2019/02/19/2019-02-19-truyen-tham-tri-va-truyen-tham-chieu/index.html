@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="Đặt vấn đềChủ đề bài viết ngày hôm nay vốn đã được khơi gợi mơ hồ trong tôi từ rất lâu, nhớ không nhầm thì đó là từ ngày học môn nhập môn lập trình tại trường KHTN, giảng viên có nói lướt qua về khái">
-<meta name="keywords" content="ruby,programming">
+    <meta name="description" content="1. Định nghĩa Không có một định nghĩa chung nào về pass by value và pass by reference, tuỳ thuộc vào từng ngôn ngữ, chúng lại có cách xử lý và những định nghĩa khác nhau về cách xử lý biến và vùng nhớ">
+<meta name="keywords" content="RUBY">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Pass Reference Vs Pass Value, Ruby!">
 <meta property="og:url" content="https:&#x2F;&#x2F;hdchinh.github.io&#x2F;2019&#x2F;02&#x2F;19&#x2F;2019-02-19-truyen-tham-tri-va-truyen-tham-chieu&#x2F;index.html">
-<meta property="og:site_name" content="The Cat&#39;s Family">
-<meta property="og:description" content="Đặt vấn đềChủ đề bài viết ngày hôm nay vốn đã được khơi gợi mơ hồ trong tôi từ rất lâu, nhớ không nhầm thì đó là từ ngày học môn nhập môn lập trình tại trường KHTN, giảng viên có nói lướt qua về khái">
+<meta property="og:site_name" content="Notes">
+<meta property="og:description" content="1. Định nghĩa Không có một định nghĩa chung nào về pass by value và pass by reference, tuỳ thuộc vào từng ngôn ngữ, chúng lại có cách xử lý và những định nghĩa khác nhau về cách xử lý biến và vùng nhớ">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-13T04:00:00.000Z">
+<meta property="og:updated_time" content="2020-01-01T08:11:56.158Z">
 <meta name="twitter:card" content="summary">
     
     
@@ -101,7 +101,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Dat-van-de"><span class="toc-number">1.</span> <span class="toc-text">Đặt vấn đề</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Luan-ban"><span class="toc-number">2.</span> <span class="toc-text">Luận bàn</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-Mot-so-y-ma-toi-co-the-chac-chan-ma-chung-ta-phai-lam-ro-nhu-sau"><span class="toc-number">3.</span> <span class="toc-text">1. Một số ý mà tôi có thể chắc chắn mà chúng ta phải làm rõ như sau:</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-Pass-value-va-reference-trong-ruby"><span class="toc-number">4.</span> <span class="toc-text">2. Pass value và reference trong ruby</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Ket-luan"><span class="toc-number">5.</span> <span class="toc-text">Kết luận</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Dinh-nghia"><span class="toc-number">1.</span> <span class="toc-text">1. Định nghĩa</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Pass-value-va-reference-trong-ruby"><span class="toc-number">2.</span> <span class="toc-text">2. Pass value và reference trong ruby</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -120,7 +120,7 @@
 
     <div class="meta">
       <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span itemprop="name">The Cat's Family</span>
+        <span itemprop="name">Notes</span>
       </span>
       
     <div class="postdate">
@@ -132,16 +132,11 @@
 
 
       
-    <div class="article-category">
-        <i class="fas fa-archive"></i>
-        <a class="category-link" href="/categories/ruby-notes/">ruby notes</a> › <a class="category-link" href="/categories/ruby-notes/programming/">programming</a>
-    </div>
-
 
       
     <div class="article-tag">
         <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/programming/" rel="tag">programming</a>, <a class="tag-link" href="/tags/ruby/" rel="tag">ruby</a>
+        <a class="tag-link" href="/tags/RUBY/" rel="tag">RUBY</a>
     </div>
 
 
@@ -150,29 +145,28 @@
   
 
   <div class="content" itemprop="articleBody">
-    <h1 id="Dat-van-de"><a href="#Dat-van-de" class="headerlink" title="Đặt vấn đề"></a>Đặt vấn đề</h1><p>Chủ đề bài viết ngày hôm nay vốn đã được khơi gợi mơ hồ trong tôi từ rất lâu, nhớ không nhầm thì đó là từ ngày học môn nhập môn lập trình tại trường KHTN, giảng viên có nói lướt qua về khái niệm này, đơn thuần chỉ là lướt qua thôi,vì dù rằng có đi sâu vào hơn nữa thì sinh viên cũng chỉ tổ ngủ gục. Thoáng cái đã 5,6 năm trôi qua, giờ ngồi đây khi đang chuẩn bị thất nghiệp, tôi có hứng thú tìm lại cảm giác thanh xuân nơi giảng đường bằng cách mò mẫm lại cái chủ đề mà ngày xưa tôi từng học (mà hiểu chưa tinh tường), rồi cũng từng trả lời khi đi phỏng vấn (mà người phỏng vấn cũng chỉ hỏi qua). Ôi chao! sao đau đầu đến thế nhỉ? Định làm một bài viết đầy đủ, tường minh mà có quá nhiều thứ cần phải nghiềm ngẫm lại, đặt phím gõ rồi bỏ thì không nỡ, mà viết thì cũng chưa an tâm cái mình nói là đúng, vậy tôi lựa chọn cách đơn giản hơn, đó là viết một số hiểu biết ban đầu, nhẹ nhàng vào du dương, còn hardcore xin hẹn 1 ngày khác.</p>
-<h1 id="Luan-ban"><a href="#Luan-ban" class="headerlink" title="Luận bàn"></a>Luận bàn</h1><h1 id="1-Mot-so-y-ma-toi-co-the-chac-chan-ma-chung-ta-phai-lam-ro-nhu-sau"><a href="#1-Mot-so-y-ma-toi-co-the-chac-chan-ma-chung-ta-phai-lam-ro-nhu-sau" class="headerlink" title="1. Một số ý mà tôi có thể chắc chắn mà chúng ta phải làm rõ như sau:"></a>1. Một số ý mà tôi có thể chắc chắn mà chúng ta phải làm rõ như sau:</h1><ol>
-<li><p>Không có một định nghĩa chung nào về <code>pass by value</code> và <code>pass by reference</code>, tuỳ thuộc vào từng ngôn ngữ, chúng lại có cách xử lý và những định nghĩa khác nhau về cách xử lý biến và vùng nhớ.</p>
+    <h2 id="1-Dinh-nghia"><a href="#1-Dinh-nghia" class="headerlink" title="1. Định nghĩa"></a>1. Định nghĩa</h2><ol>
+<li><p>Không có một định nghĩa chung nào về <strong>pass by value</strong> và <strong>pass by reference</strong>, tuỳ thuộc vào từng ngôn ngữ, chúng lại có cách xử lý và những định nghĩa khác nhau về cách xử lý biến và vùng nhớ.</p>
 </li>
-<li><p><code>Pass value</code>: Hiểu một cách đơn giản nhất, đó là khi biến bạn truyền vào một method nào đó, dù trong đó logic là gì và nó hà hiếp cái biến bạn bỏ vào ra làm sao, thì khi ra ngoài hàm đó, biến bạn đã truyền ở trên vẫn còn nguyên seal, nguyên kiện, không hề si nhê (không hề thay đổi về giá trị).</p>
+<li><p><strong>Pass value</strong>: Hiểu một cách đơn giản nhất, đó là khi biến bạn truyền vào một method nào đó, dù trong đó logic là gì và nó hà hiếp cái biến bạn bỏ vào ra làm sao, thì khi ra ngoài hàm đó, biến bạn đã truyền ở trên vẫn còn nguyên seal, nguyên kiện, không hề si nhê (không hề thay đổi về giá trị).</p>
 </li>
-<li><p><code>Pass reference</code>: ngược lại với sự tử tế trong <code>Pass value</code>, khi bạn quyết định truyền tham số dưới dạng một reference, đồng nghĩa với việc bạn chấp nhận rằng cái biến bé bỏng, yếu ớt xinh xinh của bạn sẽ tha hồ bị logic trong hàm hành hạ, và khi ra khỏi hàng nó vẫn mang đầy đủ thương tích đã bị gây ra trong hàm (giá trị biến truyền vào sẽ bị thay đổi theo logic trong hàm).</p>
+<li><p><strong>Pass reference</strong>: ngược lại với sự tử tế trong <strong>Pass value</strong>, khi bạn quyết định truyền tham số dưới dạng một reference, đồng nghĩa với việc bạn chấp nhận rằng cái biến bé bỏng, yếu ớt xinh xinh của bạn sẽ tha hồ bị logic trong hàm hành hạ, và khi ra khỏi hàng nó vẫn mang đầy đủ thương tích đã bị gây ra trong hàm (giá trị biến truyền vào sẽ bị thay đổi theo logic trong hàm).</p>
 </li>
 </ol>
-<p>Note: khi còn đi học, tôi đã có một sự nhầm lẫn về value và reference trong C, khi đó tôi đã nghĩ truyền tên biến bình thường thôi là <code>Pass value</code>, còn truyền con trỏ là <code>Pass reference</code>. Nhưng thực ra đó là không đúng.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">The C language is pass-by-value without exception.</span><br><span class="line">Passing a pointer as a parameter does not mean pass-by-reference.</span><br></pre></td></tr></table></figure>
-
-<h1 id="2-Pass-value-va-reference-trong-ruby"><a href="#2-Pass-value-va-reference-trong-ruby" class="headerlink" title="2. Pass value và reference trong ruby"></a>2. Pass value và reference trong ruby</h1><p>| Qua thời gian tìm hiểu thì tôi nhận thấy rằng trong ruby không hề có khái niệm rõ ràng về reference hay value, nên mọi kết luận ở đây chỉ là mang tính quy chiếu dựa vào những ý chúng ta đã nói trong mục 1.</p>
+<p>Note: khi còn đi học, tôi đã có một sự nhầm lẫn về value và reference trong C, khi đó tôi đã nghĩ truyền tên biến bình thường thôi là <strong>Pass value</strong>, còn truyền con trỏ là <strong>Pass reference</strong>. Nhưng thực ra đó là không đúng:</p>
+<blockquote>
+<p>The C language is pass-by-value without exception. Passing a pointer as a parameter does not mean pass-by-reference.</p>
+</blockquote>
+<h2 id="2-Pass-value-va-reference-trong-ruby"><a href="#2-Pass-value-va-reference-trong-ruby" class="headerlink" title="2. Pass value và reference trong ruby"></a>2. Pass value và reference trong ruby</h2><p>| Qua thời gian tìm hiểu thì tôi nhận thấy rằng trong ruby không hề có khái niệm rõ ràng về reference hay value, nên mọi kết luận ở đây chỉ là mang tính quy chiếu dựa vào những ý chúng ta đã nói trong mục 1.</p>
 <p>Xem ví dụ sau đây:</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">xinchao</span><span class="params">(a)</span></span></span><br><span class="line">  a = <span class="string">"Nguyen Van A"</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">temp = <span class="string">"Nguyen Van B"</span></span><br><span class="line"></span><br><span class="line">puts <span class="string">"Kq: Xin Chao <span class="subst">#&#123;xinchao(temp)&#125;</span>"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#=&gt; "Kq: Xin Chao Nguyen Van A"</span></span><br></pre></td></tr></table></figure>
 
-<p>Từ ví dụ trên ta có thể rút ra kết luận là ruby <code>Pass reference</code>? Vì như bạn đã thấy kết quả là “Nguyen Van A”, giá trị mà chúng ta gán trong hàm <code>xinchao</code>.</p>
-<p>Câu trả lời là không, đây là một ví dụ cạm bẫy nếu ta không cẩn thận, khác với một số ngôn ngữ khác bắt buộc phải sử dụng <code>return</code> để trả về kết quả trong function, ruby cho phép ta sử dụng giá trị cuối cùng bạn viết ra trong function đó. Tức kết quả trả về trên đơn giản là kết quả thực hiện của function xinchao, chứ còn việc biến temp có thay đổi giá trị hay không thì chúng ta phải thay thế lại một chút như dưới đây để kiểm chứng:</p>
+<p>Từ ví dụ trên ta có thể rút ra kết luận là ruby <strong>Pass reference</strong>? Vì như bạn đã thấy kết quả là “Nguyen Van A”, giá trị mà chúng ta gán trong hàm <strong>xinchao</strong>.</p>
+<p>Câu trả lời là không, đây là một ví dụ cạm bẫy nếu ta không cẩn thận, khác với một số ngôn ngữ khác bắt buộc phải sử dụng <strong>return</strong> để trả về kết quả trong function, ruby cho phép ta sử dụng giá trị cuối cùng bạn viết ra trong function đó. Tức kết quả trả về trên đơn giản là kết quả thực hiện của function xinchao, chứ còn việc biến temp có thay đổi giá trị hay không thì chúng ta phải thay thế lại một chút như dưới đây để kiểm chứng:</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">xinchao</span><span class="params">(a)</span></span></span><br><span class="line">  a = <span class="string">"Nguyen Van A"</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">temp = <span class="string">"Nguyen Van B"</span></span><br><span class="line"></span><br><span class="line">xinchao(temp)</span><br><span class="line"></span><br><span class="line">puts <span class="string">"Kq: Xin Chao <span class="subst">#&#123;temp&#125;</span>"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#=&gt; "Kq: Xin Chao Nguyen Van B"</span></span><br></pre></td></tr></table></figure>
 
-<p>Oh, vậy ruby là <code>Pass by value</code>? Đúng, như đã từng đề cập, ruby không có 1 định nghĩa thuần tuý nào về hai khái niệm mà chúng ta đang thảo luận, nên dựa trên những ý chính mà chúng ta đã thống nhất trong mục 1, ta có thể gọi Ruby là 1 một ngôn ngữ <code>Pass by value</code>.</p>
-<p>Vậy có trường hợp ngoại lệ nào không? Như C++ có cả <code>Pass by value</code> và <code>Pass by reference</code> đó thôi? Câu trả lời vẫn lại là không, thật tiếc, đó đơn giản là sự định hướng của cha đẻ của từng loại ngôn ngữ.</p>
-<h1 id="Ket-luan"><a href="#Ket-luan" class="headerlink" title="Kết luận"></a>Kết luận</h1><p>Điều cần nhớ sau bài viết này chính là việc hiểu khái quát về <code>Pass by value</code> và <code>Pass by reference</code>, một cách tổng quát, còn chi tiết bên trong phải cần nhiều bài nữa mới có thể làm rõ được vấn đề.</p>
+<p>Oh, vậy ruby là <strong>Pass by value</strong>? Đúng, như đã từng đề cập, ruby không có 1 định nghĩa thuần tuý nào về hai khái niệm mà chúng ta đang thảo luận, nên dựa trên những ý chính mà chúng ta đã thống nhất trong mục 1, ta có thể gọi Ruby là 1 một ngôn ngữ <strong>Pass by value</strong>.</p>
+<p>Vậy có trường hợp ngoại lệ nào không? Như C++ có cả <strong>Pass by value</strong> và <strong>Pass by reference</strong> đó thôi? Theo tôi đọc được thì là không @@.</p>
 
   </div>
 </article>
@@ -198,7 +192,7 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Dat-van-de"><span class="toc-number">1.</span> <span class="toc-text">Đặt vấn đề</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Luan-ban"><span class="toc-number">2.</span> <span class="toc-text">Luận bàn</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-Mot-so-y-ma-toi-co-the-chac-chan-ma-chung-ta-phai-lam-ro-nhu-sau"><span class="toc-number">3.</span> <span class="toc-text">1. Một số ý mà tôi có thể chắc chắn mà chúng ta phải làm rõ như sau:</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-Pass-value-va-reference-trong-ruby"><span class="toc-number">4.</span> <span class="toc-text">2. Pass value và reference trong ruby</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Ket-luan"><span class="toc-number">5.</span> <span class="toc-text">Kết luận</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Dinh-nghia"><span class="toc-number">1.</span> <span class="toc-text">1. Định nghĩa</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Pass-value-va-reference-trong-ruby"><span class="toc-number">2.</span> <span class="toc-text">2. Pass value và reference trong ruby</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">

@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="Đặt vấn đềCó thể bạn đã từng nghe qua về N+1, đây là một chủ để cơ bản trong vấn đề quản lý csdl trong code, bài viết này sẽ trình bày về nó dưới góc độ sử dụng trong ruby on rails với framework Activ">
-<meta name="keywords" content="rails,database">
+    <meta name="description" content="N+1 queryXét một ví dụ: Tôi có một ứng dụng đơn giản, với hai bảng csdl, bảng thứ nhất là bảng users, bảng thứ hai là bảng articles, một user có thể có nhiều articles nhưng một article chỉ thuộc về us">
+<meta name="keywords" content="RAILS">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Cục Nợ N + 1 Và Hướng Xử Lý">
+<meta property="og:title" content="Vấn Đề N + 1 Và Hướng Xử Lý">
 <meta property="og:url" content="https:&#x2F;&#x2F;hdchinh.github.io&#x2F;2019&#x2F;02&#x2F;25&#x2F;2019-02-25-van-de-n-1-trong-rails&#x2F;index.html">
-<meta property="og:site_name" content="The Cat&#39;s Family">
-<meta property="og:description" content="Đặt vấn đềCó thể bạn đã từng nghe qua về N+1, đây là một chủ để cơ bản trong vấn đề quản lý csdl trong code, bài viết này sẽ trình bày về nó dưới góc độ sử dụng trong ruby on rails với framework Activ">
+<meta property="og:site_name" content="Notes">
+<meta property="og:description" content="N+1 queryXét một ví dụ: Tôi có một ứng dụng đơn giản, với hai bảng csdl, bảng thứ nhất là bảng users, bảng thứ hai là bảng articles, một user có thể có nhiều articles nhưng một article chỉ thuộc về us">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-13T04:02:16.000Z">
+<meta property="og:updated_time" content="2020-01-01T08:21:22.602Z">
 <meta name="twitter:card" content="summary">
     
     
@@ -35,7 +35,7 @@
         
     
     <!-- title -->
-    <title>Cục Nợ N + 1 Và Hướng Xử Lý</title>
+    <title>Vấn Đề N + 1 Và Hướng Xử Lý</title>
     <!-- styles -->
     <link rel="stylesheet" href="/css/style.css">
     <!-- persian styles -->
@@ -88,20 +88,20 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/&text=Cục Nợ N + 1 Và Hướng Xử Lý" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/&title=Cục Nợ N + 1 Và Hướng Xử Lý" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/&is_video=false&description=Cục Nợ N + 1 Và Hướng Xử Lý" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Cục Nợ N + 1 Và Hướng Xử Lý&body=Check out this article: https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/&title=Cục Nợ N + 1 Và Hướng Xử Lý" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/&title=Cục Nợ N + 1 Và Hướng Xử Lý" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/&title=Cục Nợ N + 1 Và Hướng Xử Lý" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/&title=Cục Nợ N + 1 Và Hướng Xử Lý" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/&name=Cục Nợ N + 1 Và Hướng Xử Lý&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/&text=Vấn Đề N + 1 Và Hướng Xử Lý" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/&title=Vấn Đề N + 1 Và Hướng Xử Lý" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/&is_video=false&description=Vấn Đề N + 1 Và Hướng Xử Lý" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Vấn Đề N + 1 Và Hướng Xử Lý&body=Check out this article: https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/&title=Vấn Đề N + 1 Và Hướng Xử Lý" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/&title=Vấn Đề N + 1 Và Hướng Xử Lý" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/&title=Vấn Đề N + 1 Và Hướng Xử Lý" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/&title=Vấn Đề N + 1 Và Hướng Xử Lý" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/&name=Vấn Đề N + 1 Và Hướng Xử Lý&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Dat-van-de"><span class="toc-number">1.</span> <span class="toc-text">Đặt vấn đề</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Luan-ban"><span class="toc-number">2.</span> <span class="toc-text">Luận bàn</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#N-1-query"><span class="toc-number">3.</span> <span class="toc-text">N+1 query</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-Giai-phap"><span class="toc-number">4.</span> <span class="toc-text">2. Giải pháp</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-Xu-ly-N-1-query-trong-ActiveRecord"><span class="toc-number">5.</span> <span class="toc-text">3. Xử lý N+1 query trong ActiveRecord</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Ket-luan"><span class="toc-number">6.</span> <span class="toc-text">Kết luận</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#N-1-query"><span class="toc-number">1.</span> <span class="toc-text">N+1 query</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Giai-phap"><span class="toc-number">2.</span> <span class="toc-text">2. Giải pháp</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Xu-ly-N-1-query-trong-ActiveRecord"><span class="toc-number">3.</span> <span class="toc-text">3. Xử lý N+1 query trong ActiveRecord</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -113,14 +113,14 @@
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
-        Cục Nợ N + 1 Và Hướng Xử Lý
+        Vấn Đề N + 1 Và Hướng Xử Lý
     </h1>
 
 
 
     <div class="meta">
       <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span itemprop="name">The Cat's Family</span>
+        <span itemprop="name">Notes</span>
       </span>
       
     <div class="postdate">
@@ -132,16 +132,11 @@
 
 
       
-    <div class="article-category">
-        <i class="fas fa-archive"></i>
-        <a class="category-link" href="/categories/rails-notes/">rails notes</a>
-    </div>
-
 
       
     <div class="article-tag">
         <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/database/" rel="tag">database</a>, <a class="tag-link" href="/tags/rails/" rel="tag">rails</a>
+        <a class="tag-link" href="/tags/RAILS/" rel="tag">RAILS</a>
     </div>
 
 
@@ -150,29 +145,28 @@
   
 
   <div class="content" itemprop="articleBody">
-    <h1 id="Dat-van-de"><a href="#Dat-van-de" class="headerlink" title="Đặt vấn đề"></a>Đặt vấn đề</h1><p>Có thể bạn đã từng nghe qua về N+1, đây là một chủ để cơ bản trong vấn đề quản lý csdl trong code, bài viết này sẽ trình bày về nó dưới góc độ sử dụng trong ruby on rails với framework <code>ActiveRecord</code></p>
-<h1 id="Luan-ban"><a href="#Luan-ban" class="headerlink" title="Luận bàn"></a>Luận bàn</h1><h1 id="N-1-query"><a href="#N-1-query" class="headerlink" title="N+1 query"></a>N+1 query</h1><p>Xét một ví dụ:</p>
+    <h2 id="N-1-query"><a href="#N-1-query" class="headerlink" title="N+1 query"></a>N+1 query</h2><p>Xét một ví dụ:</p>
 <p>Tôi có một ứng dụng đơn giản, với hai bảng csdl, bảng thứ nhất là bảng users, bảng thứ hai là bảng articles, một user có thể có nhiều articles nhưng một article chỉ thuộc về user. Hãy xem đoạn mã dưới đây:</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">User.all.each <span class="keyword">do</span> <span class="params">|user|</span></span><br><span class="line">  user.articles</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 <p>Đoạn code trên sẽ duyệt qua tất cả user có trong csdl rồi lấy tất cả các articles ứng với từng user. Rất tường minh và dễ hiểu.</p>
 <p>Tối có 5 user mẫu trong csdl nên các câu lệnh sql sinh ra sau đoạn code trên như sau:</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># câu lệnh lấy hết users lên</span></span><br><span class="line">SELECT <span class="string">"users"</span>.* FROM <span class="string">"users"</span></span><br><span class="line"><span class="comment"># ứng với mỗi user query lấy tất cả articles lên</span></span><br><span class="line">SELECT  <span class="string">"articles"</span>.* FROM <span class="string">"articles"</span> WHERE <span class="string">"articles"</span>.<span class="string">"user_id"</span> = ? LIMIT ?  [[<span class="string">"user_id"</span>, <span class="number">1</span>], [<span class="string">"LIMIT"</span>, <span class="number">11</span>]]</span><br><span class="line">SELECT  <span class="string">"articles"</span>.* FROM <span class="string">"articles"</span> WHERE <span class="string">"articles"</span>.<span class="string">"user_id"</span> = ? LIMIT ?  [[<span class="string">"user_id"</span>, <span class="number">2</span>], [<span class="string">"LIMIT"</span>, <span class="number">11</span>]]</span><br><span class="line">SELECT  <span class="string">"articles"</span>.* FROM <span class="string">"articles"</span> WHERE <span class="string">"articles"</span>.<span class="string">"user_id"</span> = ? LIMIT ?  [[<span class="string">"user_id"</span>, <span class="number">3</span>], [<span class="string">"LIMIT"</span>, <span class="number">11</span>]]</span><br><span class="line">SELECT  <span class="string">"articles"</span>.* FROM <span class="string">"articles"</span> WHERE <span class="string">"articles"</span>.<span class="string">"user_id"</span> = ? LIMIT ?  [[<span class="string">"user_id"</span>, <span class="number">4</span>], [<span class="string">"LIMIT"</span>, <span class="number">11</span>]]</span><br><span class="line">SELECT  <span class="string">"articles"</span>.* FROM <span class="string">"articles"</span> WHERE <span class="string">"articles"</span>.<span class="string">"user_id"</span> = ? LIMIT ?  [[<span class="string">"user_id"</span>, <span class="number">5</span>], [<span class="string">"LIMIT"</span>, <span class="number">11</span>]]</span><br></pre></td></tr></table></figure>
 
-<p>Đây chính là ví dụ điển hình về <code>N+1</code>, <code>N</code>ở đây là 5 (số lượng user có trong csdl) và <code>1</code> chính là câu lệnh sql đầu tiên dùng để lấy tất cả user lên.</p>
+<p>Đây chính là ví dụ điển hình về <strong>N+1</strong>, <strong>N</strong>ở đây là 5 (số lượng user có trong csdl) và <strong>1</strong> chính là câu lệnh sql đầu tiên dùng để lấy tất cả user lên.</p>
 <p>Nhìn như vô hại, mà thực ra ở ví dụ này cũng vô hại thật vì chỉ có 5 record user, nên thời gian load cũng không thấm tháp gì, tuy nhiên trong thực tế thì dữ liệu có thể rất lớn, lên đến hàng triệu record và nếu load dữ liệu như này thì đây là một vấn đề lớn cho hiệu năng của trang web. Hãy đọc tiếp mục 2 để tìm về giải pháp cho tình huống này.</p>
-<h1 id="2-Giai-phap"><a href="#2-Giai-phap" class="headerlink" title="2. Giải pháp"></a>2. Giải pháp</h1><p>Vấn đề đã có, giờ chúng ta cần tìm một giải pháp làm sao để kết quả trả về không đổi, nhưng lượng truy vấn sql trong csdl phải nhỏ hơn.</p>
+<h2 id="2-Giai-phap"><a href="#2-Giai-phap" class="headerlink" title="2. Giải pháp"></a>2. Giải pháp</h2><p>Vấn đề đã có, giờ chúng ta cần tìm một giải pháp làm sao để kết quả trả về không đổi, nhưng lượng truy vấn sql trong csdl phải nhỏ hơn.</p>
 <p>Các phương án:</p>
 <ol>
-<li><p>Sử dụng <code>select in()</code>.</p>
+<li><p>Sử dụng <strong>select in()</strong>.</p>
 </li>
-<li><p>Sử dụng <code>joins</code>. Để đọc kỹ hơn về joins, thì nên xem ở <a href="https://www.w3schools.com/sql/sql_join.asp" target="_blank" rel="noopener">đây</a></p>
+<li><p>Sử dụng <strong>joins</strong>. Để đọc kỹ hơn về joins, thì nên xem ở <a href="https://www.w3schools.com/sql/sql_join.asp" target="_blank" rel="noopener">đây</a></p>
 </li>
 </ol>
 <p>Sử dụng select in() sẽ tiết kiệm truy vấn đi rất nhiều, nếu ví dụ bên trên ta sử dụng select in() thì các sql query cần thiết sẽ là như sau:</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># lấy tất cả query</span></span><br><span class="line">SELECT <span class="string">"users"</span>.* FROM <span class="string">"users"</span></span><br><span class="line"><span class="comment"># lấy articles ứng với từng user</span></span><br><span class="line">SELECT  <span class="string">"articles"</span>.* FROM <span class="string">"articles"</span> WHERE <span class="string">"articles"</span>.<span class="string">"user_id"</span> IN (<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>)</span><br></pre></td></tr></table></figure>
 
 <p>Tuyệt vời, từ 6(N + 1) truy vấn giờ đã trở thành còn 2.</p>
-<p>Với cách thứ 2 là sử dụng <code>joins</code>:</p>
+<p>Với cách thứ 2 là sử dụng <strong>joins</strong>:</p>
 <p>joins hiểu đơn giản là ghép hai bảng lại với nhau (lấy một số field cần thiết ở bảng này, gộp với vài field cần thiết ở bảng kia khi mà record ở hai bên thoả mãn một điều kiện nào đó), rồi từ đó thành một bảng tạm dùng trong quá trình bạn sử dụng.</p>
 <p>Quay trở về ví dụ ban đầu, câu truy vấn bây giờ sẽ trở thành:</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT User.name, Article.title</span><br><span class="line">      FROM User</span><br><span class="line">      INNER JOIN Article ON User.id = Article.user_id</span><br></pre></td></tr></table></figure>
@@ -180,20 +174,23 @@
 <p>Lấy vài field cần thiết(name của user và title của Article).<br>Bằng cách thoả mãn điều kiện nào đó(id của user bằng với user_id của article).</p>
 <p>Vậy từ N+1 query ban đầu, đã trở thành một query duy nhất.</p>
 <p>Đến lúc này đã có thể kết luận là joins tốt hơn select in() được chưa? Chưa, câu trả lời sẽ là như vậy. Sang mục 3 chúng ta sẽ tìm hiểu về cách xử lý N+1 thông qua ActiveRecord</p>
-<h1 id="3-Xu-ly-N-1-query-trong-ActiveRecord"><a href="#3-Xu-ly-N-1-query-trong-ActiveRecord" class="headerlink" title="3. Xử lý N+1 query trong ActiveRecord"></a>3. Xử lý N+1 query trong ActiveRecord</h1><p>Trong ActiveRecord cung cấp 3 phương thức để loại bỏ N+1,</p>
-<p>1) Sử dụng <code>preload</code></p>
+<h2 id="3-Xu-ly-N-1-query-trong-ActiveRecord"><a href="#3-Xu-ly-N-1-query-trong-ActiveRecord" class="headerlink" title="3. Xử lý N+1 query trong ActiveRecord"></a>3. Xử lý N+1 query trong ActiveRecord</h2><p>Trong ActiveRecord cung cấp 3 phương thức để loại bỏ N+1,</p>
+<ol>
+<li>Sử dụng <strong>preload</strong></li>
+</ol>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">User.preload(<span class="symbol">:articles</span>)</span><br><span class="line"><span class="comment"># sql sinh ra</span></span><br><span class="line">User Load (<span class="number">0</span>.<span class="number">2</span>ms)  SELECT  <span class="string">"users"</span>.* FROM <span class="string">"users"</span> LIMIT ?  [[<span class="string">"LIMIT"</span>, <span class="number">11</span>]]</span><br><span class="line">Article Load (<span class="number">0</span>.<span class="number">4</span>ms)  SELECT <span class="string">"articles"</span>.* FROM <span class="string">"articles"</span> WHERE <span class="string">"articles"</span>.<span class="string">"user_id"</span> IN (?, ?, ?)  [[<span class="string">"user_id"</span>, <span class="number">1</span>], [<span class="string">"user_id"</span>, <span class="number">2</span>], [<span class="string">"user_id"</span>, <span class="number">3</span>]]</span><br></pre></td></tr></table></figure>
-<p>Preload sẽ luôn sử dụng <code>select in()</code></p>
-<p>2) Sử dụng <code>Eagerload</code></p>
+<p>Preload sẽ luôn sử dụng <strong>select in()</strong></p>
+<ol start="2">
+<li>Sử dụng <strong>Eagerload</strong></li>
+</ol>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">User.eager_load(<span class="symbol">:articles</span>)</span><br><span class="line"><span class="comment"># sql sinh ra</span></span><br><span class="line">SELECT  DISTINCT <span class="string">"users"</span>.<span class="string">"id"</span> FROM <span class="string">"users"</span> LEFT OUTER JOIN <span class="string">"articles"</span> ON <span class="string">"articles"</span>.<span class="string">"user_id"</span> = <span class="string">"users"</span>.<span class="string">"id"</span> LIMIT ?  [[<span class="string">"LIMIT"</span>, <span class="number">11</span>]]</span><br><span class="line"></span><br><span class="line">SELECT <span class="string">"users"</span>.<span class="string">"id"</span> AS t0_r<span class="number">0</span>, <span class="string">"users"</span>.<span class="string">"name"</span> AS t0_r1, <span class="string">"users"</span>.<span class="string">"created_at"</span> AS t0_r2,</span><br><span class="line"><span class="string">"users"</span>.<span class="string">"updated_at"</span> AS t0_r3, <span class="string">"articles"</span>.<span class="string">"id"</span> AS t1_r<span class="number">0</span>, <span class="string">"articles"</span>.<span class="string">"name"</span> AS t1_r1,</span><br><span class="line"><span class="string">"articles"</span>.<span class="string">"user_id"</span> AS t1_r2, <span class="string">"articles"</span>.<span class="string">"created_at"</span> AS t1_r3, <span class="string">"articles"</span>.<span class="string">"updated_at"</span> AS t1_r4</span><br><span class="line">FROM <span class="string">"users"</span> LEFT OUTER JOIN <span class="string">"articles"</span> ON <span class="string">"articles"</span>.<span class="string">"user_id"</span> = <span class="string">"users"</span>.<span class="string">"id"</span></span><br><span class="line">WHERE <span class="string">"users"</span>.<span class="string">"id"</span> IN (?, ?, ?)  [[<span class="string">"id"</span>, <span class="number">1</span>], [<span class="string">"id"</span>, <span class="number">2</span>], [<span class="string">"id"</span>, <span class="number">3</span>]]</span><br></pre></td></tr></table></figure>
 
-<p>eager_load luôn sử dụng <code>joins</code></p>
-<p>3) Sử dụng <code>Inludes</code></p>
+<p>eager_load luôn sử dụng <strong>joins</strong></p>
+<ol start="3">
+<li>Sử dụng <strong>Inludes</strong></li>
+</ol>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># cách 1</span></span><br><span class="line">User.includes(<span class="symbol">:articles</span>)</span><br><span class="line"><span class="comment"># sql sinh ra</span></span><br><span class="line">SELECT  <span class="string">"users"</span>.* FROM <span class="string">"users"</span> LIMIT ?  [[<span class="string">"LIMIT"</span>, <span class="number">11</span>]]</span><br><span class="line">SELECT <span class="string">"articles"</span>.* FROM <span class="string">"articles"</span> WHERE <span class="string">"articles"</span>.<span class="string">"user_id"</span> IN (?, ?, ?)  [[<span class="string">"user_id"</span>, <span class="number">1</span>], [<span class="string">"user_id"</span>, <span class="number">2</span>], [<span class="string">"user_id"</span>, <span class="number">3</span>]]</span><br><span class="line"><span class="comment">#=&gt; giống preload</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># cách 2</span></span><br><span class="line">User.includes(<span class="symbol">:articles</span>).references(<span class="symbol">:articles</span>)</span><br><span class="line"><span class="comment"># sql sinh ra</span></span><br><span class="line">SELECT  DISTINCT <span class="string">"users"</span>.<span class="string">"id"</span> FROM <span class="string">"users"</span> LEFT OUTER JOIN <span class="string">"articles"</span></span><br><span class="line">ON <span class="string">"articles"</span>.<span class="string">"user_id"</span> = <span class="string">"users"</span>.<span class="string">"id"</span> LIMIT ?  [[<span class="string">"LIMIT"</span>, <span class="number">11</span>]]</span><br><span class="line">SELECT <span class="string">"users"</span>.<span class="string">"id"</span> AS t0_r<span class="number">0</span>, <span class="string">"users"</span>.<span class="string">"name"</span> AS t0_r1, <span class="string">"users"</span>.<span class="string">"created_at"</span> AS t0_r2,</span><br><span class="line"><span class="string">"users"</span>.<span class="string">"updated_at"</span> AS t0_r3, <span class="string">"articles"</span>.<span class="string">"id"</span> AS t1_r<span class="number">0</span>, <span class="string">"articles"</span>.<span class="string">"name"</span> AS t1_r1,</span><br><span class="line"><span class="string">"articles"</span>.<span class="string">"user_id"</span> AS t1_r2, <span class="string">"articles"</span>.<span class="string">"created_at"</span> AS t1_r3, <span class="string">"articles"</span>.<span class="string">"updated_at"</span> AS t1_r4</span><br><span class="line">FROM <span class="string">"users"</span> LEFT OUTER JOIN <span class="string">"articles"</span> ON <span class="string">"articles"</span>.<span class="string">"user_id"</span> = <span class="string">"users"</span>.<span class="string">"id"</span></span><br><span class="line">WHERE <span class="string">"users"</span>.<span class="string">"id"</span> IN (?, ?, ?)  [[<span class="string">"id"</span>, <span class="number">1</span>], [<span class="string">"id"</span>, <span class="number">2</span>], [<span class="string">"id"</span>, <span class="number">3</span>]]</span><br><span class="line"><span class="comment">#=&gt; giống eager_load</span></span><br></pre></td></tr></table></figure>
-<p>Vậy mặc định thì <code>includes</code> sử dụng select in(), nhưng cũng có thể chuyển qua sử dụng joins nếu thêm method references phía sau.</p>
-<h1 id="Ket-luan"><a href="#Ket-luan" class="headerlink" title="Kết luận"></a>Kết luận</h1><p>Qua ví dụ trên, ta đã tìm hiểu được một số cách cơ bản để loại bỏ N+1, với việc sử dụng joins sẽ ít query phải thực thi nhất, nhưng điều này không đảm bảo rằng sử dụng joins là tối ưu, vì với mỗi query sql, thời gian và công sức máy tính phải dùng là khác nhau, không phải câu sql nào cũng có thời gian thực hiện ngang nhau.</p>
-<p>Sử dụng joins trong nhiều trường hợp csdl quá lớn cũng không phải là một ý hay, khi bản chất của joins là duyệt tuần tự qua hai (nhiều) bảng cần joins, để tìm những phần tử phù hợp rồi cho vào một bảng tạm. Hai vấn đề thấy ngay là việc phải duyệt tuần tự hai hay nhiều bảng là một truy vấn tốn tài nguyên, thứ hai dữ liệu được bỏ vào mảng tạm hiển nhiên ta cần một vùng nhớ để lưu cái bảng tạm này.</p>
-<p>Để đi sâu hơn về vấn đề hiệu năng, các bài tiếp sau chúng ta sẽ thảo luận về nó.</p>
+<p>Vậy mặc định thì <strong>includes</strong> sử dụng select in(), nhưng cũng có thể chuyển qua sử dụng joins nếu thêm method references phía sau.</p>
 
   </div>
 </article>
@@ -219,21 +216,21 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Dat-van-de"><span class="toc-number">1.</span> <span class="toc-text">Đặt vấn đề</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Luan-ban"><span class="toc-number">2.</span> <span class="toc-text">Luận bàn</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#N-1-query"><span class="toc-number">3.</span> <span class="toc-text">N+1 query</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-Giai-phap"><span class="toc-number">4.</span> <span class="toc-text">2. Giải pháp</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-Xu-ly-N-1-query-trong-ActiveRecord"><span class="toc-number">5.</span> <span class="toc-text">3. Xử lý N+1 query trong ActiveRecord</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Ket-luan"><span class="toc-number">6.</span> <span class="toc-text">Kết luận</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#N-1-query"><span class="toc-number">1.</span> <span class="toc-text">N+1 query</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Giai-phap"><span class="toc-number">2.</span> <span class="toc-text">2. Giải pháp</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Xu-ly-N-1-query-trong-ActiveRecord"><span class="toc-number">3.</span> <span class="toc-text">3. Xử lý N+1 query trong ActiveRecord</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/&text=Cục Nợ N + 1 Và Hướng Xử Lý" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/&title=Cục Nợ N + 1 Và Hướng Xử Lý" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/&is_video=false&description=Cục Nợ N + 1 Và Hướng Xử Lý" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Cục Nợ N + 1 Và Hướng Xử Lý&body=Check out this article: https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/&title=Cục Nợ N + 1 Và Hướng Xử Lý" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/&title=Cục Nợ N + 1 Và Hướng Xử Lý" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/&title=Cục Nợ N + 1 Và Hướng Xử Lý" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/&title=Cục Nợ N + 1 Và Hướng Xử Lý" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/&name=Cục Nợ N + 1 Và Hướng Xử Lý&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/&text=Vấn Đề N + 1 Và Hướng Xử Lý" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/&title=Vấn Đề N + 1 Và Hướng Xử Lý" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/&is_video=false&description=Vấn Đề N + 1 Và Hướng Xử Lý" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Vấn Đề N + 1 Và Hướng Xử Lý&body=Check out this article: https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/&title=Vấn Đề N + 1 Và Hướng Xử Lý" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/&title=Vấn Đề N + 1 Và Hướng Xử Lý" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/&title=Vấn Đề N + 1 Và Hướng Xử Lý" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/&title=Vấn Đề N + 1 Và Hướng Xử Lý" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/&name=Vấn Đề N + 1 Và Hướng Xử Lý&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

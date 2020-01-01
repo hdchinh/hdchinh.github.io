@@ -11,10 +11,10 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="Upload Với S3 Trong Rails">
 <meta property="og:url" content="https:&#x2F;&#x2F;hdchinh.github.io&#x2F;2019&#x2F;04&#x2F;10&#x2F;2019-04-10-upload-file-len-aws-s3-va-nhung-van-de-can-luu-y&#x2F;index.html">
-<meta property="og:site_name" content="The Cat&#39;s Family">
+<meta property="og:site_name" content="Notes">
 <meta property="og:description" content="Ghi chú này được tham khảo từ bài viết Lưu trữ file trên Amazon S3 của tác giả @duyth1993 trên website viblo.com. Bài toán: Hiện tại tôi đang cần tìm một dịch vụ lưu trữ file, trước giờ tôi không sử d">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-13T04:03:44.000Z">
+<meta property="og:updated_time" content="2020-01-01T08:25:18.674Z">
 <meta name="twitter:card" content="summary">
     
     
@@ -120,7 +120,7 @@
 
     <div class="meta">
       <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span itemprop="name">The Cat's Family</span>
+        <span itemprop="name">Notes</span>
       </span>
       
     <div class="postdate">
@@ -150,16 +150,16 @@
   
 
   <div class="content" itemprop="articleBody">
-    <p>Ghi chú này được tham khảo từ bài viết <a href="https://viblo.asia/p/ror-luu-tru-file-tren-amazon-s3-BMvRpNXEzwY#_cau-hinh-connect-toi-dich-vu-s3-trong-ung-dung-rails-3" target="_blank" rel="noopener">Lưu trữ file trên Amazon S3</a> của tác giả <code>@duyth1993</code> trên website <code>viblo.com</code>.</p>
+    <p>Ghi chú này được tham khảo từ bài viết <a href="https://viblo.asia/p/ror-luu-tru-file-tren-amazon-s3-BMvRpNXEzwY#_cau-hinh-connect-toi-dich-vu-s3-trong-ung-dung-rails-3" target="_blank" rel="noopener">Lưu trữ file trên Amazon S3</a> của tác giả <strong>@duyth1993</strong> trên website <strong>viblo.com</strong>.</p>
 <p>Bài toán: Hiện tại tôi đang cần tìm một dịch vụ lưu trữ file, trước giờ tôi không sử dụng vì chưa có nhu cầu. Tìm kiếm một lúc thì tôi quyết định sử dụng S3 vì sẵn cũng đang còn tài khoản free của của AWS, tham khảo bài viết bên trên một số lưu ý khi sử dụng này mà tôi rút ra như sau:</p>
 <ol>
-<li><p>Bài viết trên của tác giả viết rất chi tiết, tuy nhiên hướng dẫn đó là trên rails 4 và cần chú ý thay đổi một số config để phù hợp với rails 5 mà tôi đang sử dụng. Đó là về việc sử dụng <code>credentials</code> thay thế cho <code>secret</code>, thông tin đầy hơn có thể tham khảo tại bài viết <a href="https://hdchinh.github.io/ruby/2019/02/22/xu-ly-thong-tin-quan-trong-trong-rails.html">Rails và bảo mật thông tin quan trọng</a>.</p>
+<li><p>Bài viết trên của tác giả viết rất chi tiết, tuy nhiên hướng dẫn đó là trên rails 4 và cần chú ý thay đổi một số config để phù hợp với rails 5 mà tôi đang sử dụng. Đó là về việc sử dụng <strong>credentials</strong> thay thế cho <strong>secret</strong>, thông tin đầy hơn có thể tham khảo tại bài viết <a href="http://hdchinh.com/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/" target="_blank" rel="noopener">Rails và bảo mật thông tin quan trọng</a>.</p>
 </li>
-<li><p>Có 4 thông tin quan trọng để cấu hình đến S3 đó là: <code>access_key_id</code>, <code>secret_access_key</code>, <code>region</code> và <code>bucket_name</code>.</p>
+<li><p>Có 4 thông tin quan trọng để cấu hình đến S3 đó là: <strong>access_key_id</strong>, <strong>secret_access_key</strong>, <strong>region</strong> và <strong>bucket_name</strong>.</p>
 </li>
-<li><p>Một số config để connect tới server S3 là do thư viện <code>aws-sdk-rails</code> quy định vì vậy đơn giản là làm theo và không thắc mắc tại sao.</p>
+<li><p>Một số config để connect tới server S3 là do thư viện <strong>aws-sdk-rails</strong> quy định vì vậy đơn giản là làm theo và không thắc mắc tại sao.</p>
 </li>
-<li><p>Cần chú ý bước config cho file trước khi upload với các thông tin như: <code>content_type</code>(định dạng file, việc sử dụng định dạng file dạng không tương thích với ảnh bạn upload lên dẫn để việc không thể hiển thị view bức ảnh đó.), <code>acl</code>(access control list: quy định về việc ai có thể access khi có url của file) và <code>server_side_encryption</code>(lựa chọn này để mã hóa file bạn tải lên, đi kèm đó là giảm hiệu năng vì thêm 1 bước cần xử lý.)</p>
+<li><p>Cần chú ý bước config cho file trước khi upload với các thông tin như: <strong>content_type</strong>(định dạng file, việc sử dụng định dạng file dạng không tương thích với ảnh bạn upload lên dẫn để việc không thể hiển thị view bức ảnh đó.), <strong>acl</strong>(access control list: quy định về việc ai có thể access khi có url của file) và <strong>server_side_encryption</strong>(lựa chọn này để mã hóa file bạn tải lên, đi kèm đó là giảm hiệu năng vì thêm 1 bước cần xử lý.)</p>
 </li>
 </ol>
 <p>Source demo xem tại <a href="https://github.com/hdchinh/S3_with_rails_5.2" target="_blank" rel="noopener">đây</a></p>

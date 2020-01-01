@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="Đặt vấn đềCũng như nhiều ngôn ngữ khác, trong ruby, khi làm việc với một đối tượng thì có hai thứ ta phải quan tâm chính đó là thuộc tính của đối tượng và phương thức mà đối tượng có thể sử dụng (à mà">
+    <meta name="description" content="1. Method LookupĐã khi nào bạn tự hỏi, giả sử nếu bạn có một class A, và class này include thêm hai module vào nữa, nếu trong hai module đó cùng định nghĩa một phương thức, vậy khi instance của A gọi">
 <meta name="keywords" content="ruby">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Ruby Method Lookup">
+<meta property="og:title" content="Method Lookup Trong Ruby">
 <meta property="og:url" content="https:&#x2F;&#x2F;hdchinh.github.io&#x2F;2019&#x2F;02&#x2F;24&#x2F;2019-02-24-ruby-method-lookup&#x2F;index.html">
-<meta property="og:site_name" content="The Cat&#39;s Family">
-<meta property="og:description" content="Đặt vấn đềCũng như nhiều ngôn ngữ khác, trong ruby, khi làm việc với một đối tượng thì có hai thứ ta phải quan tâm chính đó là thuộc tính của đối tượng và phương thức mà đối tượng có thể sử dụng (à mà">
+<meta property="og:site_name" content="Notes">
+<meta property="og:description" content="1. Method LookupĐã khi nào bạn tự hỏi, giả sử nếu bạn có một class A, và class này include thêm hai module vào nữa, nếu trong hai module đó cùng định nghĩa một phương thức, vậy khi instance của A gọi">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-13T04:01:54.000Z">
+<meta property="og:updated_time" content="2020-01-01T08:19:38.444Z">
 <meta name="twitter:card" content="summary">
     
     
@@ -35,7 +35,7 @@
         
     
     <!-- title -->
-    <title>Ruby Method Lookup</title>
+    <title>Method Lookup Trong Ruby</title>
     <!-- styles -->
     <link rel="stylesheet" href="/css/style.css">
     <!-- persian styles -->
@@ -88,20 +88,20 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/02/24/2019-02-24-ruby-method-lookup/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/02/24/2019-02-24-ruby-method-lookup/&text=Ruby Method Lookup" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/02/24/2019-02-24-ruby-method-lookup/&title=Ruby Method Lookup" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/02/24/2019-02-24-ruby-method-lookup/&is_video=false&description=Ruby Method Lookup" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Ruby Method Lookup&body=Check out this article: https://hdchinh.github.io/2019/02/24/2019-02-24-ruby-method-lookup/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/02/24/2019-02-24-ruby-method-lookup/&title=Ruby Method Lookup" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/02/24/2019-02-24-ruby-method-lookup/&title=Ruby Method Lookup" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/02/24/2019-02-24-ruby-method-lookup/&title=Ruby Method Lookup" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/02/24/2019-02-24-ruby-method-lookup/&title=Ruby Method Lookup" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/02/24/2019-02-24-ruby-method-lookup/&name=Ruby Method Lookup&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/02/24/2019-02-24-ruby-method-lookup/&text=Method Lookup Trong Ruby" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/02/24/2019-02-24-ruby-method-lookup/&title=Method Lookup Trong Ruby" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/02/24/2019-02-24-ruby-method-lookup/&is_video=false&description=Method Lookup Trong Ruby" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Method Lookup Trong Ruby&body=Check out this article: https://hdchinh.github.io/2019/02/24/2019-02-24-ruby-method-lookup/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/02/24/2019-02-24-ruby-method-lookup/&title=Method Lookup Trong Ruby" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/02/24/2019-02-24-ruby-method-lookup/&title=Method Lookup Trong Ruby" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/02/24/2019-02-24-ruby-method-lookup/&title=Method Lookup Trong Ruby" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/02/24/2019-02-24-ruby-method-lookup/&title=Method Lookup Trong Ruby" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/02/24/2019-02-24-ruby-method-lookup/&name=Method Lookup Trong Ruby&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Dat-van-de"><span class="toc-number">1.</span> <span class="toc-text">Đặt vấn đề</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Luan-ban"><span class="toc-number">2.</span> <span class="toc-text">Luận bàn</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-Method-Lookup"><span class="toc-number">3.</span> <span class="toc-text">1. Method Lookup</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-Extend-Include-trong-Ruby"><span class="toc-number">4.</span> <span class="toc-text">2. Extend, Include trong Ruby</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Ket-luan"><span class="toc-number">5.</span> <span class="toc-text">Kết luận</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Method-Lookup"><span class="toc-number">1.</span> <span class="toc-text">1. Method Lookup</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Extend-Include-trong-Ruby"><span class="toc-number">2.</span> <span class="toc-text">2. Extend, Include trong Ruby</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -113,14 +113,14 @@
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
-        Ruby Method Lookup
+        Method Lookup Trong Ruby
     </h1>
 
 
 
     <div class="meta">
       <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span itemprop="name">The Cat's Family</span>
+        <span itemprop="name">Notes</span>
       </span>
       
     <div class="postdate">
@@ -150,41 +150,39 @@
   
 
   <div class="content" itemprop="articleBody">
-    <h1 id="Dat-van-de"><a href="#Dat-van-de" class="headerlink" title="Đặt vấn đề"></a>Đặt vấn đề</h1><p>Cũng như nhiều ngôn ngữ khác, trong ruby, khi làm việc với một đối tượng thì có hai thứ ta phải quan tâm chính đó là thuộc tính của đối tượng và phương thức mà đối tượng có thể sử dụng (à mà gần như mọi thứ trong ruby đều là <code>object</code> nên đây là một kiến thức cơ bản nhưng cũng rất quan trọng cần phải nắm rõ). Việc ta có thể sử dụng phương thức của đối tượng thông qua dấu <code>.</code> không phải là gì mới mẻ, nhưng có một số điều đáng ghi nhớ về cách mà ruby tìm kiếm phương thức.</p>
-<h1 id="Luan-ban"><a href="#Luan-ban" class="headerlink" title="Luận bàn"></a>Luận bàn</h1><h1 id="1-Method-Lookup"><a href="#1-Method-Lookup" class="headerlink" title="1. Method Lookup"></a>1. Method Lookup</h1><p>Đã khi nào bạn tự hỏi, giả sử nếu bạn có một class A, và class này include thêm hai module vào nữa, nếu trong hai module đó cùng định nghĩa một phương thức, vậy khi instance của A gọi đến phương thức đó, điều gì sẽ xảy ra? Phương thức trong module nào được chạy?</p>
+    <h2 id="1-Method-Lookup"><a href="#1-Method-Lookup" class="headerlink" title="1. Method Lookup"></a>1. Method Lookup</h2><p>Đã khi nào bạn tự hỏi, giả sử nếu bạn có một class A, và class này include thêm hai module vào nữa, nếu trong hai module đó cùng định nghĩa một phương thức, vậy khi instance của A gọi đến phương thức đó, điều gì sẽ xảy ra? Phương thức trong module nào được chạy?</p>
 <p>Câu trả lời là thứ tự các phương thức được ruby tìm kiếm như sau:</p>
 <ol>
-<li><p>Phương thức được định nghĩa trong <code>object&#39;s singleton class</code>.</p>
+<li><p>Phương thức được định nghĩa trong <strong>object’s singleton class</strong>.</p>
 </li>
-<li><p>Phương thức trong <code>module</code> được mixin trong <code>singleton class</code>(Theo thứ tự đảo ngược, vào sau sẽ tìm kiếm trước).</p>
+<li><p>Phương thức trong <strong>module</strong> được mixin trong <strong>singleton class</strong>(Theo thứ tự đảo ngược, vào sau sẽ tìm kiếm trước).</p>
 </li>
-<li><p>Phương thức được định nghĩa trong <code>class</code> của đối tượng ta đang xét.</p>
+<li><p>Phương thức được định nghĩa trong <strong>class</strong> của đối tượng ta đang xét.</p>
 </li>
-<li><p>Phương thức trong các <code>module</code> được <code>include</code> vào class ta đang xét (Cũng theo tứ tự đảo ngược).</p>
+<li><p>Phương thức trong các <strong>module</strong> được <strong>include</strong> vào class ta đang xét (Cũng theo tứ tự đảo ngược).</p>
 </li>
-<li><p>Phương thức trong <code>Super class</code> của class ta đang xét.</p>
+<li><p>Phương thức trong <strong>Super class</strong> của class ta đang xét.</p>
 </li>
 </ol>
 <p>Để làm rõ điều đã nói hãy xét ví dụ dưới đây:</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">module</span> <span class="title">One</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">hello</span></span></span><br><span class="line">    <span class="string">"I'm one (include in class Test)"</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">module</span> <span class="title">Two</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">hello</span></span></span><br><span class="line">    <span class="string">"I'm two (include in class Test)"</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">module</span> <span class="title">Three</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">hello</span></span></span><br><span class="line">    <span class="string">"I'm three (extend)"</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">module</span> <span class="title">Four</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">hello</span></span></span><br><span class="line">    <span class="string">"I'm four (extend)"</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FatherOfTest</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">hello</span></span></span><br><span class="line">   <span class="string">"I'm father of test class"</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span> &lt; FatherOfTest</span></span><br><span class="line">  <span class="keyword">include</span> One</span><br><span class="line">  <span class="keyword">include</span> Two</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">hello</span></span></span><br><span class="line">    <span class="string">"It's my hello - Test class"</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">m = Test.new</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">m</span>.<span class="title">hello</span></span></span><br><span class="line">  <span class="string">"I'm object m"</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">m.extend(Three)</span><br><span class="line">m.extend(Four)</span><br><span class="line"></span><br><span class="line">m.hello</span><br></pre></td></tr></table></figure>
 
 <p>Tất nhiên đoạn mã trên sẽ có output là:</p>
-<p><code>&quot;I&#39;m object m&quot;</code></p>
-<p>Theo thứ tự tìm kiếm đã liệt kê ở trên, khi ruby tìm thấy phương thức lần đầu nó sẽ dừng tìm kiếm và khi đi hết các thứ tự và vẫn không tìm được thì nó sẽ gọi đến một phương thức mặc đinh là <code>method_missing</code>.</p>
+<p><strong>“I’m object m”</strong></p>
+<p>Theo thứ tự tìm kiếm đã liệt kê ở trên, khi ruby tìm thấy phương thức lần đầu nó sẽ dừng tìm kiếm và khi đi hết các thứ tự và vẫn không tìm được thì nó sẽ gọi đến một phương thức mặc đinh là <strong>method_missing</strong>.</p>
 <p>Bỏ đoạn code:</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">m</span>.<span class="title">hello</span></span></span><br><span class="line">  <span class="string">"I'm object m"</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 
 <p>Chạy lại ta nhận được kết quả:</p>
-<p><code>&quot;I&#39;m four (extend)&quot;</code></p>
+<p><strong>“I’m four (extend)”</strong></p>
 <p>Làm tương tự rồi ta sẽ tìm ra thứ tự ưu tiên kết quả như sau:</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># phương thức hello cho riêng instance m</span></span><br><span class="line"><span class="string">"I'm object m"</span></span><br><span class="line"><span class="comment"># phương thức được extend riêng cho m</span></span><br><span class="line"><span class="string">"I'm four (extend)"</span></span><br><span class="line"><span class="string">"I'm three (extend)"</span></span><br><span class="line"><span class="comment"># phương thức trong chính class Test, class của m</span></span><br><span class="line"><span class="string">"It's my hello - Test class"</span></span><br><span class="line"><span class="comment"># phương thức trong module được include vào Class Test</span></span><br><span class="line"><span class="string">"I'm two (include in class Test)"</span></span><br><span class="line"><span class="string">"I'm one (include in class Test)"</span></span><br><span class="line"><span class="comment"># phương thức trong lớp cha của Class Test</span></span><br><span class="line"><span class="string">"I'm father of test class"</span></span><br></pre></td></tr></table></figure>
 
-<p>Nếu bạn đang còn một chút bối rối vì những từ khoá và cách sử dụng <code>extend</code> và <code>include</code> hãy đọc tiếp mục dưới.</p>
-<h1 id="2-Extend-Include-trong-Ruby"><a href="#2-Extend-Include-trong-Ruby" class="headerlink" title="2. Extend, Include trong Ruby"></a>2. Extend, Include trong Ruby</h1><p>Trong ruby không có đa kế thừa, thay vào đó ruby sử dụng <code>mixin</code>.</p>
-<p>Một class chỉ được kế thừa từ một class khác. Tuy nhiên nó được <code>mixin</code> nhiều <code>module</code> bằng hai phương thức là <code>include</code> và <code>extend</code>.</p>
-<p><code>include:</code> với việc bạn include moudle A vào trong class B, đồng nghĩa với việc instance của class B có thể sử dụng tất cả các <code>instance method</code> trong moudle A. Vậy còn <code>module method</code> trong A thì sao? Câu trả lời là những <code>module method</code> trong A thì A sử dụng thôi.</p>
-<p><code>extend:</code> đúng với ngữ nghĩa của nó, <code>mở rộng</code>, <code>extend</code> có thể dùng để mở rộng một class hoặc cũng có thể dùng để mở rộng một instance.  Trong ví dụ trên mục 1, tôi <code>extend</code> object <code>m</code>, từ đó giúp m được mở rộng thêm các phương thức ứng với tất cả các <code>instance method</code> trong module nó extend (đây là “mở rộng” cho một đối tượng). Nếu tôi muốn mở rộng cho một class, tôi sẽ extend moudle trong class đó, và sau đó tất cả các <code>instance method</code> trong module sẽ trở thành như các <code>class method</code> cho class (đây là sự “mở rộng” cho một lớp). Vậy còn <code>module method</code> trong moudle thì sao?Câu trả lời vẫn như trên, những phương thức module thì để module đó sử dụng.</p>
-<h1 id="Ket-luan"><a href="#Ket-luan" class="headerlink" title="Kết luận"></a>Kết luận</h1><p>Mixin là một chức năng mạnh mẽ trong ruby, nó giúp ta mở rộng class/object bằng các method mới. Tuy nhiên, hãy cẩn thận để đảm bảo bạn gọi đúng được method mà bạn cần.</p>
+<p>Nếu bạn đang còn một chút bối rối vì những từ khoá và cách sử dụng <strong>extend</strong> và <strong>include</strong> hãy đọc tiếp mục dưới.</p>
+<h2 id="2-Extend-Include-trong-Ruby"><a href="#2-Extend-Include-trong-Ruby" class="headerlink" title="2. Extend, Include trong Ruby"></a>2. Extend, Include trong Ruby</h2><p>Trong ruby không có đa kế thừa, thay vào đó ruby sử dụng <strong>mixin</strong>.</p>
+<p>Một class chỉ được kế thừa từ một class khác. Tuy nhiên nó được <strong>mixin</strong> nhiều <strong>module</strong> bằng hai phương thức là <strong>include</strong> và <strong>extend</strong>.</p>
+<p><strong>include:</strong> với việc bạn include moudle A vào trong class B, đồng nghĩa với việc instance của class B có thể sử dụng tất cả các <strong>instance method</strong> trong moudle A. Vậy còn <strong>module method</strong> trong A thì sao? Câu trả lời là những <strong>module method</strong> trong A thì A sử dụng thôi.</p>
+<p><strong>extend:</strong> đúng với ngữ nghĩa của nó, <strong>mở rộng</strong>, <strong>extend</strong> có thể dùng để mở rộng một class hoặc cũng có thể dùng để mở rộng một instance.  Trong ví dụ trên mục 1, tôi <strong>extend</strong> object <strong>m</strong>, từ đó giúp m được mở rộng thêm các phương thức ứng với tất cả các <strong>instance method</strong> trong module nó extend (đây là “mở rộng” cho một đối tượng). Nếu tôi muốn mở rộng cho một class, tôi sẽ extend moudle trong class đó, và sau đó tất cả các <strong>instance method</strong> trong module sẽ trở thành như các <strong>class method</strong> cho class (đây là sự “mở rộng” cho một lớp). Vậy còn <strong>module method</strong> trong moudle thì sao?Câu trả lời vẫn như trên, những phương thức module thì để module đó sử dụng.</p>
 
   </div>
 </article>
@@ -210,21 +208,21 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Dat-van-de"><span class="toc-number">1.</span> <span class="toc-text">Đặt vấn đề</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Luan-ban"><span class="toc-number">2.</span> <span class="toc-text">Luận bàn</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-Method-Lookup"><span class="toc-number">3.</span> <span class="toc-text">1. Method Lookup</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-Extend-Include-trong-Ruby"><span class="toc-number">4.</span> <span class="toc-text">2. Extend, Include trong Ruby</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Ket-luan"><span class="toc-number">5.</span> <span class="toc-text">Kết luận</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Method-Lookup"><span class="toc-number">1.</span> <span class="toc-text">1. Method Lookup</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Extend-Include-trong-Ruby"><span class="toc-number">2.</span> <span class="toc-text">2. Extend, Include trong Ruby</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/02/24/2019-02-24-ruby-method-lookup/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/02/24/2019-02-24-ruby-method-lookup/&text=Ruby Method Lookup" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/02/24/2019-02-24-ruby-method-lookup/&title=Ruby Method Lookup" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/02/24/2019-02-24-ruby-method-lookup/&is_video=false&description=Ruby Method Lookup" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Ruby Method Lookup&body=Check out this article: https://hdchinh.github.io/2019/02/24/2019-02-24-ruby-method-lookup/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/02/24/2019-02-24-ruby-method-lookup/&title=Ruby Method Lookup" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/02/24/2019-02-24-ruby-method-lookup/&title=Ruby Method Lookup" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/02/24/2019-02-24-ruby-method-lookup/&title=Ruby Method Lookup" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/02/24/2019-02-24-ruby-method-lookup/&title=Ruby Method Lookup" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/02/24/2019-02-24-ruby-method-lookup/&name=Ruby Method Lookup&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/02/24/2019-02-24-ruby-method-lookup/&text=Method Lookup Trong Ruby" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/02/24/2019-02-24-ruby-method-lookup/&title=Method Lookup Trong Ruby" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/02/24/2019-02-24-ruby-method-lookup/&is_video=false&description=Method Lookup Trong Ruby" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Method Lookup Trong Ruby&body=Check out this article: https://hdchinh.github.io/2019/02/24/2019-02-24-ruby-method-lookup/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/02/24/2019-02-24-ruby-method-lookup/&title=Method Lookup Trong Ruby" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/02/24/2019-02-24-ruby-method-lookup/&title=Method Lookup Trong Ruby" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/02/24/2019-02-24-ruby-method-lookup/&title=Method Lookup Trong Ruby" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/02/24/2019-02-24-ruby-method-lookup/&title=Method Lookup Trong Ruby" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/02/24/2019-02-24-ruby-method-lookup/&name=Method Lookup Trong Ruby&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

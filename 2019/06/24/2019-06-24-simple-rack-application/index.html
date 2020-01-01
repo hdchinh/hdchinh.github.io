@@ -11,11 +11,11 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="A Simple Rack Application">
 <meta property="og:url" content="https:&#x2F;&#x2F;hdchinh.github.io&#x2F;2019&#x2F;06&#x2F;24&#x2F;2019-06-24-simple-rack-application&#x2F;index.html">
-<meta property="og:site_name" content="The Cat&#39;s Family">
+<meta property="og:site_name" content="Notes">
 <meta property="og:description" content="1. Đặt vấn đềCó lẽ cũng như tôi, khi mới tiếp cận với một framework ruby như Rails chẳng hạn, bạn đã nghe về Rack? hoặc ít ra cũng từng thấy cái gem rack trong Gemfile. Nhưng có khi nào bạn dùng đến c">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https:&#x2F;&#x2F;hdchinh.github.io&#x2F;images&#x2F;rack.jpeg">
-<meta property="og:updated_time" content="2019-12-06T15:40:06.678Z">
+<meta property="og:updated_time" content="2020-01-01T08:45:29.178Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;hdchinh.github.io&#x2F;images&#x2F;rack.jpeg">
     
@@ -103,7 +103,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-Dat-van-de"><span class="toc-number">1.</span> <span class="toc-text">1. Đặt vấn đề</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-Tham-khao"><span class="toc-number">2.</span> <span class="toc-text">2. Tham khảo?</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-Kien-thuc-can-chuan-bi-truoc"><span class="toc-number">3.</span> <span class="toc-text">3. Kiến thức cần chuẩn bị trước.</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-Build-mot-simple-Rack-application"><span class="toc-number">4.</span> <span class="toc-text">4. Build một simple Rack application</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-Giai-thich-noi-dung-ma-nguon-cua-app-demo"><span class="toc-number">5.</span> <span class="toc-text">5. Giải thích nội dung mã nguồn của app demo</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-Ket-luan"><span class="toc-number">6.</span> <span class="toc-text">6. Kết luận</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Dat-van-de"><span class="toc-number">1.</span> <span class="toc-text">1. Đặt vấn đề</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Tham-khao"><span class="toc-number">2.</span> <span class="toc-text">2. Tham khảo?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Kien-thuc-can-chuan-bi-truoc"><span class="toc-number">3.</span> <span class="toc-text">3. Kiến thức cần chuẩn bị trước.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Build-mot-simple-Rack-application"><span class="toc-number">4.</span> <span class="toc-text">4. Build một simple Rack application</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Giai-thich-noi-dung-ma-nguon-cua-app-demo"><span class="toc-number">5.</span> <span class="toc-text">5. Giải thích nội dung mã nguồn của app demo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-Ket-luan"><span class="toc-number">6.</span> <span class="toc-text">6. Kết luận</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -122,7 +122,7 @@
 
     <div class="meta">
       <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span itemprop="name">The Cat's Family</span>
+        <span itemprop="name">Notes</span>
       </span>
       
     <div class="postdate">
@@ -134,11 +134,6 @@
 
 
       
-    <div class="article-category">
-        <i class="fas fa-archive"></i>
-        <a class="category-link" href="/categories/RUBY/">RUBY</a>
-    </div>
-
 
       
     <div class="article-tag">
@@ -152,49 +147,49 @@
   
 
   <div class="content" itemprop="articleBody">
-    <h1 id="1-Dat-van-de"><a href="#1-Dat-van-de" class="headerlink" title="1. Đặt vấn đề"></a>1. Đặt vấn đề</h1><p>Có lẽ cũng như tôi, khi mới tiếp cận với một framework ruby như Rails chẳng hạn, bạn đã nghe về Rack? hoặc ít ra cũng từng thấy cái <code>gem rack</code> trong Gemfile. Nhưng có khi nào bạn dùng đến chúng? Không ư? Tôi cũng nghĩ vậy, tôi cũng kệ, tôi cũng chả quan tâm, cuộc sống không đủ high hay sao mà lại đâm đầu vào cái khó :alien:.</p>
+    <h2 id="1-Dat-van-de"><a href="#1-Dat-van-de" class="headerlink" title="1. Đặt vấn đề"></a>1. Đặt vấn đề</h2><p>Có lẽ cũng như tôi, khi mới tiếp cận với một framework ruby như Rails chẳng hạn, bạn đã nghe về Rack? hoặc ít ra cũng từng thấy cái <strong>gem rack</strong> trong Gemfile. Nhưng có khi nào bạn dùng đến chúng? Không ư? Tôi cũng nghĩ vậy, tôi cũng kệ, tôi cũng chả quan tâm, cuộc sống không đủ high hay sao mà lại đâm đầu vào cái khó :alien:.</p>
 <p>Nhưng làm việc hàng ngày với nó mà không hiểu nó là gì luôn làm cho ta cảm giác bất an vô định, cập nhật CV là Developer mà đi phỏng vấn được hỏi rack là gì, lại trả lời “em…em..em hông biết” thì liệu có bị đánh xuống rank junior hay không? Thôi thì cứ tìm hiểu coi nó ra sao.</p>
 <p>Và thế là tôi đã đọc docs trên trang chủ của Rack, nói chung đọc qua thì có hiểu, mà cái hiểu nó mông lung như một trò đùa, chút nữa thì đành phải “anh xin giơ tay rút lui thôi”.</p>
 <p>Vậy nên tôi sẽ viết một ứng dụng Rack (chạy trên Rack) very..very simple, để tôi và có thể cả bạn có cái nhìn thoáng qua về Rack trước đã, chứ tôi thấy hiểu biết hiện tại của mình chưa đủ để chém gió hàn lâm về chủ đề này (hy vọng tương lai gần sẽ có bài chém gió hàn lâm).</p>
-<h1 id="2-Tham-khao"><a href="#2-Tham-khao" class="headerlink" title="2. Tham khảo?"></a>2. Tham khảo?</h1><ol>
+<h2 id="2-Tham-khao"><a href="#2-Tham-khao" class="headerlink" title="2. Tham khảo?"></a>2. Tham khảo?</h2><ol>
 <li><p>Bài viết này tôi tham khảo cách sử dụng Rack trên trang chủ của Rack <a href="https://rack.github.io/" target="_blank" rel="noopener">tại đây</a> và trên mục docs của ruby <a href="https://www.rubydoc.info/github/rack/rack/" target="_blank" rel="noopener">tại đây</a>.</p>
 </li>
 <li><p>Ứng dụng rất thô sơ và KHÔNG sử dụng “bét pờ rạch tít” nào cả.</p>
 </li>
 </ol>
-<h1 id="3-Kien-thuc-can-chuan-bi-truoc"><a href="#3-Kien-thuc-can-chuan-bi-truoc" class="headerlink" title="3. Kiến thức cần chuẩn bị trước."></a>3. Kiến thức cần chuẩn bị trước.</h1><p>Dù ít dù nhiều thì vẫn phải đánh qua lý thuyết một chút trước khi mày mò làm gì đó. Một số khái niệm/quy trình chúng ta nên nắm trước như sau:</p>
+<h2 id="3-Kien-thuc-can-chuan-bi-truoc"><a href="#3-Kien-thuc-can-chuan-bi-truoc" class="headerlink" title="3. Kiến thức cần chuẩn bị trước."></a>3. Kiến thức cần chuẩn bị trước.</h2><p>Dù ít dù nhiều thì vẫn phải đánh qua lý thuyết một chút trước khi mày mò làm gì đó. Một số khái niệm/quy trình chúng ta nên nắm trước như sau:</p>
 <p>1) Rack là một lớp nằm giữa web/app server và ứng dụng.</p>
 <p>Ex: Nếu tôi sử dụng Rails với app server là Puma, web server là Nginx thì đường đi của một request sẽ như sau:</p>
 <p><img src="/images/rack.jpeg" alt="hoa"></p>
-<p>Note: Khái niệm <code>web server</code> và <code>app server</code> chúng ta sẽ bàn tới sau.</p>
-<p>2) Như hình trên, ta có thể thấy Rack sẽ giao tiếp với <code>app server</code>, nên Rack sẽ nhận request từ app server gửi qua, với nội dung lằng nhằng rối rắm gì đó, sau đó Rack sẽ <code>làm gì đó</code> với cái request rối rắm kia, rồi gửi kết quả mà Rails có thể hiểu và thực thi được. Sau đó Rails sẽ gửi về cho Rack kết quả cũng rối rắm không kém và nhiệm vụ của Rack lại là tiếp tục <code>làm gì đó</code> cái kết quả từ Rails, sao cho chuyển kết quả đó thành 1 thứ gì đó mà app server có thể hiểu, cuối cùng app server quăng kết quả về cho người dùng.</p>
+<p>Note: Khái niệm <strong>web server</strong> và <strong>app server</strong> chúng ta sẽ bàn tới sau.</p>
+<p>2) Như hình trên, ta có thể thấy Rack sẽ giao tiếp với <strong>app server</strong>, nên Rack sẽ nhận request từ app server gửi qua, với nội dung lằng nhằng rối rắm gì đó, sau đó Rack sẽ <strong>làm gì đó</strong> với cái request rối rắm kia, rồi gửi kết quả mà Rails có thể hiểu và thực thi được. Sau đó Rails sẽ gửi về cho Rack kết quả cũng rối rắm không kém và nhiệm vụ của Rack lại là tiếp tục <strong>làm gì đó</strong> cái kết quả từ Rails, sao cho chuyển kết quả đó thành 1 thứ gì đó mà app server có thể hiểu, cuối cùng app server quăng kết quả về cho người dùng.</p>
 <p>Note: Vậy Rack như một phiên dịch viên để truyền đạt giữa ứng dụng và app server (Không thật sự đúng về bản chất nhưng ta cứ tạm chấp nhận liên tưởng này).</p>
-<h1 id="4-Build-mot-simple-Rack-application"><a href="#4-Build-mot-simple-Rack-application" class="headerlink" title="4. Build một simple Rack application"></a>4. Build một simple Rack application</h1><ul>
-<li>Tạo 1 Folder với 1 file tên <code>Gemfile</code> có nội dung như sau:</li>
+<h2 id="4-Build-mot-simple-Rack-application"><a href="#4-Build-mot-simple-Rack-application" class="headerlink" title="4. Build một simple Rack application"></a>4. Build một simple Rack application</h2><ul>
+<li>Tạo 1 Folder với 1 file tên <strong>Gemfile</strong> có nội dung như sau:</li>
 </ul>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">source <span class="string">'https://rubygems.org'</span></span><br><span class="line"></span><br><span class="line">gem <span class="string">'rack'</span></span><br></pre></td></tr></table></figure>
 
 <ul>
-<li><p>Cài đặt gem vói lệnh <code>bundle install</code></p>
+<li><p>Cài đặt gem vói lệnh <strong>bundle install</strong></p>
 </li>
-<li><p>Tạo file <code>config.ru</code>.</p>
+<li><p>Tạo file <strong>config.ru</strong>.</p>
 </li>
 </ul>
 <p>Note: Đây sẽ là file main để xử lý request.</p>
 <ul>
-<li>Chạy project với lệnh <code>bundle exec rackup</code></li>
+<li>Chạy project với lệnh <strong>bundle exec rackup</strong></li>
 </ul>
 <blockquote>
 <p>Project demo <a href="https://github.com/hdchinh/simple-rack-app" target="_blank" rel="noopener">tại đây!</a></p>
 </blockquote>
-<h1 id="5-Giai-thich-noi-dung-ma-nguon-cua-app-demo"><a href="#5-Giai-thich-noi-dung-ma-nguon-cua-app-demo" class="headerlink" title="5. Giải thích nội dung mã nguồn của app demo"></a>5. Giải thích nội dung mã nguồn của app demo</h1><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">map <span class="string">'/signup_user'</span> <span class="keyword">do</span></span><br><span class="line">  run SignUpUser.new</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">map <span class="string">'/signup'</span> <span class="keyword">do</span></span><br><span class="line">  run MySignUp.new</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">map <span class="string">'/signin'</span> <span class="keyword">do</span></span><br><span class="line">  run MySignIn.new</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">map <span class="string">'/signin_user'</span> <span class="keyword">do</span></span><br><span class="line">  run SignInUser.new</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">map <span class="string">'/'</span> <span class="keyword">do</span></span><br><span class="line">  run HomePage.new</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">run MyNotFound.new</span><br></pre></td></tr></table></figure>
+<h2 id="5-Giai-thich-noi-dung-ma-nguon-cua-app-demo"><a href="#5-Giai-thich-noi-dung-ma-nguon-cua-app-demo" class="headerlink" title="5. Giải thích nội dung mã nguồn của app demo"></a>5. Giải thích nội dung mã nguồn của app demo</h2><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">map <span class="string">'/signup_user'</span> <span class="keyword">do</span></span><br><span class="line">  run SignUpUser.new</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">map <span class="string">'/signup'</span> <span class="keyword">do</span></span><br><span class="line">  run MySignUp.new</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">map <span class="string">'/signin'</span> <span class="keyword">do</span></span><br><span class="line">  run MySignIn.new</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">map <span class="string">'/signin_user'</span> <span class="keyword">do</span></span><br><span class="line">  run SignInUser.new</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">map <span class="string">'/'</span> <span class="keyword">do</span></span><br><span class="line">  run HomePage.new</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">run MyNotFound.new</span><br></pre></td></tr></table></figure>
 
 <p>Chắc bạn cũng có thể đoán ra ý nghĩa của nó, nếu map chúng đường dẫn thì sẽ chạy lệnh trong đó.</p>
 <p>Ex:</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">map <span class="string">'/'</span> <span class="keyword">do</span></span><br><span class="line">  run HomePage.new</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 
-<p>Nếu truy cập theo trang chủ thì sẽ chạy lệnh <code>run HomePage.new</code>.</p>
-<p>Nếu url người dùng request không trùng bất cứ trường hợp nào thì chạy lệnh <code>run MyNotFound.new</code> ở cuối.</p>
+<p>Nếu truy cập theo trang chủ thì sẽ chạy lệnh <strong>run HomePage.new</strong>.</p>
+<p>Nếu url người dùng request không trùng bất cứ trường hợp nào thì chạy lệnh <strong>run MyNotFound.new</strong> ở cuối.</p>
 <p>Một class sẽ có dạng như sau:</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SignInUser</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">call</span><span class="params">(env)</span></span></span><br><span class="line">    <span class="comment"># read file data</span></span><br><span class="line">    file = File.read(<span class="string">'data.txt'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># get params</span></span><br><span class="line">    data =  Rack::Utils.parse_nested_query(env[<span class="string">'QUERY_STRING'</span>])</span><br><span class="line">    email = data[<span class="string">'email'</span>]</span><br><span class="line">    pass = data[<span class="string">'password'</span>]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># convert file data from string to hash</span></span><br><span class="line">    hash_data = eval(file)</span><br><span class="line">    <span class="comment"># init variable for user login</span></span><br><span class="line">    user_email = <span class="literal">nil</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># loop hash to find email params</span></span><br><span class="line">    hash_data.each <span class="keyword">do</span> <span class="params">|k, val|</span></span><br><span class="line">      <span class="keyword">if</span> k == email</span><br><span class="line">        <span class="keyword">if</span> val = pass</span><br><span class="line">          user_email = k</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">      <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> user_email</span><br><span class="line">      body = [<span class="string">"&lt;h1&gt;email: <span class="subst">#&#123;user_email&#125;</span>&lt;h/1&gt;"</span>]</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      body = [<span class="string">"&lt;h1&gt;Email or Password Invalid&lt;/h1&gt;"</span>]</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">    [<span class="number">200</span>, &#123;<span class="string">'Content-Type'</span> =&gt; <span class="string">'text/html'</span>&#125;, body]</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 
@@ -212,7 +207,7 @@
 </ol>
 </li>
 </ul>
-<h1 id="6-Ket-luan"><a href="#6-Ket-luan" class="headerlink" title="6. Kết luận"></a>6. Kết luận</h1><p>Trên là một basic app xây dựng với Rack, vì định nghĩa chỉ đọc không làm sẽ rất khó hiểu, nên tôi làm demo trước, hy vọng trong thời gian tới nếu kiến thức thu lượm đủ để viết về cách vận hành của Rack một cách sâu sắc, tôi có thể tiếp tục chủ đề này.</p>
+<h2 id="6-Ket-luan"><a href="#6-Ket-luan" class="headerlink" title="6. Kết luận"></a>6. Kết luận</h2><p>Trên là một basic app xây dựng với Rack, vì định nghĩa chỉ đọc không làm sẽ rất khó hiểu, nên tôi làm demo trước, hy vọng trong thời gian tới nếu kiến thức thu lượm đủ để viết về cách vận hành của Rack một cách sâu sắc, tôi có thể tiếp tục chủ đề này.</p>
 
   </div>
 </article>
@@ -238,7 +233,7 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-Dat-van-de"><span class="toc-number">1.</span> <span class="toc-text">1. Đặt vấn đề</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-Tham-khao"><span class="toc-number">2.</span> <span class="toc-text">2. Tham khảo?</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-Kien-thuc-can-chuan-bi-truoc"><span class="toc-number">3.</span> <span class="toc-text">3. Kiến thức cần chuẩn bị trước.</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-Build-mot-simple-Rack-application"><span class="toc-number">4.</span> <span class="toc-text">4. Build một simple Rack application</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-Giai-thich-noi-dung-ma-nguon-cua-app-demo"><span class="toc-number">5.</span> <span class="toc-text">5. Giải thích nội dung mã nguồn của app demo</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-Ket-luan"><span class="toc-number">6.</span> <span class="toc-text">6. Kết luận</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Dat-van-de"><span class="toc-number">1.</span> <span class="toc-text">1. Đặt vấn đề</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Tham-khao"><span class="toc-number">2.</span> <span class="toc-text">2. Tham khảo?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Kien-thuc-can-chuan-bi-truoc"><span class="toc-number">3.</span> <span class="toc-text">3. Kiến thức cần chuẩn bị trước.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Build-mot-simple-Rack-application"><span class="toc-number">4.</span> <span class="toc-text">4. Build một simple Rack application</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Giai-thich-noi-dung-ma-nguon-cua-app-demo"><span class="toc-number">5.</span> <span class="toc-text">5. Giải thích nội dung mã nguồn của app demo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-Ket-luan"><span class="toc-number">6.</span> <span class="toc-text">6. Kết luận</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">

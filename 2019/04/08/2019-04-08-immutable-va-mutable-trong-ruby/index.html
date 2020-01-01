@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="Đặt vấn đềVấn đề ở đây là tôi không có vấn đề gì để đặt cả, bài viết nằm trong mớ kiến thức rối bòng bong của tôi, và giờ tôi cần viết lại như một cách để ôn tập, hy vọng nó có thể giúp được ai đó. Lu">
-<meta name="keywords" content="ruby,programming">
+    <meta name="description" content="1. Khái niệm mutable, immutable và rubyĐi thẳng vào vấn đề, chúng ta cần đề cập đến ba vấn đề: mutable, immutable và cách ruby xử lý hai khái niệm đó. Trước hết nếu bạn đã quên, thì tôi xin được nhắc">
+<meta name="keywords" content="RUBY">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Immutable Vs Mutable">
+<meta property="og:title" content="Immutable Và Mutable Trong Ruby">
 <meta property="og:url" content="https:&#x2F;&#x2F;hdchinh.github.io&#x2F;2019&#x2F;04&#x2F;08&#x2F;2019-04-08-immutable-va-mutable-trong-ruby&#x2F;index.html">
-<meta property="og:site_name" content="The Cat&#39;s Family">
-<meta property="og:description" content="Đặt vấn đềVấn đề ở đây là tôi không có vấn đề gì để đặt cả, bài viết nằm trong mớ kiến thức rối bòng bong của tôi, và giờ tôi cần viết lại như một cách để ôn tập, hy vọng nó có thể giúp được ai đó. Lu">
+<meta property="og:site_name" content="Notes">
+<meta property="og:description" content="1. Khái niệm mutable, immutable và rubyĐi thẳng vào vấn đề, chúng ta cần đề cập đến ba vấn đề: mutable, immutable và cách ruby xử lý hai khái niệm đó. Trước hết nếu bạn đã quên, thì tôi xin được nhắc">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-13T04:02:44.000Z">
+<meta property="og:updated_time" content="2020-01-01T08:24:03.759Z">
 <meta name="twitter:card" content="summary">
     
     
@@ -35,7 +35,7 @@
         
     
     <!-- title -->
-    <title>Immutable Vs Mutable</title>
+    <title>Immutable Và Mutable Trong Ruby</title>
     <!-- styles -->
     <link rel="stylesheet" href="/css/style.css">
     <!-- persian styles -->
@@ -88,20 +88,20 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&text=Immutable Vs Mutable" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&title=Immutable Vs Mutable" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&is_video=false&description=Immutable Vs Mutable" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Immutable Vs Mutable&body=Check out this article: https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&title=Immutable Vs Mutable" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&title=Immutable Vs Mutable" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&title=Immutable Vs Mutable" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&title=Immutable Vs Mutable" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&name=Immutable Vs Mutable&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&text=Immutable Và Mutable Trong Ruby" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&title=Immutable Và Mutable Trong Ruby" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&is_video=false&description=Immutable Và Mutable Trong Ruby" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Immutable Và Mutable Trong Ruby&body=Check out this article: https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&title=Immutable Và Mutable Trong Ruby" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&title=Immutable Và Mutable Trong Ruby" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&title=Immutable Và Mutable Trong Ruby" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&title=Immutable Và Mutable Trong Ruby" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&name=Immutable Và Mutable Trong Ruby&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Dat-van-de"><span class="toc-number">1.</span> <span class="toc-text">Đặt vấn đề</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Luan-ban"><span class="toc-number">2.</span> <span class="toc-text">Luận bàn</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-Khai-niem-mutable-immutable-va-ruby"><span class="toc-number">3.</span> <span class="toc-text">1. Khái niệm mutable, immutable và ruby</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-Lieu-day-co-phai-la-mot-kien-thuc-can-thiet"><span class="toc-number">4.</span> <span class="toc-text">2. Liệu đây có phải là một kiến thức cần thiết?</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Ket-luan"><span class="toc-number">5.</span> <span class="toc-text">Kết luận</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Khai-niem-mutable-immutable-va-ruby"><span class="toc-number">1.</span> <span class="toc-text">1. Khái niệm mutable, immutable và ruby</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Lieu-day-co-phai-la-mot-kien-thuc-can-thiet"><span class="toc-number">2.</span> <span class="toc-text">2. Liệu đây có phải là một kiến thức cần thiết?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Tham-khao"><span class="toc-number">3.</span> <span class="toc-text">3. Tham khảo</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -113,14 +113,14 @@
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
-        Immutable Vs Mutable
+        Immutable Và Mutable Trong Ruby
     </h1>
 
 
 
     <div class="meta">
       <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span itemprop="name">The Cat's Family</span>
+        <span itemprop="name">Notes</span>
       </span>
       
     <div class="postdate">
@@ -132,16 +132,11 @@
 
 
       
-    <div class="article-category">
-        <i class="fas fa-archive"></i>
-        <a class="category-link" href="/categories/ruby-notes/">ruby notes</a> › <a class="category-link" href="/categories/ruby-notes/programming/">programming</a>
-    </div>
-
 
       
     <div class="article-tag">
         <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/programming/" rel="tag">programming</a>, <a class="tag-link" href="/tags/ruby/" rel="tag">ruby</a>
+        <a class="tag-link" href="/tags/RUBY/" rel="tag">RUBY</a>
     </div>
 
 
@@ -150,8 +145,7 @@
   
 
   <div class="content" itemprop="articleBody">
-    <h1 id="Dat-van-de"><a href="#Dat-van-de" class="headerlink" title="Đặt vấn đề"></a>Đặt vấn đề</h1><p>Vấn đề ở đây là tôi không có vấn đề gì để đặt cả, bài viết nằm trong mớ kiến thức rối bòng bong của tôi, và giờ tôi cần viết lại như một cách để ôn tập, hy vọng nó có thể giúp được ai đó.</p>
-<h1 id="Luan-ban"><a href="#Luan-ban" class="headerlink" title="Luận bàn"></a>Luận bàn</h1><h1 id="1-Khai-niem-mutable-immutable-va-ruby"><a href="#1-Khai-niem-mutable-immutable-va-ruby" class="headerlink" title="1. Khái niệm mutable, immutable và ruby"></a>1. Khái niệm mutable, immutable và ruby</h1><p>Đi thẳng vào vấn đề, chúng ta cần đề cập đến ba vấn đề: <code>mutable</code>, <code>immutable</code> và cách ruby xử lý hai khái niệm đó. Trước hết nếu bạn đã quên, thì tôi xin được nhắc lại định nghĩa của chúng.</p>
+    <h2 id="1-Khai-niem-mutable-immutable-va-ruby"><a href="#1-Khai-niem-mutable-immutable-va-ruby" class="headerlink" title="1. Khái niệm mutable, immutable và ruby"></a>1. Khái niệm mutable, immutable và ruby</h2><p>Đi thẳng vào vấn đề, chúng ta cần đề cập đến ba vấn đề: <strong>mutable</strong>, <strong>immutable</strong> và cách ruby xử lý hai khái niệm đó. Trước hết nếu bạn đã quên, thì tôi xin được nhắc lại định nghĩa của chúng.</p>
 <p>Xin trích dẫn <a href="https://en.wikipedia.org/wiki/Immutable_object" target="_blank" rel="noopener">wiki</a>:</p>
 <blockquote>
 <p>In object-oriented and functional programming, an immutable object (unchangeable[1] object) is an object whose state cannot be modified after it is created.[2] This is in contrast to a mutable object (changeable object), which can be modified after it is created.</p>
@@ -162,17 +156,17 @@
 </blockquote>
 <p>Dùng từ quá khó hiểu, what the hell is “trạng thái”? Theo một cách hàn lâm và đầy đủ, trạng thái của một đối tượng ngoài đời thật được thiết lập bởi tất cả những gì tạo nên chúng.</p>
 <p>Tương tự, các trạng thái của một đối tượng trong lập trình cũng được thiết lập bằng tất cả những gì tạo nên chúng. Ví dụ:</p>
-<p>Với 1 biến integer cơ bản <code>x = 10</code> thì trạng thái của nó được tạo ra bởi tên biến và giá trị, ở đây tên biến là <code>x</code> và giá trị là <code>10</code>, đâu đó trong vùng nhớ (Ram) của bạn sẽ lưu trữ cái chữ <code>x</code> kèm số <code>10</code> này.</p>
+<p>Với 1 biến integer cơ bản <strong>x = 10</strong> thì trạng thái của nó được tạo ra bởi tên biến và giá trị, ở đây tên biến là <strong>x</strong> và giá trị là <strong>10</strong>, đâu đó trong vùng nhớ (Ram) của bạn sẽ lưu trữ cái chữ <strong>x</strong> kèm số <strong>10</strong> này.</p>
 <p>Đồng nghĩa với đó nếu tôi thay đổi được giá trị 10 của biến x thì x là một đối tượng mutable và ngược lại nó là một đối tượng immutable.</p>
-<p>Tôi gán <code>x = 11</code> và thành công</p>
+<p>Tôi gán <strong>x = 11</strong> và thành công</p>
 <p>Từ đó có thể đưa ra kết luận x là một mutable?</p>
 <p>Câu trả lời là không, một số khái niệm rối rắm làm khó ta lúc đầu. Như đã biết, thứ mà CPU làm việc là địa chỉ vùng nhớ và chỉ địa chỉ vùng nhớ mà thôi. Những thứ khác nó không quan tâm.</p>
-<p>Với câu lệnh gán <code>x = 10</code>. Nó được hệ điều hành phiên dịch thành “có một biến tên <code>x</code> được gán giá trị bằng <code>10</code>, Ram, mày hãy bố trí thêm hai slot để lưu trữ <code>x</code> và <code>10</code>“. Vậy lúc đó:</p>
-<p><code>x</code>(tên biến) được lưu ở vị trí AAA<br><code>10</code>(giá trị) được lưu ở vị trí BBB</p>
-<p>Với lệnh gán tiếp theo <code>x = 11</code>:</p>
-<p><code>x</code> vẫn yên vị nằm ở vị trí AAA<br><code>10</code> cũng vẫn yên trí nằm ở vị trí BBB<br><code>11</code> giá trị mới gán cho biến x thì lúc này nằm ở vị trí CCC</p>
+<p>Với câu lệnh gán <strong>x = 10</strong>. Nó được hệ điều hành phiên dịch thành “có một biến tên <strong>x</strong> được gán giá trị bằng <strong>10</strong>, Ram, mày hãy bố trí thêm hai slot để lưu trữ <strong>x</strong> và <strong>10</strong>“. Vậy lúc đó:</p>
+<p><strong>x</strong>(tên biến) được lưu ở vị trí AAA<br><strong>10</strong>(giá trị) được lưu ở vị trí BBB</p>
+<p>Với lệnh gán tiếp theo <strong>x = 11</strong>:</p>
+<p><strong>x</strong> vẫn yên vị nằm ở vị trí AAA<br><strong>10</strong> cũng vẫn yên trí nằm ở vị trí BBB<br><strong>11</strong> giá trị mới gán cho biến x thì lúc này nằm ở vị trí CCC</p>
 <p>Vậy khi chạy một lệnh gán mới thì biến x đã được gán bằng giá trị trên một vùng nhớ khác, còn vùng nhớ ban đầu <strong>không thay đổi giá trị</strong> nên ta có thể kết luận x là một immutable.</p>
-<p>Chứng minh bằng ví dụ sau trong ruby, chú ý là ruby là một ngôn ngữ script, với trình thông dịch VM bên dưới để xử lý của nó được viết bằng C, nên ở lớp cơ sở của ruby ta không thể truy xuất vị trí vùng nhớ đến từng thanh ghi như trong C được (việc đó được làm ở lớp core YARV). Tuy nhiên, ta có thể kiếm tra được vị trí tượng trưng trên bộ nhớ của nó thông qua <code>object_id</code>.</p>
+<p>Chứng minh bằng ví dụ sau trong ruby, chú ý là ruby là một ngôn ngữ script, với trình thông dịch VM bên dưới để xử lý của nó được viết bằng C, nên ở lớp cơ sở của ruby ta không thể truy xuất vị trí vùng nhớ đến từng thanh ghi như trong C được (việc đó được làm ở lớp core YARV). Tuy nhiên, ta có thể kiếm tra được vị trí tượng trưng trên bộ nhớ của nó thông qua <strong>object_id</strong>.</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="number">10</span></span><br><span class="line">x.object_id</span><br><span class="line"><span class="comment">#=&gt; 21</span></span><br><span class="line">x = <span class="number">11</span></span><br><span class="line">x.object_id</span><br><span class="line"><span class="comment">#=&gt; 23</span></span><br></pre></td></tr></table></figure>
 
 <p>Note: Nếu bạn gán tiếp x = 12 và kiểm tra lại object_id, lúc này bạn sẽ thấy nó bằng 25. Giá trị 10, 11, 12 tương đương với object_id là 21, 23, 25. Liệu có một quy luật nào ở đây? Câu trả lời là có, nhưng vấn đề này sẽ được đề cập đến trong một bài viết tiếp theo.</p>
@@ -180,7 +174,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Tất cả các loại dữ liệu nguyên thuỷ trong ruby đều là immutable.</span><br></pre></td></tr></table></figure>
 
 <p>Integer, float, string, boolean chúng đều là immutable.</p>
-<h1 id="2-Lieu-day-co-phai-la-mot-kien-thuc-can-thiet"><a href="#2-Lieu-day-co-phai-la-mot-kien-thuc-can-thiet" class="headerlink" title="2. Liệu đây có phải là một kiến thức cần thiết?"></a>2. Liệu đây có phải là một kiến thức cần thiết?</h1><p>Chắc chắn là có.</p>
+<h2 id="2-Lieu-day-co-phai-la-mot-kien-thuc-can-thiet"><a href="#2-Lieu-day-co-phai-la-mot-kien-thuc-can-thiet" class="headerlink" title="2. Liệu đây có phải là một kiến thức cần thiết?"></a>2. Liệu đây có phải là một kiến thức cần thiết?</h2><p>Chắc chắn là có.</p>
 <p>Thứ nhất: Nếu trong công việc bạn không bao giờ phải dùng đến nó, bạn có thể nói về nó như một kiến thức hàn lâm để thể hiện khả năng với sếp và yêu cầu tăng lương :worried:</p>
 <p>Thứ hai: Xét ví dụ sau</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">str = <span class="string">""</span></span><br><span class="line">[<span class="string">"Hoang"</span>, <span class="string">"Duy"</span>, <span class="string">"Chinh"</span>].each <span class="keyword">do</span> <span class="params">|i|</span></span><br><span class="line">  str += i</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
@@ -199,8 +193,8 @@
 <p>Từ hai điều trên ta rút ra được kết luận:</p>
 <ol>
 <li>Trong lần gán đầu tiên str có giá trị là chuỗi rỗng và được khởi tạo tại ví trí A1</li>
-<li>Trong lần lặp <code>each</code> đầu tiên, str có giá trị là “Hoang” và nó lưu ở vị trí A2</li>
-<li>Trong lần lặp <code>each</code> thứ hai, str có giá trị mới là “HoangDuy” và nó lưu ở vị trí mới là A3</li>
+<li>Trong lần lặp <strong>each</strong> đầu tiên, str có giá trị là “Hoang” và nó lưu ở vị trí A2</li>
+<li>Trong lần lặp <strong>each</strong> thứ hai, str có giá trị mới là “HoangDuy” và nó lưu ở vị trí mới là A3</li>
 <li>Trong lần lặp cuối cùng thì str có giá trị chúng ta mong đợi là “HoangDuyChinh” và nó lưu ở vị trí A4</li>
 </ol>
 <p>Chứng minh:</p>
@@ -211,7 +205,7 @@
 
 <p>Và thứ chúng ta quan tâm từ đó về sau là vị trí A4 này. Vậy còn A1, A2, A3 cũng đang mang giá trị? Chúng đi đâu về đâu? Chính xác, nó trở thành một vùng nhớ rác và sẽ được GC dọn dẹp nhưng không phải ngay lập tức, vậy trong khoảng thời gian đó nó vẫn nắm giữ các vùng nhớ của chúng ta. Đó cũng là một trong các lý do việc bạn muốn chạy ruby on rails trên một chiếc máy tính sinh viên 2GB là vô cùng khó khăn. Ruby ăn Ram như uống nước lã vậy.</p>
 <p>Ví dụ trên mảng ta có ba phần tử và ta có 3 giá trị rác trên bộ nhớ, hãy tưởng tượng bạn có một mảng một triệu phần tử :worried:</p>
-<p>Giải pháp trong trường hợp này là gì? Đó là duyệt mảng như một <code>object reference</code> chứ không phải một biến giá trị</p>
+<p>Giải pháp trong trường hợp này là gì? Đó là duyệt mảng như một <strong>object reference</strong> chứ không phải một biến giá trị:</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">str = <span class="string">""</span></span><br><span class="line">[<span class="string">"Hoang"</span>, <span class="string">"Duy"</span>, <span class="string">"Chinh"</span>].each <span class="keyword">do</span> <span class="params">|i|</span></span><br><span class="line">  str &lt;&lt; i</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 
 <p>Như vậy str sẽ ở đúng một vùng nhớ và ta không có một đống biến rác không mong đợi.</p>
@@ -220,7 +214,8 @@
 
 <p>Kết quả:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">First location: 47196120971580</span><br><span class="line">value: Hoang | location: 47196120971580</span><br><span class="line">value: HoangDuy | location: 47196120971580</span><br><span class="line">value: HoangDuyChinh | location: 47196120971580</span><br><span class="line">Final value: HoangDuyChinh | location: 47196120971580</span><br></pre></td></tr></table></figure>
-<h1 id="Ket-luan"><a href="#Ket-luan" class="headerlink" title="Kết luận"></a>Kết luận</h1><p>Trong bài viết có đề cập đến <code>object_id</code> và <code>GC</code>, đây là hai vấn đề nền tảng trong ruby, hy vọng sẽ có khả năng viết các bài khác về hai chủ đề này, nếu có thắc mắc hay đóng góp cho thiếu xót của tác giả, hãy để lại bình luận bên dưới :smile:.</p>
+
+<h2 id="3-Tham-khao"><a href="#3-Tham-khao" class="headerlink" title="3. Tham khảo"></a>3. Tham khảo</h2><p>[1] <a href="https://en.wikipedia.org/wiki/Immutable_object" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Immutable_object</a></p>
 
   </div>
 </article>
@@ -246,21 +241,21 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Dat-van-de"><span class="toc-number">1.</span> <span class="toc-text">Đặt vấn đề</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Luan-ban"><span class="toc-number">2.</span> <span class="toc-text">Luận bàn</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-Khai-niem-mutable-immutable-va-ruby"><span class="toc-number">3.</span> <span class="toc-text">1. Khái niệm mutable, immutable và ruby</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-Lieu-day-co-phai-la-mot-kien-thuc-can-thiet"><span class="toc-number">4.</span> <span class="toc-text">2. Liệu đây có phải là một kiến thức cần thiết?</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Ket-luan"><span class="toc-number">5.</span> <span class="toc-text">Kết luận</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Khai-niem-mutable-immutable-va-ruby"><span class="toc-number">1.</span> <span class="toc-text">1. Khái niệm mutable, immutable và ruby</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Lieu-day-co-phai-la-mot-kien-thuc-can-thiet"><span class="toc-number">2.</span> <span class="toc-text">2. Liệu đây có phải là một kiến thức cần thiết?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Tham-khao"><span class="toc-number">3.</span> <span class="toc-text">3. Tham khảo</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&text=Immutable Vs Mutable" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&title=Immutable Vs Mutable" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&is_video=false&description=Immutable Vs Mutable" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Immutable Vs Mutable&body=Check out this article: https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&title=Immutable Vs Mutable" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&title=Immutable Vs Mutable" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&title=Immutable Vs Mutable" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&title=Immutable Vs Mutable" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&name=Immutable Vs Mutable&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&text=Immutable Và Mutable Trong Ruby" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&title=Immutable Và Mutable Trong Ruby" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&is_video=false&description=Immutable Và Mutable Trong Ruby" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Immutable Và Mutable Trong Ruby&body=Check out this article: https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&title=Immutable Và Mutable Trong Ruby" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&title=Immutable Và Mutable Trong Ruby" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&title=Immutable Và Mutable Trong Ruby" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&title=Immutable Và Mutable Trong Ruby" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&name=Immutable Và Mutable Trong Ruby&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

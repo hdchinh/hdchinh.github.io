@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="Đặt vấn đềĐây lại là một bài viết tiếp theo về chủ đề liên quan đến các hệ điều hành và dòng lệnh. Khi mới tiếp xúc với máy tính, OS mà tôi sử dụng là windows, đến khi lên đại học, phần lớn thời gian">
-<meta name="keywords" content="unix">
+    <meta name="description" content="1.Một số khái niệm cơ bản.UNIX là một hệ điều hành ra đời đã rất lâu, nó là tiền thân của hai nhánh hệ điều hành rất nổi tiếng khác, bản thương mại chính là macOS và bản mã nguồn mở chính là GNU. Cho">
+<meta name="keywords" content="UNIX">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Bash File Trên Unix">
+<meta property="og:title" content="Bash File Trên UNIX">
 <meta property="og:url" content="https:&#x2F;&#x2F;hdchinh.github.io&#x2F;2018&#x2F;12&#x2F;30&#x2F;2019-01-30-bash-file-in-macos-and-linux&#x2F;index.html">
-<meta property="og:site_name" content="The Cat&#39;s Family">
-<meta property="og:description" content="Đặt vấn đềĐây lại là một bài viết tiếp theo về chủ đề liên quan đến các hệ điều hành và dòng lệnh. Khi mới tiếp xúc với máy tính, OS mà tôi sử dụng là windows, đến khi lên đại học, phần lớn thời gian">
+<meta property="og:site_name" content="Notes">
+<meta property="og:description" content="1.Một số khái niệm cơ bản.UNIX là một hệ điều hành ra đời đã rất lâu, nó là tiền thân của hai nhánh hệ điều hành rất nổi tiếng khác, bản thương mại chính là macOS và bản mã nguồn mở chính là GNU. Cho">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-13T03:59:06.000Z">
+<meta property="og:updated_time" content="2020-01-01T08:05:39.346Z">
 <meta name="twitter:card" content="summary">
     
     
@@ -35,7 +35,7 @@
         
     
     <!-- title -->
-    <title>Bash File Trên Unix</title>
+    <title>Bash File Trên UNIX</title>
     <!-- styles -->
     <link rel="stylesheet" href="/css/style.css">
     <!-- persian styles -->
@@ -88,20 +88,20 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2018/12/30/2019-01-30-bash-file-in-macos-and-linux/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2018/12/30/2019-01-30-bash-file-in-macos-and-linux/&text=Bash File Trên Unix" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2018/12/30/2019-01-30-bash-file-in-macos-and-linux/&title=Bash File Trên Unix" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2018/12/30/2019-01-30-bash-file-in-macos-and-linux/&is_video=false&description=Bash File Trên Unix" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Bash File Trên Unix&body=Check out this article: https://hdchinh.github.io/2018/12/30/2019-01-30-bash-file-in-macos-and-linux/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2018/12/30/2019-01-30-bash-file-in-macos-and-linux/&title=Bash File Trên Unix" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2018/12/30/2019-01-30-bash-file-in-macos-and-linux/&title=Bash File Trên Unix" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2018/12/30/2019-01-30-bash-file-in-macos-and-linux/&title=Bash File Trên Unix" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2018/12/30/2019-01-30-bash-file-in-macos-and-linux/&title=Bash File Trên Unix" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2018/12/30/2019-01-30-bash-file-in-macos-and-linux/&name=Bash File Trên Unix&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2018/12/30/2019-01-30-bash-file-in-macos-and-linux/&text=Bash File Trên UNIX" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2018/12/30/2019-01-30-bash-file-in-macos-and-linux/&title=Bash File Trên UNIX" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2018/12/30/2019-01-30-bash-file-in-macos-and-linux/&is_video=false&description=Bash File Trên UNIX" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Bash File Trên UNIX&body=Check out this article: https://hdchinh.github.io/2018/12/30/2019-01-30-bash-file-in-macos-and-linux/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2018/12/30/2019-01-30-bash-file-in-macos-and-linux/&title=Bash File Trên UNIX" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2018/12/30/2019-01-30-bash-file-in-macos-and-linux/&title=Bash File Trên UNIX" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2018/12/30/2019-01-30-bash-file-in-macos-and-linux/&title=Bash File Trên UNIX" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2018/12/30/2019-01-30-bash-file-in-macos-and-linux/&title=Bash File Trên UNIX" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2018/12/30/2019-01-30-bash-file-in-macos-and-linux/&name=Bash File Trên UNIX&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Dat-van-de"><span class="toc-number">1.</span> <span class="toc-text">Đặt vấn đề</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Luan-ban"><span class="toc-number">2.</span> <span class="toc-text">Luận bàn</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-Mot-so-khai-niem-co-ban"><span class="toc-number">3.</span> <span class="toc-text">1.Một số khái niệm cơ bản.</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-Dieu-gi-xay-ra-khi-ban-go-mot-lenh-tren-terminal"><span class="toc-number">4.</span> <span class="toc-text">2.Điều gì xảy ra khi bạn gõ một lệnh trên terminal?</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-Mot-so-file-quan-trong-tren-Macos"><span class="toc-number">5.</span> <span class="toc-text">3.Một số file quan trọng trên Macos.</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-Cac-file-quan-trong-tren-Linux"><span class="toc-number">6.</span> <span class="toc-text">4.Các file quan trọng trên Linux</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Ket-luan"><span class="toc-number">7.</span> <span class="toc-text">Kết luận</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Mot-so-khai-niem-co-ban"><span class="toc-number">1.</span> <span class="toc-text">1.Một số khái niệm cơ bản.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Dieu-gi-xay-ra-khi-ban-go-mot-lenh-tren-terminal"><span class="toc-number">2.</span> <span class="toc-text">2.Điều gì xảy ra khi bạn gõ một lệnh trên terminal?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Mot-so-file-quan-trong-tren-Macos"><span class="toc-number">3.</span> <span class="toc-text">3.Một số file quan trọng trên Macos.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Cac-file-quan-trong-tren-Linux"><span class="toc-number">4.</span> <span class="toc-text">4.Các file quan trọng trên Linux</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -113,14 +113,14 @@
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
-        Bash File Trên Unix
+        Bash File Trên UNIX
     </h1>
 
 
 
     <div class="meta">
       <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span itemprop="name">The Cat's Family</span>
+        <span itemprop="name">Notes</span>
       </span>
       
     <div class="postdate">
@@ -134,14 +134,14 @@
       
     <div class="article-category">
         <i class="fas fa-archive"></i>
-        <a class="category-link" href="/categories/he-dieu-hanh/">hệ điều hành</a>
+        <a class="category-link" href="/categories/OS/">OS</a>
     </div>
 
 
       
     <div class="article-tag">
         <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/unix/" rel="tag">unix</a>
+        <a class="tag-link" href="/tags/UNIX/" rel="tag">UNIX</a>
     </div>
 
 
@@ -150,41 +150,37 @@
   
 
   <div class="content" itemprop="articleBody">
-    <h1 id="Dat-van-de"><a href="#Dat-van-de" class="headerlink" title="Đặt vấn đề"></a>Đặt vấn đề</h1><p>Đây lại là một bài viết tiếp theo về chủ đề liên quan đến các hệ điều hành và dòng lệnh. Khi mới tiếp xúc với máy tính, OS mà tôi sử dụng là windows, đến khi lên đại học, phần lớn thời gian học tập vẫn gắn liền với windows, còn phần nhỏ thời gian còn lại là làm quen với một hệ điều hành lạ lẫm mang tên Linux.</p>
-<p>Việc cài đặt phần mềm trên Linux có khó khăn hơn windows một chút, đó là thay vì click chuột rồi next next next next… thì phần nhiều các phần mềm phục vụ công việc lập trình đều phải cài đặt qua dòng lệnh. Mọi thứ không có vấn đề gì cho đến khi việc copy những dòng lệnh đó rồi enter, bạn sẽ không còn nhận được một kết quả thành công mỹ mãn nữa mà thay vào đó là một đống lỗi được trả về.</p>
-<p>Khi làm việc với Ruby, tôi đã từng gặp những lỗi liên quan đến Rbenv và RVM. Điều đó thực sự là một cơn ác mộng khi liên tục phải google tìm kiếm câu trả lời cho vấn đề gặp phải, copy những dòng lệnh trên stackoverflow paste vào terminal và chờ đợi rằng vấn đề sẽ được giải quyết dù chẳng hiểu dòng lệnh này có nghĩa là gì. Lâu dần tôi đã tích luỹ thêm được một số hiểu biết muốn chia sẻ mà bắt đầu là các File hệt thống.</p>
-<h1 id="Luan-ban"><a href="#Luan-ban" class="headerlink" title="Luận bàn"></a>Luận bàn</h1><p>Để bắt đầu chia sẻ về những file kể trên, có lẽ chúng ta sẽ phải điểm qua một số khái niệm cơ bản.</p>
-<h1 id="1-Mot-so-khai-niem-co-ban"><a href="#1-Mot-so-khai-niem-co-ban" class="headerlink" title="1.Một số khái niệm cơ bản."></a>1.Một số khái niệm cơ bản.</h1><p><code>Unix</code> là một hệ điều hành ra đời đã rất lâu, nó là tiền thân của hai nhánh hệ điều hành rất nổi tiếng khác, bản thương mại chính là <code>macOS</code> và bản mã nguồn mở chính là <code>GNU</code>. Cho đến những năm 90, có một sự kết hợp giữa các phần mềm của <code>GNU</code> và phần core của một dự án mã nguồn mở khác tên là <code>Linux</code> đã tạo thành một hệ điều hành hoàn chỉnh mang tên là <code>GNU/Linux</code>, ngày nay đa số chúng ta chỉ thường gọi tắt là <code>Linux</code></p>
-<p>Qua đó chúng ta có thể thấy, <code>Linux</code> và các hệ điều hành con cháu của <code>Unix</code> có rất nhiều điểm chung.</p>
-<p><code>Shell</code>: Đây cũng là một khái niệm quan trọng cần tìm hiểu. Trước khi đi vào chủ đề chính của bài viết, để tìm hiểu một cách sâu sắc về Shell, có lẽ sẽ cần đến một bài viết khác, nên ở đây tôi chỉ mô tả một cách bao quát về nó. <code>Shell</code> là phần nằm giữa ứng dụng và phần core của hệ điều hành.</p>
+    <h2 id="1-Mot-so-khai-niem-co-ban"><a href="#1-Mot-so-khai-niem-co-ban" class="headerlink" title="1.Một số khái niệm cơ bản."></a>1.Một số khái niệm cơ bản.</h2><p><strong>UNIX</strong> là một hệ điều hành ra đời đã rất lâu, nó là tiền thân của hai nhánh hệ điều hành rất nổi tiếng khác, bản thương mại chính là <strong>macOS</strong> và bản mã nguồn mở chính là <strong>GNU</strong>. Cho đến những năm 90, có một sự kết hợp giữa các phần mềm của <strong>GNU</strong> và phần core của một dự án mã nguồn mở khác tên là <strong>Linux</strong> đã tạo thành một hệ điều hành hoàn chỉnh mang tên là <strong>GNU/Linux</strong>, ngày nay đa số chúng ta chỉ thường gọi tắt là <strong>Linux</strong></p>
+<p>Qua đó chúng ta có thể thấy, <strong>Linux</strong> và các hệ điều hành con cháu của <strong>UNIX</strong> có rất nhiều điểm chung.</p>
+<p><strong>Shell</strong>: Đây cũng là một khái niệm quan trọng cần tìm hiểu. Trước khi đi vào chủ đề chính của bài viết, để tìm hiểu một cách sâu sắc về Shell, có lẽ sẽ cần đến một bài viết khác, nên ở đây tôi chỉ mô tả một cách bao quát về nó. <strong>Shell</strong> là phần nằm giữa ứng dụng và phần core của hệ điều hành.</p>
 <p>Hãy tưởng tượng chúng ta có một chồng sách gồm ba quyển với quyển trên cùng là những ứng dụng đang chạy trên máy tính của bạn vì dụ như word, excel, cuốn ở dưới cùng chính là phần nhân của hệ điều hành. Để các ứng dụng của bạn có thể sử dụng các tài nguyên của máy tính như bộ nhớ, ram, IO… điều tất yếu phải xảy ra đó là ứng dụng của bạn phải giao tiếp được với hệ điều hành.</p>
-<p>Tuy nhiên, vấn đề gặp phải đó là hệ điều hành chỉ hiểu mã máy, một thứ quá phức tạp để người dùng khi sử dụng ứng dụng có thể thao tác được. Đó là lý do ra đời của “quyển sách” ở giữa mà chúng ta gọi là <code>Shell</code>. Nhiệm vụ của nó là gì? Đó là chuyển đổi các lệnh từ “quyển sách” đầu tiên thành các lệnh mà “quyển sách” thứ ba có thể hiểu và thực hiện được (Thông dịch).</p>
-<p>Ví dụ terminal được xem là một <code>Shell CLI</code>, mỗi khi bạn gõ một lệnh bất kỳ trên terminal, nó sẽ chuyển đổi câu lệnh bạn viết thành một câu lệnh khác mà phần nhân hệ điều hành có thể hiểu và thực hiện được.</p>
-<h1 id="2-Dieu-gi-xay-ra-khi-ban-go-mot-lenh-tren-terminal"><a href="#2-Dieu-gi-xay-ra-khi-ban-go-mot-lenh-tren-terminal" class="headerlink" title="2.Điều gì xảy ra khi bạn gõ một lệnh trên terminal?"></a>2.Điều gì xảy ra khi bạn gõ một lệnh trên terminal?</h1><p>Đã bao giờ bạn tự hỏi chuyện gì sẽ xảy ra tiếp theo khi ta gõ một lệnh trong terminal? Ví dụ:</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ls -a</span><br><span class="line"><span class="comment">#=&gt; Hiển thị tất cả file và folder nằm trong current folder.</span></span><br></pre></td></tr></table></figure>
+<p>Tuy nhiên, vấn đề gặp phải đó là hệ điều hành chỉ hiểu mã máy, một thứ quá phức tạp để người dùng khi sử dụng ứng dụng có thể thao tác được. Đó là lý do ra đời của “quyển sách” ở giữa mà chúng ta gọi là <strong>Shell</strong>. Nhiệm vụ của nó là gì? Đó là chuyển đổi các lệnh từ “quyển sách” đầu tiên thành các lệnh mà “quyển sách” thứ ba có thể hiểu và thực hiện được (Thông dịch).</p>
+<p>Ví dụ terminal được xem là một <strong>Shell CLI</strong>, mỗi khi bạn gõ một lệnh bất kỳ trên terminal, nó sẽ chuyển đổi câu lệnh bạn viết thành một câu lệnh khác mà phần nhân hệ điều hành có thể hiểu và thực hiện được.</p>
+<h2 id="2-Dieu-gi-xay-ra-khi-ban-go-mot-lenh-tren-terminal"><a href="#2-Dieu-gi-xay-ra-khi-ban-go-mot-lenh-tren-terminal" class="headerlink" title="2.Điều gì xảy ra khi bạn gõ một lệnh trên terminal?"></a>2.Điều gì xảy ra khi bạn gõ một lệnh trên terminal?</h2><p>Đã bao giờ bạn tự hỏi chuyện gì sẽ xảy ra tiếp theo khi ta gõ một lệnh trong terminal? Ví dụ:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -a</span><br></pre></td></tr></table></figure>
 
-<p>Chúng ta sẽ thường tự an ủi bản thân rằng những câu lệnh đó đã được hệ điều hành lưu lại như một cuốn từ điển để đến khi được gọi chúng sẽ biết tìm câu trả lời ở đâu. Thực tế suy nghĩ trên không hẳn đã sai, mọi thứ trong Unix đều là file, nếu bạn gõ dòng lệnh:</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo $PATH</span><br></pre></td></tr></table></figure>
+<p>Chúng ta sẽ thường tự an ủi bản thân rằng những câu lệnh đó đã được hệ điều hành lưu lại như một cuốn từ điển để đến khi được gọi chúng sẽ biết tìm câu trả lời ở đâu. Thực tế suy nghĩ trên không hẳn đã sai, mọi thứ trong UNIX đều là file, nếu bạn gõ dòng lệnh:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo $PATH</span><br></pre></td></tr></table></figure>
 
-<p>Kết quả bạn nhận được chính là một danh sách các thư mục mà terminal sẽ tìm kiếm câu lệnh bạn gõ theo thứ tự từ trái qua phải. Với một hệ điều hành thuần khiết chưa cài đặt thêm các phần mềm bên ngoài thì PATH sẽ có giá trị mặc định như sau:</p>
-<p><code>/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</code></p>
+<p>Kết quả bạn nhận được chính là một danh sách các thư mục mà terminal sẽ tìm kiếm câu lệnh bạn gõ theo thứ tự từ trái qua phải. Với một hệ điều hành thuần khiết chưa cài đặt thêm các phần mềm bên ngoài thì <strong>PATH</strong> sẽ có giá trị mặc định như sau:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</span><br></pre></td></tr></table></figure>
+
 <p>Còn trên máy tính của tôi thì PATH lại có giá trị là:</p>
-<p><code>/Users/admin/.rbenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</code></p>
-<p>Có một sự khác biệt nhỏ, ta có thể thấy chuỗi PATH trên máy tính của tôi có phần đầu chuỗi được thêm bởi một thư mục .rbenv nào đó. Đây chính là mấu chốt của vấn đề, lý do xuất hiện của phần mở rộng nêu trên đó là tôi đã cài đặt thêm Ruby vào máy tính của mình bằng công cụ rbenv.</p>
-<p>Hiển nhiên, khi hệ điều hành còn thuần khiết, nó không thể hiểu được câu lệnh <code>ruby – v</code>. Việc cài đặt Ruby vào máy tính đồng nghĩa với việc tôi đã tải các file liên quan vào một thư mục nào đó, và để chỉ cho terminal biết phải vào đâu để tìm kiếm các lệnh liên quan đến Ruby vừa cài đặt, chuỗi PATH sẽ được ghi đè bổ sung thêm đường dẫn vào thư mục chứa các file thực thi của Ruby. Từ đây, mỗi khi bạn gõ bất cứ một câu lệnh nào liên quan đến Ruby, terminal sẽ theo chuỗi PATH vào từng thư mục để tìm kiếm và thực thi câu lệnh đó.</p>
-<p>Suy ra, có một lỗi rất hay xảy ra cho những người mới sử dụng Ruby, đó là họ thêm và xoá Ruby khá thường xuyên dẫn đến đường dẫn bị sai và terminal không thể tìm được thư mục có thể thực thi câu lệnh một cách chính xác.</p>
-<p>Trong terminal, bạn có thể nối thêm một thư mục vào chuỗi PATH bằng câu lệnh sau:</p>
-<p><code>export PATH=&quot;$PATH:new_path&quot;</code></p>
-<h1 id="3-Mot-so-file-quan-trong-tren-Macos"><a href="#3-Mot-so-file-quan-trong-tren-Macos" class="headerlink" title="3.Một số file quan trọng trên Macos."></a>3.Một số file quan trọng trên Macos.</h1><p>Khi quá trình làm việc với terminal nhiều hơn và chúng ta cần cài đặt một số thứ cần thiết trong quá trình làm việc, chúng ta sử dụng các <code>dot file</code>. Nội dung của các <code>dot file</code> này là các câu lệnh shell script (chức năng của câu lệnh này có thể chúng ta sẽ tìm hiểu sau).</p>
-<p>Khi bạn mở một terminal mà nó đòi hỏi bạn phải login (ví dụ như khi bạn remote access vào một máy tính khác thông qua SSH, bạn cần nhập tên đăng nhập và mật khẩu) thì đó là một <code>Login Shell</code>.<br>Với trường hợp Login Shell thì <code>dot file</code> được load lên là file <code>.bash_profile</code>.<br>Trong một trường hợp khác, bạn mở một terminal mà không cần đăng nhập thì <code>dot file</code> được load là  <code>bashrc</code>.</p>
-<p>Note: Khác với những người anh em khác, terminal trên Macos sẽ chạy <code>dot file</code> <code>.bash_profile</code> khi bạn mở một cửa sổ mới nên tôi thường đặt những cấu hình cần thiết vào một file duy nhất đó là <code>.bash_profile</code>. Tất nhiên, từ <code>.bash_profile</code> ta có thể load các <code>dot file</code> khác nếu cần thiết (chúng ta sẽ bàn về nó trong tương lai).</p>
-<p>Thứ tự các <code>dot file</code> được khởi chạy trên macOS:</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#=&gt; etc/profile</span></span><br><span class="line"><span class="comment">#=&gt; etc/bashrc</span></span><br><span class="line"><span class="comment">#=&gt; ~/.bash_profile</span></span><br><span class="line"><span class="comment">#=&gt; ~/.bash_login (nếu ~/.bash_profile không tồn tại).</span></span><br><span class="line"><span class="comment">#=&gt; ~/.profile (nếu ~/.bash_profile và ~/.bash_login đều không tồn tại).</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/Users/admin/.rbenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</span><br></pre></td></tr></table></figure>
 
-<h1 id="4-Cac-file-quan-trong-tren-Linux"><a href="#4-Cac-file-quan-trong-tren-Linux" class="headerlink" title="4.Các file quan trọng trên Linux"></a>4.Các file quan trọng trên Linux</h1><p>Như đã trình bày ở trên, có một sự giống nhau đáng kể giữa <code>macOS</code> và <code>Linux</code>. Vì vậy, tôi chỉ có một số điều bổ sung như sau: Trên Linux, thông thường chúng ta sẽ có các <code>dot file</code> sau đây:</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#=&gt; ~/.bash_login (chạy khi login shell)</span></span><br><span class="line"><span class="comment">#=&gt; ~/.bashrc (chạy khi không login)</span></span><br><span class="line"><span class="comment">#=&gt; ~/.bash_logout (chạy khi logout shell)</span></span><br><span class="line"><span class="comment">#=&gt; ~/bash_history (lịch sử trên shell)</span></span><br></pre></td></tr></table></figure>
+<p>Có một sự khác biệt nhỏ, ta có thể thấy chuỗi <strong>PATH</strong> trên máy tính của tôi có phần đầu chuỗi được thêm bởi một thư mục .rbenv nào đó. Đây chính là mấu chốt của vấn đề, lý do xuất hiện của phần mở rộng nêu trên đó là tôi đã cài đặt thêm Ruby vào máy tính của mình bằng công cụ rbenv.</p>
+<p>Hiển nhiên, khi hệ điều hành pure (chưa có cài đặt gì khác các ứng dụng mặc định), thì nó không thể hiểu được câu lệnh <strong>ruby – v</strong>. Việc cài đặt Ruby vào máy tính đồng nghĩa với việc tôi đã tải các file liên quan vào một thư mục nào đó, và để chỉ cho Terminal biết phải vào đâu để tìm kiếm các lệnh liên quan đến Ruby vừa cài đặt, chuỗi <strong>PATH</strong> sẽ được ghi đè bổ sung thêm đường dẫn vào thư mục chứa các file thực thi của Ruby. Từ đây, mỗi khi bạn gõ bất cứ một câu lệnh nào liên quan đến Ruby, terminal sẽ theo chuỗi <strong>PATH</strong> vào từng thư mục để tìm kiếm và thực thi câu lệnh đó.</p>
+<p>Suy ra, có một lỗi rất hay xảy ra cho những người mới sử dụng Ruby, đó là họ thêm và xoá Ruby khá thường xuyên dẫn đến đường dẫn (<strong>PATH</strong>) bị sai và Terminal không thể tìm được thư mục có thể thực thi câu lệnh một cách chính xác.</p>
+<p>Trong Terminal, bạn có thể nối thêm một thư mục vào chuỗi <strong>PATH</strong> bằng câu lệnh sau:</p>
+<p><strong>export PATH=”$PATH:new_path”</strong></p>
+<h2 id="3-Mot-so-file-quan-trong-tren-Macos"><a href="#3-Mot-so-file-quan-trong-tren-Macos" class="headerlink" title="3.Một số file quan trọng trên Macos."></a>3.Một số file quan trọng trên Macos.</h2><p>Khi quá trình làm việc với terminal nhiều hơn và chúng ta cần cài đặt một số thứ cần thiết trong quá trình làm việc, chúng ta sử dụng các <strong>dot file</strong>. Nội dung của các <strong>dot file</strong> này là các câu lệnh shell script (chức năng của câu lệnh này có thể chúng ta sẽ tìm hiểu sau).</p>
+<p>Khi bạn mở một terminal mà nó đòi hỏi bạn phải login (ví dụ như khi bạn truy cập vào một máy tính khác thông qua SSH, bạn cần nhập tên đăng nhập và mật khẩu) thì đó là một <strong>Login Shell</strong>.<br>Với trường hợp Login Shell thì <strong>dot file</strong> được load lên là file <strong>.bash_profile</strong> (hay là <strong>.profile</strong> ở trên Ubuntu).<br>Trong một trường hợp khác, bạn mở một terminal mà không cần đăng nhập thì <strong>dot file</strong> được load là  <strong>.bashrc</strong>.</p>
+<p>Note: Khác với những người anh em khác, terminal trên Macos sẽ chạy <strong>dot file</strong> <strong>.bash_profile</strong> khi bạn mở một cửa sổ mới nên tôi thường đặt những cấu hình cần thiết vào một file duy nhất đó là <strong>.bash_profile</strong>. Tất nhiên, từ <strong>.bash_profile</strong> ta có thể load các <strong>dot file</strong> khác nếu cần thiết (chúng ta sẽ bàn về nó trong tương lai).</p>
+<p>Thứ tự các <strong>dot file</strong> được khởi chạy trên macOS:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#=&gt; etc/profile</span><br><span class="line">#=&gt; etc/bashrc</span><br><span class="line">#=&gt; ~/.bash_profile</span><br><span class="line">#=&gt; ~/.bash_login (nếu ~/.bash_profile không tồn tại).</span><br><span class="line">#=&gt; ~/.profile (nếu ~/.bash_profile và ~/.bash_login đều không tồn tại).</span><br></pre></td></tr></table></figure>
 
-<h1 id="Ket-luan"><a href="#Ket-luan" class="headerlink" title="Kết luận"></a>Kết luận</h1><p>Còn rất nhiều điều cần nói và bàn luận thêm trong các bài viết tiếp theo.</p>
+<h2 id="4-Cac-file-quan-trong-tren-Linux"><a href="#4-Cac-file-quan-trong-tren-Linux" class="headerlink" title="4.Các file quan trọng trên Linux"></a>4.Các file quan trọng trên Linux</h2><p>Như đã trình bày ở trên, có một sự giống nhau đáng kể giữa <strong>macOS</strong> và <strong>Linux</strong>. Vì vậy, tôi chỉ có một số điều bổ sung như sau: Trên Linux, thông thường chúng ta sẽ có các <strong>dot file</strong> sau đây:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#=&gt; ~/.bash_login (chạy khi login shell)</span><br><span class="line">#=&gt; ~/.bashrc (chạy khi không login)</span><br><span class="line">#=&gt; ~/.bash_logout (chạy khi logout shell)</span><br><span class="line">#=&gt; ~/bash_history (lịch sử trên shell)</span><br></pre></td></tr></table></figure>
 
   </div>
 </article>
@@ -210,21 +206,21 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Dat-van-de"><span class="toc-number">1.</span> <span class="toc-text">Đặt vấn đề</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Luan-ban"><span class="toc-number">2.</span> <span class="toc-text">Luận bàn</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-Mot-so-khai-niem-co-ban"><span class="toc-number">3.</span> <span class="toc-text">1.Một số khái niệm cơ bản.</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-Dieu-gi-xay-ra-khi-ban-go-mot-lenh-tren-terminal"><span class="toc-number">4.</span> <span class="toc-text">2.Điều gì xảy ra khi bạn gõ một lệnh trên terminal?</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-Mot-so-file-quan-trong-tren-Macos"><span class="toc-number">5.</span> <span class="toc-text">3.Một số file quan trọng trên Macos.</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-Cac-file-quan-trong-tren-Linux"><span class="toc-number">6.</span> <span class="toc-text">4.Các file quan trọng trên Linux</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Ket-luan"><span class="toc-number">7.</span> <span class="toc-text">Kết luận</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Mot-so-khai-niem-co-ban"><span class="toc-number">1.</span> <span class="toc-text">1.Một số khái niệm cơ bản.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Dieu-gi-xay-ra-khi-ban-go-mot-lenh-tren-terminal"><span class="toc-number">2.</span> <span class="toc-text">2.Điều gì xảy ra khi bạn gõ một lệnh trên terminal?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Mot-so-file-quan-trong-tren-Macos"><span class="toc-number">3.</span> <span class="toc-text">3.Một số file quan trọng trên Macos.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Cac-file-quan-trong-tren-Linux"><span class="toc-number">4.</span> <span class="toc-text">4.Các file quan trọng trên Linux</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2018/12/30/2019-01-30-bash-file-in-macos-and-linux/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2018/12/30/2019-01-30-bash-file-in-macos-and-linux/&text=Bash File Trên Unix" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2018/12/30/2019-01-30-bash-file-in-macos-and-linux/&title=Bash File Trên Unix" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2018/12/30/2019-01-30-bash-file-in-macos-and-linux/&is_video=false&description=Bash File Trên Unix" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Bash File Trên Unix&body=Check out this article: https://hdchinh.github.io/2018/12/30/2019-01-30-bash-file-in-macos-and-linux/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2018/12/30/2019-01-30-bash-file-in-macos-and-linux/&title=Bash File Trên Unix" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2018/12/30/2019-01-30-bash-file-in-macos-and-linux/&title=Bash File Trên Unix" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2018/12/30/2019-01-30-bash-file-in-macos-and-linux/&title=Bash File Trên Unix" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2018/12/30/2019-01-30-bash-file-in-macos-and-linux/&title=Bash File Trên Unix" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2018/12/30/2019-01-30-bash-file-in-macos-and-linux/&name=Bash File Trên Unix&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2018/12/30/2019-01-30-bash-file-in-macos-and-linux/&text=Bash File Trên UNIX" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2018/12/30/2019-01-30-bash-file-in-macos-and-linux/&title=Bash File Trên UNIX" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2018/12/30/2019-01-30-bash-file-in-macos-and-linux/&is_video=false&description=Bash File Trên UNIX" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Bash File Trên UNIX&body=Check out this article: https://hdchinh.github.io/2018/12/30/2019-01-30-bash-file-in-macos-and-linux/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2018/12/30/2019-01-30-bash-file-in-macos-and-linux/&title=Bash File Trên UNIX" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2018/12/30/2019-01-30-bash-file-in-macos-and-linux/&title=Bash File Trên UNIX" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2018/12/30/2019-01-30-bash-file-in-macos-and-linux/&title=Bash File Trên UNIX" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2018/12/30/2019-01-30-bash-file-in-macos-and-linux/&title=Bash File Trên UNIX" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2018/12/30/2019-01-30-bash-file-in-macos-and-linux/&name=Bash File Trên UNIX&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

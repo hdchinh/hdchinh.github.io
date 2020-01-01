@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="Đặt vấn đềKhoảng 1 năm trước, khi tôi bắt đầu học về Ruby on Rails, giống như nhiều developers khác, tôi chủ yếu tập trung vào cách để có thể xây dựng một ứng dụng ruby on rails chạy được mà không tập">
-<meta name="keywords" content="ruby,rails">
+    <meta name="description" content="1.Tổng quanVề cơ bản, đây là ba phương thức được Ruby cung cấp, và dĩ nhiên, nó hoàn toàn có thể sử dụng trong rails. Một cách thường xuyên nhất, bạn có thể thấy người ta sử dụng những phương thức này">
+<meta name="keywords" content="RUBY,RAILS">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Length, Count và Size">
+<meta property="og:title" content="Length, Count Và Size">
 <meta property="og:url" content="https:&#x2F;&#x2F;hdchinh.github.io&#x2F;2018&#x2F;06&#x2F;28&#x2F;2019-01-28-count-vs-length-size-in-ruby-and-ror&#x2F;index.html">
-<meta property="og:site_name" content="The Cat&#39;s Family">
-<meta property="og:description" content="Đặt vấn đềKhoảng 1 năm trước, khi tôi bắt đầu học về Ruby on Rails, giống như nhiều developers khác, tôi chủ yếu tập trung vào cách để có thể xây dựng một ứng dụng ruby on rails chạy được mà không tập">
+<meta property="og:site_name" content="Notes">
+<meta property="og:description" content="1.Tổng quanVề cơ bản, đây là ba phương thức được Ruby cung cấp, và dĩ nhiên, nó hoàn toàn có thể sử dụng trong rails. Một cách thường xuyên nhất, bạn có thể thấy người ta sử dụng những phương thức này">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-13T03:58:16.000Z">
+<meta property="og:updated_time" content="2020-01-01T07:56:48.555Z">
 <meta name="twitter:card" content="summary">
     
     
@@ -35,7 +35,7 @@
         
     
     <!-- title -->
-    <title>Length, Count và Size</title>
+    <title>Length, Count Và Size</title>
     <!-- styles -->
     <link rel="stylesheet" href="/css/style.css">
     <!-- persian styles -->
@@ -88,20 +88,20 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/&text=Length, Count và Size" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/&title=Length, Count và Size" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/&is_video=false&description=Length, Count và Size" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Length, Count và Size&body=Check out this article: https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/&title=Length, Count và Size" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/&title=Length, Count và Size" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/&title=Length, Count và Size" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/&title=Length, Count và Size" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/&name=Length, Count và Size&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/&text=Length, Count Và Size" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/&title=Length, Count Và Size" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/&is_video=false&description=Length, Count Và Size" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Length, Count Và Size&body=Check out this article: https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/&title=Length, Count Và Size" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/&title=Length, Count Và Size" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/&title=Length, Count Và Size" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/&title=Length, Count Và Size" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/&name=Length, Count Và Size&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Dat-van-de"><span class="toc-number">1.</span> <span class="toc-text">Đặt vấn đề</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Luan-ban"><span class="toc-number">2.</span> <span class="toc-text">Luận bàn</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-Tong-quan"><span class="toc-number">3.</span> <span class="toc-text">1.Tổng quan</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-Trong-ruby"><span class="toc-number">4.</span> <span class="toc-text">2.Trong ruby</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-Trong-Active-Record"><span class="toc-number">5.</span> <span class="toc-text">3.Trong Active Record</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Ket-luan"><span class="toc-number">6.</span> <span class="toc-text">Kết luận</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Tong-quan"><span class="toc-number">1.</span> <span class="toc-text">1.Tổng quan</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Trong-ruby"><span class="toc-number">2.</span> <span class="toc-text">2.Trong ruby</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Trong-Active-Record"><span class="toc-number">3.</span> <span class="toc-text">3.Trong Active Record</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -113,14 +113,14 @@
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
-        Length, Count và Size
+        Length, Count Và Size
     </h1>
 
 
 
     <div class="meta">
       <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span itemprop="name">The Cat's Family</span>
+        <span itemprop="name">Notes</span>
       </span>
       
     <div class="postdate">
@@ -132,16 +132,11 @@
 
 
       
-    <div class="article-category">
-        <i class="fas fa-archive"></i>
-        <a class="category-link" href="/categories/ruby-notes/">ruby notes</a>
-    </div>
-
 
       
     <div class="article-tag">
         <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/rails/" rel="tag">rails</a>, <a class="tag-link" href="/tags/ruby/" rel="tag">ruby</a>
+        <a class="tag-link" href="/tags/RAILS/" rel="tag">RAILS</a>, <a class="tag-link" href="/tags/RUBY/" rel="tag">RUBY</a>
     </div>
 
 
@@ -150,24 +145,22 @@
   
 
   <div class="content" itemprop="articleBody">
-    <h1 id="Dat-van-de"><a href="#Dat-van-de" class="headerlink" title="Đặt vấn đề"></a>Đặt vấn đề</h1><p>Khoảng 1 năm trước, khi tôi bắt đầu học về Ruby on Rails, giống như nhiều developers khác, tôi chủ yếu tập trung vào cách để có thể xây dựng một ứng dụng ruby on rails chạy được mà không tập trung nhiều vào kiến thức Ruby nền tảng. Có lẽ đấy cũng là lựa chọn duy nhất vào thời điểm đó với một cậu sinh viên mới ra trường như tôi, khi mà có quá nhiều khái niệm, quá nhiều thứ phải học mà sếp của tôi cũng như sếp của bạn sẽ không trả lương cho chúng ta lên công ty để “học”.<br>Thời gian trôi qua, khi đã có nhiều kinh nghiệm hơn, tôi bắt đầu ngày càng hứng thú về những kiến thức nền tảng mà ngày xưa tôi chỉ từng đọc lướt qua. Trong đó có Count, Length và Size, những thứ tưởng như không có gì để nói hay tìm hiểu thêm, nhưng liệu chúng có thực sự đơn giản như vậy?</p>
-<h1 id="Luan-ban"><a href="#Luan-ban" class="headerlink" title="Luận bàn"></a>Luận bàn</h1><h1 id="1-Tong-quan"><a href="#1-Tong-quan" class="headerlink" title="1.Tổng quan"></a>1.Tổng quan</h1><p>Về cơ bản, đây là ba phương thức được Ruby cung cấp, và dĩ nhiên, nó hoàn toàn có thể sử dụng trong rails. Một cách thường xuyên nhất, bạn có thể thấy người ta sử dụng những phương thức này cho một mảng dữ liệu bất kì trong Ruby hay một mảng record trong Rails. Ý nghĩa của nó là trả về kích thước của mảng/hash. Ví dụ:</p>
+    <h2 id="1-Tong-quan"><a href="#1-Tong-quan" class="headerlink" title="1.Tổng quan"></a>1.Tổng quan</h2><p>Về cơ bản, đây là ba phương thức được Ruby cung cấp, và dĩ nhiên, nó hoàn toàn có thể sử dụng trong rails. Một cách thường xuyên nhất, bạn có thể thấy người ta sử dụng những phương thức này cho một mảng dữ liệu bất kì trong Ruby hay một mảng record trong Rails. Ý nghĩa của nó là trả về kích thước của mảng/hash. Ví dụ:</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">array = Array.new(<span class="number">3</span>,<span class="number">1</span>)</span><br><span class="line"><span class="comment">#=&gt; Tạo 1 mảng tên array có 3 phần tử đều có giá trị là 1.</span></span><br><span class="line">array.size, array.length, array.count</span><br><span class="line"><span class="comment">#=&gt; Kết quả trả về cùng là 3.</span></span><br></pre></td></tr></table></figure>
 
 <p>Nhưng mọi chuyện không dừng lại ở đấy, nếu chúng chỉ cùng có chung một chức năng thì không có lý do gì để chúng cùng tồn tại.</p>
-<h1 id="2-Trong-ruby"><a href="#2-Trong-ruby" class="headerlink" title="2.Trong ruby"></a>2.Trong ruby</h1><p>Ngoài chức năng tính kích thước của một mảng hay một hash như đã được đề cập ở trên, Size có thể được sử dụng với cả đối tượng dạng chuỗi và dạng số nguyên.<br>Với chuỗi, Size sẽ trả về kết quả là số lượng ký tự của chuỗi. Còn với số nguyên, nó sẽ trả về số bite mà đối tượng đó nắm giữ trên bộ nhớ. Ví dụ:</p>
+<h2 id="2-Trong-ruby"><a href="#2-Trong-ruby" class="headerlink" title="2.Trong ruby"></a>2.Trong ruby</h2><p>Ngoài chức năng tính kích thước của một mảng hay một hash như đã được đề cập ở trên, Size có thể được sử dụng với cả đối tượng dạng chuỗi và dạng số nguyên.<br>Với chuỗi, Size sẽ trả về kết quả là số lượng ký tự của chuỗi. Còn với số nguyên, nó sẽ trả về số bite mà đối tượng đó nắm giữ trên bộ nhớ. Ví dụ:</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">str_temp = <span class="string">"hduychinh"</span></span><br><span class="line">str_temp.size</span><br><span class="line"><span class="comment">#=&gt; Kết quả trả về độ dài chuỗi là 9.</span></span><br><span class="line">int_temp = <span class="number">12</span></span><br><span class="line">int_temp.size</span><br><span class="line"><span class="comment">#=&gt; Kết quả trả về là 8, ứng với 8 bytes mà int_temp lưu trữ trên bộ nhớ.</span></span><br></pre></td></tr></table></figure>
 
 <p>Length kém hơn size một chút, Length chỉ có thể sử dụng thêm cho các đối tượng dạng chuỗi để trả về số lượng ký tự trong chuỗi, mà không thể sử dụng trên số nguyên.</p>
 <p>Cuối cùng là Count, nó không có chức năng gì bổ sung so với phần đã đề cập. Tuy nhiên, một điểm mạnh của Count đó là khi sử dụng với mảng/hash thì nó có thể nhận tham số chuyển vào. Ví dụ:</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">c = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">3</span>]</span><br><span class="line">c.count <span class="number">3</span></span><br><span class="line"><span class="comment">#=&gt; Kết quả trả về là 2.</span></span><br><span class="line">c.count &#123; <span class="params">|i|</span> i &gt; <span class="number">1</span> &#125;</span><br><span class="line"><span class="comment">#=&gt; Kết quả trả về là 3.</span></span><br></pre></td></tr></table></figure>
 
-<h1 id="3-Trong-Active-Record"><a href="#3-Trong-Active-Record" class="headerlink" title="3.Trong Active Record"></a>3.Trong Active Record</h1><p>Khi sử dụng Count thực chất là bạn đang sử dụng lệnh sql <code>select count(*) from table_names</code> để truy vấn ra số lượng mà chúng ta đang cần tìm hiểu. Thứ hai, Count không được lưu trữ lại, điều đó có nghĩa mỗi lần bạn chạy hàm Count thì nó sẽ truy vấn vào cơ sở dữ liệu mà không hề quan tâm là bạn có gọi lệnh Count trước đó hay không. Thứ ba, Count là lệnh duy nhất trong ba lệnh trên có thể gọi trực tiếp thông qua một model class, ví dụ như: <code>Cat.count</code>.</p>
+<h2 id="3-Trong-Active-Record"><a href="#3-Trong-Active-Record" class="headerlink" title="3.Trong Active Record"></a>3.Trong Active Record</h2><p>Khi sử dụng Count thực chất là bạn đang sử dụng lệnh sql <strong>select count(*) from table_names</strong> để truy vấn ra số lượng mà chúng ta đang cần tìm hiểu. Thứ hai, Count không được lưu trữ lại, điều đó có nghĩa mỗi lần bạn chạy hàm Count thì nó sẽ truy vấn vào cơ sở dữ liệu mà không hề quan tâm là bạn có gọi lệnh Count trước đó hay không. Thứ ba, Count là lệnh duy nhất trong ba lệnh trên có thể gọi trực tiếp thông qua một model class, ví dụ như: <strong>Cat.count</strong>.</p>
 <p>Khi sử dụng Length, điều đầu tiên đó là load toàn bộ record mà bạn đang định đếm số lượng vào bộ nhớ rồi tính toán. Từ lần gọi thứ hai, nó sẽ lấy lại kết quả cũ chứ không load dữ liệu lên nữa. Đây thực sự là một điều tồi tệ nếu bạn có một cơ sở dữ liệu lớn, nó có thể load hàng triệu record vào bộ nhớ.</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Cat.all.length</span><br><span class="line"><span class="comment">#=&gt; Cat Load (0.2ms)  SELECT "cats".* FROM "cats"</span></span><br></pre></td></tr></table></figure>
 
 <p>Khi sử dụng Size, điều đầu tiên của nó là tìm xem kết quả của truy vấn đã có trong bộ nhớ hay chưa, nếu có rồi thì nó sẽ lấy ra và sử dụng, còn nếu chưa có, nó sẽ sử dụng một câu truy vấn SQL vào cơ sở dữ liệu để đếm số lượng. Điều này thật sự tuyệt vời, như một sự kết hợp giữa length và count.</p>
-<h1 id="Ket-luan"><a href="#Ket-luan" class="headerlink" title="Kết luận"></a>Kết luận</h1><p>Theo dữ liệu từ fast-ruby thì method length chạy gần tương đương với size và chạy nhanh hơn hẳn so với count. Điểm lợi của count là nó có thể được gọi từ 1 class Model, giúp cú pháp tường minh hơn, cũng như việc có thể truyền tham số vào hàm.<br>Ngược lại trong các trường hợp khác, việc sử dụng size là khả dĩ hơn cả, đặc biệt với dữ liệu lớn thì nên tránh sử dụng length, vì đó có thể mang lại 1 thảm hoạ cho chương trình khi quá nhiều dữ liệu bị nạp vào bộ nhớ 1 cách vô ích.</p>
 
   </div>
 </article>
@@ -193,21 +186,21 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Dat-van-de"><span class="toc-number">1.</span> <span class="toc-text">Đặt vấn đề</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Luan-ban"><span class="toc-number">2.</span> <span class="toc-text">Luận bàn</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-Tong-quan"><span class="toc-number">3.</span> <span class="toc-text">1.Tổng quan</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-Trong-ruby"><span class="toc-number">4.</span> <span class="toc-text">2.Trong ruby</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-Trong-Active-Record"><span class="toc-number">5.</span> <span class="toc-text">3.Trong Active Record</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Ket-luan"><span class="toc-number">6.</span> <span class="toc-text">Kết luận</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Tong-quan"><span class="toc-number">1.</span> <span class="toc-text">1.Tổng quan</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Trong-ruby"><span class="toc-number">2.</span> <span class="toc-text">2.Trong ruby</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Trong-Active-Record"><span class="toc-number">3.</span> <span class="toc-text">3.Trong Active Record</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/&text=Length, Count và Size" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/&title=Length, Count và Size" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/&is_video=false&description=Length, Count và Size" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Length, Count và Size&body=Check out this article: https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/&title=Length, Count và Size" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/&title=Length, Count và Size" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/&title=Length, Count và Size" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/&title=Length, Count và Size" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/&name=Length, Count và Size&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/&text=Length, Count Và Size" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/&title=Length, Count Và Size" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/&is_video=false&description=Length, Count Và Size" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Length, Count Và Size&body=Check out this article: https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/&title=Length, Count Và Size" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/&title=Length, Count Và Size" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/&title=Length, Count Và Size" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/&title=Length, Count Và Size" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/&name=Length, Count Và Size&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

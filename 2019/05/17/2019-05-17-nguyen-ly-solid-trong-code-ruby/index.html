@@ -6,13 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="Đặt vấn đềCách đây một thời gian, tôi có làm một ứng dụng nhỏ với vỏn vẹn tổng cộng tầm 500 dòng code. Khi bắt đầu tôi đã mường tượng rằng đây chỉ là một chương trình đơn giản nên không cần phân chia">
-<meta name="keywords" content="SOLID,RUBY">
+    <meta name="description" content="1. Định nghĩa và mục tiêu sử dụng Trước tiên, hãy xem SOLID là viết tắt của những cụm từ gì. 1: Single Responsibility Principle 2: Open&#x2F;Closed Principle 3: Liskov Substitution Principle 4: Interface S">
+<meta name="keywords" content="RUBY,SOLID">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Tổng Quan Nguyên Lý SOLID">
 <meta property="og:url" content="https:&#x2F;&#x2F;hdchinh.github.io&#x2F;2019&#x2F;05&#x2F;17&#x2F;2019-05-17-nguyen-ly-solid-trong-code-ruby&#x2F;index.html">
-<meta property="og:site_name" content="The Cat&#39;s Family">
-<meta property="og:description" content="Đặt vấn đềCách đây một thời gian, tôi có làm một ứng dụng nhỏ với vỏn vẹn tổng cộng tầm 500 dòng code. Khi bắt đầu tôi đã mường tượng rằng đây chỉ là một chương trình đơn giản nên không cần phân chia">
+<meta property="og:site_name" content="Notes">
+<meta property="og:description" content="1. Định nghĩa và mục tiêu sử dụng Trước tiên, hãy xem SOLID là viết tắt của những cụm từ gì. 1: Single Responsibility Principle 2: Open&#x2F;Closed Principle 3: Liskov Substitution Principle 4: Interface S">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https:&#x2F;&#x2F;hdchinh.github.io&#x2F;images&#x2F;solid.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;hdchinh.github.io&#x2F;images&#x2F;srp.jpg">
@@ -20,7 +20,7 @@
 <meta property="og:image" content="https:&#x2F;&#x2F;hdchinh.github.io&#x2F;images&#x2F;lsp.jpg">
 <meta property="og:image" content="https:&#x2F;&#x2F;hdchinh.github.io&#x2F;images&#x2F;isp.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;hdchinh.github.io&#x2F;images&#x2F;dip.jpg">
-<meta property="og:updated_time" content="2019-12-06T15:39:12.027Z">
+<meta property="og:updated_time" content="2020-01-01T08:34:46.291Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;hdchinh.github.io&#x2F;images&#x2F;solid.png">
     
@@ -108,7 +108,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Dat-van-de"><span class="toc-number">1.</span> <span class="toc-text">Đặt vấn đề</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Luan-ban"><span class="toc-number">2.</span> <span class="toc-text">Luận bàn</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Dinh-nghia-va-muc-tieu-su-dung"><span class="toc-number">3.</span> <span class="toc-text">1. Định nghĩa và mục tiêu sử dụng</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Single-Responsibility-Principle"><span class="toc-number">4.</span> <span class="toc-text">2. Single Responsibility Principle</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Open-Closed-Principle"><span class="toc-number">5.</span> <span class="toc-text">3. Open/Closed Principle</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Liskov-Substitution-Principle"><span class="toc-number">6.</span> <span class="toc-text">4. Liskov Substitution Principle</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Interface-Segregation-Principle"><span class="toc-number">7.</span> <span class="toc-text">5. Interface Segregation Principle</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-Dependency-Inversion-Principle"><span class="toc-number">8.</span> <span class="toc-text">6. Dependency Inversion Principle</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ket-luan"><span class="toc-number">9.</span> <span class="toc-text">Kết luận</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Dinh-nghia-va-muc-tieu-su-dung"><span class="toc-number">1.</span> <span class="toc-text">1. Định nghĩa và mục tiêu sử dụng</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Single-Responsibility-Principle"><span class="toc-number">2.</span> <span class="toc-text">2. Single Responsibility Principle</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Open-Closed-Principle"><span class="toc-number">3.</span> <span class="toc-text">3. Open/Closed Principle</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Liskov-Substitution-Principle"><span class="toc-number">4.</span> <span class="toc-text">4. Liskov Substitution Principle</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Interface-Segregation-Principle"><span class="toc-number">5.</span> <span class="toc-text">5. Interface Segregation Principle</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-Dependency-Inversion-Principle"><span class="toc-number">6.</span> <span class="toc-text">6. Dependency Inversion Principle</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tham-khao"><span class="toc-number">7.</span> <span class="toc-text">Tham khảo</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -127,7 +127,7 @@
 
     <div class="meta">
       <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span itemprop="name">The Cat's Family</span>
+        <span itemprop="name">Notes</span>
       </span>
       
     <div class="postdate">
@@ -157,16 +157,13 @@
   
 
   <div class="content" itemprop="articleBody">
-    <h2 id="Dat-van-de"><a href="#Dat-van-de" class="headerlink" title="Đặt vấn đề"></a>Đặt vấn đề</h2><p>Cách đây một thời gian, tôi có làm một ứng dụng nhỏ với vỏn vẹn tổng cộng tầm 500 dòng code. Khi bắt đầu tôi đã mường tượng rằng đây chỉ là một chương trình đơn giản nên không cần phân chia gì cho tốn công sức màu mè. Vì vậy tôi chỉ code trên vài file nhất định.</p>
-<p>Một thời gian sau, tôi cần mở rộng thêm 1 vài chức năng nữa, rất tệ là lúc này tôi đã gần như quên luôn các logic mình đã làm trong đống code cũ, cắn răng đọc lại từng dòng, từng dòng, và tốn thời gian gấp 3 gấp 4 lần để hệ thống lại cho dễ hiểu hơn. Một bài học không phải cay đắng lắm cho tôi, nó chỉ tôi hiểu rằng việc cấu trúc và cách tiếp cận khi lập trình quan trọng đến thế nào.</p>
-<p>Phần lớn thời gian một ứng dụng trên tay dev là để maintain, vậy nên việc ngày hôm nay bạn làm nó ra sao ảnh hưởng rất lớn đến sau này. Đó là một phần lý do mà tôi phải tìm đường cách mạng qua SOLID và những mẫu design pattern, những thứ văn vở mà ngày xưa tôi rất ghét và thấy thừa thãi, nhưng giờ đây nó như một bầu trời chân lý sáng chói loé qua tim.</p>
-<h2 id="Luan-ban"><a href="#Luan-ban" class="headerlink" title="Luận bàn"></a>Luận bàn</h2><h2 id="1-Dinh-nghia-va-muc-tieu-su-dung"><a href="#1-Dinh-nghia-va-muc-tieu-su-dung" class="headerlink" title="1. Định nghĩa và mục tiêu sử dụng"></a>1. Định nghĩa và mục tiêu sử dụng</h2><p><img src="/images/solid.png" alt="hoa"></p>
+    <h2 id="1-Dinh-nghia-va-muc-tieu-su-dung"><a href="#1-Dinh-nghia-va-muc-tieu-su-dung" class="headerlink" title="1. Định nghĩa và mục tiêu sử dụng"></a>1. Định nghĩa và mục tiêu sử dụng</h2><p><img src="/images/solid.png" alt="hoa"></p>
 <p>Trước tiên, hãy xem SOLID là viết tắt của những cụm từ gì.</p>
-<p>:one: <strong>S</strong>ingle Responsibility Principle</p>
-<p>:two: <strong>O</strong>pen/Closed Principle</p>
-<p>:three: <strong>L</strong>iskov Substitution Principle</p>
-<p>:four: <strong>I</strong>nterface Segregation Principle</p>
-<p>:five: <strong>D</strong>ependency Inversion Principle</p>
+<p><strong>1:</strong> <strong>S</strong>ingle Responsibility Principle</p>
+<p><strong>2:</strong> <strong>O</strong>pen/Closed Principle</p>
+<p><strong>3:</strong> <strong>L</strong>iskov Substitution Principle</p>
+<p><strong>4:</strong> <strong>I</strong>nterface Segregation Principle</p>
+<p><strong>5:</strong> <strong>D</strong>ependency Inversion Principle</p>
 <p>Hàn lâm là vậy nhưng để dễ nhớ thì tôi gọi chúng ngắn gọn là: <strong>S</strong>ingle, <strong>O</strong>pen, <strong>L</strong>iskov, <strong>I</strong>nterface và <strong>D</strong>ependency.</p>
 <p>Về mục tiêu để cái nguyên lý này có mặt trên cõi đời, âu cũng là xuất phát từ nhu cầu làm ít hơn của con người, việc code không có hệ thống khiến các nhà phát triển tốn nhiều thời gian bảo trì và dễ phát sinh lỗi trong quá trình sử dụng.<br>Để giảm bớt gánh nặng này các nhà phát triển đã cô đọng lại một số khuôn khổ, cách thức lập trình mà dưới góc nhìn và kinh nghiệm của nhiều người, các khuôn khổ cách thức đó giúp cho việc bảo trì trở nên dễ dàng hơn, hệ thống ít phát sinh lỗi ngoài ý muốn hơn. Một trong số đó là hệ thống các nguyên tắc trong SOLID.</p>
 <p>Giả sử tôi phải xử lý một bài toán tính promotion cho một ứng dụng thương mại điện tử. Đây sẽ là ví dụ ta dùng đến trong các phần phía dưới. Giả sử cấu trúc dự án hiện tại như sau:</p>
@@ -280,7 +277,7 @@
 <p>Vậy bây giờ tôi có thêm một class nữa như sau:</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">YellowCat</span></span></span><br><span class="line">  <span class="comment"># do something</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 
-<p>Class này cần một phương thức support tên là <code>yellow_cat_helper</code>, tôi sẽ viết thêm method này vào module AnimalHelper và include module AnimalHelper vào class YellowCat vậy là đúng và đủ yêu cầu. Khi này module AnimalHelper và class YellowCat sẽ trở thành như sau:</p>
+<p>Class này cần một phương thức support tên là <strong>yellow_cat_helper</strong>, tôi sẽ viết thêm method này vào module AnimalHelper và include module AnimalHelper vào class YellowCat vậy là đúng và đủ yêu cầu. Khi này module AnimalHelper và class YellowCat sẽ trở thành như sau:</p>
 <p>Class YellowCat</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">YellowCat</span></span></span><br><span class="line">  <span class="keyword">include</span> AnimalHelper</span><br><span class="line">  <span class="comment"># do something</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 
@@ -289,7 +286,7 @@
 
 <p>Mọi chuyện giờ vẫn ổn chứ? Không, bây giờ thì không ổn nữa rồi nó đã vi phạm nguyên tắc SOLID thứ 4, chữ “I” mà chúng ta đang xét.</p>
 <p>Vì sao?</p>
-<p>Vì class Animal đâu có cần method <code>yellow_cat_helper</code>, còn class YellowCat đâu có cần 3 method <code>animal_helper_a</code>, <code>animal_helper_b</code>, <code>animal_helper_c</code> này đâu?</p>
+<p>Vì class Animal đâu có cần method <strong>yellow_cat_helper</strong>, còn class YellowCat đâu có cần 3 method <strong>animal_helper_a</strong>, <strong>animal_helper_b</strong>, <strong>animal_helper_c</strong> này đâu?</p>
 <p>Vậy mà chúng vẫn có thể sử dụng những method mà chúng vốn không cần, vì lý do ta viết chung tất cả method vào một module và include module vào từng class.</p>
 <p>Y như ví dụ bên trên: Bạn cần trực nhật lớp 1A thôi mà, cô giáo bạn đưa cho bạn trùm chìa khoá của cả trường làm gì? Cầm thì nặng, mà nhỡ đâu bạn <del>tắt mắt</del> nghịch dại thì hậu quả khôn lường.</p>
 <p>Vậy để không vi phạm nguyên tắc này ta có thể sửa lại mã nguồn như sau:</p>
@@ -330,9 +327,7 @@
 <p>Để giải quyết vấn đề này ta có thể viết lại mã nguồn như sau:</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># app/checkout.rb</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Checkout</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">get_bill</span><span class="params">(cart, PromotionType)</span></span></span><br><span class="line">    PromotionType.get_promotion(cart)</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># app/promotion/promotion_type_a.rb</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PromotionTypeA</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">get_promotion</span><span class="params">(cart)</span></span></span><br><span class="line">    <span class="comment"># do something</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># get_bill với PromotionTypeA</span></span><br><span class="line">Checkout.new.get_bill(cart, PromotionTypeA)</span><br><span class="line"></span><br><span class="line"><span class="comment"># để viết thêm PromotionTypeB, ta viết thêm một class PromotionTypeB và truyền PromotionTypeB vào get_bill method.</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># app/promotion/promotion_type_a.rb</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PromotionTypeB</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">get_promotion</span><span class="params">(cart)</span></span></span><br><span class="line">    <span class="comment"># do something</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">Checkout.new.get_bill(cart, PromotionTypeB)</span><br></pre></td></tr></table></figure>
 
-<h2 id="Ket-luan"><a href="#Ket-luan" class="headerlink" title="Kết luận"></a>Kết luận</h2><p>Trên đây là 1 cái nhìn tổng quan về hệ thống nguyên lý SOLID nổi tiếng, việc áp dụng nguyên lý này sẽ không chắc giúp mã nguồn bạn thành công, nhưng nó sẽ giảm thiểu rủi ro hơn là khi code bất chấp, lý thuyết chỉ là một phần nhỏ, nắm lý thuyết giúp chúng ta có cái nhìn tổng quát, trích rút lại thì thứ làm cho nguyên lý này có giá trị nằm ở kinh nghiệm sử dụng của nhà phát triển, không phải luôn luôn tuân thủ mọi quy tắc đã là tốt trong mọi trường hợp.</p>
-<p>Nguồn tham khảo:</p>
-<p>[1] <a href="https://en.wikipedia.org/wiki/SOLID" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/SOLID</a></p>
+<h2 id="Tham-khao"><a href="#Tham-khao" class="headerlink" title="Tham khảo"></a>Tham khảo</h2><p>[1] <a href="https://en.wikipedia.org/wiki/SOLID" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/SOLID</a></p>
 
   </div>
 </article>
@@ -358,7 +353,7 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Dat-van-de"><span class="toc-number">1.</span> <span class="toc-text">Đặt vấn đề</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Luan-ban"><span class="toc-number">2.</span> <span class="toc-text">Luận bàn</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Dinh-nghia-va-muc-tieu-su-dung"><span class="toc-number">3.</span> <span class="toc-text">1. Định nghĩa và mục tiêu sử dụng</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Single-Responsibility-Principle"><span class="toc-number">4.</span> <span class="toc-text">2. Single Responsibility Principle</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Open-Closed-Principle"><span class="toc-number">5.</span> <span class="toc-text">3. Open/Closed Principle</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Liskov-Substitution-Principle"><span class="toc-number">6.</span> <span class="toc-text">4. Liskov Substitution Principle</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Interface-Segregation-Principle"><span class="toc-number">7.</span> <span class="toc-text">5. Interface Segregation Principle</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-Dependency-Inversion-Principle"><span class="toc-number">8.</span> <span class="toc-text">6. Dependency Inversion Principle</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ket-luan"><span class="toc-number">9.</span> <span class="toc-text">Kết luận</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Dinh-nghia-va-muc-tieu-su-dung"><span class="toc-number">1.</span> <span class="toc-text">1. Định nghĩa và mục tiêu sử dụng</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Single-Responsibility-Principle"><span class="toc-number">2.</span> <span class="toc-text">2. Single Responsibility Principle</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Open-Closed-Principle"><span class="toc-number">3.</span> <span class="toc-text">3. Open/Closed Principle</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Liskov-Substitution-Principle"><span class="toc-number">4.</span> <span class="toc-text">4. Liskov Substitution Principle</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Interface-Segregation-Principle"><span class="toc-number">5.</span> <span class="toc-text">5. Interface Segregation Principle</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-Dependency-Inversion-Principle"><span class="toc-number">6.</span> <span class="toc-text">6. Dependency Inversion Principle</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tham-khao"><span class="toc-number">7.</span> <span class="toc-text">Tham khảo</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">

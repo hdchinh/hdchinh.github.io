@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="Đặt vấn đềTrong một thời gian rất lâu, từ khi mới học đến khi làm những ứng dụng đầu tiên. Tôi luôn cho rằng Scope và và Class Method hoàn toàn giống nhau. Và lý do Scope xuất hiện là để giúp mã nguồn">
-<meta name="keywords" content="RAILS,RUBY">
+    <meta name="description" content="Tôi có 1 scope: 12345class Product &amp;lt; ActiveRecord::Base  scope :is_active, -&amp;gt; &amp;#123; where is_active: true &amp;#125;end# Lấy các products có thuộc tính is_active là true.  Tôi có 1 class method: 12">
+<meta name="keywords" content="RUBY,RAILS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="So Sánh Class Method Và Scope">
 <meta property="og:url" content="https:&#x2F;&#x2F;hdchinh.github.io&#x2F;2019&#x2F;06&#x2F;09&#x2F;2019-06-09-luu-y-ngan-gon-ve-scope-va-class-method&#x2F;index.html">
-<meta property="og:site_name" content="The Cat&#39;s Family">
-<meta property="og:description" content="Đặt vấn đềTrong một thời gian rất lâu, từ khi mới học đến khi làm những ứng dụng đầu tiên. Tôi luôn cho rằng Scope và và Class Method hoàn toàn giống nhau. Và lý do Scope xuất hiện là để giúp mã nguồn">
+<meta property="og:site_name" content="Notes">
+<meta property="og:description" content="Tôi có 1 scope: 12345class Product &amp;lt; ActiveRecord::Base  scope :is_active, -&amp;gt; &amp;#123; where is_active: true &amp;#125;end# Lấy các products có thuộc tính is_active là true.  Tôi có 1 class method: 12">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-12-06T15:38:42.091Z">
+<meta property="og:updated_time" content="2020-01-01T08:37:58.608Z">
 <meta name="twitter:card" content="summary">
     
     
@@ -101,7 +101,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Dat-van-de"><span class="toc-number">1.</span> <span class="toc-text">Đặt vấn đề</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Luan-ban"><span class="toc-number">2.</span> <span class="toc-text">Luận bàn</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Ket-luan"><span class="toc-number">3.</span> <span class="toc-text">Kết luận</span></a></li></ol>
+      
     </div>
   </span>
 </div>
@@ -120,7 +120,7 @@
 
     <div class="meta">
       <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span itemprop="name">The Cat's Family</span>
+        <span itemprop="name">Notes</span>
       </span>
       
     <div class="postdate">
@@ -150,9 +150,7 @@
   
 
   <div class="content" itemprop="articleBody">
-    <h1 id="Dat-van-de"><a href="#Dat-van-de" class="headerlink" title="Đặt vấn đề"></a>Đặt vấn đề</h1><p>Trong một thời gian rất lâu, từ khi mới học đến khi làm những ứng dụng đầu tiên. Tôi luôn cho rằng Scope và và Class Method hoàn toàn giống nhau. Và lý do Scope xuất hiện là để giúp mã nguồn ngắn gọn hơn.</p>
-<p>Nhưng rõ ràng đấy là một suy nghĩ chưa đúng, dưới đây là điểm cần chú ý về 2 phương thức này.</p>
-<h1 id="Luan-ban"><a href="#Luan-ban" class="headerlink" title="Luận bàn"></a>Luận bàn</h1><p>Tôi có 1 scope:</p>
+    <p>Tôi có 1 scope:</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Product</span> &lt; ActiveRecord::Base</span></span><br><span class="line">  scope <span class="symbol">:is_active</span>, -&gt; &#123; where <span class="symbol">is_active:</span> <span class="literal">true</span> &#125;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Lấy các products có thuộc tính is_active là true.</span></span><br></pre></td></tr></table></figure>
 
 <p>Tôi có 1 class method:</p>
@@ -172,8 +170,7 @@
 
 <p>Ủa vậy chuyện này là sao? Tại sao Scope vẫn work bình thường trong khi Class Method lại bắn về một exception?</p>
 <p>Đây chính là điểm khác biệt quan trọng của Scopy và Class Method.</p>
-<p>Scope luôn luôn trả về một <code>ActiveRecord Relation</code>. Còn Class Method thì sao? Nếu bạn không cover trường hợp <strong>nil/blank</strong> thì nó sẽ văng về <strong>nil/blank</strong> như vậy không thể chạy Class Method phía sau, vì method đó không thể chạy <strong>với nil/blank</strong>. :smile:</p>
-<h1 id="Ket-luan"><a href="#Ket-luan" class="headerlink" title="Kết luận"></a>Kết luận</h1><p>Đây là một kết luận sơ sài được tôi rút ra trong quá trình làm việc. Nếu có sai xót hãy để lại bình luận dưới đây.</p>
+<p>Scope luôn luôn trả về một <strong>ActiveRecord Relation</strong>. Còn Class Method thì sao? Nếu bạn không cover trường hợp <strong>nil/blank</strong> thì nó sẽ văng về <strong>nil/blank</strong> như vậy không thể chạy Class Method phía sau, vì method đó không thể chạy <strong>với nil/blank</strong>.</p>
 
   </div>
 </article>
@@ -199,7 +196,7 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Dat-van-de"><span class="toc-number">1.</span> <span class="toc-text">Đặt vấn đề</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Luan-ban"><span class="toc-number">2.</span> <span class="toc-text">Luận bàn</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Ket-luan"><span class="toc-number">3.</span> <span class="toc-text">Kết luận</span></a></li></ol>
+      
     </div>
 
     <div id="share-footer" style="display: none">

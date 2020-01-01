@@ -11,10 +11,10 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="Tấn Công SQL Injection">
 <meta property="og:url" content="https:&#x2F;&#x2F;hdchinh.github.io&#x2F;2019&#x2F;06&#x2F;08&#x2F;2019-06-08-tan-cong-sql-injection-va-cach-phong-chong-trong-rails&#x2F;index.html">
-<meta property="og:site_name" content="The Cat&#39;s Family">
+<meta property="og:site_name" content="Notes">
 <meta property="og:description" content="Đặt vấn đềTrong project của bạn, đã bao giờ bạn sử dụng câu lệnh có dạng như: 1Product.where(&quot;product_name = &amp;apos;Meo con di lon ton&amp;apos; &quot;)  Nếu có, thì bạn đã vô tình tạo một lỗ hổng về an toàn cho website">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-12-06T15:38:25.177Z">
+<meta property="og:updated_time" content="2020-01-01T08:35:38.238Z">
 <meta name="twitter:card" content="summary">
     
     
@@ -101,7 +101,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Dat-van-de"><span class="toc-number">1.</span> <span class="toc-text">Đặt vấn đề</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Luan-ban"><span class="toc-number">2.</span> <span class="toc-text">Luận bàn</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-Tim-hieu-ve-Sql-Injection"><span class="toc-number">3.</span> <span class="toc-text">1. Tìm hiểu về Sql Injection</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-Cach-phong-tranh-Sql-Injection-trong-rails"><span class="toc-number">4.</span> <span class="toc-text">2. Cách phòng tránh Sql Injection trong rails.</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Ket-luan"><span class="toc-number">5.</span> <span class="toc-text">Kết luận.</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Dat-van-de"><span class="toc-number">1.</span> <span class="toc-text">Đặt vấn đề</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Luan-ban"><span class="toc-number">2.</span> <span class="toc-text">Luận bàn</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Tim-hieu-ve-Sql-Injection"><span class="toc-number">3.</span> <span class="toc-text">1. Tìm hiểu về Sql Injection</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Cach-phong-tranh-Sql-Injection-trong-rails"><span class="toc-number">4.</span> <span class="toc-text">2. Cách phòng tránh Sql Injection trong rails.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ket-luan"><span class="toc-number">5.</span> <span class="toc-text">Kết luận.</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -120,7 +120,7 @@
 
     <div class="meta">
       <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span itemprop="name">The Cat's Family</span>
+        <span itemprop="name">Notes</span>
       </span>
       
     <div class="postdate">
@@ -150,11 +150,11 @@
   
 
   <div class="content" itemprop="articleBody">
-    <h1 id="Dat-van-de"><a href="#Dat-van-de" class="headerlink" title="Đặt vấn đề"></a>Đặt vấn đề</h1><p>Trong project của bạn, đã bao giờ bạn sử dụng câu lệnh có dạng như:</p>
+    <h2 id="Dat-van-de"><a href="#Dat-van-de" class="headerlink" title="Đặt vấn đề"></a>Đặt vấn đề</h2><p>Trong project của bạn, đã bao giờ bạn sử dụng câu lệnh có dạng như:</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Product.where(<span class="string">"product_name = 'Meo con di lon ton' "</span>)</span><br></pre></td></tr></table></figure>
 
 <p>Nếu có, thì bạn đã vô tình tạo một lỗ hổng về an toàn cho website của mình. Hãy cùng tìm hiểu vì sao lại như vậy.</p>
-<h1 id="Luan-ban"><a href="#Luan-ban" class="headerlink" title="Luận bàn"></a>Luận bàn</h1><h1 id="1-Tim-hieu-ve-Sql-Injection"><a href="#1-Tim-hieu-ve-Sql-Injection" class="headerlink" title="1. Tìm hiểu về Sql Injection"></a>1. Tìm hiểu về Sql Injection</h1><p>Quay lại ví dụ bên trên, nội dung câu lệnh này nhắm lấy ra sản phẩm có tên là <code>Meo con di lon ton</code>. Vậy có gì sai nhỉ?</p>
+<h2 id="Luan-ban"><a href="#Luan-ban" class="headerlink" title="Luận bàn"></a>Luận bàn</h2><h2 id="1-Tim-hieu-ve-Sql-Injection"><a href="#1-Tim-hieu-ve-Sql-Injection" class="headerlink" title="1. Tìm hiểu về Sql Injection"></a>1. Tìm hiểu về Sql Injection</h2><p>Quay lại ví dụ bên trên, nội dung câu lệnh này nhắm lấy ra sản phẩm có tên là <strong>Meo con di lon ton</strong>. Vậy có gì sai nhỉ?</p>
 <p>Để nói rõ hơn, thì câu lệnh này là một câu lệnh được support bởi 1 thư viện ORM mặc định trong rails tên là ActiveRecord. Nó sẽ được phiên dịch thành mã sql như sau:</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span>  <span class="string">"products"</span>.* <span class="keyword">FROM</span> <span class="string">"products"</span> <span class="keyword">WHERE</span> (product_name = <span class="string">'Meo con di lon ton'</span>)</span><br></pre></td></tr></table></figure>
 
@@ -170,7 +170,7 @@
 </ol>
 <p>Vậy có gì mà không ổn?</p>
 <p>Với những người dùng thông thường thì. Đúng, mã nguồn của chúng ta hoàn toàn ổn. Nhưng nếu bạn là một ông chủ giàu có của một website nổi tiếng, và có nhiều kẻ ghét bạn vì bạn giàu hoặc nhìn mặt bạn thấy ghét và muốn tìm cách phá hoại website bạn thì sao?</p>
-<p><strong>Vậy là thay vì gửi một product_name thông thường như “iphone x”, “ghế tình yêu”…Thì họ lại gửi một product_name có dạng như  <code>chinh&#39; or &#39;&#39; = &#39;</code></strong></p>
+<p><strong>Vậy là thay vì gửi một product_name thông thường như “iphone x”, “ghế tình yêu”…Thì họ lại gửi một product_name có dạng như  <strong>chinh’ or ‘’ = ‘</strong></strong></p>
 <p>Lúc này truy vấn của chúng ta sẽ trở thành:</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Product.where(<span class="string">"product_name = 'chinh' OR ''=''"</span>)</span><br></pre></td></tr></table></figure>
 
@@ -180,7 +180,7 @@
 <p>Vì điều kiện trong where luôn trả về true bất kể product_name có bằng ‘xxx’ hay không (vì ‘’ thì luôn luôn bằng ‘’ :smile:). Nên câu truy vấn này sẽ trả về toàn bộ bảng products.</p>
 <p>Và như vậy dữ liệu website của bạn đã bị lộ trước những kẻ không lấy gì làm tốt đẹp.</p>
 <p>Trên đây chỉ là một ví dụ sơ sài, trong thực tế dữ liệu của bạn sẽ quan trọng hơn nhiều là cái products information như trên. Có thể là thông tin liên lạc, địa chỉ nhà, thông tin tài khoản ngân hàng…</p>
-<h1 id="2-Cach-phong-tranh-Sql-Injection-trong-rails"><a href="#2-Cach-phong-tranh-Sql-Injection-trong-rails" class="headerlink" title="2. Cách phòng tránh Sql Injection trong rails."></a>2. Cách phòng tránh Sql Injection trong rails.</h1><p>Có thể thấy khi để query dạng string như trên thì rất dễ bị khai thác, vì ActiveRecord sẽ không thể validate giá trị input mà người dùng nhập vào có hợp lệ hay không. Vậy cách tốt nhất để chống lại Sql injection chính là sử dụng query theo params thay vì sử dụng chuỗi như trên.</p>
+<h2 id="2-Cach-phong-tranh-Sql-Injection-trong-rails"><a href="#2-Cach-phong-tranh-Sql-Injection-trong-rails" class="headerlink" title="2. Cách phòng tránh Sql Injection trong rails."></a>2. Cách phòng tránh Sql Injection trong rails.</h2><p>Có thể thấy khi để query dạng string như trên thì rất dễ bị khai thác, vì ActiveRecord sẽ không thể validate giá trị input mà người dùng nhập vào có hợp lệ hay không. Vậy cách tốt nhất để chống lại Sql injection chính là sử dụng query theo params thay vì sử dụng chuỗi như trên.</p>
 <p>Thay vì viết:</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Product.where(<span class="string">"product_name  = 'Meo con di lon ton'"</span>)</span><br></pre></td></tr></table></figure>
 
@@ -188,7 +188,7 @@
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Product.where(<span class="symbol">product_name:</span> <span class="string">'Meo con di lon ton'</span>)</span><br><span class="line"><span class="comment"># hoặc</span></span><br><span class="line">Product.where(<span class="string">'product_name = ?'</span>, [<span class="string">'Meo con di lon ton'</span>])</span><br><span class="line"><span class="comment"># hoặc</span></span><br><span class="line">Product.where(<span class="string">'product_name = :product_name'</span>, &#123;<span class="symbol">:product_name</span> =&gt; <span class="string">'Meo con di lon ton'</span>&#125;)</span><br></pre></td></tr></table></figure>
 
 <p>Với các cách thay thế, giá trị người dùng truyền vào sẽ được đảm bảo hợp lệ trước khi có dữ liệu trả về…</p>
-<h1 id="Ket-luan"><a href="#Ket-luan" class="headerlink" title="Kết luận."></a>Kết luận.</h1><p>Đây là một bài sơ sài, ngắn gọn và khái quát cho người mới tìm hiểu về sql injection. Không phải bài viết chuyên sâu dành cho người có nhiều kinh nghiệm. Hãy để lại thảo luận nếu bạn có thắc mắc.</p>
+<h2 id="Ket-luan"><a href="#Ket-luan" class="headerlink" title="Kết luận."></a>Kết luận.</h2><p>Đây là một bài sơ sài, ngắn gọn và khái quát cho người mới tìm hiểu về sql injection. Không phải bài viết chuyên sâu dành cho người có nhiều kinh nghiệm. Hãy để lại thảo luận nếu bạn có thắc mắc.</p>
 
   </div>
 </article>
@@ -214,7 +214,7 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Dat-van-de"><span class="toc-number">1.</span> <span class="toc-text">Đặt vấn đề</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Luan-ban"><span class="toc-number">2.</span> <span class="toc-text">Luận bàn</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-Tim-hieu-ve-Sql-Injection"><span class="toc-number">3.</span> <span class="toc-text">1. Tìm hiểu về Sql Injection</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-Cach-phong-tranh-Sql-Injection-trong-rails"><span class="toc-number">4.</span> <span class="toc-text">2. Cách phòng tránh Sql Injection trong rails.</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Ket-luan"><span class="toc-number">5.</span> <span class="toc-text">Kết luận.</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Dat-van-de"><span class="toc-number">1.</span> <span class="toc-text">Đặt vấn đề</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Luan-ban"><span class="toc-number">2.</span> <span class="toc-text">Luận bàn</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Tim-hieu-ve-Sql-Injection"><span class="toc-number">3.</span> <span class="toc-text">1. Tìm hiểu về Sql Injection</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Cach-phong-tranh-Sql-Injection-trong-rails"><span class="toc-number">4.</span> <span class="toc-text">2. Cách phòng tránh Sql Injection trong rails.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ket-luan"><span class="toc-number">5.</span> <span class="toc-text">Kết luận.</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">

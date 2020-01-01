@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="Đặt vấn đềKhi còn Interns tại Framgia, trong một sản phẩm bắt buộc của chương trình thực tập, tôi còn nhớ, mentor đã yêu cầu tôi làm chức năng gửi mail cho ứng dụng rails. Đây thực sự là một task khó">
-<meta name="keywords" content="rails,secure">
+    <meta name="description" content="1. Khái quátBài toán này đơn giản hiểu như sau: Một project bất kỳ sẽ luôn có những thông tin cấu hình vô cùng quan trọng, bắt buộc phải luôn giữ chúng private, còn làm cách nào để giữ chúng private t">
+<meta name="keywords" content="secure,rails">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Lưu Trữ Thông Tin Bảo Mật?">
+<meta property="og:title" content="Lưu Trữ Thông Tin Bảo Mật Trong Rails?">
 <meta property="og:url" content="https:&#x2F;&#x2F;hdchinh.github.io&#x2F;2019&#x2F;02&#x2F;22&#x2F;2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails&#x2F;index.html">
-<meta property="og:site_name" content="The Cat&#39;s Family">
-<meta property="og:description" content="Đặt vấn đềKhi còn Interns tại Framgia, trong một sản phẩm bắt buộc của chương trình thực tập, tôi còn nhớ, mentor đã yêu cầu tôi làm chức năng gửi mail cho ứng dụng rails. Đây thực sự là một task khó">
+<meta property="og:site_name" content="Notes">
+<meta property="og:description" content="1. Khái quátBài toán này đơn giản hiểu như sau: Một project bất kỳ sẽ luôn có những thông tin cấu hình vô cùng quan trọng, bắt buộc phải luôn giữ chúng private, còn làm cách nào để giữ chúng private t">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-13T04:01:32.000Z">
+<meta property="og:updated_time" content="2020-01-01T08:18:16.516Z">
 <meta name="twitter:card" content="summary">
     
     
@@ -35,7 +35,7 @@
         
     
     <!-- title -->
-    <title>Lưu Trữ Thông Tin Bảo Mật?</title>
+    <title>Lưu Trữ Thông Tin Bảo Mật Trong Rails?</title>
     <!-- styles -->
     <link rel="stylesheet" href="/css/style.css">
     <!-- persian styles -->
@@ -88,20 +88,20 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/&text=Lưu Trữ Thông Tin Bảo Mật?" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/&title=Lưu Trữ Thông Tin Bảo Mật?" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/&is_video=false&description=Lưu Trữ Thông Tin Bảo Mật?" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Lưu Trữ Thông Tin Bảo Mật?&body=Check out this article: https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/&title=Lưu Trữ Thông Tin Bảo Mật?" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/&title=Lưu Trữ Thông Tin Bảo Mật?" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/&title=Lưu Trữ Thông Tin Bảo Mật?" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/&title=Lưu Trữ Thông Tin Bảo Mật?" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/&name=Lưu Trữ Thông Tin Bảo Mật?&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/&text=Lưu Trữ Thông Tin Bảo Mật Trong Rails?" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/&title=Lưu Trữ Thông Tin Bảo Mật Trong Rails?" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/&is_video=false&description=Lưu Trữ Thông Tin Bảo Mật Trong Rails?" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Lưu Trữ Thông Tin Bảo Mật Trong Rails?&body=Check out this article: https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/&title=Lưu Trữ Thông Tin Bảo Mật Trong Rails?" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/&title=Lưu Trữ Thông Tin Bảo Mật Trong Rails?" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/&title=Lưu Trữ Thông Tin Bảo Mật Trong Rails?" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/&title=Lưu Trữ Thông Tin Bảo Mật Trong Rails?" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/&name=Lưu Trữ Thông Tin Bảo Mật Trong Rails?&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Dat-van-de"><span class="toc-number">1.</span> <span class="toc-text">Đặt vấn đề</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Luan-ban"><span class="toc-number">2.</span> <span class="toc-text">Luận bàn</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-Khai-quat"><span class="toc-number">3.</span> <span class="toc-text">1. Khái quát</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-Rails-4-1"><span class="toc-number">4.</span> <span class="toc-text">2. Rails 4.1</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-Rails-5-1"><span class="toc-number">5.</span> <span class="toc-text">3. Rails 5.1</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-Rails-5-2"><span class="toc-number">6.</span> <span class="toc-text">3. Rails 5.2</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-secret-key-base"><span class="toc-number">7.</span> <span class="toc-text">4. secret_key_base</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Ket-luan"><span class="toc-number">8.</span> <span class="toc-text">Kết luận</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Khai-quat"><span class="toc-number">1.</span> <span class="toc-text">1. Khái quát</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Rails-4-1"><span class="toc-number">2.</span> <span class="toc-text">2. Rails 4.1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Rails-5-1"><span class="toc-number">3.</span> <span class="toc-text">3. Rails 5.1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Rails-5-2"><span class="toc-number">4.</span> <span class="toc-text">3. Rails 5.2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-secret-key-base"><span class="toc-number">5.</span> <span class="toc-text">4. secret_key_base</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -113,14 +113,14 @@
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
-        Lưu Trữ Thông Tin Bảo Mật?
+        Lưu Trữ Thông Tin Bảo Mật Trong Rails?
     </h1>
 
 
 
     <div class="meta">
       <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span itemprop="name">The Cat's Family</span>
+        <span itemprop="name">Notes</span>
       </span>
       
     <div class="postdate">
@@ -150,59 +150,56 @@
   
 
   <div class="content" itemprop="articleBody">
-    <h1 id="Dat-van-de"><a href="#Dat-van-de" class="headerlink" title="Đặt vấn đề"></a>Đặt vấn đề</h1><p>Khi còn Interns tại Framgia, trong một sản phẩm bắt buộc của chương trình thực tập, tôi còn nhớ, mentor đã yêu cầu tôi làm chức năng gửi mail cho ứng dụng rails. Đây thực sự là một task khó với một người non nớt kinh nghiệm như tôi khi đấy, mà ráng google một lát cũng tìm ra cách làm và áp dụng thành công, tạo PR lòng hân hoan, nào ngờ ngay sau đó tôi đã bị mentor mạt sát một trận kinh hoàng. Nguyên nhân là do trong lúc config môi trường để gửi mail, tôi đã để thông tin email của tôi vào file config và commit lên github, lúc đó nghĩ bụng cũng tức “Gì mà làm khó nhau quá vậy? Interns không lương thôi mà làm gì ghê, commit lên đó thì sao…”. Giờ thì hiển nhiên là tôi nhìn nhận được sai lầm đó, và hiểu được những hiểu biết mù mờ về config và bảo mật sẽ khiến ứng dụng của tôi dễ tan tành như thế nào. Ngoài thông tin như email, trong dự án của chúng ta đôi khi còn những thông tin vô cùng quan trọng như key của dịch vụ lưu trữ đám mây, thông tin đăng nhập bên thứ ba, hay một chuỗi bí ẩn được gọi dưới cái tên <code>secret_key</code>. Bài viết này sẽ trình bày về cách xử lý những thông tin nhạy cảm kể trên.</p>
-<h1 id="Luan-ban"><a href="#Luan-ban" class="headerlink" title="Luận bàn"></a>Luận bàn</h1><h1 id="1-Khai-quat"><a href="#1-Khai-quat" class="headerlink" title="1. Khái quát"></a>1. Khái quát</h1><p>Bài toán này đơn giản hiểu như sau: Một project bất kỳ sẽ luôn có những thông tin cấu hình vô cùng quan trọng, bắt buộc phải luôn giữ chúng private, còn làm cách nào để giữ chúng private trong rails?<br>Câu trả lời là tuỳ vào mỗi phiên bản rails, sẽ có (có thể có) những cách khác nhau để xử lý vấn đề này. Hãy đi đến các dấu mốc cụ thể dưới đây.</p>
-<h1 id="2-Rails-4-1"><a href="#2-Rails-4-1" class="headerlink" title="2. Rails 4.1"></a>2. Rails 4.1</h1><p>Phiên bản rails này sử dụng một file có tên <code>secrets.yml</code>, đây là file sẽ lưu toàn bộ các thông tin nhạy cảm chúng ta đã nói ở trên.<br>Với thiết kế như này ta có hai lựa chọn cho ứng dụng của mình:</p>
+    <h2 id="1-Khai-quat"><a href="#1-Khai-quat" class="headerlink" title="1. Khái quát"></a>1. Khái quát</h2><p>Bài toán này đơn giản hiểu như sau: Một project bất kỳ sẽ luôn có những thông tin cấu hình vô cùng quan trọng, bắt buộc phải luôn giữ chúng private, còn làm cách nào để giữ chúng private trong rails?<br>Câu trả lời là tuỳ vào mỗi phiên bản rails, sẽ có (có thể có) những cách khác nhau để xử lý vấn đề này. Hãy đi đến các dấu mốc cụ thể dưới đây.</p>
+<h2 id="2-Rails-4-1"><a href="#2-Rails-4-1" class="headerlink" title="2. Rails 4.1"></a>2. Rails 4.1</h2><p>Phiên bản rails này sử dụng một file có tên <strong>secrets.yml</strong>, đây là file sẽ lưu toàn bộ các thông tin nhạy cảm chúng ta đã nói ở trên.<br>Với thiết kế như này ta có hai lựa chọn cho ứng dụng của mình:</p>
 <ol>
-<li><p>Đem hết thông tin nhạy cảm dưới đạng text bỏ vào file này, tuy nhiên file này phải được bỏ vào trong danh mục của <code>gitignore</code> để đảm bảo thông tin trong đó không bị bạn vô tình hay hữu ý commit đi đâu đó.</p>
+<li><p>Đem hết thông tin nhạy cảm dưới đạng text bỏ vào file này, tuy nhiên file này phải được bỏ vào trong danh mục của <strong>gitignore</strong> để đảm bảo thông tin trong đó không bị bạn vô tình hay hữu ý commit đi đâu đó.</p>
 </li>
-<li><p>Thông tin nhạy cảm lưu trong file này thay vì được lưu dưới dạng text thì sẽ được lưu trong máy của bạn dứoi dạng <code>biến môi trường</code> và trong file <code>secrets.yml</code> chỉ sử dụng phương thức <code>ENV</code> mà rails cung cấp để gọi lại các thông tin đó lên, với lựa chọn này bạn có thể commit file này thoải mái, ở các máy tính đồng nghiệp, để có thể sử dụng được những config này thì buộc họ phải thiết lập biến môi trường trên máy tính của họ cho phù hợp.</p>
+<li><p>Thông tin nhạy cảm lưu trong file này thay vì được lưu dưới dạng text thì sẽ được lưu trong máy của bạn dứoi dạng <strong>biến môi trường</strong> và trong file <strong>secrets.yml</strong> chỉ sử dụng phương thức <strong>ENV</strong> mà rails cung cấp để gọi lại các thông tin đó lên, với lựa chọn này bạn có thể commit file này thoải mái, ở các máy tính đồng nghiệp, để có thể sử dụng được những config này thì buộc họ phải thiết lập biến môi trường trên máy tính của họ cho phù hợp.</p>
 </li>
 </ol>
 <p>Nhược điểm: dù sử dụng cách nào, thì để ứng dụng hoạt động được thì vẫn phải truyền giá trị các thông tin nhạy cảm này từ máy của bạn lên một con vps khi triển khai chẳng hạn, không còn cách nào khác. Có thể bạn phải copy từng dòng thông tin nhạy cảm rồi paste qua remote shell để thiết lập (với những dự án lớn có rất nhiều thông tin quan trọng thì đây là 1 công việc vất vả tiềm tàng nguy cơ sai sót).</p>
-<p>Note: Thay vì sử dụng file <code>secrets.yml</code>, ta có thể sử dụng một file khác như <code>application.yml</code>, mục đích và chức năng của chúng là tương đương.</p>
-<h1 id="3-Rails-5-1"><a href="#3-Rails-5-1" class="headerlink" title="3. Rails 5.1"></a>3. Rails 5.1</h1><p>Sang đến phiên bản rails 5.1, một thay đổi lớn đã tới. Thay vì lưu thông tin dạng text hoặc triệu hồi thông qua biến môi trường, rails khi này cung cấp khả năng mã hoá cho các thông tin nhạy cảm này.<br>Cách chúng hoạt động như sau:</p>
-<p>Một file tên <code>secrets.yml.key</code> sẽ chứa giá trị của một biến tên <code>RAILS_MASTER_KEY</code>, biến này có giá trị là một chuỗi, có chức năng được sử dụng để mã hoá và giải mã các thông tin quan trọng.</p>
-<p>Nội dung thông tin <strong>sau</strong> mã hoá sẽ được lưu tại file <code>secrets.yml.enc</code></p>
-<p>Vậy còn file <code>secrets.yml</code> trong rails 4 giờ còn không? Câu trả lời là bạn vẫn có thể sử dụng file này, tuy nhiên trên cùng một môi trường, nếu có cả file <code>secrets.yml</code> và <code>secrets.yml.enc</code> thì hai file này sẽ được merge.</p>
+<p>Note: Thay vì sử dụng file <strong>secrets.yml</strong>, ta có thể sử dụng một file khác như <strong>application.yml</strong>, mục đích và chức năng của chúng là tương đương.</p>
+<h2 id="3-Rails-5-1"><a href="#3-Rails-5-1" class="headerlink" title="3. Rails 5.1"></a>3. Rails 5.1</h2><p>Sang đến phiên bản rails 5.1, một thay đổi lớn đã tới. Thay vì lưu thông tin dạng text hoặc triệu hồi thông qua biến môi trường, rails khi này cung cấp khả năng mã hoá cho các thông tin nhạy cảm này.<br>Cách chúng hoạt động như sau:</p>
+<p>Một file tên <strong>secrets.yml.key</strong> sẽ chứa giá trị của một biến tên <strong>RAILS_MASTER_KEY</strong>, biến này có giá trị là một chuỗi, có chức năng được sử dụng để mã hoá và giải mã các thông tin quan trọng.</p>
+<p>Nội dung thông tin <strong>sau</strong> mã hoá sẽ được lưu tại file <strong>secrets.yml.enc</strong></p>
+<p>Vậy còn file <strong>secrets.yml</strong> trong rails 4 giờ còn không? Câu trả lời là bạn vẫn có thể sử dụng file này, tuy nhiên trên cùng một môi trường, nếu có cả file <strong>secrets.yml</strong> và <strong>secrets.yml.enc</strong> thì hai file này sẽ được merge.</p>
 <p>Để có thể sử dụng tính năng encypt này của rails 5.1 ta setup như sau:</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rails <span class="symbol">secrets:</span>setup</span><br></pre></td></tr></table></figure>
-<p>Sau câu lệnh này hai file <code>secrets.yml.key</code> và <code>secrets.yml.enc</code> sẽ được tạo ra. Để thêm xoá sửa nội dung trong <code>secrets.yml.enc</code> ta sử dụng lệnh sau:</p>
+<p>Sau câu lệnh này hai file <strong>secrets.yml.key</strong> và <strong>secrets.yml.enc</strong> sẽ được tạo ra. Để thêm xoá sửa nội dung trong <strong>secrets.yml.enc</strong> ta sử dụng lệnh sau:</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rails <span class="symbol">secrets:</span>edit</span><br></pre></td></tr></table></figure>
 
-<p>Câu lệnh này sẽ mở nội dung file <code>secrets.yml.enc</code> dưới dạng đã giải mã. Bạn có thể thoải mái thêm xoá, sửa các thông tin nhạy cảm, sau đó khi bạn save lại và tắt editor thì file <code>secrets.yml.enc</code> sẽ tự động được cập nhập phần mã hoá mới nhất khi có thêm thông tin.</p>
-<p>Tôi thích dùng <code>vim</code> để chỉnh sửa, và tôi không muốn set mặc định editor nên tôi sử dụng câu lệnh sau: <code>EDITOR=vi rails secrets:edit</code>.</p>
+<p>Câu lệnh này sẽ mở nội dung file <strong>secrets.yml.enc</strong> dưới dạng đã giải mã. Bạn có thể thoải mái thêm xoá, sửa các thông tin nhạy cảm, sau đó khi bạn save lại và tắt editor thì file <strong>secrets.yml.enc</strong> sẽ tự động được cập nhập phần mã hoá mới nhất khi có thêm thông tin.</p>
+<p>Tôi thích dùng <strong>vim</strong> để chỉnh sửa, và tôi không muốn set mặc định editor nên tôi sử dụng câu lệnh sau: <strong>EDITOR=vi rails secrets:edit</strong>.</p>
 <p>Ưu điểm:</p>
 <ol>
 <li><p>Thay vì phải quản lý nhiều biến môi trường, giờ đây mọi thứ đều nằm trong một file.</p>
 </li>
-<li><p>Việc có thể commit <code>secrets.yml.enc</code> giúp chúng ta nắm được lịch sử thay đổi của file này.</p>
+<li><p>Việc có thể commit <strong>secrets.yml.enc</strong> giúp chúng ta nắm được lịch sử thay đổi của file này.</p>
 </li>
 </ol>
-<p>Note: Một điểm quan trọng bạn cần lưu ý, đó là tới khi viết bài viết này thì tôi vẫn chưa thấy rails sẽ giải mã thông tin mã hoá trong file <code>secrets.yml.enc</code>, chúng ta buộc phải làm thủ công để nhắc rails làm điều đó bằng cách thêm vào config file của bạn <code>config.read_encrypted_secrets = true</code>. Với câu lệnh setup bên trên, dòng config trên đã được add vào file config của production. Nếu bạn muốn sử dụng tính năng này cho môi trường development thì hãy thêm dòng config này vào file <code>config/environments/development.rb</code>.</p>
-<h1 id="3-Rails-5-2"><a href="#3-Rails-5-2" class="headerlink" title="3. Rails 5.2"></a>3. Rails 5.2</h1><p>Ý tưởng trong rails 5.2 không thay đổi nhiều so với rails 5.1. Nhưng thay vì lưu key để encrypt/decrypt trong file secrets.yml.key giờ nó được lưu trong file <code>master.key</code> (tuy nhiên nếu không sử dụng file thì cả rails 5.2 và 5.1 đều có thể gọi biến môi trường RAILS_MASTER_KEY để sử dụng).</p>
-<p>File lưu thông tin đã được mã hoá cũng được thay đổi từ secrets.yml.enc thành <code>credentials.yml.enc</code>.  Đó là những điểm khác biệt duy nhất.</p>
+<p>Note: Một điểm quan trọng bạn cần lưu ý, đó là tới khi viết bài viết này thì tôi vẫn chưa thấy rails sẽ giải mã thông tin mã hoá trong file <strong>secrets.yml.enc</strong>, chúng ta buộc phải làm thủ công để nhắc rails làm điều đó bằng cách thêm vào config file của bạn <strong>config.read_encrypted_secrets = true</strong>. Với câu lệnh setup bên trên, dòng config trên đã được add vào file config của production. Nếu bạn muốn sử dụng tính năng này cho môi trường development thì hãy thêm dòng config này vào file <strong>config/environments/development.rb</strong>.</p>
+<h2 id="3-Rails-5-2"><a href="#3-Rails-5-2" class="headerlink" title="3. Rails 5.2"></a>3. Rails 5.2</h2><p>Ý tưởng trong rails 5.2 không thay đổi nhiều so với rails 5.1. Nhưng thay vì lưu key để encrypt/decrypt trong file secrets.yml.key giờ nó được lưu trong file <strong>master.key</strong> (tuy nhiên nếu không sử dụng file thì cả rails 5.2 và 5.1 đều có thể gọi biến môi trường RAILS_MASTER_KEY để sử dụng).</p>
+<p>File lưu thông tin đã được mã hoá cũng được thay đổi từ secrets.yml.enc thành <strong>credentials.yml.enc</strong>.  Đó là những điểm khác biệt duy nhất.</p>
 <p>Để chỉnh sửa thông tin trong file mã hoá ta sử dụng lệnh:</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EDITOR=vi rails <span class="symbol">credentials:</span>edit</span><br></pre></td></tr></table></figure>
 <p>Không cần dùng lệnh setup như trên, vì trong rails 5.2, hai file key và mã hoá được sinh ra cùng project.</p>
-<p>Ta có thể truy xuất giá trị được giải mã trong file <code>credentials.yml.enc</code> như sau:</p>
+<p>Ta có thể truy xuất giá trị được giải mã trong file <strong>credentials.yml.enc</strong> như sau:</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Rails.application.credentials.ten_bien_trong_credentials</span><br></pre></td></tr></table></figure>
 
-<p>Làm gì khi bạn muốn thay thế <code>master.key</code>?</p>
+<p>Làm gì khi bạn muốn thay thế <strong>master.key</strong>?</p>
 <ol>
-<li><p><code>rails credentials:show</code> dùng lệnh này để hiển thị thông tin dạng giải mã ra editor, copy chúng.</p>
+<li><p><strong>rails credentials:show</strong> dùng lệnh này để hiển thị thông tin dạng giải mã ra editor, copy chúng.</p>
 </li>
-<li><p>Xoá hai file <code>master.key</code> và <code>credentials.yml.enc</code> đi.</p>
+<li><p>Xoá hai file <strong>master.key</strong> và <strong>credentials.yml.enc</strong> đi.</p>
 </li>
-<li><p><code>EDITOR=vim rails credentials:edit</code> với lệnh sau bạn sẽ generate lại hai file mới. Việc cần làm bây giờ là paste thông tin ở bước 1 vào editor khi này rồi save lại.</p>
+<li><p><strong>EDITOR=vim rails credentials:edit</strong> với lệnh sau bạn sẽ generate lại hai file mới. Việc cần làm bây giờ là paste thông tin ở bước 1 vào editor khi này rồi save lại.</p>
 </li>
 </ol>
-<h1 id="4-secret-key-base"><a href="#4-secret-key-base" class="headerlink" title="4. secret_key_base"></a>4. secret_key_base</h1><p>Nếu làm theo hướng dẫn bên trên, ta sẽ thu được một file mã hoá ví dụ: <code>credentials.yml.enc</code> có chứa nội dung ngay cả khi ta mới vừa khởi tạo project. Điều gì đã xảy ra? Tôi còn chưa kịp edit thì nó lấy thông tin gì mà mã hoá ra nội dung đó vậy? Câu trả lời là một thứ được tạo kèm project của bạn có tên là <code>secret_key_base</code> sẽ là thứ đầu tiên được tự động lưu mã hoá vào file <code>credentials.yml.enc</code>.</p>
-<p>Sao lại phức tạp như vậy? nó với <code>RAILS_MASTER_KEY</code> ở trên có quan hệ gì không? Câu trả lời là không? <code>secret_key_base</code> được rails sinh ra khi tạo project, nó đảm bảo rằng không thể có hai ứng dụng rails có chung một <code>secet_key_base</code>, cái key sẽ được sử dụng để đảo bảo thứ đánh dấu tính duy nhất của một project và nó còn được dùng làm nhiều việc hay ho khác tôi sẽ trình bày trong các bài viết sắp tới.</p>
+<h2 id="4-secret-key-base"><a href="#4-secret-key-base" class="headerlink" title="4. secret_key_base"></a>4. secret_key_base</h2><p>Nếu làm theo hướng dẫn bên trên, ta sẽ thu được một file mã hoá ví dụ: <strong>credentials.yml.enc</strong> có chứa nội dung ngay cả khi ta mới vừa khởi tạo project. Điều gì đã xảy ra? Tôi còn chưa kịp edit thì nó lấy thông tin gì mà mã hoá ra nội dung đó vậy? Câu trả lời là một thứ được tạo kèm project của bạn có tên là <strong>secret_key_base</strong> sẽ là thứ đầu tiên được tự động lưu mã hoá vào file <strong>credentials.yml.enc</strong>.</p>
+<p>Sao lại phức tạp như vậy? nó với <strong>RAILS_MASTER_KEY</strong> ở trên có quan hệ gì không? Câu trả lời là không? <strong>secret_key_base</strong> được rails sinh ra khi tạo project, nó đảm bảo rằng không thể có hai ứng dụng rails có chung một <strong>secet_key_base</strong>, cái key sẽ được sử dụng để đảo bảo thứ đánh dấu tính duy nhất của một project và nó còn được dùng làm nhiều việc hay ho khác tôi sẽ trình bày trong các bài viết sắp tới.</p>
 <p>Để tạo ra một secret_key_base bạn có thể sử dụng lệnh sau:</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rails secret</span><br></pre></td></tr></table></figure>
-
-<h1 id="Ket-luan"><a href="#Ket-luan" class="headerlink" title="Kết luận"></a>Kết luận</h1><p>Hãy để lại bình luận bên dưới nếu bạn có ý kiến khác hoặc phản hồi về nội dung bài viết nhé.</p>
 
   </div>
 </article>
@@ -228,21 +225,21 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Dat-van-de"><span class="toc-number">1.</span> <span class="toc-text">Đặt vấn đề</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Luan-ban"><span class="toc-number">2.</span> <span class="toc-text">Luận bàn</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-Khai-quat"><span class="toc-number">3.</span> <span class="toc-text">1. Khái quát</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-Rails-4-1"><span class="toc-number">4.</span> <span class="toc-text">2. Rails 4.1</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-Rails-5-1"><span class="toc-number">5.</span> <span class="toc-text">3. Rails 5.1</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-Rails-5-2"><span class="toc-number">6.</span> <span class="toc-text">3. Rails 5.2</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-secret-key-base"><span class="toc-number">7.</span> <span class="toc-text">4. secret_key_base</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Ket-luan"><span class="toc-number">8.</span> <span class="toc-text">Kết luận</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Khai-quat"><span class="toc-number">1.</span> <span class="toc-text">1. Khái quát</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Rails-4-1"><span class="toc-number">2.</span> <span class="toc-text">2. Rails 4.1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Rails-5-1"><span class="toc-number">3.</span> <span class="toc-text">3. Rails 5.1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Rails-5-2"><span class="toc-number">4.</span> <span class="toc-text">3. Rails 5.2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-secret-key-base"><span class="toc-number">5.</span> <span class="toc-text">4. secret_key_base</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/&text=Lưu Trữ Thông Tin Bảo Mật?" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/&title=Lưu Trữ Thông Tin Bảo Mật?" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/&is_video=false&description=Lưu Trữ Thông Tin Bảo Mật?" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Lưu Trữ Thông Tin Bảo Mật?&body=Check out this article: https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/&title=Lưu Trữ Thông Tin Bảo Mật?" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/&title=Lưu Trữ Thông Tin Bảo Mật?" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/&title=Lưu Trữ Thông Tin Bảo Mật?" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/&title=Lưu Trữ Thông Tin Bảo Mật?" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/&name=Lưu Trữ Thông Tin Bảo Mật?&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/&text=Lưu Trữ Thông Tin Bảo Mật Trong Rails?" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/&title=Lưu Trữ Thông Tin Bảo Mật Trong Rails?" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/&is_video=false&description=Lưu Trữ Thông Tin Bảo Mật Trong Rails?" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Lưu Trữ Thông Tin Bảo Mật Trong Rails?&body=Check out this article: https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/&title=Lưu Trữ Thông Tin Bảo Mật Trong Rails?" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/&title=Lưu Trữ Thông Tin Bảo Mật Trong Rails?" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/&title=Lưu Trữ Thông Tin Bảo Mật Trong Rails?" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/&title=Lưu Trữ Thông Tin Bảo Mật Trong Rails?" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/&name=Lưu Trữ Thông Tin Bảo Mật Trong Rails?&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="The notes of mine after read SQL Performance Explained Ebook.  Anatomy of an IndexCơ sở dữ liệu sử dụng 2 loại cấu trúc để lưu trữ index. B-Tree và Doubly Linked List. Vì vậy cách sử dụng 2 loại cấu">
+<meta name="keywords" content="NOTES">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SQL Performance Explained">
+<meta property="og:url" content="https:&#x2F;&#x2F;hdchinh.github.io&#x2F;2020&#x2F;01&#x2F;05&#x2F;2020-01-05-sql-performance-explained-notes&#x2F;index.html">
+<meta property="og:site_name" content="Notes">
+<meta property="og:description" content="The notes of mine after read SQL Performance Explained Ebook.  Anatomy of an IndexCơ sở dữ liệu sử dụng 2 loại cấu trúc để lưu trữ index. B-Tree và Doubly Linked List. Vì vậy cách sử dụng 2 loại cấu">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https:&#x2F;&#x2F;hdchinh.github.io&#x2F;images&#x2F;leaf-node.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;hdchinh.github.io&#x2F;images&#x2F;b-tree-sql.png">
+<meta property="og:updated_time" content="2020-01-05T14:11:28.705Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;hdchinh.github.io&#x2F;images&#x2F;leaf-node.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>SQL Performance Explained</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+          <li><a href="/projects/">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2019/12/28/2019-12-28-clone-object-and-array-in-javascript/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2020/01/05/2020-01-05-sql-performance-explained-notes/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2020/01/05/2020-01-05-sql-performance-explained-notes/&text=SQL Performance Explained" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2020/01/05/2020-01-05-sql-performance-explained-notes/&title=SQL Performance Explained" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2020/01/05/2020-01-05-sql-performance-explained-notes/&is_video=false&description=SQL Performance Explained" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=SQL Performance Explained&body=Check out this article: https://hdchinh.github.io/2020/01/05/2020-01-05-sql-performance-explained-notes/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2020/01/05/2020-01-05-sql-performance-explained-notes/&title=SQL Performance Explained" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2020/01/05/2020-01-05-sql-performance-explained-notes/&title=SQL Performance Explained" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2020/01/05/2020-01-05-sql-performance-explained-notes/&title=SQL Performance Explained" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2020/01/05/2020-01-05-sql-performance-explained-notes/&title=SQL Performance Explained" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2020/01/05/2020-01-05-sql-performance-explained-notes/&name=SQL Performance Explained&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Anatomy-of-an-Index"><span class="toc-number">1.</span> <span class="toc-text">Anatomy of an Index</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Doubly-Linked-List"><span class="toc-number">1.1.</span> <span class="toc-text">Doubly Linked List</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#The-Search-Tree-B-Tree"><span class="toc-number">1.2.</span> <span class="toc-text">The Search Tree (B-Tree)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#The-Where-Clause"><span class="toc-number">2.</span> <span class="toc-text">The Where Clause</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        SQL Performance Explained
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Notes</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2020-01-04T17:00:00.000Z" itemprop="datePublished">2020-01-05</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/NOTES/" rel="tag">NOTES</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <blockquote>
+<p>The notes of mine after read SQL Performance Explained Ebook.</p>
+</blockquote>
+<h2 id="Anatomy-of-an-Index"><a href="#Anatomy-of-an-Index" class="headerlink" title="Anatomy of an Index"></a>Anatomy of an Index</h2><p>Cơ sở dữ liệu sử dụng 2 loại cấu trúc để lưu trữ index. <strong>B-Tree</strong> và <strong>Doubly Linked List</strong>. Vì vậy cách sử dụng 2 loại cấu trúc này sẽ giải thích cho phần lớn các đặc tính của SQL.</p>
+<h3 id="Doubly-Linked-List"><a href="#Doubly-Linked-List" class="headerlink" title="Doubly Linked List"></a>Doubly Linked List</h3><ol>
+<li><p>Mỗi một node (node chứa index) sẽ là một node trong 1 node trong 1 <strong>Doubly Linked List</strong>, vì vậy nó sẽ có liên kết tới đến 2 node lân cận (một trước và một sau). Khi ta muốn chèn thêm 1 node mới vào dslk đôi này. Ta sẽ tìm vị trí 2 node cần chèn node mới vào giữa chúng, đơn giản chỉ thay đổi con trỏ của 2 node đó. Vì thế vị trí vật lý của node mới không quan trọng. Lợi ích của việc này là giúp việc chèn thêm dữ liệu không tốn quá nhiều công sức, chỉ thay đổi vài con trỏ.</p>
+</li>
+<li><p>Mỗi <strong>leaf node</strong> được lưu chữ trong 1 block/page. Mỗi block sẽ thườn là 1 vài KB, csdl sẽ cố gắng lưu nhiều node (node chưa index) nhất có thể trong mỗi block/page. Vậy csdl sẽ dùng dsdl đôi để quản lý trong 2 cấp (Dùng trong các node thuộc 1 block/page và dùng giữa các blog với nhau). Hiểu đơn giản như ta chia Việt Nam thành 63 block ứng với 63 tỉnh thành. Mỗi khi ta muốn tìm 1 tỉnh nào đó thì tìm trong sdl đôi của 63 tỉnh. Khi đã tìm thấy tỉnh cần tìm ta muốn tìm đến huyện (các huyện trong tỉnh đó cũng dùng dslk đôi để kết nối). Nhìn hình dưới đây.</p>
+</li>
+</ol>
+<p><img src="/../images/leaf-node.png" alt="2 level doubly linked list"></p>
+<h3 id="The-Search-Tree-B-Tree"><a href="#The-Search-Tree-B-Tree" class="headerlink" title="The Search Tree (B-Tree)"></a>The Search Tree (B-Tree)</h3><ol>
+<li>Dslk đôi giúp thực hiện nhanh các thao tác chèn, xoá node, tuy nhiên vậy còn tìm kiếm thì sao. Nhớ lại cấu trúc dslk thì việc tìm kiếm là tuyến tính, vì vậy chúng ta cần một cấu trúc dữ liệu bổ sung để giúp csdl biết được đối tượng cần tìm đang nằm trong block/page nào 1 cách nhanh chóng. Và cấu trúc dữ liệu được chọn là B-Tree. Nhìn hình dưới đây:</li>
+</ol>
+<p><img src="/../images/b-tree-sql.png" alt="b-tree"></p>
+<ol start="2">
+<li><p>Như hình trên. Dslk đôi giúp sắp xếp các node và các block/page. Root và <strong>branch node</strong> giúp đẩy nhanh quá trình tìm kiếm 1 block/page cần thiết.</p>
+</li>
+<li><p>Lý do B-Tree được lựa chọn và sử dụng rộng rãi là vì đặc tính cân bằng của cây. Độ cao của cây là không đổi từ root đến bất kể node lá nào. Tính tăng trưởng chiều cao của cây theo Logarit khi tăng node lá dẫn đến 1 cây bậc 4, 5 có thể chứa hàng triệu node và trong thực tế gần như không có trường hợp nào có độ sâu lên đến 6.</p>
+</li>
+</ol>
+<h2 id="The-Where-Clause"><a href="#The-Where-Clause" class="headerlink" title="The Where Clause"></a>The Where Clause</h2>
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/projects/">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Anatomy-of-an-Index"><span class="toc-number">1.</span> <span class="toc-text">Anatomy of an Index</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Doubly-Linked-List"><span class="toc-number">1.1.</span> <span class="toc-text">Doubly Linked List</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#The-Search-Tree-B-Tree"><span class="toc-number">1.2.</span> <span class="toc-text">The Search Tree (B-Tree)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#The-Where-Clause"><span class="toc-number">2.</span> <span class="toc-text">The Where Clause</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2020/01/05/2020-01-05-sql-performance-explained-notes/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2020/01/05/2020-01-05-sql-performance-explained-notes/&text=SQL Performance Explained" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2020/01/05/2020-01-05-sql-performance-explained-notes/&title=SQL Performance Explained" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2020/01/05/2020-01-05-sql-performance-explained-notes/&is_video=false&description=SQL Performance Explained" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=SQL Performance Explained&body=Check out this article: https://hdchinh.github.io/2020/01/05/2020-01-05-sql-performance-explained-notes/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2020/01/05/2020-01-05-sql-performance-explained-notes/&title=SQL Performance Explained" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2020/01/05/2020-01-05-sql-performance-explained-notes/&title=SQL Performance Explained" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2020/01/05/2020-01-05-sql-performance-explained-notes/&title=SQL Performance Explained" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2020/01/05/2020-01-05-sql-performance-explained-notes/&title=SQL Performance Explained" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2020/01/05/2020-01-05-sql-performance-explained-notes/&name=SQL Performance Explained&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2020 Tam Thể
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/projects/">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/lib/clipboard/clipboard.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight .code pre").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      target: function(trigger) {
+        return trigger.nextElementSibling;
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

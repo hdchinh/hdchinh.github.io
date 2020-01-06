@@ -6,17 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="The notes of mine after read SQL Performance Explained Ebook.  Anatomy of an IndexCơ sở dữ liệu sử dụng 2 loại cấu trúc để lưu trữ index. B-Tree và Doubly Linked List. Vì vậy cách sử dụng 2 loại cấu">
+    <meta name="description" content="The notes of mine after read SQL Performance Explained Ebook (boring, but helpful).  Anatomy of an IndexCơ sở dữ liệu sử dụng 2 loại cấu trúc để lưu trữ index. B-Tree và Doubly Linked List. Vì vậy cá">
 <meta name="keywords" content="NOTES">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SQL Performance Explained">
 <meta property="og:url" content="https:&#x2F;&#x2F;hdchinh.github.io&#x2F;2020&#x2F;01&#x2F;05&#x2F;2020-01-05-sql-performance-explained-notes&#x2F;index.html">
 <meta property="og:site_name" content="Notes">
-<meta property="og:description" content="The notes of mine after read SQL Performance Explained Ebook.  Anatomy of an IndexCơ sở dữ liệu sử dụng 2 loại cấu trúc để lưu trữ index. B-Tree và Doubly Linked List. Vì vậy cách sử dụng 2 loại cấu">
+<meta property="og:description" content="The notes of mine after read SQL Performance Explained Ebook (boring, but helpful).  Anatomy of an IndexCơ sở dữ liệu sử dụng 2 loại cấu trúc để lưu trữ index. B-Tree và Doubly Linked List. Vì vậy cá">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https:&#x2F;&#x2F;hdchinh.github.io&#x2F;images&#x2F;leaf-node.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;hdchinh.github.io&#x2F;images&#x2F;b-tree-sql.png">
-<meta property="og:updated_time" content="2020-01-05T14:11:28.705Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;hdchinh.github.io&#x2F;images&#x2F;2-col.png">
+<meta property="og:updated_time" content="2020-01-06T12:21:13.472Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;hdchinh.github.io&#x2F;images&#x2F;leaf-node.png">
     
@@ -102,7 +103,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Anatomy-of-an-Index"><span class="toc-number">1.</span> <span class="toc-text">Anatomy of an Index</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Doubly-Linked-List"><span class="toc-number">1.1.</span> <span class="toc-text">Doubly Linked List</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#The-Search-Tree-B-Tree"><span class="toc-number">1.2.</span> <span class="toc-text">The Search Tree (B-Tree)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#The-Where-Clause"><span class="toc-number">2.</span> <span class="toc-text">The Where Clause</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Anatomy-of-an-Index"><span class="toc-number">1.</span> <span class="toc-text">Anatomy of an Index</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Doubly-Linked-List"><span class="toc-number">1.1.</span> <span class="toc-text">Doubly Linked List</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#The-Search-Tree-B-Tree"><span class="toc-number">1.2.</span> <span class="toc-text">The Search Tree (B-Tree)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#The-Where-Clause"><span class="toc-number">2.</span> <span class="toc-text">The Where Clause</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Concatenated-Indexes"><span class="toc-number">2.1.</span> <span class="toc-text">Concatenated Indexes</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Functions"><span class="toc-number">2.2.</span> <span class="toc-text">Functions</span></a></li></ol></li></ol>
     </div>
   </span>
 </div>
@@ -147,11 +148,11 @@
 
   <div class="content" itemprop="articleBody">
     <blockquote>
-<p>The notes of mine after read SQL Performance Explained Ebook.</p>
+<p>The notes of mine after read SQL Performance Explained Ebook (boring, but helpful).</p>
 </blockquote>
 <h2 id="Anatomy-of-an-Index"><a href="#Anatomy-of-an-Index" class="headerlink" title="Anatomy of an Index"></a>Anatomy of an Index</h2><p>Cơ sở dữ liệu sử dụng 2 loại cấu trúc để lưu trữ index. <strong>B-Tree</strong> và <strong>Doubly Linked List</strong>. Vì vậy cách sử dụng 2 loại cấu trúc này sẽ giải thích cho phần lớn các đặc tính của SQL.</p>
 <h3 id="Doubly-Linked-List"><a href="#Doubly-Linked-List" class="headerlink" title="Doubly Linked List"></a>Doubly Linked List</h3><ol>
-<li><p>Mỗi một node (node chứa index) sẽ là một node trong 1 node trong 1 <strong>Doubly Linked List</strong>, vì vậy nó sẽ có liên kết tới đến 2 node lân cận (một trước và một sau). Khi ta muốn chèn thêm 1 node mới vào dslk đôi này. Ta sẽ tìm vị trí 2 node cần chèn node mới vào giữa chúng, đơn giản chỉ thay đổi con trỏ của 2 node đó. Vì thế vị trí vật lý của node mới không quan trọng. Lợi ích của việc này là giúp việc chèn thêm dữ liệu không tốn quá nhiều công sức, chỉ thay đổi vài con trỏ.</p>
+<li><p>Mỗi một node (node chứa index) sẽ là một node trong 1 <strong>Doubly Linked List</strong>, vì vậy nó sẽ có liên kết tới đến 2 node lân cận (một trước và một sau). Khi ta muốn chèn thêm 1 node mới vào dslk đôi này. Ta sẽ tìm vị trí 2 node cần chèn node mới vào giữa chúng, đơn giản chỉ thay đổi con trỏ của 2 node đó. Vì thế vị trí vật lý của node mới không quan trọng. Lợi ích của việc này là giúp việc chèn thêm dữ liệu không tốn quá nhiều công sức, chỉ thay đổi vài con trỏ.</p>
 </li>
 <li><p>Mỗi <strong>leaf node</strong> được lưu chữ trong 1 block/page. Mỗi block sẽ thườn là 1 vài KB, csdl sẽ cố gắng lưu nhiều node (node chưa index) nhất có thể trong mỗi block/page. Vậy csdl sẽ dùng dsdl đôi để quản lý trong 2 cấp (Dùng trong các node thuộc 1 block/page và dùng giữa các blog với nhau). Hiểu đơn giản như ta chia Việt Nam thành 63 block ứng với 63 tỉnh thành. Mỗi khi ta muốn tìm 1 tỉnh nào đó thì tìm trong sdl đôi của 63 tỉnh. Khi đã tìm thấy tỉnh cần tìm ta muốn tìm đến huyện (các huyện trong tỉnh đó cũng dùng dslk đôi để kết nối). Nhìn hình dưới đây.</p>
 </li>
@@ -167,7 +168,33 @@
 <li><p>Lý do B-Tree được lựa chọn và sử dụng rộng rãi là vì đặc tính cân bằng của cây. Độ cao của cây là không đổi từ root đến bất kể node lá nào. Tính tăng trưởng chiều cao của cây theo Logarit khi tăng node lá dẫn đến 1 cây bậc 4, 5 có thể chứa hàng triệu node và trong thực tế gần như không có trường hợp nào có độ sâu lên đến 6.</p>
 </li>
 </ol>
-<h2 id="The-Where-Clause"><a href="#The-Where-Clause" class="headerlink" title="The Where Clause"></a>The Where Clause</h2>
+<h2 id="The-Where-Clause"><a href="#The-Where-Clause" class="headerlink" title="The Where Clause"></a>The Where Clause</h2><h3 id="Concatenated-Indexes"><a href="#Concatenated-Indexes" class="headerlink" title="Concatenated Indexes"></a>Concatenated Indexes</h3><ol>
+<li><p>Các hệ quản trị cơ sở dữ liệu hiện nay sẽ đánh index cho khoá chính một cách tự động.</p>
+</li>
+<li><p><strong>Concatenated Indexes</strong>: Index được tạo bằng nhiều cột.</p>
+</li>
+<li><p>Một index được tạo từ 2 cột ví dụ <strong>col-1</strong> và <strong>col-2</strong> thì trong 1 câu truy vấn where dùng với 2 cột trên, index sẽ hoạt động không khác gì so với index một cột cả. Tuy nhiên thứ tự 2 cột trong câu lệnh tạo index sẽ rất quan trọng.</p>
+</li>
+</ol>
+<p>e.g:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">UNIQUE</span> <span class="keyword">INDEX</span> employee_pk</span><br><span class="line">  <span class="keyword">ON</span> employees (employee_id, subsidiary_id);</span><br></pre></td></tr></table></figure>
+
+<p>Khi này nếu chúng ta dùng truy vấn sau:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> first_name, last_name</span><br><span class="line">  <span class="keyword">FROM</span> employees</span><br><span class="line">  <span class="keyword">WHERE</span> subsidiary_id = <span class="number">20</span>;</span><br></pre></td></tr></table></figure>
+
+<p>Index sẽ tạo bên trên vô dụng và csdl sẽ full scan toàn bộ bảng employees.</p>
+<blockquote>
+<p>Cột đầu tiên sẽ là tiêu chí chính để xác định record cần tìm, chỉ sử dụng cột thứ 2 khi mà có nhiều hơn 1 record đáp ứng được tiêu chí về cột đầu tiên. Vì vậy 1 truy vấn với cột thứ 2 sẽ là vô nghĩa.</p>
+</blockquote>
+<p><img src="/../images/2-col.png" alt="2-col"></p>
+<p>Trong hình trên ta có thể thấy, B-Tree được sắp xếp theo cột đầu tiên, và ta chỉ sử dụng cột thứ 2 khi có nhiều hơn 1 record đáp ứng được điều kiện với cột đầu tiên. Ví dụ như record có id = 123, B-Tree sẽ dẫn chúng ta tới block chứa id này, ở đây vì có nhiều hơn 1 record có id = 123. Nó mới dựa vào cột thứ 2 để lấy record cần tìm. Vậy nếu ta query với điều kiện where chỉ có cột thứ 2 thì rõ ràng là hoàn toàn vô nghĩa.</p>
+<ol start="4">
+<li>Bản thân B-Tree trong trường hớp này cũng chỉ lưu cột thứ 2 ở node lá mà thôi, những node trung gian không có thông tin của cột 2.</li>
+</ol>
+<blockquote>
+<p>Điều quan trọng nhất khi tạo một index gồm nhiều cột là xác định xem nên chọn cột nào làm cột đầu tiên trong index.</p>
+</blockquote>
+<h3 id="Functions"><a href="#Functions" class="headerlink" title="Functions"></a>Functions</h3>
   </div>
 </article>
 
@@ -192,7 +219,7 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Anatomy-of-an-Index"><span class="toc-number">1.</span> <span class="toc-text">Anatomy of an Index</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Doubly-Linked-List"><span class="toc-number">1.1.</span> <span class="toc-text">Doubly Linked List</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#The-Search-Tree-B-Tree"><span class="toc-number">1.2.</span> <span class="toc-text">The Search Tree (B-Tree)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#The-Where-Clause"><span class="toc-number">2.</span> <span class="toc-text">The Where Clause</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Anatomy-of-an-Index"><span class="toc-number">1.</span> <span class="toc-text">Anatomy of an Index</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Doubly-Linked-List"><span class="toc-number">1.1.</span> <span class="toc-text">Doubly Linked List</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#The-Search-Tree-B-Tree"><span class="toc-number">1.2.</span> <span class="toc-text">The Search Tree (B-Tree)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#The-Where-Clause"><span class="toc-number">2.</span> <span class="toc-text">The Where Clause</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Concatenated-Indexes"><span class="toc-number">2.1.</span> <span class="toc-text">Concatenated Indexes</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Functions"><span class="toc-number">2.2.</span> <span class="toc-text">Functions</span></a></li></ol></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">

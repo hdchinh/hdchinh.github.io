@@ -17,7 +17,7 @@
 <meta property="og:image" content="https:&#x2F;&#x2F;hdchinh.github.io&#x2F;images&#x2F;leaf-node.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;hdchinh.github.io&#x2F;images&#x2F;b-tree-sql.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;hdchinh.github.io&#x2F;images&#x2F;2-col.png">
-<meta property="og:updated_time" content="2020-01-06T12:21:13.472Z">
+<meta property="og:updated_time" content="2020-01-07T13:14:52.959Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;hdchinh.github.io&#x2F;images&#x2F;leaf-node.png">
     
@@ -103,7 +103,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Anatomy-of-an-Index"><span class="toc-number">1.</span> <span class="toc-text">Anatomy of an Index</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Doubly-Linked-List"><span class="toc-number">1.1.</span> <span class="toc-text">Doubly Linked List</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#The-Search-Tree-B-Tree"><span class="toc-number">1.2.</span> <span class="toc-text">The Search Tree (B-Tree)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#The-Where-Clause"><span class="toc-number">2.</span> <span class="toc-text">The Where Clause</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Concatenated-Indexes"><span class="toc-number">2.1.</span> <span class="toc-text">Concatenated Indexes</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Functions"><span class="toc-number">2.2.</span> <span class="toc-text">Functions</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Anatomy-of-an-Index"><span class="toc-number">1.</span> <span class="toc-text">Anatomy of an Index</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Doubly-Linked-List"><span class="toc-number">1.1.</span> <span class="toc-text">Doubly Linked List</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#The-Search-Tree-B-Tree"><span class="toc-number">1.2.</span> <span class="toc-text">The Search Tree (B-Tree)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#The-Where-Clause"><span class="toc-number">2.</span> <span class="toc-text">The Where Clause</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Concatenated-Indexes"><span class="toc-number">2.1.</span> <span class="toc-text">Concatenated Indexes</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Function-base-index"><span class="toc-number">2.2.</span> <span class="toc-text">Function-base index</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#User-Defined-Functions"><span class="toc-number">2.3.</span> <span class="toc-text">User-Defined Functions</span></a></li></ol></li></ol>
     </div>
   </span>
 </div>
@@ -194,7 +194,38 @@
 <blockquote>
 <p>Điều quan trọng nhất khi tạo một index gồm nhiều cột là xác định xem nên chọn cột nào làm cột đầu tiên trong index.</p>
 </blockquote>
-<h3 id="Functions"><a href="#Functions" class="headerlink" title="Functions"></a>Functions</h3>
+<h3 id="Function-base-index"><a href="#Function-base-index" class="headerlink" title="Function-base index"></a>Function-base index</h3><p>Trong trường hợp đã đánh index cho cột <strong>last_name</strong>, vì không kiểm soát được dữ liệu của người dùng nhập và dữ liệu trong csdl, chữ hoa và chữ thường trong trường hợp này không phân biệt. Vậy ta nên làm gì?</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> first_name, last_name, phone_number</span><br><span class="line">  <span class="keyword">FROM</span> employees</span><br><span class="line">  <span class="keyword">WHERE</span> <span class="keyword">UPPER</span>(last_name) = <span class="keyword">UPPER</span>(<span class="string">'winand'</span>);</span><br></pre></td></tr></table></figure>
+
+<p>Tìm các record có last_name = ‘winand’, trước khi tìm kiếm thì sẽ dùng hàm UPPER để covert dữ liệu sang chữ hoa khi so khớp. Nhớ điều kiện bên trên, chúng ta đã đánh index cho field <strong>last_name</strong> tuy nhiên trong trường hợp này index sẽ không còn hoạt động, thay vào đó là 1 full scan toàn bộ bảng.</p>
+<p>Mô tuýt:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> first_name, last_name, phone_number</span><br><span class="line">  <span class="keyword">FROM</span> employees</span><br><span class="line">  <span class="keyword">WHERE</span> BLACKBOX(...) = <span class="string">'WINAND'</span>;</span><br></pre></td></tr></table></figure>
+
+<p>Trong đó thay <strong>BLACKBOX</strong> bằng một function bất kỳ, ứng với việc index không còn hoạt động.</p>
+<p>Giải pháp: Đánh index luôn giá trị thực sự sẽ dùng khi tìm kiếm, ở đây là last_name dưới dạng viết hoa.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">INDEX</span> emp_up_name</span><br><span class="line">  <span class="keyword">ON</span> employees (<span class="keyword">UPPER</span>(last_name));</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Ta gọi chỉ mục được tạo trên là function-based index (FBI), chỉ mục dựa trên function.</p>
+</blockquote>
+<p>Thay vì copy luôn dữ liệu cột được đánh vào cây index. Một function-based index sẽ apply function vào dữ liệu trước khi ghi vào cây index. Vậy trong ví dụ trên, cây index sẽ chứa toàn bộ last_name dưới dạng chữ hoa.</p>
+<blockquote>
+<p>Một số ORM dùng upper/lower 1 cách ngầm và mặc định, chớ không cần dev phải trực tiếp thực hiện, ví dụ như Hibernate sẽ tự động thực hiện function-based index với lower của cột cần đánh.</p>
+</blockquote>
+<p>Trên là kiến thức SQL, với các hệ quản trị cơ sở dữ liệu trong thực tế, cách thực hiện không phải lúc nào cũng như vậy.</p>
+<h3 id="User-Defined-Functions"><a href="#User-Defined-Functions" class="headerlink" title="User-Defined Functions"></a>User-Defined Functions</h3><p>Không phải function nào cũng có thể dùng cho function-based index.</p>
+<p>Chỉ những function là <strong>deterministic</strong> mới có thể dùng trong function-based index.</p>
+<blockquote>
+<p>deterministic: những function trả về cùng một kết quả khi nhận tham số giống nhau.</p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">FUNCTION</span> get_age(date_of_birth <span class="built_in">DATE</span>)</span><br><span class="line"><span class="keyword">RETURN</span> <span class="built_in">NUMBER</span></span><br><span class="line"><span class="keyword">AS</span></span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line"> <span class="keyword">RETURN</span></span><br><span class="line"> TRUNC(MONTHS_BETWEEN(<span class="keyword">SYSDATE</span>, date_of_birth)/<span class="number">12</span>);</span><br><span class="line"><span class="keyword">END</span>;</span><br></pre></td></tr></table></figure>
+
+<p>Không thể dùng <strong>get_age</strong> cho function-based index. Vì ví dụ tôi sinh ngày 30/08/1995. Ứng với mỗi thời điểm khác nhau output của hàm này sẽ khác nhau với cùng một đối số truyền vào là ngày sinh của tôi. Vậy nên nó không dùng để function-based index được.</p>
+<blockquote>
+<p>Các function khác không thể dụng cho index là function random hoặc function dựa trên biến môi trường.</p>
+</blockquote>
+<p>Notes: Giả sử chúng ta đánh index cho cột <strong>last_name</strong> rồi đánh tiếp cho <strong>UPPER(last_name)</strong>, với mỗi lần update đối tượng có trường last_name, đồng nghĩa chúng ta phải update cho 2 index. Ứng với 2 index đã đánh, vì vậy không nên đánh index quá nhiều, nhất là với function-based index.</p>
+
   </div>
 </article>
 
@@ -219,7 +250,7 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Anatomy-of-an-Index"><span class="toc-number">1.</span> <span class="toc-text">Anatomy of an Index</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Doubly-Linked-List"><span class="toc-number">1.1.</span> <span class="toc-text">Doubly Linked List</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#The-Search-Tree-B-Tree"><span class="toc-number">1.2.</span> <span class="toc-text">The Search Tree (B-Tree)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#The-Where-Clause"><span class="toc-number">2.</span> <span class="toc-text">The Where Clause</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Concatenated-Indexes"><span class="toc-number">2.1.</span> <span class="toc-text">Concatenated Indexes</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Functions"><span class="toc-number">2.2.</span> <span class="toc-text">Functions</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Anatomy-of-an-Index"><span class="toc-number">1.</span> <span class="toc-text">Anatomy of an Index</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Doubly-Linked-List"><span class="toc-number">1.1.</span> <span class="toc-text">Doubly Linked List</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#The-Search-Tree-B-Tree"><span class="toc-number">1.2.</span> <span class="toc-text">The Search Tree (B-Tree)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#The-Where-Clause"><span class="toc-number">2.</span> <span class="toc-text">The Where Clause</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Concatenated-Indexes"><span class="toc-number">2.1.</span> <span class="toc-text">Concatenated Indexes</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Function-base-index"><span class="toc-number">2.2.</span> <span class="toc-text">Function-base index</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#User-Defined-Functions"><span class="toc-number">2.3.</span> <span class="toc-text">User-Defined Functions</span></a></li></ol></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">

@@ -17,7 +17,9 @@
 <meta property="og:image" content="https:&#x2F;&#x2F;hdchinh.github.io&#x2F;images&#x2F;leaf-node.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;hdchinh.github.io&#x2F;images&#x2F;b-tree-sql.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;hdchinh.github.io&#x2F;images&#x2F;2-col.png">
-<meta property="og:updated_time" content="2020-01-07T13:14:52.959Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;hdchinh.github.io&#x2F;images&#x2F;date-first.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;hdchinh.github.io&#x2F;images&#x2F;sub-first.png">
+<meta property="og:updated_time" content="2020-01-08T14:04:40.459Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;hdchinh.github.io&#x2F;images&#x2F;leaf-node.png">
     
@@ -75,6 +77,8 @@
     <span id="actions">
       <ul>
         
+        <li><a class="icon" href="/2020/01/08/2020-01-08-reactjs-notes/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
         
         <li><a class="icon" href="/2019/12/28/2019-12-28-clone-object-and-array-in-javascript/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
@@ -103,7 +107,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Anatomy-of-an-Index"><span class="toc-number">1.</span> <span class="toc-text">Anatomy of an Index</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Doubly-Linked-List"><span class="toc-number">1.1.</span> <span class="toc-text">Doubly Linked List</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#The-Search-Tree-B-Tree"><span class="toc-number">1.2.</span> <span class="toc-text">The Search Tree (B-Tree)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#The-Where-Clause"><span class="toc-number">2.</span> <span class="toc-text">The Where Clause</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Concatenated-Indexes"><span class="toc-number">2.1.</span> <span class="toc-text">Concatenated Indexes</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Function-base-index"><span class="toc-number">2.2.</span> <span class="toc-text">Function-base index</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#User-Defined-Functions"><span class="toc-number">2.3.</span> <span class="toc-text">User-Defined Functions</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Anatomy-of-an-Index"><span class="toc-number">1.</span> <span class="toc-text">Anatomy of an Index</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Doubly-Linked-List"><span class="toc-number">1.1.</span> <span class="toc-text">Doubly Linked List</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#The-Search-Tree-B-Tree"><span class="toc-number">1.2.</span> <span class="toc-text">The Search Tree (B-Tree)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#The-Where-Clause"><span class="toc-number">2.</span> <span class="toc-text">The Where Clause</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Concatenated-Indexes"><span class="toc-number">2.1.</span> <span class="toc-text">Concatenated Indexes</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Function-base-index"><span class="toc-number">2.2.</span> <span class="toc-text">Function-base index</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#User-Defined-Functions"><span class="toc-number">2.3.</span> <span class="toc-text">User-Defined Functions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Parameterized-Queries"><span class="toc-number">2.4.</span> <span class="toc-text">Parameterized Queries</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Searching-for-Ranges"><span class="toc-number">2.5.</span> <span class="toc-text">Searching for Ranges</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Indexing-LIKE-Filters"><span class="toc-number">2.6.</span> <span class="toc-text">Indexing LIKE Filters</span></a></li></ol></li></ol>
     </div>
   </span>
 </div>
@@ -225,7 +229,36 @@
 <p>Các function khác không thể dụng cho index là function random hoặc function dựa trên biến môi trường.</p>
 </blockquote>
 <p>Notes: Giả sử chúng ta đánh index cho cột <strong>last_name</strong> rồi đánh tiếp cho <strong>UPPER(last_name)</strong>, với mỗi lần update đối tượng có trường last_name, đồng nghĩa chúng ta phải update cho 2 index. Ứng với 2 index đã đánh, vì vậy không nên đánh index quá nhiều, nhất là với function-based index.</p>
+<h3 id="Parameterized-Queries"><a href="#Parameterized-Queries" class="headerlink" title="Parameterized Queries"></a>Parameterized Queries</h3><blockquote>
+<p>Bind parameters/dynamic parameters/ bind variables là một cách truyền tham số vào câu query gián tiếp bằng các ký hiệu như <strong>?</strong>, <strong>:name</strong>, <strong>@name</strong>.</p>
+</blockquote>
+<blockquote>
+<p>Bind variables are the best way to prevent SQL injection.</p>
+</blockquote>
+<blockquote>
+<p>Các hệ quản trị csdl sẽ cache lại các dữ liệu đường truy cập y hệt nhau. Khi ta thay đổi tham số truyền vào hệ cơ sở dữ liệu sẽ query mới và không còn dùng cache.</p>
+</blockquote>
+<blockquote>
+<p>Not using bind parameters is like recompiling a program every time.</p>
+</blockquote>
+<h3 id="Searching-for-Ranges"><a href="#Searching-for-Ranges" class="headerlink" title="Searching for Ranges"></a>Searching for Ranges</h3><blockquote>
+<p>Rủi do hiệu suất lớn nhất với INDEX RANGE SCAN là quá trình duyệt qua nút lá.</p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> first_name, last_name, date_of_birth</span><br><span class="line">  <span class="keyword">FROM</span> employees</span><br><span class="line">  <span class="keyword">WHERE</span> date_of_birth &gt;= <span class="keyword">TO_DATE</span>(?, <span class="string">'YYYY-MM-DD'</span>)</span><br><span class="line">  <span class="keyword">AND</span> date_of_birth &lt;= <span class="keyword">TO_DATE</span>(?, <span class="string">'YYYY-MM-DD'</span>)</span><br><span class="line">  <span class="keyword">AND</span> subsidiary_id = ?</span><br></pre></td></tr></table></figure>
 
+<p>Ok, giờ chúng ta có một câu truy vấn như trên, tìm tất cả nhân viên có subsidiary_id = 27 và ngày sinh nằm trong khoảng 1/1/1971 và 9/1/1971.</p>
+<p>Chúng ta sẽ đánh index cho 2 cột trên, đánh như bên trên đã ghi. Tuy nhiên <strong>thứ tự đánh index</strong> như nào?</p>
+<p><strong>Trường hợp xếp date_or_birth trước</strong>:</p>
+<p><img src="/../images/date-first.png" alt="date- first"></p>
+<p><strong>Trường hợp xếp subsidiary_id trước</strong>:</p>
+<p><img src="/../images/sub-first.png" alt="sub- first"></p>
+<p><strong>Tại sao trường hợp cho subsidiary_id đầu tiên trong index lại đem lại performance tốt hơn?</strong></p>
+<p>Lý giải: khi dùng range first, kiểu gì cũng phải duyệt hết range đó thôi, record nào trong range đó là sẽ được duyệt qua rồi so khớp với điều kiện so bằng thứ hai.</p>
+<p>Khi dùng trường so bằng đầu tiên, ta làm giảm phạm vì số record cần quét qua (theo quy tắc của B-Tree).</p>
+<blockquote>
+<p>Rule of thumb: index for equality first—then for ranges.</p>
+</blockquote>
+<h3 id="Indexing-LIKE-Filters"><a href="#Indexing-LIKE-Filters" class="headerlink" title="Indexing LIKE Filters"></a>Indexing LIKE Filters</h3>
   </div>
 </article>
 
@@ -250,7 +283,7 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Anatomy-of-an-Index"><span class="toc-number">1.</span> <span class="toc-text">Anatomy of an Index</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Doubly-Linked-List"><span class="toc-number">1.1.</span> <span class="toc-text">Doubly Linked List</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#The-Search-Tree-B-Tree"><span class="toc-number">1.2.</span> <span class="toc-text">The Search Tree (B-Tree)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#The-Where-Clause"><span class="toc-number">2.</span> <span class="toc-text">The Where Clause</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Concatenated-Indexes"><span class="toc-number">2.1.</span> <span class="toc-text">Concatenated Indexes</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Function-base-index"><span class="toc-number">2.2.</span> <span class="toc-text">Function-base index</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#User-Defined-Functions"><span class="toc-number">2.3.</span> <span class="toc-text">User-Defined Functions</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Anatomy-of-an-Index"><span class="toc-number">1.</span> <span class="toc-text">Anatomy of an Index</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Doubly-Linked-List"><span class="toc-number">1.1.</span> <span class="toc-text">Doubly Linked List</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#The-Search-Tree-B-Tree"><span class="toc-number">1.2.</span> <span class="toc-text">The Search Tree (B-Tree)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#The-Where-Clause"><span class="toc-number">2.</span> <span class="toc-text">The Where Clause</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Concatenated-Indexes"><span class="toc-number">2.1.</span> <span class="toc-text">Concatenated Indexes</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Function-base-index"><span class="toc-number">2.2.</span> <span class="toc-text">Function-base index</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#User-Defined-Functions"><span class="toc-number">2.3.</span> <span class="toc-text">User-Defined Functions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Parameterized-Queries"><span class="toc-number">2.4.</span> <span class="toc-text">Parameterized Queries</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Searching-for-Ranges"><span class="toc-number">2.5.</span> <span class="toc-text">Searching for Ranges</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Indexing-LIKE-Filters"><span class="toc-number">2.6.</span> <span class="toc-text">Indexing LIKE Filters</span></a></li></ol></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">

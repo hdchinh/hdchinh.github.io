@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="Rbenv does not show all version ruby.   Reseaon: ruby-build outdated Solution: update ruby-build  Find ruby-build folder and pull the latest code, just type git pull (it is a repository).  Apply boot">
+    <meta name="description" content="1. Rbenv does not show all version ruby. Reseaon: ruby-build outdated Solution: update ruby-build  Find ruby-build folder and pull the latest code, just type git pull (it is a repository). 2. Apply bo">
 <meta name="keywords" content="NOTES">
 <meta property="og:type" content="article">
 <meta property="og:title" content="New Project Notes">
 <meta property="og:url" content="https:&#x2F;&#x2F;hdchinh.github.io&#x2F;2020&#x2F;02&#x2F;05&#x2F;2020-02-05-the-first-note-in-the-new-luna-year&#x2F;index.html">
 <meta property="og:site_name" content="Notes">
-<meta property="og:description" content="Rbenv does not show all version ruby.   Reseaon: ruby-build outdated Solution: update ruby-build  Find ruby-build folder and pull the latest code, just type git pull (it is a repository).  Apply boot">
+<meta property="og:description" content="1. Rbenv does not show all version ruby. Reseaon: ruby-build outdated Solution: update ruby-build  Find ruby-build folder and pull the latest code, just type git pull (it is a repository). 2. Apply bo">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-02-06T13:29:02.240Z">
+<meta property="og:updated_time" content="2020-02-15T14:50:19.411Z">
 <meta name="twitter:card" content="summary">
     
     
@@ -59,11 +59,11 @@
         
           <li><a href="/">Home</a></li>
         
-          <li><a href="/about/">About</a></li>
-        
           <li><a href="/archives/">Writing</a></li>
         
           <li><a href="/projects/">Projects</a></li>
+        
+          <li><a href="/til/">TIL</a></li>
         
       </ul>
     </span>
@@ -99,7 +99,7 @@
 
     </div>
     <div id="toc">
-      
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Rbenv-does-not-show-all-version-ruby"><span class="toc-number">1.</span> <span class="toc-text">1. Rbenv does not show all version ruby.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Apply-bootstrap-for-rails-6"><span class="toc-number">2.</span> <span class="toc-text">2. Apply bootstrap for rails 6</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Apply-git-ignore-to-committed-files"><span class="toc-number">3.</span> <span class="toc-text">3. Apply git ignore to committed files</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Rename-both-local-and-remote-branch"><span class="toc-number">4.</span> <span class="toc-text">4. Rename both local and remote branch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-References"><span class="toc-number">5.</span> <span class="toc-text">5. References</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -143,18 +143,12 @@
   
 
   <div class="content" itemprop="articleBody">
-    <ol>
-<li>Rbenv does not show all version ruby.</li>
-</ol>
-<ul>
+    <h2 id="1-Rbenv-does-not-show-all-version-ruby"><a href="#1-Rbenv-does-not-show-all-version-ruby" class="headerlink" title="1. Rbenv does not show all version ruby."></a>1. Rbenv does not show all version ruby.</h2><ul>
 <li>Reseaon: ruby-build outdated</li>
 <li>Solution: update ruby-build</li>
 </ul>
 <p>Find ruby-build folder and pull the latest code, just type <strong>git pull</strong> (it is a repository).</p>
-<ol start="2">
-<li>Apply bootstrap for rails 6</li>
-</ol>
-<ul>
+<h2 id="2-Apply-bootstrap-for-rails-6"><a href="#2-Apply-bootstrap-for-rails-6" class="headerlink" title="2. Apply bootstrap for rails 6"></a>2. Apply bootstrap for rails 6</h2><ul>
 <li><p>step 1: <strong>yarn add bootstrap jquery popper.js</strong></p>
 </li>
 <li><p>step 2: add the code below to <strong>config/webpack/environment.js</strong></p>
@@ -168,23 +162,16 @@
 <li><p>step 4: add to <strong>app/assets/stylesheets/application.css</strong><br>@import “bootstrap/scss/bootstrap”;</p>
 </li>
 </ul>
-<ol start="3">
-<li>Apply git ignore to committed files</li>
-</ol>
-<ul>
+<h2 id="3-Apply-git-ignore-to-committed-files"><a href="#3-Apply-git-ignore-to-committed-files" class="headerlink" title="3. Apply git ignore to committed files"></a>3. Apply git ignore to committed files</h2><ul>
 <li>step 1: edit <strong>.gitignore</strong></li>
 <li>step 2: <strong>git rm –cached /path/to/file* or *git rm –cached -r /path/to/folder</strong></li>
 </ul>
-<ol start="4">
-<li>Rename both local and remote branch</li>
-</ol>
-<ul>
+<h2 id="4-Rename-both-local-and-remote-branch"><a href="#4-Rename-both-local-and-remote-branch" class="headerlink" title="4. Rename both local and remote branch"></a>4. Rename both local and remote branch</h2><ul>
 <li>step 1: rename local branch <strong>git branch -m new-name</strong></li>
 <li>step 2: delete old remote branch <strong>git push origin :old-name new-name</strong></li>
 <li>step 3: update for the new romote branch <strong>git push origin -u new-name</strong></li>
 </ul>
-<p>References:</p>
-<p>[1]<a href="https://gorails.com/forum/install-bootstrap-with-webpack-with-rails-6-beta" target="_blank" rel="noopener">https://gorails.com/forum/install-bootstrap-with-webpack-with-rails-6-beta</a></p>
+<h2 id="5-References"><a href="#5-References" class="headerlink" title="5. References"></a>5. References</h2><p>[1]<a href="https://gorails.com/forum/install-bootstrap-with-webpack-with-rails-6-beta" target="_blank" rel="noopener">https://gorails.com/forum/install-bootstrap-with-webpack-with-rails-6-beta</a></p>
 <p>[2]<a href="https://stackoverflow.com/questions/7527982/applying-gitignore-to-committed-files" target="_blank" rel="noopener">https://stackoverflow.com/questions/7527982/applying-gitignore-to-committed-files</a></p>
 <p>[3]<a href="https://linuxize.com/post/how-to-create-mysql-user-accounts-and-grant-privileges/" target="_blank" rel="noopener">https://linuxize.com/post/how-to-create-mysql-user-accounts-and-grant-privileges/</a></p>
 <p>[4]<a href="https://multiplestates.wordpress.com/2015/02/05/rename-a-local-and-remote-branch-in-git/" target="_blank" rel="noopener">https://multiplestates.wordpress.com/2015/02/05/rename-a-local-and-remote-branch-in-git/</a></p>
@@ -203,17 +190,17 @@
          
           <li><a href="/">Home</a></li>
          
-          <li><a href="/about/">About</a></li>
-         
           <li><a href="/archives/">Writing</a></li>
          
           <li><a href="/projects/">Projects</a></li>
+         
+          <li><a href="/til/">TIL</a></li>
         
       </ul>
     </div>
 
     <div id="toc-footer" style="display: none">
-      
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Rbenv-does-not-show-all-version-ruby"><span class="toc-number">1.</span> <span class="toc-text">1. Rbenv does not show all version ruby.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Apply-bootstrap-for-rails-6"><span class="toc-number">2.</span> <span class="toc-text">2. Apply bootstrap for rails 6</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Apply-git-ignore-to-committed-files"><span class="toc-number">3.</span> <span class="toc-text">3. Apply git ignore to committed files</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Rename-both-local-and-remote-branch"><span class="toc-number">4.</span> <span class="toc-text">4. Rename both local and remote branch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-References"><span class="toc-number">5.</span> <span class="toc-text">5. References</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
@@ -253,11 +240,11 @@
          
           <li><a href="/">Home</a></li>
          
-          <li><a href="/about/">About</a></li>
-         
           <li><a href="/archives/">Writing</a></li>
          
           <li><a href="/projects/">Projects</a></li>
+         
+          <li><a href="/til/">TIL</a></li>
         
       </ul>
     </nav>

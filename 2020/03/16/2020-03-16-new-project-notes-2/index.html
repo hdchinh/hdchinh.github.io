@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="Notes">
 <meta property="og:description" content="1. Install homebrew formulaWhen you install a new homebrew formula, homebrew will update all formula as default option. In almost case, it’s no problem. But, if you’d like to install new formula witho">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-03-16T12:27:44.926Z">
+<meta property="og:updated_time" content="2020-03-18T09:07:20.033Z">
 <meta name="twitter:card" content="summary">
     
     
@@ -99,7 +99,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Install-homebrew-formula"><span class="toc-number">1.</span> <span class="toc-text">1. Install homebrew formula</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Why-you-need-run-“bundle-exec”"><span class="toc-number">2.</span> <span class="toc-text">2. Why you need run “bundle exec”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-References"><span class="toc-number">3.</span> <span class="toc-text">3. References</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Install-homebrew-formula"><span class="toc-number">1.</span> <span class="toc-text">1. Install homebrew formula</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Why-you-need-run-“bundle-exec”"><span class="toc-number">2.</span> <span class="toc-text">2. Why you need run “bundle exec”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Install-the-older-version-mysql-in-macos-with-homebrew"><span class="toc-number">3.</span> <span class="toc-text">3. Install the older version mysql in macos with homebrew</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Ignore-migration-file-check"><span class="toc-number">4.</span> <span class="toc-text">4. Ignore migration file check</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-References"><span class="toc-number">5.</span> <span class="toc-text">3. References</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -148,7 +148,45 @@
 
 <h2 id="2-Why-you-need-run-“bundle-exec”"><a href="#2-Why-you-need-run-“bundle-exec”" class="headerlink" title="2. Why you need run “bundle exec”"></a>2. Why you need run “bundle exec”</h2><p>You have installed rspec for your project. sometime you run <strong>rspec</strong> and everything work well, but sometimes it does not, it required you type <strong>bundle exec rspec</strong>.</p>
 <p>The short explain, when you have more than one version of gem (eg. rspec), you need type <strong>bundle exec</strong> to tell rails use the version in Gemfile (Gemfile.lock)</p>
+<h2 id="3-Install-the-older-version-mysql-in-macos-with-homebrew"><a href="#3-Install-the-older-version-mysql-in-macos-with-homebrew" class="headerlink" title="3. Install the older version mysql in macos with homebrew"></a>3. Install the older version mysql in macos with homebrew</h2><p>Today, I have a crazy problem with our project that we are working on. The one f**king lib in this project need mysql 5.7</p>
+<p>But, remember, when you copy paste from go rails to install ruby, rails and related databases, we always install the lastest version of all, :D</p>
+<p>So what? Let quick check mysql version on my machine…</p>
+<p>Oh, shit, above 8.0.</p>
+<p>Ok, no worry, just google “how to install another mysql version with homebrew” and then I take 3 hours to install, remove, run command which I have no idea what it doing for….and still  get error, error and error again. I’m sad, I lost my hope about my carrer :(</p>
+<p>And finally, I try to install mysql 5.7</p>
+<ol>
+<li><p>Remove mysql current version</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew uninstall mysql</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Remove mysql version 5.7</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew uninstall mysql@5.7</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Remove folder config mysql</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -rf /usr/local/var/mysql</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Remove config file</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm /usr/local/etc/my.cnf</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Reinstall mysql version 5.7</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm /usr/local/etc/my.cnf</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Manually link to mysql 5.7 because it’s not latest version so home brew will do nothing</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew link --force mysql@5.7</span><br></pre></td></tr></table></figure>
+
+<ol start="7">
+<li><p>Start mysql 5.7</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew services start mysql@5.7</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Important note<br>When you reinstall mysql with older version, in all projects that you used mysql, you need to <strong>gem uninstall mysql2</strong> and <strong>bundle</strong> to reinstall gems mysql2, if not, you will get error.</p>
+</li>
+</ol>
+<h2 id="4-Ignore-migration-file-check"><a href="#4-Ignore-migration-file-check" class="headerlink" title="4. Ignore migration file check"></a>4. Ignore migration file check</h2><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">config.active_record.migration_error = <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<p>Add above config to config file.(config/envirements/*.rb)</p>
 <h2 id="3-References"><a href="#3-References" class="headerlink" title="3. References"></a>3. References</h2><p>[1]<a href="https://stackoverflow.com/questions/6588674/what-does-bundle-exec-rake-mean" target="_blank" rel="noopener">https://stackoverflow.com/questions/6588674/what-does-bundle-exec-rake-mean</a></p>
+<p>[2]<a href="https://medium.com/@at0dd/install-mysql-5-7-on-mac-os-mojave-cd07ec936034" target="_blank" rel="noopener">https://medium.com/@at0dd/install-mysql-5-7-on-mac-os-mojave-cd07ec936034</a></p>
 
   </div>
 </article>
@@ -174,7 +212,7 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Install-homebrew-formula"><span class="toc-number">1.</span> <span class="toc-text">1. Install homebrew formula</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Why-you-need-run-“bundle-exec”"><span class="toc-number">2.</span> <span class="toc-text">2. Why you need run “bundle exec”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-References"><span class="toc-number">3.</span> <span class="toc-text">3. References</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Install-homebrew-formula"><span class="toc-number">1.</span> <span class="toc-text">1. Install homebrew formula</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Why-you-need-run-“bundle-exec”"><span class="toc-number">2.</span> <span class="toc-text">2. Why you need run “bundle exec”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Install-the-older-version-mysql-in-macos-with-homebrew"><span class="toc-number">3.</span> <span class="toc-text">3. Install the older version mysql in macos with homebrew</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Ignore-migration-file-check"><span class="toc-number">4.</span> <span class="toc-text">4. Ignore migration file check</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-References"><span class="toc-number">5.</span> <span class="toc-text">3. References</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">

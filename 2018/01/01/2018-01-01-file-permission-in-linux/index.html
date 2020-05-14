@@ -9,13 +9,13 @@
     <meta name="description" content="1.File permission là gì?Tương tự như ngôi nhà của bạn, bạn sống cùng gia đình và thi thoảng có những vị khách ghé thăm. Có những vật dụng trong nhà mà bạn chỉ muốn riêng mình bạn có thể sử dụng, cũng">
 <meta name="keywords" content="UNIX">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Tổng Quan Về Permission Trong UNIX">
+<meta property="og:title" content="Permission Trong UNIX">
 <meta property="og:url" content="https:&#x2F;&#x2F;hdchinh.github.io&#x2F;2018&#x2F;01&#x2F;01&#x2F;2018-01-01-file-permission-in-linux&#x2F;index.html">
 <meta property="og:site_name" content="Notes">
 <meta property="og:description" content="1.File permission là gì?Tương tự như ngôi nhà của bạn, bạn sống cùng gia đình và thi thoảng có những vị khách ghé thăm. Có những vật dụng trong nhà mà bạn chỉ muốn riêng mình bạn có thể sử dụng, cũng">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http:&#x2F;&#x2F;www.macinstruct.com&#x2F;images&#x2F;permissions&#x2F;permissions1.png">
-<meta property="og:updated_time" content="2020-01-01T07:53:34.242Z">
+<meta property="og:updated_time" content="2020-05-14T03:36:20.960Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;www.macinstruct.com&#x2F;images&#x2F;permissions&#x2F;permissions1.png">
     
@@ -37,7 +37,7 @@
         
     
     <!-- title -->
-    <title>Tổng Quan Về Permission Trong UNIX</title>
+    <title>Permission Trong UNIX</title>
     <!-- styles -->
     <link rel="stylesheet" href="/css/style.css">
     <!-- persian styles -->
@@ -88,15 +88,15 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/&text=Tổng Quan Về Permission Trong UNIX" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/&title=Tổng Quan Về Permission Trong UNIX" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/&is_video=false&description=Tổng Quan Về Permission Trong UNIX" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Tổng Quan Về Permission Trong UNIX&body=Check out this article: https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/&title=Tổng Quan Về Permission Trong UNIX" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/&title=Tổng Quan Về Permission Trong UNIX" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/&title=Tổng Quan Về Permission Trong UNIX" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/&title=Tổng Quan Về Permission Trong UNIX" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/&name=Tổng Quan Về Permission Trong UNIX&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/&text=Permission Trong UNIX" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/&title=Permission Trong UNIX" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/&is_video=false&description=Permission Trong UNIX" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Permission Trong UNIX&body=Check out this article: https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/&title=Permission Trong UNIX" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/&title=Permission Trong UNIX" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/&title=Permission Trong UNIX" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/&title=Permission Trong UNIX" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/&name=Permission Trong UNIX&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -113,7 +113,7 @@
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
-        Tổng Quan Về Permission Trong UNIX
+        Permission Trong UNIX
     </h1>
 
 
@@ -233,15 +233,15 @@
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/&text=Tổng Quan Về Permission Trong UNIX" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/&title=Tổng Quan Về Permission Trong UNIX" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/&is_video=false&description=Tổng Quan Về Permission Trong UNIX" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Tổng Quan Về Permission Trong UNIX&body=Check out this article: https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/&title=Tổng Quan Về Permission Trong UNIX" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/&title=Tổng Quan Về Permission Trong UNIX" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/&title=Tổng Quan Về Permission Trong UNIX" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/&title=Tổng Quan Về Permission Trong UNIX" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/&name=Tổng Quan Về Permission Trong UNIX&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/&text=Permission Trong UNIX" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/&title=Permission Trong UNIX" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/&is_video=false&description=Permission Trong UNIX" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Permission Trong UNIX&body=Check out this article: https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/&title=Permission Trong UNIX" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/&title=Permission Trong UNIX" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/&title=Permission Trong UNIX" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/&title=Permission Trong UNIX" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/&name=Permission Trong UNIX&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

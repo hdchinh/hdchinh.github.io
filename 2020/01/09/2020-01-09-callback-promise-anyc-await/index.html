@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="1. CallbackTrong js, function cũng là object. Khi chúng ta truyền function A và function B dưới dạng tham số của B, lúc này A được gọi là Callback function. 123456789function A() &amp;#123;  console.log(&quot;">
+    <meta name="description" content="1. Event LoopJavascript chạy đơn luồng, tương tự như ruby, nhưng khác một điều, môi trường làm việc của javascript đa phần là trình duyệt, nếu mọi thứ đều chạy tuần tự đơn luồng liệu có ổn không? Ví d">
 <meta name="keywords" content="NOTES">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Callback, Promise, Async Await">
 <meta property="og:url" content="https:&#x2F;&#x2F;hdchinh.github.io&#x2F;2020&#x2F;01&#x2F;09&#x2F;2020-01-09-callback-promise-anyc-await&#x2F;index.html">
 <meta property="og:site_name" content="Notes">
-<meta property="og:description" content="1. CallbackTrong js, function cũng là object. Khi chúng ta truyền function A và function B dưới dạng tham số của B, lúc này A được gọi là Callback function. 123456789function A() &amp;#123;  console.log(&quot;">
+<meta property="og:description" content="1. Event LoopJavascript chạy đơn luồng, tương tự như ruby, nhưng khác một điều, môi trường làm việc của javascript đa phần là trình duyệt, nếu mọi thứ đều chạy tuần tự đơn luồng liệu có ổn không? Ví d">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-06-29T16:16:56.324Z">
+<meta property="og:updated_time" content="2020-06-30T15:50:59.394Z">
 <meta name="twitter:card" content="summary">
     
     
@@ -99,7 +99,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Callback"><span class="toc-number">1.</span> <span class="toc-text">1. Callback</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Promise"><span class="toc-number">2.</span> <span class="toc-text">2. Promise</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Async-Await"><span class="toc-number">3.</span> <span class="toc-text">3. Async Await</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-References"><span class="toc-number">4.</span> <span class="toc-text">4. References</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Event-Loop"><span class="toc-number">1.</span> <span class="toc-text">1. Event Loop</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Callback"><span class="toc-number">2.</span> <span class="toc-text">2. Callback</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Promise"><span class="toc-number">3.</span> <span class="toc-text">3. Promise</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Async-Await"><span class="toc-number">4.</span> <span class="toc-text">4. Async Await</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-References"><span class="toc-number">5.</span> <span class="toc-text">5. References</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -143,7 +143,22 @@
   
 
   <div class="content" itemprop="articleBody">
-    <h2 id="1-Callback"><a href="#1-Callback" class="headerlink" title="1. Callback"></a>1. Callback</h2><p>Trong js, function cũng là object.</p>
+    <h2 id="1-Event-Loop"><a href="#1-Event-Loop" class="headerlink" title="1. Event Loop"></a>1. Event Loop</h2><p>Javascript chạy đơn luồng, tương tự như ruby, nhưng khác một điều, môi trường làm việc của javascript đa phần là trình duyệt, nếu mọi thứ đều chạy tuần tự đơn luồng liệu có ổn không?</p>
+<p>Ví dụ:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">API.get(<span class="string">"/cats"</span>)</span><br><span class="line"></span><br><span class="line">API.get(<span class="string">"/dogs"</span>)</span><br></pre></td></tr></table></figure>
+
+<p>Giả dụ đoạn code lấy về dữ liệu dogs bên trên gặp lỗi hoặc tốn rất nhiều thời gian để thực hiện, khi đó giao diện (trên trình duyệt) của người dùng sẽ treo hoàn toàn nếu javascript không có giải pháp cho sự đơn luồng và chạy tuần tự?</p>
+<p>Cách giải quyết là nó đơn luồng và chạy không tuần tự, hay còn gọi là chạy bất đồng bộ:</p>
+<p>Vậy javascript và ruby cùng là đơn luồng, nhưng javascript chạy bất đồng bộ còn ruby thì chạy đồng bộ tuần tự.</p>
+<p>Video số [6] dưới mục tham khảo đã giải thích rất hay về event loop và không có lý do gì chúng ta đi ghi lại 1 thứ đã có người làm quá tốt. Một vài lưu ý mình lượm lặt nên note lại:</p>
+<ol>
+<li>Event Loop có một nhiệm vụ duy nhất - giám sát <strong>Call Stack</strong> và <strong>Callback Queue</strong>. Nếu Call Stack trống, nó sẽ lấy sự kiện đầu tiên từ queue và đẩy vào Call Stack</li>
+</ol>
+<p>2.Những Web API này là gì? Chúng là những thread mà bạn không thể truy cập được, chỉ có thể gọi để xài mà thôi. Chúng là những nhân tố trong trình duyệt mà thực sự có thể chạy đồng thời (concurrency). Vậy thì event loop là gì:</p>
+<ol start="3">
+<li>ES6 giới thiệu khái niệm về job queue được sử dụng bởi Promises trong JavaScript. Sự khác biệt giữa message queue và job queue là job queue có mức ưu tiên cao hơn message queue, có nghĩa là các promise job bên trong job queue sẽ được thực thi trước các callback bên trong message queue.</li>
+</ol>
+<h2 id="2-Callback"><a href="#2-Callback" class="headerlink" title="2. Callback"></a>2. Callback</h2><p>Trong js, function cũng là object.</p>
 <p>Khi chúng ta truyền function A và function B dưới dạng tham số của B, lúc này A được gọi là Callback function.</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">A</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"Pass me in B, but I don't know why we need do that"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">B</span>(<span class="params">callback</span>) </span>&#123;</span><br><span class="line">  callback();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">B(A);</span><br></pre></td></tr></table></figure>
 
@@ -159,7 +174,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Copy from: https://codeburst.io/javascript-what-the-heck-is-a-callback-aba4da2deced</span></span><br><span class="line">T.get(<span class="string">'search/tweets'</span>, params, <span class="function"><span class="keyword">function</span>(<span class="params">err, data, response</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(!err)&#123;</span><br><span class="line">    <span class="comment">// This is where the magic will happen</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(err);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
 <p>Trong ví dụ trên, callback function sẽ chạy sau khi mà cái hàm <code>T.get</code> chạy xong, các tham số của callback function chính là các giá trị <code>T.get</code> trả về.</p>
-<h2 id="2-Promise"><a href="#2-Promise" class="headerlink" title="2. Promise"></a>2. Promise</h2><h2 id="3-Async-Await"><a href="#3-Async-Await" class="headerlink" title="3. Async Await"></a>3. Async Await</h2><h2 id="4-References"><a href="#4-References" class="headerlink" title="4. References"></a>4. References</h2><p>[1]<a href="https://viblo.asia/p/javascript-callback-function-PdbGnozAeyA" target="_blank" rel="noopener">https://viblo.asia/p/javascript-callback-function-PdbGnozAeyA</a><br>[2]<a href="https://kipalog.com/posts/Promise-la-khi-gi-" target="_blank" rel="noopener">https://kipalog.com/posts/Promise-la-khi-gi-</a><br>[3]<a href="https://www.freecodecamp.org/news/what-is-a-callback-function-in-javascript/" target="_blank" rel="noopener">https://www.freecodecamp.org/news/what-is-a-callback-function-in-javascript/</a><br>[4]<a href="https://codeburst.io/javascript-what-the-heck-is-a-callback-aba4da2deced" target="_blank" rel="noopener">https://codeburst.io/javascript-what-the-heck-is-a-callback-aba4da2deced</a></p>
+<h2 id="3-Promise"><a href="#3-Promise" class="headerlink" title="3. Promise"></a>3. Promise</h2><h2 id="4-Async-Await"><a href="#4-Async-Await" class="headerlink" title="4. Async Await"></a>4. Async Await</h2><h2 id="5-References"><a href="#5-References" class="headerlink" title="5. References"></a>5. References</h2><p>[1]<a href="https://viblo.asia/p/javascript-callback-function-PdbGnozAeyA" target="_blank" rel="noopener">https://viblo.asia/p/javascript-callback-function-PdbGnozAeyA</a><br>[2]<a href="https://kipalog.com/posts/Promise-la-khi-gi-" target="_blank" rel="noopener">https://kipalog.com/posts/Promise-la-khi-gi-</a><br>[3]<a href="https://www.freecodecamp.org/news/what-is-a-callback-function-in-javascript/" target="_blank" rel="noopener">https://www.freecodecamp.org/news/what-is-a-callback-function-in-javascript/</a><br>[4]<a href="https://codeburst.io/javascript-what-the-heck-is-a-callback-aba4da2deced" target="_blank" rel="noopener">https://codeburst.io/javascript-what-the-heck-is-a-callback-aba4da2deced</a><br>[5]<a href="https://viblo.asia/p/hieu-ve-asynchronous-javascript-RQqKLARmZ7z" target="_blank" rel="noopener">https://viblo.asia/p/hieu-ve-asynchronous-javascript-RQqKLARmZ7z</a><br>[6]<a href="https://www.youtube.com/watch?v=8aGhZQkoFbQ" target="_blank" rel="noopener">https://www.youtube.com/watch?v=8aGhZQkoFbQ</a></p>
 
   </div>
 </article>
@@ -183,7 +198,7 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Callback"><span class="toc-number">1.</span> <span class="toc-text">1. Callback</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Promise"><span class="toc-number">2.</span> <span class="toc-text">2. Promise</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Async-Await"><span class="toc-number">3.</span> <span class="toc-text">3. Async Await</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-References"><span class="toc-number">4.</span> <span class="toc-text">4. References</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Event-Loop"><span class="toc-number">1.</span> <span class="toc-text">1. Event Loop</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Callback"><span class="toc-number">2.</span> <span class="toc-text">2. Callback</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Promise"><span class="toc-number">3.</span> <span class="toc-text">3. Promise</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Async-Await"><span class="toc-number">4.</span> <span class="toc-text">4. Async Await</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-References"><span class="toc-number">5.</span> <span class="toc-text">5. References</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">

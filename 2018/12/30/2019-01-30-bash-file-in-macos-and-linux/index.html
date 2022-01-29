@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>
+        Notes
+    </title>
+    
+<link rel="stylesheet" href="/libs/highlight/styles/monokai-sublime.css">
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body id="bodyx">
+    <div class="hd posts">
+    <a href="/index.html"><i class="fa fa-reply replay-btn" aria-hidden="true"></i></a>
+    <div class="post-title">
+        <p>
+            Bash File Trên UNIX
+        </p>
+        <hr>
+    </div>
+    <div class="post-content">
+        <h2 id="1-Mot-so-khai-niem-co-ban"><a href="#1-Mot-so-khai-niem-co-ban" class="headerlink" title="1.Một số khái niệm cơ bản."></a>1.Một số khái niệm cơ bản.</h2><p><strong>UNIX</strong> là một hệ điều hành ra đời đã rất lâu, nó là tiền thân của hai nhánh hệ điều hành rất nổi tiếng khác, bản thương mại chính là <strong>macOS</strong> và bản mã nguồn mở chính là <strong>GNU</strong>. Cho đến những năm 90, có một sự kết hợp giữa các phần mềm của <strong>GNU</strong> và phần core của một dự án mã nguồn mở khác tên là <strong>Linux</strong> đã tạo thành một hệ điều hành hoàn chỉnh mang tên là <strong>GNU/Linux</strong>, ngày nay đa số chúng ta chỉ thường gọi tắt là <strong>Linux</strong></p>
+<p>Qua đó chúng ta có thể thấy, <strong>Linux</strong> và các hệ điều hành con cháu của <strong>UNIX</strong> có rất nhiều điểm chung.</p>
+<p><strong>Shell</strong>: Đây cũng là một khái niệm quan trọng cần tìm hiểu. Trước khi đi vào chủ đề chính của bài viết, để tìm hiểu một cách sâu sắc về Shell, có lẽ sẽ cần đến một bài viết khác, nên ở đây tôi chỉ mô tả một cách bao quát về nó. <strong>Shell</strong> là phần nằm giữa ứng dụng và phần core của hệ điều hành.</p>
+<p>Hãy tưởng tượng chúng ta có một chồng sách gồm ba quyển với quyển trên cùng là những ứng dụng đang chạy trên máy tính của bạn vì dụ như word, excel, cuốn ở dưới cùng chính là phần nhân của hệ điều hành. Để các ứng dụng của bạn có thể sử dụng các tài nguyên của máy tính như bộ nhớ, ram, IO… điều tất yếu phải xảy ra đó là ứng dụng của bạn phải giao tiếp được với hệ điều hành.</p>
+<p>Tuy nhiên, vấn đề gặp phải đó là hệ điều hành chỉ hiểu mã máy, một thứ quá phức tạp để người dùng khi sử dụng ứng dụng có thể thao tác được. Đó là lý do ra đời của “quyển sách” ở giữa mà chúng ta gọi là <strong>Shell</strong>. Nhiệm vụ của nó là gì? Đó là chuyển đổi các lệnh từ “quyển sách” đầu tiên thành các lệnh mà “quyển sách” thứ ba có thể hiểu và thực hiện được (Thông dịch).</p>
+<p>Ví dụ terminal được xem là một <strong>Shell CLI</strong>, mỗi khi bạn gõ một lệnh bất kỳ trên terminal, nó sẽ chuyển đổi câu lệnh bạn viết thành một câu lệnh khác mà phần nhân hệ điều hành có thể hiểu và thực hiện được.</p>
+<h2 id="2-Dieu-gi-xay-ra-khi-ban-go-mot-lenh-tren-terminal"><a href="#2-Dieu-gi-xay-ra-khi-ban-go-mot-lenh-tren-terminal" class="headerlink" title="2.Điều gì xảy ra khi bạn gõ một lệnh trên terminal?"></a>2.Điều gì xảy ra khi bạn gõ một lệnh trên terminal?</h2><p>Đã bao giờ bạn tự hỏi chuyện gì sẽ xảy ra tiếp theo khi ta gõ một lệnh trong terminal? Ví dụ:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -a</span><br></pre></td></tr></table></figure>
+
+<p>Chúng ta sẽ thường tự an ủi bản thân rằng những câu lệnh đó đã được hệ điều hành lưu lại như một cuốn từ điển để đến khi được gọi chúng sẽ biết tìm câu trả lời ở đâu. Thực tế suy nghĩ trên không hẳn đã sai, mọi thứ trong UNIX đều là file, nếu bạn gõ dòng lệnh:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo $PATH</span><br></pre></td></tr></table></figure>
+
+<p>Kết quả bạn nhận được chính là một danh sách các thư mục mà terminal sẽ tìm kiếm câu lệnh bạn gõ theo thứ tự từ trái qua phải. Với một hệ điều hành thuần khiết chưa cài đặt thêm các phần mềm bên ngoài thì <strong>PATH</strong> sẽ có giá trị mặc định như sau:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;usr&#x2F;local&#x2F;bin:&#x2F;usr&#x2F;bin:&#x2F;bin:&#x2F;usr&#x2F;sbin:&#x2F;sbin</span><br></pre></td></tr></table></figure>
+
+<p>Còn trên máy tính của tôi thì PATH lại có giá trị là:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;Users&#x2F;admin&#x2F;.rbenv&#x2F;shims:&#x2F;usr&#x2F;local&#x2F;bin:&#x2F;usr&#x2F;bin:&#x2F;bin:&#x2F;usr&#x2F;sbin:&#x2F;sbin</span><br></pre></td></tr></table></figure>
+
+<p>Có một sự khác biệt nhỏ, ta có thể thấy chuỗi <strong>PATH</strong> trên máy tính của tôi có phần đầu chuỗi được thêm bởi một thư mục .rbenv nào đó. Đây chính là mấu chốt của vấn đề, lý do xuất hiện của phần mở rộng nêu trên đó là tôi đã cài đặt thêm Ruby vào máy tính của mình bằng công cụ rbenv.</p>
+<p>Hiển nhiên, khi hệ điều hành pure (chưa có cài đặt gì khác các ứng dụng mặc định), thì nó không thể hiểu được câu lệnh <strong>ruby – v</strong>. Việc cài đặt Ruby vào máy tính đồng nghĩa với việc tôi đã tải các file liên quan vào một thư mục nào đó, và để chỉ cho Terminal biết phải vào đâu để tìm kiếm các lệnh liên quan đến Ruby vừa cài đặt, chuỗi <strong>PATH</strong> sẽ được ghi đè bổ sung thêm đường dẫn vào thư mục chứa các file thực thi của Ruby. Từ đây, mỗi khi bạn gõ bất cứ một câu lệnh nào liên quan đến Ruby, terminal sẽ theo chuỗi <strong>PATH</strong> vào từng thư mục để tìm kiếm và thực thi câu lệnh đó.</p>
+<p>Suy ra, có một lỗi rất hay xảy ra cho những người mới sử dụng Ruby, đó là họ thêm và xoá Ruby khá thường xuyên dẫn đến đường dẫn (<strong>PATH</strong>) bị sai và Terminal không thể tìm được thư mục có thể thực thi câu lệnh một cách chính xác.</p>
+<p>Trong Terminal, bạn có thể nối thêm một thư mục vào chuỗi <strong>PATH</strong> bằng câu lệnh sau:</p>
+<p><strong>export PATH=”$PATH:new_path”</strong></p>
+<h2 id="3-Mot-so-file-quan-trong-tren-Macos"><a href="#3-Mot-so-file-quan-trong-tren-Macos" class="headerlink" title="3.Một số file quan trọng trên Macos."></a>3.Một số file quan trọng trên Macos.</h2><p>Khi quá trình làm việc với terminal nhiều hơn và chúng ta cần cài đặt một số thứ cần thiết trong quá trình làm việc, chúng ta sử dụng các <strong>dot file</strong>. Nội dung của các <strong>dot file</strong> này là các câu lệnh shell script (chức năng của câu lệnh này có thể chúng ta sẽ tìm hiểu sau).</p>
+<p>Khi bạn mở một terminal mà nó đòi hỏi bạn phải login (ví dụ như khi bạn truy cập vào một máy tính khác thông qua SSH, bạn cần nhập tên đăng nhập và mật khẩu) thì đó là một <strong>Login Shell</strong>.<br>Với trường hợp Login Shell thì <strong>dot file</strong> được load lên là file <strong>.bash_profile</strong> (hay là <strong>.profile</strong> ở trên Ubuntu).<br>Trong một trường hợp khác, bạn mở một terminal mà không cần đăng nhập thì <strong>dot file</strong> được load là  <strong>.bashrc</strong>.</p>
+<p>Note: Khác với những người anh em khác, terminal trên Macos sẽ chạy <strong>dot file</strong> <strong>.bash_profile</strong> khi bạn mở một cửa sổ mới nên tôi thường đặt những cấu hình cần thiết vào một file duy nhất đó là <strong>.bash_profile</strong>. Tất nhiên, từ <strong>.bash_profile</strong> ta có thể load các <strong>dot file</strong> khác nếu cần thiết (chúng ta sẽ bàn về nó trong tương lai).</p>
+<p>Thứ tự các <strong>dot file</strong> được khởi chạy trên macOS:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#&#x3D;&gt; etc&#x2F;profile</span><br><span class="line">#&#x3D;&gt; etc&#x2F;bashrc</span><br><span class="line">#&#x3D;&gt; ~&#x2F;.bash_profile</span><br><span class="line">#&#x3D;&gt; ~&#x2F;.bash_login (nếu ~&#x2F;.bash_profile không tồn tại).</span><br><span class="line">#&#x3D;&gt; ~&#x2F;.profile (nếu ~&#x2F;.bash_profile và ~&#x2F;.bash_login đều không tồn tại).</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-Cac-file-quan-trong-tren-Linux"><a href="#4-Cac-file-quan-trong-tren-Linux" class="headerlink" title="4.Các file quan trọng trên Linux"></a>4.Các file quan trọng trên Linux</h2><p>Như đã trình bày ở trên, có một sự giống nhau đáng kể giữa <strong>macOS</strong> và <strong>Linux</strong>. Vì vậy, tôi chỉ có một số điều bổ sung như sau: Trên Linux, thông thường chúng ta sẽ có các <strong>dot file</strong> sau đây:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#&#x3D;&gt; ~&#x2F;.bash_login (chạy khi login shell)</span><br><span class="line">#&#x3D;&gt; ~&#x2F;.bashrc (chạy khi không login)</span><br><span class="line">#&#x3D;&gt; ~&#x2F;.bash_logout (chạy khi logout shell)</span><br><span class="line">#&#x3D;&gt; ~&#x2F;bash_history (lịch sử trên shell)</span><br></pre></td></tr></table></figure>
+
+    </div>
+    <!-- 
+        <hr class="fhr">
+        <div id="vcomments"></div>
+     -->
+</div>
+
+    <div class="footer" id="footer">
+    <p>Copyright © 2020 <a class="flink" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a>-<a class="flink" href="https://github.com/sanjinhub/hexo-theme-geek" target="_blank" rel="noopener">Geek</a>.
+        <label class="el-switch el-switch-green el-switch-sm" style="vertical-align: sub;">
+            <input type="checkbox" name="switch" id="update_style">
+            <span class="el-switch-style"></span>
+        </label>
+<!--         <script type="text/javascript">
+        var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");
+        document.write(unescape("%3Cspan id='cnzz_stat_icon_1278548644'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/stat.php%3Fid%3D1278548644%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+        </script> -->
+    </p>
+</div>
+<input type="hidden" id="web_style" value="black">
+<input type="hidden" id="valine_appid" value="CmCti21ooOOIzFOhEyFkFvR0-gzGzoHsz">
+<input type="hidden" id="valine_appKey" value="FqiyUqbg7McKN2eG0MCewupf">
+
+<script src="/libs/jquery.min.js"></script>
+
+
+<script src="/libs/highlight/highlight.pack.js"></script>
+
+<script src='//cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+
+<script src="/js/js.js"></script>
+
+<style type="text/css">
+.v * {
+    color: #698fca;
+}
+
+.v .vlist .vcard .vhead .vsys {
+    color: #3a3e4a;
+}
+
+.v .vlist .vcard .vh .vmeta .vat {
+    color: #638fd5;
+}
+
+.v .vlist .vcard .vhead .vnick {
+    color: #6ba1ff;
+}
+
+.v a {
+    color: #8696b1;
+}
+
+.v .vlist .vcard .vhead .vnick:hover {
+    color: #669bfc;
+}
+</style>
+</body>
+
+</html>

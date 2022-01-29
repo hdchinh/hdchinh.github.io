@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>
+        Notes
+    </title>
+    
+<link rel="stylesheet" href="/libs/highlight/styles/monokai-sublime.css">
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body id="bodyx">
+    <div class="hd posts">
+    <a href="/index.html"><i class="fa fa-reply replay-btn" aria-hidden="true"></i></a>
+    <div class="post-title">
+        <p>
+            Session Và Cookies Trong Rails
+        </p>
+        <hr>
+    </div>
+    <div class="post-content">
+        <h2 id="Dat-van-de"><a href="#Dat-van-de" class="headerlink" title="Đặt vấn đề"></a>Đặt vấn đề</h2><p><strong>session[:user_id] = @user.id</strong>, dòng code này thật quen thuộc? khi làm chức năng đăng nhập trong những ngày nhập môn, hẳn ai cũng đã từng làm qua hoặc làm gần giống như vậy, ta được dạy rằng, <strong>http</strong> là 1 giao thức không có trạng thái nên request thứ <strong>N + 1</strong> sẽ chẳng thể biết được request thứ <strong>N</strong> đã làm gì, vậy nếu ở lần request thứ <strong>N</strong> chúng ta đã thực hiện hành vi đăng nhập, và <strong>http</strong> thì không có lưu vết lại điều đó, hệ quả là ở lần request tiếp theo, website hiểu như bạn chưa đăng nhập, rất đáng buồn.</p>
+<p>Do you familiar with the logic below:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">session[<span class="symbol">:user_id</span>] = @user.id</span><br></pre></td></tr></table></figure>
+
+<p>Cũng theo những gì được dạy, <strong>session/cookies</strong> được tạo ra với mục đích làm cho http request có “trạng thái”. Vì sao lại để từ trạng thái trong nháy kép, vì thực sự là <strong>http</strong> không bao giờ có trạng thái cả, mà <strong>session/cookies</strong> với khả năng lưu vết của mình có thể giúp website nắm được một số <strong>thông tin</strong> từ client đã request trước đó và làm chúng giống như <strong>http</strong> đã có trạng thái.</p>
+<p>Quá mơ hồ? đúng vậy, khi được dạy điều này tôi cũng thấy thật mơ hồ, wth is trạng thái? phi trạng thái? lưu vết?… Hy vọng bài viết này sẽ giúp người đọc có 1 cái nhìn dễ hiểu hơn về 2 đối tượng này trong ruby on rails.</p>
+<h2 id="Luan-ban"><a href="#Luan-ban" class="headerlink" title="Luận bàn"></a>Luận bàn</h2><h2 id="1-Flow-hoat-dong"><a href="#1-Flow-hoat-dong" class="headerlink" title="1. Flow hoạt động"></a>1. Flow hoạt động</h2><p>Một cách ngắn gọn cookies sẽ được vận hành như sau:</p>
+<p><strong>Step 1</strong>: Lần đầu bạn request đến web ABC.com, nhẹ nhàng tựa mây bay, bạn không mang theo thông tin gì của ABC.com cả</p>
+<p><strong>Step 2</strong>: ABC.com nhận request của bạn, nó nhận ra bạn không mang theo cookies của website, nên nó trong response trả về nó set một hoặc một vài cookies mặc định cho bạn.</p>
+<p><strong>Step 3</strong>: Bạn nhận được response của ABC.com, rồi bạn tiếp tục request lên ABC.com lần thứ 2, lần này đi theo request của bạn là toàn bộ số cookies đã được khởi tạo ở bước 2.</p>
+<p><strong>Step 4</strong>: ABC.com lại nhận được request của bạn, và lần này nó đã thấy bạn mang cookies của ABC.com nên nó sẽ đọc nội dung trong cookies đó (nếu cần).</p>
+<h2 id="2-Mot-vai-loai-cookies-quan-trong-trong-rails"><a href="#2-Mot-vai-loai-cookies-quan-trong-trong-rails" class="headerlink" title="2. Một vài loại cookies quan trọng trong rails"></a>2. Một vài loại cookies quan trọng trong rails</h2><ol>
+<li><p><strong>Normal cookies</strong>: Một dạng cookie mà dữ liệu được lưu trữ dưới dạng text.</p>
+</li>
+<li><p><strong>Signed cookies</strong>: Một dạng cookie mà dữ liệu lưu trữ sẽ được “ký” bởi 1 <strong>digest</strong>, và <strong>digest</strong> này được tạo ra bởi <strong>secret_key_base</strong> trong app của bạn, sau đó nó sẽ được chuyển sang dạng <strong>base64</strong> code. Điều này có nghĩa là nếu ai đó có được <strong>signed cookies</strong> của bạn, thì họ hoàn toàn có thể đọc được nội dung bên trong (decode base64 là có thể đọc được). Tuy nhiên nếu họ sửa lại nội dung của cookies đó và gửi lên server thì lúc này, cookies này trở thành 1 cookies không hợp lệ, vì sao? Vì như đã trình bày, nó được ký bởi 1 digest sinh ra qua <strong>secret_key_base</strong>, vậy nên cookies loại này nếu bị sửa đổi nội dung ở client thì khi kiểm tra tính toàn vẹn trên server thông qua digest sẽ không còn đúng nữa. Và nó trở thành 1 cookies không hợp lệ.</p>
+</li>
+<li><p><strong>Encrypted cookies</strong>: Một dạng cookies mà dữ liệu được mã hóa qua một quá trình mã hóa với 1 khóa quan trọng là <strong>secret_key_base</strong>, một cách đơn giản nhất để hiểu là không có <strong>secret_key_base</strong> thì ta không thể nào <strong>đọc</strong> hay sửa đổi dữ liệu của cookies này được.</p>
+</li>
+</ol>
+<p>Ví dụ:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cookies.signed[<span class="symbol">:signed</span>] = <span class="string">"Duy Chinh"</span></span><br><span class="line">cookies.encrypted[<span class="symbol">:encrypted</span>] = <span class="string">"Duy Chinh"</span></span><br><span class="line">cookies[<span class="symbol">:normal</span>] = <span class="string">"Duy Chinh"</span></span><br></pre></td></tr></table></figure>
+<p>Tôi đã tạo 3 cookies ứng với 3 dạng cookies nêu ở trên, giá trị của chúng đều giống nhau (đều được gán bằng “Duy Chinh”).</p>
+<p>Hãy xem giá trị ở client nhận được:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">normal = <span class="string">"Duy+Chinh"</span></span><br><span class="line">signed = <span class="string">"IkR1eSBDaGluaCI%3D--a3af2bfd61abcd20cc3b8ac714968d0aaf578fe5"</span></span><br><span class="line">encrypted = <span class="string">"%2BVulShtBgFR2I18%3D--zQP8FmCAW4%2FZUwar--CQ%2FH6HFHSVlox5H8QC4CTg%3D%3D"</span></span><br></pre></td></tr></table></figure>
+
+<p>Nhận xét:</p>
+<ol>
+<li><p>Kiểu cookies thông thường, dữ liệu lưu dạng text nên ở client ta dễ dàng đọc được nội dung cũng như sửa đổi dữ liệu của chúng.</p>
+</li>
+<li><p>Nhìn signed cookies và encrypted cookies đều không thân thiện với người dùng cuối, vì chúng gồm những ký tự không có ngữ nghĩa với end user.</p>
+</li>
+<li><p>Nếu decode <strong>base64</strong> ta thu được giá trị của signed cookies ở trên là: <strong>“Duy Chinh”7횿f߷횭Ƕч7oƜ뇴i繯Ǟ䀀</strong>, dù một số ký tự phía sau không thể hiểu được, tuy nhiên không quan trọng vì nội dung cookies vẫn được giải mã (đúng với tính chất, có thể đọc nhưng không thể sửa đổi).</p>
+</li>
+<li><p>Việc decode encrypted cookies là vô vọng khi không có <strong>secret_key_base</strong>.</p>
+</li>
+</ol>
+<p><strong>NOTE:</strong></p>
+<p>Việc sử dụng loại cookies nào sẽ đúng trong những trường hợp cụ thể, với những dữ liệu vô hại và không hề quan trọng thì sử dụng cookies thông thường và lưu mọi thứ dưới dạng text là khả dĩ hơn cả. Bỏ qua các bước mã hóa giúp nó hoạt động với performance tốt hơn hẳn 2 dạng cookies còn lại.<br>Ngược lại, encrypted cookies là dạng cookies tốn công sức để xử lý nhất, vì vậy hãy chỉ sử dụng nó cho những thông tin thực sự quan trọng và không thể để lộ (những thông tin bớt quan trọng hơn và chỉ cần đảm bảo tính toàn vẹn của dữ liệu chứ không cần bảo mật thông tin thì hãy dùng signed cookies).</p>
+<h2 id="3-Giai-ma-cookies-va-tim-hieu-ve-session-trong-rails"><a href="#3-Giai-ma-cookies-va-tim-hieu-ve-session-trong-rails" class="headerlink" title="3. Giải mã cookies và tìm hiểu về session trong rails"></a>3. Giải mã cookies và tìm hiểu về session trong rails</h2><p>Sau khá nhiều công sức tìm kiếm, tôi đã tìm ra cách để giải mã cookies trong rails 5.2, nội dung đơn giản như sau:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">require</span> <span class="string">'cgi'</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'active_support'</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">verify_and_decrypt_session_cookie</span><span class="params">(cookie, secret_key_base)</span></span></span><br><span class="line">  cookie                  = CGI::unescape(cookie)</span><br><span class="line">  salt                    = <span class="string">'authenticated encrypted cookie'</span></span><br><span class="line">  encrypted_cookie_cipher = <span class="string">'aes-256-gcm'</span></span><br><span class="line">  serializer              = ActiveSupport::MessageEncryptor::NullSerializer</span><br><span class="line"></span><br><span class="line">  key_generator           = ActiveSupport::KeyGenerator.new(secret_key_base, <span class="symbol">iterations:</span> <span class="number">1000</span>)</span><br><span class="line">  key_len                 = ActiveSupport::MessageEncryptor.key_len(encrypted_cookie_cipher)</span><br><span class="line">  secret                  = key_generator.generate_key(salt, key_len)</span><br><span class="line">  encryptor               = ActiveSupport::MessageEncryptor.new(secret, <span class="symbol">cipher:</span> encrypted_cookie_cipher, <span class="symbol">serializer:</span> serializer)</span><br><span class="line"></span><br><span class="line">  encryptor.decrypt_and_verify(cookie)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">cookie         = <span class="string">"QkS0eMMxz8z0Kso%3D--4opNQwT5tGUsnn90--5fXye0VQJX%2BXMVkUmK69gw%3D%3D"</span></span><br><span class="line">skb            = <span class="string">"2fc48081a207cbe98379b2ed33b5072125d6f80a55997494b021bde37cec4d9c8f17f90357d6ade926b02a3bc271ccecaf6894af1410d6ef8f6c9b3b0d871fba"</span></span><br><span class="line">cookie_session = <span class="string">"ahp9AcIyl%2BhLvQW695lhNUCnI7bF2iNZY8e4bM%2B2Lrx%2FlnbVXkYF3nL493dMM7eslFJKAyBNJKZlY5ugZpUuznCxO%2BpNXudnOdQVuDyvVBLxA8gQ4t48Gs%2BqOS7e%2FlSjBedhFKAaoBRdVI06QL8%3D--enarz3Hu%2FZ2n1Ys%2B--YdTghGWd4ZFef9Lf7WM%2FMQ%3D%3D"</span></span><br><span class="line">puts verify_and_decrypt_session_cookie(cookie_session, skb)</span><br></pre></td></tr></table></figure>
+
+<p>Nội dung được tham khảo từ nhiều nguồn (vì không một nguồn cụ thể nào copy và chạy luôn được :unamused:), nhưng chủ yếu được tìm hiểu <a href="https://api.rubyonrails.org/classes/ActiveSupport/MessageEncryptor.html" target="_blank" rel="noopener">tại đây</a>, các bạn có thể vào trang này để tìm hiểu kỹ hơn.</p>
+<p><strong>NOTE:</strong> Một điểm hết sức cần chú ý đó là biến <strong>skb</strong> tôi sử dụng ở trên chính là <strong>secret_key_base</strong> của project mà tôi sử dụng để demo, vì đây chỉ là một project test nên tôi có thể viết dạng text vào file sau đó commit lên github như này, trong tất cả các trường hợp khác thì đây là một hành động vô cùng <strong>tồi tệ</strong>, việc bị lộ <strong>secret_key_base</strong> sẽ khiến ứng dụng của bạn trần trụi trước hacker. Vậy nên hãy thật cẩn thận!</p>
+<p>Đoạn mã trên work tốt trên rails 5.2, chú ý là cách mã hóa ở các phiên bản rails khác nhau hoàn toàn có khả năng khác nhau, nên nếu đoạn mã này không thể chạy được với rails 4 chẳng hạn thì đó là điều hết sức bình thường.</p>
+<p>Trở lại vấn đề chính, nếu bạn để ý thì trong lần đầu tiên request khi bạn chưa hề làm gì và code trên server của bạn cũng chưa hề set bất kỳ giá trị cookies nào thì trong response trả về vẫn sẽ có một cookies (mà tôi đã nói ở trên, trong lần đầu request server sẽ khởi tạo và gửi về cho bạn một hoặc một vài cookies).</p>
+<p>Trong trường hợp này là một, cookies đó có thể có tên dạng <strong>_app_name_session</strong>. Nội dung của cookies này cũng được mã hóa, thử decode bằng <strong>base64</strong> không được ta có thể hiểu đây là 1 cookies đã được encrypted.</p>
+<p>Giá trị của cookies này trong trường hợp tôi test là:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;aW2fSskgCyZ20Fi6E68xRGl0%2FR%2FzeFWoWU5YdhgkVhB%2FMtWSsX0rf3JuRgsfPPgQXjYYNygaRSxRjXAmOcsjohN28JQJnjej0Grfpwx52cZ5qjIRdMfOS9aXdTmedpuJ7T99aObbv75D3dsPtdQ%3D--FW10HzOu9FIoKK%2B8--9sMKANggTvi%2BlBjFwpIHEg%3D%3D&quot;</span><br></pre></td></tr></table></figure>
+
+<p>Sử dụng đoạn mã ta đã viết ở trên, ta giải mã ra được giá trị của cookies này là:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"session_id"</span><span class="symbol">:<span class="string">"52cc440e209ad03d306e550c2ca2dd78"</span></span>,</span><br><span class="line">  <span class="string">"_csrf_token"</span><span class="symbol">:<span class="string">"rD35dsIoJyf5MIRA54/ARQNMBAN0yKvfMU4RjCc9WD8="</span></span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Vậy trong lần đầu request tới 1 website ruby on rails, nó sẽ tạo ra cho chúng ta 1 session, session lúc khởi tạo không có giá trị gì ngoài <strong>session_id</strong> và <strong>_csrf_token</strong>.</p>
+<p><strong>Ủa sai sai, tôi nhớ là ngày xưa đi học được dạy rằng điểm khác biệt của session và cookies là session được lưu ở server còn cookies được lưu ở client cơ mà</strong></p>
+<p>Đúng, tôi cũng được học như vậy, nhưng đó không phải là cách mà rails xử lý, <strong>Rails được config mặc định là lưu session bằng cookies</strong>, nếu không muốn ta có thể lưu trên <strong>redis</strong>, <strong>database</strong>… Tuy nhiên nếu không thấy ngại vì giới hạn không quá <strong>4KB</strong> của cookies thì tôi không thấy lý do gì để chuyển vị trí lưu trữ của session đi cả. :smiley:</p>
+<p>Bây giờ tôi add thêm 1 giá trị vào session với câu lệnh <strong>session[:user_id] = 1</strong>, lúc này giá trị của cookies cũng thay đổi theo, lại decrypt ta thu được:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"session_id"</span><span class="symbol">:<span class="string">"52cc440e209ad03d306e550c2ca2dd78"</span></span>,</span><br><span class="line">  <span class="string">"_csrf_token"</span><span class="symbol">:<span class="string">"rD35dsIoJyf5MIRA54/ARQNMBAN0yKvfMU4RjCc9WD8="</span></span>,</span><br><span class="line">  <span class="string">"user_id"</span><span class="symbol">:</span><span class="number">1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Session bây giờ đã có thêm một key mới là <strong>user_id</strong> với giá trị là <strong>1</strong>. À vậy cuối cùng thì session cũng là 1 <strong>hash</strong> thôi nhỉ.</p>
+<h2 id="Ket-luan"><a href="#Ket-luan" class="headerlink" title="Kết luận"></a>Kết luận</h2><p>Để phân biệt các client khác nhau, server sẽ dựa vào <strong>session_id</strong> được lưu trong cookies, vì vậy nếu chiếm được cookies đăng nhập trên website ABC.com của bạn, các hacker có thể dùng nó để giả mạo bạn và request lên server, đáng buồn thay server sẽ đọc cookies được hacker request lên, sử dụng <strong>secret_key_base</strong> để giải mã cookies và đọc nội dung bên trong, đoạn code xử lý login lại đọc từ session[:user_id], lúc này thì cookies kia có giá trị <strong>session[:user_id] = 1</strong> và thế là server đã tưởng rằng hacker chính là bạn.</p>
+
+    </div>
+    <!-- 
+        <hr class="fhr">
+        <div id="vcomments"></div>
+     -->
+</div>
+
+    <div class="footer" id="footer">
+    <p>Copyright © 2020 <a class="flink" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a>-<a class="flink" href="https://github.com/sanjinhub/hexo-theme-geek" target="_blank" rel="noopener">Geek</a>.
+        <label class="el-switch el-switch-green el-switch-sm" style="vertical-align: sub;">
+            <input type="checkbox" name="switch" id="update_style">
+            <span class="el-switch-style"></span>
+        </label>
+<!--         <script type="text/javascript">
+        var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");
+        document.write(unescape("%3Cspan id='cnzz_stat_icon_1278548644'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/stat.php%3Fid%3D1278548644%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+        </script> -->
+    </p>
+</div>
+<input type="hidden" id="web_style" value="black">
+<input type="hidden" id="valine_appid" value="CmCti21ooOOIzFOhEyFkFvR0-gzGzoHsz">
+<input type="hidden" id="valine_appKey" value="FqiyUqbg7McKN2eG0MCewupf">
+
+<script src="/libs/jquery.min.js"></script>
+
+
+<script src="/libs/highlight/highlight.pack.js"></script>
+
+<script src='//cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+
+<script src="/js/js.js"></script>
+
+<style type="text/css">
+.v * {
+    color: #698fca;
+}
+
+.v .vlist .vcard .vhead .vsys {
+    color: #3a3e4a;
+}
+
+.v .vlist .vcard .vh .vmeta .vat {
+    color: #638fd5;
+}
+
+.v .vlist .vcard .vhead .vnick {
+    color: #6ba1ff;
+}
+
+.v a {
+    color: #8696b1;
+}
+
+.v .vlist .vcard .vhead .vnick:hover {
+    color: #669bfc;
+}
+</style>
+</body>
+
+</html>

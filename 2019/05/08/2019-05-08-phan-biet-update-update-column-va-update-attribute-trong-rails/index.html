@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>
+        Notes
+    </title>
+    
+<link rel="stylesheet" href="/libs/highlight/styles/monokai-sublime.css">
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body id="bodyx">
+    <div class="hd posts">
+    <a href="/index.html"><i class="fa fa-reply replay-btn" aria-hidden="true"></i></a>
+    <div class="post-title">
+        <p>
+            Cập Nhật Dữ Liệu Với ActiveRecord
+        </p>
+        <hr>
+    </div>
+    <div class="post-content">
+        <h2 id="Dat-van-de"><a href="#Dat-van-de" class="headerlink" title="Đặt vấn đề"></a>Đặt vấn đề</h2><p>Ngoài phương thức thông dụng <strong>update</strong> để cập nhật dữ liệu. Rails nói chung hay Activerecord nói riêng còn cung cấp 1 số phương thức khác để thay đổi dữ liệu hiện có, hãy cùng tìm hiểu về chúng.</p>
+<h2 id="Luan-ban"><a href="#Luan-ban" class="headerlink" title="Luận bàn"></a>Luận bàn</h2><p><strong>Chuẩn bị:</strong></p>
+<ol>
+<li><p>Tôi có một model <strong>Cat</strong> với 2 thuộc tính là <strong>age</strong> và <strong>name</strong>.</p>
+</li>
+<li><p>Trong model Cat tôi có 1 <strong>validation</strong> và 1 <strong>callback</strong> đơn giản.</p>
+</li>
+</ol>
+<p><strong>Để so sánh các phương thức chúng ta chú ý đến một số điểm sau:</strong></p>
+<ol>
+<li><p>Phương thức nhận một field cần update hay nhiều field?</p>
+</li>
+<li><p>Phương thức update được cho một hay nhiều record?</p>
+</li>
+<li><p>Validate method có chạy hay không?</p>
+</li>
+<li><p>Callback có chạy hay không?</p>
+</li>
+<li><p>Trường update_at có được cập nhật hay không?</p>
+</li>
+</ol>
+<h2 id="1-Phuong-thuc-update"><a href="#1-Phuong-thuc-update" class="headerlink" title="1. Phương thức update"></a>1. Phương thức update</h2><p><strong>Instance method:</strong></p>
+<p>Là phương thức được gọi thông qua một instance. Ta truyền vào field name cần cập nhật và giá trị mới sau cập nhật. Ta có thể truyền tham số dưới dạng hash.</p>
+<p>Ví dụ:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cat = Cat.first</span><br><span class="line">cat.update(<span class="symbol">name:</span> <span class="string">'change name'</span>)</span><br></pre></td></tr></table></figure>
+
+<p>Nhiều tham số</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cat = Cat.first</span><br><span class="line">cat.update(<span class="symbol">name:</span> <span class="string">'change name'</span>, <span class="symbol">age:</span> <span class="number">100</span>)</span><br></pre></td></tr></table></figure>
+
+<p>Truyền dưới dạng hash</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cat = Cat.first</span><br><span class="line">cat.update(&#123;<span class="symbol">:name</span> =&gt; <span class="string">'change name'</span>, <span class="symbol">:age</span> =&gt; <span class="number">1</span>&#125;)</span><br></pre></td></tr></table></figure>
+
+<p><strong>Class method</strong></p>
+<p>Là phương thức được gọi thông qua class model. Nhận vào 2 tham số, thứ nhất là id hoặc một mảng các id của record thuộc class cần cập nhật, thứ hai là một hash key-value các field name cần cập nhật và giá trị của chúng sau cập nhật.</p>
+<p>Cập nhật 1 record</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Cat.update(<span class="number">1</span>, &#123;<span class="symbol">:name</span> =&gt; <span class="string">'change name'</span>&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>Cập nhật nhiều record</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Cat.update([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], &#123;<span class="symbol">:name</span> =&gt; <span class="string">'change name'</span>&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>Note:</p>
+<ol>
+<li><p>Trường updated_at đều được cập nhật lại khi dùng 2 phương thức trên.</p>
+</li>
+<li><p>Validate và callback đều được chạy.</p>
+</li>
+<li><p>Class method <strong>update</strong> thì có thể cập nhật nhiều record một lúc.</p>
+</li>
+</ol>
+<h2 id="2-Phuong-thuc-update-attribute-va-update-attributes"><a href="#2-Phuong-thuc-update-attribute-va-update-attributes" class="headerlink" title="2. Phương thức update_attribute và update_attributes"></a>2. Phương thức update_attribute và update_attributes</h2><p>Phương thức update_attribute nhận 2 tham số truyền vào, với tham số thứ nhất là field cần cập nhật và tham số thứ 2 là giá trị cập nhật (Khác với update, thì tham số truyền vào không thể để dưới dạng hash).</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cat = Cat.first</span><br><span class="line">cat.update_attribute(<span class="symbol">:name</span>, <span class="string">'change name'</span>)</span><br></pre></td></tr></table></figure>
+
+<p>Phương thức update_attributes khác với update_attribute là nó nhận 1 tham số chứ không phải 2. Ta truyền tham số dưới hạng một hash cho phương này với giá trị key-value tương ứng field cần update và giá trị cần cập nhật.</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cat = Cat.first</span><br><span class="line">cat.update_attributes(&#123; <span class="symbol">:name</span> =&gt; <span class="string">'change name'</span>, <span class="symbol">:age</span> =&gt; <span class="number">20</span> &#125;)</span><br><span class="line"><span class="comment"># cách khác</span></span><br><span class="line">cat.update_attributes(&#123; <span class="symbol">name:</span> <span class="string">'meo tam the 2'</span>, <span class="symbol">age:</span> <span class="number">20</span> &#125;)</span><br></pre></td></tr></table></figure>
+
+<p>Note:</p>
+<ol>
+<li><p>Trường updated_at có được cập nhật lại.</p>
+</li>
+<li><p>Callback vẫn chạy nhưng <strong>không</strong> chạy validate.</p>
+</li>
+<li><p>update_attribute dùng cho cập nhật 1 field còn update_attributes cần khi cập nhật nhiều field.</p>
+</li>
+</ol>
+<h2 id="3-Phuong-update-column-va-update-columns"><a href="#3-Phuong-update-column-va-update-columns" class="headerlink" title="3. Phương update_column và update_columns"></a>3. Phương update_column và update_columns</h2><p>Phương thức update_column có cú pháp giống như update_attribute, còn phương thức update_columns thì có cú pháp tương tự như update_attributes.</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cat = Cat.first</span><br><span class="line">cat.update_column(<span class="symbol">:name</span>, <span class="string">'change name'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># với update_columns</span></span><br><span class="line">cat.update_columns(<span class="symbol">name:</span> <span class="string">'change name'</span>, <span class="symbol">age:</span> <span class="number">10</span>)</span><br><span class="line"><span class="comment"># or</span></span><br><span class="line">cat.update_columns(<span class="symbol">:name</span> =&gt; <span class="string">'change name'</span>, <span class="symbol">:age</span> =&gt; <span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+
+<p>Tuy nhiên ta có một số điểm khác biệt cơ bản cần lưu ý với update_attribute và update_attributes cần lưu ý.</p>
+<p>Note: Với phương thức update_column và update_columns</p>
+<ol>
+<li><p>Trường updated_at không được cập nhật.</p>
+</li>
+<li><p>Callback và validate đều <strong>không</strong> được chạy.</p>
+</li>
+</ol>
+<h2 id="Ket-luan"><a href="#Ket-luan" class="headerlink" title="Kết luận"></a>Kết luận</h2><p>Cách đây ít lâu tôi có làm 1 ứng dụng nhỏ, trong đó có một model chính gọi là X, trong model này tôi có viết một callback tên Y được thực hiện sau khi record được save (với method after_save). Trong callback Y tôi sử dụng method <strong>update</strong>.</p>
+<p>Đáng buồn thay là đoạn code của tôi không hoạt động một cách bình thường, sau khi save record thì terminal bị crash với một vòng lặp bất tận, chợt nhận ra là khi sử dụng <strong>update</strong> thì callback được gọi lại, vậy là nó tạo ra một vòng lặp vĩnh viễn, save record(1) -&gt; callback được gọi(2) -&gt; trong callback có phương thức update(3) -&gt; update được gọi(4) -&gt; update lại gọi lại callback(2).<br>Để khắc phục thì cần chuyển <strong>update</strong> thành <strong>update_column</strong> hoặc <strong>update_columns</strong>.</p>
+
+    </div>
+    <!-- 
+        <hr class="fhr">
+        <div id="vcomments"></div>
+     -->
+</div>
+
+    <div class="footer" id="footer">
+    <p>Copyright © 2020 <a class="flink" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a>-<a class="flink" href="https://github.com/sanjinhub/hexo-theme-geek" target="_blank" rel="noopener">Geek</a>.
+        <label class="el-switch el-switch-green el-switch-sm" style="vertical-align: sub;">
+            <input type="checkbox" name="switch" id="update_style">
+            <span class="el-switch-style"></span>
+        </label>
+<!--         <script type="text/javascript">
+        var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");
+        document.write(unescape("%3Cspan id='cnzz_stat_icon_1278548644'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/stat.php%3Fid%3D1278548644%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+        </script> -->
+    </p>
+</div>
+<input type="hidden" id="web_style" value="black">
+<input type="hidden" id="valine_appid" value="CmCti21ooOOIzFOhEyFkFvR0-gzGzoHsz">
+<input type="hidden" id="valine_appKey" value="FqiyUqbg7McKN2eG0MCewupf">
+
+<script src="/libs/jquery.min.js"></script>
+
+
+<script src="/libs/highlight/highlight.pack.js"></script>
+
+<script src='//cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+
+<script src="/js/js.js"></script>
+
+<style type="text/css">
+.v * {
+    color: #698fca;
+}
+
+.v .vlist .vcard .vhead .vsys {
+    color: #3a3e4a;
+}
+
+.v .vlist .vcard .vh .vmeta .vat {
+    color: #638fd5;
+}
+
+.v .vlist .vcard .vhead .vnick {
+    color: #6ba1ff;
+}
+
+.v a {
+    color: #8696b1;
+}
+
+.v .vlist .vcard .vhead .vnick:hover {
+    color: #669bfc;
+}
+</style>
+</body>
+
+</html>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>
+        Notes
+    </title>
+    
+<link rel="stylesheet" href="/libs/highlight/styles/monokai-sublime.css">
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body id="bodyx">
+    <div class="hd posts">
+    <a href="/index.html"><i class="fa fa-reply replay-btn" aria-hidden="true"></i></a>
+    <div class="post-title">
+        <p>
+            SQL Performance Explained
+        </p>
+        <hr>
+    </div>
+    <div class="post-content">
+        <blockquote>
+<p>The notes of mine after read SQL Performance Explained Ebook (boring, but helpful).</p>
+</blockquote>
+<h2 id="Anatomy-of-an-Index"><a href="#Anatomy-of-an-Index" class="headerlink" title="Anatomy of an Index"></a>Anatomy of an Index</h2><p>Cơ sở dữ liệu sử dụng 2 loại cấu trúc để lưu trữ index. <strong>B-Tree</strong> và <strong>Doubly Linked List</strong>. Vì vậy cách sử dụng 2 loại cấu trúc này sẽ giải thích cho phần lớn các đặc tính của SQL.</p>
+<h3 id="Doubly-Linked-List"><a href="#Doubly-Linked-List" class="headerlink" title="Doubly Linked List"></a>Doubly Linked List</h3><ol>
+<li><p>Mỗi một node (node chứa index) sẽ là một node trong 1 <strong>Doubly Linked List</strong>, vì vậy nó sẽ có liên kết tới đến 2 node lân cận (một trước và một sau). Khi ta muốn chèn thêm 1 node mới vào dslk đôi này. Ta sẽ tìm vị trí 2 node cần chèn node mới vào giữa chúng, đơn giản chỉ thay đổi con trỏ của 2 node đó. Vì thế vị trí vật lý của node mới không quan trọng. Lợi ích của việc này là giúp việc chèn thêm dữ liệu không tốn quá nhiều công sức, chỉ thay đổi vài con trỏ.</p>
+</li>
+<li><p>Mỗi <strong>leaf node</strong> được lưu chữ trong 1 block/page. Mỗi block sẽ thườn là 1 vài KB, csdl sẽ cố gắng lưu nhiều node (node chưa index) nhất có thể trong mỗi block/page. Vậy csdl sẽ dùng dsdl đôi để quản lý trong 2 cấp (Dùng trong các node thuộc 1 block/page và dùng giữa các blog với nhau). Hiểu đơn giản như ta chia Việt Nam thành 63 block ứng với 63 tỉnh thành. Mỗi khi ta muốn tìm 1 tỉnh nào đó thì tìm trong sdl đôi của 63 tỉnh. Khi đã tìm thấy tỉnh cần tìm ta muốn tìm đến huyện (các huyện trong tỉnh đó cũng dùng dslk đôi để kết nối). Nhìn hình dưới đây.</p>
+</li>
+</ol>
+<p><img src="/../images/leaf-node.png" alt="2 level doubly linked list"></p>
+<h3 id="The-Search-Tree-B-Tree"><a href="#The-Search-Tree-B-Tree" class="headerlink" title="The Search Tree (B-Tree)"></a>The Search Tree (B-Tree)</h3><ol>
+<li>Dslk đôi giúp thực hiện nhanh các thao tác chèn, xoá node, tuy nhiên vậy còn tìm kiếm thì sao. Nhớ lại cấu trúc dslk thì việc tìm kiếm là tuyến tính, vì vậy chúng ta cần một cấu trúc dữ liệu bổ sung để giúp csdl biết được đối tượng cần tìm đang nằm trong block/page nào 1 cách nhanh chóng. Và cấu trúc dữ liệu được chọn là B-Tree. Nhìn hình dưới đây:</li>
+</ol>
+<p><img src="/../images/b-tree-sql.png" alt="b-tree"></p>
+<ol start="2">
+<li><p>Như hình trên. Dslk đôi giúp sắp xếp các node và các block/page. Root và <strong>branch node</strong> giúp đẩy nhanh quá trình tìm kiếm 1 block/page cần thiết.</p>
+</li>
+<li><p>Lý do B-Tree được lựa chọn và sử dụng rộng rãi là vì đặc tính cân bằng của cây. Độ cao của cây là không đổi từ root đến bất kể node lá nào. Tính tăng trưởng chiều cao của cây theo Logarit khi tăng node lá dẫn đến 1 cây bậc 4, 5 có thể chứa hàng triệu node và trong thực tế gần như không có trường hợp nào có độ sâu lên đến 6.</p>
+</li>
+</ol>
+<h2 id="The-Where-Clause"><a href="#The-Where-Clause" class="headerlink" title="The Where Clause"></a>The Where Clause</h2><h3 id="Concatenated-Indexes"><a href="#Concatenated-Indexes" class="headerlink" title="Concatenated Indexes"></a>Concatenated Indexes</h3><ol>
+<li><p>Các hệ quản trị cơ sở dữ liệu hiện nay sẽ đánh index cho khoá chính một cách tự động.</p>
+</li>
+<li><p><strong>Concatenated Indexes</strong>: Index được tạo bằng nhiều cột.</p>
+</li>
+<li><p>Một index được tạo từ 2 cột ví dụ <strong>col-1</strong> và <strong>col-2</strong> thì trong 1 câu truy vấn where dùng với 2 cột trên, index sẽ hoạt động không khác gì so với index một cột cả. Tuy nhiên thứ tự 2 cột trong câu lệnh tạo index sẽ rất quan trọng.</p>
+</li>
+</ol>
+<p>e.g:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">UNIQUE</span> <span class="keyword">INDEX</span> employee_pk</span><br><span class="line">  <span class="keyword">ON</span> employees (employee_id, subsidiary_id);</span><br></pre></td></tr></table></figure>
+
+<p>Khi này nếu chúng ta dùng truy vấn sau:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> first_name, last_name</span><br><span class="line">  <span class="keyword">FROM</span> employees</span><br><span class="line">  <span class="keyword">WHERE</span> subsidiary_id = <span class="number">20</span>;</span><br></pre></td></tr></table></figure>
+
+<p>Index sẽ tạo bên trên vô dụng và csdl sẽ full scan toàn bộ bảng employees.</p>
+<blockquote>
+<p>Cột đầu tiên sẽ là tiêu chí chính để xác định record cần tìm, chỉ sử dụng cột thứ 2 khi mà có nhiều hơn 1 record đáp ứng được tiêu chí về cột đầu tiên. Vì vậy 1 truy vấn với cột thứ 2 sẽ là vô nghĩa.</p>
+</blockquote>
+<p><img src="/../images/2-col.png" alt="2-col"></p>
+<p>Trong hình trên ta có thể thấy, B-Tree được sắp xếp theo cột đầu tiên, và ta chỉ sử dụng cột thứ 2 khi có nhiều hơn 1 record đáp ứng được điều kiện với cột đầu tiên. Ví dụ như record có id = 123, B-Tree sẽ dẫn chúng ta tới block chứa id này, ở đây vì có nhiều hơn 1 record có id = 123. Nó mới dựa vào cột thứ 2 để lấy record cần tìm. Vậy nếu ta query với điều kiện where chỉ có cột thứ 2 thì rõ ràng là hoàn toàn vô nghĩa.</p>
+<ol start="4">
+<li>Bản thân B-Tree trong trường hớp này cũng chỉ lưu cột thứ 2 ở node lá mà thôi, những node trung gian không có thông tin của cột 2.</li>
+</ol>
+<blockquote>
+<p>Điều quan trọng nhất khi tạo một index gồm nhiều cột là xác định xem nên chọn cột nào làm cột đầu tiên trong index.</p>
+</blockquote>
+<h3 id="Function-base-index"><a href="#Function-base-index" class="headerlink" title="Function-base index"></a>Function-base index</h3><p>Trong trường hợp đã đánh index cho cột <strong>last_name</strong>, vì không kiểm soát được dữ liệu của người dùng nhập và dữ liệu trong csdl, chữ hoa và chữ thường trong trường hợp này không phân biệt. Vậy ta nên làm gì?</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> first_name, last_name, phone_number</span><br><span class="line">  <span class="keyword">FROM</span> employees</span><br><span class="line">  <span class="keyword">WHERE</span> <span class="keyword">UPPER</span>(last_name) = <span class="keyword">UPPER</span>(<span class="string">'winand'</span>);</span><br></pre></td></tr></table></figure>
+
+<p>Tìm các record có last_name = ‘winand’, trước khi tìm kiếm thì sẽ dùng hàm UPPER để covert dữ liệu sang chữ hoa khi so khớp. Nhớ điều kiện bên trên, chúng ta đã đánh index cho field <strong>last_name</strong> tuy nhiên trong trường hợp này index sẽ không còn hoạt động, thay vào đó là 1 full scan toàn bộ bảng.</p>
+<p>Mô tuýt:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> first_name, last_name, phone_number</span><br><span class="line">  <span class="keyword">FROM</span> employees</span><br><span class="line">  <span class="keyword">WHERE</span> BLACKBOX(...) = <span class="string">'WINAND'</span>;</span><br></pre></td></tr></table></figure>
+
+<p>Trong đó thay <strong>BLACKBOX</strong> bằng một function bất kỳ, ứng với việc index không còn hoạt động.</p>
+<p>Giải pháp: Đánh index luôn giá trị thực sự sẽ dùng khi tìm kiếm, ở đây là last_name dưới dạng viết hoa.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">INDEX</span> emp_up_name</span><br><span class="line">  <span class="keyword">ON</span> employees (<span class="keyword">UPPER</span>(last_name));</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Ta gọi chỉ mục được tạo trên là function-based index (FBI), chỉ mục dựa trên function.</p>
+</blockquote>
+<p>Thay vì copy luôn dữ liệu cột được đánh vào cây index. Một function-based index sẽ apply function vào dữ liệu trước khi ghi vào cây index. Vậy trong ví dụ trên, cây index sẽ chứa toàn bộ last_name dưới dạng chữ hoa.</p>
+<blockquote>
+<p>Một số ORM dùng upper/lower 1 cách ngầm và mặc định, chớ không cần dev phải trực tiếp thực hiện, ví dụ như Hibernate sẽ tự động thực hiện function-based index với lower của cột cần đánh.</p>
+</blockquote>
+<p>Trên là kiến thức SQL, với các hệ quản trị cơ sở dữ liệu trong thực tế, cách thực hiện không phải lúc nào cũng như vậy.</p>
+<h3 id="User-Defined-Functions"><a href="#User-Defined-Functions" class="headerlink" title="User-Defined Functions"></a>User-Defined Functions</h3><p>Không phải function nào cũng có thể dùng cho function-based index.</p>
+<p>Chỉ những function là <strong>deterministic</strong> mới có thể dùng trong function-based index.</p>
+<blockquote>
+<p>deterministic: những function trả về cùng một kết quả khi nhận tham số giống nhau.</p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">FUNCTION</span> get_age(date_of_birth <span class="built_in">DATE</span>)</span><br><span class="line"><span class="keyword">RETURN</span> <span class="built_in">NUMBER</span></span><br><span class="line"><span class="keyword">AS</span></span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line"> <span class="keyword">RETURN</span></span><br><span class="line"> TRUNC(MONTHS_BETWEEN(<span class="keyword">SYSDATE</span>, date_of_birth)/<span class="number">12</span>);</span><br><span class="line"><span class="keyword">END</span>;</span><br></pre></td></tr></table></figure>
+
+<p>Không thể dùng <strong>get_age</strong> cho function-based index. Vì ví dụ tôi sinh ngày 30/08/1995. Ứng với mỗi thời điểm khác nhau output của hàm này sẽ khác nhau với cùng một đối số truyền vào là ngày sinh của tôi. Vậy nên nó không dùng để function-based index được.</p>
+<blockquote>
+<p>Các function khác không thể dụng cho index là function random hoặc function dựa trên biến môi trường.</p>
+</blockquote>
+<p>Notes: Giả sử chúng ta đánh index cho cột <strong>last_name</strong> rồi đánh tiếp cho <strong>UPPER(last_name)</strong>, với mỗi lần update đối tượng có trường last_name, đồng nghĩa chúng ta phải update cho 2 index. Ứng với 2 index đã đánh, vì vậy không nên đánh index quá nhiều, nhất là với function-based index.</p>
+<h3 id="Parameterized-Queries"><a href="#Parameterized-Queries" class="headerlink" title="Parameterized Queries"></a>Parameterized Queries</h3><blockquote>
+<p>Bind parameters/dynamic parameters/ bind variables là một cách truyền tham số vào câu query gián tiếp bằng các ký hiệu như <strong>?</strong>, <strong>:name</strong>, <strong>@name</strong>.</p>
+</blockquote>
+<blockquote>
+<p>Bind variables are the best way to prevent SQL injection.</p>
+</blockquote>
+<blockquote>
+<p>Các hệ quản trị csdl sẽ cache lại các dữ liệu đường truy cập y hệt nhau. Khi ta thay đổi tham số truyền vào hệ cơ sở dữ liệu sẽ query mới và không còn dùng cache.</p>
+</blockquote>
+<blockquote>
+<p>Not using bind parameters is like recompiling a program every time.</p>
+</blockquote>
+<h3 id="Searching-for-Ranges"><a href="#Searching-for-Ranges" class="headerlink" title="Searching for Ranges"></a>Searching for Ranges</h3><blockquote>
+<p>Rủi do hiệu suất lớn nhất với INDEX RANGE SCAN là quá trình duyệt qua nút lá.</p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> first_name, last_name, date_of_birth</span><br><span class="line">  <span class="keyword">FROM</span> employees</span><br><span class="line">  <span class="keyword">WHERE</span> date_of_birth &gt;= <span class="keyword">TO_DATE</span>(?, <span class="string">'YYYY-MM-DD'</span>)</span><br><span class="line">  <span class="keyword">AND</span> date_of_birth &lt;= <span class="keyword">TO_DATE</span>(?, <span class="string">'YYYY-MM-DD'</span>)</span><br><span class="line">  <span class="keyword">AND</span> subsidiary_id = ?</span><br></pre></td></tr></table></figure>
+
+<p>Ok, giờ chúng ta có một câu truy vấn như trên, tìm tất cả nhân viên có subsidiary_id = 27 và ngày sinh nằm trong khoảng 1/1/1971 và 9/1/1971.</p>
+<p>Chúng ta sẽ đánh index cho 2 cột trên, đánh như bên trên đã ghi. Tuy nhiên <strong>thứ tự đánh index</strong> như nào?</p>
+<p><strong>Trường hợp xếp date_or_birth trước</strong>:</p>
+<p><img src="/../images/date-first.png" alt="date- first"></p>
+<p><strong>Trường hợp xếp subsidiary_id trước</strong>:</p>
+<p><img src="/../images/sub-first.png" alt="sub- first"></p>
+<p><strong>Tại sao trường hợp cho subsidiary_id đầu tiên trong index lại đem lại performance tốt hơn?</strong></p>
+<p>Lý giải: khi dùng range first, kiểu gì cũng phải duyệt hết range đó thôi, record nào trong range đó là sẽ được duyệt qua rồi so khớp với điều kiện so bằng thứ hai.</p>
+<p>Khi dùng trường so bằng đầu tiên, ta làm giảm phạm vì số record cần quét qua (theo quy tắc của B-Tree).</p>
+<blockquote>
+<p>Rule of thumb: index for equality first—then for ranges.</p>
+</blockquote>
+<h3 id="Indexing-LIKE-Filters"><a href="#Indexing-LIKE-Filters" class="headerlink" title="Indexing LIKE Filters"></a>Indexing LIKE Filters</h3><p>Với các query với <strong>LIKE</strong>, chúng ta vẫn có thể đánh index bình thường lên trường được truy vấn. Tuy nhiên trong một số trường hợp chúng ta sẽ gặp vấn đề ví dụ như:</p>
+<p>Dùng ký tự <strong>%</strong> trong từ cần tìm.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> first_name, last_name, date_of_birth</span><br><span class="line">  <span class="keyword">FROM</span> employees</span><br><span class="line">  <span class="keyword">WHERE</span> <span class="keyword">UPPER</span>(last_name) <span class="keyword">LIKE</span> <span class="string">'WINND'</span></span><br></pre></td></tr></table></figure>
+
+<p>Đánh index trên last_name và ngon.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> first_name, last_name, date_of_birth</span><br><span class="line">  <span class="keyword">FROM</span> employees</span><br><span class="line">  <span class="keyword">WHERE</span> <span class="keyword">UPPER</span>(last_name) <span class="keyword">LIKE</span> <span class="string">'WIN%D'</span></span><br></pre></td></tr></table></figure>
+
+<p>Ký tự <strong>%</strong> xuất hiện và không ngon nữa rồi. Vì lúc này, <strong>index</strong> chỉ sử dụng phần trước <strong>%</strong> để tính khoảng range cần quét, còn phần đằng sau <strong>%</strong> chỉ dùng nhiệm vụ so khớp.</p>
+<p>Tức là phải quét qua bao nhiêu phần tử sẽ hoàn toàn do phần đầu tiên quyết định. Từ có ta có 2 định nghĩa tác giả nêu ra:</p>
+<ol>
+<li><strong>access predicate</strong>: phần đầu</li>
+<li><strong>filter predicate</strong>: phần còn lại</li>
+</ol>
+<p>Ví dụ hình dưới đây:</p>
+<p><img src="/../images/like-query.png" alt="like-query"></p>
+<p>Khi thay cụm từ đứng trước <strong>%</strong> từ WI -&gt; WIN -&gt; WINA thì scan range đã thay đổi từ:</p>
+<p>18 -&gt; 2 -&gt; 1 (trong cơ sở dữ liệu mẫu).</p>
+<h3 id="Index-Merge"><a href="#Index-Merge" class="headerlink" title="Index Merge"></a>Index Merge</h3><blockquote>
+<p>One index scan is faster than two.</p>
+</blockquote>
+<p>Liệu nên tạo mỗi index cho một column, hay tạo một index cho tất cả column, trường hợp nào hiệu quả hơn? Câu trả lời của tác giả là nhiều cột cho một index sẽ hiệu quả hơn trong truy vấn where.</p>
+<p>Tại sao lại như vậy?</p>
+<p>Quay trở lại định nghĩa, chúng ta đã được đọc rằng index dùng B-Tree kết hợp với dslk đôi để cover các trường hợp.</p>
+<p>Vậy giả sử, ta đánh index lên 2 column (last_name và date_of_bird) theo đúng thứ tự sắp xếp. Khi này hệ quản trị csdl sẽ đánh sắp khoảng theo last_name, tức là node lá sẽ bắt đầu tới last_name có ký tự nhỏ nhất (ví dụ là A) và node lá cuối cùng sẽ là ký tự lớn nhất (ví dụ là Z). Khi này, trường thứ 2 trong index chỉ dùng để so khớp khi ta có 2 last_name bằng nhau mà thôi.</p>
+<p>Vậy nếu ta đánh 2 index riêng biệt cho last_name và date_of_bird thì sao? Lúc này với một câu truy vấn dưới đây:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> first_name, last_name, date_of_birth</span><br><span class="line">  <span class="keyword">FROM</span> employees</span><br><span class="line">  <span class="keyword">WHERE</span> <span class="keyword">UPPER</span>(last_name) &lt; ?</span><br><span class="line">  <span class="keyword">AND</span> date_of_birth &lt; ?</span><br></pre></td></tr></table></figure>
+
+<p>hệ quản trị csdl sẽ phải duyệt qua 2 cây index (1 cây ứng với index cho last_name và cây còn lại ứng với index cho date_of_birth). Sau đó combine kết quả của 2 lần duyệt ở trên lại.</p>
+<p>Sẽ tốn resource hơn rất nhiều so với đánh 1 index cho last_name + date_of_birth.</p>
+<blockquote>
+<p>Có một loại index giúp giải quyết bài toán trên gọi là bitmap index, tuy nhiên bitmap index gặp vấn đề lớn trong việc ghi đồng thời, vì thế nó không thể sử dụng trong các csdl thanh toán online.</p>
+</blockquote>
+<h3 id="Partial-Indexes"><a href="#Partial-Indexes" class="headerlink" title="Partial Indexes"></a>Partial Indexes</h3><p>Đánh chỉ mục cho 1 nhóm phần tử thuộc 1 bảng.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">INDEX</span> messages_todo</span><br><span class="line">  <span class="keyword">ON</span> messages (receiver)</span><br><span class="line">  <span class="keyword">WHERE</span> processed = <span class="string">'N'</span></span><br></pre></td></tr></table></figure>
+
+<p>Đánh index cho các row thuộc bảng messages mà có column processed có giá trị bằng N.</p>
+<p>Vậy ta dùng được index này khi nào. Câu trả lời là chúng ta có thể dùng mọi lúc khi query với mệnh đề where.</p>
+<h2 id="Performance-and-Scalability"><a href="#Performance-and-Scalability" class="headerlink" title="Performance and Scalability"></a>Performance and Scalability</h2><h2 id="The-Join-Operation"><a href="#The-Join-Operation" class="headerlink" title="The Join Operation"></a>The Join Operation</h2><h2 id="Clustering-Data"><a href="#Clustering-Data" class="headerlink" title="Clustering Data"></a>Clustering Data</h2>
+    </div>
+    <!-- 
+        <hr class="fhr">
+        <div id="vcomments"></div>
+     -->
+</div>
+
+    <div class="footer" id="footer">
+    <p>Copyright © 2020 <a class="flink" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a>-<a class="flink" href="https://github.com/sanjinhub/hexo-theme-geek" target="_blank" rel="noopener">Geek</a>.
+        <label class="el-switch el-switch-green el-switch-sm" style="vertical-align: sub;">
+            <input type="checkbox" name="switch" id="update_style">
+            <span class="el-switch-style"></span>
+        </label>
+<!--         <script type="text/javascript">
+        var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");
+        document.write(unescape("%3Cspan id='cnzz_stat_icon_1278548644'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/stat.php%3Fid%3D1278548644%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+        </script> -->
+    </p>
+</div>
+<input type="hidden" id="web_style" value="black">
+<input type="hidden" id="valine_appid" value="CmCti21ooOOIzFOhEyFkFvR0-gzGzoHsz">
+<input type="hidden" id="valine_appKey" value="FqiyUqbg7McKN2eG0MCewupf">
+
+<script src="/libs/jquery.min.js"></script>
+
+
+<script src="/libs/highlight/highlight.pack.js"></script>
+
+<script src='//cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+
+<script src="/js/js.js"></script>
+
+<style type="text/css">
+.v * {
+    color: #698fca;
+}
+
+.v .vlist .vcard .vhead .vsys {
+    color: #3a3e4a;
+}
+
+.v .vlist .vcard .vh .vmeta .vat {
+    color: #638fd5;
+}
+
+.v .vlist .vcard .vhead .vnick {
+    color: #6ba1ff;
+}
+
+.v a {
+    color: #8696b1;
+}
+
+.v .vlist .vcard .vhead .vnick:hover {
+    color: #669bfc;
+}
+</style>
+</body>
+
+</html>

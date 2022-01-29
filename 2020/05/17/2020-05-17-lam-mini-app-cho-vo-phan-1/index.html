@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>
+        Notes
+    </title>
+    
+<link rel="stylesheet" href="/libs/highlight/styles/monokai-sublime.css">
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body id="bodyx">
+    <div class="hd posts">
+    <a href="/index.html"><i class="fa fa-reply replay-btn" aria-hidden="true"></i></a>
+    <div class="post-title">
+        <p>
+            Làm Mini App Cho Vợ P.1
+        </p>
+        <hr>
+    </div>
+    <div class="post-content">
+        <h2 id="Nhu-cau"><a href="#Nhu-cau" class="headerlink" title="Nhu cầu"></a>Nhu cầu</h2><p>Chuyện là mình đã lấy vợ được nửa năm, tính ra cũng khá sớm, nhưng âu là cái duyên, duyên đến thì nhận, sớm hay muộn là do nhận mà ra, quan trọng bản thân cảm thấy vui vẻ.</p>
+<p>Vợ chồng mình trẻ…và dĩ nhiên cũng nghèo :(, chi tiêu, giá cả tăng phi mã, cái con số lạm phát trên tivi có vẻ không được chính xác, 2 vợ chồng đi làm có cố gắng mà cuối tháng không bỏ ra được đáng bao nhiêu tiền, trong khi còn chưa có con cái, đáng suy ngẫm mà cũng đáng để lo lắng.</p>
+<p>Có vấn đề, thì ta tìm cách giải quyết, mình đi đến 2 quyết định:</p>
+<ol>
+<li>Tìm một công việc khác có thu nhập tốt hơn.</li>
+<li>Các chi tiêu cần được thống kê lại.</li>
+</ol>
+<p>Để có thể thực hiện điều số 2, vợ chồng mình cần chủ động ghi chép lại toàn bộ chi tiêu, mà rồi làm sao để ghi chép?</p>
+<p>Mình có tìm hiểu một số ứng dụng thống kê, ghi chép thu chi, nhưng kết quả không tốt, với lý do những ứng dụng đó không match được với nhu cầu. <strong>Hơn nữa điều quan trọng nhất, đó là vợ chồng mình lười, vậy nên để duy trì một thói quen lâu dài, chúng mình cần công việc đó thực sự ĐƠN GIẢN.</strong></p>
+<p>Các ứng dụng mình tìm được quá phức tạp, ngay cả việc mở 1 cái app note lên ghi note text lại thôi, chưa chắc bạn đã làm được ngày này qua ngày khác, huống hồ ghi thu chi.</p>
+<p>Vì vậy, mình quyết định làm 1 ứng dụng mini để match đúng nhu cầu mình đang có, và nó phải đơn giản, đơn giản đến mức mình (1 người lười) cũng có thể duy trì lâu dài.</p>
+<h2 id="Du-dinh"><a href="#Du-dinh" class="headerlink" title="Dự định"></a>Dự định</h2><p>Với dự định như trên, mình quyết định làm 1 <strong>Chat Bot</strong> đơn giản, để mỗi lần ghi thu chi mình có thẻ mở 1 app nhắn tin nào đó lên gõ và enter là xong. Tiếp đó mình cần 1 <strong>web app</strong> cũng đơn giản không kém, chỉ cần có chức năng đăng nhập, xem thu chi trong ngày, trong tháng, trong năm, xem đồ thị so sánh giữa các ngày trong tuần, xem đồ thị so sánh giữa các tuần trong tháng, và có thể trong tương lai là so sánh các ngày trong năm, và có chức năng gửi report qua email. Vậy là ổn và match với nhu cầu tiết kiệm của vợ chồng mình.</p>
+<p>Với số tính năng trên mình đã lựa chọn như sau:</p>
+<ol>
+<li><p><strong>Chat Bot</strong>: Sử dụng nền tảng của facebook messenger (lý do: nổi tiếng, bản thân mình và vợ cũng hay xài).</p>
+</li>
+<li><p><strong>Web App</strong>: Backend (Ruby On Rails, mình có 1 side project nên giờ chỉ viết thêm module cho phần chức năng cần có của app thu chi chứ không cần tạo project từ đầu - Triển khai trên Heroku), Frontend (Reactjs - Triển khai trên Now.sh).</p>
+</li>
+</ol>
+<p>Flow như sau:</p>
+<ol>
+<li>Mình gửi tin nhắn đến facebook chatbot.</li>
+<li>Tin nhắn đó được gửi tới server backend. Backend phân tích format của tin nhắn và lưu lại thông tin nếu dữ liệu hợp lệ.</li>
+<li>Mình vào web Frontend để monitor quá trình chi tiêu.</li>
+</ol>
+<h2 id="Tong-ket"><a href="#Tong-ket" class="headerlink" title="Tổng kết"></a>Tổng kết</h2><p>Khi mình viết bài viết này, thì ứng dụng nhỏ này đã được triển khai và vợ chồng mình đã có 1 tuần sử dụng, chúng mình khá ưng ý, hi vọng có thể duy trì thói quen này lâu dài.</p>
+<p>Qua đây mình sẽ viết quá trình làm mini app này, từ khi làm tới khi triển khai và sau đó là cố gắng học hỏi để improve tổ chức project tốt hơn (mình chưa có nhiều kinh nghiệm Frontend, nên đây cũng là cơ hội để đọc những tài liệu hay ho về Frontend).</p>
+
+    </div>
+    <!-- 
+        <hr class="fhr">
+        <div id="vcomments"></div>
+     -->
+</div>
+
+    <div class="footer" id="footer">
+    <p>Copyright © 2020 <a class="flink" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a>-<a class="flink" href="https://github.com/sanjinhub/hexo-theme-geek" target="_blank" rel="noopener">Geek</a>.
+        <label class="el-switch el-switch-green el-switch-sm" style="vertical-align: sub;">
+            <input type="checkbox" name="switch" id="update_style">
+            <span class="el-switch-style"></span>
+        </label>
+<!--         <script type="text/javascript">
+        var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");
+        document.write(unescape("%3Cspan id='cnzz_stat_icon_1278548644'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/stat.php%3Fid%3D1278548644%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+        </script> -->
+    </p>
+</div>
+<input type="hidden" id="web_style" value="black">
+<input type="hidden" id="valine_appid" value="CmCti21ooOOIzFOhEyFkFvR0-gzGzoHsz">
+<input type="hidden" id="valine_appKey" value="FqiyUqbg7McKN2eG0MCewupf">
+
+<script src="/libs/jquery.min.js"></script>
+
+
+<script src="/libs/highlight/highlight.pack.js"></script>
+
+<script src='//cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+
+<script src="/js/js.js"></script>
+
+<style type="text/css">
+.v * {
+    color: #698fca;
+}
+
+.v .vlist .vcard .vhead .vsys {
+    color: #3a3e4a;
+}
+
+.v .vlist .vcard .vh .vmeta .vat {
+    color: #638fd5;
+}
+
+.v .vlist .vcard .vhead .vnick {
+    color: #6ba1ff;
+}
+
+.v a {
+    color: #8696b1;
+}
+
+.v .vlist .vcard .vhead .vnick:hover {
+    color: #669bfc;
+}
+</style>
+</body>
+
+</html>

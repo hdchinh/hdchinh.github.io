@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>
+        Notes
+    </title>
+    
+<link rel="stylesheet" href="/libs/highlight/styles/monokai-sublime.css">
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body id="bodyx">
+    <div class="hd posts">
+    <a href="/index.html"><i class="fa fa-reply replay-btn" aria-hidden="true"></i></a>
+    <div class="post-title">
+        <p>
+            Tìm Hiểu Về Chữ S Trong Https
+        </p>
+        <hr>
+    </div>
+    <div class="post-content">
+        <h2 id="Dat-van-de"><a href="#Dat-van-de" class="headerlink" title="Đặt vấn đề"></a>Đặt vấn đề</h2><p>Đi luôn vào chủ đề, khi mới bắt đầu với môn mạng máy tính ở trường đại học, sự mập mờ khi còn ngồi trên ghế nhà trường khiến chúng ta đôi khi đã nhầm lẫn về <strong>http</strong> và <strong>https</strong>, nhớ ngày đó tôi đã từng nghĩ chúng là 2 giao thức khác nhau, à mà ngày đó tôi có hiểu giao thức là gì không nhỉ :fearful: thôi dẹp qua một bên, bản chất của <strong>https</strong> cũng là giao thức <strong>http</strong> nhưng thêm được chữ <strong>s</strong> ứng với <strong>secure</strong>. Nghe thôi đã thấy bảo mật rồi, <strong>https</strong> ra đời nhằm mục đích làm cho giao thức <strong>http</strong> trở nên an toàn hơn, vậy nó làm cho <strong>http</strong> trở nên an toàn hơn như thế nào?</p>
+<h2 id="Luan-ban"><a href="#Luan-ban" class="headerlink" title="Luận bàn"></a>Luận bàn</h2><h2 id="1-Http-hieu-don-gian-thi-hoat-dong-the-nao"><a href="#1-Http-hieu-don-gian-thi-hoat-dong-the-nao" class="headerlink" title="1. Http hiểu đơn giản thì hoạt động thế nào?"></a>1. Http hiểu đơn giản thì hoạt động thế nào?</h2><p>Mục đích cuối cùng của mớ hỗn độn rối rắm này cũng là truyền nhận thông tin, tôi có một website tôi muốn gửi nó lên mạng internet để bạn, một ai đó mà tôi không quen có thể vô tình lướt qua đọc được.<br>Http là một giao thức, hiểu đơn giản là một bộ quy tắc để chung để người sử dụng dùng trình duyệt có thể truy cập tới 1 trang web, và trang web đó hiểu được yêu cầu đó rồi trả về nội dung mà trình duyệt có thể hiểu được, ví như có nhiều ngôn ngữ trên thế giới, vậy giữa 2 người có 2 tiếng nói khác nhau để giao tiếp được họ phải cùng nhau sử dụng một bộ ngôn ngữ chung mà cả hai cùng hiểu được.</p>
+<p>Một đặc điểm cơ bản của <strong>http</strong> là nó truyền nhận thông tin dưới dạng <strong>text</strong> thông thường, không hề mã hoã, điều này dẫn tới vấn đề đó là thông tin được truyền nhận nhanh chóng, nhẹ nhàng, nội dung rất thân thiện với người dùng (vì nó là text mà).</p>
+<p>Mọi thứ có vẻ good? không hẳn như vậy, việc dữ liệu truyền gửi được lưu dưới dạng text khiến nó quá thân thiện với người dùng, mà người dùng thì không phải ai cũng tốt :smirk: . Có những người dùng mà mục đích họ tới với website của bạn là để phá hoại, họ sẽ dễ dàng tấn công bằng cách nào đó lấy được request của bạn rồi đọc được nội dung trong request đó 1 cách dễ dàng.</p>
+<p>Bài học: Không phải lúc nào cũng nên quá thân thiện với người dùng cuối :worried:</p>
+<h2 id="2-Https-khac-phuc-van-de-cua-http-nhu-the-nao"><a href="#2-Https-khac-phuc-van-de-cua-http-nhu-the-nao" class="headerlink" title="2. Https khắc phục vấn đề của http như thế nào?"></a>2. Https khắc phục vấn đề của http như thế nào?</h2><p>Chúng ta đã nắm được khái quát vấn đề bảo mật gặp phải khi sử dụng <strong>http</strong>. Với những website giải trí thuần tuý với nội dung chủ yếu là hình ảnh, âm thanh và không có thông tin cần bảo mật thì sử dụng https hình như cũng chỉ để tốt cho SEO, ngoài ra cũng không còn giá trị gì. Nhưng nếu bạn sử dụng <strong>Internet Banking</strong> với http, rồi bạn đăng nhập với tài khoản ngân hàng của mình trên đó, mọi thông tin bạn gửi đi đều dưới dạng những gói tin có nội dung plain/text trần trụi, vậy điều gì bảo vệ được tài khoản của bạn nếu request kể trên bị những kẻ xấu dùng những thủ thuật hay phần mềm chuyên dụng để bắt được?</p>
+<p>Https giải bài toán trên bằng cách rất đơn giản, nội dung dạng plain/text giúp kẻ gian có thể bắt và đọc dễ dàng, vậy chúng ta hãy mã hoá nội dung để kẻ gian đó không thể hiểu được, và có bắt được gói tin cũng vô dụng?.</p>
+<h2 id="3-Https-va-van-de-ma-hoa-du-lieu"><a href="#3-Https-va-van-de-ma-hoa-du-lieu" class="headerlink" title="3. Https và vấn đề mã hoá dữ liệu"></a>3. Https và vấn đề mã hoá dữ liệu</h2><p>Trước tiên phải làm rõ là:</p>
+<p><strong>https = http + ssl</strong></p>
+<p>Trong đó:</p>
+<ol>
+<li><p>http là giao thức tryền tải.</p>
+</li>
+<li><p>ssl là cơ chế bảo mật thông tin.</p>
+</li>
+</ol>
+<p><img src="/images/7.gif" alt="tam the tu tin"></p>
+<p>Flow tối thiểu của <strong>https</strong> sẽ như sau:</p>
+<ol>
+<li><p><strong>Client hello</strong>, người dùng sử dụng trình duyệt sẽ request tới google.com.</p>
+</li>
+<li><p><strong>Server hello</strong>, request ở bước một đã tới nơi, server sẽ gửi trả client 2 thông tin quan trọng đó là <strong>ssl certificate</strong> (Để chứng minh “Ê, tao là google.com thật nha, not fake”) và 1 <strong>Public key</strong> (Gọi là Public-key-1. <em>Vậy ta có thể hiểu là ở Server google.com nó đang giữ Private key 1 ứng với Public key 1 kia</em>).</p>
+</li>
+<li><p>Browser sẽ xác minh <strong>ssl certificate</strong> nhận được để xem nó có phải là hàng real hay không. Vậy còn làm sao mà browser có thể phân định thật giả? Chúng ta sẽ tìm hiểu trong 1 bài viết khác.</p>
+</li>
+<li><p>Sau khi browser xác minh và đã tin tưởng máy chủ google.com, browser sẽ tạo 1 cặp khoá bảo mật RSA thứ 2, ta gọi là <strong>Public key 2 và Private key 2</strong>.</p>
+</li>
+<li><p>Browser dùng <strong>Public key 1</strong> đã nhận được từ bước 3, để mã hoá <em>Public key 2 và Private key 2</em> sinh ra trong bước 4, rồi gửi cặp khoá này dưới dạng đã mã hoá tới máy chủ google.com.</p>
+</li>
+<li><p>Như bạn nhớ, thì máy chủ google.com đang giữ <strong>Private key 1</strong> và thế là nó có thể giải mã và lấy được cặp key ở bước 5.</p>
+</li>
+<li><p>Vậy là cả máy chủ google.com và client đều có cặp khoá RSA thứ 2, mọi thông tin truyền gửi từ cả 2 phía bây giờ đều được mã hoá bằng Public key 2.</p>
+</li>
+</ol>
+<p>Note: Nhờ cơ chế mã hoá RSA (Chỉ có thể mã hoá bằng public key và giải mã nội dung bằng private key) kể trên. Server và client đã có thể liên lạc với nhau một cách an toàn. Trong quá trình trên, kể cả kẻ thủ ác có bắt được gói tin ở bước 2, bên trong có public key 1, thì cũng không phải vấn đề, bởi vì với public key đó thì hắn không thể đọc được thông tin mà client gửi ở bước 5.</p>
+<h1 id="Ket-luan"><a href="#Ket-luan" class="headerlink" title="Kết luận"></a>Kết luận</h1><p>Không có kết luận :)</p>
+
+    </div>
+    <!-- 
+        <hr class="fhr">
+        <div id="vcomments"></div>
+     -->
+</div>
+
+    <div class="footer" id="footer">
+    <p>Copyright © 2020 <a class="flink" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a>-<a class="flink" href="https://github.com/sanjinhub/hexo-theme-geek" target="_blank" rel="noopener">Geek</a>.
+        <label class="el-switch el-switch-green el-switch-sm" style="vertical-align: sub;">
+            <input type="checkbox" name="switch" id="update_style">
+            <span class="el-switch-style"></span>
+        </label>
+<!--         <script type="text/javascript">
+        var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");
+        document.write(unescape("%3Cspan id='cnzz_stat_icon_1278548644'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/stat.php%3Fid%3D1278548644%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+        </script> -->
+    </p>
+</div>
+<input type="hidden" id="web_style" value="black">
+<input type="hidden" id="valine_appid" value="CmCti21ooOOIzFOhEyFkFvR0-gzGzoHsz">
+<input type="hidden" id="valine_appKey" value="FqiyUqbg7McKN2eG0MCewupf">
+
+<script src="/libs/jquery.min.js"></script>
+
+
+<script src="/libs/highlight/highlight.pack.js"></script>
+
+<script src='//cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+
+<script src="/js/js.js"></script>
+
+<style type="text/css">
+.v * {
+    color: #698fca;
+}
+
+.v .vlist .vcard .vhead .vsys {
+    color: #3a3e4a;
+}
+
+.v .vlist .vcard .vh .vmeta .vat {
+    color: #638fd5;
+}
+
+.v .vlist .vcard .vhead .vnick {
+    color: #6ba1ff;
+}
+
+.v a {
+    color: #8696b1;
+}
+
+.v .vlist .vcard .vhead .vnick:hover {
+    color: #669bfc;
+}
+</style>
+</body>
+
+</html>

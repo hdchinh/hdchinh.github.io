@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>
+        Notes
+    </title>
+    
+<link rel="stylesheet" href="/libs/highlight/styles/monokai-sublime.css">
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body id="bodyx">
+    <div class="hd posts">
+    <a href="/index.html"><i class="fa fa-reply replay-btn" aria-hidden="true"></i></a>
+    <div class="post-title">
+        <p>
+            How To Use Arguments In Ruby
+        </p>
+        <hr>
+    </div>
+    <div class="post-content">
+        <h2 id="How-Many-Kind-Of-Arguments-In-Ruby"><a href="#How-Many-Kind-Of-Arguments-In-Ruby" class="headerlink" title="How Many Kind Of Arguments In Ruby?"></a>How Many Kind Of Arguments In Ruby?</h2><p>We can answer: <strong>Three</strong></p>
+<ol>
+<li>Required arguments</li>
+</ol>
+<p>eg:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello</span><span class="params">(name)</span></span></span><br><span class="line">  puts <span class="string">"Hello <span class="subst">#&#123;name&#125;</span>"</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>In there, <em>name</em> is a required argument. it mean if you call <strong>hello</strong> method and do not pass an argument, the output that you see should like:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hello()</span><br><span class="line"></span><br><span class="line">=&gt; <span class="symbol">ArgumentError:</span> wrong number of arguments (given <span class="number">0</span>, expected <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<p>Let pass an argument and this error will gone.</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hello(<span class="string">'Meo Meo'</span>)</span><br><span class="line"></span><br><span class="line">=&gt; <span class="string">"Hello Meo Meo"</span></span><br></pre></td></tr></table></figure>
+
+<p>It’s very simple, I think we are make sence now.</p>
+<ol start="2">
+<li>Default arguments</li>
+</ol>
+<p>Almost like <strong>Required arguments</strong>. It has one more thing different:</p>
+<p>That is when we pass argument in a method, we can set default value for it, and then when you call this method and unlucky forgot pass arguments for this method, your method still working, if it’s not received arguments when it is called, it will use the default value.</p>
+<p>eg:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello</span><span class="params">(name = <span class="string">"Meo Meo"</span>)</span></span></span><br><span class="line">  puts <span class="string">"Hello <span class="subst">#&#123;name&#125;</span>"</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">hello(<span class="string">"Chinh"</span>)</span><br><span class="line">=&gt; <span class="string">"Hello Chinh"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># if you don't pass an argument</span></span><br><span class="line">hello()</span><br><span class="line">=&gt; <span class="string">"Hello Meo Meo"</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>Optional arguments</li>
+</ol>
+<p>Do you ever want to create a method and have no idea how many arguments does this method need?</p>
+<p>Yes, we use optional arguments for this case, take a looke at the example below:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello</span><span class="params">(*family)</span></span></span><br><span class="line">  family.each <span class="keyword">do</span> <span class="params">|name|</span></span><br><span class="line">    puts <span class="string">"Hello <span class="subst">#&#123;name&#125;</span>\n"</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">hello(<span class="string">'Chinh'</span>, <span class="string">'Chuot'</span>, <span class="string">'Cho'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># The output:</span></span><br><span class="line"><span class="comment"># Hello Chinh</span></span><br><span class="line"><span class="comment"># Hello Chuot</span></span><br><span class="line"><span class="comment"># Hello Cho</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Keyword-Arguments"><a href="#Keyword-Arguments" class="headerlink" title="Keyword Arguments"></a>Keyword Arguments</h2><p>It’s a new feature has come from ruby 2.0 to higher. It like pass arguments as a hash but more powerful.</p>
+<p>eg:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello</span><span class="params">(<span class="symbol">name:</span> <span class="string">'Chinh'</span>, <span class="symbol">age:</span> <span class="number">25</span>)</span></span></span><br><span class="line">  puts <span class="string">"Name: <span class="subst">#&#123;name&#125;</span> - Age: <span class="subst">#&#123;age&#125;</span>\n"</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>if you call <strong>hello</strong> method with no arguments:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hello()</span><br></pre></td></tr></table></figure>
+
+<p>It will use default value.</p>
+<p>And then</p>
+<p>If you pass argumets for it:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hello(<span class="string">'Chinh'</span>, <span class="number">25</span>)</span><br></pre></td></tr></table></figure>
+
+<p>what will it return?</p>
+<p><strong>Error</strong>: yes, it will response an error, but why?</p>
+<p>Because, with <strong>keyword arguments</strong>, you need to pass argumetns like a hash you declare when initial method. (<strong>same key</strong>).</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">hello(<span class="symbol">name:</span> <span class="string">'Meo'</span>)</span><br><span class="line"><span class="comment"># Hello Meo - Age: 25</span></span><br><span class="line"></span><br><span class="line">hello(<span class="symbol">age:</span> <span class="number">10</span>)</span><br><span class="line"><span class="comment"># Hello Chinh - Age: 10</span></span><br><span class="line"></span><br><span class="line">hello(<span class="symbol">name:</span> <span class="string">'Chuot'</span>, <span class="symbol">age:</span> <span class="number">11</span>)</span><br><span class="line"><span class="comment"># Hello Chuot - Age: 11</span></span><br></pre></td></tr></table></figure>
+
+<p>If you want to required an argument with no default value, try this:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello</span><span class="params">(<span class="symbol">name:</span>, <span class="symbol">age:</span>)</span></span></span><br><span class="line">  puts <span class="string">"Name: <span class="subst">#&#123;name&#125;</span> - Age: <span class="subst">#&#123;age&#125;</span>\n"</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>It mean the method need to receive “a hash” with two key <em>name</em> and <em>age</em>. if it does not revieve, error will raise.</p>
+
+    </div>
+    <!-- 
+        <hr class="fhr">
+        <div id="vcomments"></div>
+     -->
+</div>
+
+    <div class="footer" id="footer">
+    <p>Copyright © 2020 <a class="flink" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a>-<a class="flink" href="https://github.com/sanjinhub/hexo-theme-geek" target="_blank" rel="noopener">Geek</a>.
+        <label class="el-switch el-switch-green el-switch-sm" style="vertical-align: sub;">
+            <input type="checkbox" name="switch" id="update_style">
+            <span class="el-switch-style"></span>
+        </label>
+<!--         <script type="text/javascript">
+        var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");
+        document.write(unescape("%3Cspan id='cnzz_stat_icon_1278548644'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/stat.php%3Fid%3D1278548644%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+        </script> -->
+    </p>
+</div>
+<input type="hidden" id="web_style" value="black">
+<input type="hidden" id="valine_appid" value="CmCti21ooOOIzFOhEyFkFvR0-gzGzoHsz">
+<input type="hidden" id="valine_appKey" value="FqiyUqbg7McKN2eG0MCewupf">
+
+<script src="/libs/jquery.min.js"></script>
+
+
+<script src="/libs/highlight/highlight.pack.js"></script>
+
+<script src='//cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+
+<script src="/js/js.js"></script>
+
+<style type="text/css">
+.v * {
+    color: #698fca;
+}
+
+.v .vlist .vcard .vhead .vsys {
+    color: #3a3e4a;
+}
+
+.v .vlist .vcard .vh .vmeta .vat {
+    color: #638fd5;
+}
+
+.v .vlist .vcard .vhead .vnick {
+    color: #6ba1ff;
+}
+
+.v a {
+    color: #8696b1;
+}
+
+.v .vlist .vcard .vhead .vnick:hover {
+    color: #669bfc;
+}
+</style>
+</body>
+
+</html>

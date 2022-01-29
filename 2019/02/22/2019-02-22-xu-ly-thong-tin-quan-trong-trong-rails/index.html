@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>
+        Notes
+    </title>
+    
+<link rel="stylesheet" href="/libs/highlight/styles/monokai-sublime.css">
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body id="bodyx">
+    <div class="hd posts">
+    <a href="/index.html"><i class="fa fa-reply replay-btn" aria-hidden="true"></i></a>
+    <div class="post-title">
+        <p>
+            Lưu Trữ Thông Tin Bảo Mật Trong Rails?
+        </p>
+        <hr>
+    </div>
+    <div class="post-content">
+        <h2 id="1-Khai-quat"><a href="#1-Khai-quat" class="headerlink" title="1. Khái quát"></a>1. Khái quát</h2><p>Bài toán này đơn giản hiểu như sau: Một project bất kỳ sẽ luôn có những thông tin cấu hình vô cùng quan trọng, bắt buộc phải luôn giữ chúng private, còn làm cách nào để giữ chúng private trong rails?<br>Câu trả lời là tuỳ vào mỗi phiên bản rails, sẽ có (có thể có) những cách khác nhau để xử lý vấn đề này. Hãy đi đến các dấu mốc cụ thể dưới đây.</p>
+<h2 id="2-Rails-4-1"><a href="#2-Rails-4-1" class="headerlink" title="2. Rails 4.1"></a>2. Rails 4.1</h2><p>Phiên bản rails này sử dụng một file có tên <strong>secrets.yml</strong>, đây là file sẽ lưu toàn bộ các thông tin nhạy cảm chúng ta đã nói ở trên.<br>Với thiết kế như này ta có hai lựa chọn cho ứng dụng của mình:</p>
+<ol>
+<li><p>Đem hết thông tin nhạy cảm dưới đạng text bỏ vào file này, tuy nhiên file này phải được bỏ vào trong danh mục của <strong>gitignore</strong> để đảm bảo thông tin trong đó không bị bạn vô tình hay hữu ý commit đi đâu đó.</p>
+</li>
+<li><p>Thông tin nhạy cảm lưu trong file này thay vì được lưu dưới dạng text thì sẽ được lưu trong máy của bạn dứoi dạng <strong>biến môi trường</strong> và trong file <strong>secrets.yml</strong> chỉ sử dụng phương thức <strong>ENV</strong> mà rails cung cấp để gọi lại các thông tin đó lên, với lựa chọn này bạn có thể commit file này thoải mái, ở các máy tính đồng nghiệp, để có thể sử dụng được những config này thì buộc họ phải thiết lập biến môi trường trên máy tính của họ cho phù hợp.</p>
+</li>
+</ol>
+<p>Nhược điểm: dù sử dụng cách nào, thì để ứng dụng hoạt động được thì vẫn phải truyền giá trị các thông tin nhạy cảm này từ máy của bạn lên một con vps khi triển khai chẳng hạn, không còn cách nào khác. Có thể bạn phải copy từng dòng thông tin nhạy cảm rồi paste qua remote shell để thiết lập (với những dự án lớn có rất nhiều thông tin quan trọng thì đây là 1 công việc vất vả tiềm tàng nguy cơ sai sót).</p>
+<p>Note: Thay vì sử dụng file <strong>secrets.yml</strong>, ta có thể sử dụng một file khác như <strong>application.yml</strong>, mục đích và chức năng của chúng là tương đương.</p>
+<h2 id="3-Rails-5-1"><a href="#3-Rails-5-1" class="headerlink" title="3. Rails 5.1"></a>3. Rails 5.1</h2><p>Sang đến phiên bản rails 5.1, một thay đổi lớn đã tới. Thay vì lưu thông tin dạng text hoặc triệu hồi thông qua biến môi trường, rails khi này cung cấp khả năng mã hoá cho các thông tin nhạy cảm này.<br>Cách chúng hoạt động như sau:</p>
+<p>Một file tên <strong>secrets.yml.key</strong> sẽ chứa giá trị của một biến tên <strong>RAILS_MASTER_KEY</strong>, biến này có giá trị là một chuỗi, có chức năng được sử dụng để mã hoá và giải mã các thông tin quan trọng.</p>
+<p>Nội dung thông tin <strong>sau</strong> mã hoá sẽ được lưu tại file <strong>secrets.yml.enc</strong></p>
+<p>Vậy còn file <strong>secrets.yml</strong> trong rails 4 giờ còn không? Câu trả lời là bạn vẫn có thể sử dụng file này, tuy nhiên trên cùng một môi trường, nếu có cả file <strong>secrets.yml</strong> và <strong>secrets.yml.enc</strong> thì hai file này sẽ được merge.</p>
+<p>Để có thể sử dụng tính năng encypt này của rails 5.1 ta setup như sau:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rails <span class="symbol">secrets:</span>setup</span><br></pre></td></tr></table></figure>
+<p>Sau câu lệnh này hai file <strong>secrets.yml.key</strong> và <strong>secrets.yml.enc</strong> sẽ được tạo ra. Để thêm xoá sửa nội dung trong <strong>secrets.yml.enc</strong> ta sử dụng lệnh sau:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rails <span class="symbol">secrets:</span>edit</span><br></pre></td></tr></table></figure>
+
+<p>Câu lệnh này sẽ mở nội dung file <strong>secrets.yml.enc</strong> dưới dạng đã giải mã. Bạn có thể thoải mái thêm xoá, sửa các thông tin nhạy cảm, sau đó khi bạn save lại và tắt editor thì file <strong>secrets.yml.enc</strong> sẽ tự động được cập nhập phần mã hoá mới nhất khi có thêm thông tin.</p>
+<p>Tôi thích dùng <strong>vim</strong> để chỉnh sửa, và tôi không muốn set mặc định editor nên tôi sử dụng câu lệnh sau: <strong>EDITOR=vi rails secrets:edit</strong>.</p>
+<p>Ưu điểm:</p>
+<ol>
+<li><p>Thay vì phải quản lý nhiều biến môi trường, giờ đây mọi thứ đều nằm trong một file.</p>
+</li>
+<li><p>Việc có thể commit <strong>secrets.yml.enc</strong> giúp chúng ta nắm được lịch sử thay đổi của file này.</p>
+</li>
+</ol>
+<p>Note: Một điểm quan trọng bạn cần lưu ý, đó là tới khi viết bài viết này thì tôi vẫn chưa thấy rails sẽ giải mã thông tin mã hoá trong file <strong>secrets.yml.enc</strong>, chúng ta buộc phải làm thủ công để nhắc rails làm điều đó bằng cách thêm vào config file của bạn <strong>config.read_encrypted_secrets = true</strong>. Với câu lệnh setup bên trên, dòng config trên đã được add vào file config của production. Nếu bạn muốn sử dụng tính năng này cho môi trường development thì hãy thêm dòng config này vào file <strong>config/environments/development.rb</strong>.</p>
+<h2 id="3-Rails-5-2"><a href="#3-Rails-5-2" class="headerlink" title="3. Rails 5.2"></a>3. Rails 5.2</h2><p>Ý tưởng trong rails 5.2 không thay đổi nhiều so với rails 5.1. Nhưng thay vì lưu key để encrypt/decrypt trong file secrets.yml.key giờ nó được lưu trong file <strong>master.key</strong> (tuy nhiên nếu không sử dụng file thì cả rails 5.2 và 5.1 đều có thể gọi biến môi trường RAILS_MASTER_KEY để sử dụng).</p>
+<p>File lưu thông tin đã được mã hoá cũng được thay đổi từ secrets.yml.enc thành <strong>credentials.yml.enc</strong>.  Đó là những điểm khác biệt duy nhất.</p>
+<p>Để chỉnh sửa thông tin trong file mã hoá ta sử dụng lệnh:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EDITOR=vi rails <span class="symbol">credentials:</span>edit</span><br></pre></td></tr></table></figure>
+<p>Không cần dùng lệnh setup như trên, vì trong rails 5.2, hai file key và mã hoá được sinh ra cùng project.</p>
+<p>Ta có thể truy xuất giá trị được giải mã trong file <strong>credentials.yml.enc</strong> như sau:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Rails.application.credentials.ten_bien_trong_credentials</span><br></pre></td></tr></table></figure>
+
+<p>Làm gì khi bạn muốn thay thế <strong>master.key</strong>?</p>
+<ol>
+<li><p><strong>rails credentials:show</strong> dùng lệnh này để hiển thị thông tin dạng giải mã ra editor, copy chúng.</p>
+</li>
+<li><p>Xoá hai file <strong>master.key</strong> và <strong>credentials.yml.enc</strong> đi.</p>
+</li>
+<li><p><strong>EDITOR=vim rails credentials:edit</strong> với lệnh sau bạn sẽ generate lại hai file mới. Việc cần làm bây giờ là paste thông tin ở bước 1 vào editor khi này rồi save lại.</p>
+</li>
+</ol>
+<h2 id="4-secret-key-base"><a href="#4-secret-key-base" class="headerlink" title="4. secret_key_base"></a>4. secret_key_base</h2><p>Nếu làm theo hướng dẫn bên trên, ta sẽ thu được một file mã hoá ví dụ: <strong>credentials.yml.enc</strong> có chứa nội dung ngay cả khi ta mới vừa khởi tạo project. Điều gì đã xảy ra? Tôi còn chưa kịp edit thì nó lấy thông tin gì mà mã hoá ra nội dung đó vậy? Câu trả lời là một thứ được tạo kèm project của bạn có tên là <strong>secret_key_base</strong> sẽ là thứ đầu tiên được tự động lưu mã hoá vào file <strong>credentials.yml.enc</strong>.</p>
+<p>Sao lại phức tạp như vậy? nó với <strong>RAILS_MASTER_KEY</strong> ở trên có quan hệ gì không? Câu trả lời là không? <strong>secret_key_base</strong> được rails sinh ra khi tạo project, nó đảm bảo rằng không thể có hai ứng dụng rails có chung một <strong>secet_key_base</strong>, cái key sẽ được sử dụng để đảo bảo thứ đánh dấu tính duy nhất của một project và nó còn được dùng làm nhiều việc hay ho khác tôi sẽ trình bày trong các bài viết sắp tới.</p>
+<p>Để tạo ra một secret_key_base bạn có thể sử dụng lệnh sau:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rails secret</span><br></pre></td></tr></table></figure>
+
+    </div>
+    <!-- 
+        <hr class="fhr">
+        <div id="vcomments"></div>
+     -->
+</div>
+
+    <div class="footer" id="footer">
+    <p>Copyright © 2020 <a class="flink" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a>-<a class="flink" href="https://github.com/sanjinhub/hexo-theme-geek" target="_blank" rel="noopener">Geek</a>.
+        <label class="el-switch el-switch-green el-switch-sm" style="vertical-align: sub;">
+            <input type="checkbox" name="switch" id="update_style">
+            <span class="el-switch-style"></span>
+        </label>
+<!--         <script type="text/javascript">
+        var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");
+        document.write(unescape("%3Cspan id='cnzz_stat_icon_1278548644'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/stat.php%3Fid%3D1278548644%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+        </script> -->
+    </p>
+</div>
+<input type="hidden" id="web_style" value="black">
+<input type="hidden" id="valine_appid" value="CmCti21ooOOIzFOhEyFkFvR0-gzGzoHsz">
+<input type="hidden" id="valine_appKey" value="FqiyUqbg7McKN2eG0MCewupf">
+
+<script src="/libs/jquery.min.js"></script>
+
+
+<script src="/libs/highlight/highlight.pack.js"></script>
+
+<script src='//cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+
+<script src="/js/js.js"></script>
+
+<style type="text/css">
+.v * {
+    color: #698fca;
+}
+
+.v .vlist .vcard .vhead .vsys {
+    color: #3a3e4a;
+}
+
+.v .vlist .vcard .vh .vmeta .vat {
+    color: #638fd5;
+}
+
+.v .vlist .vcard .vhead .vnick {
+    color: #6ba1ff;
+}
+
+.v a {
+    color: #8696b1;
+}
+
+.v .vlist .vcard .vhead .vnick:hover {
+    color: #669bfc;
+}
+</style>
+</body>
+
+</html>

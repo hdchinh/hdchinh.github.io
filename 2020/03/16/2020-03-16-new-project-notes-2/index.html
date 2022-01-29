@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>
+        Notes
+    </title>
+    
+<link rel="stylesheet" href="/libs/highlight/styles/monokai-sublime.css">
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body id="bodyx">
+    <div class="hd posts">
+    <a href="/index.html"><i class="fa fa-reply replay-btn" aria-hidden="true"></i></a>
+    <div class="post-title">
+        <p>
+            New Project Notes [Part 2]
+        </p>
+        <hr>
+    </div>
+    <div class="post-content">
+        <h2 id="1-Install-homebrew-formula"><a href="#1-Install-homebrew-formula" class="headerlink" title="1. Install homebrew formula"></a>1. Install homebrew formula</h2><p>When you install a new homebrew formula, homebrew will update all formula as default option. In almost case, it’s no problem. But, if you’d like to install new formula without update current formula, try:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HOMEBREW_NO_AUTO_UPDATE&#x3D;1 brew install &lt;formula&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-Why-you-need-run-“bundle-exec”"><a href="#2-Why-you-need-run-“bundle-exec”" class="headerlink" title="2. Why you need run “bundle exec”"></a>2. Why you need run “bundle exec”</h2><p>You have installed rspec for your project. sometime you run <strong>rspec</strong> and everything work well, but sometimes it does not, it required you type <strong>bundle exec rspec</strong>.</p>
+<p>The short explain, when you have more than one version of gem (eg. rspec), you need type <strong>bundle exec</strong> to tell rails use the version in Gemfile (Gemfile.lock)</p>
+<h2 id="3-Install-the-older-version-mysql-in-macos-with-homebrew"><a href="#3-Install-the-older-version-mysql-in-macos-with-homebrew" class="headerlink" title="3. Install the older version mysql in macos with homebrew"></a>3. Install the older version mysql in macos with homebrew</h2><p>Today, I have a crazy problem with our project that we are working on. The one f**king lib in this project need mysql 5.7</p>
+<p>But, remember, when you copy paste from go rails to install ruby, rails and related databases, we always install the lastest version of all, :D</p>
+<p>So what? Let quick check mysql version on my machine…</p>
+<p>Oh, shit, above 8.0.</p>
+<p>Ok, no worry, just google “how to install another mysql version with homebrew” and then I take 3 hours to install, remove, run command which I have no idea what it doing for….and still  get error, error and error again. I’m sad, I lost my hope about my carrer :(</p>
+<p>And finally, I try to install mysql 5.7</p>
+<ol>
+<li><p>Remove mysql current version</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew uninstall mysql</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Remove mysql version 5.7</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew uninstall mysql@5.7</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Remove folder config mysql</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -rf &#x2F;usr&#x2F;local&#x2F;var&#x2F;mysql</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Remove config file</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm &#x2F;usr&#x2F;local&#x2F;etc&#x2F;my.cnf</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Reinstall mysql version 5.7</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm &#x2F;usr&#x2F;local&#x2F;etc&#x2F;my.cnf</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Manually link to mysql 5.7 because it’s not latest version so home brew will do nothing</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew link --force mysql@5.7</span><br></pre></td></tr></table></figure>
+
+<ol start="7">
+<li><p>Start mysql 5.7</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew services start mysql@5.7</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Important note<br>When you reinstall mysql with older version, in all projects that you used mysql, you need to <strong>gem uninstall mysql2</strong> and <strong>bundle</strong> to reinstall gems mysql2, if not, you will get error.</p>
+</li>
+</ol>
+<h2 id="4-Ignore-migration-file-check"><a href="#4-Ignore-migration-file-check" class="headerlink" title="4. Ignore migration file check"></a>4. Ignore migration file check</h2><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">config.active_record.migration_error = <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<p>Add above config to config file.(config/envirements/*.rb)</p>
+<h2 id="3-References"><a href="#3-References" class="headerlink" title="3. References"></a>3. References</h2><p>[1]<a href="https://stackoverflow.com/questions/6588674/what-does-bundle-exec-rake-mean" target="_blank" rel="noopener">https://stackoverflow.com/questions/6588674/what-does-bundle-exec-rake-mean</a></p>
+<p>[2]<a href="https://medium.com/@at0dd/install-mysql-5-7-on-mac-os-mojave-cd07ec936034" target="_blank" rel="noopener">https://medium.com/@at0dd/install-mysql-5-7-on-mac-os-mojave-cd07ec936034</a></p>
+
+    </div>
+    <!-- 
+        <hr class="fhr">
+        <div id="vcomments"></div>
+     -->
+</div>
+
+    <div class="footer" id="footer">
+    <p>Copyright © 2020 <a class="flink" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a>-<a class="flink" href="https://github.com/sanjinhub/hexo-theme-geek" target="_blank" rel="noopener">Geek</a>.
+        <label class="el-switch el-switch-green el-switch-sm" style="vertical-align: sub;">
+            <input type="checkbox" name="switch" id="update_style">
+            <span class="el-switch-style"></span>
+        </label>
+<!--         <script type="text/javascript">
+        var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");
+        document.write(unescape("%3Cspan id='cnzz_stat_icon_1278548644'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/stat.php%3Fid%3D1278548644%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+        </script> -->
+    </p>
+</div>
+<input type="hidden" id="web_style" value="black">
+<input type="hidden" id="valine_appid" value="CmCti21ooOOIzFOhEyFkFvR0-gzGzoHsz">
+<input type="hidden" id="valine_appKey" value="FqiyUqbg7McKN2eG0MCewupf">
+
+<script src="/libs/jquery.min.js"></script>
+
+
+<script src="/libs/highlight/highlight.pack.js"></script>
+
+<script src='//cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+
+<script src="/js/js.js"></script>
+
+<style type="text/css">
+.v * {
+    color: #698fca;
+}
+
+.v .vlist .vcard .vhead .vsys {
+    color: #3a3e4a;
+}
+
+.v .vlist .vcard .vh .vmeta .vat {
+    color: #638fd5;
+}
+
+.v .vlist .vcard .vhead .vnick {
+    color: #6ba1ff;
+}
+
+.v a {
+    color: #8696b1;
+}
+
+.v .vlist .vcard .vhead .vnick:hover {
+    color: #669bfc;
+}
+</style>
+</body>
+
+</html>

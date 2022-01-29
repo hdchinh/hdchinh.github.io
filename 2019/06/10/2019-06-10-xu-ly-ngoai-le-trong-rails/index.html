@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>
+        Notes
+    </title>
+    
+<link rel="stylesheet" href="/libs/highlight/styles/monokai-sublime.css">
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body id="bodyx">
+    <div class="hd posts">
+    <a href="/index.html"><i class="fa fa-reply replay-btn" aria-hidden="true"></i></a>
+    <div class="post-title">
+        <p>
+            Exception Trong Rails
+        </p>
+        <hr>
+    </div>
+    <div class="post-content">
+        <h2 id="Dat-van-de"><a href="#Dat-van-de" class="headerlink" title="Đặt vấn đề"></a>Đặt vấn đề</h2><p>Tôi có một số tình huống diễn ra hàng ngày về con mèo của tôi. Nếu nó đói tôi cho nó ăn, nếu nó đi vs lung tung tôi sẽ dọn dẹp chúng.</p>
+<p>Nhưng bỗng một ngày con mèo stupid của tôi bị “người ngoài hành tinh bắt cóc”, wtf?. Đây là một tình huống không bình thường và tôi không có một <strong>HÀNH ĐỘNG THỐNG NHẤT</strong> nào để đối phó với 1 tình huống như vậy, tôi có thể khóc, có thể báo công an, nhưng chắc chắn không thể có một cách giải quyết triệt để. Trong lập trình ta gọi những tình huống mà logic luận lý sai lệch không còn đi theo logic bình thường như này là một exception.</p>
+<p>Ví dụ như máy tính của bạn không được thiết kế để thực hiện phép chia cho số 0. Vậy khi bạn bắt nó thực hiện phép chia cho số 0, nó sẽ nghĩ “wtf is going on?” và đành quăng ra cho bạn một thông báo về việc bạn đã bắt nó làm một việc mà nó không được thiết kế để làm.</p>
+<p>Trong bài viết này chúng ta sẽ tìm hiểu về exception trong ruby.</p>
+<h2 id="Luan-ban"><a href="#Luan-ban" class="headerlink" title="Luận bàn"></a>Luận bàn</h2><h2 id="1-Tim-hieu-ve-Exception"><a href="#1-Tim-hieu-ve-Exception" class="headerlink" title="1. Tìm hiểu về Exception"></a>1. Tìm hiểu về Exception</h2><p>Đầu tiên chúng ta phải ghi nhớ rằng khi một exception được gọi, chương trình của bạn sẽ ngừng và đoạn code phía sau không thể chạy được nữa.</p>
+<ol>
+<li><p>Tôi đến trường đón con mèo.</p>
+</li>
+<li><p>Tôi đem con mèo đi bán vào quán tiểu hổ.</p>
+</li>
+</ol>
+<p>Nếu ở <strong>bước 1</strong>, thay vì đón thành công con mèo, tôi lại dính một exception “MeoMissing” vì lý do nó bị người ngoài hành tinh bắt cóc.</p>
+<p>Khi này dĩ nhiên chương trình sẽ dừng lại, vì tôi làm gì còn con mèo để mà đem nó đi bán ở  <strong>bước 2</strong>.</p>
+<p>Quay về với ví dụ đơn giản là chia cho số 0:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">10</span>/<span class="number">0</span></span><br><span class="line"><span class="comment"># =&gt; ZeroDivisionError (divided by 0)</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>ZeroDivisionError</strong> là một exception được ruby tạo ra để trả về khi bạn cố chia một số cho số 0.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">if (chia đàng hoàng)</span><br><span class="line">  thực hiện phép tính.</span><br><span class="line">else</span><br><span class="line">  if (chia cho số 0)</span><br><span class="line">    trả về exception ZeroDivisionError</span><br><span class="line">  end</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+
+<p>Flow logic đơn giản về exception như trên.</p>
+<h2 id="2-Lam-sao-de-lay-ve-doi-tuong-Exception"><a href="#2-Lam-sao-de-lay-ve-doi-tuong-Exception" class="headerlink" title="2. Làm sao để lấy về đối tượng Exception"></a>2. Làm sao để lấy về đối tượng Exception</h2><p>Như chúng ta đã biết, gần như mọi thứ trong ruby đều là object(Ngoại trừ method và block). Vậy nên Exception cũng là một đối tượng.</p>
+<p>ZeroDivisionError ở trên là một Class, vậy khi bạn thực hiện một phép chia cho số 0, bạn đã rơi vào trường hợp mà ZeroDivisionError quản lý và nó sẽ trả về một đối tượng ZeroDivisionError.</p>
+<p>Vậy tức là ở 2 lần chia cho số 0 khác nhau, nó sẽ trả về cho bạn 2 object exception khác nhau chỉ là cùng một class ZeroDivisionError.</p>
+<p>Vậy cách nào để bắt được đối tượng này? Cú pháp để thực hiện việc này sẽ như sau:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">begin</span></span><br><span class="line">  meo = <span class="number">10</span></span><br><span class="line">  meo/<span class="number">0</span></span><br><span class="line"><span class="keyword">rescue</span> ZeroDivisionError =&gt; e</span><br><span class="line">  puts <span class="string">"Exception Class: <span class="subst">#&#123; e<span class="class">.<span class="keyword">class</span>.<span class="title">name</span> &#125;"</span></span></span></span><br><span class="line"><span class="string"><span class="subst">  puts <span class="string">"Exception Message: <span class="subst">#&#123; e.message &#125;</span>"</span></span></span></span><br><span class="line"><span class="string"><span class="subst"><span class="keyword">end</span></span></span></span><br></pre></td></tr></table></figure>
+
+<p><strong>rescue</strong> là từ khoá sẽ giúp bạn lấy được đối tượng exception trả về. Như ví dụ trên tôi lấy đối tượng exeption trả về (nếu exception đó là dạng ZeroDivisionError) và truyền nó vào biến <strong>e</strong>. Từ đây <strong>e</strong> chính là object exception nếu exception đó xảy ra.</p>
+<p>Tôi có thể dùng e để xuất ra các thông tin mà tôi cần như class name hay message thông báo lỗi.</p>
+<h2 id="3-Xay-dung-mot-class-Exception"><a href="#3-Xay-dung-mot-class-Exception" class="headerlink" title="3. Xây dựng một class Exception"></a>3. Xây dựng một class Exception</h2><p>Một sự thật hiển nhiên là những thiết kế có sẵn không bao giờ có thể cover cho tất cả các trường hợp có thể xảy ra trong thực tiễn. Đôi lúc bạn muốn thêm một exception để cover cho trường hợp của riêng dự án của bạn thì sao?</p>
+<p>Câu trả lời mà tôi mới tìm được khá thú vị và cũng rất quen thuộc. Đó là Exception cũng có thể được tạo ra như một class bình thường. Hãy để nó kế thừa lớp <strong>StandardError</strong> là được.</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MeoException</span> &lt; StandardError;</span> <span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>Vậy là ta đã có một class exception của riêng mình. Khi cần gọi đến exception này thì ta sẽ gọi sử dụng phương thức <strong>raise</strong> để gọi một đối tượng.</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">raise MeoException.new(params_gi_do_ma_ban_muon)</span><br></pre></td></tr></table></figure>
+
+<p>Vậy trong class class <strong>MeoException</strong> ta sẽ thiết kế những gì? :smile: Tôi cũng chưa tìm hiểu.</p>
+<h2 id="4-Cac-lop-Exception-co-san-trong-Ruby"><a href="#4-Cac-lop-Exception-co-san-trong-Ruby" class="headerlink" title="4. Các lớp Exception có sẵn trong Ruby"></a>4. Các lớp Exception có sẵn trong Ruby</h2><p><img src="/images/ruby-exception.jpg" alt="hoa"></p>
+<p>Đây là sơ đồ về các lớp exception trong ruby, nếu ta rescue một exception X, X lại có dăm 3 exception con, thì chỉ cần chương trình của bạn phát sinh vấn đề và trả ra một exception con nào đó thì X được gọi.</p>
+<h2 id="5-Cach-bat-Exception-hop-ly"><a href="#5-Cach-bat-Exception-hop-ly" class="headerlink" title="5. Cách bắt Exception hợp lý"></a>5. Cách bắt Exception hợp lý</h2><p><strong>Cách 1:</strong></p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">begin</span></span><br><span class="line">  di_don_con_meo_truong()</span><br><span class="line"><span class="keyword">rescue</span> Exception =&gt; e</span><br><span class="line">  <span class="comment"># do something</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>Đây là một cách tệ vì khi rescue với Exception, lớp cha của tất cả các Exception khác thì nó cover quá nhiều trường hợp cũng trả ra exception, hãy nhớ lại ở trên chúng ta đã nói một khi Exception được trả về thì chương trình của bạn sẽ dừng lại. Vậy nên không sử dụng cách này.</p>
+<p><strong>Cách 2:</strong></p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">begin</span></span><br><span class="line">  di_don_con_meo_truong()</span><br><span class="line"><span class="keyword">rescue</span> StandardError =&gt; e</span><br><span class="line">  <span class="comment"># do something</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>Đây là cách làm tốt hơn, vì ta chỉ cover các lỗi standard, ít ra chương trình của bạn sẽ không thi thoảng bị shutdown mà không biết vì sao như cách đầu tiên.</p>
+<p><strong>Cách 3:</strong></p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">begin</span></span><br><span class="line">  di_don_con_meo_truong()</span><br><span class="line"><span class="keyword">rescue</span> MeoBiBatCoc, MeoBiDauChan =&gt; e</span><br><span class="line">  <span class="comment"># do something</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>Đây là cách tốt nhất, ta goi trực tiếp đến trường hợp ngoại lệ mà ta cần bắt lấy và xử lý.</p>
+
+    </div>
+    <!-- 
+        <hr class="fhr">
+        <div id="vcomments"></div>
+     -->
+</div>
+
+    <div class="footer" id="footer">
+    <p>Copyright © 2020 <a class="flink" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a>-<a class="flink" href="https://github.com/sanjinhub/hexo-theme-geek" target="_blank" rel="noopener">Geek</a>.
+        <label class="el-switch el-switch-green el-switch-sm" style="vertical-align: sub;">
+            <input type="checkbox" name="switch" id="update_style">
+            <span class="el-switch-style"></span>
+        </label>
+<!--         <script type="text/javascript">
+        var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");
+        document.write(unescape("%3Cspan id='cnzz_stat_icon_1278548644'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/stat.php%3Fid%3D1278548644%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+        </script> -->
+    </p>
+</div>
+<input type="hidden" id="web_style" value="black">
+<input type="hidden" id="valine_appid" value="CmCti21ooOOIzFOhEyFkFvR0-gzGzoHsz">
+<input type="hidden" id="valine_appKey" value="FqiyUqbg7McKN2eG0MCewupf">
+
+<script src="/libs/jquery.min.js"></script>
+
+
+<script src="/libs/highlight/highlight.pack.js"></script>
+
+<script src='//cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+
+<script src="/js/js.js"></script>
+
+<style type="text/css">
+.v * {
+    color: #698fca;
+}
+
+.v .vlist .vcard .vhead .vsys {
+    color: #3a3e4a;
+}
+
+.v .vlist .vcard .vh .vmeta .vat {
+    color: #638fd5;
+}
+
+.v .vlist .vcard .vhead .vnick {
+    color: #6ba1ff;
+}
+
+.v a {
+    color: #8696b1;
+}
+
+.v .vlist .vcard .vhead .vnick:hover {
+    color: #669bfc;
+}
+</style>
+</body>
+
+</html>

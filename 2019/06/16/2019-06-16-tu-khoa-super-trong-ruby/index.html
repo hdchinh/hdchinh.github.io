@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>
+        Notes
+    </title>
+    
+<link rel="stylesheet" href="/libs/highlight/styles/monokai-sublime.css">
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body id="bodyx">
+    <div class="hd posts">
+    <a href="/index.html"><i class="fa fa-reply replay-btn" aria-hidden="true"></i></a>
+    <div class="post-title">
+        <p>
+            Từ Khoá Super Trong Ruby?
+        </p>
+        <hr>
+    </div>
+    <div class="post-content">
+        <h2 id="Dat-van-de"><a href="#Dat-van-de" class="headerlink" title="Đặt vấn đề"></a>Đặt vấn đề</h2><p>Kế thừa là một 1 trong 4 yếu tố cốt lõi tạo nên đặc tính hướng đối tượng của một ngôn ngữ (như những gì chúng ta đã được dạy ở trường). Riêng điều đó thôi đã đủ để thể hiện tầm quan trọng của nó (có thật không nhỉ :grimacing:).</p>
+<p>Trong ngôn ngữ ruby có một từ khoá thường xuyên xuất hiện khi cần kế thừa hay override lại phương thức lớp cha đó là <strong>super</strong>.</p>
+<p>Qua bài viết chúng ta sẽ cùng tìm hiểu về nó.</p>
+<h2 id="Luan-ban"><a href="#Luan-ban" class="headerlink" title="Luận bàn"></a>Luận bàn</h2><h2 id="1-Dinh-nghia"><a href="#1-Dinh-nghia" class="headerlink" title="1. Định nghĩa"></a>1. Định nghĩa</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">It calls a method on the parent class with the same name as the method that calls super.</span><br></pre></td></tr></table></figure>
+
+<p>Ví dụ:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span> &lt; Pig</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">testing</span></span></span><br><span class="line">    <span class="keyword">super</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>=&gt; Khi ta gọi phương thức <strong>testing</strong> với một instance của lớp Dog, ruby sẽ đi đến class cha/ông/cụ/kỵ… của <strong>Dog</strong> để tìm và chạy phương thức <strong>testing</strong> được implement ở lớp cha/ông/cụ/kỵ… đó.</p>
+<h2 id="2-So-sanh-super-va-super"><a href="#2-So-sanh-super-va-super" class="headerlink" title="2. So sánh super và super()"></a>2. So sánh super và super()</h2><p>Với những bạn mới học, chúng ta đôi lúc sẽ nhầm lẫn là 2 cách gọi này thực chất là một, cũng bởi vì ruby cho phép sử dụng <strong>()</strong> như một optional, tức là có cũng được mà không có cũng được.</p>
+<p>Nhưng thực ra không phải vậy, 2 cách sử dụng này sẽ dẫn đến các kết qủa khác nhau.</p>
+<p>Cùng xét một ví dụ: Giả sử tôi có class Cat và một class con của Cat tên là YellowCat, mã nguồn như sau.</p>
+<p>Sử dụng super</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cat</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">initialize</span></span></span><br><span class="line">    puts <span class="string">"i'm meo"</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">YellowCat</span> &lt; Cat</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">initialize</span></span></span><br><span class="line">    <span class="keyword">super</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">YellowCat.new</span><br><span class="line"></span><br><span class="line"><span class="comment"># =&gt; i'm meo</span></span><br></pre></td></tr></table></figure>
+
+<p>Sử dụng super()</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cat</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">initialize</span></span></span><br><span class="line">    puts <span class="string">"i'm meo"</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">YellowCat</span> &lt; Cat</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">initialize</span></span></span><br><span class="line">    <span class="keyword">super</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">YellowCat.new</span><br><span class="line"></span><br><span class="line"><span class="comment"># =&gt; i'm meo</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Kết quả là tương tự nhau, điều này giúp chúng ta ghi nhớ một ý, đó là khi không có tham số truyền vào method thì dùng **super</strong> hay <strong>super()</strong> là tương đương nhau**</p>
+<p>Ta xét một ví dụ khác:</p>
+<p>Sử dụng super</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cat</span></span></span><br><span class="line">  <span class="keyword">attr_accessor</span> <span class="symbol">:name</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">initialize</span><span class="params">(name)</span></span></span><br><span class="line">    @name = name</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">YellowCat</span> &lt; Cat</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">initialize</span><span class="params">(name)</span></span></span><br><span class="line">    <span class="keyword">super</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">meo = YellowCat.new(<span class="string">'mi mi'</span>)</span><br><span class="line"></span><br><span class="line">puts <span class="string">"ten meo: <span class="subst">#&#123;meo.name&#125;</span>"</span></span><br><span class="line"><span class="comment"># =&gt; ten meo: mi mi</span></span><br></pre></td></tr></table></figure>
+
+<p>Sử dụng super()</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cat</span></span></span><br><span class="line">  <span class="keyword">attr_accessor</span> <span class="symbol">:name</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">initialize</span><span class="params">(name)</span></span></span><br><span class="line">    @name = name</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">YellowCat</span> &lt; Cat</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">initialize</span><span class="params">(name)</span></span></span><br><span class="line">    <span class="keyword">super</span>()</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">meo = YellowCat.new(<span class="string">'mi mi'</span>)</span><br><span class="line"></span><br><span class="line">puts <span class="string">"ten meo: <span class="subst">#&#123;meo.name&#125;</span>"</span></span><br><span class="line"><span class="comment"># =&gt; ten meo: mi mi</span></span><br></pre></td></tr></table></figure>
+
+<p>Đến bây giờ chúng ta đã phát sinh một lỗi <strong>wrong number of arguments (given 0, expected 1)</strong>.<br>Điều này xảy ra là vì:</p>
+<p><strong>Với từ khoá **super</strong> bạn sẽ truyền TẤT CẢ tham số lên method đó ở lớp cha. Còn với <strong>super()</strong> bạn chỉ truyền lên lớp cha những tham số mà bạn bỏ vào trong <strong>super()</strong>.**</p>
+<p>Như ta thấy trong ví dụ trên, ta không bỏ gì vào <strong>super()</strong> =&gt; khi lên lớp cha (lớp Cat) method initialize yêu cầu tham số name nhưng chúng ta không truyền gì lên và từ đó dẫn đến lỗi wrong number of arguments.</p>
+<p>Để khắc phục chúng ta chỉ cần truyền tham số vào super() để lớp Cat nhân được tham số đó.</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">YellowCat</span> &lt; Cat</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">initialize</span><span class="params">(name)</span></span></span><br><span class="line">    <span class="keyword">super</span>(name)</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="3-Su-huu-ich-cua-super"><a href="#3-Su-huu-ich-cua-super" class="headerlink" title="3. Sự hữu ích của super()"></a>3. Sự hữu ích của super()</h2><p>Tôi có một bài toán:</p>
+<p>:one: Tôi có 1 lớp Cat với 2 instance variable là name và age.<br>:two: Lớp YellowCat là lớp con của Cat.<br>:three: Lớp YellowCat có thêm 1 instance variable là role.</p>
+<p>Xây dựng lớp Cat có vẻ đơn giản, ta làm như sau:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cat</span> &lt; Animal</span></span><br><span class="line">  <span class="keyword">attr_accessor</span> <span class="symbol">:name</span>, <span class="symbol">:age</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">initialize</span><span class="params">(name, age)</span></span></span><br><span class="line">    @name = name</span><br><span class="line">    @age = age</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># =&gt; hoàn thành yêu cầu</span></span><br></pre></td></tr></table></figure>
+
+<p>Tiếp theo đến lớp  YellowCat, xem chừng cũng không khó:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">YellowCat</span> &lt; Cat</span></span><br><span class="line">  <span class="keyword">attr_accessor</span> <span class="symbol">:yellow_cat_name</span>, <span class="symbol">:yellow_cat_age</span>, <span class="symbol">:role</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">initialize</span><span class="params">(yellow_cat_name, yellow_cat_age, role)</span></span></span><br><span class="line">    @yellow_cat_name = yellow_cat_name</span><br><span class="line">    @yellow_cat_age = yellow_cat_age</span><br><span class="line">    @role = role</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># =&gt; Cũng hoàn thành yêu cầu.</span></span><br></pre></td></tr></table></figure>
+
+<p>Cách này cũng hoàn thành được yêu cầu của bài toán, nhưng nó không ổn tí nào. Vì sao? Vì khi bạn tạo một instance thuộc lớp YellowCat nó sẽ có tổng cộng 5 instance variable bao gồm 3 instance variable khai báo trong lớp YellowCat, và 2 trong lớp Cat (bị thừa 2 instance variable).</p>
+<p>Điều này đi ngược lại với các quy tắc lập trình quan trọng chúng ta cần tuần thủ như DRY.</p>
+<p>Đến đây sức mạnh <strong>super()</strong> sẽ được thời cơ để thể hiện. Ta sẽ optimize lại mã nguồn của YellowCat như sau:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">YellowCat</span> &lt; Cat</span></span><br><span class="line">  <span class="comment"># thêm một instance variable</span></span><br><span class="line">  <span class="keyword">attr_accessor</span> <span class="symbol">:role</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">initialize</span><span class="params">(name, age, role)</span></span></span><br><span class="line">    <span class="keyword">super</span>(name, age)</span><br><span class="line">    @role = role</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">meo2 = YellowCat.new(<span class="string">'ni ni'</span>, <span class="number">10</span>, <span class="string">'admin'</span>)</span><br><span class="line">puts <span class="string">"ten meo la: <span class="subst">#&#123;meo2.name&#125;</span> \ntuoi meo la: <span class="subst">#&#123;meo2.age&#125;</span> \nrole cua meo la: <span class="subst">#&#123;meo2.role&#125;</span>"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># =&gt; ten meo la: ni ni</span></span><br><span class="line"><span class="comment"># =&gt; tuoi meo la: 10</span></span><br><span class="line"><span class="comment"># =&gt; role cua meo la: admin</span></span><br></pre></td></tr></table></figure>
+
+<p>Ở lớp con chúng ta có thêm 1 instance variable, chúng ta khai báo cho mình nó và duy nhất mỗi nó :arrow_right: không lãng phí vùng nhớ và tận dụng được mã nguồn cũ.</p>
+<p>Trong phương thức khởi tạo đối tượng YellowCat chúng ta khởi tạo biến instance mới, còn 2 instance variable được kế thừa từ lớp cha thì ta truyền tham số vào <strong>super()</strong> để truyền lên lớp cha và mặc kệ lớp cha xử lý thế nào thì tuỳ.</p>
+<h2 id="Tham-khao"><a href="#Tham-khao" class="headerlink" title="Tham khảo"></a>Tham khảo</h2><p>[1]<a href="https://odetocode.com/blogs/scott/archive/2010/07/13/ruby-initialize-and-super.aspx" target="_blank" rel="noopener">https://odetocode.com/blogs/scott/archive/2010/07/13/ruby-initialize-and-super.aspx</a></p>
+
+    </div>
+    <!-- 
+        <hr class="fhr">
+        <div id="vcomments"></div>
+     -->
+</div>
+
+    <div class="footer" id="footer">
+    <p>Copyright © 2020 <a class="flink" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a>-<a class="flink" href="https://github.com/sanjinhub/hexo-theme-geek" target="_blank" rel="noopener">Geek</a>.
+        <label class="el-switch el-switch-green el-switch-sm" style="vertical-align: sub;">
+            <input type="checkbox" name="switch" id="update_style">
+            <span class="el-switch-style"></span>
+        </label>
+<!--         <script type="text/javascript">
+        var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");
+        document.write(unescape("%3Cspan id='cnzz_stat_icon_1278548644'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/stat.php%3Fid%3D1278548644%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+        </script> -->
+    </p>
+</div>
+<input type="hidden" id="web_style" value="black">
+<input type="hidden" id="valine_appid" value="CmCti21ooOOIzFOhEyFkFvR0-gzGzoHsz">
+<input type="hidden" id="valine_appKey" value="FqiyUqbg7McKN2eG0MCewupf">
+
+<script src="/libs/jquery.min.js"></script>
+
+
+<script src="/libs/highlight/highlight.pack.js"></script>
+
+<script src='//cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+
+<script src="/js/js.js"></script>
+
+<style type="text/css">
+.v * {
+    color: #698fca;
+}
+
+.v .vlist .vcard .vhead .vsys {
+    color: #3a3e4a;
+}
+
+.v .vlist .vcard .vh .vmeta .vat {
+    color: #638fd5;
+}
+
+.v .vlist .vcard .vhead .vnick {
+    color: #6ba1ff;
+}
+
+.v a {
+    color: #8696b1;
+}
+
+.v .vlist .vcard .vhead .vnick:hover {
+    color: #669bfc;
+}
+</style>
+</body>
+
+</html>

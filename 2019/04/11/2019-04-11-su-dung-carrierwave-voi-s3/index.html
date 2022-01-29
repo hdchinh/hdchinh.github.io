@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>
+        Notes
+    </title>
+    
+<link rel="stylesheet" href="/libs/highlight/styles/monokai-sublime.css">
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body id="bodyx">
+    <div class="hd posts">
+    <a href="/index.html"><i class="fa fa-reply replay-btn" aria-hidden="true"></i></a>
+    <div class="post-title">
+        <p>
+            Sử Dụng Carrierwave Với S3
+        </p>
+        <hr>
+    </div>
+    <div class="post-content">
+        <h1 id="Gemfile"><a href="#Gemfile" class="headerlink" title="Gemfile"></a>Gemfile</h1><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gem <span class="string">'fog'</span>, <span class="symbol">require:</span> <span class="string">'fog/aws'</span></span><br><span class="line">gem <span class="string">'carrierwave'</span></span><br></pre></td></tr></table></figure>
+<h1 id="Class-Uploader"><a href="#Class-Uploader" class="headerlink" title="Class Uploader"></a>Class Uploader</h1><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">storage <span class="symbol">:fog</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="File-cau-hinh-config-initializers-carrierwave-rb"><a href="#File-cau-hinh-config-initializers-carrierwave-rb" class="headerlink" title="File cấu hình config/initializers/carrierwave.rb"></a>File cấu hình config/initializers/carrierwave.rb</h1><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">require</span> <span class="string">'carrierwave/storage/fog'</span></span><br><span class="line"></span><br><span class="line">CarrierWave.configure <span class="keyword">do</span> <span class="params">|config|</span></span><br><span class="line">  config.fog_credentials = &#123;</span><br><span class="line">    <span class="symbol">:provider</span>              =&gt; <span class="string">'AWS'</span>,</span><br><span class="line">    <span class="symbol">:aws_access_key_id</span>     =&gt; Rails.application.credentials.access_key_id,</span><br><span class="line">    <span class="symbol">:aws_secret_access_key</span> =&gt; Rails.application.credentials.secret_access_key,</span><br><span class="line">    <span class="symbol">:region</span>                =&gt; Rails.application.credentials.s3_region,</span><br><span class="line">    <span class="symbol">:path_style</span>            =&gt; <span class="literal">true</span>,</span><br><span class="line">    <span class="symbol">:host</span>                  =&gt; <span class="string">'s3.us-east-2.amazonaws.com'</span>,</span><br><span class="line">    <span class="symbol">:endpoint</span>              =&gt; <span class="string">'https://s3.us-east-2.amazonaws.com'</span></span><br><span class="line">  &#125;</span><br><span class="line">  config.cache_dir = <span class="string">"<span class="subst">#&#123;Rails.root&#125;</span>/tmp/uploads"</span></span><br><span class="line">  config.fog_directory  = Rails.application.credentials.s3_bucket</span><br><span class="line">  config.fog_public     = <span class="literal">true</span></span><br><span class="line">  config.fog_attributes = &#123; <span class="string">'Cache-Control'</span> =&gt; <span class="string">"max-age=<span class="subst">#&#123;<span class="number">10</span>.day.to_i&#125;</span>"</span> &#125;</span><br><span class="line">  config.storage = <span class="symbol">:fog</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="Acess-File-uploaded"><a href="#Acess-File-uploaded" class="headerlink" title="Acess File uploaded"></a>Acess File uploaded</h1><p><code>Instance.field_name_image.url</code> (get link s3)</p>
+<h1 id="Source-demo"><a href="#Source-demo" class="headerlink" title="Source demo"></a>Source demo</h1><p><a href="https://github.com/hdchinh/s3_carrierwave" target="_blank" rel="noopener">Tại đây</a></p>
+
+    </div>
+    <!-- 
+        <hr class="fhr">
+        <div id="vcomments"></div>
+     -->
+</div>
+
+    <div class="footer" id="footer">
+    <p>Copyright © 2020 <a class="flink" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a>-<a class="flink" href="https://github.com/sanjinhub/hexo-theme-geek" target="_blank" rel="noopener">Geek</a>.
+        <label class="el-switch el-switch-green el-switch-sm" style="vertical-align: sub;">
+            <input type="checkbox" name="switch" id="update_style">
+            <span class="el-switch-style"></span>
+        </label>
+<!--         <script type="text/javascript">
+        var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");
+        document.write(unescape("%3Cspan id='cnzz_stat_icon_1278548644'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/stat.php%3Fid%3D1278548644%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+        </script> -->
+    </p>
+</div>
+<input type="hidden" id="web_style" value="black">
+<input type="hidden" id="valine_appid" value="CmCti21ooOOIzFOhEyFkFvR0-gzGzoHsz">
+<input type="hidden" id="valine_appKey" value="FqiyUqbg7McKN2eG0MCewupf">
+
+<script src="/libs/jquery.min.js"></script>
+
+
+<script src="/libs/highlight/highlight.pack.js"></script>
+
+<script src='//cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+
+<script src="/js/js.js"></script>
+
+<style type="text/css">
+.v * {
+    color: #698fca;
+}
+
+.v .vlist .vcard .vhead .vsys {
+    color: #3a3e4a;
+}
+
+.v .vlist .vcard .vh .vmeta .vat {
+    color: #638fd5;
+}
+
+.v .vlist .vcard .vhead .vnick {
+    color: #6ba1ff;
+}
+
+.v a {
+    color: #8696b1;
+}
+
+.v .vlist .vcard .vhead .vnick:hover {
+    color: #669bfc;
+}
+</style>
+</body>
+
+</html>

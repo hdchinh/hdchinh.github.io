@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>
+        Notes
+    </title>
+    
+<link rel="stylesheet" href="/libs/highlight/styles/monokai-sublime.css">
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body id="bodyx">
+    <div class="hd posts">
+    <a href="/index.html"><i class="fa fa-reply replay-btn" aria-hidden="true"></i></a>
+    <div class="post-title">
+        <p>
+            Immutable Và Mutable Trong Ruby
+        </p>
+        <hr>
+    </div>
+    <div class="post-content">
+        <h2 id="1-Khai-niem-mutable-immutable-va-ruby"><a href="#1-Khai-niem-mutable-immutable-va-ruby" class="headerlink" title="1. Khái niệm mutable, immutable và ruby"></a>1. Khái niệm mutable, immutable và ruby</h2><p>Đi thẳng vào vấn đề, chúng ta cần đề cập đến ba vấn đề: <strong>mutable</strong>, <strong>immutable</strong> và cách ruby xử lý hai khái niệm đó. Trước hết nếu bạn đã quên, thì tôi xin được nhắc lại định nghĩa của chúng.</p>
+<p>Xin trích dẫn <a href="https://en.wikipedia.org/wiki/Immutable_object" target="_blank" rel="noopener">wiki</a>:</p>
+<blockquote>
+<p>In object-oriented and functional programming, an immutable object (unchangeable[1] object) is an object whose state cannot be modified after it is created.[2] This is in contrast to a mutable object (changeable object), which can be modified after it is created.</p>
+</blockquote>
+<p>Translate:</p>
+<blockquote>
+<p>Trong lập trình hướng đối tượng và lập trình hàm, một đối tượng được coi immutable, là một đối tượng <strong>không thể thay đổi</strong> trạng thái sau khi nó được tạo lần đầu, ngược lại với một đối tượng được coi là mutable nó có thể <strong>thay đổi</strong> trạng thái sau khi được khởi tạo lần đầu.</p>
+</blockquote>
+<p>Dùng từ quá khó hiểu, what the hell is “trạng thái”? Theo một cách hàn lâm và đầy đủ, trạng thái của một đối tượng ngoài đời thật được thiết lập bởi tất cả những gì tạo nên chúng.</p>
+<p>Tương tự, các trạng thái của một đối tượng trong lập trình cũng được thiết lập bằng tất cả những gì tạo nên chúng. Ví dụ:</p>
+<p>Với 1 biến integer cơ bản <strong>x = 10</strong> thì trạng thái của nó được tạo ra bởi tên biến và giá trị, ở đây tên biến là <strong>x</strong> và giá trị là <strong>10</strong>, đâu đó trong vùng nhớ (Ram) của bạn sẽ lưu trữ cái chữ <strong>x</strong> kèm số <strong>10</strong> này.</p>
+<p>Đồng nghĩa với đó nếu tôi thay đổi được giá trị 10 của biến x thì x là một đối tượng mutable và ngược lại nó là một đối tượng immutable.</p>
+<p>Tôi gán <strong>x = 11</strong> và thành công</p>
+<p>Từ đó có thể đưa ra kết luận x là một mutable?</p>
+<p>Câu trả lời là không, một số khái niệm rối rắm làm khó ta lúc đầu. Như đã biết, thứ mà CPU làm việc là địa chỉ vùng nhớ và chỉ địa chỉ vùng nhớ mà thôi. Những thứ khác nó không quan tâm.</p>
+<p>Với câu lệnh gán <strong>x = 10</strong>. Nó được hệ điều hành phiên dịch thành “có một biến tên <strong>x</strong> được gán giá trị bằng <strong>10</strong>, Ram, mày hãy bố trí thêm hai slot để lưu trữ <strong>x</strong> và <strong>10</strong>“. Vậy lúc đó:</p>
+<p><strong>x</strong>(tên biến) được lưu ở vị trí AAA<br><strong>10</strong>(giá trị) được lưu ở vị trí BBB</p>
+<p>Với lệnh gán tiếp theo <strong>x = 11</strong>:</p>
+<p><strong>x</strong> vẫn yên vị nằm ở vị trí AAA<br><strong>10</strong> cũng vẫn yên trí nằm ở vị trí BBB<br><strong>11</strong> giá trị mới gán cho biến x thì lúc này nằm ở vị trí CCC</p>
+<p>Vậy khi chạy một lệnh gán mới thì biến x đã được gán bằng giá trị trên một vùng nhớ khác, còn vùng nhớ ban đầu <strong>không thay đổi giá trị</strong> nên ta có thể kết luận x là một immutable.</p>
+<p>Chứng minh bằng ví dụ sau trong ruby, chú ý là ruby là một ngôn ngữ script, với trình thông dịch VM bên dưới để xử lý của nó được viết bằng C, nên ở lớp cơ sở của ruby ta không thể truy xuất vị trí vùng nhớ đến từng thanh ghi như trong C được (việc đó được làm ở lớp core YARV). Tuy nhiên, ta có thể kiếm tra được vị trí tượng trưng trên bộ nhớ của nó thông qua <strong>object_id</strong>.</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="number">10</span></span><br><span class="line">x.object_id</span><br><span class="line"><span class="comment">#=&gt; 21</span></span><br><span class="line">x = <span class="number">11</span></span><br><span class="line">x.object_id</span><br><span class="line"><span class="comment">#=&gt; 23</span></span><br></pre></td></tr></table></figure>
+
+<p>Note: Nếu bạn gán tiếp x = 12 và kiểm tra lại object_id, lúc này bạn sẽ thấy nó bằng 25. Giá trị 10, 11, 12 tương đương với object_id là 21, 23, 25. Liệu có một quy luật nào ở đây? Câu trả lời là có, nhưng vấn đề này sẽ được đề cập đến trong một bài viết tiếp theo.</p>
+<p>Từ ví dụ trên bạn đã hiểu về immutable, vậy còn mutable? Đơn giản nhất là hãy hiểu ngược lại với immutable, nêu gán x = 11 và x có object_id không đổi thì x chính là mutable.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Tất cả các loại dữ liệu nguyên thuỷ trong ruby đều là immutable.</span><br></pre></td></tr></table></figure>
+
+<p>Integer, float, string, boolean chúng đều là immutable.</p>
+<h2 id="2-Lieu-day-co-phai-la-mot-kien-thuc-can-thiet"><a href="#2-Lieu-day-co-phai-la-mot-kien-thuc-can-thiet" class="headerlink" title="2. Liệu đây có phải là một kiến thức cần thiết?"></a>2. Liệu đây có phải là một kiến thức cần thiết?</h2><p>Chắc chắn là có.</p>
+<p>Thứ nhất: Nếu trong công việc bạn không bao giờ phải dùng đến nó, bạn có thể nói về nó như một kiến thức hàn lâm để thể hiện khả năng với sếp và yêu cầu tăng lương :worried:</p>
+<p>Thứ hai: Xét ví dụ sau</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">str = <span class="string">""</span></span><br><span class="line">[<span class="string">"Hoang"</span>, <span class="string">"Duy"</span>, <span class="string">"Chinh"</span>].each <span class="keyword">do</span> <span class="params">|i|</span></span><br><span class="line">  str += i</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>Tư tưởng của đoạn mã này là cộng tất cả các phần tử trong một mảng string và cho ra kết quả cuối cùng là một chuỗi tổng hợp tất cả các phần tử.<br>Có điều gì bất thường trong đoạn mã này không nhỉ? Câu trả lời là có. Như những gì chúng ta đã nói ở trên có hai điều cần lưu ý:</p>
+<blockquote>
+<ol>
+<li>Các kiểu dữ liệu nguyên thuỷ trong ruby đều là immutable và hiển nhiên string không ngoại lệ.</li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="2">
+<li>Khi một object là immutable, thì việc bạn gán nó bằng một giá trị khác đồng nghĩa với việc vùng nhớ cũ sẽ không được dùng đến, mà nó sẽ ra một vùng nhớ mới rồi ghi kết quả mới lên đó, cứ lặp lại như vậy mãi mãi.</li>
+</ol>
+</blockquote>
+<p>Từ hai điều trên ta rút ra được kết luận:</p>
+<ol>
+<li>Trong lần gán đầu tiên str có giá trị là chuỗi rỗng và được khởi tạo tại ví trí A1</li>
+<li>Trong lần lặp <strong>each</strong> đầu tiên, str có giá trị là “Hoang” và nó lưu ở vị trí A2</li>
+<li>Trong lần lặp <strong>each</strong> thứ hai, str có giá trị mới là “HoangDuy” và nó lưu ở vị trí mới là A3</li>
+<li>Trong lần lặp cuối cùng thì str có giá trị chúng ta mong đợi là “HoangDuyChinh” và nó lưu ở vị trí A4</li>
+</ol>
+<p>Chứng minh:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">str = <span class="string">""</span></span><br><span class="line">puts <span class="string">"First location: <span class="subst">#&#123;str.object_id&#125;</span>"</span></span><br><span class="line">[<span class="string">"Hoang"</span>, <span class="string">"Duy"</span>, <span class="string">"Chinh"</span>].each <span class="keyword">do</span> <span class="params">|i|</span></span><br><span class="line">  str += i</span><br><span class="line">  puts <span class="string">"value: <span class="subst">#&#123;str&#125;</span> | location: <span class="subst">#&#123;str.object_id&#125;</span>"</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">puts <span class="string">"Final value: <span class="subst">#&#123;str&#125;</span> | location: <span class="subst">#&#123;str.object_id&#125;</span>"</span></span><br></pre></td></tr></table></figure>
+
+<p>Kết quả:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">First location: 47434608564740</span><br><span class="line">value: Hoang | location: 47434608564520</span><br><span class="line">value: HoangDuy | location: 47434608564440</span><br><span class="line">value: HoangDuyChinh | location: 47434608564360</span><br><span class="line">Final value: HoangDuyChinh | location: 47434608564360</span><br></pre></td></tr></table></figure>
+
+<p>Và thứ chúng ta quan tâm từ đó về sau là vị trí A4 này. Vậy còn A1, A2, A3 cũng đang mang giá trị? Chúng đi đâu về đâu? Chính xác, nó trở thành một vùng nhớ rác và sẽ được GC dọn dẹp nhưng không phải ngay lập tức, vậy trong khoảng thời gian đó nó vẫn nắm giữ các vùng nhớ của chúng ta. Đó cũng là một trong các lý do việc bạn muốn chạy ruby on rails trên một chiếc máy tính sinh viên 2GB là vô cùng khó khăn. Ruby ăn Ram như uống nước lã vậy.</p>
+<p>Ví dụ trên mảng ta có ba phần tử và ta có 3 giá trị rác trên bộ nhớ, hãy tưởng tượng bạn có một mảng một triệu phần tử :worried:</p>
+<p>Giải pháp trong trường hợp này là gì? Đó là duyệt mảng như một <strong>object reference</strong> chứ không phải một biến giá trị:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">str = <span class="string">""</span></span><br><span class="line">[<span class="string">"Hoang"</span>, <span class="string">"Duy"</span>, <span class="string">"Chinh"</span>].each <span class="keyword">do</span> <span class="params">|i|</span></span><br><span class="line">  str &lt;&lt; i</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>Như vậy str sẽ ở đúng một vùng nhớ và ta không có một đống biến rác không mong đợi.</p>
+<p>Chứng minh:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">str = <span class="string">""</span></span><br><span class="line">puts <span class="string">"First location: <span class="subst">#&#123;str.object_id&#125;</span>"</span></span><br><span class="line">[<span class="string">"Hoang"</span>, <span class="string">"Duy"</span>, <span class="string">"Chinh"</span>].each <span class="keyword">do</span> <span class="params">|i|</span></span><br><span class="line">  str &lt;&lt; i</span><br><span class="line">  puts <span class="string">"value: <span class="subst">#&#123;str&#125;</span> | location: <span class="subst">#&#123;str.object_id&#125;</span>"</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">puts <span class="string">"Final value: <span class="subst">#&#123;str&#125;</span> | location: <span class="subst">#&#123;str.object_id&#125;</span>"</span></span><br></pre></td></tr></table></figure>
+
+<p>Kết quả:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">First location: 47196120971580</span><br><span class="line">value: Hoang | location: 47196120971580</span><br><span class="line">value: HoangDuy | location: 47196120971580</span><br><span class="line">value: HoangDuyChinh | location: 47196120971580</span><br><span class="line">Final value: HoangDuyChinh | location: 47196120971580</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-Tham-khao"><a href="#3-Tham-khao" class="headerlink" title="3. Tham khảo"></a>3. Tham khảo</h2><p>[1] <a href="https://en.wikipedia.org/wiki/Immutable_object" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Immutable_object</a></p>
+
+    </div>
+    <!-- 
+        <hr class="fhr">
+        <div id="vcomments"></div>
+     -->
+</div>
+
+    <div class="footer" id="footer">
+    <p>Copyright © 2020 <a class="flink" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a>-<a class="flink" href="https://github.com/sanjinhub/hexo-theme-geek" target="_blank" rel="noopener">Geek</a>.
+        <label class="el-switch el-switch-green el-switch-sm" style="vertical-align: sub;">
+            <input type="checkbox" name="switch" id="update_style">
+            <span class="el-switch-style"></span>
+        </label>
+<!--         <script type="text/javascript">
+        var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");
+        document.write(unescape("%3Cspan id='cnzz_stat_icon_1278548644'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/stat.php%3Fid%3D1278548644%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+        </script> -->
+    </p>
+</div>
+<input type="hidden" id="web_style" value="black">
+<input type="hidden" id="valine_appid" value="CmCti21ooOOIzFOhEyFkFvR0-gzGzoHsz">
+<input type="hidden" id="valine_appKey" value="FqiyUqbg7McKN2eG0MCewupf">
+
+<script src="/libs/jquery.min.js"></script>
+
+
+<script src="/libs/highlight/highlight.pack.js"></script>
+
+<script src='//cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+
+<script src="/js/js.js"></script>
+
+<style type="text/css">
+.v * {
+    color: #698fca;
+}
+
+.v .vlist .vcard .vhead .vsys {
+    color: #3a3e4a;
+}
+
+.v .vlist .vcard .vh .vmeta .vat {
+    color: #638fd5;
+}
+
+.v .vlist .vcard .vhead .vnick {
+    color: #6ba1ff;
+}
+
+.v a {
+    color: #8696b1;
+}
+
+.v .vlist .vcard .vhead .vnick:hover {
+    color: #669bfc;
+}
+</style>
+</body>
+
+</html>

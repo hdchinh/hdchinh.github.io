@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>
+        Notes
+    </title>
+    
+<link rel="stylesheet" href="/libs/highlight/styles/monokai-sublime.css">
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body id="bodyx">
+    <div class="hd posts">
+    <a href="/index.html"><i class="fa fa-reply replay-btn" aria-hidden="true"></i></a>
+    <div class="post-title">
+        <p>
+            Tổng Quan Nguyên Lý SOLID
+        </p>
+        <hr>
+    </div>
+    <div class="post-content">
+        <h2 id="1-Dinh-nghia-va-muc-tieu-su-dung"><a href="#1-Dinh-nghia-va-muc-tieu-su-dung" class="headerlink" title="1. Định nghĩa và mục tiêu sử dụng"></a>1. Định nghĩa và mục tiêu sử dụng</h2><p><img src="/images/solid.png" alt="hoa"></p>
+<p>Trước tiên, hãy xem SOLID là viết tắt của những cụm từ gì.</p>
+<p><strong>1:</strong> <strong>S</strong>ingle Responsibility Principle</p>
+<p><strong>2:</strong> <strong>O</strong>pen/Closed Principle</p>
+<p><strong>3:</strong> <strong>L</strong>iskov Substitution Principle</p>
+<p><strong>4:</strong> <strong>I</strong>nterface Segregation Principle</p>
+<p><strong>5:</strong> <strong>D</strong>ependency Inversion Principle</p>
+<p>Hàn lâm là vậy nhưng để dễ nhớ thì tôi gọi chúng ngắn gọn là: <strong>S</strong>ingle, <strong>O</strong>pen, <strong>L</strong>iskov, <strong>I</strong>nterface và <strong>D</strong>ependency.</p>
+<p>Về mục tiêu để cái nguyên lý này có mặt trên cõi đời, âu cũng là xuất phát từ nhu cầu làm ít hơn của con người, việc code không có hệ thống khiến các nhà phát triển tốn nhiều thời gian bảo trì và dễ phát sinh lỗi trong quá trình sử dụng.<br>Để giảm bớt gánh nặng này các nhà phát triển đã cô đọng lại một số khuôn khổ, cách thức lập trình mà dưới góc nhìn và kinh nghiệm của nhiều người, các khuôn khổ cách thức đó giúp cho việc bảo trì trở nên dễ dàng hơn, hệ thống ít phát sinh lỗi ngoài ý muốn hơn. Một trong số đó là hệ thống các nguyên tắc trong SOLID.</p>
+<p>Giả sử tôi phải xử lý một bài toán tính promotion cho một ứng dụng thương mại điện tử. Đây sẽ là ví dụ ta dùng đến trong các phần phía dưới. Giả sử cấu trúc dự án hiện tại như sau:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- app</span><br><span class="line">  - signin.rb</span><br><span class="line">  - signup.rb</span><br><span class="line">  - checkout.rb</span><br></pre></td></tr></table></figure>
+
+<p>Trong đó signin chứa mã nguồn thực hiện chức năng đăng nhập, signup chứa mã thực hiện chức năng đăng ký và checkout chứa mã thực hiện chức năng thanh toán.</p>
+<h2 id="2-Single-Responsibility-Principle"><a href="#2-Single-Responsibility-Principle" class="headerlink" title="2. Single Responsibility Principle"></a>2. <strong>S</strong>ingle Responsibility Principle</h2><p><img src="/images/srp.jpg" alt="hoa"></p>
+<p>Nguyên lý này được phát biểu như sau:</p>
+<blockquote>
+<p>Every class should have a single responsibility, and that responsibility should be entirely encapsulated by the class.</p>
+</blockquote>
+<p>Điều cần quan tâm ở đây là single responsibility có thể hiểu là gì? Nghĩa của responsibility là ‘trách nhiệm’, vậy ‘trách nhiệm’ trong code là gì?</p>
+<p>Ta có thể hiểu nó đồng nghĩa với ‘chức năng’ hay không? Cứ giả sử như ta có thể hiểu nó là ‘chức năng’ vậy khi đó thì nguyên lý này có thể phát biểu lại thành như sau:</p>
+<blockquote>
+<p>Mỗi class nên chỉ mang một chức năng nhất định, và chức năng đó phải được đóng gói trong class này.</p>
+</blockquote>
+<p>Bây giờ thì đã dễ hiểu hơn nhiều, quay trở về ví dụ, chúng ta cần viết một chức năng tính promotion. Ta có thể  viết chức năng này vào đâu?</p>
+<p>Câu trả lời đơn giản nhất là chúng ta viết chức năng này luôn vào file checkout.rb, khi thực hiện chức năng thanh toán thì sử dụng luôn các method tính promotion trong đó. Mọi chuyện thật đơn giản phải không? Điều này có vi phạm nguyên tắc SRP không?</p>
+<p>Nếu tôi nói là không vi phạm? Diễn giải của tôi như sau: Trách nhiệm của cái module/class Checkout là thanh toán những mặt hàng bạn đã bỏ vào cart, vậy promotion cũng chỉ một step trong quá trình thanh toán, nên nếu tôi viết code promotion trong module/class Checkout thì tôi vi phạm nguyên tắc SRP chỗ nào?  Checkout vẫn đang làm đúng và duy nhất một ‘trách nhiệm’ đó là giúp thanh toán đơn hàng và promotion chỉ là phần phụ trợ cho quá trình đó hay nói cách khác promotion chỉ là một bước trong nhiều bước của quá trình thanh toán.</p>
+<p>Vậy tôi có sai khi nói vậy không? Bạn có thể chứng minh là tôi sai nguyên lý SRP được hay không?</p>
+<ol>
+<li><p>Tôi nghe nhiều người nói đây là nguyên tắc dễ nhất trong SOLID, theo tôi nó chỉ là nguyên tắc mà định nghĩa dễ học thuộc nhất mà thôi.</p>
+</li>
+<li><p>Responsibility thì hãy hiểu nó là responsibility (hay hiểu nó là đúng ngữ nghĩa là trách nhiệm). Không đánh đồng responsibility thành ‘chức năng’ như trên.</p>
+</li>
+<li><p>Nội dung nguyên lý chỉ có tính tương đối, nó phụ thuộc hoàn toàn vào cái mà bạn xem là một responsibility.</p>
+</li>
+</ol>
+<p>Để đánh giá đâu, cái gì là một responsibility thì có lẽ điều kiện cần là phải có đủ kinh nghiệm. Trở lại ví dụ, tôi có thể coi promotion là một responsibility riêng rẽ với chức năng thanh toán. Khi đó tổ chức code của tôi như sau:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- app</span><br><span class="line">  - signin.rb</span><br><span class="line">  - signup.rb</span><br><span class="line">  - checkout.rb</span><br><span class="line">  - promotion.rb</span><br></pre></td></tr></table></figure>
+
+<p>Như này đã phải là cách tốt nhất? Câu trả lời là tuỳ ngữ điệu hoàn cảnh, giả sử nếu chức năng promotion có nhiều rule khác nhau thì việc bỏ tất cả function tính promotion vào 1 file promotion.rb có vẻ không phải là một cách hay. Khi đó ta tổ chức lại như sau:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">- app</span><br><span class="line">  - signin.rb</span><br><span class="line">  - signup.rb</span><br><span class="line">  - checkout.rb</span><br><span class="line">  - promotion</span><br><span class="line">    - promotion_type_a.rb</span><br><span class="line">    - promotion_type_b.rb</span><br><span class="line">    - promotion_type_c.rb</span><br></pre></td></tr></table></figure>
+
+<p>Cách tổ chức này đã là tốt nhất hay chưa? câu trả lời là chưa chắc, mọi thứ lại phụ thuộc vào ngữ cảnh.<br>Nguyên lý SRP có thể sai hay đúng trong một số trường hợp là rất mập mờ, tuỳ theo cái mà nhà phát triển định nghĩa cho responsibility mà họ xây dựng.</p>
+<p>Note: Nhưng cuối cùng nguyên lý SRP cũng chỉ có một mục đích duy nhất để cấu trúc dự án dễ sửa đổi và bảo trì, vì vậy trong từng tình huống sẽ có những cách khác nhau để phân chia tổ chức mã nguồn, dựa vào chức năng, dựa vào yêu cầu khách hàng, dựa vào tiềm năng phát triển dự án…</p>
+<h2 id="3-Open-Closed-Principle"><a href="#3-Open-Closed-Principle" class="headerlink" title="3. Open/Closed Principle"></a>3. <strong>O</strong>pen/Closed Principle</h2><p><img src="/images/ocp.jpg" alt="hoa"></p>
+<p>Nguyên lý này được phát biểu như sau:</p>
+<blockquote>
+<p>One software entity (class/module) must be open for extension but closed for modification.</p>
+</blockquote>
+<p>Hiểu đơn giản:</p>
+<blockquote>
+<p>Một class/module cần phải có thể mở rộng, nhưng không/không nên sửa đổi nó.</p>
+</blockquote>
+<p>Vì sao nguyên lý này lại yêu cầu như vậy? việc tôi muốn mở rộng hay tôi sửa đổi một cái class thì có ảnh hưởng gì đâu mà căng nhỉ?</p>
+<p>Đúng là như vậy, trong phần lớn quá trình phát triển những ứng dụng cá nhân đơn giản thì việc chúng ta có thêm, xoá, sửa hay mở rộng một class/module đa phần đều không mang lại hậu quả gì ngoài ý muốn.</p>
+<p>Nhưng ngữ cảnh mà nguyên lý này hướng tới là những ứng dụng thực sự trong cuộc sống, ở đó những ứng dụng này sẽ lớn, rối rắm và có business không hề đơn giản. Một điểm nữa là dự án đó khi tới tay bạn đã có thể trải qua 5, 7 lần đổi team phát triển và những gì bạn thấy là thành quả của cả một quá trình phát triển tính năng và maintain trong đơn vị tính bằng năm.</p>
+<p>Liệu bạn có nắm hết được flow hoạt động của từng đoạn mã, từng file từng class hay không? Nhất định là không rồi.</p>
+<p>Đó chính là lý do mà nguyên lý OCP ra đời, khi hệ thống phức tạp và bạn không nắm được hết tất cả những gì sẽ xảy ra sau khi bạn thay đổi mã nguồn tại một class/module. Hãy đừng thay đổi, để tránh làm ảnh hưởng đến một phần logic tiềm tàng nào đó. Thay vào đó hãy mở rộng class/module đó, mở rộng để bổ sung tính năng bạn cần mà còn giúp không ảnh hưởng đến những phần code cũ không sai lệch về logic luận lý (Vì nó có thể vẫn đang sử dụng chức năng cũ, liệu bạn có cover được hết để sửa đổi tất cả các trường hợp có thể xảy ra hay không?).</p>
+<blockquote>
+<p>Vì vậy hãy ưu tiên mở rộng một class/module khi cần phát triển thêm hay thay đổi tính năng, hạn chế và hãy thật cẩn thận khi cần sửa đổi mã nguồn có sẵn (chính là sửa đổi class/module).</p>
+</blockquote>
+<p>Mục tiêu của nguyên lý là vậy, rất dễ hiểu, hãy cùng thảo luận về một ví dụ trước khi sang phần tiếp theo:</p>
+<p>Lại quay trở lại ví dụ về bài toán promotion, giả sử tôi lự chọn cấu trúc chương trình như sau:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- app</span><br><span class="line">  - signin.rb</span><br><span class="line">  - signup.rb</span><br><span class="line">  - checkout.rb</span><br><span class="line">  - promotion.rb</span><br></pre></td></tr></table></figure>
+
+<p>Như đã trình bày ở trên, cấu trúc như này về lý thuyết thì cũng chả ai bảo là tôi vi phạm nguyên tắc số 1 SRP được. Giả sử nội dung của file promotion.rb như sau:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Promotion</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">promotion_type_a</span></span></span><br><span class="line">    <span class="comment"># implement rule promotion type a</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">promotion_type_b</span></span></span><br><span class="line">    <span class="comment"># implement rule promotion type b</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>Vậy bây giờ khi tôi muốn thêm một rule tính promotion mới, thì tôi sẽ phải sửa đổi file promotion.rb này, về nguyên tắc nó đã vi phạm nguyên lý số 2 OCP (mở để mở rộng chứ không phải để sửa đổi).</p>
+<p>Để khắc phục ta có thể cấu trúc lại mã nguồn như sau:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">- app</span><br><span class="line">  - signin.rb</span><br><span class="line">  - signup.rb</span><br><span class="line">  - checkout.rb</span><br><span class="line">  - promotion</span><br><span class="line">    - promotion.rb</span><br><span class="line">    - promotion_type_a.rb</span><br><span class="line">    - promotion_type_b.rb</span><br><span class="line">    - promotion_type_c.rb</span><br></pre></td></tr></table></figure>
+
+<p>Và khi này, khi tôi cần thêm mới 1 rule promotion, tôi sẽ tạo một file mới trong thư mục promotion, với nội dung kế thừa từ class Promotion.</p>
+<p>Ví dụ bổ sung thêm rule promotion_type_x.rb với nội dung:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PromotionTypeX</span> &lt; Promotion</span></span><br><span class="line">  <span class="comment"># do something</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="4-Liskov-Substitution-Principle"><a href="#4-Liskov-Substitution-Principle" class="headerlink" title="4. Liskov Substitution Principle"></a>4. <strong>L</strong>iskov Substitution Principle</h2><p><img src="/images/lsp.jpg" alt="hoa"></p>
+<p>Nguyên lý này được phát biểu như sau:</p>
+<blockquote>
+<p>If S is a subtype of T, then objects of type T may be replaced with objects of type S (i.e., objects of type S may substitute objects of type T) without altering any of the desirable properties of that program (correctness, task performed, etc.).</p>
+</blockquote>
+<p>Hiểu đơn giản là:</p>
+<blockquote>
+<p>Bạn có class A là con của class B, thì instance của class A phải thay thế được cho instance của class B trong mã nguồn mà không gây ra sai xót nào (không lỗi và không sai ngữ nghĩa).</p>
+</blockquote>
+<p>Một ví dụ đơn giản như sau:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Animal</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">animal_hello</span></span></span><br><span class="line">    puts <span class="string">"Animal say hello"</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cat</span> &lt; Animal</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">cat_hello</span></span></span><br><span class="line">    puts <span class="string">"Cat say hello"</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>Đoạn mã trên là một đoạn mã hợp lệ với nguyên lý Liskov vì:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">temp = Animal.new</span><br><span class="line">temp.animal_hello</span><br><span class="line"><span class="comment"># kết quả trả về là: "Animal say hello"</span></span><br><span class="line"></span><br><span class="line">temp = Cat.new</span><br><span class="line">temp.animal_hello</span><br><span class="line"><span class="comment"># kết quả trả về vẫn là: "Animal say hello"</span></span><br></pre></td></tr></table></figure>
+
+<p>Như bạn thấy, kết quả trả về không thay đổi khi ta dùng instance của class Cat thay cho instance class cha của nó là Animal, và vậy là nguyên lý Liskov được bảo toàn tính đúng đắn của nó.</p>
+<p>Hãy thử một đoạn mã nguồn khác như sau:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Animal</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">animal_hello</span></span></span><br><span class="line">    puts <span class="string">"Animal say hello"</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cat</span> &lt; Animal</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">animal_hello</span></span></span><br><span class="line">    puts <span class="string">"Cat say hello"</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>Đây là đoạn mã vi phạm nguyên tắc của Liskov, khi này ta có:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">temp = Animal.new</span><br><span class="line">temp.animal_hello</span><br><span class="line"><span class="comment"># kết quả trả về là: "Animal say hello"</span></span><br><span class="line"></span><br><span class="line">temp = Cat.new</span><br><span class="line">temp.animal_hello</span><br><span class="line"><span class="comment"># kết quả trả về là: "Cat say hello"</span></span><br></pre></td></tr></table></figure>
+
+<p>Ta có thể thấy, instance của class Cat khi gọi tới method animal_hello đã không còn trả về kết quả tương tự như một instance Animal nữa rồi, vì lý do ở class Cat, class này đã override lại phương thức animal_hello, và từ đó dẫn tới vi phạm nguyên tắc Liskov.</p>
+<h2 id="5-Interface-Segregation-Principle"><a href="#5-Interface-Segregation-Principle" class="headerlink" title="5. Interface Segregation Principle"></a>5. <strong>I</strong>nterface Segregation Principle</h2><p><img src="/images/isp.png" alt="hoa"></p>
+<p>Nguyên lý này được phát biểu như sau:</p>
+<blockquote>
+<p>No client should be forced to depend on methods it does not use.</p>
+</blockquote>
+<p>Hiểu đơn giản là:</p>
+<blockquote>
+<p>Nếu bạn là một đối tượng nào đó trong mã nguồn, hãy đảm bảo là bạn phải/chỉ làm những công việc mà bạn phải/có thể làm. Không trao cho bạn những khả năng mà bạn không cần.</p>
+</blockquote>
+<p>Thử một ví dụ đơn giản, bạn là một học sinh được giao nhiệm vụ trực nhật lớp, cô giáo bạn phải đảm bảo rằng bạn chỉ được trao chìa khoá mở cửa phòng học của bạn, chứ không trao cho bạn những chìa khoá khác (như chìa khoá các lớp học khác, phòng tin học, phòng giáo viên…), đấy là những công việc của những cá nhân khác.</p>
+<p>Nếu bạn được trao những công việc của người khác, có thể bạn sẽ tạo ra những sai lầm không thể sửa đổi được. Vì vậy hãy làm đúng công việc của mình.</p>
+<p>Hãy bắt đầu với một ví dụ:</p>
+<p>Ta có một class Animal.</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Animal</span></span></span><br><span class="line">  <span class="keyword">include</span> AnimalHelper</span><br><span class="line">  <span class="comment"># do something</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>Class Animal bên trên include module dưới đây.</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">module</span> <span class="title">AnimalHelper</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">animal_helper_a</span></span></span><br><span class="line">    <span class="comment"># do something</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">animal_helper_b</span></span></span><br><span class="line">    <span class="comment"># do something</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">animal_helper_c</span></span></span><br><span class="line">    <span class="comment"># do something</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>Mọi chuyện ổn chứ? Rất ổn, 3 method hiện có trong module AnimalHelper là 3 method hỗ trợ cho class Animal.</p>
+<p>Vậy bây giờ tôi có thêm một class nữa như sau:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">YellowCat</span></span></span><br><span class="line">  <span class="comment"># do something</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>Class này cần một phương thức support tên là <strong>yellow_cat_helper</strong>, tôi sẽ viết thêm method này vào module AnimalHelper và include module AnimalHelper vào class YellowCat vậy là đúng và đủ yêu cầu. Khi này module AnimalHelper và class YellowCat sẽ trở thành như sau:</p>
+<p>Class YellowCat</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">YellowCat</span></span></span><br><span class="line">  <span class="keyword">include</span> AnimalHelper</span><br><span class="line">  <span class="comment"># do something</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>Module AnimalHelper</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">module</span> <span class="title">AnimalHelper</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">animal_helper_a</span></span></span><br><span class="line">    <span class="comment"># do something</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">animal_helper_b</span></span></span><br><span class="line">    <span class="comment"># do something</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">animal_helper_c</span></span></span><br><span class="line">    <span class="comment"># do something</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># add new method for YellowCat</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">yellow_cat_helper</span></span></span><br><span class="line">    <span class="comment"># do something</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>Mọi chuyện giờ vẫn ổn chứ? Không, bây giờ thì không ổn nữa rồi nó đã vi phạm nguyên tắc SOLID thứ 4, chữ “I” mà chúng ta đang xét.</p>
+<p>Vì sao?</p>
+<p>Vì class Animal đâu có cần method <strong>yellow_cat_helper</strong>, còn class YellowCat đâu có cần 3 method <strong>animal_helper_a</strong>, <strong>animal_helper_b</strong>, <strong>animal_helper_c</strong> này đâu?</p>
+<p>Vậy mà chúng vẫn có thể sử dụng những method mà chúng vốn không cần, vì lý do ta viết chung tất cả method vào một module và include module vào từng class.</p>
+<p>Y như ví dụ bên trên: Bạn cần trực nhật lớp 1A thôi mà, cô giáo bạn đưa cho bạn trùm chìa khoá của cả trường làm gì? Cầm thì nặng, mà nhỡ đâu bạn <del>tắt mắt</del> nghịch dại thì hậu quả khôn lường.</p>
+<p>Vậy để không vi phạm nguyên tắc này ta có thể sửa lại mã nguồn như sau:</p>
+<p>Class Animal</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Animal</span></span></span><br><span class="line">  <span class="keyword">include</span> AnimalHelper</span><br><span class="line">  <span class="comment"># do something</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>Module Animal</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">module</span> <span class="title">AnimalHelper</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">animal_helper_a</span></span></span><br><span class="line">    <span class="comment"># do something</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">animal_helper_b</span></span></span><br><span class="line">    <span class="comment"># do something</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">animal_helper_c</span></span></span><br><span class="line">    <span class="comment"># do something</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>Class YellowCat</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">YellowCat</span></span></span><br><span class="line">  <span class="keyword">include</span> YellowCatHelper</span><br><span class="line">  <span class="comment"># do something</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>Và giờ ta tạo một module mới để YellowCat include</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">module</span> <span class="title">YellowCatHelper</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">yellow_cat_helper</span></span></span><br><span class="line">    <span class="comment"># do something</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>Ok, vậy là look good rồi :smile: Lúc này class Animal chỉ được include những method mà nó cần và class YellowCat cũng vậy.</p>
+<h2 id="6-Dependency-Inversion-Principle"><a href="#6-Dependency-Inversion-Principle" class="headerlink" title="6. Dependency Inversion Principle"></a>6. <strong>D</strong>ependency Inversion Principle</h2><p><img src="/images/dip.jpg" alt="hoa"></p>
+<p>Nguyên lý này được phát biểu như sau:</p>
+<blockquote>
+<ol>
+<li>High-level modules should not depend on low-level modules. Both should depend on abstractions.</li>
+<li>Abstractions should not depend upon details. Details should depend upon abstractions.</li>
+</ol>
+</blockquote>
+<p>Dịch sát nghĩa sẽ là:</p>
+<blockquote>
+<ol>
+<li>Module cấp cao không nên phụ thuộc vào module cấp thấp hơn. Cả hai nên phụ thuộc vào abstractions.</li>
+<li>Abstractions không nên phụ thuộc vào details. Details nên phụ thuộc vào abstractions</li>
+</ol>
+</blockquote>
+<p>Quay trở lại ví dụ promotion ban đầu, giả sử ta viết mã nguồn như sau:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># app/checkout.rb</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Checkout</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">get_bill</span><span class="params">(cart)</span></span></span><br><span class="line">    PromotionTypeA.promotion_type_a(cart)</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># app/promotion/promotion_type_a.rb</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PromotionTypeA</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">promotion_type_a</span><span class="params">(cart)</span></span></span><br><span class="line">    <span class="comment"># do something</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>Trong đoạn mã nguồn trên đây, method get_bill trong class Checkout phụ thuộc vào class PromotionTypeA. Rõ ràng là như vậy, câu hỏi là nếu ta có PromotionTypeB, PromotionTypeC… Thì phải làm sao?</p>
+<p>Chúng ta sẽ phải viết 3 method get_bill ứng với PromotionTypeA, PromotionTypeB và PromotionTypeC hay sao?</p>
+<p>Đó cũng là một cách, nhưng đó là cách đã vi phạm nguyên lý DIP, khi mà các module phụ thuộc lẫn nhau.</p>
+<p>Để giải quyết vấn đề này ta có thể viết lại mã nguồn như sau:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># app/checkout.rb</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Checkout</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">get_bill</span><span class="params">(cart, PromotionType)</span></span></span><br><span class="line">    PromotionType.get_promotion(cart)</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># app/promotion/promotion_type_a.rb</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PromotionTypeA</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">get_promotion</span><span class="params">(cart)</span></span></span><br><span class="line">    <span class="comment"># do something</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># get_bill với PromotionTypeA</span></span><br><span class="line">Checkout.new.get_bill(cart, PromotionTypeA)</span><br><span class="line"></span><br><span class="line"><span class="comment"># để viết thêm PromotionTypeB, ta viết thêm một class PromotionTypeB và truyền PromotionTypeB vào get_bill method.</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># app/promotion/promotion_type_a.rb</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PromotionTypeB</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">get_promotion</span><span class="params">(cart)</span></span></span><br><span class="line">    <span class="comment"># do something</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">Checkout.new.get_bill(cart, PromotionTypeB)</span><br></pre></td></tr></table></figure>
+
+<h2 id="Tham-khao"><a href="#Tham-khao" class="headerlink" title="Tham khảo"></a>Tham khảo</h2><p>[1] <a href="https://en.wikipedia.org/wiki/SOLID" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/SOLID</a></p>
+
+    </div>
+    <!-- 
+        <hr class="fhr">
+        <div id="vcomments"></div>
+     -->
+</div>
+
+    <div class="footer" id="footer">
+    <p>Copyright © 2020 <a class="flink" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a>-<a class="flink" href="https://github.com/sanjinhub/hexo-theme-geek" target="_blank" rel="noopener">Geek</a>.
+        <label class="el-switch el-switch-green el-switch-sm" style="vertical-align: sub;">
+            <input type="checkbox" name="switch" id="update_style">
+            <span class="el-switch-style"></span>
+        </label>
+<!--         <script type="text/javascript">
+        var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");
+        document.write(unescape("%3Cspan id='cnzz_stat_icon_1278548644'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/stat.php%3Fid%3D1278548644%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+        </script> -->
+    </p>
+</div>
+<input type="hidden" id="web_style" value="black">
+<input type="hidden" id="valine_appid" value="CmCti21ooOOIzFOhEyFkFvR0-gzGzoHsz">
+<input type="hidden" id="valine_appKey" value="FqiyUqbg7McKN2eG0MCewupf">
+
+<script src="/libs/jquery.min.js"></script>
+
+
+<script src="/libs/highlight/highlight.pack.js"></script>
+
+<script src='//cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+
+<script src="/js/js.js"></script>
+
+<style type="text/css">
+.v * {
+    color: #698fca;
+}
+
+.v .vlist .vcard .vhead .vsys {
+    color: #3a3e4a;
+}
+
+.v .vlist .vcard .vh .vmeta .vat {
+    color: #638fd5;
+}
+
+.v .vlist .vcard .vhead .vnick {
+    color: #6ba1ff;
+}
+
+.v a {
+    color: #8696b1;
+}
+
+.v .vlist .vcard .vhead .vnick:hover {
+    color: #669bfc;
+}
+</style>
+</body>
+
+</html>

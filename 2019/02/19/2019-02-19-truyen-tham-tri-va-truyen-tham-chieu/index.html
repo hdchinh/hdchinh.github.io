@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>
+        Notes
+    </title>
+    
+<link rel="stylesheet" href="/libs/highlight/styles/monokai-sublime.css">
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body id="bodyx">
+    <div class="hd posts">
+    <a href="/index.html"><i class="fa fa-reply replay-btn" aria-hidden="true"></i></a>
+    <div class="post-title">
+        <p>
+            Pass Reference Vs Pass Value, Ruby!
+        </p>
+        <hr>
+    </div>
+    <div class="post-content">
+        <h2 id="1-Dinh-nghia"><a href="#1-Dinh-nghia" class="headerlink" title="1. Định nghĩa"></a>1. Định nghĩa</h2><ol>
+<li><p>Không có một định nghĩa chung nào về <strong>pass by value</strong> và <strong>pass by reference</strong>, tuỳ thuộc vào từng ngôn ngữ, chúng lại có cách xử lý và những định nghĩa khác nhau về cách xử lý biến và vùng nhớ.</p>
+</li>
+<li><p><strong>Pass value</strong>: Hiểu một cách đơn giản nhất, đó là khi biến bạn truyền vào một method nào đó, dù trong đó logic là gì và nó hà hiếp cái biến bạn bỏ vào ra làm sao, thì khi ra ngoài hàm đó, biến bạn đã truyền ở trên vẫn còn nguyên seal, nguyên kiện, không hề si nhê (không hề thay đổi về giá trị).</p>
+</li>
+<li><p><strong>Pass reference</strong>: ngược lại với sự tử tế trong <strong>Pass value</strong>, khi bạn quyết định truyền tham số dưới dạng một reference, đồng nghĩa với việc bạn chấp nhận rằng cái biến bé bỏng, yếu ớt xinh xinh của bạn sẽ tha hồ bị logic trong hàm hành hạ, và khi ra khỏi hàng nó vẫn mang đầy đủ thương tích đã bị gây ra trong hàm (giá trị biến truyền vào sẽ bị thay đổi theo logic trong hàm).</p>
+</li>
+</ol>
+<p>Note: khi còn đi học, tôi đã có một sự nhầm lẫn về value và reference trong C, khi đó tôi đã nghĩ truyền tên biến bình thường thôi là <strong>Pass value</strong>, còn truyền con trỏ là <strong>Pass reference</strong>. Nhưng thực ra đó là không đúng:</p>
+<blockquote>
+<p>The C language is pass-by-value without exception. Passing a pointer as a parameter does not mean pass-by-reference.</p>
+</blockquote>
+<h2 id="2-Pass-value-va-reference-trong-ruby"><a href="#2-Pass-value-va-reference-trong-ruby" class="headerlink" title="2. Pass value và reference trong ruby"></a>2. Pass value và reference trong ruby</h2><p>| Qua thời gian tìm hiểu thì tôi nhận thấy rằng trong ruby không hề có khái niệm rõ ràng về reference hay value, nên mọi kết luận ở đây chỉ là mang tính quy chiếu dựa vào những ý chúng ta đã nói trong mục 1.</p>
+<p>Xem ví dụ sau đây:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">xinchao</span><span class="params">(a)</span></span></span><br><span class="line">  a = <span class="string">"Nguyen Van A"</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">temp = <span class="string">"Nguyen Van B"</span></span><br><span class="line"></span><br><span class="line">puts <span class="string">"Kq: Xin Chao <span class="subst">#&#123;xinchao(temp)&#125;</span>"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#=&gt; "Kq: Xin Chao Nguyen Van A"</span></span><br></pre></td></tr></table></figure>
+
+<p>Từ ví dụ trên ta có thể rút ra kết luận là ruby <strong>Pass reference</strong>? Vì như bạn đã thấy kết quả là “Nguyen Van A”, giá trị mà chúng ta gán trong hàm <strong>xinchao</strong>.</p>
+<p>Câu trả lời là không, đây là một ví dụ cạm bẫy nếu ta không cẩn thận, khác với một số ngôn ngữ khác bắt buộc phải sử dụng <strong>return</strong> để trả về kết quả trong function, ruby cho phép ta sử dụng giá trị cuối cùng bạn viết ra trong function đó. Tức kết quả trả về trên đơn giản là kết quả thực hiện của function xinchao, chứ còn việc biến temp có thay đổi giá trị hay không thì chúng ta phải thay thế lại một chút như dưới đây để kiểm chứng:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">xinchao</span><span class="params">(a)</span></span></span><br><span class="line">  a = <span class="string">"Nguyen Van A"</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">temp = <span class="string">"Nguyen Van B"</span></span><br><span class="line"></span><br><span class="line">xinchao(temp)</span><br><span class="line"></span><br><span class="line">puts <span class="string">"Kq: Xin Chao <span class="subst">#&#123;temp&#125;</span>"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#=&gt; "Kq: Xin Chao Nguyen Van B"</span></span><br></pre></td></tr></table></figure>
+
+<p>Oh, vậy ruby là <strong>Pass by value</strong>? Đúng, như đã từng đề cập, ruby không có 1 định nghĩa thuần tuý nào về hai khái niệm mà chúng ta đang thảo luận, nên dựa trên những ý chính mà chúng ta đã thống nhất trong mục 1, ta có thể gọi Ruby là 1 một ngôn ngữ <strong>Pass by value</strong>.</p>
+<p>Vậy có trường hợp ngoại lệ nào không? Như C++ có cả <strong>Pass by value</strong> và <strong>Pass by reference</strong> đó thôi? Theo tôi đọc được thì là không @@.</p>
+
+    </div>
+    <!-- 
+        <hr class="fhr">
+        <div id="vcomments"></div>
+     -->
+</div>
+
+    <div class="footer" id="footer">
+    <p>Copyright © 2020 <a class="flink" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a>-<a class="flink" href="https://github.com/sanjinhub/hexo-theme-geek" target="_blank" rel="noopener">Geek</a>.
+        <label class="el-switch el-switch-green el-switch-sm" style="vertical-align: sub;">
+            <input type="checkbox" name="switch" id="update_style">
+            <span class="el-switch-style"></span>
+        </label>
+<!--         <script type="text/javascript">
+        var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");
+        document.write(unescape("%3Cspan id='cnzz_stat_icon_1278548644'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/stat.php%3Fid%3D1278548644%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+        </script> -->
+    </p>
+</div>
+<input type="hidden" id="web_style" value="black">
+<input type="hidden" id="valine_appid" value="CmCti21ooOOIzFOhEyFkFvR0-gzGzoHsz">
+<input type="hidden" id="valine_appKey" value="FqiyUqbg7McKN2eG0MCewupf">
+
+<script src="/libs/jquery.min.js"></script>
+
+
+<script src="/libs/highlight/highlight.pack.js"></script>
+
+<script src='//cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+
+<script src="/js/js.js"></script>
+
+<style type="text/css">
+.v * {
+    color: #698fca;
+}
+
+.v .vlist .vcard .vhead .vsys {
+    color: #3a3e4a;
+}
+
+.v .vlist .vcard .vh .vmeta .vat {
+    color: #638fd5;
+}
+
+.v .vlist .vcard .vhead .vnick {
+    color: #6ba1ff;
+}
+
+.v a {
+    color: #8696b1;
+}
+
+.v .vlist .vcard .vhead .vnick:hover {
+    color: #669bfc;
+}
+</style>
+</body>
+
+</html>

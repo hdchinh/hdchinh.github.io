@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>
+        Notes
+    </title>
+    
+<link rel="stylesheet" href="/libs/highlight/styles/monokai-sublime.css">
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body id="bodyx">
+    <div class="hd posts">
+    <a href="/index.html"><i class="fa fa-reply replay-btn" aria-hidden="true"></i></a>
+    <div class="post-title">
+        <p>
+            Build A Simple ORM
+        </p>
+        <hr>
+    </div>
+    <div class="post-content">
+        <h2 id="1-Intro"><a href="#1-Intro" class="headerlink" title="1. Intro"></a>1. Intro</h2><p>Does ROR is a great framework? Yes, it does, to me, it’s lighting and very powerful. Although, the ROR project needs more RAM than most other frameworks and also difficult to scale up.</p>
+<p>But ROR is stale, high security and has very very library supported. And the last one, ROR is the first technology I learn after I graduated from university, therefore I love Rails.</p>
+<p>one of the reasons why many people love and use Rails today is ActiveRecord. The default ORM of Rails, more powerful and easy to use. It helps too much for us when we want to build a web app without deep experiences in SQL.</p>
+<p>Like many developers, when I start to learn Rails, I used a few methods of ActiveRecord and don’t care what’s happening after these methods.  Not bad for a beginner, but if I want to become a   good developer, I need to know more details behind these methods, know deep enough to use them better.</p>
+<h2 id="2-Source-Code"><a href="#2-Source-Code" class="headerlink" title="2. Source Code"></a>2. Source Code</h2><blockquote>
+<p>The resource of this post you can see <a href="https://github.com/hdchinh/simple-orm-ruby" target="_blank" rel="noopener">here</a></p>
+</blockquote>
+<h2 id="3-Explaintion"><a href="#3-Explaintion" class="headerlink" title="3. Explaintion"></a>3. Explaintion</h2><blockquote>
+<p>The first action we need to do after read more is known what is ORM. You can read more about ORM by <a href="https://en.wikipedia.org/wiki/Object-relational_mapping" target="_blank" rel="noopener">article</a>.</p>
+</blockquote>
+<p>To build a simple ORM and run a few basic methods, we need to do 2 things:</p>
+<ol>
+<li>Connect database (I use Postgresql for my example).</li>
+<li>Create Class using any languages that you familiar with, for me I use Ruby.</li>
+</ol>
+<p><strong>STEP 1: Create project</strong></p>
+<p>Create an empty project with single Gemfile with the content below:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">source <span class="string">'https://rubygems.org'</span></span><br><span class="line"></span><br><span class="line">gem <span class="string">'pg'</span></span><br></pre></td></tr></table></figure>
+
+<p>Install gem by command <strong>bundle install</strong></p>
+<p>If you get errors. let’s read more about bundler gem.</p>
+<p><strong>STEP 2: Connect to Database.</strong></p>
+<p>Create a file for the connection. I named this file is <strong>connection.rb</strong>:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">require</span> <span class="string">'pg'</span></span><br><span class="line"></span><br><span class="line">$conn = PG::Connection.connect(</span><br><span class="line">  <span class="symbol">:hostaddr=&gt;<span class="string">"127.0.0.1"</span></span>, <span class="symbol">:port=&gt;</span><span class="number">5432</span>,</span><br><span class="line">  <span class="symbol">:dbname=&gt;<span class="string">"test-psql_development"</span></span>,</span><br><span class="line">  <span class="symbol">:user=&gt;<span class="string">"admin"</span></span>,</span><br><span class="line">  <span class="symbol">:password=&gt;<span class="string">''</span></span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>Note: The content above is my info login of my Database, You must change for your Database.</p>
+<p>At this time, our project has the structure:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-- simple-orm</span><br><span class="line">  -- Gemfile</span><br><span class="line">  -- Gemfile.lock (sinh ra sau lệnh &#96;bundle install&#96;)</span><br><span class="line">  -- connection.rb</span><br></pre></td></tr></table></figure>
+
+<p><strong>STEP 3: Create Main Class.</strong></p>
+<p>Create the main class, I named this file is <strong>mybase.rb</strong>. You can name it with any names you like, don’t matter:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">require_relative <span class="string">'connection.rb'</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyBase</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">all</span></span></span><br><span class="line">    term = <span class="string">"SELECT * FROM <span class="subst">#&#123;<span class="keyword">self</span>.name.downcase&#125;</span>"</span></span><br><span class="line">    res = $conn.exec(term)</span><br><span class="line"></span><br><span class="line">    res.each&#123; <span class="params">|row|</span></span><br><span class="line">      puts <span class="string">"<span class="subst">#&#123;row&#125;</span>\n"</span></span><br><span class="line">    &#125;</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">find</span><span class="params">(id)</span></span></span><br><span class="line">    term = <span class="string">"SELECT * FROM <span class="subst">#&#123;<span class="keyword">self</span>.name.downcase&#125;</span> where id = <span class="subst">#&#123;id&#125;</span>"</span></span><br><span class="line">    res = $conn.exec(term)</span><br><span class="line"></span><br><span class="line">    res.each&#123; <span class="params">|row|</span></span><br><span class="line">      puts <span class="string">"<span class="subst">#&#123;row&#125;</span>\n"</span></span><br><span class="line">    &#125;</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>In this example above, I create two methods:</p>
+<p><strong>all</strong>: To return all records of this Class.<br><strong>find</strong>: To find a record by ID.</p>
+<p><strong>STEP 4: Create Child Class Of Main Class.</strong></p>
+<p>In my Database, I have a table called comics. So I create a file named <strong>comics.rb</strong> to handle the comics table:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">require_relative <span class="string">'mybase.rb'</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Comics</span> &lt; MyBase;</span> <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">puts <span class="string">"All record in comics table:\n"</span></span><br><span class="line">Comics.all</span><br><span class="line">puts <span class="string">"Find record has id is 6:\n"</span></span><br><span class="line">Comics.find(<span class="number">6</span>)</span><br></pre></td></tr></table></figure>
+
+<p>Finally, my project has the structure below:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">-- simple-orm</span><br><span class="line">  -- Gemfile</span><br><span class="line">  -- Gemfile.lock (sinh ra sau lệnh &#96;bundle install&#96;)</span><br><span class="line">  -- connection.rb</span><br><span class="line">  -- mybase.rb (main chính chứa các phương thức)</span><br><span class="line">  -- comics.rb (class ứng với table comics trong csdl, kế thừa MyBase)</span><br></pre></td></tr></table></figure>
+
+<p>Run <strong>comics.rb</strong> file with command <strong>ruby comics.rb</strong> to see what’s happening (please create your sample data first.)</p>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><p>[1]<a href="https://en.wikipedia.org/wiki/Object-relational_mapping" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Object-relational_mapping</a></p>
+<p>[2]<a href="https://medium.com/@violetmoon/understanding-orm-frameworks-with-ruby-and-activerecord-83a9e9d8490e" target="_blank" rel="noopener">https://medium.com/@violetmoon/understanding-orm-frameworks-with-ruby-and-activerecord-83a9e9d8490e</a></p>
+<p>[3]<a href="https://stackoverflow.com/questions/2194915/what-is-orm-as-related-to-ruby-on-rails" target="_blank" rel="noopener">https://stackoverflow.com/questions/2194915/what-is-orm-as-related-to-ruby-on-rails</a></p>
+
+    </div>
+    <!-- 
+        <hr class="fhr">
+        <div id="vcomments"></div>
+     -->
+</div>
+
+    <div class="footer" id="footer">
+    <p>Copyright © 2020 <a class="flink" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a>-<a class="flink" href="https://github.com/sanjinhub/hexo-theme-geek" target="_blank" rel="noopener">Geek</a>.
+        <label class="el-switch el-switch-green el-switch-sm" style="vertical-align: sub;">
+            <input type="checkbox" name="switch" id="update_style">
+            <span class="el-switch-style"></span>
+        </label>
+<!--         <script type="text/javascript">
+        var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");
+        document.write(unescape("%3Cspan id='cnzz_stat_icon_1278548644'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/stat.php%3Fid%3D1278548644%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+        </script> -->
+    </p>
+</div>
+<input type="hidden" id="web_style" value="black">
+<input type="hidden" id="valine_appid" value="CmCti21ooOOIzFOhEyFkFvR0-gzGzoHsz">
+<input type="hidden" id="valine_appKey" value="FqiyUqbg7McKN2eG0MCewupf">
+
+<script src="/libs/jquery.min.js"></script>
+
+
+<script src="/libs/highlight/highlight.pack.js"></script>
+
+<script src='//cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+
+<script src="/js/js.js"></script>
+
+<style type="text/css">
+.v * {
+    color: #698fca;
+}
+
+.v .vlist .vcard .vhead .vsys {
+    color: #3a3e4a;
+}
+
+.v .vlist .vcard .vh .vmeta .vat {
+    color: #638fd5;
+}
+
+.v .vlist .vcard .vhead .vnick {
+    color: #6ba1ff;
+}
+
+.v a {
+    color: #8696b1;
+}
+
+.v .vlist .vcard .vhead .vnick:hover {
+    color: #669bfc;
+}
+</style>
+</body>
+
+</html>

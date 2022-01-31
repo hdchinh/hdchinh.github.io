@@ -1,51 +1,204 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang=en>
 <head>
-    <meta charset="UTF-8">
+    <!-- so meta -->
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="renderer" content="webkit">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>
-        Notes
-    </title>
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="1.Một số khái niệm cơ bản.UNIX là một hệ điều hành ra đời đã rất lâu, nó là tiền thân của hai nhánh hệ điều hành rất nổi tiếng khác, bản thương mại chính là macOS và bản mã nguồn mở chính là GNU. Cho">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Bash File Trên UNIX">
+<meta property="og:url" content="https://hdchinh.github.io/2018/12/30/2019-01-30-bash-file-in-macos-and-linux/index.html">
+<meta property="og:site_name" content="Notes">
+<meta property="og:description" content="1.Một số khái niệm cơ bản.UNIX là một hệ điều hành ra đời đã rất lâu, nó là tiền thân của hai nhánh hệ điều hành rất nổi tiếng khác, bản thương mại chính là macOS và bản mã nguồn mở chính là GNU. Cho">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2018-12-29T17:00:00.000Z">
+<meta property="article:modified_time" content="2022-01-29T09:29:59.925Z">
+<meta property="article:author" content="Tam Thể">
+<meta property="article:tag" content="UNIX">
+<meta name="twitter:card" content="summary">
     
-<link rel="stylesheet" href="/libs/highlight/styles/monokai-sublime.css">
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Bash File Trên UNIX</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
     
-<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+
+    
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
 
     
 <link rel="stylesheet" href="/css/style.css">
 
+    <!-- rss -->
+    
+    
+    <!-- jquery -->
+    
+<script src="/lib/jquery/jquery.min.js"></script>
+
 <meta name="generator" content="Hexo 4.2.1"></head>
 
-<body id="bodyx">
-    <div class="hd posts">
-    <a href="/index.html"><i class="fa fa-reply replay-btn" aria-hidden="true"></i></a>
-    <div class="post-title">
-        <p>
-            Bash File Trên UNIX
-        </p>
-        <hr>
+<body>
+    <div class="banner">
+<div id="blogtitel" class="blogtitel">Notes</div>
+<ul id="wrapper" class="wrapper">
+  <div class="sun">
+    <div class="star"></div>
+  </div>
+  <div class="mercury">
+    <div class="planet">
+      <div class="shadow"></div>
     </div>
-    <div class="post-content">
-        <h2 id="1-Mot-so-khai-niem-co-ban"><a href="#1-Mot-so-khai-niem-co-ban" class="headerlink" title="1.Một số khái niệm cơ bản."></a>1.Một số khái niệm cơ bản.</h2><p><strong>UNIX</strong> là một hệ điều hành ra đời đã rất lâu, nó là tiền thân của hai nhánh hệ điều hành rất nổi tiếng khác, bản thương mại chính là <strong>macOS</strong> và bản mã nguồn mở chính là <strong>GNU</strong>. Cho đến những năm 90, có một sự kết hợp giữa các phần mềm của <strong>GNU</strong> và phần core của một dự án mã nguồn mở khác tên là <strong>Linux</strong> đã tạo thành một hệ điều hành hoàn chỉnh mang tên là <strong>GNU/Linux</strong>, ngày nay đa số chúng ta chỉ thường gọi tắt là <strong>Linux</strong></p>
+  </div>
+  <div class="venus">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="earth">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="mars">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="jupiter">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+</ul>
+</div>
+
+    <div class="background">
+      
+        <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/hdchinh" target="_blank" rel="noopener">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/02/05/2019-02-05-root-sudo-and-package-management-system/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2018/12/30/2019-01-30-bash-file-in-macos-and-linux/" target="_blank" rel="noopener"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2018/12/30/2019-01-30-bash-file-in-macos-and-linux/&text=Bash File Trên UNIX" target="_blank" rel="noopener"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2018/12/30/2019-01-30-bash-file-in-macos-and-linux/&title=Bash File Trên UNIX" target="_blank" rel="noopener"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2018/12/30/2019-01-30-bash-file-in-macos-and-linux/&is_video=false&description=Bash File Trên UNIX" target="_blank" rel="noopener"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Bash File Trên UNIX&body=Check out this article: https://hdchinh.github.io/2018/12/30/2019-01-30-bash-file-in-macos-and-linux/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2018/12/30/2019-01-30-bash-file-in-macos-and-linux/&title=Bash File Trên UNIX" target="_blank" rel="noopener"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2018/12/30/2019-01-30-bash-file-in-macos-and-linux/&title=Bash File Trên UNIX" target="_blank" rel="noopener"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2018/12/30/2019-01-30-bash-file-in-macos-and-linux/&title=Bash File Trên UNIX" target="_blank" rel="noopener"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2018/12/30/2019-01-30-bash-file-in-macos-and-linux/&title=Bash File Trên UNIX" target="_blank" rel="noopener"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2018/12/30/2019-01-30-bash-file-in-macos-and-linux/&name=Bash File Trên UNIX&description=" target="_blank" rel="noopener"><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Mot-so-khai-niem-co-ban"><span class="toc-number">1.</span> <span class="toc-text">1.Một số khái niệm cơ bản.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Dieu-gi-xay-ra-khi-ban-go-mot-lenh-tren-terminal"><span class="toc-number">2.</span> <span class="toc-text">2.Điều gì xảy ra khi bạn gõ một lệnh trên terminal?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Mot-so-file-quan-trong-tren-Macos"><span class="toc-number">3.</span> <span class="toc-text">3.Một số file quan trọng trên Macos.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Cac-file-quan-trong-tren-Linux"><span class="toc-number">4.</span> <span class="toc-text">4.Các file quan trọng trên Linux</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+      
+      <div class="content index width mx-auto px2 my4">
+          
+          <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Bash File Trên UNIX
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Notes</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-12-29T17:00:00.000Z" itemprop="datePublished">2018-12-30</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/UNIX/" rel="tag">UNIX</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="1-Mot-so-khai-niem-co-ban"><a href="#1-Mot-so-khai-niem-co-ban" class="headerlink" title="1.Một số khái niệm cơ bản."></a>1.Một số khái niệm cơ bản.</h2><p><strong>UNIX</strong> là một hệ điều hành ra đời đã rất lâu, nó là tiền thân của hai nhánh hệ điều hành rất nổi tiếng khác, bản thương mại chính là <strong>macOS</strong> và bản mã nguồn mở chính là <strong>GNU</strong>. Cho đến những năm 90, có một sự kết hợp giữa các phần mềm của <strong>GNU</strong> và phần core của một dự án mã nguồn mở khác tên là <strong>Linux</strong> đã tạo thành một hệ điều hành hoàn chỉnh mang tên là <strong>GNU/Linux</strong>, ngày nay đa số chúng ta chỉ thường gọi tắt là <strong>Linux</strong></p>
 <p>Qua đó chúng ta có thể thấy, <strong>Linux</strong> và các hệ điều hành con cháu của <strong>UNIX</strong> có rất nhiều điểm chung.</p>
 <p><strong>Shell</strong>: Đây cũng là một khái niệm quan trọng cần tìm hiểu. Trước khi đi vào chủ đề chính của bài viết, để tìm hiểu một cách sâu sắc về Shell, có lẽ sẽ cần đến một bài viết khác, nên ở đây tôi chỉ mô tả một cách bao quát về nó. <strong>Shell</strong> là phần nằm giữa ứng dụng và phần core của hệ điều hành.</p>
 <p>Hãy tưởng tượng chúng ta có một chồng sách gồm ba quyển với quyển trên cùng là những ứng dụng đang chạy trên máy tính của bạn vì dụ như word, excel, cuốn ở dưới cùng chính là phần nhân của hệ điều hành. Để các ứng dụng của bạn có thể sử dụng các tài nguyên của máy tính như bộ nhớ, ram, IO… điều tất yếu phải xảy ra đó là ứng dụng của bạn phải giao tiếp được với hệ điều hành.</p>
 <p>Tuy nhiên, vấn đề gặp phải đó là hệ điều hành chỉ hiểu mã máy, một thứ quá phức tạp để người dùng khi sử dụng ứng dụng có thể thao tác được. Đó là lý do ra đời của “quyển sách” ở giữa mà chúng ta gọi là <strong>Shell</strong>. Nhiệm vụ của nó là gì? Đó là chuyển đổi các lệnh từ “quyển sách” đầu tiên thành các lệnh mà “quyển sách” thứ ba có thể hiểu và thực hiện được (Thông dịch).</p>
 <p>Ví dụ terminal được xem là một <strong>Shell CLI</strong>, mỗi khi bạn gõ một lệnh bất kỳ trên terminal, nó sẽ chuyển đổi câu lệnh bạn viết thành một câu lệnh khác mà phần nhân hệ điều hành có thể hiểu và thực hiện được.</p>
 <h2 id="2-Dieu-gi-xay-ra-khi-ban-go-mot-lenh-tren-terminal"><a href="#2-Dieu-gi-xay-ra-khi-ban-go-mot-lenh-tren-terminal" class="headerlink" title="2.Điều gì xảy ra khi bạn gõ một lệnh trên terminal?"></a>2.Điều gì xảy ra khi bạn gõ một lệnh trên terminal?</h2><p>Đã bao giờ bạn tự hỏi chuyện gì sẽ xảy ra tiếp theo khi ta gõ một lệnh trong terminal? Ví dụ:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -a</span><br></pre></td></tr></table></figure>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">ls -a</span></span><br></pre></td></tr></table></figure>
 
 <p>Chúng ta sẽ thường tự an ủi bản thân rằng những câu lệnh đó đã được hệ điều hành lưu lại như một cuốn từ điển để đến khi được gọi chúng sẽ biết tìm câu trả lời ở đâu. Thực tế suy nghĩ trên không hẳn đã sai, mọi thứ trong UNIX đều là file, nếu bạn gõ dòng lệnh:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo $PATH</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="variable">$PATH</span></span><br></pre></td></tr></table></figure>
 
 <p>Kết quả bạn nhận được chính là một danh sách các thư mục mà terminal sẽ tìm kiếm câu lệnh bạn gõ theo thứ tự từ trái qua phải. Với một hệ điều hành thuần khiết chưa cài đặt thêm các phần mềm bên ngoài thì <strong>PATH</strong> sẽ có giá trị mặc định như sau:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;usr&#x2F;local&#x2F;bin:&#x2F;usr&#x2F;bin:&#x2F;bin:&#x2F;usr&#x2F;sbin:&#x2F;sbin</span><br></pre></td></tr></table></figure>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">/usr/</span>local<span class="regexp">/bin:/</span>usr<span class="regexp">/bin:/</span><span class="string">bin:</span><span class="regexp">/usr/</span><span class="string">sbin:</span>/sbin</span><br></pre></td></tr></table></figure>
 
 <p>Còn trên máy tính của tôi thì PATH lại có giá trị là:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;Users&#x2F;admin&#x2F;.rbenv&#x2F;shims:&#x2F;usr&#x2F;local&#x2F;bin:&#x2F;usr&#x2F;bin:&#x2F;bin:&#x2F;usr&#x2F;sbin:&#x2F;sbin</span><br></pre></td></tr></table></figure>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">/Users/</span>admin<span class="regexp">/.rbenv/</span><span class="string">shims:</span><span class="regexp">/usr/</span>local<span class="regexp">/bin:/</span>usr<span class="regexp">/bin:/</span><span class="string">bin:</span><span class="regexp">/usr/</span><span class="string">sbin:</span>/sbin</span><br></pre></td></tr></table></figure>
 
 <p>Có một sự khác biệt nhỏ, ta có thể thấy chuỗi <strong>PATH</strong> trên máy tính của tôi có phần đầu chuỗi được thêm bởi một thư mục .rbenv nào đó. Đây chính là mấu chốt của vấn đề, lý do xuất hiện của phần mở rộng nêu trên đó là tôi đã cài đặt thêm Ruby vào máy tính của mình bằng công cụ rbenv.</p>
 <p>Hiển nhiên, khi hệ điều hành pure (chưa có cài đặt gì khác các ứng dụng mặc định), thì nó không thể hiểu được câu lệnh <strong>ruby – v</strong>. Việc cài đặt Ruby vào máy tính đồng nghĩa với việc tôi đã tải các file liên quan vào một thư mục nào đó, và để chỉ cho Terminal biết phải vào đâu để tìm kiếm các lệnh liên quan đến Ruby vừa cài đặt, chuỗi <strong>PATH</strong> sẽ được ghi đè bổ sung thêm đường dẫn vào thư mục chứa các file thực thi của Ruby. Từ đây, mỗi khi bạn gõ bất cứ một câu lệnh nào liên quan đến Ruby, terminal sẽ theo chuỗi <strong>PATH</strong> vào từng thư mục để tìm kiếm và thực thi câu lệnh đó.</p>
@@ -56,68 +209,100 @@
 <p>Khi bạn mở một terminal mà nó đòi hỏi bạn phải login (ví dụ như khi bạn truy cập vào một máy tính khác thông qua SSH, bạn cần nhập tên đăng nhập và mật khẩu) thì đó là một <strong>Login Shell</strong>.<br>Với trường hợp Login Shell thì <strong>dot file</strong> được load lên là file <strong>.bash_profile</strong> (hay là <strong>.profile</strong> ở trên Ubuntu).<br>Trong một trường hợp khác, bạn mở một terminal mà không cần đăng nhập thì <strong>dot file</strong> được load là  <strong>.bashrc</strong>.</p>
 <p>Note: Khác với những người anh em khác, terminal trên Macos sẽ chạy <strong>dot file</strong> <strong>.bash_profile</strong> khi bạn mở một cửa sổ mới nên tôi thường đặt những cấu hình cần thiết vào một file duy nhất đó là <strong>.bash_profile</strong>. Tất nhiên, từ <strong>.bash_profile</strong> ta có thể load các <strong>dot file</strong> khác nếu cần thiết (chúng ta sẽ bàn về nó trong tương lai).</p>
 <p>Thứ tự các <strong>dot file</strong> được khởi chạy trên macOS:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#&#x3D;&gt; etc&#x2F;profile</span><br><span class="line">#&#x3D;&gt; etc&#x2F;bashrc</span><br><span class="line">#&#x3D;&gt; ~&#x2F;.bash_profile</span><br><span class="line">#&#x3D;&gt; ~&#x2F;.bash_login (nếu ~&#x2F;.bash_profile không tồn tại).</span><br><span class="line">#&#x3D;&gt; ~&#x2F;.profile (nếu ~&#x2F;.bash_profile và ~&#x2F;.bash_login đều không tồn tại).</span><br></pre></td></tr></table></figure>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#=&gt; etc/profile</span></span><br><span class="line"><span class="meta">#=&gt; etc/bashrc</span></span><br><span class="line"><span class="meta">#=&gt; ~/.bash_profile</span></span><br><span class="line"><span class="meta">#=&gt; ~/.bash_login (nếu ~/.bash_profile không tồn tại).</span></span><br><span class="line"><span class="meta">#=&gt; ~/.profile (nếu ~/.bash_profile và ~/.bash_login đều không tồn tại).</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="4-Cac-file-quan-trong-tren-Linux"><a href="#4-Cac-file-quan-trong-tren-Linux" class="headerlink" title="4.Các file quan trọng trên Linux"></a>4.Các file quan trọng trên Linux</h2><p>Như đã trình bày ở trên, có một sự giống nhau đáng kể giữa <strong>macOS</strong> và <strong>Linux</strong>. Vì vậy, tôi chỉ có một số điều bổ sung như sau: Trên Linux, thông thường chúng ta sẽ có các <strong>dot file</strong> sau đây:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#&#x3D;&gt; ~&#x2F;.bash_login (chạy khi login shell)</span><br><span class="line">#&#x3D;&gt; ~&#x2F;.bashrc (chạy khi không login)</span><br><span class="line">#&#x3D;&gt; ~&#x2F;.bash_logout (chạy khi logout shell)</span><br><span class="line">#&#x3D;&gt; ~&#x2F;bash_history (lịch sử trên shell)</span><br></pre></td></tr></table></figure>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#=&gt; ~/.bash_login (chạy khi login shell)</span></span><br><span class="line"><span class="meta">#=&gt; ~/.bashrc (chạy khi không login)</span></span><br><span class="line"><span class="meta">#=&gt; ~/.bash_logout (chạy khi logout shell)</span></span><br><span class="line"><span class="meta">#=&gt; ~/bash_history (lịch sử trên shell)</span></span><br></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+
+
+      </div>
+      
+       <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/hdchinh" target="_blank" rel="noopener">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Mot-so-khai-niem-co-ban"><span class="toc-number">1.</span> <span class="toc-text">1.Một số khái niệm cơ bản.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Dieu-gi-xay-ra-khi-ban-go-mot-lenh-tren-terminal"><span class="toc-number">2.</span> <span class="toc-text">2.Điều gì xảy ra khi bạn gõ một lệnh trên terminal?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Mot-so-file-quan-trong-tren-Macos"><span class="toc-number">3.</span> <span class="toc-text">3.Một số file quan trọng trên Macos.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Cac-file-quan-trong-tren-Linux"><span class="toc-number">4.</span> <span class="toc-text">4.Các file quan trọng trên Linux</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2018/12/30/2019-01-30-bash-file-in-macos-and-linux/" target="_blank" rel="noopener"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2018/12/30/2019-01-30-bash-file-in-macos-and-linux/&text=Bash File Trên UNIX" target="_blank" rel="noopener"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2018/12/30/2019-01-30-bash-file-in-macos-and-linux/&title=Bash File Trên UNIX" target="_blank" rel="noopener"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2018/12/30/2019-01-30-bash-file-in-macos-and-linux/&is_video=false&description=Bash File Trên UNIX" target="_blank" rel="noopener"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Bash File Trên UNIX&body=Check out this article: https://hdchinh.github.io/2018/12/30/2019-01-30-bash-file-in-macos-and-linux/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2018/12/30/2019-01-30-bash-file-in-macos-and-linux/&title=Bash File Trên UNIX" target="_blank" rel="noopener"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2018/12/30/2019-01-30-bash-file-in-macos-and-linux/&title=Bash File Trên UNIX" target="_blank" rel="noopener"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2018/12/30/2019-01-30-bash-file-in-macos-and-linux/&title=Bash File Trên UNIX" target="_blank" rel="noopener"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2018/12/30/2019-01-30-bash-file-in-macos-and-linux/&title=Bash File Trên UNIX" target="_blank" rel="noopener"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2018/12/30/2019-01-30-bash-file-in-macos-and-linux/&name=Bash File Trên UNIX&description=" target="_blank" rel="noopener"><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
 
     </div>
-    <!-- 
-        <hr class="fhr">
-        <div id="vcomments"></div>
-     -->
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
 </div>
 
-    <div class="footer" id="footer">
-    <p>Copyright © 2020 <a class="flink" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a>-<a class="flink" href="https://github.com/sanjinhub/hexo-theme-geek" target="_blank" rel="noopener">Geek</a>.
-        <label class="el-switch el-switch-green el-switch-sm" style="vertical-align: sub;">
-            <input type="checkbox" name="switch" id="update_style">
-            <span class="el-switch-style"></span>
-        </label>
-<!--         <script type="text/javascript">
-        var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");
-        document.write(unescape("%3Cspan id='cnzz_stat_icon_1278548644'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/stat.php%3Fid%3D1278548644%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
-        </script> -->
-    </p>
-</div>
-<input type="hidden" id="web_style" value="black">
-<input type="hidden" id="valine_appid" value="CmCti21ooOOIzFOhEyFkFvR0-gzGzoHsz">
-<input type="hidden" id="valine_appKey" value="FqiyUqbg7McKN2eG0MCewupf">
+      
+      <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2022 Tam Thể
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/hdchinh" target="_blank" rel="noopener">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
 
-<script src="/libs/jquery.min.js"></script>
+      
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
 
 
-<script src="/libs/highlight/highlight.pack.js"></script>
+<script src="/js/main.js"></script>
 
-<script src='//cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<!-- Google Analytics -->
 
-<script src="/js/js.js"></script>
+<!-- Disqus Comments -->
 
-<style type="text/css">
-.v * {
-    color: #698fca;
-}
 
-.v .vlist .vcard .vhead .vsys {
-    color: #3a3e4a;
-}
-
-.v .vlist .vcard .vh .vmeta .vat {
-    color: #638fd5;
-}
-
-.v .vlist .vcard .vhead .vnick {
-    color: #6ba1ff;
-}
-
-.v a {
-    color: #8696b1;
-}
-
-.v .vlist .vcard .vhead .vnick:hover {
-    color: #669bfc;
-}
-</style>
+    </div>
 </body>
-
 </html>

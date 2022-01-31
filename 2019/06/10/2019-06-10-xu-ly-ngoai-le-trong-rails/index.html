@@ -1,35 +1,190 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang=en>
 <head>
-    <meta charset="UTF-8">
+    <!-- so meta -->
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="renderer" content="webkit">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>
-        Notes
-    </title>
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Đặt vấn đềTôi có một số tình huống diễn ra hàng ngày về con mèo của tôi. Nếu nó đói tôi cho nó ăn, nếu nó đi vs lung tung tôi sẽ dọn dẹp chúng. Nhưng bỗng một ngày con mèo stupid của tôi bị “người ngo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Exception Trong Rails">
+<meta property="og:url" content="https://hdchinh.github.io/2019/06/10/2019-06-10-xu-ly-ngoai-le-trong-rails/index.html">
+<meta property="og:site_name" content="Notes">
+<meta property="og:description" content="Đặt vấn đềTôi có một số tình huống diễn ra hàng ngày về con mèo của tôi. Nếu nó đói tôi cho nó ăn, nếu nó đi vs lung tung tôi sẽ dọn dẹp chúng. Nhưng bỗng một ngày con mèo stupid của tôi bị “người ngo">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://hdchinh.github.io/images/ruby-exception.jpg">
+<meta property="article:published_time" content="2019-06-09T17:00:00.000Z">
+<meta property="article:modified_time" content="2022-01-29T09:29:59.927Z">
+<meta property="article:author" content="Tam Thể">
+<meta property="article:tag" content="RAILS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hdchinh.github.io/images/ruby-exception.jpg">
     
-<link rel="stylesheet" href="/libs/highlight/styles/monokai-sublime.css">
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Exception Trong Rails</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
     
-<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+
+    
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
 
     
 <link rel="stylesheet" href="/css/style.css">
 
+    <!-- rss -->
+    
+    
+    <!-- jquery -->
+    
+<script src="/lib/jquery/jquery.min.js"></script>
+
 <meta name="generator" content="Hexo 4.2.1"></head>
 
-<body id="bodyx">
-    <div class="hd posts">
-    <a href="/index.html"><i class="fa fa-reply replay-btn" aria-hidden="true"></i></a>
-    <div class="post-title">
-        <p>
-            Exception Trong Rails
-        </p>
-        <hr>
+<body>
+    <div class="banner">
+<div id="blogtitel" class="blogtitel">Notes</div>
+<ul id="wrapper" class="wrapper">
+  <div class="sun">
+    <div class="star"></div>
+  </div>
+  <div class="mercury">
+    <div class="planet">
+      <div class="shadow"></div>
     </div>
-    <div class="post-content">
-        <h2 id="Dat-van-de"><a href="#Dat-van-de" class="headerlink" title="Đặt vấn đề"></a>Đặt vấn đề</h2><p>Tôi có một số tình huống diễn ra hàng ngày về con mèo của tôi. Nếu nó đói tôi cho nó ăn, nếu nó đi vs lung tung tôi sẽ dọn dẹp chúng.</p>
+  </div>
+  <div class="venus">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="earth">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="mars">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="jupiter">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+</ul>
+</div>
+
+    <div class="background">
+      
+        <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/hdchinh" target="_blank" rel="noopener">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/06/11/2019-06-11-public-private-va-protected-method-trong-ruby/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/2019/06/09/2019-06-09-so-sanh-symbol-va-string-trong-ruby/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/06/10/2019-06-10-xu-ly-ngoai-le-trong-rails/" target="_blank" rel="noopener"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/06/10/2019-06-10-xu-ly-ngoai-le-trong-rails/&text=Exception Trong Rails" target="_blank" rel="noopener"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/06/10/2019-06-10-xu-ly-ngoai-le-trong-rails/&title=Exception Trong Rails" target="_blank" rel="noopener"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/06/10/2019-06-10-xu-ly-ngoai-le-trong-rails/&is_video=false&description=Exception Trong Rails" target="_blank" rel="noopener"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Exception Trong Rails&body=Check out this article: https://hdchinh.github.io/2019/06/10/2019-06-10-xu-ly-ngoai-le-trong-rails/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/06/10/2019-06-10-xu-ly-ngoai-le-trong-rails/&title=Exception Trong Rails" target="_blank" rel="noopener"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/06/10/2019-06-10-xu-ly-ngoai-le-trong-rails/&title=Exception Trong Rails" target="_blank" rel="noopener"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/06/10/2019-06-10-xu-ly-ngoai-le-trong-rails/&title=Exception Trong Rails" target="_blank" rel="noopener"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/06/10/2019-06-10-xu-ly-ngoai-le-trong-rails/&title=Exception Trong Rails" target="_blank" rel="noopener"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/06/10/2019-06-10-xu-ly-ngoai-le-trong-rails/&name=Exception Trong Rails&description=" target="_blank" rel="noopener"><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Dat-van-de"><span class="toc-number">1.</span> <span class="toc-text">Đặt vấn đề</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Luan-ban"><span class="toc-number">2.</span> <span class="toc-text">Luận bàn</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Tim-hieu-ve-Exception"><span class="toc-number">3.</span> <span class="toc-text">1. Tìm hiểu về Exception</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Lam-sao-de-lay-ve-doi-tuong-Exception"><span class="toc-number">4.</span> <span class="toc-text">2. Làm sao để lấy về đối tượng Exception</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Xay-dung-mot-class-Exception"><span class="toc-number">5.</span> <span class="toc-text">3. Xây dựng một class Exception</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Cac-lop-Exception-co-san-trong-Ruby"><span class="toc-number">6.</span> <span class="toc-text">4. Các lớp Exception có sẵn trong Ruby</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Cach-bat-Exception-hop-ly"><span class="toc-number">7.</span> <span class="toc-text">5. Cách bắt Exception hợp lý</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+      
+      <div class="content index width mx-auto px2 my4">
+          
+          <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Exception Trong Rails
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Notes</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2019-06-09T17:00:00.000Z" itemprop="datePublished">2019-06-10</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/RAILS/" rel="tag">RAILS</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="Dat-van-de"><a href="#Dat-van-de" class="headerlink" title="Đặt vấn đề"></a>Đặt vấn đề</h2><p>Tôi có một số tình huống diễn ra hàng ngày về con mèo của tôi. Nếu nó đói tôi cho nó ăn, nếu nó đi vs lung tung tôi sẽ dọn dẹp chúng.</p>
 <p>Nhưng bỗng một ngày con mèo stupid của tôi bị “người ngoài hành tinh bắt cóc”, wtf?. Đây là một tình huống không bình thường và tôi không có một <strong>HÀNH ĐỘNG THỐNG NHẤT</strong> nào để đối phó với 1 tình huống như vậy, tôi có thể khóc, có thể báo công an, nhưng chắc chắn không thể có một cách giải quyết triệt để. Trong lập trình ta gọi những tình huống mà logic luận lý sai lệch không còn đi theo logic bình thường như này là một exception.</p>
 <p>Ví dụ như máy tính của bạn không được thiết kế để thực hiện phép chia cho số 0. Vậy khi bạn bắt nó thực hiện phép chia cho số 0, nó sẽ nghĩ “wtf is going on?” và đành quăng ra cho bạn một thông báo về việc bạn đã bắt nó làm một việc mà nó không được thiết kế để làm.</p>
 <p>Trong bài viết này chúng ta sẽ tìm hiểu về exception trong ruby.</p>
@@ -46,7 +201,7 @@
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">10</span>/<span class="number">0</span></span><br><span class="line"><span class="comment"># =&gt; ZeroDivisionError (divided by 0)</span></span><br></pre></td></tr></table></figure>
 
 <p><strong>ZeroDivisionError</strong> là một exception được ruby tạo ra để trả về khi bạn cố chia một số cho số 0.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">if (chia đàng hoàng)</span><br><span class="line">  thực hiện phép tính.</span><br><span class="line">else</span><br><span class="line">  if (chia cho số 0)</span><br><span class="line">    trả về exception ZeroDivisionError</span><br><span class="line">  end</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (chia đàng hoàng)</span><br><span class="line">  thực hiện phép tính.</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">  <span class="keyword">if</span> (chia cho số <span class="number">0</span>)</span><br><span class="line">    trả về exception ZeroDivisionError</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 
 <p>Flow logic đơn giản về exception như trên.</p>
 <h2 id="2-Lam-sao-de-lay-ve-doi-tuong-Exception"><a href="#2-Lam-sao-de-lay-ve-doi-tuong-Exception" class="headerlink" title="2. Làm sao để lấy về đối tượng Exception"></a>2. Làm sao để lấy về đối tượng Exception</h2><p>Như chúng ta đã biết, gần như mọi thứ trong ruby đều là object(Ngoại trừ method và block). Vậy nên Exception cũng là một đối tượng.</p>
@@ -80,63 +235,95 @@
 
 <p>Đây là cách tốt nhất, ta goi trực tiếp đến trường hợp ngoại lệ mà ta cần bắt lấy và xử lý.</p>
 
+  </div>
+</article>
+
+
+
+      </div>
+      
+       <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/hdchinh" target="_blank" rel="noopener">Projects</a></li>
+        
+      </ul>
     </div>
-    <!-- 
-        <hr class="fhr">
-        <div id="vcomments"></div>
-     -->
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Dat-van-de"><span class="toc-number">1.</span> <span class="toc-text">Đặt vấn đề</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Luan-ban"><span class="toc-number">2.</span> <span class="toc-text">Luận bàn</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Tim-hieu-ve-Exception"><span class="toc-number">3.</span> <span class="toc-text">1. Tìm hiểu về Exception</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Lam-sao-de-lay-ve-doi-tuong-Exception"><span class="toc-number">4.</span> <span class="toc-text">2. Làm sao để lấy về đối tượng Exception</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Xay-dung-mot-class-Exception"><span class="toc-number">5.</span> <span class="toc-text">3. Xây dựng một class Exception</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Cac-lop-Exception-co-san-trong-Ruby"><span class="toc-number">6.</span> <span class="toc-text">4. Các lớp Exception có sẵn trong Ruby</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Cach-bat-Exception-hop-ly"><span class="toc-number">7.</span> <span class="toc-text">5. Cách bắt Exception hợp lý</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/06/10/2019-06-10-xu-ly-ngoai-le-trong-rails/" target="_blank" rel="noopener"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/06/10/2019-06-10-xu-ly-ngoai-le-trong-rails/&text=Exception Trong Rails" target="_blank" rel="noopener"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/06/10/2019-06-10-xu-ly-ngoai-le-trong-rails/&title=Exception Trong Rails" target="_blank" rel="noopener"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/06/10/2019-06-10-xu-ly-ngoai-le-trong-rails/&is_video=false&description=Exception Trong Rails" target="_blank" rel="noopener"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Exception Trong Rails&body=Check out this article: https://hdchinh.github.io/2019/06/10/2019-06-10-xu-ly-ngoai-le-trong-rails/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/06/10/2019-06-10-xu-ly-ngoai-le-trong-rails/&title=Exception Trong Rails" target="_blank" rel="noopener"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/06/10/2019-06-10-xu-ly-ngoai-le-trong-rails/&title=Exception Trong Rails" target="_blank" rel="noopener"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/06/10/2019-06-10-xu-ly-ngoai-le-trong-rails/&title=Exception Trong Rails" target="_blank" rel="noopener"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/06/10/2019-06-10-xu-ly-ngoai-le-trong-rails/&title=Exception Trong Rails" target="_blank" rel="noopener"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/06/10/2019-06-10-xu-ly-ngoai-le-trong-rails/&name=Exception Trong Rails&description=" target="_blank" rel="noopener"><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
 </div>
 
-    <div class="footer" id="footer">
-    <p>Copyright © 2020 <a class="flink" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a>-<a class="flink" href="https://github.com/sanjinhub/hexo-theme-geek" target="_blank" rel="noopener">Geek</a>.
-        <label class="el-switch el-switch-green el-switch-sm" style="vertical-align: sub;">
-            <input type="checkbox" name="switch" id="update_style">
-            <span class="el-switch-style"></span>
-        </label>
-<!--         <script type="text/javascript">
-        var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");
-        document.write(unescape("%3Cspan id='cnzz_stat_icon_1278548644'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/stat.php%3Fid%3D1278548644%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
-        </script> -->
-    </p>
-</div>
-<input type="hidden" id="web_style" value="black">
-<input type="hidden" id="valine_appid" value="CmCti21ooOOIzFOhEyFkFvR0-gzGzoHsz">
-<input type="hidden" id="valine_appKey" value="FqiyUqbg7McKN2eG0MCewupf">
+      
+      <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2022 Tam Thể
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/hdchinh" target="_blank" rel="noopener">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
 
-<script src="/libs/jquery.min.js"></script>
+      
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
 
 
-<script src="/libs/highlight/highlight.pack.js"></script>
+<script src="/js/main.js"></script>
 
-<script src='//cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<!-- Google Analytics -->
 
-<script src="/js/js.js"></script>
+<!-- Disqus Comments -->
 
-<style type="text/css">
-.v * {
-    color: #698fca;
-}
 
-.v .vlist .vcard .vhead .vsys {
-    color: #3a3e4a;
-}
-
-.v .vlist .vcard .vh .vmeta .vat {
-    color: #638fd5;
-}
-
-.v .vlist .vcard .vhead .vnick {
-    color: #6ba1ff;
-}
-
-.v a {
-    color: #8696b1;
-}
-
-.v .vlist .vcard .vhead .vnick:hover {
-    color: #669bfc;
-}
-</style>
+    </div>
 </body>
-
 </html>

@@ -1,35 +1,196 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang=en>
 <head>
-    <meta charset="UTF-8">
+    <!-- so meta -->
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="renderer" content="webkit">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>
-        Notes
-    </title>
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="1. Định nghĩa và mục tiêu sử dụng Trước tiên, hãy xem SOLID là viết tắt của những cụm từ gì. 1: Single Responsibility Principle 2: Open&#x2F;Closed Principle 3: Liskov Substitution Principle 4: Interface S">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tổng Quan Nguyên Lý SOLID">
+<meta property="og:url" content="https://hdchinh.github.io/2019/05/17/2019-05-17-nguyen-ly-solid-trong-code-ruby/index.html">
+<meta property="og:site_name" content="Notes">
+<meta property="og:description" content="1. Định nghĩa và mục tiêu sử dụng Trước tiên, hãy xem SOLID là viết tắt của những cụm từ gì. 1: Single Responsibility Principle 2: Open&#x2F;Closed Principle 3: Liskov Substitution Principle 4: Interface S">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://hdchinh.github.io/images/solid.png">
+<meta property="og:image" content="https://hdchinh.github.io/images/srp.jpg">
+<meta property="og:image" content="https://hdchinh.github.io/images/ocp.jpg">
+<meta property="og:image" content="https://hdchinh.github.io/images/lsp.jpg">
+<meta property="og:image" content="https://hdchinh.github.io/images/isp.png">
+<meta property="og:image" content="https://hdchinh.github.io/images/dip.jpg">
+<meta property="article:published_time" content="2019-05-16T17:00:00.000Z">
+<meta property="article:modified_time" content="2022-01-29T09:29:59.927Z">
+<meta property="article:author" content="Tam Thể">
+<meta property="article:tag" content="RUBY">
+<meta property="article:tag" content="SOLID">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hdchinh.github.io/images/solid.png">
     
-<link rel="stylesheet" href="/libs/highlight/styles/monokai-sublime.css">
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Tổng Quan Nguyên Lý SOLID</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
     
-<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+
+    
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
 
     
 <link rel="stylesheet" href="/css/style.css">
 
+    <!-- rss -->
+    
+    
+    <!-- jquery -->
+    
+<script src="/lib/jquery/jquery.min.js"></script>
+
 <meta name="generator" content="Hexo 4.2.1"></head>
 
-<body id="bodyx">
-    <div class="hd posts">
-    <a href="/index.html"><i class="fa fa-reply replay-btn" aria-hidden="true"></i></a>
-    <div class="post-title">
-        <p>
-            Tổng Quan Nguyên Lý SOLID
-        </p>
-        <hr>
+<body>
+    <div class="banner">
+<div id="blogtitel" class="blogtitel">Notes</div>
+<ul id="wrapper" class="wrapper">
+  <div class="sun">
+    <div class="star"></div>
+  </div>
+  <div class="mercury">
+    <div class="planet">
+      <div class="shadow"></div>
     </div>
-    <div class="post-content">
-        <h2 id="1-Dinh-nghia-va-muc-tieu-su-dung"><a href="#1-Dinh-nghia-va-muc-tieu-su-dung" class="headerlink" title="1. Định nghĩa và mục tiêu sử dụng"></a>1. Định nghĩa và mục tiêu sử dụng</h2><p><img src="/images/solid.png" alt="hoa"></p>
+  </div>
+  <div class="venus">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="earth">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="mars">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="jupiter">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+</ul>
+</div>
+
+    <div class="background">
+      
+        <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/hdchinh" target="_blank" rel="noopener">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/06/08/2019-06-08-tan-cong-sql-injection-va-cach-phong-chong-trong-rails/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/2019/05/15/2019-05-15-require-load-include-va-extend-trong-ruby/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/05/17/2019-05-17-nguyen-ly-solid-trong-code-ruby/" target="_blank" rel="noopener"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/05/17/2019-05-17-nguyen-ly-solid-trong-code-ruby/&text=Tổng Quan Nguyên Lý SOLID" target="_blank" rel="noopener"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/05/17/2019-05-17-nguyen-ly-solid-trong-code-ruby/&title=Tổng Quan Nguyên Lý SOLID" target="_blank" rel="noopener"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/05/17/2019-05-17-nguyen-ly-solid-trong-code-ruby/&is_video=false&description=Tổng Quan Nguyên Lý SOLID" target="_blank" rel="noopener"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Tổng Quan Nguyên Lý SOLID&body=Check out this article: https://hdchinh.github.io/2019/05/17/2019-05-17-nguyen-ly-solid-trong-code-ruby/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/05/17/2019-05-17-nguyen-ly-solid-trong-code-ruby/&title=Tổng Quan Nguyên Lý SOLID" target="_blank" rel="noopener"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/05/17/2019-05-17-nguyen-ly-solid-trong-code-ruby/&title=Tổng Quan Nguyên Lý SOLID" target="_blank" rel="noopener"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/05/17/2019-05-17-nguyen-ly-solid-trong-code-ruby/&title=Tổng Quan Nguyên Lý SOLID" target="_blank" rel="noopener"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/05/17/2019-05-17-nguyen-ly-solid-trong-code-ruby/&title=Tổng Quan Nguyên Lý SOLID" target="_blank" rel="noopener"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/05/17/2019-05-17-nguyen-ly-solid-trong-code-ruby/&name=Tổng Quan Nguyên Lý SOLID&description=" target="_blank" rel="noopener"><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Dinh-nghia-va-muc-tieu-su-dung"><span class="toc-number">1.</span> <span class="toc-text">1. Định nghĩa và mục tiêu sử dụng</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Single-Responsibility-Principle"><span class="toc-number">2.</span> <span class="toc-text">2. Single Responsibility Principle</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Open-Closed-Principle"><span class="toc-number">3.</span> <span class="toc-text">3. Open&#x2F;Closed Principle</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Liskov-Substitution-Principle"><span class="toc-number">4.</span> <span class="toc-text">4. Liskov Substitution Principle</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Interface-Segregation-Principle"><span class="toc-number">5.</span> <span class="toc-text">5. Interface Segregation Principle</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-Dependency-Inversion-Principle"><span class="toc-number">6.</span> <span class="toc-text">6. Dependency Inversion Principle</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tham-khao"><span class="toc-number">7.</span> <span class="toc-text">Tham khảo</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+      
+      <div class="content index width mx-auto px2 my4">
+          
+          <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Tổng Quan Nguyên Lý SOLID
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Notes</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2019-05-16T17:00:00.000Z" itemprop="datePublished">2019-05-17</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/RUBY/" rel="tag">RUBY</a>, <a class="tag-link" href="/tags/SOLID/" rel="tag">SOLID</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="1-Dinh-nghia-va-muc-tieu-su-dung"><a href="#1-Dinh-nghia-va-muc-tieu-su-dung" class="headerlink" title="1. Định nghĩa và mục tiêu sử dụng"></a>1. Định nghĩa và mục tiêu sử dụng</h2><p><img src="/images/solid.png" alt="hoa"></p>
 <p>Trước tiên, hãy xem SOLID là viết tắt của những cụm từ gì.</p>
 <p><strong>1:</strong> <strong>S</strong>ingle Responsibility Principle</p>
 <p><strong>2:</strong> <strong>O</strong>pen/Closed Principle</p>
@@ -39,7 +200,7 @@
 <p>Hàn lâm là vậy nhưng để dễ nhớ thì tôi gọi chúng ngắn gọn là: <strong>S</strong>ingle, <strong>O</strong>pen, <strong>L</strong>iskov, <strong>I</strong>nterface và <strong>D</strong>ependency.</p>
 <p>Về mục tiêu để cái nguyên lý này có mặt trên cõi đời, âu cũng là xuất phát từ nhu cầu làm ít hơn của con người, việc code không có hệ thống khiến các nhà phát triển tốn nhiều thời gian bảo trì và dễ phát sinh lỗi trong quá trình sử dụng.<br>Để giảm bớt gánh nặng này các nhà phát triển đã cô đọng lại một số khuôn khổ, cách thức lập trình mà dưới góc nhìn và kinh nghiệm của nhiều người, các khuôn khổ cách thức đó giúp cho việc bảo trì trở nên dễ dàng hơn, hệ thống ít phát sinh lỗi ngoài ý muốn hơn. Một trong số đó là hệ thống các nguyên tắc trong SOLID.</p>
 <p>Giả sử tôi phải xử lý một bài toán tính promotion cho một ứng dụng thương mại điện tử. Đây sẽ là ví dụ ta dùng đến trong các phần phía dưới. Giả sử cấu trúc dự án hiện tại như sau:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- app</span><br><span class="line">  - signin.rb</span><br><span class="line">  - signup.rb</span><br><span class="line">  - checkout.rb</span><br></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">- </span>app</span><br><span class="line"><span class="bullet">  - </span>signin.rb</span><br><span class="line"><span class="bullet">  - </span>signup.rb</span><br><span class="line"><span class="bullet">  - </span>checkout.rb</span><br></pre></td></tr></table></figure>
 
 <p>Trong đó signin chứa mã nguồn thực hiện chức năng đăng nhập, signup chứa mã thực hiện chức năng đăng ký và checkout chứa mã thực hiện chức năng thanh toán.</p>
 <h2 id="2-Single-Responsibility-Principle"><a href="#2-Single-Responsibility-Principle" class="headerlink" title="2. Single Responsibility Principle"></a>2. <strong>S</strong>ingle Responsibility Principle</h2><p><img src="/images/srp.jpg" alt="hoa"></p>
@@ -65,10 +226,10 @@
 </li>
 </ol>
 <p>Để đánh giá đâu, cái gì là một responsibility thì có lẽ điều kiện cần là phải có đủ kinh nghiệm. Trở lại ví dụ, tôi có thể coi promotion là một responsibility riêng rẽ với chức năng thanh toán. Khi đó tổ chức code của tôi như sau:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- app</span><br><span class="line">  - signin.rb</span><br><span class="line">  - signup.rb</span><br><span class="line">  - checkout.rb</span><br><span class="line">  - promotion.rb</span><br></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">- </span>app</span><br><span class="line"><span class="bullet">  - </span>signin.rb</span><br><span class="line"><span class="bullet">  - </span>signup.rb</span><br><span class="line"><span class="bullet">  - </span>checkout.rb</span><br><span class="line"><span class="bullet">  - </span>promotion.rb</span><br></pre></td></tr></table></figure>
 
 <p>Như này đã phải là cách tốt nhất? Câu trả lời là tuỳ ngữ điệu hoàn cảnh, giả sử nếu chức năng promotion có nhiều rule khác nhau thì việc bỏ tất cả function tính promotion vào 1 file promotion.rb có vẻ không phải là một cách hay. Khi đó ta tổ chức lại như sau:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">- app</span><br><span class="line">  - signin.rb</span><br><span class="line">  - signup.rb</span><br><span class="line">  - checkout.rb</span><br><span class="line">  - promotion</span><br><span class="line">    - promotion_type_a.rb</span><br><span class="line">    - promotion_type_b.rb</span><br><span class="line">    - promotion_type_c.rb</span><br></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">- </span>app</span><br><span class="line"><span class="bullet">  - </span>signin.rb</span><br><span class="line"><span class="bullet">  - </span>signup.rb</span><br><span class="line"><span class="bullet">  - </span>checkout.rb</span><br><span class="line"><span class="bullet">  - </span>promotion</span><br><span class="line"><span class="bullet">    - </span>promotion<span class="emphasis">_type_</span>a.rb</span><br><span class="line"><span class="bullet">    - </span>promotion<span class="emphasis">_type_</span>b.rb</span><br><span class="line"><span class="bullet">    - </span>promotion<span class="emphasis">_type_</span>c.rb</span><br></pre></td></tr></table></figure>
 
 <p>Cách tổ chức này đã là tốt nhất hay chưa? câu trả lời là chưa chắc, mọi thứ lại phụ thuộc vào ngữ cảnh.<br>Nguyên lý SRP có thể sai hay đúng trong một số trường hợp là rất mập mờ, tuỳ theo cái mà nhà phát triển định nghĩa cho responsibility mà họ xây dựng.</p>
 <p>Note: Nhưng cuối cùng nguyên lý SRP cũng chỉ có một mục đích duy nhất để cấu trúc dự án dễ sửa đổi và bảo trì, vì vậy trong từng tình huống sẽ có những cách khác nhau để phân chia tổ chức mã nguồn, dựa vào chức năng, dựa vào yêu cầu khách hàng, dựa vào tiềm năng phát triển dự án…</p>
@@ -91,14 +252,14 @@
 </blockquote>
 <p>Mục tiêu của nguyên lý là vậy, rất dễ hiểu, hãy cùng thảo luận về một ví dụ trước khi sang phần tiếp theo:</p>
 <p>Lại quay trở lại ví dụ về bài toán promotion, giả sử tôi lự chọn cấu trúc chương trình như sau:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- app</span><br><span class="line">  - signin.rb</span><br><span class="line">  - signup.rb</span><br><span class="line">  - checkout.rb</span><br><span class="line">  - promotion.rb</span><br></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">- </span>app</span><br><span class="line"><span class="bullet">  - </span>signin.rb</span><br><span class="line"><span class="bullet">  - </span>signup.rb</span><br><span class="line"><span class="bullet">  - </span>checkout.rb</span><br><span class="line"><span class="bullet">  - </span>promotion.rb</span><br></pre></td></tr></table></figure>
 
 <p>Như đã trình bày ở trên, cấu trúc như này về lý thuyết thì cũng chả ai bảo là tôi vi phạm nguyên tắc số 1 SRP được. Giả sử nội dung của file promotion.rb như sau:</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Promotion</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">promotion_type_a</span></span></span><br><span class="line">    <span class="comment"># implement rule promotion type a</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">promotion_type_b</span></span></span><br><span class="line">    <span class="comment"># implement rule promotion type b</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 
 <p>Vậy bây giờ khi tôi muốn thêm một rule tính promotion mới, thì tôi sẽ phải sửa đổi file promotion.rb này, về nguyên tắc nó đã vi phạm nguyên lý số 2 OCP (mở để mở rộng chứ không phải để sửa đổi).</p>
 <p>Để khắc phục ta có thể cấu trúc lại mã nguồn như sau:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">- app</span><br><span class="line">  - signin.rb</span><br><span class="line">  - signup.rb</span><br><span class="line">  - checkout.rb</span><br><span class="line">  - promotion</span><br><span class="line">    - promotion.rb</span><br><span class="line">    - promotion_type_a.rb</span><br><span class="line">    - promotion_type_b.rb</span><br><span class="line">    - promotion_type_c.rb</span><br></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">- </span>app</span><br><span class="line"><span class="bullet">  - </span>signin.rb</span><br><span class="line"><span class="bullet">  - </span>signup.rb</span><br><span class="line"><span class="bullet">  - </span>checkout.rb</span><br><span class="line"><span class="bullet">  - </span>promotion</span><br><span class="line"><span class="bullet">    - </span>promotion.rb</span><br><span class="line"><span class="bullet">    - </span>promotion<span class="emphasis">_type_</span>a.rb</span><br><span class="line"><span class="bullet">    - </span>promotion<span class="emphasis">_type_</span>b.rb</span><br><span class="line"><span class="bullet">    - </span>promotion<span class="emphasis">_type_</span>c.rb</span><br></pre></td></tr></table></figure>
 
 <p>Và khi này, khi tôi cần thêm mới 1 rule promotion, tôi sẽ tạo một file mới trong thư mục promotion, với nội dung kế thừa từ class Promotion.</p>
 <p>Ví dụ bổ sung thêm rule promotion_type_x.rb với nội dung:</p>
@@ -201,63 +362,95 @@
 
 <h2 id="Tham-khao"><a href="#Tham-khao" class="headerlink" title="Tham khảo"></a>Tham khảo</h2><p>[1] <a href="https://en.wikipedia.org/wiki/SOLID" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/SOLID</a></p>
 
+  </div>
+</article>
+
+
+
+      </div>
+      
+       <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/hdchinh" target="_blank" rel="noopener">Projects</a></li>
+        
+      </ul>
     </div>
-    <!-- 
-        <hr class="fhr">
-        <div id="vcomments"></div>
-     -->
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Dinh-nghia-va-muc-tieu-su-dung"><span class="toc-number">1.</span> <span class="toc-text">1. Định nghĩa và mục tiêu sử dụng</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Single-Responsibility-Principle"><span class="toc-number">2.</span> <span class="toc-text">2. Single Responsibility Principle</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Open-Closed-Principle"><span class="toc-number">3.</span> <span class="toc-text">3. Open&#x2F;Closed Principle</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Liskov-Substitution-Principle"><span class="toc-number">4.</span> <span class="toc-text">4. Liskov Substitution Principle</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Interface-Segregation-Principle"><span class="toc-number">5.</span> <span class="toc-text">5. Interface Segregation Principle</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-Dependency-Inversion-Principle"><span class="toc-number">6.</span> <span class="toc-text">6. Dependency Inversion Principle</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tham-khao"><span class="toc-number">7.</span> <span class="toc-text">Tham khảo</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/05/17/2019-05-17-nguyen-ly-solid-trong-code-ruby/" target="_blank" rel="noopener"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/05/17/2019-05-17-nguyen-ly-solid-trong-code-ruby/&text=Tổng Quan Nguyên Lý SOLID" target="_blank" rel="noopener"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/05/17/2019-05-17-nguyen-ly-solid-trong-code-ruby/&title=Tổng Quan Nguyên Lý SOLID" target="_blank" rel="noopener"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/05/17/2019-05-17-nguyen-ly-solid-trong-code-ruby/&is_video=false&description=Tổng Quan Nguyên Lý SOLID" target="_blank" rel="noopener"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Tổng Quan Nguyên Lý SOLID&body=Check out this article: https://hdchinh.github.io/2019/05/17/2019-05-17-nguyen-ly-solid-trong-code-ruby/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/05/17/2019-05-17-nguyen-ly-solid-trong-code-ruby/&title=Tổng Quan Nguyên Lý SOLID" target="_blank" rel="noopener"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/05/17/2019-05-17-nguyen-ly-solid-trong-code-ruby/&title=Tổng Quan Nguyên Lý SOLID" target="_blank" rel="noopener"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/05/17/2019-05-17-nguyen-ly-solid-trong-code-ruby/&title=Tổng Quan Nguyên Lý SOLID" target="_blank" rel="noopener"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/05/17/2019-05-17-nguyen-ly-solid-trong-code-ruby/&title=Tổng Quan Nguyên Lý SOLID" target="_blank" rel="noopener"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/05/17/2019-05-17-nguyen-ly-solid-trong-code-ruby/&name=Tổng Quan Nguyên Lý SOLID&description=" target="_blank" rel="noopener"><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
 </div>
 
-    <div class="footer" id="footer">
-    <p>Copyright © 2020 <a class="flink" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a>-<a class="flink" href="https://github.com/sanjinhub/hexo-theme-geek" target="_blank" rel="noopener">Geek</a>.
-        <label class="el-switch el-switch-green el-switch-sm" style="vertical-align: sub;">
-            <input type="checkbox" name="switch" id="update_style">
-            <span class="el-switch-style"></span>
-        </label>
-<!--         <script type="text/javascript">
-        var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");
-        document.write(unescape("%3Cspan id='cnzz_stat_icon_1278548644'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/stat.php%3Fid%3D1278548644%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
-        </script> -->
-    </p>
-</div>
-<input type="hidden" id="web_style" value="black">
-<input type="hidden" id="valine_appid" value="CmCti21ooOOIzFOhEyFkFvR0-gzGzoHsz">
-<input type="hidden" id="valine_appKey" value="FqiyUqbg7McKN2eG0MCewupf">
+      
+      <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2022 Tam Thể
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/hdchinh" target="_blank" rel="noopener">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
 
-<script src="/libs/jquery.min.js"></script>
+      
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
 
 
-<script src="/libs/highlight/highlight.pack.js"></script>
+<script src="/js/main.js"></script>
 
-<script src='//cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<!-- Google Analytics -->
 
-<script src="/js/js.js"></script>
+<!-- Disqus Comments -->
 
-<style type="text/css">
-.v * {
-    color: #698fca;
-}
 
-.v .vlist .vcard .vhead .vsys {
-    color: #3a3e4a;
-}
-
-.v .vlist .vcard .vh .vmeta .vat {
-    color: #638fd5;
-}
-
-.v .vlist .vcard .vhead .vnick {
-    color: #6ba1ff;
-}
-
-.v a {
-    color: #8696b1;
-}
-
-.v .vlist .vcard .vhead .vnick:hover {
-    color: #669bfc;
-}
-</style>
+    </div>
 </body>
-
 </html>

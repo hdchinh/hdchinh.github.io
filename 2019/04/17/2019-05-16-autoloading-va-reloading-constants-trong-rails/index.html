@@ -1,35 +1,188 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang=en>
 <head>
-    <meta charset="UTF-8">
+    <!-- so meta -->
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="renderer" content="webkit">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>
-        Notes
-    </title>
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Đặt vấn đề123class CatsController &lt; ApplicationController  # do somethingend  Đoạn mã trên là một đoạn mã rất quen thuộc khi sử dụng rails framework, một câu hỏi đó là tại sao trong class CatsContr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cơ Chế Autoloading Và Reloading">
+<meta property="og:url" content="https://hdchinh.github.io/2019/04/17/2019-05-16-autoloading-va-reloading-constants-trong-rails/index.html">
+<meta property="og:site_name" content="Notes">
+<meta property="og:description" content="Đặt vấn đề123class CatsController &lt; ApplicationController  # do somethingend  Đoạn mã trên là một đoạn mã rất quen thuộc khi sử dụng rails framework, một câu hỏi đó là tại sao trong class CatsContr">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-04-16T17:00:00.000Z">
+<meta property="article:modified_time" content="2022-01-29T09:29:59.927Z">
+<meta property="article:author" content="Tam Thể">
+<meta property="article:tag" content="rails">
+<meta name="twitter:card" content="summary">
     
-<link rel="stylesheet" href="/libs/highlight/styles/monokai-sublime.css">
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Cơ Chế Autoloading Và Reloading</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
     
-<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+
+    
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
 
     
 <link rel="stylesheet" href="/css/style.css">
 
+    <!-- rss -->
+    
+    
+    <!-- jquery -->
+    
+<script src="/lib/jquery/jquery.min.js"></script>
+
 <meta name="generator" content="Hexo 4.2.1"></head>
 
-<body id="bodyx">
-    <div class="hd posts">
-    <a href="/index.html"><i class="fa fa-reply replay-btn" aria-hidden="true"></i></a>
-    <div class="post-title">
-        <p>
-            Cơ Chế Autoloading Và Reloading
-        </p>
-        <hr>
+<body>
+    <div class="banner">
+<div id="blogtitel" class="blogtitel">Notes</div>
+<ul id="wrapper" class="wrapper">
+  <div class="sun">
+    <div class="star"></div>
+  </div>
+  <div class="mercury">
+    <div class="planet">
+      <div class="shadow"></div>
     </div>
-    <div class="post-content">
-        <h2 id="Dat-van-de"><a href="#Dat-van-de" class="headerlink" title="Đặt vấn đề"></a>Đặt vấn đề</h2><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CatsController</span> &lt; ApplicationController</span></span><br><span class="line">  <span class="comment"># do something</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+  </div>
+  <div class="venus">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="earth">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="mars">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="jupiter">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+</ul>
+</div>
+
+    <div class="background">
+      
+        <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/hdchinh" target="_blank" rel="noopener">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/04/17/2019-04-17-doi-dieu-ve-session-va-cookie-trong-rails/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/2019/04/11/2019-04-11-su-dung-carrierwave-voi-s3/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/04/17/2019-05-16-autoloading-va-reloading-constants-trong-rails/" target="_blank" rel="noopener"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/04/17/2019-05-16-autoloading-va-reloading-constants-trong-rails/&text=Cơ Chế Autoloading Và Reloading" target="_blank" rel="noopener"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/04/17/2019-05-16-autoloading-va-reloading-constants-trong-rails/&title=Cơ Chế Autoloading Và Reloading" target="_blank" rel="noopener"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/04/17/2019-05-16-autoloading-va-reloading-constants-trong-rails/&is_video=false&description=Cơ Chế Autoloading Và Reloading" target="_blank" rel="noopener"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Cơ Chế Autoloading Và Reloading&body=Check out this article: https://hdchinh.github.io/2019/04/17/2019-05-16-autoloading-va-reloading-constants-trong-rails/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/04/17/2019-05-16-autoloading-va-reloading-constants-trong-rails/&title=Cơ Chế Autoloading Và Reloading" target="_blank" rel="noopener"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/04/17/2019-05-16-autoloading-va-reloading-constants-trong-rails/&title=Cơ Chế Autoloading Và Reloading" target="_blank" rel="noopener"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/04/17/2019-05-16-autoloading-va-reloading-constants-trong-rails/&title=Cơ Chế Autoloading Và Reloading" target="_blank" rel="noopener"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/04/17/2019-05-16-autoloading-va-reloading-constants-trong-rails/&title=Cơ Chế Autoloading Và Reloading" target="_blank" rel="noopener"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/04/17/2019-05-16-autoloading-va-reloading-constants-trong-rails/&name=Cơ Chế Autoloading Và Reloading&description=" target="_blank" rel="noopener"><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Dat-van-de"><span class="toc-number">1.</span> <span class="toc-text">Đặt vấn đề</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Luan-ban"><span class="toc-number">2.</span> <span class="toc-text">Luận bàn</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ket-luan"><span class="toc-number">3.</span> <span class="toc-text">Kết luận</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+      
+      <div class="content index width mx-auto px2 my4">
+          
+          <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Cơ Chế Autoloading Và Reloading
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Notes</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2019-04-16T17:00:00.000Z" itemprop="datePublished">2019-04-17</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/rails/" rel="tag">rails</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="Dat-van-de"><a href="#Dat-van-de" class="headerlink" title="Đặt vấn đề"></a>Đặt vấn đề</h2><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CatsController</span> &lt; ApplicationController</span></span><br><span class="line">  <span class="comment"># do something</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 
 <p>Đoạn mã trên là một đoạn mã rất quen thuộc khi sử dụng rails framework, một câu hỏi đó là tại sao trong class CatsController không require file chưa class ApplicationController nhưng ta vẫn có thể sử dụng. Câu trả lời nằm ở việc rails có cơ chế autoloading một số folder nhất định để support cho việc coding và vận hành, bài viết này sẽ nêu một cách khái quát về giải pháp này trong rails.</p>
 <h2 id="Luan-ban"><a href="#Luan-ban" class="headerlink" title="Luận bàn"></a>Luận bàn</h2><p>Như bài viết trước đã đề cập về cách mà phương thức require hoạt động:</p>
@@ -70,63 +223,95 @@
 <h2 id="Ket-luan"><a href="#Ket-luan" class="headerlink" title="Kết luận"></a>Kết luận</h2><p>Tham khảo:</p>
 <p>[1] <a href="https://guides.rubyonrails.org/autoloading_and_reloading_constants.html" target="_blank" rel="noopener">autoloading_and_reloading_constants</a></p>
 
+  </div>
+</article>
+
+
+
+      </div>
+      
+       <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/hdchinh" target="_blank" rel="noopener">Projects</a></li>
+        
+      </ul>
     </div>
-    <!-- 
-        <hr class="fhr">
-        <div id="vcomments"></div>
-     -->
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Dat-van-de"><span class="toc-number">1.</span> <span class="toc-text">Đặt vấn đề</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Luan-ban"><span class="toc-number">2.</span> <span class="toc-text">Luận bàn</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ket-luan"><span class="toc-number">3.</span> <span class="toc-text">Kết luận</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/04/17/2019-05-16-autoloading-va-reloading-constants-trong-rails/" target="_blank" rel="noopener"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/04/17/2019-05-16-autoloading-va-reloading-constants-trong-rails/&text=Cơ Chế Autoloading Và Reloading" target="_blank" rel="noopener"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/04/17/2019-05-16-autoloading-va-reloading-constants-trong-rails/&title=Cơ Chế Autoloading Và Reloading" target="_blank" rel="noopener"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/04/17/2019-05-16-autoloading-va-reloading-constants-trong-rails/&is_video=false&description=Cơ Chế Autoloading Và Reloading" target="_blank" rel="noopener"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Cơ Chế Autoloading Và Reloading&body=Check out this article: https://hdchinh.github.io/2019/04/17/2019-05-16-autoloading-va-reloading-constants-trong-rails/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/04/17/2019-05-16-autoloading-va-reloading-constants-trong-rails/&title=Cơ Chế Autoloading Và Reloading" target="_blank" rel="noopener"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/04/17/2019-05-16-autoloading-va-reloading-constants-trong-rails/&title=Cơ Chế Autoloading Và Reloading" target="_blank" rel="noopener"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/04/17/2019-05-16-autoloading-va-reloading-constants-trong-rails/&title=Cơ Chế Autoloading Và Reloading" target="_blank" rel="noopener"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/04/17/2019-05-16-autoloading-va-reloading-constants-trong-rails/&title=Cơ Chế Autoloading Và Reloading" target="_blank" rel="noopener"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/04/17/2019-05-16-autoloading-va-reloading-constants-trong-rails/&name=Cơ Chế Autoloading Và Reloading&description=" target="_blank" rel="noopener"><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
 </div>
 
-    <div class="footer" id="footer">
-    <p>Copyright © 2020 <a class="flink" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a>-<a class="flink" href="https://github.com/sanjinhub/hexo-theme-geek" target="_blank" rel="noopener">Geek</a>.
-        <label class="el-switch el-switch-green el-switch-sm" style="vertical-align: sub;">
-            <input type="checkbox" name="switch" id="update_style">
-            <span class="el-switch-style"></span>
-        </label>
-<!--         <script type="text/javascript">
-        var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");
-        document.write(unescape("%3Cspan id='cnzz_stat_icon_1278548644'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/stat.php%3Fid%3D1278548644%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
-        </script> -->
-    </p>
-</div>
-<input type="hidden" id="web_style" value="black">
-<input type="hidden" id="valine_appid" value="CmCti21ooOOIzFOhEyFkFvR0-gzGzoHsz">
-<input type="hidden" id="valine_appKey" value="FqiyUqbg7McKN2eG0MCewupf">
+      
+      <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2022 Tam Thể
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/hdchinh" target="_blank" rel="noopener">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
 
-<script src="/libs/jquery.min.js"></script>
+      
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
 
 
-<script src="/libs/highlight/highlight.pack.js"></script>
+<script src="/js/main.js"></script>
 
-<script src='//cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<!-- Google Analytics -->
 
-<script src="/js/js.js"></script>
+<!-- Disqus Comments -->
 
-<style type="text/css">
-.v * {
-    color: #698fca;
-}
 
-.v .vlist .vcard .vhead .vsys {
-    color: #3a3e4a;
-}
-
-.v .vlist .vcard .vh .vmeta .vat {
-    color: #638fd5;
-}
-
-.v .vlist .vcard .vhead .vnick {
-    color: #6ba1ff;
-}
-
-.v a {
-    color: #8696b1;
-}
-
-.v .vlist .vcard .vhead .vnick:hover {
-    color: #669bfc;
-}
-</style>
+    </div>
 </body>
-
 </html>

@@ -1,35 +1,188 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang=en>
 <head>
-    <meta charset="UTF-8">
+    <!-- so meta -->
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="renderer" content="webkit">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>
-        Notes
-    </title>
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="1. Khái niệm mutable, immutable và rubyĐi thẳng vào vấn đề, chúng ta cần đề cập đến ba vấn đề: mutable, immutable và cách ruby xử lý hai khái niệm đó. Trước hết nếu bạn đã quên, thì tôi xin được nhắc">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Immutable Và Mutable Trong Ruby">
+<meta property="og:url" content="https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/index.html">
+<meta property="og:site_name" content="Notes">
+<meta property="og:description" content="1. Khái niệm mutable, immutable và rubyĐi thẳng vào vấn đề, chúng ta cần đề cập đến ba vấn đề: mutable, immutable và cách ruby xử lý hai khái niệm đó. Trước hết nếu bạn đã quên, thì tôi xin được nhắc">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-04-07T17:00:00.000Z">
+<meta property="article:modified_time" content="2022-01-29T09:29:59.926Z">
+<meta property="article:author" content="Tam Thể">
+<meta property="article:tag" content="RUBY">
+<meta name="twitter:card" content="summary">
     
-<link rel="stylesheet" href="/libs/highlight/styles/monokai-sublime.css">
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Immutable Và Mutable Trong Ruby</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
     
-<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+
+    
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
 
     
 <link rel="stylesheet" href="/css/style.css">
 
+    <!-- rss -->
+    
+    
+    <!-- jquery -->
+    
+<script src="/lib/jquery/jquery.min.js"></script>
+
 <meta name="generator" content="Hexo 4.2.1"></head>
 
-<body id="bodyx">
-    <div class="hd posts">
-    <a href="/index.html"><i class="fa fa-reply replay-btn" aria-hidden="true"></i></a>
-    <div class="post-title">
-        <p>
-            Immutable Và Mutable Trong Ruby
-        </p>
-        <hr>
+<body>
+    <div class="banner">
+<div id="blogtitel" class="blogtitel">Notes</div>
+<ul id="wrapper" class="wrapper">
+  <div class="sun">
+    <div class="star"></div>
+  </div>
+  <div class="mercury">
+    <div class="planet">
+      <div class="shadow"></div>
     </div>
-    <div class="post-content">
-        <h2 id="1-Khai-niem-mutable-immutable-va-ruby"><a href="#1-Khai-niem-mutable-immutable-va-ruby" class="headerlink" title="1. Khái niệm mutable, immutable và ruby"></a>1. Khái niệm mutable, immutable và ruby</h2><p>Đi thẳng vào vấn đề, chúng ta cần đề cập đến ba vấn đề: <strong>mutable</strong>, <strong>immutable</strong> và cách ruby xử lý hai khái niệm đó. Trước hết nếu bạn đã quên, thì tôi xin được nhắc lại định nghĩa của chúng.</p>
+  </div>
+  <div class="venus">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="earth">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="mars">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="jupiter">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+</ul>
+</div>
+
+    <div class="background">
+      
+        <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/hdchinh" target="_blank" rel="noopener">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/04/10/2019-04-10-upload-file-len-aws-s3-va-nhung-van-de-can-luu-y/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/2019/02/25/2019-02-25-van-de-n-1-trong-rails/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/" target="_blank" rel="noopener"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&text=Immutable Và Mutable Trong Ruby" target="_blank" rel="noopener"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&title=Immutable Và Mutable Trong Ruby" target="_blank" rel="noopener"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&is_video=false&description=Immutable Và Mutable Trong Ruby" target="_blank" rel="noopener"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Immutable Và Mutable Trong Ruby&body=Check out this article: https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&title=Immutable Và Mutable Trong Ruby" target="_blank" rel="noopener"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&title=Immutable Và Mutable Trong Ruby" target="_blank" rel="noopener"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&title=Immutable Và Mutable Trong Ruby" target="_blank" rel="noopener"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&title=Immutable Và Mutable Trong Ruby" target="_blank" rel="noopener"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&name=Immutable Và Mutable Trong Ruby&description=" target="_blank" rel="noopener"><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Khai-niem-mutable-immutable-va-ruby"><span class="toc-number">1.</span> <span class="toc-text">1. Khái niệm mutable, immutable và ruby</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Lieu-day-co-phai-la-mot-kien-thuc-can-thiet"><span class="toc-number">2.</span> <span class="toc-text">2. Liệu đây có phải là một kiến thức cần thiết?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Tham-khao"><span class="toc-number">3.</span> <span class="toc-text">3. Tham khảo</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+      
+      <div class="content index width mx-auto px2 my4">
+          
+          <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Immutable Và Mutable Trong Ruby
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Notes</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2019-04-07T17:00:00.000Z" itemprop="datePublished">2019-04-08</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/RUBY/" rel="tag">RUBY</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="1-Khai-niem-mutable-immutable-va-ruby"><a href="#1-Khai-niem-mutable-immutable-va-ruby" class="headerlink" title="1. Khái niệm mutable, immutable và ruby"></a>1. Khái niệm mutable, immutable và ruby</h2><p>Đi thẳng vào vấn đề, chúng ta cần đề cập đến ba vấn đề: <strong>mutable</strong>, <strong>immutable</strong> và cách ruby xử lý hai khái niệm đó. Trước hết nếu bạn đã quên, thì tôi xin được nhắc lại định nghĩa của chúng.</p>
 <p>Xin trích dẫn <a href="https://en.wikipedia.org/wiki/Immutable_object" target="_blank" rel="noopener">wiki</a>:</p>
 <blockquote>
 <p>In object-oriented and functional programming, an immutable object (unchangeable[1] object) is an object whose state cannot be modified after it is created.[2] This is in contrast to a mutable object (changeable object), which can be modified after it is created.</p>
@@ -55,7 +208,7 @@
 
 <p>Note: Nếu bạn gán tiếp x = 12 và kiểm tra lại object_id, lúc này bạn sẽ thấy nó bằng 25. Giá trị 10, 11, 12 tương đương với object_id là 21, 23, 25. Liệu có một quy luật nào ở đây? Câu trả lời là có, nhưng vấn đề này sẽ được đề cập đến trong một bài viết tiếp theo.</p>
 <p>Từ ví dụ trên bạn đã hiểu về immutable, vậy còn mutable? Đơn giản nhất là hãy hiểu ngược lại với immutable, nêu gán x = 11 và x có object_id không đổi thì x chính là mutable.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Tất cả các loại dữ liệu nguyên thuỷ trong ruby đều là immutable.</span><br></pre></td></tr></table></figure>
+<figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">T</span>ấ<span class="built_in">t</span> cả các loại dữ liệu nguyê<span class="built_in">n</span> thuỷ trong ruby đều là immutable.</span><br></pre></td></tr></table></figure>
 
 <p>Integer, float, string, boolean chúng đều là immutable.</p>
 <h2 id="2-Lieu-day-co-phai-la-mot-kien-thuc-can-thiet"><a href="#2-Lieu-day-co-phai-la-mot-kien-thuc-can-thiet" class="headerlink" title="2. Liệu đây có phải là một kiến thức cần thiết?"></a>2. Liệu đây có phải là một kiến thức cần thiết?</h2><p>Chắc chắn là có.</p>
@@ -85,7 +238,7 @@
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">str = <span class="string">""</span></span><br><span class="line">puts <span class="string">"First location: <span class="subst">#&#123;str.object_id&#125;</span>"</span></span><br><span class="line">[<span class="string">"Hoang"</span>, <span class="string">"Duy"</span>, <span class="string">"Chinh"</span>].each <span class="keyword">do</span> <span class="params">|i|</span></span><br><span class="line">  str += i</span><br><span class="line">  puts <span class="string">"value: <span class="subst">#&#123;str&#125;</span> | location: <span class="subst">#&#123;str.object_id&#125;</span>"</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">puts <span class="string">"Final value: <span class="subst">#&#123;str&#125;</span> | location: <span class="subst">#&#123;str.object_id&#125;</span>"</span></span><br></pre></td></tr></table></figure>
 
 <p>Kết quả:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">First location: 47434608564740</span><br><span class="line">value: Hoang | location: 47434608564520</span><br><span class="line">value: HoangDuy | location: 47434608564440</span><br><span class="line">value: HoangDuyChinh | location: 47434608564360</span><br><span class="line">Final value: HoangDuyChinh | location: 47434608564360</span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">First location:</span> <span class="number">47434608564740</span></span><br><span class="line"><span class="attr">value:</span> <span class="string">Hoang</span> <span class="string">|</span> <span class="attr">location:</span> <span class="number">47434608564520</span></span><br><span class="line"><span class="attr">value:</span> <span class="string">HoangDuy</span> <span class="string">|</span> <span class="attr">location:</span> <span class="number">47434608564440</span></span><br><span class="line"><span class="attr">value:</span> <span class="string">HoangDuyChinh</span> <span class="string">|</span> <span class="attr">location:</span> <span class="number">47434608564360</span></span><br><span class="line"><span class="attr">Final value:</span> <span class="string">HoangDuyChinh</span> <span class="string">|</span> <span class="attr">location:</span> <span class="number">47434608564360</span></span><br></pre></td></tr></table></figure>
 
 <p>Và thứ chúng ta quan tâm từ đó về sau là vị trí A4 này. Vậy còn A1, A2, A3 cũng đang mang giá trị? Chúng đi đâu về đâu? Chính xác, nó trở thành một vùng nhớ rác và sẽ được GC dọn dẹp nhưng không phải ngay lập tức, vậy trong khoảng thời gian đó nó vẫn nắm giữ các vùng nhớ của chúng ta. Đó cũng là một trong các lý do việc bạn muốn chạy ruby on rails trên một chiếc máy tính sinh viên 2GB là vô cùng khó khăn. Ruby ăn Ram như uống nước lã vậy.</p>
 <p>Ví dụ trên mảng ta có ba phần tử và ta có 3 giá trị rác trên bộ nhớ, hãy tưởng tượng bạn có một mảng một triệu phần tử :worried:</p>
@@ -97,67 +250,99 @@
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">str = <span class="string">""</span></span><br><span class="line">puts <span class="string">"First location: <span class="subst">#&#123;str.object_id&#125;</span>"</span></span><br><span class="line">[<span class="string">"Hoang"</span>, <span class="string">"Duy"</span>, <span class="string">"Chinh"</span>].each <span class="keyword">do</span> <span class="params">|i|</span></span><br><span class="line">  str &lt;&lt; i</span><br><span class="line">  puts <span class="string">"value: <span class="subst">#&#123;str&#125;</span> | location: <span class="subst">#&#123;str.object_id&#125;</span>"</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">puts <span class="string">"Final value: <span class="subst">#&#123;str&#125;</span> | location: <span class="subst">#&#123;str.object_id&#125;</span>"</span></span><br></pre></td></tr></table></figure>
 
 <p>Kết quả:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">First location: 47196120971580</span><br><span class="line">value: Hoang | location: 47196120971580</span><br><span class="line">value: HoangDuy | location: 47196120971580</span><br><span class="line">value: HoangDuyChinh | location: 47196120971580</span><br><span class="line">Final value: HoangDuyChinh | location: 47196120971580</span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">First location:</span> <span class="number">47196120971580</span></span><br><span class="line"><span class="attr">value:</span> <span class="string">Hoang</span> <span class="string">|</span> <span class="attr">location:</span> <span class="number">47196120971580</span></span><br><span class="line"><span class="attr">value:</span> <span class="string">HoangDuy</span> <span class="string">|</span> <span class="attr">location:</span> <span class="number">47196120971580</span></span><br><span class="line"><span class="attr">value:</span> <span class="string">HoangDuyChinh</span> <span class="string">|</span> <span class="attr">location:</span> <span class="number">47196120971580</span></span><br><span class="line"><span class="attr">Final value:</span> <span class="string">HoangDuyChinh</span> <span class="string">|</span> <span class="attr">location:</span> <span class="number">47196120971580</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="3-Tham-khao"><a href="#3-Tham-khao" class="headerlink" title="3. Tham khảo"></a>3. Tham khảo</h2><p>[1] <a href="https://en.wikipedia.org/wiki/Immutable_object" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Immutable_object</a></p>
 
+  </div>
+</article>
+
+
+
+      </div>
+      
+       <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/hdchinh" target="_blank" rel="noopener">Projects</a></li>
+        
+      </ul>
     </div>
-    <!-- 
-        <hr class="fhr">
-        <div id="vcomments"></div>
-     -->
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Khai-niem-mutable-immutable-va-ruby"><span class="toc-number">1.</span> <span class="toc-text">1. Khái niệm mutable, immutable và ruby</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Lieu-day-co-phai-la-mot-kien-thuc-can-thiet"><span class="toc-number">2.</span> <span class="toc-text">2. Liệu đây có phải là một kiến thức cần thiết?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Tham-khao"><span class="toc-number">3.</span> <span class="toc-text">3. Tham khảo</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/" target="_blank" rel="noopener"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&text=Immutable Và Mutable Trong Ruby" target="_blank" rel="noopener"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&title=Immutable Và Mutable Trong Ruby" target="_blank" rel="noopener"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&is_video=false&description=Immutable Và Mutable Trong Ruby" target="_blank" rel="noopener"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Immutable Và Mutable Trong Ruby&body=Check out this article: https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&title=Immutable Và Mutable Trong Ruby" target="_blank" rel="noopener"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&title=Immutable Và Mutable Trong Ruby" target="_blank" rel="noopener"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&title=Immutable Và Mutable Trong Ruby" target="_blank" rel="noopener"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&title=Immutable Và Mutable Trong Ruby" target="_blank" rel="noopener"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&name=Immutable Và Mutable Trong Ruby&description=" target="_blank" rel="noopener"><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
 </div>
 
-    <div class="footer" id="footer">
-    <p>Copyright © 2020 <a class="flink" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a>-<a class="flink" href="https://github.com/sanjinhub/hexo-theme-geek" target="_blank" rel="noopener">Geek</a>.
-        <label class="el-switch el-switch-green el-switch-sm" style="vertical-align: sub;">
-            <input type="checkbox" name="switch" id="update_style">
-            <span class="el-switch-style"></span>
-        </label>
-<!--         <script type="text/javascript">
-        var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");
-        document.write(unescape("%3Cspan id='cnzz_stat_icon_1278548644'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/stat.php%3Fid%3D1278548644%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
-        </script> -->
-    </p>
-</div>
-<input type="hidden" id="web_style" value="black">
-<input type="hidden" id="valine_appid" value="CmCti21ooOOIzFOhEyFkFvR0-gzGzoHsz">
-<input type="hidden" id="valine_appKey" value="FqiyUqbg7McKN2eG0MCewupf">
+      
+      <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2022 Tam Thể
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/hdchinh" target="_blank" rel="noopener">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
 
-<script src="/libs/jquery.min.js"></script>
+      
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
 
 
-<script src="/libs/highlight/highlight.pack.js"></script>
+<script src="/js/main.js"></script>
 
-<script src='//cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<!-- Google Analytics -->
 
-<script src="/js/js.js"></script>
+<!-- Disqus Comments -->
 
-<style type="text/css">
-.v * {
-    color: #698fca;
-}
 
-.v .vlist .vcard .vhead .vsys {
-    color: #3a3e4a;
-}
-
-.v .vlist .vcard .vh .vmeta .vat {
-    color: #638fd5;
-}
-
-.v .vlist .vcard .vhead .vnick {
-    color: #6ba1ff;
-}
-
-.v a {
-    color: #8696b1;
-}
-
-.v .vlist .vcard .vhead .vnick:hover {
-    color: #669bfc;
-}
-</style>
+    </div>
 </body>
-
 </html>

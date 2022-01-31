@@ -1,35 +1,182 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang=en>
 <head>
-    <meta charset="UTF-8">
+    <!-- so meta -->
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="renderer" content="webkit">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>
-        Notes
-    </title>
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="1. FetchFetch là một module được tích hợp sẵn trong các trình duyệt, điều đó có nghĩa là không phải tất cả các trình duyệt cũ đều có thể sử dụng fetch. Ưu điểm là không cần cài thêm package cho phần x">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Gọi API Tại Frontend">
+<meta property="og:url" content="https://hdchinh.github.io/2020/06/28/2020-06-28-goi-api-tu-fe/index.html">
+<meta property="og:site_name" content="Notes">
+<meta property="og:description" content="1. FetchFetch là một module được tích hợp sẵn trong các trình duyệt, điều đó có nghĩa là không phải tất cả các trình duyệt cũ đều có thể sử dụng fetch. Ưu điểm là không cần cài thêm package cho phần x">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-06-27T17:00:00.000Z">
+<meta property="article:modified_time" content="2022-01-29T09:29:59.930Z">
+<meta property="article:author" content="Tam Thể">
+<meta name="twitter:card" content="summary">
     
-<link rel="stylesheet" href="/libs/highlight/styles/monokai-sublime.css">
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Gọi API Tại Frontend</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
     
-<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+
+    
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
 
     
 <link rel="stylesheet" href="/css/style.css">
 
+    <!-- rss -->
+    
+    
+    <!-- jquery -->
+    
+<script src="/lib/jquery/jquery.min.js"></script>
+
 <meta name="generator" content="Hexo 4.2.1"></head>
 
-<body id="bodyx">
-    <div class="hd posts">
-    <a href="/index.html"><i class="fa fa-reply replay-btn" aria-hidden="true"></i></a>
-    <div class="post-title">
-        <p>
-            Gọi API Tại Frontend
-        </p>
-        <hr>
+<body>
+    <div class="banner">
+<div id="blogtitel" class="blogtitel">Notes</div>
+<ul id="wrapper" class="wrapper">
+  <div class="sun">
+    <div class="star"></div>
+  </div>
+  <div class="mercury">
+    <div class="planet">
+      <div class="shadow"></div>
     </div>
-    <div class="post-content">
-        <h2 id="1-Fetch"><a href="#1-Fetch" class="headerlink" title="1. Fetch"></a>1. Fetch</h2><p>Fetch là một module được tích hợp sẵn trong các trình duyệt, điều đó có nghĩa là không phải tất cả các trình duyệt cũ đều có thể sử dụng fetch.</p>
+  </div>
+  <div class="venus">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="earth">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="mars">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="jupiter">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+</ul>
+</div>
+
+    <div class="background">
+      
+        <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/hdchinh" target="_blank" rel="noopener">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2020/07/03/2020-07-03-leetcode-track-list/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/2020/06/27/2020-06-27-viet-side-project/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2020/06/28/2020-06-28-goi-api-tu-fe/" target="_blank" rel="noopener"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2020/06/28/2020-06-28-goi-api-tu-fe/&text=Gọi API Tại Frontend" target="_blank" rel="noopener"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2020/06/28/2020-06-28-goi-api-tu-fe/&title=Gọi API Tại Frontend" target="_blank" rel="noopener"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2020/06/28/2020-06-28-goi-api-tu-fe/&is_video=false&description=Gọi API Tại Frontend" target="_blank" rel="noopener"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Gọi API Tại Frontend&body=Check out this article: https://hdchinh.github.io/2020/06/28/2020-06-28-goi-api-tu-fe/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2020/06/28/2020-06-28-goi-api-tu-fe/&title=Gọi API Tại Frontend" target="_blank" rel="noopener"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2020/06/28/2020-06-28-goi-api-tu-fe/&title=Gọi API Tại Frontend" target="_blank" rel="noopener"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2020/06/28/2020-06-28-goi-api-tu-fe/&title=Gọi API Tại Frontend" target="_blank" rel="noopener"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2020/06/28/2020-06-28-goi-api-tu-fe/&title=Gọi API Tại Frontend" target="_blank" rel="noopener"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2020/06/28/2020-06-28-goi-api-tu-fe/&name=Gọi API Tại Frontend&description=" target="_blank" rel="noopener"><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Fetch"><span class="toc-number">1.</span> <span class="toc-text">1. Fetch</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-Fetch-voi-async-await"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 Fetch với async await</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-Fetch-voi-Promise"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 Fetch với Promise</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-Cac-vi-du-khac"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 Các ví dụ khác</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Axios"><span class="toc-number">2.</span> <span class="toc-text">2. Axios</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-References"><span class="toc-number">3.</span> <span class="toc-text">3. References</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+      
+      <div class="content index width mx-auto px2 my4">
+          
+          <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Gọi API Tại Frontend
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Notes</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2020-06-27T17:00:00.000Z" itemprop="datePublished">2020-06-28</time>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="1-Fetch"><a href="#1-Fetch" class="headerlink" title="1. Fetch"></a>1. Fetch</h2><p>Fetch là một module được tích hợp sẵn trong các trình duyệt, điều đó có nghĩa là không phải tất cả các trình duyệt cũ đều có thể sử dụng fetch.</p>
 <p>Ưu điểm là không cần cài thêm package cho phần xử lý API. Nhược điểm là chỉ dùng cho ứng dụng chạy với trình duyệt.</p>
 <p>Đối tượng được trả về là dạng Stream, đồng nghĩa với việc phải convert khi gửi data lẫn khi nhận data.</p>
 <h3 id="1-1-Fetch-voi-async-await"><a href="#1-1-Fetch-voi-async-await" class="headerlink" title="1.1 Fetch với async await"></a>1.1 Fetch với async await</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">getCats</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> url = <span class="string">"http://localhost:4000/api/v1/cats"</span>;</span><br><span class="line">    <span class="keyword">const</span> response = <span class="keyword">await</span> fetch(url);</span><br><span class="line">    <span class="keyword">const</span> responseJSON = <span class="keyword">await</span> response.json();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> responseJSON.data;</span><br><span class="line">  &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">    <span class="keyword">return</span> [];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Set data to state</span></span><br><span class="line">getCats().then(<span class="function">(<span class="params">cats</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">this</span>.setState(&#123; cats &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
@@ -42,63 +189,95 @@
 
 <h2 id="3-References"><a href="#3-References" class="headerlink" title="3. References"></a>3. References</h2><p>[1]<a href="http://vuilaptrinh.com/2018-10-01-huong-dan-gioi-thieu-fetch-javascript/" target="_blank" rel="noopener">http://vuilaptrinh.com/2018-10-01-huong-dan-gioi-thieu-fetch-javascript/</a><br>[2]<a href="https://alligator.io/react/axios-react/" target="_blank" rel="noopener">https://alligator.io/react/axios-react/</a></p>
 
+  </div>
+</article>
+
+
+
+      </div>
+      
+       <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/hdchinh" target="_blank" rel="noopener">Projects</a></li>
+        
+      </ul>
     </div>
-    <!-- 
-        <hr class="fhr">
-        <div id="vcomments"></div>
-     -->
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Fetch"><span class="toc-number">1.</span> <span class="toc-text">1. Fetch</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-Fetch-voi-async-await"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 Fetch với async await</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-Fetch-voi-Promise"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 Fetch với Promise</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-Cac-vi-du-khac"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 Các ví dụ khác</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Axios"><span class="toc-number">2.</span> <span class="toc-text">2. Axios</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-References"><span class="toc-number">3.</span> <span class="toc-text">3. References</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2020/06/28/2020-06-28-goi-api-tu-fe/" target="_blank" rel="noopener"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2020/06/28/2020-06-28-goi-api-tu-fe/&text=Gọi API Tại Frontend" target="_blank" rel="noopener"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2020/06/28/2020-06-28-goi-api-tu-fe/&title=Gọi API Tại Frontend" target="_blank" rel="noopener"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2020/06/28/2020-06-28-goi-api-tu-fe/&is_video=false&description=Gọi API Tại Frontend" target="_blank" rel="noopener"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Gọi API Tại Frontend&body=Check out this article: https://hdchinh.github.io/2020/06/28/2020-06-28-goi-api-tu-fe/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2020/06/28/2020-06-28-goi-api-tu-fe/&title=Gọi API Tại Frontend" target="_blank" rel="noopener"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2020/06/28/2020-06-28-goi-api-tu-fe/&title=Gọi API Tại Frontend" target="_blank" rel="noopener"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2020/06/28/2020-06-28-goi-api-tu-fe/&title=Gọi API Tại Frontend" target="_blank" rel="noopener"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2020/06/28/2020-06-28-goi-api-tu-fe/&title=Gọi API Tại Frontend" target="_blank" rel="noopener"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2020/06/28/2020-06-28-goi-api-tu-fe/&name=Gọi API Tại Frontend&description=" target="_blank" rel="noopener"><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
 </div>
 
-    <div class="footer" id="footer">
-    <p>Copyright © 2020 <a class="flink" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a>-<a class="flink" href="https://github.com/sanjinhub/hexo-theme-geek" target="_blank" rel="noopener">Geek</a>.
-        <label class="el-switch el-switch-green el-switch-sm" style="vertical-align: sub;">
-            <input type="checkbox" name="switch" id="update_style">
-            <span class="el-switch-style"></span>
-        </label>
-<!--         <script type="text/javascript">
-        var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");
-        document.write(unescape("%3Cspan id='cnzz_stat_icon_1278548644'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/stat.php%3Fid%3D1278548644%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
-        </script> -->
-    </p>
-</div>
-<input type="hidden" id="web_style" value="black">
-<input type="hidden" id="valine_appid" value="CmCti21ooOOIzFOhEyFkFvR0-gzGzoHsz">
-<input type="hidden" id="valine_appKey" value="FqiyUqbg7McKN2eG0MCewupf">
+      
+      <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2022 Tam Thể
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/hdchinh" target="_blank" rel="noopener">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
 
-<script src="/libs/jquery.min.js"></script>
+      
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
 
 
-<script src="/libs/highlight/highlight.pack.js"></script>
+<script src="/js/main.js"></script>
 
-<script src='//cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<!-- Google Analytics -->
 
-<script src="/js/js.js"></script>
+<!-- Disqus Comments -->
 
-<style type="text/css">
-.v * {
-    color: #698fca;
-}
 
-.v .vlist .vcard .vhead .vsys {
-    color: #3a3e4a;
-}
-
-.v .vlist .vcard .vh .vmeta .vat {
-    color: #638fd5;
-}
-
-.v .vlist .vcard .vhead .vnick {
-    color: #6ba1ff;
-}
-
-.v a {
-    color: #8696b1;
-}
-
-.v .vlist .vcard .vhead .vnick:hover {
-    color: #669bfc;
-}
-</style>
+    </div>
 </body>
-
 </html>

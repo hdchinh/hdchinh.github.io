@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="Point to a port  12345678910111213141516server &amp;#123;	listen 80 default_server;	listen [::]:80 default_server;	index index.html index.htm index.nginx-debian.html;	server_name _;	location &#x2F; &amp;#123;		pr">
+    <meta name="description" content="Install 1234567sudo apt updatesudo apt install nginx -ynginx -t # check syntax# Default: &#x2F;etc&#x2F;nginx&#x2F;sites-enabled&#x2F;defaultsudo service nginx restart   Point to a port  12345678910111213141516server &amp;#1">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Nginx basic configuration">
 <meta property="og:url" content="https://hdchinh.github.io/2022/09/12/2022-09-12-nginx-basic-configuration/index.html">
 <meta property="og:site_name" content="Notes">
-<meta property="og:description" content="Point to a port  12345678910111213141516server &amp;#123;	listen 80 default_server;	listen [::]:80 default_server;	index index.html index.htm index.nginx-debian.html;	server_name _;	location &#x2F; &amp;#123;		pr">
+<meta property="og:description" content="Install 1234567sudo apt updatesudo apt install nginx -ynginx -t # check syntax# Default: &#x2F;etc&#x2F;nginx&#x2F;sites-enabled&#x2F;defaultsudo service nginx restart   Point to a port  12345678910111213141516server &amp;#1">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-09-11T17:00:00.000Z">
-<meta property="article:modified_time" content="2022-09-12T07:35:53.589Z">
+<meta property="article:modified_time" content="2022-09-12T07:37:36.501Z">
 <meta property="article:author" content="Tam Thể">
 <meta name="twitter:card" content="summary">
     
@@ -174,7 +174,10 @@
   
 
   <div class="content" itemprop="articleBody">
-    <ol>
+    <p>Install</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install nginx -y</span><br><span class="line"></span><br><span class="line">nginx -t <span class="comment"># check syntax</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Default: /etc/nginx/sites-enabled/default</span></span><br><span class="line">sudo service nginx restart</span><br></pre></td></tr></table></figure>
+
+<ol>
 <li>Point to a port</li>
 </ol>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">	listen 80 default_server;</span><br><span class="line">	listen [::]:80 default_server;</span><br><span class="line"></span><br><span class="line">	index index.html index.htm index.nginx-debian.html;</span><br><span class="line"></span><br><span class="line">	server_name _;</span><br><span class="line"></span><br><span class="line">	location / &#123;</span><br><span class="line">		proxy_pass http://127.0.0.1:8080;</span><br><span class="line">    proxy_http_version 1.1;</span><br><span class="line">    proxy_set_header Upgrade <span class="variable">$http_upgrade</span>;</span><br><span class="line">    proxy_set_header Connection <span class="string">"upgrade"</span>;</span><br><span class="line">    proxy_set_header Host <span class="variable">$host</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>

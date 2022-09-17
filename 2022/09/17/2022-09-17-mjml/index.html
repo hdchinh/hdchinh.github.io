@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Create email template   Cannot use base64 image and SVG image   MJMLMJML   Install  1npm install mjml   Use  1npx mjml input.mjml -o output.html   Example  1234567891011121314151617181920212223242526">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Create email with MJML">
+<meta property="og:url" content="https://hdchinh.github.io/2022/09/17/2022-09-17-mjml/index.html">
+<meta property="og:site_name" content="Notes">
+<meta property="og:description" content="Create email template   Cannot use base64 image and SVG image   MJMLMJML   Install  1npm install mjml   Use  1npx mjml input.mjml -o output.html   Example  1234567891011121314151617181920212223242526">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-09-16T17:00:00.000Z">
+<meta property="article:modified_time" content="2022-09-17T10:07:29.874Z">
+<meta property="article:author" content="Tam Thể">
+<meta name="twitter:card" content="summary">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Create email with MJML</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+
+    
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- rss -->
+    
+    
+    <!-- jquery -->
+    
+<script src="/lib/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+    <div class="banner">
+<div id="blogtitel" class="blogtitel">Notes</div>
+<ul id="wrapper" class="wrapper">
+  <div class="sun">
+    <div class="star"></div>
+  </div>
+  <div class="mercury">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="venus">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="earth">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="mars">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="jupiter">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+</ul>
+</div>
+
+    <div class="background">
+      
+        <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/hdchinh" target="_blank" rel="noopener">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2022/09/12/2022-09-12-custom-heroku-domain/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2022/09/17/2022-09-17-mjml/" target="_blank" rel="noopener"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2022/09/17/2022-09-17-mjml/&text=Create email with MJML" target="_blank" rel="noopener"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2022/09/17/2022-09-17-mjml/&title=Create email with MJML" target="_blank" rel="noopener"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2022/09/17/2022-09-17-mjml/&is_video=false&description=Create email with MJML" target="_blank" rel="noopener"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Create email with MJML&body=Check out this article: https://hdchinh.github.io/2022/09/17/2022-09-17-mjml/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2022/09/17/2022-09-17-mjml/&title=Create email with MJML" target="_blank" rel="noopener"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2022/09/17/2022-09-17-mjml/&title=Create email with MJML" target="_blank" rel="noopener"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2022/09/17/2022-09-17-mjml/&title=Create email with MJML" target="_blank" rel="noopener"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2022/09/17/2022-09-17-mjml/&title=Create email with MJML" target="_blank" rel="noopener"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2022/09/17/2022-09-17-mjml/&name=Create email with MJML&description=" target="_blank" rel="noopener"><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      
+    </div>
+  </span>
+</div>
+
+      
+      <div class="content index width mx-auto px2 my4">
+          
+          <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Create email with MJML
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Notes</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2022-09-16T17:00:00.000Z" itemprop="datePublished">2022-09-17</time>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <ol>
+<li>Create email template</li>
+</ol>
+<ul>
+<li>Cannot use base64 image and SVG image</li>
+</ul>
+<ol start="2">
+<li>MJML<br><a href="https://github.com/mjmlio/mjml" target="_blank" rel="noopener">MJML</a></li>
+</ol>
+<ul>
+<li>Install</li>
+</ul>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="keyword">install</span> mjml</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Use</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">npx</span> <span class="selector-tag">mjml</span> <span class="selector-tag">input</span><span class="selector-class">.mjml</span> <span class="selector-tag">-o</span> <span class="selector-tag">output</span><span class="selector-class">.html</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Example</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mjml</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">mj-head</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">mj-font</span> <span class="attr">name</span>=<span class="string">"Barlow"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">href</span>=<span class="string">"https://fonts.googleapis.com/css?family=Barlow"</span> /&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">mj-head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">mj-body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mj-section</span> <span class="attr">background-color</span>=<span class="string">"white"</span> <span class="attr">padding-bottom</span>=<span class="string">"0px"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">mj-column</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mj-image</span> <span class="attr">width</span>=<span class="string">"250px"</span> <span class="attr">src</span>=<span class="string">"https://s3.eu-north-1.amazonaws.com/hudson-s3-dev/uploads/media_file/file/53/logo.png"</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">mj-column</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">mj-section</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">mj-section</span> <span class="attr">background-color</span>=<span class="string">"white"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">mj-column</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mj-text</span> <span class="attr">align</span>=<span class="string">"center"</span> <span class="attr">padding-top</span>=<span class="string">"0px"</span> <span class="attr">padding-bottom</span>=<span class="string">"0px"</span> <span class="attr">font-size</span>=<span class="string">"23px"</span> <span class="attr">font-family</span>=<span class="string">"Barlow, Arial"</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;<span class="name">b</span>&gt;</span>Verify your email address<span class="tag">&lt;/<span class="name">b</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">mj-text</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">mj-column</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">mj-section</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">mj-section</span> <span class="attr">background-color</span>=<span class="string">"white"</span> <span class="attr">padding-top</span>=<span class="string">"0px"</span> <span class="attr">padding-bottom</span>=<span class="string">"0px"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">mj-column</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mj-text</span> <span class="attr">align</span>=<span class="string">"center"</span> <span class="attr">padding-top</span>=<span class="string">"0px"</span> <span class="attr">padding-bottom</span>=<span class="string">"0px"</span> <span class="attr">font-size</span>=<span class="string">"18px"</span> <span class="attr">font-family</span>=<span class="string">"Barlow, Arial"</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">div</span>&gt;</span>To starting using Allihoop Co-living App, just input this code in the app:<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">mj-text</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">mj-column</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">mj-section</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">mj-section</span> <span class="attr">background-color</span>=<span class="string">"white"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">mj-column</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mj-text</span> <span class="attr">align</span>=<span class="string">"center"</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"display: inline; border: solid 2px; border-color: #9e9e9e; border-radius: 8px; font-size: 30px; padding: 10px; padding-left: 10px; padding-right: 10px; color: #000000;"</span>&gt;</span>1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"display: inline; border: solid 2px; border-color: #9e9e9e; border-radius: 8px; font-size: 30px; padding: 10px; padding-left: 10px; padding-right: 10px; color: #000000;"</span>&gt;</span>2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"display: inline; border: solid 2px; border-color: #9e9e9e; border-radius: 8px; font-size: 30px; padding: 10px; padding-left: 10px; padding-right: 10px; color: #000000;"</span>&gt;</span>3<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"display: inline; border: solid 0px; border-color: white; border-radius: 8px; font-size: 30px; padding: 2px; color: #9e9e9e;"</span>&gt;</span>-<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"display: inline; border: solid 2px; border-color: #9e9e9e; border-radius: 8px; font-size: 30px; padding: 10px; padding-left: 10px; padding-right: 10px; color: #000000;"</span>&gt;</span>4<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"display: inline; border: solid 2px; border-color: #9e9e9e; border-radius: 8px; font-size: 30px; padding: 10px; padding-left: 10px; padding-right: 10px; color: #000000;"</span>&gt;</span>5<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"display: inline; border: solid 2px; border-color: #9e9e9e; border-radius: 8px; font-size: 30px; padding: 10px; padding-left: 10px; padding-right: 10px; color: #000000;"</span>&gt;</span>6<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">mj-text</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">mj-column</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">mj-section</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">mj-section</span> <span class="attr">background-color</span>=<span class="string">"white"</span> <span class="attr">padding-bottom</span>=<span class="string">"0px"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">mj-column</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mj-text</span> <span class="attr">align</span>=<span class="string">"center"</span> <span class="attr">padding-top</span>=<span class="string">"0px"</span> <span class="attr">padding-bottom</span>=<span class="string">"0px"</span> <span class="attr">font-size</span>=<span class="string">"15px"</span> <span class="attr">font-family</span>=<span class="string">"Barlow, Arial"</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">div</span>&gt;</span>If you didn't try signing in through Allihoop Co-living App, please ignore this email, we apologize for the inconvenience<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">mj-text</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">mj-column</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">mj-section</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">mj-section</span> <span class="attr">background-color</span>=<span class="string">"white"</span> <span class="attr">padding-bottom</span>=<span class="string">"0px"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">mj-column</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mj-text</span> <span class="attr">align</span>=<span class="string">"center"</span> <span class="attr">padding-top</span>=<span class="string">"0px"</span> <span class="attr">padding-bottom</span>=<span class="string">"0px"</span> <span class="attr">font-size</span>=<span class="string">"15px"</span> <span class="attr">font-family</span>=<span class="string">"Barlow, Arial"</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">div</span>&gt;</span>Questions? Please contact <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"mailto:community@allihoop.se"</span> <span class="attr">style</span>=<span class="string">"text-decoration: none;"</span>&gt;</span><span class="tag">&lt;<span class="name">b</span> <span class="attr">style</span>=<span class="string">"color: #116979;"</span>&gt;</span>community@allihoop.se<span class="tag">&lt;/<span class="name">b</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">mj-text</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">mj-column</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">mj-section</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;/<span class="name">mj-body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mjml</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+
+
+      </div>
+      
+       <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/hdchinh" target="_blank" rel="noopener">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2022/09/17/2022-09-17-mjml/" target="_blank" rel="noopener"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2022/09/17/2022-09-17-mjml/&text=Create email with MJML" target="_blank" rel="noopener"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2022/09/17/2022-09-17-mjml/&title=Create email with MJML" target="_blank" rel="noopener"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2022/09/17/2022-09-17-mjml/&is_video=false&description=Create email with MJML" target="_blank" rel="noopener"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Create email with MJML&body=Check out this article: https://hdchinh.github.io/2022/09/17/2022-09-17-mjml/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2022/09/17/2022-09-17-mjml/&title=Create email with MJML" target="_blank" rel="noopener"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2022/09/17/2022-09-17-mjml/&title=Create email with MJML" target="_blank" rel="noopener"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2022/09/17/2022-09-17-mjml/&title=Create email with MJML" target="_blank" rel="noopener"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2022/09/17/2022-09-17-mjml/&title=Create email with MJML" target="_blank" rel="noopener"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2022/09/17/2022-09-17-mjml/&name=Create email with MJML&description=" target="_blank" rel="noopener"><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+      
+      <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2022 Tam Thể
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/hdchinh" target="_blank" rel="noopener">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+      
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- Google Analytics -->
+
+<!-- Disqus Comments -->
+
+
+    </div>
+</body>
+</html>

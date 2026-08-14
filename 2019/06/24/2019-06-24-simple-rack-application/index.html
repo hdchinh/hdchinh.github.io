@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>
+        Notes
+    </title>
+    
+<link rel="stylesheet" href="/libs/highlight/styles/monokai-sublime.css">
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body id="bodyx">
+    <div class="hd posts">
+    <a href="/index.html"><i class="fa fa-reply replay-btn" aria-hidden="true"></i></a>
+    <div class="post-title">
+        <p>
+            A Simple Rack Application
+        </p>
+        <hr>
+    </div>
+    <div class="post-content">
+        <h2 id="1-Dat-van-de"><a href="#1-Dat-van-de" class="headerlink" title="1. Đặt vấn đề"></a>1. Đặt vấn đề</h2><p>Có lẽ cũng như tôi, khi mới tiếp cận với một framework ruby như Rails chẳng hạn, bạn đã nghe về Rack? hoặc ít ra cũng từng thấy cái <strong>gem rack</strong> trong Gemfile. Nhưng có khi nào bạn dùng đến chúng? Không ư? Tôi cũng nghĩ vậy, tôi cũng kệ, tôi cũng chả quan tâm, cuộc sống không đủ high hay sao mà lại đâm đầu vào cái khó :alien:.</p>
+<p>Nhưng làm việc hàng ngày với nó mà không hiểu nó là gì luôn làm cho ta cảm giác bất an vô định, cập nhật CV là Developer mà đi phỏng vấn được hỏi rack là gì, lại trả lời “em…em..em hông biết” thì liệu có bị đánh xuống rank junior hay không? Thôi thì cứ tìm hiểu coi nó ra sao.</p>
+<p>Và thế là tôi đã đọc docs trên trang chủ của Rack, nói chung đọc qua thì có hiểu, mà cái hiểu nó mông lung như một trò đùa, chút nữa thì đành phải “anh xin giơ tay rút lui thôi”.</p>
+<p>Vậy nên tôi sẽ viết một ứng dụng Rack (chạy trên Rack) very..very simple, để tôi và có thể cả bạn có cái nhìn thoáng qua về Rack trước đã, chứ tôi thấy hiểu biết hiện tại của mình chưa đủ để chém gió hàn lâm về chủ đề này (hy vọng tương lai gần sẽ có bài chém gió hàn lâm).</p>
+<h2 id="2-Tham-khao"><a href="#2-Tham-khao" class="headerlink" title="2. Tham khảo?"></a>2. Tham khảo?</h2><ol>
+<li><p>Bài viết này tôi tham khảo cách sử dụng Rack trên trang chủ của Rack <a href="https://rack.github.io/" target="_blank" rel="noopener">tại đây</a> và trên mục docs của ruby <a href="https://www.rubydoc.info/github/rack/rack/" target="_blank" rel="noopener">tại đây</a>.</p>
+</li>
+<li><p>Ứng dụng rất thô sơ và KHÔNG sử dụng “bét pờ rạch tít” nào cả.</p>
+</li>
+</ol>
+<h2 id="3-Kien-thuc-can-chuan-bi-truoc"><a href="#3-Kien-thuc-can-chuan-bi-truoc" class="headerlink" title="3. Kiến thức cần chuẩn bị trước."></a>3. Kiến thức cần chuẩn bị trước.</h2><p>Dù ít dù nhiều thì vẫn phải đánh qua lý thuyết một chút trước khi mày mò làm gì đó. Một số khái niệm/quy trình chúng ta nên nắm trước như sau:</p>
+<p>1) Rack là một lớp nằm giữa web/app server và ứng dụng.</p>
+<p>Ex: Nếu tôi sử dụng Rails với app server là Puma, web server là Nginx thì đường đi của một request sẽ như sau:</p>
+<p><img src="/images/rack.jpeg" alt="hoa"></p>
+<p>Note: Khái niệm <strong>web server</strong> và <strong>app server</strong> chúng ta sẽ bàn tới sau.</p>
+<p>2) Như hình trên, ta có thể thấy Rack sẽ giao tiếp với <strong>app server</strong>, nên Rack sẽ nhận request từ app server gửi qua, với nội dung lằng nhằng rối rắm gì đó, sau đó Rack sẽ <strong>làm gì đó</strong> với cái request rối rắm kia, rồi gửi kết quả mà Rails có thể hiểu và thực thi được. Sau đó Rails sẽ gửi về cho Rack kết quả cũng rối rắm không kém và nhiệm vụ của Rack lại là tiếp tục <strong>làm gì đó</strong> cái kết quả từ Rails, sao cho chuyển kết quả đó thành 1 thứ gì đó mà app server có thể hiểu, cuối cùng app server quăng kết quả về cho người dùng.</p>
+<p>Note: Vậy Rack như một phiên dịch viên để truyền đạt giữa ứng dụng và app server (Không thật sự đúng về bản chất nhưng ta cứ tạm chấp nhận liên tưởng này).</p>
+<h2 id="4-Build-mot-simple-Rack-application"><a href="#4-Build-mot-simple-Rack-application" class="headerlink" title="4. Build một simple Rack application"></a>4. Build một simple Rack application</h2><ul>
+<li>Tạo 1 Folder với 1 file tên <strong>Gemfile</strong> có nội dung như sau:</li>
+</ul>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">source <span class="string">'https://rubygems.org'</span></span><br><span class="line"></span><br><span class="line">gem <span class="string">'rack'</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>Cài đặt gem vói lệnh <strong>bundle install</strong></p>
+</li>
+<li><p>Tạo file <strong>config.ru</strong>.</p>
+</li>
+</ul>
+<p>Note: Đây sẽ là file main để xử lý request.</p>
+<ul>
+<li>Chạy project với lệnh <strong>bundle exec rackup</strong></li>
+</ul>
+<blockquote>
+<p>Project demo <a href="https://github.com/hdchinh/simple-rack-app" target="_blank" rel="noopener">tại đây!</a></p>
+</blockquote>
+<h2 id="5-Giai-thich-noi-dung-ma-nguon-cua-app-demo"><a href="#5-Giai-thich-noi-dung-ma-nguon-cua-app-demo" class="headerlink" title="5. Giải thích nội dung mã nguồn của app demo"></a>5. Giải thích nội dung mã nguồn của app demo</h2><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">map <span class="string">'/signup_user'</span> <span class="keyword">do</span></span><br><span class="line">  run SignUpUser.new</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">map <span class="string">'/signup'</span> <span class="keyword">do</span></span><br><span class="line">  run MySignUp.new</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">map <span class="string">'/signin'</span> <span class="keyword">do</span></span><br><span class="line">  run MySignIn.new</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">map <span class="string">'/signin_user'</span> <span class="keyword">do</span></span><br><span class="line">  run SignInUser.new</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">map <span class="string">'/'</span> <span class="keyword">do</span></span><br><span class="line">  run HomePage.new</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">run MyNotFound.new</span><br></pre></td></tr></table></figure>
+
+<p>Chắc bạn cũng có thể đoán ra ý nghĩa của nó, nếu map chúng đường dẫn thì sẽ chạy lệnh trong đó.</p>
+<p>Ex:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">map <span class="string">'/'</span> <span class="keyword">do</span></span><br><span class="line">  run HomePage.new</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>Nếu truy cập theo trang chủ thì sẽ chạy lệnh <strong>run HomePage.new</strong>.</p>
+<p>Nếu url người dùng request không trùng bất cứ trường hợp nào thì chạy lệnh <strong>run MyNotFound.new</strong> ở cuối.</p>
+<p>Một class sẽ có dạng như sau:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SignInUser</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">call</span><span class="params">(env)</span></span></span><br><span class="line">    <span class="comment"># read file data</span></span><br><span class="line">    file = File.read(<span class="string">'data.txt'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># get params</span></span><br><span class="line">    data =  Rack::Utils.parse_nested_query(env[<span class="string">'QUERY_STRING'</span>])</span><br><span class="line">    email = data[<span class="string">'email'</span>]</span><br><span class="line">    pass = data[<span class="string">'password'</span>]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># convert file data from string to hash</span></span><br><span class="line">    hash_data = eval(file)</span><br><span class="line">    <span class="comment"># init variable for user login</span></span><br><span class="line">    user_email = <span class="literal">nil</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># loop hash to find email params</span></span><br><span class="line">    hash_data.each <span class="keyword">do</span> <span class="params">|k, val|</span></span><br><span class="line">      <span class="keyword">if</span> k == email</span><br><span class="line">        <span class="keyword">if</span> val = pass</span><br><span class="line">          user_email = k</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">      <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> user_email</span><br><span class="line">      body = [<span class="string">"&lt;h1&gt;email: <span class="subst">#&#123;user_email&#125;</span>&lt;h/1&gt;"</span>]</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      body = [<span class="string">"&lt;h1&gt;Email or Password Invalid&lt;/h1&gt;"</span>]</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">    [<span class="number">200</span>, &#123;<span class="string">'Content-Type'</span> =&gt; <span class="string">'text/html'</span>&#125;, body]</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>Bạn thấy phức tạp? Không sao cả, chỉ cần chú ý đến dòng cuối cùng trong method call. Ta chỉ cần nhớ:</p>
+<ul>
+<li><p>Mỗi class sử dụng method call để cài đặt (yêu cầu của Rack).</p>
+</li>
+<li><p>Trong method này nhận vào một params, đây chính là request đi tới.</p>
+</li>
+<li><p>Kết quả trả về của method call này là một mảng gồm 3 phần tử:</p>
+<ol>
+<li>Status code (Ví dụ như: 200 -&gt; success, 404 -&gt; not found).</li>
+<li>Một hash, ở đây chính là header, chứa những thông tin mà trình duyệt cần.</li>
+<li>Phần tử cuối cùng là một mảng, chính là phần body của kết quả trả về.</li>
+</ol>
+</li>
+</ul>
+<h2 id="6-Ket-luan"><a href="#6-Ket-luan" class="headerlink" title="6. Kết luận"></a>6. Kết luận</h2><p>Trên là một basic app xây dựng với Rack, vì định nghĩa chỉ đọc không làm sẽ rất khó hiểu, nên tôi làm demo trước, hy vọng trong thời gian tới nếu kiến thức thu lượm đủ để viết về cách vận hành của Rack một cách sâu sắc, tôi có thể tiếp tục chủ đề này.</p>
+
+    </div>
+    <!-- 
+        <hr class="fhr">
+        <div id="vcomments"></div>
+     -->
+</div>
+
+    <div class="footer" id="footer">
+    <p>Copyright © 2020 <a class="flink" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a>-<a class="flink" href="https://github.com/sanjinhub/hexo-theme-geek" target="_blank" rel="noopener">Geek</a>.
+        <label class="el-switch el-switch-green el-switch-sm" style="vertical-align: sub;">
+            <input type="checkbox" name="switch" id="update_style">
+            <span class="el-switch-style"></span>
+        </label>
+<!--         <script type="text/javascript">
+        var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");
+        document.write(unescape("%3Cspan id='cnzz_stat_icon_1278548644'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/stat.php%3Fid%3D1278548644%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+        </script> -->
+    </p>
+</div>
+<input type="hidden" id="web_style" value="black">
+<input type="hidden" id="valine_appid" value="CmCti21ooOOIzFOhEyFkFvR0-gzGzoHsz">
+<input type="hidden" id="valine_appKey" value="FqiyUqbg7McKN2eG0MCewupf">
+
+<script src="/libs/jquery.min.js"></script>
+
+
+<script src="/libs/highlight/highlight.pack.js"></script>
+
+<script src='//cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+
+<script src="/js/js.js"></script>
+
+<style type="text/css">
+.v * {
+    color: #698fca;
+}
+
+.v .vlist .vcard .vhead .vsys {
+    color: #3a3e4a;
+}
+
+.v .vlist .vcard .vh .vmeta .vat {
+    color: #638fd5;
+}
+
+.v .vlist .vcard .vhead .vnick {
+    color: #6ba1ff;
+}
+
+.v a {
+    color: #8696b1;
+}
+
+.v .vlist .vcard .vhead .vnick:hover {
+    color: #669bfc;
+}
+</style>
+</body>
+
+</html>

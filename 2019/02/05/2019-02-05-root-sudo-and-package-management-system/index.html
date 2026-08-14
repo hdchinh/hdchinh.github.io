@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>
+        Notes
+    </title>
+    
+<link rel="stylesheet" href="/libs/highlight/styles/monokai-sublime.css">
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body id="bodyx">
+    <div class="hd posts">
+    <a href="/index.html"><i class="fa fa-reply replay-btn" aria-hidden="true"></i></a>
+    <div class="post-title">
+        <p>
+            Root, Sudo Và Package Management
+        </p>
+        <hr>
+    </div>
+    <div class="post-content">
+        <h2 id="1-Root"><a href="#1-Root" class="headerlink" title="1.Root"></a>1.Root</h2><p>Xin được nhắc lại một câu chuyện cũ tôi đã kể trong bài viết trước với ví dụ về mảnh đất nhà bạn, bạn sở hữu mảnh đất đó, vợ bạn sở hữu mảnh đất đó chung với bạn. Nhưng vợ chồng bạn không phải là những người sở hữu tối thượng của mảnh đất kể trên, mà quyền lực to lớn này thuộc về nhà nước, “người” thực ra là đang cho bạn thuê đất có thời hạn. Tương tự trọng Unix/Linux, sẽ có những user (như tài khoản bạn sử dụng để đăng nhập, hoặc tài khoản khách…).</p>
+<p>Việc những tài khoản này có thể đăng nhập vào hệ thống nhưng đặc quyền của chúng bị giới hạn. Khi login vào hệ thống, bạn có thể làm một số tác vụ nhất định chứ không thể thích làm gì thì làm, trong hệ thống của bạn chỉ có một user duy nhất được quyền làm bất cứ điều gì, đó là một super user.</p>
+<p>Trên windows, ta gọi đó là <strong>administrator</strong> (có lẽ quá quen thuộc, bạn còn nhớ những lúc cài phần mềm, bạn click vào file exe nhưng chương trình không chịu cài đặt, google một lát, bạn nhận được một hướng dẫn hãy click phải vào file exe đó và chọn <strong>run as administrator</strong>, đó chính là sức mạnh của super user trên windows), còn trên macOS hay Ubuntu(1 đại diện của Linux), nó được gọi là <strong>root</strong> (cuối cùng cũng chỉ là một cái tên gọi, nó có thể được đặt tên là mèo, là chó, nó có thể được đặt tên là bất cứ thứ gì, chúng ta không cần quan tâm, điều duy nhất chúng ta cần biết đó là trên các hệ điều hành con cháu của Unix sẽ luôn có một super user quyền lực như vậy).</p>
+<p>Đến lúc này, bạn sẽ tự hỏi tại sao phải thiết kế hệ thống phức tạp như vậy? Tại sao không chỉ dung duy nhất một loại user?<br>Câu trả lời rất đơn giản, không phải ai sử dụng máy tính cũng là những người dung có hiểu biết sâu sắc về hệ điều hành. Vì vậy, nếu trao cho họ những quyền lực quá lớn, họ có thể vô tình gây ra những huỷ hoại nghiêm trọng cho hệ thống (quyền lực càng lớn thì trách nhiệm càng lớn).</p>
+<p>Một vấn đề phát sinh nếu việc sử dụng Root mang tính rủi ro quá cao nhưng những user bình thường lại không có các quyền để cài đặt một số phần mềm nâng cao thì phải làm sao? Vấn đề này sẽ được giải thích ở mục số 2.</p>
+<p>Note: Trên macOS và Ubuntu, <strong>root</strong> mặc định sẽ được disable, chúng có thể sẽ được enable trở lại và re-disable. Cách thực hiện thì có lẽ bạn nên tìm kiếm hướng dẫn từ trang chủ của những hệ điều hành này để câu lệnh của bạn đảm bảo chính xác và không bị lỗi thời.</p>
+<h2 id="2-Sudo"><a href="#2-Sudo" class="headerlink" title="2.Sudo"></a>2.Sudo</h2><p>Như vấn đề tôi đã nêu ở cuối mục 1, bây giờ tôi muốn cài đặt một số phần mềm đòi hỏi quyền của super user, về lý thuyết tôi đứng giữa hai lựa chọn hoặc chuyển sang <strong>root</strong> và cài đặt phần mềm bình thường (rất rủi ro), phương án 2 là tôi vẫn sử dụng user thường và nói lời tạm biệt với những phần mềm kể trên.</p>
+<p>Quá tệ, cả hai giải pháp trên đều không ổn, thật may, các nhà phát triển hệ thống đã cung cấp cho chúng ta một lựa chọn số 3, đó là bạn vẫn sử dụng user thường nhưng có thể triệu hồi quyền lực của super user để thực hiện những lệnh nào đó.</p>
+<p>Cách sử dụng đó là bạn thêm câu lệnh <strong>sudo</strong> vào phía trước câu lệnh cần sử dụng quyền của super user. Ví dụ:</p>
+<p><strong>sudo apt-get update</strong></p>
+<p>Một nhầm lẫn thường xuyên với cả với tôi ngày mới tìm hiểu, đó là sau khi gõ những câu lệnh có <strong>sudo</strong>, hệ thống yêu cầu tôi nhập mật khẩu và tôi đã từng nghĩ đó là mật khẩu của <strong>root</strong> (nghe cũng hợp lý đấy chứ, ta mượn quyền của <strong>root</strong> thì phải sử dụng mật khẩu của <strong>root</strong> chứ nhỉ? Giống như khi tôi mượn nhà của bạn thì tôi phải có chìa khoá của bạn). Nhưng không phải như vậy, mật khẩu bạn nhập vào đơn thuần là chính mật khẩu của user thường bạn đang login trên máy.</p>
+<p>Phần đa các trường hợp khi bạn thêm <strong>sudo</strong>, các câu lệnh sẽ chạy một cách hoàn hảo. Tuy nhiên, cũng có những khi bạn không nhận được kết quả như mong đợi và lý do chính là không phải user nào cũng có thể triệu hồi quyền lực của super user. Điều bạn cần làm khi đó là “nói” với hệ điều hành rằng hãy cho user của tôi đang sử dụng được quyền triệu hồi sức mạnh của super user. Hãy xem ví dụ dưới đây:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#=&gt; /etc/sudoers (lưu trữ các user được quyền thực hiện đặc quyền của super user)</span></span><br><span class="line"><span class="comment">#=&gt; Ví dụ</span></span><br><span class="line">root ALL=(<span class="symbol">ALL:</span>ALL) ALL</span><br><span class="line"><span class="comment">#=&gt; user đang xét quyền tên là root</span></span><br><span class="line"><span class="comment">#=&gt; Chữ all đầu tiên chỉ ra rằng rule này được áp dụng cho tất cả các host</span></span><br><span class="line"><span class="comment">#=&gt; Chữ all thứ hai chỉ ra, account root có thể chạy lệnh với quyền của bất kỳ user nào.</span></span><br><span class="line"><span class="comment">#=&gt; Chữ all thứ ba chỉ ra, account root có thể chạy lệnh với quyền của bất kỳ group nào.</span></span><br><span class="line"><span class="comment">#=&gt; Chữ all cuối cùng chỉ ra, account root có thể chạy bất kỳ command nào.</span></span><br></pre></td></tr></table></figure>
+
+<p>Note: Kể từ khi bạn nhập mật khẩu sau khi gõ lệnh <strong>sudo</strong> lần đầu, thời gian có hiệu lực của mật khẩu này sẽ là 15 phút. Trong khoảng thời gian đó bạn có thể chạy các lệnh <strong>sudo</strong> khác mà hệ điều hành không yêu cầu bạn nhập lại mật khẩu.</p>
+<h2 id="3-Package-management-system"><a href="#3-Package-management-system" class="headerlink" title="3.Package management system"></a>3.Package management system</h2><p>Khi sử dụng macOS, để cài đặt thêm các phần mềm phục vụ công việc (mà chúng không được support trên appstore), tôi sử dụng <strong>homebrew</strong>, một phần mềm giúp quản lý các phần mềm khác rất hiệu quả.</p>
+<p>Vậy còn trên Linux chúng ta có gì?</p>
+<p>Trước hết cần phải làm rõ: Package management system là một công cụ hoặc một hệ thống các công cụ được sử dụng để handle các package.</p>
+<ol>
+<li>Handle là quản lý với đầy đủ các chức năng như thêm mới, gỡ bỏ, nâng cấp, tìm kiếm..v..v…</li>
+<li>Package là một tiện ích hoặc những phần bổ trợ cho một tiện ích nào đó (thực sự cuối cùng nó cũng chỉ là tập hợp của các file).</li>
+</ol>
+<p>Một <strong>Package Management System</strong> nổi tiếng trên Linux đó là <strong>DPKG</strong>, nó là một công cụ để cài đặt các package có đuôi .deb (các package dành cho các hệ điều hành thuộc dòng debian).<br>Nhiệm vụ của <strong>DPKG</strong> là install hoặc remove một package (với điều kiện các file cần thiết đã có trên local).</p>
+<p>Đến đây nhiều bạn có thể thắc mắc rằng từ trước đến giờ bạn chưa hề sử dụng các dòng lệnh liên quan đến <strong>DPKG</strong>, vậy tại sao tôi lại bảo là nó rất phổ biến? Câu trả lời đó là bạn đang sử dụng các phần mềm package management system khác được xây dựng dựa trên phần core là <strong>DPKG</strong>, một trong số đó là <strong>APT–GET/APT</strong>.</p>
+<p>Ưu điểm lớn nhất của <strong>APT</strong> so với <strong>DPKG</strong> đó là <strong>DPKG</strong> chỉ có thể cài đặt file khi mà file đó đã có trên local (tức là bằng cách nào đó bạn phải download hoặc copy file đó về máy của bạn). Còn với <strong>APT</strong>, nó sẽ tìm kiếm các package đó từ <strong>remote repositories</strong>, sau đó download chúng về máy.</p>
+<p>Điểm mạnh thứ hai của <strong>APT</strong> so với <strong>DPKG</strong> đó là nó giải quyết được bài toán dependencies. Nếu package bạn cần cài đặt phụ thuộc vào một vài package khác, nếu sử dụng <strong>DPKG</strong> thì bạn sẽ phải cài đặt tất cả các package kể trên một cách thủ công.<br>Còn với <strong>APT</strong>, nó sẽ tự hiểu được package đó cần thêm những phụ trợ nào và tự động cài đặt phần phụ trợ.</p>
+<p>Điều thật sự diễn ra đó là trong <strong>APT</strong>, <strong>DPKG</strong> vẫn tồn tại. Nó tồn tại ở một cấp thấp hơn và thực hiện các chỉ thị của <strong>APT</strong>.</p>
+<p>Note: Các <strong>remote repositories</strong> để phần mềm package management của bạn tìm kiếm sẽ được lưu trữ trong file <strong>/etc/apt/sources.list</strong> (đa số là như vậy).</p>
+<h2 id="4-Tham-khao"><a href="#4-Tham-khao" class="headerlink" title="4. Tham khảo"></a>4. Tham khảo</h2><p>[1] <a href="https://www.quora.com/What-is-package-management" target="_blank" rel="noopener">https://www.quora.com/What-is-package-management</a></p>
+<p>[2] <a href="https://www.tecmint.com/linux-package-management/" target="_blank" rel="noopener">https://www.tecmint.com/linux-package-management/</a></p>
+
+    </div>
+    <!-- 
+        <hr class="fhr">
+        <div id="vcomments"></div>
+     -->
+</div>
+
+    <div class="footer" id="footer">
+    <p>Copyright © 2020 <a class="flink" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a>-<a class="flink" href="https://github.com/sanjinhub/hexo-theme-geek" target="_blank" rel="noopener">Geek</a>.
+        <label class="el-switch el-switch-green el-switch-sm" style="vertical-align: sub;">
+            <input type="checkbox" name="switch" id="update_style">
+            <span class="el-switch-style"></span>
+        </label>
+<!--         <script type="text/javascript">
+        var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");
+        document.write(unescape("%3Cspan id='cnzz_stat_icon_1278548644'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/stat.php%3Fid%3D1278548644%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+        </script> -->
+    </p>
+</div>
+<input type="hidden" id="web_style" value="black">
+<input type="hidden" id="valine_appid" value="CmCti21ooOOIzFOhEyFkFvR0-gzGzoHsz">
+<input type="hidden" id="valine_appKey" value="FqiyUqbg7McKN2eG0MCewupf">
+
+<script src="/libs/jquery.min.js"></script>
+
+
+<script src="/libs/highlight/highlight.pack.js"></script>
+
+<script src='//cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+
+<script src="/js/js.js"></script>
+
+<style type="text/css">
+.v * {
+    color: #698fca;
+}
+
+.v .vlist .vcard .vhead .vsys {
+    color: #3a3e4a;
+}
+
+.v .vlist .vcard .vh .vmeta .vat {
+    color: #638fd5;
+}
+
+.v .vlist .vcard .vhead .vnick {
+    color: #6ba1ff;
+}
+
+.v a {
+    color: #8696b1;
+}
+
+.v .vlist .vcard .vhead .vnick:hover {
+    color: #669bfc;
+}
+</style>
+</body>
+
+</html>

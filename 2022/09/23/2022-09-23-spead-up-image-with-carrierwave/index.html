@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>
+        Notes
+    </title>
+    
+<link rel="stylesheet" href="/libs/highlight/styles/monokai-sublime.css">
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body id="bodyx">
+    <div class="hd posts">
+    <a href="/index.html"><i class="fa fa-reply replay-btn" aria-hidden="true"></i></a>
+    <div class="post-title">
+        <p>
+            Speed up images processing with carrierwave
+        </p>
+        <hr>
+    </div>
+    <div class="post-content">
+        <ol>
+<li><p>Compress images from Frontend side before submit via API</p>
+</li>
+<li><p>Use worker to create thumbnail, preview version of images if needed</p>
+</li>
+</ol>
+<p>E.g: Create thumbnail image from original image URL</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">require</span> <span class="string">"open-uri"</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">"mini_magick"</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ImageOptimizerService</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">initialize</span><span class="params">(media_file_id)</span></span></span><br><span class="line">    @media_file = MediaFile.find(media_file_id)</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">perform</span></span></span><br><span class="line">    content = open(@media_file.file_url)</span><br><span class="line">    width = <span class="number">100</span></span><br><span class="line">    height = <span class="number">100</span></span><br><span class="line">    quality = <span class="number">30</span></span><br><span class="line"></span><br><span class="line">    img = MiniMagick::Image.read(content)</span><br><span class="line">    w_original = img[<span class="symbol">:width</span>].to_f</span><br><span class="line">    h_original = img[<span class="symbol">:height</span>].to_f</span><br><span class="line"></span><br><span class="line">    <span class="comment"># check proportions</span></span><br><span class="line">    op_resize = w_original * height &lt; h_original * width ? <span class="string">"<span class="subst">#&#123;width.to_i&#125;</span>x"</span> : <span class="string">"x<span class="subst">#&#123;height.to_i&#125;</span>"</span></span><br><span class="line"></span><br><span class="line">    img.combine_options <span class="keyword">do</span> <span class="params">|i|</span></span><br><span class="line">      i.resize(op_resize)</span><br><span class="line">      i.gravity(<span class="symbol">:center</span>)</span><br><span class="line">      i.quality quality.to_s <span class="keyword">if</span> quality.to_i &gt; <span class="number">1</span> &amp;&amp; quality.to_i &lt; <span class="number">100</span></span><br><span class="line">      i.crop <span class="string">"<span class="subst">#&#123;width.to_i&#125;</span>x<span class="subst">#&#123;height.to_i&#125;</span>+0+0!"</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">    img.format(<span class="string">"jpg"</span>)</span><br><span class="line"></span><br><span class="line">    media_file = MediaFile.create(<span class="symbol">file:</span> img)</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>Use CloudFront</li>
+</ol>
+<p>Create AWS CloudFront and get the CDN endpoint</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">config.asset_host = <span class="string">"https://your_random_string.cloudfront.net"</span></span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>Override default method</li>
+</ol>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">move_to_cache</span></span></span><br><span class="line">  <span class="literal">true</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">move_to_store</span></span></span><br><span class="line">  <span class="literal">true</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+    </div>
+    <!-- 
+        <hr class="fhr">
+        <div id="vcomments"></div>
+     -->
+</div>
+
+    <div class="footer" id="footer">
+    <p>Copyright © 2020 <a class="flink" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a>-<a class="flink" href="https://github.com/sanjinhub/hexo-theme-geek" target="_blank" rel="noopener">Geek</a>.
+        <label class="el-switch el-switch-green el-switch-sm" style="vertical-align: sub;">
+            <input type="checkbox" name="switch" id="update_style">
+            <span class="el-switch-style"></span>
+        </label>
+<!--         <script type="text/javascript">
+        var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");
+        document.write(unescape("%3Cspan id='cnzz_stat_icon_1278548644'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/stat.php%3Fid%3D1278548644%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+        </script> -->
+    </p>
+</div>
+<input type="hidden" id="web_style" value="black">
+<input type="hidden" id="valine_appid" value="CmCti21ooOOIzFOhEyFkFvR0-gzGzoHsz">
+<input type="hidden" id="valine_appKey" value="FqiyUqbg7McKN2eG0MCewupf">
+
+<script src="/libs/jquery.min.js"></script>
+
+
+<script src="/libs/highlight/highlight.pack.js"></script>
+
+<script src='//cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+
+<script src="/js/js.js"></script>
+
+<style type="text/css">
+.v * {
+    color: #698fca;
+}
+
+.v .vlist .vcard .vhead .vsys {
+    color: #3a3e4a;
+}
+
+.v .vlist .vcard .vh .vmeta .vat {
+    color: #638fd5;
+}
+
+.v .vlist .vcard .vhead .vnick {
+    color: #6ba1ff;
+}
+
+.v a {
+    color: #8696b1;
+}
+
+.v .vlist .vcard .vhead .vnick:hover {
+    color: #669bfc;
+}
+</style>
+</body>
+
+</html>

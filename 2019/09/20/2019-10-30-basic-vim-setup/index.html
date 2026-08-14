@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>
+        Notes
+    </title>
+    
+<link rel="stylesheet" href="/libs/highlight/styles/monokai-sublime.css">
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body id="bodyx">
+    <div class="hd posts">
+    <a href="/index.html"><i class="fa fa-reply replay-btn" aria-hidden="true"></i></a>
+    <div class="post-title">
+        <p>
+            Basic Vim Setup
+        </p>
+        <hr>
+    </div>
+    <div class="post-content">
+        <ol>
+<li>Plugin management: <a href="https://github.com/junegunn/vim-plug#installation" target="_blank" rel="noopener">https://github.com/junegunn/vim-plug#installation</a></li>
+<li>Tree project: <a href="https://github.com/scrooloose/nerdtree" target="_blank" rel="noopener">https://github.com/scrooloose/nerdtree</a></li>
+<li>Code complete: <a href="https://github.com/ycm-core/YouCompleteMe#installation" target="_blank" rel="noopener">https://github.com/ycm-core/YouCompleteMe#installation</a></li>
+<li>Control + P: <a href="https://github.com/ctrlpvim/ctrlp.vim" target="_blank" rel="noopener">https://github.com/ctrlpvim/ctrlp.vim</a></li>
+<li>Monakai theme: <a href="https://github.com/sickill/vim-monokai" target="_blank" rel="noopener">https://github.com/sickill/vim-monokai</a></li>
+<li>Vimfile:</li>
+</ol>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">call</span> plug#begin(<span class="string">'~/.vim/plugged'</span>)</span><br><span class="line"></span><br><span class="line">Plug <span class="string">'https://github.com/scrooloose/nerdtree.git'</span></span><br><span class="line">Plug <span class="string">'morhetz/gruvbox'</span></span><br><span class="line">Plug <span class="string">'vim-airline/vim-airline'</span></span><br><span class="line">Plug <span class="string">'scrooloose/nerdcommenter'</span></span><br><span class="line"><span class="comment">" Plug 'dracula/vim', &#123; 'as': 'dracula' &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">" Initialize plugin system</span></span><br><span class="line"><span class="keyword">call</span> plug#end()</span><br><span class="line"></span><br><span class="line"><span class="comment">" Set colorscheme</span></span><br><span class="line"><span class="comment">" colorscheme gruvbox</span></span><br><span class="line"></span><br><span class="line"><span class="comment">" Set dark background</span></span><br><span class="line"><span class="comment">"set background=dark</span></span><br><span class="line"></span><br><span class="line"><span class="comment">" Use monokai</span></span><br><span class="line"><span class="comment">" syntax enable</span></span><br><span class="line"><span class="keyword">colorscheme</span> monokai</span><br><span class="line"></span><br><span class="line"><span class="comment">" Copy clibboard</span></span><br><span class="line"><span class="keyword">set</span> clipboard=unnamedplus</span><br><span class="line"></span><br><span class="line"><span class="comment">" Use ctrlp</span></span><br><span class="line"><span class="keyword">set</span> runtimepath^=~/.<span class="keyword">vim</span>/bundle/ctrlp.<span class="keyword">vim</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="built_in">has</span>(<span class="string">'mouse'</span>)</span><br><span class="line">  <span class="keyword">set</span> mouse=<span class="keyword">a</span></span><br><span class="line"><span class="keyword">endif</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span> <span class="keyword">nu</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span> autoindent</span><br><span class="line"><span class="keyword">set</span> si <span class="string">"smart indent"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">syntax</span> <span class="keyword">on</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">autocmd</span> StdinReadPre * <span class="keyword">let</span> <span class="variable">s:std_in</span>=<span class="number">1</span></span><br><span class="line"><span class="keyword">autocmd</span> VimEnter * <span class="keyword">if</span> <span class="built_in">argc</span>() == <span class="number">0</span> &amp;&amp; !exists(<span class="string">"s:std_in"</span>) | NERDTree | <span class="keyword">endif</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">autocmd</span> bufenter * <span class="keyword">if</span> (<span class="built_in">winnr</span>(<span class="string">"$"</span>) == <span class="number">1</span> &amp;&amp; <span class="built_in">exists</span>(<span class="string">"b:NERDTree"</span>) &amp;&amp; <span class="variable">b:NERDTree</span>.isTabTree()) | q | <span class="keyword">endif</span></span><br><span class="line"><span class="keyword">map</span> <span class="symbol">&lt;C-n&gt;</span> :NERDTreeToggle<span class="symbol">&lt;CR&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span> expandtab</span><br><span class="line"><span class="keyword">set</span> tabstop=<span class="number">2</span></span><br><span class="line"><span class="keyword">set</span> softtabstop=<span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+    </div>
+    <!-- 
+        <hr class="fhr">
+        <div id="vcomments"></div>
+     -->
+</div>
+
+    <div class="footer" id="footer">
+    <p>Copyright © 2020 <a class="flink" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a>-<a class="flink" href="https://github.com/sanjinhub/hexo-theme-geek" target="_blank" rel="noopener">Geek</a>.
+        <label class="el-switch el-switch-green el-switch-sm" style="vertical-align: sub;">
+            <input type="checkbox" name="switch" id="update_style">
+            <span class="el-switch-style"></span>
+        </label>
+<!--         <script type="text/javascript">
+        var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");
+        document.write(unescape("%3Cspan id='cnzz_stat_icon_1278548644'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/stat.php%3Fid%3D1278548644%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+        </script> -->
+    </p>
+</div>
+<input type="hidden" id="web_style" value="black">
+<input type="hidden" id="valine_appid" value="CmCti21ooOOIzFOhEyFkFvR0-gzGzoHsz">
+<input type="hidden" id="valine_appKey" value="FqiyUqbg7McKN2eG0MCewupf">
+
+<script src="/libs/jquery.min.js"></script>
+
+
+<script src="/libs/highlight/highlight.pack.js"></script>
+
+<script src='//cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+
+<script src="/js/js.js"></script>
+
+<style type="text/css">
+.v * {
+    color: #698fca;
+}
+
+.v .vlist .vcard .vhead .vsys {
+    color: #3a3e4a;
+}
+
+.v .vlist .vcard .vh .vmeta .vat {
+    color: #638fd5;
+}
+
+.v .vlist .vcard .vhead .vnick {
+    color: #6ba1ff;
+}
+
+.v a {
+    color: #8696b1;
+}
+
+.v .vlist .vcard .vhead .vnick:hover {
+    color: #669bfc;
+}
+</style>
+</body>
+
+</html>

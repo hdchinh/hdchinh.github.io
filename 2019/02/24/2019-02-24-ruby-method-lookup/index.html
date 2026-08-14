@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>
+        Notes
+    </title>
+    
+<link rel="stylesheet" href="/libs/highlight/styles/monokai-sublime.css">
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body id="bodyx">
+    <div class="hd posts">
+    <a href="/index.html"><i class="fa fa-reply replay-btn" aria-hidden="true"></i></a>
+    <div class="post-title">
+        <p>
+            Method Lookup Trong Ruby
+        </p>
+        <hr>
+    </div>
+    <div class="post-content">
+        <h2 id="1-Method-Lookup"><a href="#1-Method-Lookup" class="headerlink" title="1. Method Lookup"></a>1. Method Lookup</h2><p>Đã khi nào bạn tự hỏi, giả sử nếu bạn có một class A, và class này include thêm hai module vào nữa, nếu trong hai module đó cùng định nghĩa một phương thức, vậy khi instance của A gọi đến phương thức đó, điều gì sẽ xảy ra? Phương thức trong module nào được chạy?</p>
+<p>Câu trả lời là thứ tự các phương thức được ruby tìm kiếm như sau:</p>
+<ol>
+<li><p>Phương thức được định nghĩa trong <strong>object’s singleton class</strong>.</p>
+</li>
+<li><p>Phương thức trong <strong>module</strong> được mixin trong <strong>singleton class</strong>(Theo thứ tự đảo ngược, vào sau sẽ tìm kiếm trước).</p>
+</li>
+<li><p>Phương thức được định nghĩa trong <strong>class</strong> của đối tượng ta đang xét.</p>
+</li>
+<li><p>Phương thức trong các <strong>module</strong> được <strong>include</strong> vào class ta đang xét (Cũng theo tứ tự đảo ngược).</p>
+</li>
+<li><p>Phương thức trong <strong>Super class</strong> của class ta đang xét.</p>
+</li>
+</ol>
+<p>Để làm rõ điều đã nói hãy xét ví dụ dưới đây:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">module</span> <span class="title">One</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">hello</span></span></span><br><span class="line">    <span class="string">"I'm one (include in class Test)"</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">module</span> <span class="title">Two</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">hello</span></span></span><br><span class="line">    <span class="string">"I'm two (include in class Test)"</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">module</span> <span class="title">Three</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">hello</span></span></span><br><span class="line">    <span class="string">"I'm three (extend)"</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">module</span> <span class="title">Four</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">hello</span></span></span><br><span class="line">    <span class="string">"I'm four (extend)"</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FatherOfTest</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">hello</span></span></span><br><span class="line">   <span class="string">"I'm father of test class"</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span> &lt; FatherOfTest</span></span><br><span class="line">  <span class="keyword">include</span> One</span><br><span class="line">  <span class="keyword">include</span> Two</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">hello</span></span></span><br><span class="line">    <span class="string">"It's my hello - Test class"</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">m = Test.new</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">m</span>.<span class="title">hello</span></span></span><br><span class="line">  <span class="string">"I'm object m"</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">m.extend(Three)</span><br><span class="line">m.extend(Four)</span><br><span class="line"></span><br><span class="line">m.hello</span><br></pre></td></tr></table></figure>
+
+<p>Tất nhiên đoạn mã trên sẽ có output là:</p>
+<p><strong>“I’m object m”</strong></p>
+<p>Theo thứ tự tìm kiếm đã liệt kê ở trên, khi ruby tìm thấy phương thức lần đầu nó sẽ dừng tìm kiếm và khi đi hết các thứ tự và vẫn không tìm được thì nó sẽ gọi đến một phương thức mặc đinh là <strong>method_missing</strong>.</p>
+<p>Bỏ đoạn code:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">m</span>.<span class="title">hello</span></span></span><br><span class="line">  <span class="string">"I'm object m"</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>Chạy lại ta nhận được kết quả:</p>
+<p><strong>“I’m four (extend)”</strong></p>
+<p>Làm tương tự rồi ta sẽ tìm ra thứ tự ưu tiên kết quả như sau:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># phương thức hello cho riêng instance m</span></span><br><span class="line"><span class="string">"I'm object m"</span></span><br><span class="line"><span class="comment"># phương thức được extend riêng cho m</span></span><br><span class="line"><span class="string">"I'm four (extend)"</span></span><br><span class="line"><span class="string">"I'm three (extend)"</span></span><br><span class="line"><span class="comment"># phương thức trong chính class Test, class của m</span></span><br><span class="line"><span class="string">"It's my hello - Test class"</span></span><br><span class="line"><span class="comment"># phương thức trong module được include vào Class Test</span></span><br><span class="line"><span class="string">"I'm two (include in class Test)"</span></span><br><span class="line"><span class="string">"I'm one (include in class Test)"</span></span><br><span class="line"><span class="comment"># phương thức trong lớp cha của Class Test</span></span><br><span class="line"><span class="string">"I'm father of test class"</span></span><br></pre></td></tr></table></figure>
+
+<p>Nếu bạn đang còn một chút bối rối vì những từ khoá và cách sử dụng <strong>extend</strong> và <strong>include</strong> hãy đọc tiếp mục dưới.</p>
+<h2 id="2-Extend-Include-trong-Ruby"><a href="#2-Extend-Include-trong-Ruby" class="headerlink" title="2. Extend, Include trong Ruby"></a>2. Extend, Include trong Ruby</h2><p>Trong ruby không có đa kế thừa, thay vào đó ruby sử dụng <strong>mixin</strong>.</p>
+<p>Một class chỉ được kế thừa từ một class khác. Tuy nhiên nó được <strong>mixin</strong> nhiều <strong>module</strong> bằng hai phương thức là <strong>include</strong> và <strong>extend</strong>.</p>
+<p><strong>include:</strong> với việc bạn include moudle A vào trong class B, đồng nghĩa với việc instance của class B có thể sử dụng tất cả các <strong>instance method</strong> trong moudle A. Vậy còn <strong>module method</strong> trong A thì sao? Câu trả lời là những <strong>module method</strong> trong A thì A sử dụng thôi.</p>
+<p><strong>extend:</strong> đúng với ngữ nghĩa của nó, <strong>mở rộng</strong>, <strong>extend</strong> có thể dùng để mở rộng một class hoặc cũng có thể dùng để mở rộng một instance.  Trong ví dụ trên mục 1, tôi <strong>extend</strong> object <strong>m</strong>, từ đó giúp m được mở rộng thêm các phương thức ứng với tất cả các <strong>instance method</strong> trong module nó extend (đây là “mở rộng” cho một đối tượng). Nếu tôi muốn mở rộng cho một class, tôi sẽ extend moudle trong class đó, và sau đó tất cả các <strong>instance method</strong> trong module sẽ trở thành như các <strong>class method</strong> cho class (đây là sự “mở rộng” cho một lớp). Vậy còn <strong>module method</strong> trong moudle thì sao?Câu trả lời vẫn như trên, những phương thức module thì để module đó sử dụng.</p>
+
+    </div>
+    <!-- 
+        <hr class="fhr">
+        <div id="vcomments"></div>
+     -->
+</div>
+
+    <div class="footer" id="footer">
+    <p>Copyright © 2020 <a class="flink" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a>-<a class="flink" href="https://github.com/sanjinhub/hexo-theme-geek" target="_blank" rel="noopener">Geek</a>.
+        <label class="el-switch el-switch-green el-switch-sm" style="vertical-align: sub;">
+            <input type="checkbox" name="switch" id="update_style">
+            <span class="el-switch-style"></span>
+        </label>
+<!--         <script type="text/javascript">
+        var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");
+        document.write(unescape("%3Cspan id='cnzz_stat_icon_1278548644'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/stat.php%3Fid%3D1278548644%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+        </script> -->
+    </p>
+</div>
+<input type="hidden" id="web_style" value="black">
+<input type="hidden" id="valine_appid" value="CmCti21ooOOIzFOhEyFkFvR0-gzGzoHsz">
+<input type="hidden" id="valine_appKey" value="FqiyUqbg7McKN2eG0MCewupf">
+
+<script src="/libs/jquery.min.js"></script>
+
+
+<script src="/libs/highlight/highlight.pack.js"></script>
+
+<script src='//cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+
+<script src="/js/js.js"></script>
+
+<style type="text/css">
+.v * {
+    color: #698fca;
+}
+
+.v .vlist .vcard .vhead .vsys {
+    color: #3a3e4a;
+}
+
+.v .vlist .vcard .vh .vmeta .vat {
+    color: #638fd5;
+}
+
+.v .vlist .vcard .vhead .vnick {
+    color: #6ba1ff;
+}
+
+.v a {
+    color: #8696b1;
+}
+
+.v .vlist .vcard .vhead .vnick:hover {
+    color: #669bfc;
+}
+</style>
+</body>
+
+</html>

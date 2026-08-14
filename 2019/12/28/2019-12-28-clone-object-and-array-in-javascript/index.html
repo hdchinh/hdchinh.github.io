@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>
+        Notes
+    </title>
+    
+<link rel="stylesheet" href="/libs/highlight/styles/monokai-sublime.css">
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body id="bodyx">
+    <div class="hd posts">
+    <a href="/index.html"><i class="fa fa-reply replay-btn" aria-hidden="true"></i></a>
+    <div class="post-title">
+        <p>
+            Clone Object And Array In JS
+        </p>
+        <hr>
+    </div>
+    <div class="post-content">
+        <blockquote>
+<p>Recommend from some developers who have more exp than me: ‘Should use LoDash library’</p>
+</blockquote>
+<h2 id="Why-do-we-have-to-clone"><a href="#Why-do-we-have-to-clone" class="headerlink" title="Why do we have to clone?"></a>Why do we have to clone?</h2><p>In fact, when we working on our projects, many times we need to get data from an object or an array and use it for some features what we want. In some cases, we need to change data from original object, but some other cases we need a version copy because we must keep original data not change.</p>
+<p>So, in this case, what do you do? Do you ever think we can do it easy by some code below:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;<span class="attr">name</span>: <span class="string">'Chinh'</span>, <span class="attr">age</span>: <span class="number">25</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> copy_obj = obj</span><br></pre></td></tr></table></figure>
+
+<p>And we now can free to change <strong>copy_obj</strong> without fear of changing <strong>obj</strong>?</p>
+<p>So sad, the above way cannot work right. Why? why it is wrong? Everything same like fine, what’s problem we have?</p>
+<blockquote>
+<p>The problem at here is <strong>Objects(array is an object) are reference types</strong>.</p>
+</blockquote>
+<p>What does that mean?</p>
+<p>That mean: Reference types doesn’t hold any data, it’s only contains a pointer to the value of object in memory.</p>
+<p>When you use <strong>=</strong>, <strong>copy_obj</strong> will contains a pointer to the value of <strong>obj</strong>. So, if you change anything in <strong>copy_obj</strong> or <strong>obj</strong>, the other variable will change too.</p>
+<h2 id="Clone-Object-and-Array"><a href="#Clone-Object-and-Array" class="headerlink" title="Clone Object and Array"></a>Clone Object and Array</h2><blockquote>
+<p>We have many ways to clone an object, but there are three main ways need to know.</p>
+</blockquote>
+<ol>
+<li>Use spread syntax.</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;<span class="attr">name</span>: <span class="string">'Chinh'</span>, <span class="attr">age</span>: <span class="number">25</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> copy_obj = &#123;...obj&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>Use Object.assign</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;<span class="attr">name</span>: <span class="string">'Chinh'</span>, <span class="attr">age</span>: <span class="number">25</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> copy_obj = <span class="built_in">Object</span>.assign(&#123;&#125;, obj)</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>Use JSON</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;<span class="attr">name</span>: <span class="string">'Chinh'</span>, <span class="attr">age</span>: <span class="number">25</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> copy_obj = <span class="built_in">JSON</span>.parse(<span class="built_in">JSON</span>.stringify(obj))</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>We know in javascript, array is also an object, thus all approach that we use for object above can apply for array too.</p>
+</blockquote>
+<h2 id="Deep-Clone-And-Shallow-Clone"><a href="#Deep-Clone-And-Shallow-Clone" class="headerlink" title="Deep Clone And Shallow Clone"></a>Deep Clone And Shallow Clone</h2><blockquote>
+<p>Deep Clone is mean copy everything to another memory.</p>
+</blockquote>
+<blockquote>
+<p>Shallow Clone is mean it’s only copy first level of original object to another memory.From second level it’s references to original object.</p>
+</blockquote>
+<blockquote>
+<p>Use Object.asign or JSON are deep clone. In the most cases, using Object.assign show a lot faster than JSON.</p>
+</blockquote>
+<blockquote>
+<p>Use spread is shallow clone.</p>
+</blockquote>
+<p>Take a look to the sample code below to know why use spread is shallow clone:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">obj = &#123;</span><br><span class="line">  name: <span class="string">'Chinh'</span>,</span><br><span class="line">  age: <span class="number">25</span></span><br><span class="line">  location: &#123;</span><br><span class="line">    city: <span class="string">'Saigon'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">clone_obj = &#123;...obj&#125;</span><br><span class="line"></span><br><span class="line">clone_obj.name = <span class="string">"Duy Chinh"</span></span><br><span class="line"></span><br><span class="line">clone_obj.location.city = <span class="string">"Nam Dinh"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(obj)</span><br></pre></td></tr></table></figure>
+
+<p>The result will be:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  name: <span class="string">"Chinh"</span>,</span><br><span class="line">  age: <span class="number">25</span>,</span><br><span class="line">  location: &#123;</span><br><span class="line">    city: <span class="string">"Nam Dinh"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>City in original object has changed</p>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><p>[1]<a href="https://www.samanthaming.com/tidbits/50-how-to-deep-clone-an-array" target="_blank" rel="noopener">https://www.samanthaming.com/tidbits/50-how-to-deep-clone-an-array</a></p>
+<p>[2]<a href="https://www.samanthaming.com/tidbits/70-3-ways-to-clone-objects" target="_blank" rel="noopener">https://www.samanthaming.com/tidbits/70-3-ways-to-clone-objects</a></p>
+
+    </div>
+    <!-- 
+        <hr class="fhr">
+        <div id="vcomments"></div>
+     -->
+</div>
+
+    <div class="footer" id="footer">
+    <p>Copyright © 2020 <a class="flink" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a>-<a class="flink" href="https://github.com/sanjinhub/hexo-theme-geek" target="_blank" rel="noopener">Geek</a>.
+        <label class="el-switch el-switch-green el-switch-sm" style="vertical-align: sub;">
+            <input type="checkbox" name="switch" id="update_style">
+            <span class="el-switch-style"></span>
+        </label>
+<!--         <script type="text/javascript">
+        var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");
+        document.write(unescape("%3Cspan id='cnzz_stat_icon_1278548644'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/stat.php%3Fid%3D1278548644%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+        </script> -->
+    </p>
+</div>
+<input type="hidden" id="web_style" value="black">
+<input type="hidden" id="valine_appid" value="CmCti21ooOOIzFOhEyFkFvR0-gzGzoHsz">
+<input type="hidden" id="valine_appKey" value="FqiyUqbg7McKN2eG0MCewupf">
+
+<script src="/libs/jquery.min.js"></script>
+
+
+<script src="/libs/highlight/highlight.pack.js"></script>
+
+<script src='//cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+
+<script src="/js/js.js"></script>
+
+<style type="text/css">
+.v * {
+    color: #698fca;
+}
+
+.v .vlist .vcard .vhead .vsys {
+    color: #3a3e4a;
+}
+
+.v .vlist .vcard .vh .vmeta .vat {
+    color: #638fd5;
+}
+
+.v .vlist .vcard .vhead .vnick {
+    color: #6ba1ff;
+}
+
+.v a {
+    color: #8696b1;
+}
+
+.v .vlist .vcard .vhead .vnick:hover {
+    color: #669bfc;
+}
+</style>
+</body>
+
+</html>

@@ -2,9 +2,11 @@ body {
   background-color: #3a3e4a;
   color: #d2d2d2;
   font-weight: 400;
-  font-size: 14px;
+  font-size: 16px;
   font-family: "Menlo", "Meslo LG", monospace;
-  line-height: 1.725;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   text-rendering: geometricPrecision;
 }
 a {
@@ -177,12 +179,11 @@ hr {
 .post-content {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
-  line-height: 1.5;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
-  font-size: 14px;
-  line-height: 1.5;
+  font-size: 17px;
+  line-height: 1.75;
   word-wrap: break-word;
-  letter-spacing: 1px;
+  letter-spacing: 0.2px;
 }
 .post-content .pl-c {
   color: #6a737d;
@@ -445,7 +446,7 @@ hr {
 .post-content code,
 .post-content pre {
   font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, monospace;
-  font-size: 12px;
+  font-size: 13px;
 }
 .post-content pre {
   margin-bottom: 0;

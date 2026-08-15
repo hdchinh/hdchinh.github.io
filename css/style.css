@@ -1125,6 +1125,7 @@ article .content h3 {
   text-decoration: none;
 }
 article .content table {
+  display: table;
   font-size: 17px;
   border: 1px solid rgba(212,67,117,0.25);
 }
@@ -1137,6 +1138,27 @@ article .content table th {
 article .content table td {
   padding: 0.6em 0.8em;
   border-bottom: 1px solid rgba(212,67,117,0.15);
+}
+article .content table code {
+  white-space: nowrap;
+}
+article .content .highlight {
+  font-size: 13px;
+}
+article .content .highlight table {
+  border: none;
+  font-size: inherit;
+}
+article .content .highlight table th {
+  padding: 0;
+  border: none;
+  background: none;
+  color: inherit;
+  font-size: inherit;
+}
+article .content .highlight table td {
+  padding: 0 8px;
+  border: none;
 }
 article .content h2:before {
   position: absolute;

@@ -17,8 +17,8 @@
 <meta property="article:modified_time" content="2026-08-14T07:11:23.738Z">
 <meta property="article:author" content="Tam Thể">
 <meta property="article:tag" content="rails">
-<meta property="article:tag" content="aws">
 <meta property="article:tag" content="til">
+<meta property="article:tag" content="aws">
 <meta name="twitter:card" content="summary">
     
     
@@ -79,15 +79,17 @@
     <br/>
     <span id="actions">
       <ul>
+        <li><a class="icon" aria-label="Home" href="/"><i class="fa-solid fa-house" aria-hidden="true" onmouseover="$('#i-home').toggle();" onmouseout="$('#i-home').toggle();"></i></a></li>
         
-        <li><a class="icon" aria-label="Previous post" href="/2019/04/11/2019-04-11-su-dung-carrierwave-voi-s3/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Previous post" href="/2019/04/10/2019-04-10-iaas-paas-saas/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
-        <li><a class="icon" aria-label="Next post" href="/2019/04/10/2019-04-10-iaas-paas-saas/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Next post" href="/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
         <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
       </ul>
+      <span id="i-home" class="info" style="display:none;">Home</span>
       <span id="i-prev" class="info" style="display:none;">Previous post</span>
       <span id="i-next" class="info" style="display:none;">Next post</span>
       <span id="i-top" class="info" style="display:none;">Back to top</span>
@@ -212,6 +214,7 @@
     </div>
 
     <div id="actions-footer">
+        <a id="home" class="icon" href="/"><i class="fa-solid fa-house fa-lg" aria-hidden="true"></i> Home</a>
         <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
         
         <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>

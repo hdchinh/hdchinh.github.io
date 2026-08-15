@@ -1,35 +1,155 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang=en>
 <head>
-    <meta charset="UTF-8">
+    <!-- so meta -->
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="renderer" content="webkit">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>
-        Notes
-    </title>
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Nhu cầuChuyện là mình đã lấy vợ được nửa năm, tính ra cũng khá sớm, nhưng âu là cái duyên, duyên đến thì nhận, sớm hay muộn là do nhận mà ra, quan trọng bản thân cảm thấy vui vẻ. Vợ chồng mình trẻ…và">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Làm Mini App Cho Vợ P.1">
+<meta property="og:url" content="https://hdchinh.github.io/2020/05/17/2020-05-17-lam-mini-app-cho-vo-phan-1/index.html">
+<meta property="og:site_name" content="Notes">
+<meta property="og:description" content="Nhu cầuChuyện là mình đã lấy vợ được nửa năm, tính ra cũng khá sớm, nhưng âu là cái duyên, duyên đến thì nhận, sớm hay muộn là do nhận mà ra, quan trọng bản thân cảm thấy vui vẻ. Vợ chồng mình trẻ…và">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-05-16T17:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-14T07:11:23.742Z">
+<meta property="article:author" content="Tam Thể">
+<meta name="twitter:card" content="summary">
     
-<link rel="stylesheet" href="/libs/highlight/styles/monokai-sublime.css">
-
     
-<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Làm Mini App Cho Vợ P.1</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
 
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
     
 <link rel="stylesheet" href="/css/style.css">
 
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
 <meta name="generator" content="Hexo 4.2.1"></head>
 
-<body id="bodyx">
-    <div class="hd posts">
-    <a href="/index.html"><i class="fa fa-reply replay-btn" aria-hidden="true"></i></a>
-    <div class="post-title">
-        <p>
-            Làm Mini App Cho Vợ P.1
-        </p>
-        <hr>
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2020/06/27/2020-06-27-viet-side-project/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2020/05/14/2020-05-14-url-dash-vs-underscore/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2020/05/17/2020-05-17-lam-mini-app-cho-vo-phan-1/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2020/05/17/2020-05-17-lam-mini-app-cho-vo-phan-1/&text=Làm Mini App Cho Vợ P.1" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2020/05/17/2020-05-17-lam-mini-app-cho-vo-phan-1/&title=Làm Mini App Cho Vợ P.1" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2020/05/17/2020-05-17-lam-mini-app-cho-vo-phan-1/&is_video=false&description=Làm Mini App Cho Vợ P.1" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Làm Mini App Cho Vợ P.1&body=Check out this article: https://hdchinh.github.io/2020/05/17/2020-05-17-lam-mini-app-cho-vo-phan-1/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2020/05/17/2020-05-17-lam-mini-app-cho-vo-phan-1/&title=Làm Mini App Cho Vợ P.1" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2020/05/17/2020-05-17-lam-mini-app-cho-vo-phan-1/&title=Làm Mini App Cho Vợ P.1" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2020/05/17/2020-05-17-lam-mini-app-cho-vo-phan-1/&title=Làm Mini App Cho Vợ P.1" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2020/05/17/2020-05-17-lam-mini-app-cho-vo-phan-1/&title=Làm Mini App Cho Vợ P.1" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2020/05/17/2020-05-17-lam-mini-app-cho-vo-phan-1/&name=Làm Mini App Cho Vợ P.1&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2020/05/17/2020-05-17-lam-mini-app-cho-vo-phan-1/&t=Làm Mini App Cho Vợ P.1" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
     </div>
-    <div class="post-content">
-        <h2 id="Nhu-cau"><a href="#Nhu-cau" class="headerlink" title="Nhu cầu"></a>Nhu cầu</h2><p>Chuyện là mình đã lấy vợ được nửa năm, tính ra cũng khá sớm, nhưng âu là cái duyên, duyên đến thì nhận, sớm hay muộn là do nhận mà ra, quan trọng bản thân cảm thấy vui vẻ.</p>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Nhu-cau"><span class="toc-number">1.</span> <span class="toc-text">Nhu cầu</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Du-dinh"><span class="toc-number">2.</span> <span class="toc-text">Dự định</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tong-ket"><span class="toc-number">3.</span> <span class="toc-text">Tổng kết</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Làm Mini App Cho Vợ P.1
+    </h1>
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Tam Thể</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2020-05-16T17:00:00.000Z" class="dt-published" itemprop="datePublished">2020-05-17</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h2 id="Nhu-cau"><a href="#Nhu-cau" class="headerlink" title="Nhu cầu"></a>Nhu cầu</h2><p>Chuyện là mình đã lấy vợ được nửa năm, tính ra cũng khá sớm, nhưng âu là cái duyên, duyên đến thì nhận, sớm hay muộn là do nhận mà ra, quan trọng bản thân cảm thấy vui vẻ.</p>
 <p>Vợ chồng mình trẻ…và dĩ nhiên cũng nghèo :(, chi tiêu, giá cả tăng phi mã, cái con số lạm phát trên tivi có vẻ không được chính xác, 2 vợ chồng đi làm có cố gắng mà cuối tháng không bỏ ra được đáng bao nhiêu tiền, trong khi còn chưa có con cái, đáng suy ngẫm mà cũng đáng để lo lắng.</p>
 <p>Có vấn đề, thì ta tìm cách giải quyết, mình đi đến 2 quyết định:</p>
 <ol>
@@ -57,63 +177,128 @@
 <h2 id="Tong-ket"><a href="#Tong-ket" class="headerlink" title="Tổng kết"></a>Tổng kết</h2><p>Khi mình viết bài viết này, thì ứng dụng nhỏ này đã được triển khai và vợ chồng mình đã có 1 tuần sử dụng, chúng mình khá ưng ý, hi vọng có thể duy trì thói quen này lâu dài.</p>
 <p>Qua đây mình sẽ viết quá trình làm mini app này, từ khi làm tới khi triển khai và sau đó là cố gắng học hỏi để improve tổ chức project tốt hơn (mình chưa có nhiều kinh nghiệm Frontend, nên đây cũng là cơ hội để đọc những tài liệu hay ho về Frontend).</p>
 
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
     </div>
-    <!-- 
-        <hr class="fhr">
-        <div id="vcomments"></div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Nhu-cau"><span class="toc-number">1.</span> <span class="toc-text">Nhu cầu</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Du-dinh"><span class="toc-number">2.</span> <span class="toc-text">Dự định</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tong-ket"><span class="toc-number">3.</span> <span class="toc-text">Tổng kết</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2020/05/17/2020-05-17-lam-mini-app-cho-vo-phan-1/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2020/05/17/2020-05-17-lam-mini-app-cho-vo-phan-1/&text=Làm Mini App Cho Vợ P.1" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2020/05/17/2020-05-17-lam-mini-app-cho-vo-phan-1/&title=Làm Mini App Cho Vợ P.1" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2020/05/17/2020-05-17-lam-mini-app-cho-vo-phan-1/&is_video=false&description=Làm Mini App Cho Vợ P.1" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Làm Mini App Cho Vợ P.1&body=Check out this article: https://hdchinh.github.io/2020/05/17/2020-05-17-lam-mini-app-cho-vo-phan-1/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2020/05/17/2020-05-17-lam-mini-app-cho-vo-phan-1/&title=Làm Mini App Cho Vợ P.1" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2020/05/17/2020-05-17-lam-mini-app-cho-vo-phan-1/&title=Làm Mini App Cho Vợ P.1" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2020/05/17/2020-05-17-lam-mini-app-cho-vo-phan-1/&title=Làm Mini App Cho Vợ P.1" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2020/05/17/2020-05-17-lam-mini-app-cho-vo-phan-1/&title=Làm Mini App Cho Vợ P.1" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2020/05/17/2020-05-17-lam-mini-app-cho-vo-phan-1/&name=Làm Mini App Cho Vợ P.1&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2020/05/17/2020-05-17-lam-mini-app-cho-vo-phan-1/&t=Làm Mini App Cho Vợ P.1" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
      -->
-</div>
+      </ul>
+    </nav>
+  </div>
+</footer>
 
-    <div class="footer" id="footer">
-    <p>Copyright © 2020 <a class="flink" href="https://hexo.io" target="_blank" rel="noopener">Hexo</a>-<a class="flink" href="https://github.com/sanjinhub/hexo-theme-geek" target="_blank" rel="noopener">Geek</a>.
-        <label class="el-switch el-switch-green el-switch-sm" style="vertical-align: sub;">
-            <input type="checkbox" name="switch" id="update_style">
-            <span class="el-switch-style"></span>
-        </label>
-<!--         <script type="text/javascript">
-        var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");
-        document.write(unescape("%3Cspan id='cnzz_stat_icon_1278548644'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/stat.php%3Fid%3D1278548644%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
-        </script> -->
-    </p>
-</div>
-<input type="hidden" id="web_style" value="black">
-<input type="hidden" id="valine_appid" value="CmCti21ooOOIzFOhEyFkFvR0-gzGzoHsz">
-<input type="hidden" id="valine_appKey" value="FqiyUqbg7McKN2eG0MCewupf">
-
-<script src="/libs/jquery.min.js"></script>
+    </div>
+    <!-- styles -->
 
 
-<script src="/libs/highlight/highlight.pack.js"></script>
 
-<script src='//cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
 
-<script src="/js/js.js"></script>
 
-<style type="text/css">
-.v * {
-    color: #698fca;
-}
+    <!-- jquery -->
 
-.v .vlist .vcard .vhead .vsys {
-    color: #3a3e4a;
-}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
 
-.v .vlist .vcard .vh .vmeta .vat {
-    color: #638fd5;
-}
 
-.v .vlist .vcard .vhead .vnick {
-    color: #6ba1ff;
-}
 
-.v a {
-    color: #8696b1;
-}
 
-.v .vlist .vcard .vhead .vnick:hover {
-    color: #669bfc;
-}
-</style>
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
 </body>
-
 </html>

@@ -895,7 +895,7 @@ body {
     display: none;
   }
 }
-@media screen and (max-width: 1399px) {
+@media screen and (max-width: 1199px) {
   #header-post #toc {
     display: none;
   }
@@ -908,7 +908,10 @@ body {
     display: none !important;
   }
 }
-@media screen and (min-width: 1199px) {
+@media screen and (min-width: 1200px) {
+  #header-post #menu {
+    display: block;
+  }
   #header-post #actions {
     width: auto;
   }

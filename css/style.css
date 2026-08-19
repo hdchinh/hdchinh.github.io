@@ -1070,6 +1070,15 @@ body {
   vertical-align: -0.125em;
   fill: currentColor;
 }
+.post-year-group {
+  margin-top: 1.5rem;
+}
+.post-year-group .post-year {
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+  color: #d44375;
+  font-size: 1.1rem;
+}
 .post-list {
   padding: 0;
 }
@@ -1144,10 +1153,20 @@ article .content ol {
 article .content h2 {
   color: #d44375;
   text-decoration: none;
+  font-size: 1.25em;
+  line-height: 1.35;
 }
 article .content h3 {
   color: #d44375;
   text-decoration: none;
+  font-size: 1.1em;
+  line-height: 1.4;
+}
+article .content h4,
+article .content h5,
+article .content h6 {
+  font-size: 1em;
+  line-height: 1.5;
 }
 article .content table {
   display: table;

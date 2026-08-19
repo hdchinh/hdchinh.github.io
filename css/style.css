@@ -1089,14 +1089,15 @@ body {
 }
 .post-list .post-item .meta {
   display: block;
-  margin-right: 16px;
-  min-width: 100px;
+  margin-right: 8px;
+  min-width: 72px;
   color: #666;
   font-size: 14px;
 }
 @media (min-width: 480px) {
   .post-list .post-item {
     display: flex;
+    align-items: baseline;
     margin-bottom: 5px;
   }
   .post-list .post-item .meta {

@@ -6,16 +6,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="AWS CLI  1aws configure   AWS SAM  12HOMEBREW_NO_AUTO_UPDATE&#x3D;1 brew tap aws&#x2F;tapHOMEBREW_NO_AUTO_UPDATE&#x3D;1 brew install aws-sam-cli-nightly   AWS SAM setup  123git clone https:&#x2F;&#x2F;github.com&#x2F;aws-samples&#x2F;">
+    <meta name="description" content="1. Configure the AWS CLI1aws configure  2. Install AWS SAM CLI12HOMEBREW_NO_AUTO_UPDATE&#x3D;1 brew tap aws&#x2F;tapHOMEBREW_NO_AUTO_UPDATE&#x3D;1 brew install aws-sam-cli  3. Set up the AWS SAM example1234git clone">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Direct upload image to S3 with SAM">
 <meta property="og:url" content="https://hdchinh.github.io/2022/09/23/2022-09-23-direct-upload-image-to-s3-with-sam/index.html">
-<meta property="og:site_name" content="Hudson&#39;s Notes">
-<meta property="og:description" content="AWS CLI  1aws configure   AWS SAM  12HOMEBREW_NO_AUTO_UPDATE&#x3D;1 brew tap aws&#x2F;tapHOMEBREW_NO_AUTO_UPDATE&#x3D;1 brew install aws-sam-cli-nightly   AWS SAM setup  123git clone https:&#x2F;&#x2F;github.com&#x2F;aws-samples&#x2F;">
+<meta property="og:site_name" content="Hudson">
+<meta property="og:description" content="1. Configure the AWS CLI1aws configure  2. Install AWS SAM CLI12HOMEBREW_NO_AUTO_UPDATE&#x3D;1 brew tap aws&#x2F;tapHOMEBREW_NO_AUTO_UPDATE&#x3D;1 brew install aws-sam-cli  3. Set up the AWS SAM example1234git clone">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-09-22T17:00:00.000Z">
-<meta property="article:modified_time" content="2026-08-14T07:11:23.743Z">
-<meta property="article:author" content="Tam Thể">
+<meta property="article:modified_time" content="2026-08-19T05:41:08.124Z">
+<meta property="article:author" content="Hudson">
 <meta name="twitter:card" content="summary">
     
     
@@ -78,7 +78,7 @@
       <ul>
         <li><a class="icon" aria-label="Home" href="/"><i class="fa-solid fa-house" aria-hidden="true" onmouseover="$('#i-home').toggle();" onmouseout="$('#i-home').toggle();"></i></a></li>
         
-        <li><a class="icon" aria-label="Previous post" href="/2026/08/14/2026-08-14-cau-truc-menh-de-va-tense-aspect-trong-tieng-anh/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Previous post" href="/2026/08/14/2026-08-14-7-bai-hoc-ve-ban-hang/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
         <li><a class="icon" aria-label="Next post" href="/2022/09/23/2022-09-23-spead-up-image-with-carrierwave/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
@@ -111,6 +111,10 @@
     </div>
     
     
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Configure-the-AWS-CLI"><span class="toc-number">1.</span> <span class="toc-text">1. Configure the AWS CLI</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Install-AWS-SAM-CLI"><span class="toc-number">2.</span> <span class="toc-text">2. Install AWS SAM CLI</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Set-up-the-AWS-SAM-example"><span class="toc-number">3.</span> <span class="toc-text">3. Set up the AWS SAM example</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Upload-images"><span class="toc-number">4.</span> <span class="toc-text">4. Upload images</span></a></li></ol>
+      </div>
+    
   </span>
 </div>
 
@@ -127,12 +131,12 @@
 
     <div class="meta">
       <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span class="p-name" itemprop="name">Tam Thể</span>
+        <span class="p-name" itemprop="name">Hudson</span>
       </span>
       
     <div class="postdate">
       
-        <time datetime="2022-09-22T17:00:00.000Z" class="dt-published" itemprop="datePublished">2022-09-23</time>
+        <time datetime="2022-09-22T17:00:00.000Z" class="dt-published" itemprop="datePublished">Sep 23</time>
         
       
     </div>
@@ -147,25 +151,13 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    <ol>
-<li>AWS CLI</li>
-</ol>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">aws configure</span></span><br></pre></td></tr></table></figure>
+    <h2 id="1-Configure-the-AWS-CLI"><a href="#1-Configure-the-AWS-CLI" class="headerlink" title="1. Configure the AWS CLI"></a>1. Configure the AWS CLI</h2><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">aws configure</span></span><br></pre></td></tr></table></figure>
 
-<ol start="2">
-<li>AWS SAM</li>
-</ol>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">HOMEBREW_NO_AUTO_UPDATE</span>=<span class="number">1</span> brew tap aws/tap</span><br><span class="line"><span class="attr">HOMEBREW_NO_AUTO_UPDATE</span>=<span class="number">1</span> brew install aws-sam-cli-nightly</span><br></pre></td></tr></table></figure>
+<h2 id="2-Install-AWS-SAM-CLI"><a href="#2-Install-AWS-SAM-CLI" class="headerlink" title="2. Install AWS SAM CLI"></a>2. Install AWS SAM CLI</h2><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">HOMEBREW_NO_AUTO_UPDATE</span>=<span class="number">1</span> brew tap aws/tap</span><br><span class="line"><span class="attr">HOMEBREW_NO_AUTO_UPDATE</span>=<span class="number">1</span> brew install aws-sam-cli</span><br></pre></td></tr></table></figure>
 
-<ol start="3">
-<li>AWS SAM setup</li>
-</ol>
-<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git clone https:<span class="string">//github.com/aws-samples/amazon-s3-presigned-urls-aws-sam</span></span><br><span class="line"><span class="keyword">cd</span> amazon-s3-presigned-urls-aws-sam</span><br><span class="line">sam <span class="keyword">deploy</span> <span class="params">--guided</span></span><br></pre></td></tr></table></figure>
+<h2 id="3-Set-up-the-AWS-SAM-example"><a href="#3-Set-up-the-AWS-SAM-example" class="headerlink" title="3. Set up the AWS SAM example"></a>3. Set up the AWS SAM example</h2><figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git clone https:<span class="string">//github.com/aws-samples/amazon-s3-presigned-urls-aws-sam</span></span><br><span class="line"><span class="keyword">cd</span> amazon-s3-presigned-urls-aws-sam</span><br><span class="line">sam build</span><br><span class="line">sam <span class="keyword">deploy</span> <span class="params">--guided</span></span><br></pre></td></tr></table></figure>
 
-<ol start="4">
-<li>Upload images</li>
-</ol>
-<p><a href="https://aws.amazon.com/blogs/compute/uploading-to-amazon-s3-directly-from-a-web-or-mobile-application/" target="_blank" rel="noopener">https://aws.amazon.com/blogs/compute/uploading-to-amazon-s3-directly-from-a-web-or-mobile-application/</a></p>
+<h2 id="4-Upload-images"><a href="#4-Upload-images" class="headerlink" title="4. Upload images"></a>4. Upload images</h2><p><a href="https://aws.amazon.com/blogs/compute/uploading-to-amazon-s3-directly-from-a-web-or-mobile-application/" target="_blank" rel="noopener">Upload to Amazon S3 directly from a web or mobile application</a></p>
 
   </div>
 </article>
@@ -188,6 +180,10 @@
 
     
     
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Configure-the-AWS-CLI"><span class="toc-number">1.</span> <span class="toc-text">1. Configure the AWS CLI</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Install-AWS-SAM-CLI"><span class="toc-number">2.</span> <span class="toc-text">2. Install AWS SAM CLI</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Set-up-the-AWS-SAM-example"><span class="toc-number">3.</span> <span class="toc-text">3. Set up the AWS SAM example</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Upload-images"><span class="toc-number">4.</span> <span class="toc-text">4. Upload images</span></a></li></ol>
+      </div>
+    
 
     <div id="share-footer" style="display: none">
       <ul>
@@ -209,6 +205,8 @@
     <div id="actions-footer">
         <a id="home" class="icon" href="/"><i class="fa-solid fa-house fa-lg" aria-hidden="true"></i> Home</a>
         <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
         
         <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
         <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>

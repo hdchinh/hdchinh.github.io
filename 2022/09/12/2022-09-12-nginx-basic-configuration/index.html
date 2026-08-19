@@ -6,16 +6,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="Install 1234567sudo apt updatesudo apt install nginx -ynginx -t # check syntax# Default: &#x2F;etc&#x2F;nginx&#x2F;sites-enabled&#x2F;defaultsudo service nginx restart   Point to a port  12345678910111213141516server &amp;#1">
+    <meta name="description" content="Install Nginx1234567sudo apt updatesudo apt install nginx -ysudo nginx -t # check syntax# Default: &#x2F;etc&#x2F;nginx&#x2F;sites-enabled&#x2F;defaultsudo systemctl restart nginx  1. Proxy requests to an application por">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Nginx basic configuration">
 <meta property="og:url" content="https://hdchinh.github.io/2022/09/12/2022-09-12-nginx-basic-configuration/index.html">
-<meta property="og:site_name" content="Hudson&#39;s Notes">
-<meta property="og:description" content="Install 1234567sudo apt updatesudo apt install nginx -ynginx -t # check syntax# Default: &#x2F;etc&#x2F;nginx&#x2F;sites-enabled&#x2F;defaultsudo service nginx restart   Point to a port  12345678910111213141516server &amp;#1">
+<meta property="og:site_name" content="Hudson">
+<meta property="og:description" content="Install Nginx1234567sudo apt updatesudo apt install nginx -ysudo nginx -t # check syntax# Default: &#x2F;etc&#x2F;nginx&#x2F;sites-enabled&#x2F;defaultsudo systemctl restart nginx  1. Proxy requests to an application por">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-09-11T17:00:00.000Z">
-<meta property="article:modified_time" content="2026-08-14T07:11:23.742Z">
-<meta property="article:author" content="Tam Thể">
+<meta property="article:modified_time" content="2026-08-19T05:41:22.223Z">
+<meta property="article:author" content="Hudson">
 <meta name="twitter:card" content="summary">
     
     
@@ -111,6 +111,10 @@
     </div>
     
     
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Install-Nginx"><span class="toc-number">1.</span> <span class="toc-text">Install Nginx</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Proxy-requests-to-an-application-port"><span class="toc-number">2.</span> <span class="toc-text">1. Proxy requests to an application port</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Configure-SSL"><span class="toc-number">3.</span> <span class="toc-text">2. Configure SSL</span></a></li></ol>
+      </div>
+    
   </span>
 </div>
 
@@ -127,12 +131,12 @@
 
     <div class="meta">
       <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span class="p-name" itemprop="name">Tam Thể</span>
+        <span class="p-name" itemprop="name">Hudson</span>
       </span>
       
     <div class="postdate">
       
-        <time datetime="2022-09-11T17:00:00.000Z" class="dt-published" itemprop="datePublished">2022-09-12</time>
+        <time datetime="2022-09-11T17:00:00.000Z" class="dt-published" itemprop="datePublished">Sep 12</time>
         
       
     </div>
@@ -147,18 +151,11 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    <p>Install</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install nginx -y</span><br><span class="line"></span><br><span class="line">nginx -t <span class="comment"># check syntax</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Default: /etc/nginx/sites-enabled/default</span></span><br><span class="line">sudo service nginx restart</span><br></pre></td></tr></table></figure>
+    <h2 id="Install-Nginx"><a href="#Install-Nginx" class="headerlink" title="Install Nginx"></a>Install Nginx</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install nginx -y</span><br><span class="line"></span><br><span class="line">sudo nginx -t <span class="comment"># check syntax</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Default: /etc/nginx/sites-enabled/default</span></span><br><span class="line">sudo systemctl restart nginx</span><br></pre></td></tr></table></figure>
 
-<ol>
-<li>Point to a port</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">	listen 80 default_server;</span><br><span class="line">	listen [::]:80 default_server;</span><br><span class="line"></span><br><span class="line">	index index.html index.htm index.nginx-debian.html;</span><br><span class="line"></span><br><span class="line">	server_name _;</span><br><span class="line"></span><br><span class="line">	location / &#123;</span><br><span class="line">		proxy_pass http://127.0.0.1:8080;</span><br><span class="line">    proxy_http_version 1.1;</span><br><span class="line">    proxy_set_header Upgrade <span class="variable">$http_upgrade</span>;</span><br><span class="line">    proxy_set_header Connection <span class="string">"upgrade"</span>;</span><br><span class="line">    proxy_set_header Host <span class="variable">$host</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="1-Proxy-requests-to-an-application-port"><a href="#1-Proxy-requests-to-an-application-port" class="headerlink" title="1. Proxy requests to an application port"></a>1. Proxy requests to an application port</h2><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">	<span class="attribute">listen</span> <span class="number">80</span> default_server;</span><br><span class="line">	<span class="attribute">listen</span> [::]:<span class="number">80</span> default_server;</span><br><span class="line"></span><br><span class="line">	<span class="attribute">index</span> index.html index.htm index.nginx-debian.html;</span><br><span class="line"></span><br><span class="line">	<span class="attribute">server_name</span> _;</span><br><span class="line"></span><br><span class="line">	<span class="attribute">location</span> / &#123;</span><br><span class="line">		<span class="attribute">proxy_pass</span> http://127.0.0.1:8080;</span><br><span class="line">    <span class="attribute">proxy_http_version</span> <span class="number">1</span>.<span class="number">1</span>;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> Upgrade <span class="variable">$http_upgrade</span>;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> Connection <span class="string">"upgrade"</span>;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> Host <span class="variable">$host</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<ol start="2">
-<li>Config SSL</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">  listen 80 default_server;</span><br><span class="line">  server_name api-tps-singapore.com;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">return</span> 301 https://api-tps-singapore.com<span class="variable">$request_uri</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">  listen 443 ssl;</span><br><span class="line">  <span class="comment">#ssl on;</span></span><br><span class="line">  ssl_certificate /home/ubuntu/new-ssl/k.crt;</span><br><span class="line">  ssl_certificate_key /home/ubuntu/new-ssl/k.key;</span><br><span class="line">  server_name api-tps-singapore.com;</span><br><span class="line"></span><br><span class="line">  location / &#123;</span><br><span class="line">     proxy_pass http://127.0.0.1:9090;</span><br><span class="line">     proxy_set_header Host <span class="variable">$host</span>;</span><br><span class="line">     proxy_set_header X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">     proxy_set_header X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">     proxy_set_header X-Forwarded-Proto <span class="variable">$scheme</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="2-Configure-SSL"><a href="#2-Configure-SSL" class="headerlink" title="2. Configure SSL"></a>2. Configure SSL</h2><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">  <span class="attribute">listen</span> <span class="number">80</span> default_server;</span><br><span class="line">  <span class="attribute">server_name</span> api-tps-singapore.com;</span><br><span class="line"></span><br><span class="line">  <span class="attribute">return</span> <span class="number">301</span> https://api-tps-singapore.com<span class="variable">$request_uri</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">  <span class="attribute">listen</span> <span class="number">443</span> ssl;</span><br><span class="line">  <span class="attribute">ssl_certificate</span> /home/ubuntu/new-ssl/k.crt;</span><br><span class="line">  <span class="attribute">ssl_certificate_key</span> /home/ubuntu/new-ssl/k.key;</span><br><span class="line">  <span class="attribute">server_name</span> api-tps-singapore.com;</span><br><span class="line"></span><br><span class="line">  <span class="attribute">location</span> / &#123;</span><br><span class="line">     <span class="attribute">proxy_pass</span> http://127.0.0.1:9090;</span><br><span class="line">     <span class="attribute">proxy_set_header</span> Host <span class="variable">$host</span>;</span><br><span class="line">     <span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">     <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">     <span class="attribute">proxy_set_header</span> X-Forwarded-Proto <span class="variable">$scheme</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
   </div>
 </article>
@@ -181,6 +178,10 @@
 
     
     
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Install-Nginx"><span class="toc-number">1.</span> <span class="toc-text">Install Nginx</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Proxy-requests-to-an-application-port"><span class="toc-number">2.</span> <span class="toc-text">1. Proxy requests to an application port</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Configure-SSL"><span class="toc-number">3.</span> <span class="toc-text">2. Configure SSL</span></a></li></ol>
+      </div>
+    
 
     <div id="share-footer" style="display: none">
       <ul>
@@ -202,6 +203,8 @@
     <div id="actions-footer">
         <a id="home" class="icon" href="/"><i class="fa-solid fa-house fa-lg" aria-hidden="true"></i> Home</a>
         <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
         
         <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
         <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>

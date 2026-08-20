@@ -1070,6 +1070,18 @@ body {
   vertical-align: -0.125em;
   fill: currentColor;
 }
+.post-language {
+  display: inline-block;
+  margin-left: 0.5rem;
+  padding: 0.1rem 0.35rem;
+  color: #d44375;
+  border: 1px solid rgba(212,67,117,0.5);
+  border-radius: 3px;
+  font-size: 0.65em;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+  vertical-align: middle;
+}
 .post-year-group {
   margin-top: 1.5rem;
 }

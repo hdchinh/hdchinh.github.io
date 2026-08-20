@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="N+1 queryXét một ví dụ: Tôi có một ứng dụng đơn giản, với hai bảng csdl, bảng thứ nhất là bảng users, bảng thứ hai là bảng articles, một user có thể có nhiều articles nhưng một article chỉ thuộc về us">
+    <meta name="description" content="N+1 xuất hiện khi ta load một tập record bằng một query, rồi mỗi record lại âm thầm tạo thêm query cho association. 12users &#x3D; User.limit(100)users.each &amp;#123; |user| puts user.articles.size &amp;#125;  Kị">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Vấn Đề N + 1 Và Hướng Xử Lý">
+<meta property="og:title" content="N+1 Query trong Rails: &#96;preload&#96;, &#96;eager_load&#96;, &#96;includes&#96; và cái giá của sự tiện lợi">
 <meta property="og:url" content="https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/index.html">
 <meta property="og:site_name" content="Hudson">
-<meta property="og:description" content="N+1 queryXét một ví dụ: Tôi có một ứng dụng đơn giản, với hai bảng csdl, bảng thứ nhất là bảng users, bảng thứ hai là bảng articles, một user có thể có nhiều articles nhưng một article chỉ thuộc về us">
+<meta property="og:description" content="N+1 xuất hiện khi ta load một tập record bằng một query, rồi mỗi record lại âm thầm tạo thêm query cho association. 12users &#x3D; User.limit(100)users.each &amp;#123; |user| puts user.articles.size &amp;#125;  Kị">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2019-02-24T17:00:00.000Z">
-<meta property="article:modified_time" content="2026-08-14T07:11:23.737Z">
+<meta property="article:modified_time" content="2026-08-20T05:30:54.175Z">
 <meta property="article:author" content="Hudson">
 <meta property="article:tag" content="RAILS">
 <meta name="twitter:card" content="summary">
@@ -37,7 +37,7 @@
       
     
     <!-- title -->
-    <title>Vấn Đề N + 1 Và Hướng Xử Lý</title>
+    <title>N+1 Query trong Rails: `preload`, `eager_load`, `includes` và cái giá của sự tiện lợi</title>
     <!-- async scripts -->
     <!-- Google Analytics -->
 
@@ -97,23 +97,23 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/&text=Vấn Đề N + 1 Và Hướng Xử Lý" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/&title=Vấn Đề N + 1 Và Hướng Xử Lý" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/&is_video=false&description=Vấn Đề N + 1 Và Hướng Xử Lý" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Vấn Đề N + 1 Và Hướng Xử Lý&body=Check out this article: https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/&title=Vấn Đề N + 1 Và Hướng Xử Lý" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/&title=Vấn Đề N + 1 Và Hướng Xử Lý" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/&title=Vấn Đề N + 1 Và Hướng Xử Lý" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/&title=Vấn Đề N + 1 Và Hướng Xử Lý" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/&name=Vấn Đề N + 1 Và Hướng Xử Lý&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/&t=Vấn Đề N + 1 Và Hướng Xử Lý" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/&text=N+1 Query trong Rails: `preload`, `eager_load`, `includes` và cái giá của sự tiện lợi" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/&title=N+1 Query trong Rails: `preload`, `eager_load`, `includes` và cái giá của sự tiện lợi" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/&is_video=false&description=N+1 Query trong Rails: `preload`, `eager_load`, `includes` và cái giá của sự tiện lợi" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=N+1 Query trong Rails: `preload`, `eager_load`, `includes` và cái giá của sự tiện lợi&body=Check out this article: https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/&title=N+1 Query trong Rails: `preload`, `eager_load`, `includes` và cái giá của sự tiện lợi" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/&title=N+1 Query trong Rails: `preload`, `eager_load`, `includes` và cái giá của sự tiện lợi" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/&title=N+1 Query trong Rails: `preload`, `eager_load`, `includes` và cái giá của sự tiện lợi" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/&title=N+1 Query trong Rails: `preload`, `eager_load`, `includes` và cái giá của sự tiện lợi" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/&name=N+1 Query trong Rails: `preload`, `eager_load`, `includes` và cái giá của sự tiện lợi&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/&t=N+1 Query trong Rails: `preload`, `eager_load`, `includes` và cái giá của sự tiện lợi" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
     
     
       <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#N-1-query"><span class="toc-number">1.</span> <span class="toc-text">N+1 query</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Giai-phap"><span class="toc-number">2.</span> <span class="toc-text">2. Giải pháp</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Xu-ly-N-1-query-trong-ActiveRecord"><span class="toc-number">3.</span> <span class="toc-text">3. Xử lý N+1 query trong ActiveRecord</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#preload-nhieu-query-co-chu-dich"><span class="toc-number">1.</span> <span class="toc-text">preload: nhiều query có chủ đích</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#eager-load-mot-LEFT-OUTER-JOIN"><span class="toc-number">2.</span> <span class="toc-text">eager_load: một LEFT OUTER JOIN</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#includes-Rails-tu-chon-chien-luoc"><span class="toc-number">3.</span> <span class="toc-text">includes: Rails tự chọn chiến lược</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#joins-khong-preload-association"><span class="toc-number">4.</span> <span class="toc-text">joins không preload association</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chon-bang-du-lieu-khong-bang-tin-nguong"><span class="toc-number">5.</span> <span class="toc-text">Chọn bằng dữ liệu, không bằng tín ngưỡng</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">6.</span> <span class="toc-text">Reference</span></a></li></ol>
       </div>
     
   </span>
@@ -126,7 +126,7 @@
   <header>
     
     <h1 class="posttitle p-name" itemprop="name headline">
-        Vấn Đề N + 1 Và Hướng Xử Lý
+        N+1 Query trong Rails: `preload`, `eager_load`, `includes` và cái giá của sự tiện lợi
     </h1>
 
 
@@ -144,6 +144,11 @@
 
 
       
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/rails-notes/">rails-notes</a>
+    </div>
+
 
       
     <div class="article-tag">
@@ -157,52 +162,40 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    <h2 id="N-1-query"><a href="#N-1-query" class="headerlink" title="N+1 query"></a>N+1 query</h2><p>Xét một ví dụ:</p>
-<p>Tôi có một ứng dụng đơn giản, với hai bảng csdl, bảng thứ nhất là bảng users, bảng thứ hai là bảng articles, một user có thể có nhiều articles nhưng một article chỉ thuộc về user. Hãy xem đoạn mã dưới đây:</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">User.all.each <span class="keyword">do</span> <span class="params">|user|</span></span><br><span class="line">  user.articles</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-<p>Đoạn code trên sẽ duyệt qua tất cả user có trong csdl rồi lấy tất cả các articles ứng với từng user. Rất tường minh và dễ hiểu.</p>
-<p>Tối có 5 user mẫu trong csdl nên các câu lệnh sql sinh ra sau đoạn code trên như sau:</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># câu lệnh lấy hết users lên</span></span><br><span class="line">SELECT <span class="string">"users"</span>.* FROM <span class="string">"users"</span></span><br><span class="line"><span class="comment"># ứng với mỗi user query lấy tất cả articles lên</span></span><br><span class="line">SELECT  <span class="string">"articles"</span>.* FROM <span class="string">"articles"</span> WHERE <span class="string">"articles"</span>.<span class="string">"user_id"</span> = ? LIMIT ?  [[<span class="string">"user_id"</span>, <span class="number">1</span>], [<span class="string">"LIMIT"</span>, <span class="number">11</span>]]</span><br><span class="line">SELECT  <span class="string">"articles"</span>.* FROM <span class="string">"articles"</span> WHERE <span class="string">"articles"</span>.<span class="string">"user_id"</span> = ? LIMIT ?  [[<span class="string">"user_id"</span>, <span class="number">2</span>], [<span class="string">"LIMIT"</span>, <span class="number">11</span>]]</span><br><span class="line">SELECT  <span class="string">"articles"</span>.* FROM <span class="string">"articles"</span> WHERE <span class="string">"articles"</span>.<span class="string">"user_id"</span> = ? LIMIT ?  [[<span class="string">"user_id"</span>, <span class="number">3</span>], [<span class="string">"LIMIT"</span>, <span class="number">11</span>]]</span><br><span class="line">SELECT  <span class="string">"articles"</span>.* FROM <span class="string">"articles"</span> WHERE <span class="string">"articles"</span>.<span class="string">"user_id"</span> = ? LIMIT ?  [[<span class="string">"user_id"</span>, <span class="number">4</span>], [<span class="string">"LIMIT"</span>, <span class="number">11</span>]]</span><br><span class="line">SELECT  <span class="string">"articles"</span>.* FROM <span class="string">"articles"</span> WHERE <span class="string">"articles"</span>.<span class="string">"user_id"</span> = ? LIMIT ?  [[<span class="string">"user_id"</span>, <span class="number">5</span>], [<span class="string">"LIMIT"</span>, <span class="number">11</span>]]</span><br></pre></td></tr></table></figure>
+    <p>N+1 xuất hiện khi ta load một tập record bằng một query, rồi mỗi record lại âm thầm tạo thêm query cho association.</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">users = User.limit(<span class="number">100</span>)</span><br><span class="line">users.each &#123; <span class="params">|user|</span> puts user.articles.size &#125;</span><br></pre></td></tr></table></figure>
 
-<p>Đây chính là ví dụ điển hình về <strong>N+1</strong>, <strong>N</strong>ở đây là 5 (số lượng user có trong csdl) và <strong>1</strong> chính là câu lệnh sql đầu tiên dùng để lấy tất cả user lên.</p>
-<p>Nhìn như vô hại, mà thực ra ở ví dụ này cũng vô hại thật vì chỉ có 5 record user, nên thời gian load cũng không thấm tháp gì, tuy nhiên trong thực tế thì dữ liệu có thể rất lớn, lên đến hàng triệu record và nếu load dữ liệu như này thì đây là một vấn đề lớn cho hiệu năng của trang web. Hãy đọc tiếp mục 2 để tìm về giải pháp cho tình huống này.</p>
-<h2 id="2-Giai-phap"><a href="#2-Giai-phap" class="headerlink" title="2. Giải pháp"></a>2. Giải pháp</h2><p>Vấn đề đã có, giờ chúng ta cần tìm một giải pháp làm sao để kết quả trả về không đổi, nhưng lượng truy vấn sql trong csdl phải nhỏ hơn.</p>
-<p>Các phương án:</p>
-<ol>
-<li><p>Sử dụng <strong>select in()</strong>.</p>
-</li>
-<li><p>Sử dụng <strong>joins</strong>. Để đọc kỹ hơn về joins, thì nên xem ở <a href="https://www.w3schools.com/sql/sql_join.asp" target="_blank" rel="noopener">đây</a></p>
-</li>
-</ol>
-<p>Sử dụng select in() sẽ tiết kiệm truy vấn đi rất nhiều, nếu ví dụ bên trên ta sử dụng select in() thì các sql query cần thiết sẽ là như sau:</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># lấy tất cả query</span></span><br><span class="line">SELECT <span class="string">"users"</span>.* FROM <span class="string">"users"</span></span><br><span class="line"><span class="comment"># lấy articles ứng với từng user</span></span><br><span class="line">SELECT  <span class="string">"articles"</span>.* FROM <span class="string">"articles"</span> WHERE <span class="string">"articles"</span>.<span class="string">"user_id"</span> IN (<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+<p>Kịch bản có thể là:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="keyword">users</span> <span class="keyword">LIMIT</span> <span class="number">100</span>;          <span class="comment">-- 1 query</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> articles <span class="keyword">WHERE</span> user_id=<span class="number">1</span>; <span class="comment">-- N query tiếp theo</span></span><br><span class="line"><span class="comment">-- ...</span></span><br></pre></td></tr></table></figure>
 
-<p>Tuyệt vời, từ 6(N + 1) truy vấn giờ đã trở thành còn 2.</p>
-<p>Với cách thứ 2 là sử dụng <strong>joins</strong>:</p>
-<p>joins hiểu đơn giản là ghép hai bảng lại với nhau (lấy một số field cần thiết ở bảng này, gộp với vài field cần thiết ở bảng kia khi mà record ở hai bên thoả mãn một điều kiện nào đó), rồi từ đó thành một bảng tạm dùng trong quá trình bạn sử dụng.</p>
-<p>Quay trở về ví dụ ban đầu, câu truy vấn bây giờ sẽ trở thành:</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT User.name, Article.title</span><br><span class="line">      FROM User</span><br><span class="line">      INNER JOIN Article ON User.id = Article.user_id</span><br></pre></td></tr></table></figure>
+<p>Code nhìn sạch, log SQL nhìn như máy in hóa đơn.</p>
+<h2 id="preload-nhieu-query-co-chu-dich"><a href="#preload-nhieu-query-co-chu-dich" class="headerlink" title="preload: nhiều query có chủ đích"></a><code>preload</code>: nhiều query có chủ đích</h2><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">User.preload(<span class="symbol">:articles</span>)</span><br></pre></td></tr></table></figure>
 
-<p>Lấy vài field cần thiết(name của user và title của Article).<br>Bằng cách thoả mãn điều kiện nào đó(id của user bằng với user_id của article).</p>
-<p>Vậy từ N+1 query ban đầu, đã trở thành một query duy nhất.</p>
-<p>Đến lúc này đã có thể kết luận là joins tốt hơn select in() được chưa? Chưa, câu trả lời sẽ là như vậy. Sang mục 3 chúng ta sẽ tìm hiểu về cách xử lý N+1 thông qua ActiveRecord</p>
-<h2 id="3-Xu-ly-N-1-query-trong-ActiveRecord"><a href="#3-Xu-ly-N-1-query-trong-ActiveRecord" class="headerlink" title="3. Xử lý N+1 query trong ActiveRecord"></a>3. Xử lý N+1 query trong ActiveRecord</h2><p>Trong ActiveRecord cung cấp 3 phương thức để loại bỏ N+1,</p>
-<ol>
-<li>Sử dụng <strong>preload</strong></li>
-</ol>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">User.preload(<span class="symbol">:articles</span>)</span><br><span class="line"><span class="comment"># sql sinh ra</span></span><br><span class="line">User Load (<span class="number">0</span>.<span class="number">2</span>ms)  SELECT  <span class="string">"users"</span>.* FROM <span class="string">"users"</span> LIMIT ?  [[<span class="string">"LIMIT"</span>, <span class="number">11</span>]]</span><br><span class="line">Article Load (<span class="number">0</span>.<span class="number">4</span>ms)  SELECT <span class="string">"articles"</span>.* FROM <span class="string">"articles"</span> WHERE <span class="string">"articles"</span>.<span class="string">"user_id"</span> IN (?, ?, ?)  [[<span class="string">"user_id"</span>, <span class="number">1</span>], [<span class="string">"user_id"</span>, <span class="number">2</span>], [<span class="string">"user_id"</span>, <span class="number">3</span>]]</span><br></pre></td></tr></table></figure>
-<p>Preload sẽ luôn sử dụng <strong>select in()</strong></p>
-<ol start="2">
-<li>Sử dụng <strong>Eagerload</strong></li>
-</ol>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">User.eager_load(<span class="symbol">:articles</span>)</span><br><span class="line"><span class="comment"># sql sinh ra</span></span><br><span class="line">SELECT  DISTINCT <span class="string">"users"</span>.<span class="string">"id"</span> FROM <span class="string">"users"</span> LEFT OUTER JOIN <span class="string">"articles"</span> ON <span class="string">"articles"</span>.<span class="string">"user_id"</span> = <span class="string">"users"</span>.<span class="string">"id"</span> LIMIT ?  [[<span class="string">"LIMIT"</span>, <span class="number">11</span>]]</span><br><span class="line"></span><br><span class="line">SELECT <span class="string">"users"</span>.<span class="string">"id"</span> AS t0_r<span class="number">0</span>, <span class="string">"users"</span>.<span class="string">"name"</span> AS t0_r1, <span class="string">"users"</span>.<span class="string">"created_at"</span> AS t0_r2,</span><br><span class="line"><span class="string">"users"</span>.<span class="string">"updated_at"</span> AS t0_r3, <span class="string">"articles"</span>.<span class="string">"id"</span> AS t1_r<span class="number">0</span>, <span class="string">"articles"</span>.<span class="string">"name"</span> AS t1_r1,</span><br><span class="line"><span class="string">"articles"</span>.<span class="string">"user_id"</span> AS t1_r2, <span class="string">"articles"</span>.<span class="string">"created_at"</span> AS t1_r3, <span class="string">"articles"</span>.<span class="string">"updated_at"</span> AS t1_r4</span><br><span class="line">FROM <span class="string">"users"</span> LEFT OUTER JOIN <span class="string">"articles"</span> ON <span class="string">"articles"</span>.<span class="string">"user_id"</span> = <span class="string">"users"</span>.<span class="string">"id"</span></span><br><span class="line">WHERE <span class="string">"users"</span>.<span class="string">"id"</span> IN (?, ?, ?)  [[<span class="string">"id"</span>, <span class="number">1</span>], [<span class="string">"id"</span>, <span class="number">2</span>], [<span class="string">"id"</span>, <span class="number">3</span>]]</span><br></pre></td></tr></table></figure>
+<p>Rails thường chạy hai query: một cho users và một cho toàn bộ articles có <code>user_id</code> liên quan. Đây thường là lựa chọn dễ đoán khi không cần filter/order bằng bảng association.</p>
+<h2 id="eager-load-mot-LEFT-OUTER-JOIN"><a href="#eager-load-mot-LEFT-OUTER-JOIN" class="headerlink" title="eager_load: một LEFT OUTER JOIN"></a><code>eager_load</code>: một <code>LEFT OUTER JOIN</code></h2><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">User.eager_load(<span class="symbol">:articles</span>)</span><br></pre></td></tr></table></figure>
 
-<p>eager_load luôn sử dụng <strong>joins</strong></p>
-<ol start="3">
-<li>Sử dụng <strong>Inludes</strong></li>
-</ol>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># cách 1</span></span><br><span class="line">User.includes(<span class="symbol">:articles</span>)</span><br><span class="line"><span class="comment"># sql sinh ra</span></span><br><span class="line">SELECT  <span class="string">"users"</span>.* FROM <span class="string">"users"</span> LIMIT ?  [[<span class="string">"LIMIT"</span>, <span class="number">11</span>]]</span><br><span class="line">SELECT <span class="string">"articles"</span>.* FROM <span class="string">"articles"</span> WHERE <span class="string">"articles"</span>.<span class="string">"user_id"</span> IN (?, ?, ?)  [[<span class="string">"user_id"</span>, <span class="number">1</span>], [<span class="string">"user_id"</span>, <span class="number">2</span>], [<span class="string">"user_id"</span>, <span class="number">3</span>]]</span><br><span class="line"><span class="comment">#=&gt; giống preload</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># cách 2</span></span><br><span class="line">User.includes(<span class="symbol">:articles</span>).references(<span class="symbol">:articles</span>)</span><br><span class="line"><span class="comment"># sql sinh ra</span></span><br><span class="line">SELECT  DISTINCT <span class="string">"users"</span>.<span class="string">"id"</span> FROM <span class="string">"users"</span> LEFT OUTER JOIN <span class="string">"articles"</span></span><br><span class="line">ON <span class="string">"articles"</span>.<span class="string">"user_id"</span> = <span class="string">"users"</span>.<span class="string">"id"</span> LIMIT ?  [[<span class="string">"LIMIT"</span>, <span class="number">11</span>]]</span><br><span class="line">SELECT <span class="string">"users"</span>.<span class="string">"id"</span> AS t0_r<span class="number">0</span>, <span class="string">"users"</span>.<span class="string">"name"</span> AS t0_r1, <span class="string">"users"</span>.<span class="string">"created_at"</span> AS t0_r2,</span><br><span class="line"><span class="string">"users"</span>.<span class="string">"updated_at"</span> AS t0_r3, <span class="string">"articles"</span>.<span class="string">"id"</span> AS t1_r<span class="number">0</span>, <span class="string">"articles"</span>.<span class="string">"name"</span> AS t1_r1,</span><br><span class="line"><span class="string">"articles"</span>.<span class="string">"user_id"</span> AS t1_r2, <span class="string">"articles"</span>.<span class="string">"created_at"</span> AS t1_r3, <span class="string">"articles"</span>.<span class="string">"updated_at"</span> AS t1_r4</span><br><span class="line">FROM <span class="string">"users"</span> LEFT OUTER JOIN <span class="string">"articles"</span> ON <span class="string">"articles"</span>.<span class="string">"user_id"</span> = <span class="string">"users"</span>.<span class="string">"id"</span></span><br><span class="line">WHERE <span class="string">"users"</span>.<span class="string">"id"</span> IN (?, ?, ?)  [[<span class="string">"id"</span>, <span class="number">1</span>], [<span class="string">"id"</span>, <span class="number">2</span>], [<span class="string">"id"</span>, <span class="number">3</span>]]</span><br><span class="line"><span class="comment">#=&gt; giống eager_load</span></span><br></pre></td></tr></table></figure>
-<p>Vậy mặc định thì <strong>includes</strong> sử dụng select in(), nhưng cũng có thể chuyển qua sử dụng joins nếu thêm method references phía sau.</p>
+<p>Rails dùng join và dựng object từ result. Có thể filter bảng liên quan, nhưng result SQL bị nhân dòng khi quan hệ one-to-many. Một query không mặc định rẻ hơn hai query; database không tính performance bằng số câu lệnh cho đẹp dashboard.</p>
+<h2 id="includes-Rails-tu-chon-chien-luoc"><a href="#includes-Rails-tu-chon-chien-luoc" class="headerlink" title="includes: Rails tự chọn chiến lược"></a><code>includes</code>: Rails tự chọn chiến lược</h2><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">User.includes(<span class="symbol">:articles</span>)</span><br></pre></td></tr></table></figure>
+
+<p>Thông thường hoạt động giống <code>preload</code>. Khi query tham chiếu bảng association, Rails có thể chuyển sang join:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">User.includes(<span class="symbol">:articles</span>)</span><br><span class="line">    .where(<span class="symbol">articles:</span> &#123; <span class="symbol">published:</span> <span class="literal">true</span> &#125;)</span><br></pre></td></tr></table></figure>
+
+<p>Với SQL fragment dạng string, có thể cần <code>references(:articles)</code>.</p>
+<h2 id="joins-khong-preload-association"><a href="#joins-khong-preload-association" class="headerlink" title="joins không preload association"></a><code>joins</code> không preload association</h2><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">User.joins(<span class="symbol">:articles</span>)</span><br></pre></td></tr></table></figure>
+
+<p><code>joins</code> dùng association để filter/join SQL, nhưng không đồng nghĩa association đã được eager load. Sau đó gọi <code>user.articles</code> vẫn có thể tạo N+1.</p>
+<h2 id="Chon-bang-du-lieu-khong-bang-tin-nguong"><a href="#Chon-bang-du-lieu-khong-bang-tin-nguong" class="headerlink" title="Chọn bằng dữ liệu, không bằng tín ngưỡng"></a>Chọn bằng dữ liệu, không bằng tín ngưỡng</h2><ul>
+<li>Chỉ cần load association → bắt đầu với <code>preload</code>/<code>includes</code>.</li>
+<li>Cần filter bằng bảng liên quan → <code>joins</code>, <code>eager_load</code>, hoặc <code>includes</code> phù hợp.</li>
+<li>Quan hệ lớn → cân nhắc pagination, select ít cột, aggregate hoặc query riêng.</li>
+<li>Dùng log, <code>strict_loading</code>, Bullet trong development và APM ở production để phát hiện.</li>
+</ul>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">User.strict_loading.includes(<span class="symbol">:articles</span>)</span><br></pre></td></tr></table></figure>
+
+<p>Fix N+1 không phải trò “giảm số query bằng mọi giá”. Mục tiêu là giảm tổng chi phí: round trip, số dòng, memory, object allocation và độ phức tạp SQL.</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a href="https://guides.rubyonrails.org/active_record_querying.html#eager-loading-associations" target="_blank" rel="noopener">Active Record Query Interface — Eager Loading Associations</a></li>
+</ul>
 
   </div>
 </article>
@@ -226,23 +219,23 @@
     
     
       <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#N-1-query"><span class="toc-number">1.</span> <span class="toc-text">N+1 query</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Giai-phap"><span class="toc-number">2.</span> <span class="toc-text">2. Giải pháp</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Xu-ly-N-1-query-trong-ActiveRecord"><span class="toc-number">3.</span> <span class="toc-text">3. Xử lý N+1 query trong ActiveRecord</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#preload-nhieu-query-co-chu-dich"><span class="toc-number">1.</span> <span class="toc-text">preload: nhiều query có chủ đích</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#eager-load-mot-LEFT-OUTER-JOIN"><span class="toc-number">2.</span> <span class="toc-text">eager_load: một LEFT OUTER JOIN</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#includes-Rails-tu-chon-chien-luoc"><span class="toc-number">3.</span> <span class="toc-text">includes: Rails tự chọn chiến lược</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#joins-khong-preload-association"><span class="toc-number">4.</span> <span class="toc-text">joins không preload association</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chon-bang-du-lieu-khong-bang-tin-nguong"><span class="toc-number">5.</span> <span class="toc-text">Chọn bằng dữ liệu, không bằng tín ngưỡng</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">6.</span> <span class="toc-text">Reference</span></a></li></ol>
       </div>
     
 
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/&text=Vấn Đề N + 1 Và Hướng Xử Lý" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/&title=Vấn Đề N + 1 Và Hướng Xử Lý" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/&is_video=false&description=Vấn Đề N + 1 Và Hướng Xử Lý" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Vấn Đề N + 1 Và Hướng Xử Lý&body=Check out this article: https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/&title=Vấn Đề N + 1 Và Hướng Xử Lý" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/&title=Vấn Đề N + 1 Và Hướng Xử Lý" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/&title=Vấn Đề N + 1 Và Hướng Xử Lý" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/&title=Vấn Đề N + 1 Và Hướng Xử Lý" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/&name=Vấn Đề N + 1 Và Hướng Xử Lý&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/&t=Vấn Đề N + 1 Và Hướng Xử Lý" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/&text=N+1 Query trong Rails: `preload`, `eager_load`, `includes` và cái giá của sự tiện lợi" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/&title=N+1 Query trong Rails: `preload`, `eager_load`, `includes` và cái giá của sự tiện lợi" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/&is_video=false&description=N+1 Query trong Rails: `preload`, `eager_load`, `includes` và cái giá của sự tiện lợi" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=N+1 Query trong Rails: `preload`, `eager_load`, `includes` và cái giá của sự tiện lợi&body=Check out this article: https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/&title=N+1 Query trong Rails: `preload`, `eager_load`, `includes` và cái giá của sự tiện lợi" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/&title=N+1 Query trong Rails: `preload`, `eager_load`, `includes` và cái giá của sự tiện lợi" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/&title=N+1 Query trong Rails: `preload`, `eager_load`, `includes` và cái giá của sự tiện lợi" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/&title=N+1 Query trong Rails: `preload`, `eager_load`, `includes` và cái giá của sự tiện lợi" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/&name=N+1 Query trong Rails: `preload`, `eager_load`, `includes` và cái giá của sự tiện lợi&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/&t=N+1 Query trong Rails: `preload`, `eager_load`, `includes` và cái giá của sự tiện lợi" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

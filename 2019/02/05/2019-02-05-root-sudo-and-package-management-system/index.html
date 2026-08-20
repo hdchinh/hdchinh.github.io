@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="1.RootXin được nhắc lại một câu chuyện cũ tôi đã kể trong bài viết trước với ví dụ về mảnh đất nhà bạn, bạn sở hữu mảnh đất đó, vợ bạn sở hữu mảnh đất đó chung với bạn. Nhưng vợ chồng bạn không phải l">
+    <meta name="description" content="root là superuser trên Unix-like systems. UID 0 có thể đọc, sửa và xóa gần như mọi thứ. Đây không phải account để dùng hằng ngày chỉ vì permission error làm ta mất kiên nhẫn. sudo làm gì?1sudo systemc">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Root, Sudo Và Package Management">
+<meta property="og:title" content="Root, sudo và package manager: quyền lực càng lớn, blast radius càng rộng">
 <meta property="og:url" content="https://hdchinh.github.io/2019/02/05/2019-02-05-root-sudo-and-package-management-system/index.html">
 <meta property="og:site_name" content="Hudson">
-<meta property="og:description" content="1.RootXin được nhắc lại một câu chuyện cũ tôi đã kể trong bài viết trước với ví dụ về mảnh đất nhà bạn, bạn sở hữu mảnh đất đó, vợ bạn sở hữu mảnh đất đó chung với bạn. Nhưng vợ chồng bạn không phải l">
+<meta property="og:description" content="root là superuser trên Unix-like systems. UID 0 có thể đọc, sửa và xóa gần như mọi thứ. Đây không phải account để dùng hằng ngày chỉ vì permission error làm ta mất kiên nhẫn. sudo làm gì?1sudo systemc">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2019-02-04T17:00:00.000Z">
-<meta property="article:modified_time" content="2026-08-14T07:11:23.737Z">
+<meta property="article:modified_time" content="2026-08-20T05:33:27.158Z">
 <meta property="article:author" content="Hudson">
 <meta property="article:tag" content="unix">
 <meta name="twitter:card" content="summary">
@@ -37,7 +37,7 @@
       
     
     <!-- title -->
-    <title>Root, Sudo Và Package Management</title>
+    <title>Root, sudo và package manager: quyền lực càng lớn, blast radius càng rộng</title>
     <!-- async scripts -->
     <!-- Google Analytics -->
 
@@ -97,23 +97,23 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/02/05/2019-02-05-root-sudo-and-package-management-system/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/02/05/2019-02-05-root-sudo-and-package-management-system/&text=Root, Sudo Và Package Management" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/02/05/2019-02-05-root-sudo-and-package-management-system/&title=Root, Sudo Và Package Management" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/02/05/2019-02-05-root-sudo-and-package-management-system/&is_video=false&description=Root, Sudo Và Package Management" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Root, Sudo Và Package Management&body=Check out this article: https://hdchinh.github.io/2019/02/05/2019-02-05-root-sudo-and-package-management-system/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/02/05/2019-02-05-root-sudo-and-package-management-system/&title=Root, Sudo Và Package Management" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/02/05/2019-02-05-root-sudo-and-package-management-system/&title=Root, Sudo Và Package Management" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/02/05/2019-02-05-root-sudo-and-package-management-system/&title=Root, Sudo Và Package Management" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/02/05/2019-02-05-root-sudo-and-package-management-system/&title=Root, Sudo Và Package Management" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/02/05/2019-02-05-root-sudo-and-package-management-system/&name=Root, Sudo Và Package Management&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/02/05/2019-02-05-root-sudo-and-package-management-system/&t=Root, Sudo Và Package Management" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/02/05/2019-02-05-root-sudo-and-package-management-system/&text=Root, sudo và package manager: quyền lực càng lớn, blast radius càng rộng" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/02/05/2019-02-05-root-sudo-and-package-management-system/&title=Root, sudo và package manager: quyền lực càng lớn, blast radius càng rộng" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/02/05/2019-02-05-root-sudo-and-package-management-system/&is_video=false&description=Root, sudo và package manager: quyền lực càng lớn, blast radius càng rộng" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Root, sudo và package manager: quyền lực càng lớn, blast radius càng rộng&body=Check out this article: https://hdchinh.github.io/2019/02/05/2019-02-05-root-sudo-and-package-management-system/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/02/05/2019-02-05-root-sudo-and-package-management-system/&title=Root, sudo và package manager: quyền lực càng lớn, blast radius càng rộng" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/02/05/2019-02-05-root-sudo-and-package-management-system/&title=Root, sudo và package manager: quyền lực càng lớn, blast radius càng rộng" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/02/05/2019-02-05-root-sudo-and-package-management-system/&title=Root, sudo và package manager: quyền lực càng lớn, blast radius càng rộng" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/02/05/2019-02-05-root-sudo-and-package-management-system/&title=Root, sudo và package manager: quyền lực càng lớn, blast radius càng rộng" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/02/05/2019-02-05-root-sudo-and-package-management-system/&name=Root, sudo và package manager: quyền lực càng lớn, blast radius càng rộng&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/02/05/2019-02-05-root-sudo-and-package-management-system/&t=Root, sudo và package manager: quyền lực càng lớn, blast radius càng rộng" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
     
     
       <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Root"><span class="toc-number">1.</span> <span class="toc-text">1.Root</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Sudo"><span class="toc-number">2.</span> <span class="toc-text">2.Sudo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Package-management-system"><span class="toc-number">3.</span> <span class="toc-text">3.Package management system</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Tham-khao"><span class="toc-number">4.</span> <span class="toc-text">4. Tham khảo</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#sudo-lam-gi"><span class="toc-number">1.</span> <span class="toc-text">sudo làm gì?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Least-privilege"><span class="toc-number">2.</span> <span class="toc-text">Least privilege</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Package-manager"><span class="toc-number">3.</span> <span class="toc-text">Package manager</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sudo-voi-package-cua-language"><span class="toc-number">4.</span> <span class="toc-text">sudo với package của language</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Khi-gap-permission-denied"><span class="toc-number">5.</span> <span class="toc-text">Khi gặp permission denied</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">6.</span> <span class="toc-text">Reference</span></a></li></ol>
       </div>
     
   </span>
@@ -126,7 +126,7 @@
   <header>
     
     <h1 class="posttitle p-name" itemprop="name headline">
-        Root, Sudo Và Package Management
+        Root, sudo và package manager: quyền lực càng lớn, blast radius càng rộng
     </h1>
 
 
@@ -162,36 +162,34 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    <h2 id="1-Root"><a href="#1-Root" class="headerlink" title="1.Root"></a>1.Root</h2><p>Xin được nhắc lại một câu chuyện cũ tôi đã kể trong bài viết trước với ví dụ về mảnh đất nhà bạn, bạn sở hữu mảnh đất đó, vợ bạn sở hữu mảnh đất đó chung với bạn. Nhưng vợ chồng bạn không phải là những người sở hữu tối thượng của mảnh đất kể trên, mà quyền lực to lớn này thuộc về nhà nước, “người” thực ra là đang cho bạn thuê đất có thời hạn. Tương tự trọng Unix/Linux, sẽ có những user (như tài khoản bạn sử dụng để đăng nhập, hoặc tài khoản khách…).</p>
-<p>Việc những tài khoản này có thể đăng nhập vào hệ thống nhưng đặc quyền của chúng bị giới hạn. Khi login vào hệ thống, bạn có thể làm một số tác vụ nhất định chứ không thể thích làm gì thì làm, trong hệ thống của bạn chỉ có một user duy nhất được quyền làm bất cứ điều gì, đó là một super user.</p>
-<p>Trên windows, ta gọi đó là <strong>administrator</strong> (có lẽ quá quen thuộc, bạn còn nhớ những lúc cài phần mềm, bạn click vào file exe nhưng chương trình không chịu cài đặt, google một lát, bạn nhận được một hướng dẫn hãy click phải vào file exe đó và chọn <strong>run as administrator</strong>, đó chính là sức mạnh của super user trên windows), còn trên macOS hay Ubuntu(1 đại diện của Linux), nó được gọi là <strong>root</strong> (cuối cùng cũng chỉ là một cái tên gọi, nó có thể được đặt tên là mèo, là chó, nó có thể được đặt tên là bất cứ thứ gì, chúng ta không cần quan tâm, điều duy nhất chúng ta cần biết đó là trên các hệ điều hành con cháu của Unix sẽ luôn có một super user quyền lực như vậy).</p>
-<p>Đến lúc này, bạn sẽ tự hỏi tại sao phải thiết kế hệ thống phức tạp như vậy? Tại sao không chỉ dung duy nhất một loại user?<br>Câu trả lời rất đơn giản, không phải ai sử dụng máy tính cũng là những người dung có hiểu biết sâu sắc về hệ điều hành. Vì vậy, nếu trao cho họ những quyền lực quá lớn, họ có thể vô tình gây ra những huỷ hoại nghiêm trọng cho hệ thống (quyền lực càng lớn thì trách nhiệm càng lớn).</p>
-<p>Một vấn đề phát sinh nếu việc sử dụng Root mang tính rủi ro quá cao nhưng những user bình thường lại không có các quyền để cài đặt một số phần mềm nâng cao thì phải làm sao? Vấn đề này sẽ được giải thích ở mục số 2.</p>
-<p>Note: Trên macOS và Ubuntu, <strong>root</strong> mặc định sẽ được disable, chúng có thể sẽ được enable trở lại và re-disable. Cách thực hiện thì có lẽ bạn nên tìm kiếm hướng dẫn từ trang chủ của những hệ điều hành này để câu lệnh của bạn đảm bảo chính xác và không bị lỗi thời.</p>
-<h2 id="2-Sudo"><a href="#2-Sudo" class="headerlink" title="2.Sudo"></a>2.Sudo</h2><p>Như vấn đề tôi đã nêu ở cuối mục 1, bây giờ tôi muốn cài đặt một số phần mềm đòi hỏi quyền của super user, về lý thuyết tôi đứng giữa hai lựa chọn hoặc chuyển sang <strong>root</strong> và cài đặt phần mềm bình thường (rất rủi ro), phương án 2 là tôi vẫn sử dụng user thường và nói lời tạm biệt với những phần mềm kể trên.</p>
-<p>Quá tệ, cả hai giải pháp trên đều không ổn, thật may, các nhà phát triển hệ thống đã cung cấp cho chúng ta một lựa chọn số 3, đó là bạn vẫn sử dụng user thường nhưng có thể triệu hồi quyền lực của super user để thực hiện những lệnh nào đó.</p>
-<p>Cách sử dụng đó là bạn thêm câu lệnh <strong>sudo</strong> vào phía trước câu lệnh cần sử dụng quyền của super user. Ví dụ:</p>
-<p><strong>sudo apt-get update</strong></p>
-<p>Một nhầm lẫn thường xuyên với cả với tôi ngày mới tìm hiểu, đó là sau khi gõ những câu lệnh có <strong>sudo</strong>, hệ thống yêu cầu tôi nhập mật khẩu và tôi đã từng nghĩ đó là mật khẩu của <strong>root</strong> (nghe cũng hợp lý đấy chứ, ta mượn quyền của <strong>root</strong> thì phải sử dụng mật khẩu của <strong>root</strong> chứ nhỉ? Giống như khi tôi mượn nhà của bạn thì tôi phải có chìa khoá của bạn). Nhưng không phải như vậy, mật khẩu bạn nhập vào đơn thuần là chính mật khẩu của user thường bạn đang login trên máy.</p>
-<p>Phần đa các trường hợp khi bạn thêm <strong>sudo</strong>, các câu lệnh sẽ chạy một cách hoàn hảo. Tuy nhiên, cũng có những khi bạn không nhận được kết quả như mong đợi và lý do chính là không phải user nào cũng có thể triệu hồi quyền lực của super user. Điều bạn cần làm khi đó là “nói” với hệ điều hành rằng hãy cho user của tôi đang sử dụng được quyền triệu hồi sức mạnh của super user. Hãy xem ví dụ dưới đây:</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#=&gt; /etc/sudoers (lưu trữ các user được quyền thực hiện đặc quyền của super user)</span></span><br><span class="line"><span class="comment">#=&gt; Ví dụ</span></span><br><span class="line">root ALL=(<span class="symbol">ALL:</span>ALL) ALL</span><br><span class="line"><span class="comment">#=&gt; user đang xét quyền tên là root</span></span><br><span class="line"><span class="comment">#=&gt; Chữ all đầu tiên chỉ ra rằng rule này được áp dụng cho tất cả các host</span></span><br><span class="line"><span class="comment">#=&gt; Chữ all thứ hai chỉ ra, account root có thể chạy lệnh với quyền của bất kỳ user nào.</span></span><br><span class="line"><span class="comment">#=&gt; Chữ all thứ ba chỉ ra, account root có thể chạy lệnh với quyền của bất kỳ group nào.</span></span><br><span class="line"><span class="comment">#=&gt; Chữ all cuối cùng chỉ ra, account root có thể chạy bất kỳ command nào.</span></span><br></pre></td></tr></table></figure>
+    <p><code>root</code> là superuser trên Unix-like systems. UID 0 có thể đọc, sửa và xóa gần như mọi thứ. Đây không phải account để dùng hằng ngày chỉ vì permission error làm ta mất kiên nhẫn.</p>
+<h2 id="sudo-lam-gi"><a href="#sudo-lam-gi" class="headerlink" title="sudo làm gì?"></a><code>sudo</code> làm gì?</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl restart nginx</span><br></pre></td></tr></table></figure>
 
-<p>Note: Kể từ khi bạn nhập mật khẩu sau khi gõ lệnh <strong>sudo</strong> lần đầu, thời gian có hiệu lực của mật khẩu này sẽ là 15 phút. Trong khoảng thời gian đó bạn có thể chạy các lệnh <strong>sudo</strong> khác mà hệ điều hành không yêu cầu bạn nhập lại mật khẩu.</p>
-<h2 id="3-Package-management-system"><a href="#3-Package-management-system" class="headerlink" title="3.Package management system"></a>3.Package management system</h2><p>Khi sử dụng macOS, để cài đặt thêm các phần mềm phục vụ công việc (mà chúng không được support trên appstore), tôi sử dụng <strong>homebrew</strong>, một phần mềm giúp quản lý các phần mềm khác rất hiệu quả.</p>
-<p>Vậy còn trên Linux chúng ta có gì?</p>
-<p>Trước hết cần phải làm rõ: Package management system là một công cụ hoặc một hệ thống các công cụ được sử dụng để handle các package.</p>
+<p><code>sudo</code> chạy command theo policy với identity khác, mặc định là root. Nó kiểm tra cấu hình sudoers, ghi audit log và có thể cache authentication trong thời gian ngắn.</p>
+<p><code>sudo</code> không có nghĩa “command chắc chắn đúng”. Nó chỉ có nghĩa “command sai giờ có thêm quyền”.</p>
+<h2 id="Least-privilege"><a href="#Least-privilege" class="headerlink" title="Least privilege"></a>Least privilege</h2><ul>
+<li>Chạy application bằng user riêng, không phải root.</li>
+<li>Chỉ cấp command cần thiết trong sudoers.</li>
+<li>Sửa sudoers bằng <code>visudo</code> để validate syntax.</li>
+<li>Không dùng <code>sudo chmod -R 777</code> để né ownership sai.</li>
+<li>Trong container, vẫn cân nhắc non-root user; namespace không biến root thành vô hại.</li>
+</ul>
+<h2 id="Package-manager"><a href="#Package-manager" class="headerlink" title="Package manager"></a>Package manager</h2><p>Package manager cài software cùng metadata, dependency và upgrade path:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Debian/Ubuntu</span></span><br><span class="line">sudo apt update</span><br><span class="line">sudo apt install nginx</span><br><span class="line"></span><br><span class="line"><span class="comment"># Fedora</span></span><br><span class="line">sudo dnf install nginx</span><br><span class="line"></span><br><span class="line"><span class="comment"># macOS</span></span><br><span class="line">brew install nginx</span><br></pre></td></tr></table></figure>
+
+<p>Không trộn bừa system package, language package và file copy thủ công vào cùng prefix. Package manager không thể upgrade thứ nó không biết tồn tại.</p>
+<h2 id="sudo-voi-package-cua-language"><a href="#sudo-voi-package-cua-language" class="headerlink" title="sudo với package của language"></a><code>sudo</code> với package của language</h2><p>Tránh <code>sudo gem install</code>, <code>sudo npm install -g</code> vào system runtime nếu version manager/project dependency giải quyết được. Dùng <code>rbenv</code>, <code>asdf</code>, <code>nvm</code>, Bundler hoặc local package scripts để tránh permission conflict và dependency trôi nổi.</p>
+<h2 id="Khi-gap-permission-denied"><a href="#Khi-gap-permission-denied" class="headerlink" title="Khi gặp permission denied"></a>Khi gặp permission denied</h2><p>Hỏi theo thứ tự:</p>
 <ol>
-<li>Handle là quản lý với đầy đủ các chức năng như thêm mới, gỡ bỏ, nâng cấp, tìm kiếm..v..v…</li>
-<li>Package là một tiện ích hoặc những phần bổ trợ cho một tiện ích nào đó (thực sự cuối cùng nó cũng chỉ là tập hợp của các file).</li>
+<li>Ai đang sở hữu file/process?</li>
+<li>Permission/ACL hiện tại là gì?</li>
+<li>Command có thật sự cần privilege không?</li>
+<li>Có nên sửa ownership/service config thay vì nâng quyền không?</li>
 </ol>
-<p>Một <strong>Package Management System</strong> nổi tiếng trên Linux đó là <strong>DPKG</strong>, nó là một công cụ để cài đặt các package có đuôi .deb (các package dành cho các hệ điều hành thuộc dòng debian).<br>Nhiệm vụ của <strong>DPKG</strong> là install hoặc remove một package (với điều kiện các file cần thiết đã có trên local).</p>
-<p>Đến đây nhiều bạn có thể thắc mắc rằng từ trước đến giờ bạn chưa hề sử dụng các dòng lệnh liên quan đến <strong>DPKG</strong>, vậy tại sao tôi lại bảo là nó rất phổ biến? Câu trả lời đó là bạn đang sử dụng các phần mềm package management system khác được xây dựng dựa trên phần core là <strong>DPKG</strong>, một trong số đó là <strong>APT–GET/APT</strong>.</p>
-<p>Ưu điểm lớn nhất của <strong>APT</strong> so với <strong>DPKG</strong> đó là <strong>DPKG</strong> chỉ có thể cài đặt file khi mà file đó đã có trên local (tức là bằng cách nào đó bạn phải download hoặc copy file đó về máy của bạn). Còn với <strong>APT</strong>, nó sẽ tìm kiếm các package đó từ <strong>remote repositories</strong>, sau đó download chúng về máy.</p>
-<p>Điểm mạnh thứ hai của <strong>APT</strong> so với <strong>DPKG</strong> đó là nó giải quyết được bài toán dependencies. Nếu package bạn cần cài đặt phụ thuộc vào một vài package khác, nếu sử dụng <strong>DPKG</strong> thì bạn sẽ phải cài đặt tất cả các package kể trên một cách thủ công.<br>Còn với <strong>APT</strong>, nó sẽ tự hiểu được package đó cần thêm những phụ trợ nào và tự động cài đặt phần phụ trợ.</p>
-<p>Điều thật sự diễn ra đó là trong <strong>APT</strong>, <strong>DPKG</strong> vẫn tồn tại. Nó tồn tại ở một cấp thấp hơn và thực hiện các chỉ thị của <strong>APT</strong>.</p>
-<p>Note: Các <strong>remote repositories</strong> để phần mềm package management của bạn tìm kiếm sẽ được lưu trữ trong file <strong>/etc/apt/sources.list</strong> (đa số là như vậy).</p>
-<h2 id="4-Tham-khao"><a href="#4-Tham-khao" class="headerlink" title="4. Tham khảo"></a>4. Tham khảo</h2><p>[1] <a href="https://www.quora.com/What-is-package-management" target="_blank" rel="noopener">https://www.quora.com/What-is-package-management</a></p>
-<p>[2] <a href="https://www.tecmint.com/linux-package-management/" target="_blank" rel="noopener">https://www.tecmint.com/linux-package-management/</a></p>
+<p>Thêm <code>sudo</code> ngay lập tức là debugging bằng búa: nhanh, mạnh, và khá thú vị cho tới khi thứ bị đóng không phải cái đinh.</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a href="https://www.sudo.ws/docs/man/sudoers.man/" target="_blank" rel="noopener"><code>sudoers(5)</code></a></li>
+</ul>
 
   </div>
 </article>
@@ -215,23 +213,23 @@
     
     
       <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Root"><span class="toc-number">1.</span> <span class="toc-text">1.Root</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Sudo"><span class="toc-number">2.</span> <span class="toc-text">2.Sudo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Package-management-system"><span class="toc-number">3.</span> <span class="toc-text">3.Package management system</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Tham-khao"><span class="toc-number">4.</span> <span class="toc-text">4. Tham khảo</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#sudo-lam-gi"><span class="toc-number">1.</span> <span class="toc-text">sudo làm gì?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Least-privilege"><span class="toc-number">2.</span> <span class="toc-text">Least privilege</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Package-manager"><span class="toc-number">3.</span> <span class="toc-text">Package manager</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sudo-voi-package-cua-language"><span class="toc-number">4.</span> <span class="toc-text">sudo với package của language</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Khi-gap-permission-denied"><span class="toc-number">5.</span> <span class="toc-text">Khi gặp permission denied</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">6.</span> <span class="toc-text">Reference</span></a></li></ol>
       </div>
     
 
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/02/05/2019-02-05-root-sudo-and-package-management-system/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/02/05/2019-02-05-root-sudo-and-package-management-system/&text=Root, Sudo Và Package Management" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/02/05/2019-02-05-root-sudo-and-package-management-system/&title=Root, Sudo Và Package Management" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/02/05/2019-02-05-root-sudo-and-package-management-system/&is_video=false&description=Root, Sudo Và Package Management" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Root, Sudo Và Package Management&body=Check out this article: https://hdchinh.github.io/2019/02/05/2019-02-05-root-sudo-and-package-management-system/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/02/05/2019-02-05-root-sudo-and-package-management-system/&title=Root, Sudo Và Package Management" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/02/05/2019-02-05-root-sudo-and-package-management-system/&title=Root, Sudo Và Package Management" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/02/05/2019-02-05-root-sudo-and-package-management-system/&title=Root, Sudo Và Package Management" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/02/05/2019-02-05-root-sudo-and-package-management-system/&title=Root, Sudo Và Package Management" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/02/05/2019-02-05-root-sudo-and-package-management-system/&name=Root, Sudo Và Package Management&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/02/05/2019-02-05-root-sudo-and-package-management-system/&t=Root, Sudo Và Package Management" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/02/05/2019-02-05-root-sudo-and-package-management-system/&text=Root, sudo và package manager: quyền lực càng lớn, blast radius càng rộng" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/02/05/2019-02-05-root-sudo-and-package-management-system/&title=Root, sudo và package manager: quyền lực càng lớn, blast radius càng rộng" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/02/05/2019-02-05-root-sudo-and-package-management-system/&is_video=false&description=Root, sudo và package manager: quyền lực càng lớn, blast radius càng rộng" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Root, sudo và package manager: quyền lực càng lớn, blast radius càng rộng&body=Check out this article: https://hdchinh.github.io/2019/02/05/2019-02-05-root-sudo-and-package-management-system/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/02/05/2019-02-05-root-sudo-and-package-management-system/&title=Root, sudo và package manager: quyền lực càng lớn, blast radius càng rộng" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/02/05/2019-02-05-root-sudo-and-package-management-system/&title=Root, sudo và package manager: quyền lực càng lớn, blast radius càng rộng" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/02/05/2019-02-05-root-sudo-and-package-management-system/&title=Root, sudo và package manager: quyền lực càng lớn, blast radius càng rộng" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/02/05/2019-02-05-root-sudo-and-package-management-system/&title=Root, sudo và package manager: quyền lực càng lớn, blast radius càng rộng" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/02/05/2019-02-05-root-sudo-and-package-management-system/&name=Root, sudo và package manager: quyền lực càng lớn, blast radius càng rộng&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/02/05/2019-02-05-root-sudo-and-package-management-system/&t=Root, sudo và package manager: quyền lực càng lớn, blast radius càng rộng" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

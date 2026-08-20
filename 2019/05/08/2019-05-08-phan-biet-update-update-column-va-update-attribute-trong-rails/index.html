@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="Đặt vấn đềNgoài phương thức thông dụng update để cập nhật dữ liệu. Rails nói chung hay Activerecord nói riêng còn cung cấp 1 số phương thức khác để thay đổi dữ liệu hiện có, hãy cùng tìm hiểu về chúng">
+    <meta name="description" content="ActiveRecord có nhiều API update vì mỗi API đánh đổi validation, callback, timestamp và exception khác nhau. Chúng không phải các cách viết đồng nghĩa để chọn theo tâm trạng. update và update!12user.u">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Cập Nhật Dữ Liệu Với ActiveRecord">
+<meta property="og:title" content="Cập nhật dữ liệu trong ActiveRecord: chọn API theo invariant, không theo độ ngắn">
 <meta property="og:url" content="https://hdchinh.github.io/2019/05/08/2019-05-08-phan-biet-update-update-column-va-update-attribute-trong-rails/index.html">
 <meta property="og:site_name" content="Hudson">
-<meta property="og:description" content="Đặt vấn đềNgoài phương thức thông dụng update để cập nhật dữ liệu. Rails nói chung hay Activerecord nói riêng còn cung cấp 1 số phương thức khác để thay đổi dữ liệu hiện có, hãy cùng tìm hiểu về chúng">
+<meta property="og:description" content="ActiveRecord có nhiều API update vì mỗi API đánh đổi validation, callback, timestamp và exception khác nhau. Chúng không phải các cách viết đồng nghĩa để chọn theo tâm trạng. update và update!12user.u">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2019-05-07T17:00:00.000Z">
-<meta property="article:modified_time" content="2026-08-14T07:11:23.738Z">
+<meta property="article:modified_time" content="2026-08-20T05:30:54.175Z">
 <meta property="article:author" content="Hudson">
 <meta property="article:tag" content="RAILS">
 <meta name="twitter:card" content="summary">
@@ -37,7 +37,7 @@
       
     
     <!-- title -->
-    <title>Cập Nhật Dữ Liệu Với ActiveRecord</title>
+    <title>Cập nhật dữ liệu trong ActiveRecord: chọn API theo invariant, không theo độ ngắn</title>
     <!-- async scripts -->
     <!-- Google Analytics -->
 
@@ -97,23 +97,23 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/05/08/2019-05-08-phan-biet-update-update-column-va-update-attribute-trong-rails/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/05/08/2019-05-08-phan-biet-update-update-column-va-update-attribute-trong-rails/&text=Cập Nhật Dữ Liệu Với ActiveRecord" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/05/08/2019-05-08-phan-biet-update-update-column-va-update-attribute-trong-rails/&title=Cập Nhật Dữ Liệu Với ActiveRecord" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/05/08/2019-05-08-phan-biet-update-update-column-va-update-attribute-trong-rails/&is_video=false&description=Cập Nhật Dữ Liệu Với ActiveRecord" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Cập Nhật Dữ Liệu Với ActiveRecord&body=Check out this article: https://hdchinh.github.io/2019/05/08/2019-05-08-phan-biet-update-update-column-va-update-attribute-trong-rails/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/05/08/2019-05-08-phan-biet-update-update-column-va-update-attribute-trong-rails/&title=Cập Nhật Dữ Liệu Với ActiveRecord" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/05/08/2019-05-08-phan-biet-update-update-column-va-update-attribute-trong-rails/&title=Cập Nhật Dữ Liệu Với ActiveRecord" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/05/08/2019-05-08-phan-biet-update-update-column-va-update-attribute-trong-rails/&title=Cập Nhật Dữ Liệu Với ActiveRecord" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/05/08/2019-05-08-phan-biet-update-update-column-va-update-attribute-trong-rails/&title=Cập Nhật Dữ Liệu Với ActiveRecord" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/05/08/2019-05-08-phan-biet-update-update-column-va-update-attribute-trong-rails/&name=Cập Nhật Dữ Liệu Với ActiveRecord&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/05/08/2019-05-08-phan-biet-update-update-column-va-update-attribute-trong-rails/&t=Cập Nhật Dữ Liệu Với ActiveRecord" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/05/08/2019-05-08-phan-biet-update-update-column-va-update-attribute-trong-rails/&text=Cập nhật dữ liệu trong ActiveRecord: chọn API theo invariant, không theo độ ngắn" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/05/08/2019-05-08-phan-biet-update-update-column-va-update-attribute-trong-rails/&title=Cập nhật dữ liệu trong ActiveRecord: chọn API theo invariant, không theo độ ngắn" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/05/08/2019-05-08-phan-biet-update-update-column-va-update-attribute-trong-rails/&is_video=false&description=Cập nhật dữ liệu trong ActiveRecord: chọn API theo invariant, không theo độ ngắn" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Cập nhật dữ liệu trong ActiveRecord: chọn API theo invariant, không theo độ ngắn&body=Check out this article: https://hdchinh.github.io/2019/05/08/2019-05-08-phan-biet-update-update-column-va-update-attribute-trong-rails/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/05/08/2019-05-08-phan-biet-update-update-column-va-update-attribute-trong-rails/&title=Cập nhật dữ liệu trong ActiveRecord: chọn API theo invariant, không theo độ ngắn" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/05/08/2019-05-08-phan-biet-update-update-column-va-update-attribute-trong-rails/&title=Cập nhật dữ liệu trong ActiveRecord: chọn API theo invariant, không theo độ ngắn" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/05/08/2019-05-08-phan-biet-update-update-column-va-update-attribute-trong-rails/&title=Cập nhật dữ liệu trong ActiveRecord: chọn API theo invariant, không theo độ ngắn" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/05/08/2019-05-08-phan-biet-update-update-column-va-update-attribute-trong-rails/&title=Cập nhật dữ liệu trong ActiveRecord: chọn API theo invariant, không theo độ ngắn" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/05/08/2019-05-08-phan-biet-update-update-column-va-update-attribute-trong-rails/&name=Cập nhật dữ liệu trong ActiveRecord: chọn API theo invariant, không theo độ ngắn&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/05/08/2019-05-08-phan-biet-update-update-column-va-update-attribute-trong-rails/&t=Cập nhật dữ liệu trong ActiveRecord: chọn API theo invariant, không theo độ ngắn" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
     
     
       <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Dat-van-de"><span class="toc-number">1.</span> <span class="toc-text">Đặt vấn đề</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Luan-ban"><span class="toc-number">2.</span> <span class="toc-text">Luận bàn</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Phuong-thuc-update"><span class="toc-number">3.</span> <span class="toc-text">1. Phương thức update</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Phuong-thuc-update-attribute-va-update-attributes"><span class="toc-number">4.</span> <span class="toc-text">2. Phương thức update_attribute và update_attributes</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Phuong-update-column-va-update-columns"><span class="toc-number">5.</span> <span class="toc-text">3. Phương update_column và update_columns</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ket-luan"><span class="toc-number">6.</span> <span class="toc-text">Kết luận</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#update-va-update"><span class="toc-number">1.</span> <span class="toc-text">update và update!</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#update-attribute-va-update-attribute"><span class="toc-number">2.</span> <span class="toc-text">update_attribute và update_attribute!</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#update-column-va-update-columns"><span class="toc-number">3.</span> <span class="toc-text">update_column và update_columns</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#update-all"><span class="toc-number">4.</span> <span class="toc-text">update_all</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Callback-recursion"><span class="toc-number">5.</span> <span class="toc-text">Callback recursion</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">6.</span> <span class="toc-text">Reference</span></a></li></ol>
       </div>
     
   </span>
@@ -126,7 +126,7 @@
   <header>
     
     <h1 class="posttitle p-name" itemprop="name headline">
-        Cập Nhật Dữ Liệu Với ActiveRecord
+        Cập nhật dữ liệu trong ActiveRecord: chọn API theo invariant, không theo độ ngắn
     </h1>
 
 
@@ -144,6 +144,11 @@
 
 
       
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/rails-notes/">rails-notes</a>
+    </div>
+
 
       
     <div class="article-tag">
@@ -157,83 +162,43 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    <h2 id="Dat-van-de"><a href="#Dat-van-de" class="headerlink" title="Đặt vấn đề"></a>Đặt vấn đề</h2><p>Ngoài phương thức thông dụng <strong>update</strong> để cập nhật dữ liệu. Rails nói chung hay Activerecord nói riêng còn cung cấp 1 số phương thức khác để thay đổi dữ liệu hiện có, hãy cùng tìm hiểu về chúng.</p>
-<h2 id="Luan-ban"><a href="#Luan-ban" class="headerlink" title="Luận bàn"></a>Luận bàn</h2><p><strong>Chuẩn bị:</strong></p>
-<ol>
-<li><p>Tôi có một model <strong>Cat</strong> với 2 thuộc tính là <strong>age</strong> và <strong>name</strong>.</p>
-</li>
-<li><p>Trong model Cat tôi có 1 <strong>validation</strong> và 1 <strong>callback</strong> đơn giản.</p>
-</li>
-</ol>
-<p><strong>Để so sánh các phương thức chúng ta chú ý đến một số điểm sau:</strong></p>
-<ol>
-<li><p>Phương thức nhận một field cần update hay nhiều field?</p>
-</li>
-<li><p>Phương thức update được cho một hay nhiều record?</p>
-</li>
-<li><p>Validate method có chạy hay không?</p>
-</li>
-<li><p>Callback có chạy hay không?</p>
-</li>
-<li><p>Trường update_at có được cập nhật hay không?</p>
-</li>
-</ol>
-<h2 id="1-Phuong-thuc-update"><a href="#1-Phuong-thuc-update" class="headerlink" title="1. Phương thức update"></a>1. Phương thức update</h2><p><strong>Instance method:</strong></p>
-<p>Là phương thức được gọi thông qua một instance. Ta truyền vào field name cần cập nhật và giá trị mới sau cập nhật. Ta có thể truyền tham số dưới dạng hash.</p>
-<p>Ví dụ:</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cat = Cat.first</span><br><span class="line">cat.update(<span class="symbol">name:</span> <span class="string">'change name'</span>)</span><br></pre></td></tr></table></figure>
+    <p>ActiveRecord có nhiều API update vì mỗi API đánh đổi validation, callback, timestamp và exception khác nhau. Chúng không phải các cách viết đồng nghĩa để chọn theo tâm trạng.</p>
+<h2 id="update-va-update"><a href="#update-va-update" class="headerlink" title="update và update!"></a><code>update</code> và <code>update!</code></h2><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">user.update(<span class="symbol">name:</span> <span class="string">"Hudson"</span>)</span><br><span class="line">user.update!(<span class="symbol">name:</span> <span class="string">"Hudson"</span>)</span><br></pre></td></tr></table></figure>
 
-<p>Nhiều tham số</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cat = Cat.first</span><br><span class="line">cat.update(<span class="symbol">name:</span> <span class="string">'change name'</span>, <span class="symbol">age:</span> <span class="number">100</span>)</span><br></pre></td></tr></table></figure>
+<p>Cả hai chạy validation, callback và cập nhật timestamps. <code>update</code> trả <code>false</code> khi validation fail; <code>update!</code> raise <code>ActiveRecord::RecordInvalid</code>.</p>
+<p>Trong service/transaction, bản bang thường tốt hơn vì failure không bị biến thành một boolean rồi lặng lẽ đi lạc.</p>
+<h2 id="update-attribute-va-update-attribute"><a href="#update-attribute-va-update-attribute" class="headerlink" title="update_attribute và update_attribute!"></a><code>update_attribute</code> và <code>update_attribute!</code></h2><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">user.update_attribute(<span class="symbol">:last_seen_at</span>, Time.current)</span><br></pre></td></tr></table></figure>
 
-<p>Truyền dưới dạng hash</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cat = Cat.first</span><br><span class="line">cat.update(&#123;<span class="symbol">:name</span> =&gt; <span class="string">'change name'</span>, <span class="symbol">:age</span> =&gt; <span class="number">1</span>&#125;)</span><br></pre></td></tr></table></figure>
+<p>Method này bỏ validation nhưng vẫn chạy callback và cập nhật timestamp. Vì callback vẫn chạy, nó không phải thuốc chữa mặc định cho callback recursion.</p>
+<p>Nếu Rails version hỗ trợ, <code>update_attribute!</code> raise khi callback abort thao tác.</p>
+<h2 id="update-column-va-update-columns"><a href="#update-column-va-update-columns" class="headerlink" title="update_column và update_columns"></a><code>update_column</code> và <code>update_columns</code></h2><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">user.update_column(<span class="symbol">:last_seen_at</span>, Time.current)</span><br><span class="line">user.update_columns(<span class="symbol">last_seen_at:</span> Time.current, <span class="symbol">online:</span> <span class="literal">true</span>)</span><br></pre></td></tr></table></figure>
 
-<p><strong>Class method</strong></p>
-<p>Là phương thức được gọi thông qua class model. Nhận vào 2 tham số, thứ nhất là id hoặc một mảng các id của record thuộc class cần cập nhật, thứ hai là một hash key-value các field name cần cập nhật và giá trị của chúng sau cập nhật.</p>
-<p>Cập nhật 1 record</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Cat.update(<span class="number">1</span>, &#123;<span class="symbol">:name</span> =&gt; <span class="string">'change name'</span>&#125;)</span><br></pre></td></tr></table></figure>
+<p>Hai method này ghi trực tiếp xuống database:</p>
+<ul>
+<li>bỏ validation;</li>
+<li>bỏ callback;</li>
+<li>mặc định không tự cập nhật <code>updated_at</code> trừ khi API/version và option được dùng phù hợp;</li>
+<li>vẫn serialize dữ liệu theo attribute type.</li>
+</ul>
+<p>Chỉ dùng khi bạn <strong>cố ý</strong> bypass business invariant. Nhanh hơn không có nghĩa đúng hơn; xe mất phanh cũng giảm được khá nhiều overhead.</p>
+<h2 id="update-all"><a href="#update-all" class="headerlink" title="update_all"></a><code>update_all</code></h2><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">User.where(<span class="symbol">active:</span> <span class="literal">false</span>).update_all(<span class="symbol">archived:</span> <span class="literal">true</span>)</span><br></pre></td></tr></table></figure>
 
-<p>Cập nhật nhiều record</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Cat.update([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], &#123;<span class="symbol">:name</span> =&gt; <span class="string">'change name'</span>&#125;)</span><br></pre></td></tr></table></figure>
+<p>Update nhiều record bằng một câu SQL, không instantiate model, không validation/callback. Phù hợp cho bulk operation đã được kiểm soát.</p>
+<h2 id="Callback-recursion"><a href="#Callback-recursion" class="headerlink" title="Callback recursion"></a>Callback recursion</h2><p>Nếu <code>after_save</code> lại gọi <code>update</code>, callback có thể tự kích hoạt:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">after_save <span class="symbol">:recalculate</span></span><br></pre></td></tr></table></figure>
 
-<p>Note:</p>
-<ol>
-<li><p>Trường updated_at đều được cập nhật lại khi dùng 2 phương thức trên.</p>
-</li>
-<li><p>Validate và callback đều được chạy.</p>
-</li>
-<li><p>Class method <strong>update</strong> thì có thể cập nhật nhiều record một lúc.</p>
-</li>
-</ol>
-<h2 id="2-Phuong-thuc-update-attribute-va-update-attributes"><a href="#2-Phuong-thuc-update-attribute-va-update-attributes" class="headerlink" title="2. Phương thức update_attribute và update_attributes"></a>2. Phương thức update_attribute và update_attributes</h2><p>Phương thức update_attribute nhận 2 tham số truyền vào, với tham số thứ nhất là field cần cập nhật và tham số thứ 2 là giá trị cập nhật (Khác với update, thì tham số truyền vào không thể để dưới dạng hash).</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cat = Cat.first</span><br><span class="line">cat.update_attribute(<span class="symbol">:name</span>, <span class="string">'change name'</span>)</span><br></pre></td></tr></table></figure>
+<p>Đừng vội thay bằng <code>update_columns</code> để làm vòng lặp im tiếng. Hãy hỏi:</p>
+<ul>
+<li>logic có thể chuyển sang <code>before_validation</code>/<code>before_save</code> bằng assignment không?</li>
+<li>callback có cần điều kiện <code>if:</code> hoặc dirty tracking không?</li>
+<li>side effect có nên nằm trong service/job sau transaction không?</li>
+</ul>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">before_save <span class="symbol">:normalize_name</span>, <span class="symbol">if:</span> <span class="symbol">:will_save_change_to_name?</span></span><br></pre></td></tr></table></figure>
 
-<p>Phương thức update_attributes khác với update_attribute là nó nhận 1 tham số chứ không phải 2. Ta truyền tham số dưới hạng một hash cho phương này với giá trị key-value tương ứng field cần update và giá trị cần cập nhật.</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cat = Cat.first</span><br><span class="line">cat.update_attributes(&#123; <span class="symbol">:name</span> =&gt; <span class="string">'change name'</span>, <span class="symbol">:age</span> =&gt; <span class="number">20</span> &#125;)</span><br><span class="line"><span class="comment"># cách khác</span></span><br><span class="line">cat.update_attributes(&#123; <span class="symbol">name:</span> <span class="string">'meo tam the 2'</span>, <span class="symbol">age:</span> <span class="number">20</span> &#125;)</span><br></pre></td></tr></table></figure>
-
-<p>Note:</p>
-<ol>
-<li><p>Trường updated_at có được cập nhật lại.</p>
-</li>
-<li><p>Callback vẫn chạy nhưng <strong>không</strong> chạy validate.</p>
-</li>
-<li><p>update_attribute dùng cho cập nhật 1 field còn update_attributes cần khi cập nhật nhiều field.</p>
-</li>
-</ol>
-<h2 id="3-Phuong-update-column-va-update-columns"><a href="#3-Phuong-update-column-va-update-columns" class="headerlink" title="3. Phương update_column và update_columns"></a>3. Phương update_column và update_columns</h2><p>Phương thức update_column có cú pháp giống như update_attribute, còn phương thức update_columns thì có cú pháp tương tự như update_attributes.</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cat = Cat.first</span><br><span class="line">cat.update_column(<span class="symbol">:name</span>, <span class="string">'change name'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># với update_columns</span></span><br><span class="line">cat.update_columns(<span class="symbol">name:</span> <span class="string">'change name'</span>, <span class="symbol">age:</span> <span class="number">10</span>)</span><br><span class="line"><span class="comment"># or</span></span><br><span class="line">cat.update_columns(<span class="symbol">:name</span> =&gt; <span class="string">'change name'</span>, <span class="symbol">:age</span> =&gt; <span class="number">10</span>)</span><br></pre></td></tr></table></figure>
-
-<p>Tuy nhiên ta có một số điểm khác biệt cơ bản cần lưu ý với update_attribute và update_attributes cần lưu ý.</p>
-<p>Note: Với phương thức update_column và update_columns</p>
-<ol>
-<li><p>Trường updated_at không được cập nhật.</p>
-</li>
-<li><p>Callback và validate đều <strong>không</strong> được chạy.</p>
-</li>
-</ol>
-<h2 id="Ket-luan"><a href="#Ket-luan" class="headerlink" title="Kết luận"></a>Kết luận</h2><p>Cách đây ít lâu tôi có làm 1 ứng dụng nhỏ, trong đó có một model chính gọi là X, trong model này tôi có viết một callback tên Y được thực hiện sau khi record được save (với method after_save). Trong callback Y tôi sử dụng method <strong>update</strong>.</p>
-<p>Đáng buồn thay là đoạn code của tôi không hoạt động một cách bình thường, sau khi save record thì terminal bị crash với một vòng lặp bất tận, chợt nhận ra là khi sử dụng <strong>update</strong> thì callback được gọi lại, vậy là nó tạo ra một vòng lặp vĩnh viễn, save record(1) -&gt; callback được gọi(2) -&gt; trong callback có phương thức update(3) -&gt; update được gọi(4) -&gt; update lại gọi lại callback(2).<br>Để khắc phục thì cần chuyển <strong>update</strong> thành <strong>update_column</strong> hoặc <strong>update_columns</strong>.</p>
+<p>Chọn API dựa trên invariant cần bảo vệ. Nếu không biết callback nào bị bỏ qua, bạn chưa tối ưu—bạn chỉ vừa tắt chuông báo cháy.</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a href="https://api.rubyonrails.org/classes/ActiveRecord/Persistence.html" target="_blank" rel="noopener">ActiveRecord Persistence</a></li>
+</ul>
 
   </div>
 </article>
@@ -257,23 +222,23 @@
     
     
       <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Dat-van-de"><span class="toc-number">1.</span> <span class="toc-text">Đặt vấn đề</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Luan-ban"><span class="toc-number">2.</span> <span class="toc-text">Luận bàn</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Phuong-thuc-update"><span class="toc-number">3.</span> <span class="toc-text">1. Phương thức update</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Phuong-thuc-update-attribute-va-update-attributes"><span class="toc-number">4.</span> <span class="toc-text">2. Phương thức update_attribute và update_attributes</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Phuong-update-column-va-update-columns"><span class="toc-number">5.</span> <span class="toc-text">3. Phương update_column và update_columns</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ket-luan"><span class="toc-number">6.</span> <span class="toc-text">Kết luận</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#update-va-update"><span class="toc-number">1.</span> <span class="toc-text">update và update!</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#update-attribute-va-update-attribute"><span class="toc-number">2.</span> <span class="toc-text">update_attribute và update_attribute!</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#update-column-va-update-columns"><span class="toc-number">3.</span> <span class="toc-text">update_column và update_columns</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#update-all"><span class="toc-number">4.</span> <span class="toc-text">update_all</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Callback-recursion"><span class="toc-number">5.</span> <span class="toc-text">Callback recursion</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">6.</span> <span class="toc-text">Reference</span></a></li></ol>
       </div>
     
 
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/05/08/2019-05-08-phan-biet-update-update-column-va-update-attribute-trong-rails/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/05/08/2019-05-08-phan-biet-update-update-column-va-update-attribute-trong-rails/&text=Cập Nhật Dữ Liệu Với ActiveRecord" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/05/08/2019-05-08-phan-biet-update-update-column-va-update-attribute-trong-rails/&title=Cập Nhật Dữ Liệu Với ActiveRecord" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/05/08/2019-05-08-phan-biet-update-update-column-va-update-attribute-trong-rails/&is_video=false&description=Cập Nhật Dữ Liệu Với ActiveRecord" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Cập Nhật Dữ Liệu Với ActiveRecord&body=Check out this article: https://hdchinh.github.io/2019/05/08/2019-05-08-phan-biet-update-update-column-va-update-attribute-trong-rails/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/05/08/2019-05-08-phan-biet-update-update-column-va-update-attribute-trong-rails/&title=Cập Nhật Dữ Liệu Với ActiveRecord" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/05/08/2019-05-08-phan-biet-update-update-column-va-update-attribute-trong-rails/&title=Cập Nhật Dữ Liệu Với ActiveRecord" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/05/08/2019-05-08-phan-biet-update-update-column-va-update-attribute-trong-rails/&title=Cập Nhật Dữ Liệu Với ActiveRecord" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/05/08/2019-05-08-phan-biet-update-update-column-va-update-attribute-trong-rails/&title=Cập Nhật Dữ Liệu Với ActiveRecord" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/05/08/2019-05-08-phan-biet-update-update-column-va-update-attribute-trong-rails/&name=Cập Nhật Dữ Liệu Với ActiveRecord&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/05/08/2019-05-08-phan-biet-update-update-column-va-update-attribute-trong-rails/&t=Cập Nhật Dữ Liệu Với ActiveRecord" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/05/08/2019-05-08-phan-biet-update-update-column-va-update-attribute-trong-rails/&text=Cập nhật dữ liệu trong ActiveRecord: chọn API theo invariant, không theo độ ngắn" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/05/08/2019-05-08-phan-biet-update-update-column-va-update-attribute-trong-rails/&title=Cập nhật dữ liệu trong ActiveRecord: chọn API theo invariant, không theo độ ngắn" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/05/08/2019-05-08-phan-biet-update-update-column-va-update-attribute-trong-rails/&is_video=false&description=Cập nhật dữ liệu trong ActiveRecord: chọn API theo invariant, không theo độ ngắn" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Cập nhật dữ liệu trong ActiveRecord: chọn API theo invariant, không theo độ ngắn&body=Check out this article: https://hdchinh.github.io/2019/05/08/2019-05-08-phan-biet-update-update-column-va-update-attribute-trong-rails/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/05/08/2019-05-08-phan-biet-update-update-column-va-update-attribute-trong-rails/&title=Cập nhật dữ liệu trong ActiveRecord: chọn API theo invariant, không theo độ ngắn" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/05/08/2019-05-08-phan-biet-update-update-column-va-update-attribute-trong-rails/&title=Cập nhật dữ liệu trong ActiveRecord: chọn API theo invariant, không theo độ ngắn" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/05/08/2019-05-08-phan-biet-update-update-column-va-update-attribute-trong-rails/&title=Cập nhật dữ liệu trong ActiveRecord: chọn API theo invariant, không theo độ ngắn" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/05/08/2019-05-08-phan-biet-update-update-column-va-update-attribute-trong-rails/&title=Cập nhật dữ liệu trong ActiveRecord: chọn API theo invariant, không theo độ ngắn" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/05/08/2019-05-08-phan-biet-update-update-column-va-update-attribute-trong-rails/&name=Cập nhật dữ liệu trong ActiveRecord: chọn API theo invariant, không theo độ ngắn&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/05/08/2019-05-08-phan-biet-update-update-column-va-update-attribute-trong-rails/&t=Cập nhật dữ liệu trong ActiveRecord: chọn API theo invariant, không theo độ ngắn" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

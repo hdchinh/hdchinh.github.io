@@ -6,17 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="Plugin management: https:&#x2F;&#x2F;github.com&#x2F;junegunn&#x2F;vim-plug#installation Tree project: https:&#x2F;&#x2F;github.com&#x2F;scrooloose&#x2F;nerdtree Code complete: https:&#x2F;&#x2F;github.com&#x2F;ycm-core&#x2F;YouCompleteMe#installation Control">
+    <meta name="description" content="A useful Vim configuration should make editing predictable. If opening .vimrc feels like debugging a distributed system, the configuration has won and you have lost. Plugin managementInstall vim-plug,">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Basic Vim Setup">
+<meta property="og:title" content="A Minimal Vim Setup That Stays Maintainable">
 <meta property="og:url" content="https://hdchinh.github.io/2019/09/20/2019-10-30-basic-vim-setup/index.html">
 <meta property="og:site_name" content="Hudson">
-<meta property="og:description" content="Plugin management: https:&#x2F;&#x2F;github.com&#x2F;junegunn&#x2F;vim-plug#installation Tree project: https:&#x2F;&#x2F;github.com&#x2F;scrooloose&#x2F;nerdtree Code complete: https:&#x2F;&#x2F;github.com&#x2F;ycm-core&#x2F;YouCompleteMe#installation Control">
+<meta property="og:description" content="A useful Vim configuration should make editing predictable. If opening .vimrc feels like debugging a distributed system, the configuration has won and you have lost. Plugin managementInstall vim-plug,">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2019-09-19T17:00:00.000Z">
-<meta property="article:modified_time" content="2026-08-19T06:18:46.227Z">
+<meta property="article:modified_time" content="2026-08-20T05:25:11.763Z">
 <meta property="article:author" content="Hudson">
-<meta property="article:tag" content="TIl">
+<meta property="article:tag" content="TIL">
 <meta property="article:tag" content="English">
 <meta name="twitter:card" content="summary">
     
@@ -38,7 +38,7 @@
       
     
     <!-- title -->
-    <title>Basic Vim Setup</title>
+    <title>A Minimal Vim Setup That Stays Maintainable</title>
     <!-- async scripts -->
     <!-- Google Analytics -->
 
@@ -98,20 +98,24 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/09/20/2019-10-30-basic-vim-setup/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/09/20/2019-10-30-basic-vim-setup/&text=Basic Vim Setup" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/09/20/2019-10-30-basic-vim-setup/&title=Basic Vim Setup" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/09/20/2019-10-30-basic-vim-setup/&is_video=false&description=Basic Vim Setup" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Basic Vim Setup&body=Check out this article: https://hdchinh.github.io/2019/09/20/2019-10-30-basic-vim-setup/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/09/20/2019-10-30-basic-vim-setup/&title=Basic Vim Setup" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/09/20/2019-10-30-basic-vim-setup/&title=Basic Vim Setup" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/09/20/2019-10-30-basic-vim-setup/&title=Basic Vim Setup" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/09/20/2019-10-30-basic-vim-setup/&title=Basic Vim Setup" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/09/20/2019-10-30-basic-vim-setup/&name=Basic Vim Setup&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/09/20/2019-10-30-basic-vim-setup/&t=Basic Vim Setup" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/09/20/2019-10-30-basic-vim-setup/&text=A Minimal Vim Setup That Stays Maintainable" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/09/20/2019-10-30-basic-vim-setup/&title=A Minimal Vim Setup That Stays Maintainable" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/09/20/2019-10-30-basic-vim-setup/&is_video=false&description=A Minimal Vim Setup That Stays Maintainable" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=A Minimal Vim Setup That Stays Maintainable&body=Check out this article: https://hdchinh.github.io/2019/09/20/2019-10-30-basic-vim-setup/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/09/20/2019-10-30-basic-vim-setup/&title=A Minimal Vim Setup That Stays Maintainable" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/09/20/2019-10-30-basic-vim-setup/&title=A Minimal Vim Setup That Stays Maintainable" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/09/20/2019-10-30-basic-vim-setup/&title=A Minimal Vim Setup That Stays Maintainable" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/09/20/2019-10-30-basic-vim-setup/&title=A Minimal Vim Setup That Stays Maintainable" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/09/20/2019-10-30-basic-vim-setup/&name=A Minimal Vim Setup That Stays Maintainable&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/09/20/2019-10-30-basic-vim-setup/&t=A Minimal Vim Setup That Stays Maintainable" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
     
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Plugin-management"><span class="toc-number">1.</span> <span class="toc-text">Plugin management</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Practical-defaults"><span class="toc-number">2.</span> <span class="toc-text">Practical defaults</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Keep-it-portable"><span class="toc-number">3.</span> <span class="toc-text">Keep it portable</span></a></li></ol>
+      </div>
     
   </span>
 </div>
@@ -123,7 +127,7 @@
   <header>
     
     <h1 class="posttitle p-name" itemprop="name headline">
-        Basic Vim Setup
+        A Minimal Vim Setup That Stays Maintainable
     </h1>
 
 
@@ -143,14 +147,14 @@
       
     <div class="article-category">
         <i class="fa-solid fa-archive"></i>
-        <a class="category-link" href="/categories/til/">til</a>
+        <a class="category-link" href="/categories/TIL/">TIL</a>
     </div>
 
 
       
     <div class="article-tag">
         <i class="fa-solid fa-tag"></i>
-        <a class="[object Object]-link" href="/tags/English/" rel="tag">English</a>, <a class="[object Object]-link" href="/tags/TIl/" rel="tag">TIl</a>
+        <a class="[object Object]-link" href="/tags/English/" rel="tag">English</a>, <a class="[object Object]-link" href="/tags/TIL/" rel="tag">TIL</a>
     </div>
 
 
@@ -159,15 +163,15 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    <ol>
-<li>Plugin management: <a href="https://github.com/junegunn/vim-plug#installation" target="_blank" rel="noopener">https://github.com/junegunn/vim-plug#installation</a></li>
-<li>Tree project: <a href="https://github.com/scrooloose/nerdtree" target="_blank" rel="noopener">https://github.com/scrooloose/nerdtree</a></li>
-<li>Code complete: <a href="https://github.com/ycm-core/YouCompleteMe#installation" target="_blank" rel="noopener">https://github.com/ycm-core/YouCompleteMe#installation</a></li>
-<li>Control + P: <a href="https://github.com/ctrlpvim/ctrlp.vim" target="_blank" rel="noopener">https://github.com/ctrlpvim/ctrlp.vim</a></li>
-<li>Monakai theme: <a href="https://github.com/sickill/vim-monokai" target="_blank" rel="noopener">https://github.com/sickill/vim-monokai</a></li>
-<li>Vimfile:</li>
-</ol>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">call</span> plug#begin(<span class="string">'~/.vim/plugged'</span>)</span><br><span class="line"></span><br><span class="line">Plug <span class="string">'https://github.com/scrooloose/nerdtree.git'</span></span><br><span class="line">Plug <span class="string">'morhetz/gruvbox'</span></span><br><span class="line">Plug <span class="string">'vim-airline/vim-airline'</span></span><br><span class="line">Plug <span class="string">'scrooloose/nerdcommenter'</span></span><br><span class="line"><span class="comment">" Plug 'dracula/vim', &#123; 'as': 'dracula' &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">" Initialize plugin system</span></span><br><span class="line"><span class="keyword">call</span> plug#end()</span><br><span class="line"></span><br><span class="line"><span class="comment">" Set colorscheme</span></span><br><span class="line"><span class="comment">" colorscheme gruvbox</span></span><br><span class="line"></span><br><span class="line"><span class="comment">" Set dark background</span></span><br><span class="line"><span class="comment">"set background=dark</span></span><br><span class="line"></span><br><span class="line"><span class="comment">" Use monokai</span></span><br><span class="line"><span class="comment">" syntax enable</span></span><br><span class="line"><span class="keyword">colorscheme</span> monokai</span><br><span class="line"></span><br><span class="line"><span class="comment">" Copy clibboard</span></span><br><span class="line"><span class="keyword">set</span> clipboard=unnamedplus</span><br><span class="line"></span><br><span class="line"><span class="comment">" Use ctrlp</span></span><br><span class="line"><span class="keyword">set</span> runtimepath^=~/.<span class="keyword">vim</span>/bundle/ctrlp.<span class="keyword">vim</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="built_in">has</span>(<span class="string">'mouse'</span>)</span><br><span class="line">  <span class="keyword">set</span> mouse=<span class="keyword">a</span></span><br><span class="line"><span class="keyword">endif</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span> <span class="keyword">nu</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span> autoindent</span><br><span class="line"><span class="keyword">set</span> si <span class="string">"smart indent"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">syntax</span> <span class="keyword">on</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">autocmd</span> StdinReadPre * <span class="keyword">let</span> <span class="variable">s:std_in</span>=<span class="number">1</span></span><br><span class="line"><span class="keyword">autocmd</span> VimEnter * <span class="keyword">if</span> <span class="built_in">argc</span>() == <span class="number">0</span> &amp;&amp; !exists(<span class="string">"s:std_in"</span>) | NERDTree | <span class="keyword">endif</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">autocmd</span> bufenter * <span class="keyword">if</span> (<span class="built_in">winnr</span>(<span class="string">"$"</span>) == <span class="number">1</span> &amp;&amp; <span class="built_in">exists</span>(<span class="string">"b:NERDTree"</span>) &amp;&amp; <span class="variable">b:NERDTree</span>.isTabTree()) | q | <span class="keyword">endif</span></span><br><span class="line"><span class="keyword">map</span> <span class="symbol">&lt;C-n&gt;</span> :NERDTreeToggle<span class="symbol">&lt;CR&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span> expandtab</span><br><span class="line"><span class="keyword">set</span> tabstop=<span class="number">2</span></span><br><span class="line"><span class="keyword">set</span> softtabstop=<span class="number">2</span></span><br></pre></td></tr></table></figure>
+    <p>A useful Vim configuration should make editing predictable. If opening <code>.vimrc</code> feels like debugging a distributed system, the configuration has won and you have lost.</p>
+<h2 id="Plugin-management"><a href="#Plugin-management" class="headerlink" title="Plugin management"></a>Plugin management</h2><p>Install <a href="https://github.com/junegunn/vim-plug" target="_blank" rel="noopener">vim-plug</a>, then keep the plugin list short:</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">call</span> plug#begin(<span class="string">'~/.vim/plugged'</span>)</span><br><span class="line"></span><br><span class="line">Plug <span class="string">'preservim/nerdtree'</span></span><br><span class="line">Plug <span class="string">'preservim/nerdcommenter'</span></span><br><span class="line">Plug <span class="string">'vim-airline/vim-airline'</span></span><br><span class="line">Plug <span class="string">'morhetz/gruvbox'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">call</span> plug#end()</span><br></pre></td></tr></table></figure>
+
+<p>Run <code>:PlugInstall</code> inside Vim.</p>
+<h2 id="Practical-defaults"><a href="#Practical-defaults" class="headerlink" title="Practical defaults"></a>Practical defaults</h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> <span class="keyword">number</span></span><br><span class="line"><span class="keyword">set</span> mouse=<span class="keyword">a</span></span><br><span class="line"><span class="keyword">set</span> clipboard=unnamedplus</span><br><span class="line"><span class="keyword">set</span> hidden</span><br><span class="line"><span class="keyword">set</span> ignorecase</span><br><span class="line"><span class="keyword">set</span> smartcase</span><br><span class="line"><span class="keyword">set</span> incsearch</span><br><span class="line"><span class="keyword">set</span> hlsearch</span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span> expandtab</span><br><span class="line"><span class="keyword">set</span> tabstop=<span class="number">2</span></span><br><span class="line"><span class="keyword">set</span> softtabstop=<span class="number">2</span></span><br><span class="line"><span class="keyword">set</span> <span class="built_in">shiftwidth</span>=<span class="number">2</span></span><br><span class="line"><span class="keyword">set</span> autoindent</span><br><span class="line"><span class="keyword">set</span> smartindent</span><br><span class="line"></span><br><span class="line"><span class="keyword">syntax</span> enable</span><br><span class="line"><span class="keyword">set</span> background=dark</span><br><span class="line"><span class="keyword">colorscheme</span> gruvbox</span><br><span class="line"></span><br><span class="line"><span class="keyword">nnoremap</span> <span class="symbol">&lt;C-n&gt;</span> :NERDTreeToggle<span class="symbol">&lt;CR&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Use non-recursive mappings such as <code>nnoremap</code> unless recursive behavior is intentional. Set <code>shiftwidth</code> together with <code>tabstop</code>; otherwise indentation commands and displayed tab widths can disagree, which is a tiny argument between Vim and itself.</p>
+<h2 id="Keep-it-portable"><a href="#Keep-it-portable" class="headerlink" title="Keep it portable"></a>Keep it portable</h2><p>Track <code>.vimrc</code> in a dotfiles repository, but keep machine-specific paths and secrets outside it. Add plugins only when a recurring problem exists. Configuration is a tool, not a hobby—unless the hobby is configuring Vim, in which case no article can save us.</p>
 
   </div>
 </article>
@@ -190,20 +194,24 @@
 
     
     
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Plugin-management"><span class="toc-number">1.</span> <span class="toc-text">Plugin management</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Practical-defaults"><span class="toc-number">2.</span> <span class="toc-text">Practical defaults</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Keep-it-portable"><span class="toc-number">3.</span> <span class="toc-text">Keep it portable</span></a></li></ol>
+      </div>
+    
 
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/09/20/2019-10-30-basic-vim-setup/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/09/20/2019-10-30-basic-vim-setup/&text=Basic Vim Setup" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/09/20/2019-10-30-basic-vim-setup/&title=Basic Vim Setup" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/09/20/2019-10-30-basic-vim-setup/&is_video=false&description=Basic Vim Setup" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Basic Vim Setup&body=Check out this article: https://hdchinh.github.io/2019/09/20/2019-10-30-basic-vim-setup/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/09/20/2019-10-30-basic-vim-setup/&title=Basic Vim Setup" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/09/20/2019-10-30-basic-vim-setup/&title=Basic Vim Setup" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/09/20/2019-10-30-basic-vim-setup/&title=Basic Vim Setup" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/09/20/2019-10-30-basic-vim-setup/&title=Basic Vim Setup" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/09/20/2019-10-30-basic-vim-setup/&name=Basic Vim Setup&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/09/20/2019-10-30-basic-vim-setup/&t=Basic Vim Setup" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/09/20/2019-10-30-basic-vim-setup/&text=A Minimal Vim Setup That Stays Maintainable" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/09/20/2019-10-30-basic-vim-setup/&title=A Minimal Vim Setup That Stays Maintainable" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/09/20/2019-10-30-basic-vim-setup/&is_video=false&description=A Minimal Vim Setup That Stays Maintainable" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=A Minimal Vim Setup That Stays Maintainable&body=Check out this article: https://hdchinh.github.io/2019/09/20/2019-10-30-basic-vim-setup/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/09/20/2019-10-30-basic-vim-setup/&title=A Minimal Vim Setup That Stays Maintainable" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/09/20/2019-10-30-basic-vim-setup/&title=A Minimal Vim Setup That Stays Maintainable" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/09/20/2019-10-30-basic-vim-setup/&title=A Minimal Vim Setup That Stays Maintainable" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/09/20/2019-10-30-basic-vim-setup/&title=A Minimal Vim Setup That Stays Maintainable" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/09/20/2019-10-30-basic-vim-setup/&name=A Minimal Vim Setup That Stays Maintainable&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/09/20/2019-10-30-basic-vim-setup/&t=A Minimal Vim Setup That Stays Maintainable" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -211,6 +219,8 @@
     <div id="actions-footer">
         <a id="home" class="icon" href="/"><i class="fa-solid fa-house fa-lg" aria-hidden="true"></i> Home</a>
         <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
         
         <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
         <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>

@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="Đặt vấn đềTrong project của bạn, đã bao giờ bạn sử dụng câu lệnh có dạng như: 1Product.where(&quot;product_name &#x3D; &#39;Meo con di lon ton&#39; &quot;)  Nếu có, thì bạn đã vô tình tạo một lỗ hổng về an toàn cho website">
+    <meta name="description" content="SQL injection xảy ra khi dữ liệu không đáng tin được ghép vào cấu trúc SQL, khiến input của người dùng biến thành một phần câu lệnh. 12# Nguy hiểmUser.where(&quot;email &#x3D; &#39;#&amp;#123;params[:email]&amp;#125;&#39;&quot;)  K">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Tấn Công SQL Injection">
+<meta property="og:title" content="SQL Injection trong Rails: parameter binding, query API và những lối tắt nguy hiểm">
 <meta property="og:url" content="https://hdchinh.github.io/2019/06/08/2019-06-08-tan-cong-sql-injection-va-cach-phong-chong-trong-rails/index.html">
 <meta property="og:site_name" content="Hudson">
-<meta property="og:description" content="Đặt vấn đềTrong project của bạn, đã bao giờ bạn sử dụng câu lệnh có dạng như: 1Product.where(&quot;product_name &#x3D; &#39;Meo con di lon ton&#39; &quot;)  Nếu có, thì bạn đã vô tình tạo một lỗ hổng về an toàn cho website">
+<meta property="og:description" content="SQL injection xảy ra khi dữ liệu không đáng tin được ghép vào cấu trúc SQL, khiến input của người dùng biến thành một phần câu lệnh. 12# Nguy hiểmUser.where(&quot;email &#x3D; &#39;#&amp;#123;params[:email]&amp;#125;&#39;&quot;)  K">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2019-06-07T17:00:00.000Z">
-<meta property="article:modified_time" content="2026-08-14T07:11:23.739Z">
+<meta property="article:modified_time" content="2026-08-20T05:30:54.170Z">
 <meta property="article:author" content="Hudson">
 <meta property="article:tag" content="RAILS">
 <meta property="article:tag" content="SECURE">
@@ -38,7 +38,7 @@
       
     
     <!-- title -->
-    <title>Tấn Công SQL Injection</title>
+    <title>SQL Injection trong Rails: parameter binding, query API và những lối tắt nguy hiểm</title>
     <!-- async scripts -->
     <!-- Google Analytics -->
 
@@ -98,23 +98,23 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/06/08/2019-06-08-tan-cong-sql-injection-va-cach-phong-chong-trong-rails/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/06/08/2019-06-08-tan-cong-sql-injection-va-cach-phong-chong-trong-rails/&text=Tấn Công SQL Injection" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/06/08/2019-06-08-tan-cong-sql-injection-va-cach-phong-chong-trong-rails/&title=Tấn Công SQL Injection" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/06/08/2019-06-08-tan-cong-sql-injection-va-cach-phong-chong-trong-rails/&is_video=false&description=Tấn Công SQL Injection" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Tấn Công SQL Injection&body=Check out this article: https://hdchinh.github.io/2019/06/08/2019-06-08-tan-cong-sql-injection-va-cach-phong-chong-trong-rails/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/06/08/2019-06-08-tan-cong-sql-injection-va-cach-phong-chong-trong-rails/&title=Tấn Công SQL Injection" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/06/08/2019-06-08-tan-cong-sql-injection-va-cach-phong-chong-trong-rails/&title=Tấn Công SQL Injection" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/06/08/2019-06-08-tan-cong-sql-injection-va-cach-phong-chong-trong-rails/&title=Tấn Công SQL Injection" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/06/08/2019-06-08-tan-cong-sql-injection-va-cach-phong-chong-trong-rails/&title=Tấn Công SQL Injection" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/06/08/2019-06-08-tan-cong-sql-injection-va-cach-phong-chong-trong-rails/&name=Tấn Công SQL Injection&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/06/08/2019-06-08-tan-cong-sql-injection-va-cach-phong-chong-trong-rails/&t=Tấn Công SQL Injection" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/06/08/2019-06-08-tan-cong-sql-injection-va-cach-phong-chong-trong-rails/&text=SQL Injection trong Rails: parameter binding, query API và những lối tắt nguy hiểm" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/06/08/2019-06-08-tan-cong-sql-injection-va-cach-phong-chong-trong-rails/&title=SQL Injection trong Rails: parameter binding, query API và những lối tắt nguy hiểm" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/06/08/2019-06-08-tan-cong-sql-injection-va-cach-phong-chong-trong-rails/&is_video=false&description=SQL Injection trong Rails: parameter binding, query API và những lối tắt nguy hiểm" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=SQL Injection trong Rails: parameter binding, query API và những lối tắt nguy hiểm&body=Check out this article: https://hdchinh.github.io/2019/06/08/2019-06-08-tan-cong-sql-injection-va-cach-phong-chong-trong-rails/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/06/08/2019-06-08-tan-cong-sql-injection-va-cach-phong-chong-trong-rails/&title=SQL Injection trong Rails: parameter binding, query API và những lối tắt nguy hiểm" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/06/08/2019-06-08-tan-cong-sql-injection-va-cach-phong-chong-trong-rails/&title=SQL Injection trong Rails: parameter binding, query API và những lối tắt nguy hiểm" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/06/08/2019-06-08-tan-cong-sql-injection-va-cach-phong-chong-trong-rails/&title=SQL Injection trong Rails: parameter binding, query API và những lối tắt nguy hiểm" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/06/08/2019-06-08-tan-cong-sql-injection-va-cach-phong-chong-trong-rails/&title=SQL Injection trong Rails: parameter binding, query API và những lối tắt nguy hiểm" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/06/08/2019-06-08-tan-cong-sql-injection-va-cach-phong-chong-trong-rails/&name=SQL Injection trong Rails: parameter binding, query API và những lối tắt nguy hiểm&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/06/08/2019-06-08-tan-cong-sql-injection-va-cach-phong-chong-trong-rails/&t=SQL Injection trong Rails: parameter binding, query API và những lối tắt nguy hiểm" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
     
     
       <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Dat-van-de"><span class="toc-number">1.</span> <span class="toc-text">Đặt vấn đề</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Luan-ban"><span class="toc-number">2.</span> <span class="toc-text">Luận bàn</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Tim-hieu-ve-Sql-Injection"><span class="toc-number">3.</span> <span class="toc-text">1. Tìm hiểu về Sql Injection</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Cach-phong-tranh-Sql-Injection-trong-rails"><span class="toc-number">4.</span> <span class="toc-text">2. Cách phòng tránh Sql Injection trong rails.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ket-luan"><span class="toc-number">5.</span> <span class="toc-text">Kết luận.</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Dung-parameter-binding"><span class="toc-number">1.</span> <span class="toc-text">Dùng parameter binding</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nhung-API-van-can-canh-giac"><span class="toc-number">2.</span> <span class="toc-text">Những API vẫn cần cảnh giác</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Raw-SQL"><span class="toc-number">3.</span> <span class="toc-text">Raw SQL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Defense-in-depth"><span class="toc-number">4.</span> <span class="toc-text">Defense in depth</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#References"><span class="toc-number">5.</span> <span class="toc-text">References</span></a></li></ol>
       </div>
     
   </span>
@@ -127,7 +127,7 @@
   <header>
     
     <h1 class="posttitle p-name" itemprop="name headline">
-        Tấn Công SQL Injection
+        SQL Injection trong Rails: parameter binding, query API và những lối tắt nguy hiểm
     </h1>
 
 
@@ -147,7 +147,7 @@
       
     <div class="article-category">
         <i class="fa-solid fa-archive"></i>
-        <a class="category-link" href="/categories/RAILS/">RAILS</a>
+        <a class="category-link" href="/categories/rails-notes/">rails-notes</a>
     </div>
 
 
@@ -163,45 +163,35 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    <h2 id="Dat-van-de"><a href="#Dat-van-de" class="headerlink" title="Đặt vấn đề"></a>Đặt vấn đề</h2><p>Trong project của bạn, đã bao giờ bạn sử dụng câu lệnh có dạng như:</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Product.where(<span class="string">"product_name = 'Meo con di lon ton' "</span>)</span><br></pre></td></tr></table></figure>
+    <p>SQL injection xảy ra khi dữ liệu không đáng tin được ghép vào cấu trúc SQL, khiến input của người dùng biến thành một phần câu lệnh.</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Nguy hiểm</span></span><br><span class="line">User.where(<span class="string">"email = '<span class="subst">#&#123;params[<span class="symbol">:email</span>]&#125;</span>'"</span>)</span><br></pre></td></tr></table></figure>
 
-<p>Nếu có, thì bạn đã vô tình tạo một lỗ hổng về an toàn cho website của mình. Hãy cùng tìm hiểu vì sao lại như vậy.</p>
-<h2 id="Luan-ban"><a href="#Luan-ban" class="headerlink" title="Luận bàn"></a>Luận bàn</h2><h2 id="1-Tim-hieu-ve-Sql-Injection"><a href="#1-Tim-hieu-ve-Sql-Injection" class="headerlink" title="1. Tìm hiểu về Sql Injection"></a>1. Tìm hiểu về Sql Injection</h2><p>Quay lại ví dụ bên trên, nội dung câu lệnh này nhắm lấy ra sản phẩm có tên là <strong>Meo con di lon ton</strong>. Vậy có gì sai nhỉ?</p>
-<p>Để nói rõ hơn, thì câu lệnh này là một câu lệnh được support bởi 1 thư viện ORM mặc định trong rails tên là ActiveRecord. Nó sẽ được phiên dịch thành mã sql như sau:</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span>  <span class="string">"products"</span>.* <span class="keyword">FROM</span> <span class="string">"products"</span> <span class="keyword">WHERE</span> (product_name = <span class="string">'Meo con di lon ton'</span>)</span><br></pre></td></tr></table></figure>
+<p>Kẻ tấn công không cần đội hoodie trong phòng tối. Một dấu nháy đúng chỗ thường đã đủ làm ngày của bạn dài hơn.</p>
+<h2 id="Dung-parameter-binding"><a href="#Dung-parameter-binding" class="headerlink" title="Dùng parameter binding"></a>Dùng parameter binding</h2><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">User.where(<span class="string">"email = ?"</span>, params[<span class="symbol">:email</span>])</span><br><span class="line">User.where(<span class="symbol">email:</span> params[<span class="symbol">:email</span>])</span><br></pre></td></tr></table></figure>
 
-<p>Đây vẫn là một câu lệnh quen thuộc, và nhìn qua thì không thấy gì sai trái cả.</p>
-<p>Flow hoạt động của website của tôi bình yên như vậy mà ta.</p>
-<ol>
-<li><p>Người dùng submit lên server product_name.</p>
-</li>
-<li><p>Code xử lý ở server sẽ lấy product_name người dùng truyền lên và thực hiện truy vấn như trên.</p>
-</li>
-<li><p>Trả về kết quả cho người dùng.</p>
-</li>
-</ol>
-<p>Vậy có gì mà không ổn?</p>
-<p>Với những người dùng thông thường thì. Đúng, mã nguồn của chúng ta hoàn toàn ổn. Nhưng nếu bạn là một ông chủ giàu có của một website nổi tiếng, và có nhiều kẻ ghét bạn vì bạn giàu hoặc nhìn mặt bạn thấy ghét và muốn tìm cách phá hoại website bạn thì sao?</p>
-<p><strong>Vậy là thay vì gửi một product_name thông thường như “iphone x”, “ghế tình yêu”…Thì họ lại gửi một product_name có dạng như  <strong>chinh’ or ‘’ = ‘</strong></strong></p>
-<p>Lúc này truy vấn của chúng ta sẽ trở thành:</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Product.where(<span class="string">"product_name = 'chinh' OR ''=''"</span>)</span><br></pre></td></tr></table></figure>
+<p>ActiveRecord tách cấu trúc query khỏi value và bind parameter phù hợp.</p>
+<h2 id="Nhung-API-van-can-canh-giac"><a href="#Nhung-API-van-can-canh-giac" class="headerlink" title="Những API vẫn cần cảnh giác"></a>Những API vẫn cần cảnh giác</h2><p>Không phải method ActiveRecord nào cũng tự sanitize mọi string:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">User.order(params[<span class="symbol">:sort</span>])</span><br><span class="line">User.select(params[<span class="symbol">:columns</span>])</span><br><span class="line">User.from(params[<span class="symbol">:table</span>])</span><br></pre></td></tr></table></figure>
 
-<p>Chuyển sang dạng Sql:</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span>  <span class="string">"products"</span>.* <span class="keyword">FROM</span> <span class="string">"products"</span> <span class="keyword">WHERE</span> (product_name = <span class="string">'chinh'</span> <span class="keyword">or</span> <span class="string">''</span> = <span class="string">''</span>)</span><br></pre></td></tr></table></figure>
+<p>Tên cột, hướng sort và SQL fragment là <strong>identifier/cấu trúc</strong>, không phải value bind thông thường. Hãy dùng allowlist:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">SORT_COLUMNS = &#123;</span><br><span class="line">  <span class="string">"name"</span> =&gt; <span class="symbol">:name</span>,</span><br><span class="line">  <span class="string">"created_at"</span> =&gt; <span class="symbol">:created_at</span></span><br><span class="line">&#125;.freeze</span><br><span class="line"></span><br><span class="line">column = SORT_COLUMNS.fetch(params[<span class="symbol">:sort</span>], <span class="symbol">:created_at</span>)</span><br><span class="line">User.order(column =&gt; <span class="symbol">:desc</span>)</span><br></pre></td></tr></table></figure>
 
-<p>Vì điều kiện trong where luôn trả về true bất kể product_name có bằng ‘xxx’ hay không (vì ‘’ thì luôn luôn bằng ‘’ :smile:). Nên câu truy vấn này sẽ trả về toàn bộ bảng products.</p>
-<p>Và như vậy dữ liệu website của bạn đã bị lộ trước những kẻ không lấy gì làm tốt đẹp.</p>
-<p>Trên đây chỉ là một ví dụ sơ sài, trong thực tế dữ liệu của bạn sẽ quan trọng hơn nhiều là cái products information như trên. Có thể là thông tin liên lạc, địa chỉ nhà, thông tin tài khoản ngân hàng…</p>
-<h2 id="2-Cach-phong-tranh-Sql-Injection-trong-rails"><a href="#2-Cach-phong-tranh-Sql-Injection-trong-rails" class="headerlink" title="2. Cách phòng tránh Sql Injection trong rails."></a>2. Cách phòng tránh Sql Injection trong rails.</h2><p>Có thể thấy khi để query dạng string như trên thì rất dễ bị khai thác, vì ActiveRecord sẽ không thể validate giá trị input mà người dùng nhập vào có hợp lệ hay không. Vậy cách tốt nhất để chống lại Sql injection chính là sử dụng query theo params thay vì sử dụng chuỗi như trên.</p>
-<p>Thay vì viết:</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Product.where(<span class="string">"product_name  = 'Meo con di lon ton'"</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="Raw-SQL"><a href="#Raw-SQL" class="headerlink" title="Raw SQL"></a>Raw SQL</h2><p>Nếu thật sự cần SQL thủ công, vẫn bind parameter:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sql = User.sanitize_sql_array([</span><br><span class="line">  <span class="string">"email = ? AND active = ?"</span>,</span><br><span class="line">  params[<span class="symbol">:email</span>],</span><br><span class="line">  <span class="literal">true</span></span><br><span class="line">])</span><br><span class="line"></span><br><span class="line">User.where(sql)</span><br></pre></td></tr></table></figure>
 
-<p>Ta có thể viết dưới dạng params query như sau:</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Product.where(<span class="symbol">product_name:</span> <span class="string">'Meo con di lon ton'</span>)</span><br><span class="line"><span class="comment"># hoặc</span></span><br><span class="line">Product.where(<span class="string">'product_name = ?'</span>, [<span class="string">'Meo con di lon ton'</span>])</span><br><span class="line"><span class="comment"># hoặc</span></span><br><span class="line">Product.where(<span class="string">'product_name = :product_name'</span>, &#123;<span class="symbol">:product_name</span> =&gt; <span class="string">'Meo con di lon ton'</span>&#125;)</span><br></pre></td></tr></table></figure>
-
-<p>Với các cách thay thế, giá trị người dùng truyền vào sẽ được đảm bảo hợp lệ trước khi có dữ liệu trả về…</p>
-<h2 id="Ket-luan"><a href="#Ket-luan" class="headerlink" title="Kết luận."></a>Kết luận.</h2><p>Đây là một bài sơ sài, ngắn gọn và khái quát cho người mới tìm hiểu về sql injection. Không phải bài viết chuyên sâu dành cho người có nhiều kinh nghiệm. Hãy để lại thảo luận nếu bạn có thắc mắc.</p>
+<p>Tốt hơn nữa, dùng adapter/query API hỗ trợ bind thay vì tự escape. Không tự viết hàm thay <code>&#39;</code> thành <code>&#39;&#39;</code>; bảo mật không nên phụ thuộc vào một bài replace rất tự tin.</p>
+<h2 id="Defense-in-depth"><a href="#Defense-in-depth" class="headerlink" title="Defense in depth"></a>Defense in depth</h2><ul>
+<li>Database user chỉ có quyền cần thiết.</li>
+<li>Không trả database error chi tiết ra client.</li>
+<li>Log và monitor query bất thường nhưng không log sensitive input.</li>
+<li>Validate input để bảo vệ domain; parameterize để bảo vệ SQL. Hai việc khác nhau.</li>
+<li>Test các query dynamic, đặc biệt sort/filter/reporting.</li>
+</ul>
+<p>Prepared statement không sửa được logic authorization. Query an toàn vẫn có thể trả dữ liệu của người khác nếu policy sai.</p>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<li><a href="https://guides.rubyonrails.org/security.html#sql-injection" target="_blank" rel="noopener">Rails Security Guide — SQL Injection</a></li>
+<li><a href="https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html" target="_blank" rel="noopener">OWASP SQL Injection Prevention Cheat Sheet</a></li>
+</ul>
 
   </div>
 </article>
@@ -225,23 +215,23 @@
     
     
       <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Dat-van-de"><span class="toc-number">1.</span> <span class="toc-text">Đặt vấn đề</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Luan-ban"><span class="toc-number">2.</span> <span class="toc-text">Luận bàn</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Tim-hieu-ve-Sql-Injection"><span class="toc-number">3.</span> <span class="toc-text">1. Tìm hiểu về Sql Injection</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Cach-phong-tranh-Sql-Injection-trong-rails"><span class="toc-number">4.</span> <span class="toc-text">2. Cách phòng tránh Sql Injection trong rails.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ket-luan"><span class="toc-number">5.</span> <span class="toc-text">Kết luận.</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Dung-parameter-binding"><span class="toc-number">1.</span> <span class="toc-text">Dùng parameter binding</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nhung-API-van-can-canh-giac"><span class="toc-number">2.</span> <span class="toc-text">Những API vẫn cần cảnh giác</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Raw-SQL"><span class="toc-number">3.</span> <span class="toc-text">Raw SQL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Defense-in-depth"><span class="toc-number">4.</span> <span class="toc-text">Defense in depth</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#References"><span class="toc-number">5.</span> <span class="toc-text">References</span></a></li></ol>
       </div>
     
 
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/06/08/2019-06-08-tan-cong-sql-injection-va-cach-phong-chong-trong-rails/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/06/08/2019-06-08-tan-cong-sql-injection-va-cach-phong-chong-trong-rails/&text=Tấn Công SQL Injection" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/06/08/2019-06-08-tan-cong-sql-injection-va-cach-phong-chong-trong-rails/&title=Tấn Công SQL Injection" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/06/08/2019-06-08-tan-cong-sql-injection-va-cach-phong-chong-trong-rails/&is_video=false&description=Tấn Công SQL Injection" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Tấn Công SQL Injection&body=Check out this article: https://hdchinh.github.io/2019/06/08/2019-06-08-tan-cong-sql-injection-va-cach-phong-chong-trong-rails/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/06/08/2019-06-08-tan-cong-sql-injection-va-cach-phong-chong-trong-rails/&title=Tấn Công SQL Injection" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/06/08/2019-06-08-tan-cong-sql-injection-va-cach-phong-chong-trong-rails/&title=Tấn Công SQL Injection" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/06/08/2019-06-08-tan-cong-sql-injection-va-cach-phong-chong-trong-rails/&title=Tấn Công SQL Injection" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/06/08/2019-06-08-tan-cong-sql-injection-va-cach-phong-chong-trong-rails/&title=Tấn Công SQL Injection" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/06/08/2019-06-08-tan-cong-sql-injection-va-cach-phong-chong-trong-rails/&name=Tấn Công SQL Injection&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/06/08/2019-06-08-tan-cong-sql-injection-va-cach-phong-chong-trong-rails/&t=Tấn Công SQL Injection" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/06/08/2019-06-08-tan-cong-sql-injection-va-cach-phong-chong-trong-rails/&text=SQL Injection trong Rails: parameter binding, query API và những lối tắt nguy hiểm" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/06/08/2019-06-08-tan-cong-sql-injection-va-cach-phong-chong-trong-rails/&title=SQL Injection trong Rails: parameter binding, query API và những lối tắt nguy hiểm" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/06/08/2019-06-08-tan-cong-sql-injection-va-cach-phong-chong-trong-rails/&is_video=false&description=SQL Injection trong Rails: parameter binding, query API và những lối tắt nguy hiểm" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=SQL Injection trong Rails: parameter binding, query API và những lối tắt nguy hiểm&body=Check out this article: https://hdchinh.github.io/2019/06/08/2019-06-08-tan-cong-sql-injection-va-cach-phong-chong-trong-rails/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/06/08/2019-06-08-tan-cong-sql-injection-va-cach-phong-chong-trong-rails/&title=SQL Injection trong Rails: parameter binding, query API và những lối tắt nguy hiểm" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/06/08/2019-06-08-tan-cong-sql-injection-va-cach-phong-chong-trong-rails/&title=SQL Injection trong Rails: parameter binding, query API và những lối tắt nguy hiểm" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/06/08/2019-06-08-tan-cong-sql-injection-va-cach-phong-chong-trong-rails/&title=SQL Injection trong Rails: parameter binding, query API và những lối tắt nguy hiểm" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/06/08/2019-06-08-tan-cong-sql-injection-va-cach-phong-chong-trong-rails/&title=SQL Injection trong Rails: parameter binding, query API và những lối tắt nguy hiểm" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/06/08/2019-06-08-tan-cong-sql-injection-va-cach-phong-chong-trong-rails/&name=SQL Injection trong Rails: parameter binding, query API và những lối tắt nguy hiểm&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/06/08/2019-06-08-tan-cong-sql-injection-va-cach-phong-chong-trong-rails/&t=SQL Injection trong Rails: parameter binding, query API và những lối tắt nguy hiểm" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

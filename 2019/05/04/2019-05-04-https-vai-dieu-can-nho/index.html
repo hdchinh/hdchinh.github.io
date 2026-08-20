@@ -6,21 +6,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="Đặt vấn đềĐi luôn vào chủ đề, khi mới bắt đầu với môn mạng máy tính ở trường đại học, sự mập mờ khi còn ngồi trên ghế nhà trường khiến chúng ta đôi khi đã nhầm lẫn về http và https, nhớ ngày đó tôi đã">
+    <meta name="description" content="HTTPS là HTTP chạy qua TLS. Chữ S không làm website tử tế hơn; nó bảo vệ kênh truyền giữa client và server. TLS cung cấp ba thuộc tính chính:  Confidentiality: dữ liệu trên đường truyền được mã hóa. I">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Tìm Hiểu Về Chữ S Trong Https">
+<meta property="og:title" content="HTTPS thực sự bảo vệ điều gì? TLS, certificate và HSTS">
 <meta property="og:url" content="https://hdchinh.github.io/2019/05/04/2019-05-04-https-vai-dieu-can-nho/index.html">
 <meta property="og:site_name" content="Hudson">
-<meta property="og:description" content="Đặt vấn đềĐi luôn vào chủ đề, khi mới bắt đầu với môn mạng máy tính ở trường đại học, sự mập mờ khi còn ngồi trên ghế nhà trường khiến chúng ta đôi khi đã nhầm lẫn về http và https, nhớ ngày đó tôi đã">
+<meta property="og:description" content="HTTPS là HTTP chạy qua TLS. Chữ S không làm website tử tế hơn; nó bảo vệ kênh truyền giữa client và server. TLS cung cấp ba thuộc tính chính:  Confidentiality: dữ liệu trên đường truyền được mã hóa. I">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://hdchinh.github.io/images/7.gif">
 <meta property="article:published_time" content="2019-05-03T17:00:00.000Z">
-<meta property="article:modified_time" content="2026-08-14T07:11:23.738Z">
+<meta property="article:modified_time" content="2026-08-20T05:30:54.177Z">
 <meta property="article:author" content="Hudson">
 <meta property="article:tag" content="secure">
 <meta property="article:tag" content="https">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://hdchinh.github.io/images/7.gif">
     
     
       
@@ -40,7 +38,7 @@
       
     
     <!-- title -->
-    <title>Tìm Hiểu Về Chữ S Trong Https</title>
+    <title>HTTPS thực sự bảo vệ điều gì? TLS, certificate và HSTS</title>
     <!-- async scripts -->
     <!-- Google Analytics -->
 
@@ -100,23 +98,23 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/05/04/2019-05-04-https-vai-dieu-can-nho/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/05/04/2019-05-04-https-vai-dieu-can-nho/&text=Tìm Hiểu Về Chữ S Trong Https" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/05/04/2019-05-04-https-vai-dieu-can-nho/&title=Tìm Hiểu Về Chữ S Trong Https" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/05/04/2019-05-04-https-vai-dieu-can-nho/&is_video=false&description=Tìm Hiểu Về Chữ S Trong Https" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Tìm Hiểu Về Chữ S Trong Https&body=Check out this article: https://hdchinh.github.io/2019/05/04/2019-05-04-https-vai-dieu-can-nho/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/05/04/2019-05-04-https-vai-dieu-can-nho/&title=Tìm Hiểu Về Chữ S Trong Https" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/05/04/2019-05-04-https-vai-dieu-can-nho/&title=Tìm Hiểu Về Chữ S Trong Https" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/05/04/2019-05-04-https-vai-dieu-can-nho/&title=Tìm Hiểu Về Chữ S Trong Https" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/05/04/2019-05-04-https-vai-dieu-can-nho/&title=Tìm Hiểu Về Chữ S Trong Https" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/05/04/2019-05-04-https-vai-dieu-can-nho/&name=Tìm Hiểu Về Chữ S Trong Https&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/05/04/2019-05-04-https-vai-dieu-can-nho/&t=Tìm Hiểu Về Chữ S Trong Https" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/05/04/2019-05-04-https-vai-dieu-can-nho/&text=HTTPS thực sự bảo vệ điều gì? TLS, certificate và HSTS" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/05/04/2019-05-04-https-vai-dieu-can-nho/&title=HTTPS thực sự bảo vệ điều gì? TLS, certificate và HSTS" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/05/04/2019-05-04-https-vai-dieu-can-nho/&is_video=false&description=HTTPS thực sự bảo vệ điều gì? TLS, certificate và HSTS" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=HTTPS thực sự bảo vệ điều gì? TLS, certificate và HSTS&body=Check out this article: https://hdchinh.github.io/2019/05/04/2019-05-04-https-vai-dieu-can-nho/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/05/04/2019-05-04-https-vai-dieu-can-nho/&title=HTTPS thực sự bảo vệ điều gì? TLS, certificate và HSTS" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/05/04/2019-05-04-https-vai-dieu-can-nho/&title=HTTPS thực sự bảo vệ điều gì? TLS, certificate và HSTS" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/05/04/2019-05-04-https-vai-dieu-can-nho/&title=HTTPS thực sự bảo vệ điều gì? TLS, certificate và HSTS" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/05/04/2019-05-04-https-vai-dieu-can-nho/&title=HTTPS thực sự bảo vệ điều gì? TLS, certificate và HSTS" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/05/04/2019-05-04-https-vai-dieu-can-nho/&name=HTTPS thực sự bảo vệ điều gì? TLS, certificate và HSTS&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/05/04/2019-05-04-https-vai-dieu-can-nho/&t=HTTPS thực sự bảo vệ điều gì? TLS, certificate và HSTS" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
     
     
       <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Dat-van-de"><span class="toc-number">1.</span> <span class="toc-text">Đặt vấn đề</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Luan-ban"><span class="toc-number">2.</span> <span class="toc-text">Luận bàn</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Http-hieu-don-gian-thi-hoat-dong-the-nao"><span class="toc-number">3.</span> <span class="toc-text">1. Http hiểu đơn giản thì hoạt động thế nào?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Https-khac-phuc-van-de-cua-http-nhu-the-nao"><span class="toc-number">4.</span> <span class="toc-text">2. Https khắc phục vấn đề của http như thế nào?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Https-va-van-de-ma-hoa-du-lieu"><span class="toc-number">5.</span> <span class="toc-text">3. Https và vấn đề mã hoá dữ liệu</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Ket-luan"><span class="toc-number"></span> <span class="toc-text">Kết luận</span></a>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Certificate-chain"><span class="toc-number">1.</span> <span class="toc-text">Certificate chain</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TLS-handshake-ban-rut-gon"><span class="toc-number">2.</span> <span class="toc-text">TLS handshake, bản rút gọn</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redirect-chua-du-dung-HSTS"><span class="toc-number">3.</span> <span class="toc-text">Redirect chưa đủ: dùng HSTS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Checklist"><span class="toc-number">4.</span> <span class="toc-text">Checklist</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#References"><span class="toc-number">5.</span> <span class="toc-text">References</span></a></li></ol>
       </div>
     
   </span>
@@ -129,7 +127,7 @@
   <header>
     
     <h1 class="posttitle p-name" itemprop="name headline">
-        Tìm Hiểu Về Chữ S Trong Https
+        HTTPS thực sự bảo vệ điều gì? TLS, certificate và HSTS
     </h1>
 
 
@@ -149,7 +147,7 @@
       
     <div class="article-category">
         <i class="fa-solid fa-archive"></i>
-        <a class="category-link" href="/categories/rails-notes/">rails notes</a>
+        <a class="category-link" href="/categories/til/">til</a>
     </div>
 
 
@@ -165,42 +163,46 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    <h2 id="Dat-van-de"><a href="#Dat-van-de" class="headerlink" title="Đặt vấn đề"></a>Đặt vấn đề</h2><p>Đi luôn vào chủ đề, khi mới bắt đầu với môn mạng máy tính ở trường đại học, sự mập mờ khi còn ngồi trên ghế nhà trường khiến chúng ta đôi khi đã nhầm lẫn về <strong>http</strong> và <strong>https</strong>, nhớ ngày đó tôi đã từng nghĩ chúng là 2 giao thức khác nhau, à mà ngày đó tôi có hiểu giao thức là gì không nhỉ :fearful: thôi dẹp qua một bên, bản chất của <strong>https</strong> cũng là giao thức <strong>http</strong> nhưng thêm được chữ <strong>s</strong> ứng với <strong>secure</strong>. Nghe thôi đã thấy bảo mật rồi, <strong>https</strong> ra đời nhằm mục đích làm cho giao thức <strong>http</strong> trở nên an toàn hơn, vậy nó làm cho <strong>http</strong> trở nên an toàn hơn như thế nào?</p>
-<h2 id="Luan-ban"><a href="#Luan-ban" class="headerlink" title="Luận bàn"></a>Luận bàn</h2><h2 id="1-Http-hieu-don-gian-thi-hoat-dong-the-nao"><a href="#1-Http-hieu-don-gian-thi-hoat-dong-the-nao" class="headerlink" title="1. Http hiểu đơn giản thì hoạt động thế nào?"></a>1. Http hiểu đơn giản thì hoạt động thế nào?</h2><p>Mục đích cuối cùng của mớ hỗn độn rối rắm này cũng là truyền nhận thông tin, tôi có một website tôi muốn gửi nó lên mạng internet để bạn, một ai đó mà tôi không quen có thể vô tình lướt qua đọc được.<br>Http là một giao thức, hiểu đơn giản là một bộ quy tắc để chung để người sử dụng dùng trình duyệt có thể truy cập tới 1 trang web, và trang web đó hiểu được yêu cầu đó rồi trả về nội dung mà trình duyệt có thể hiểu được, ví như có nhiều ngôn ngữ trên thế giới, vậy giữa 2 người có 2 tiếng nói khác nhau để giao tiếp được họ phải cùng nhau sử dụng một bộ ngôn ngữ chung mà cả hai cùng hiểu được.</p>
-<p>Một đặc điểm cơ bản của <strong>http</strong> là nó truyền nhận thông tin dưới dạng <strong>text</strong> thông thường, không hề mã hoã, điều này dẫn tới vấn đề đó là thông tin được truyền nhận nhanh chóng, nhẹ nhàng, nội dung rất thân thiện với người dùng (vì nó là text mà).</p>
-<p>Mọi thứ có vẻ good? không hẳn như vậy, việc dữ liệu truyền gửi được lưu dưới dạng text khiến nó quá thân thiện với người dùng, mà người dùng thì không phải ai cũng tốt :smirk: . Có những người dùng mà mục đích họ tới với website của bạn là để phá hoại, họ sẽ dễ dàng tấn công bằng cách nào đó lấy được request của bạn rồi đọc được nội dung trong request đó 1 cách dễ dàng.</p>
-<p>Bài học: Không phải lúc nào cũng nên quá thân thiện với người dùng cuối :worried:</p>
-<h2 id="2-Https-khac-phuc-van-de-cua-http-nhu-the-nao"><a href="#2-Https-khac-phuc-van-de-cua-http-nhu-the-nao" class="headerlink" title="2. Https khắc phục vấn đề của http như thế nào?"></a>2. Https khắc phục vấn đề của http như thế nào?</h2><p>Chúng ta đã nắm được khái quát vấn đề bảo mật gặp phải khi sử dụng <strong>http</strong>. Với những website giải trí thuần tuý với nội dung chủ yếu là hình ảnh, âm thanh và không có thông tin cần bảo mật thì sử dụng https hình như cũng chỉ để tốt cho SEO, ngoài ra cũng không còn giá trị gì. Nhưng nếu bạn sử dụng <strong>Internet Banking</strong> với http, rồi bạn đăng nhập với tài khoản ngân hàng của mình trên đó, mọi thông tin bạn gửi đi đều dưới dạng những gói tin có nội dung plain/text trần trụi, vậy điều gì bảo vệ được tài khoản của bạn nếu request kể trên bị những kẻ xấu dùng những thủ thuật hay phần mềm chuyên dụng để bắt được?</p>
-<p>Https giải bài toán trên bằng cách rất đơn giản, nội dung dạng plain/text giúp kẻ gian có thể bắt và đọc dễ dàng, vậy chúng ta hãy mã hoá nội dung để kẻ gian đó không thể hiểu được, và có bắt được gói tin cũng vô dụng?.</p>
-<h2 id="3-Https-va-van-de-ma-hoa-du-lieu"><a href="#3-Https-va-van-de-ma-hoa-du-lieu" class="headerlink" title="3. Https và vấn đề mã hoá dữ liệu"></a>3. Https và vấn đề mã hoá dữ liệu</h2><p>Trước tiên phải làm rõ là:</p>
-<p><strong>https = http + ssl</strong></p>
-<p>Trong đó:</p>
-<ol>
-<li><p>http là giao thức tryền tải.</p>
-</li>
-<li><p>ssl là cơ chế bảo mật thông tin.</p>
-</li>
+    <p>HTTPS là HTTP chạy qua TLS. Chữ <code>S</code> không làm website tử tế hơn; nó bảo vệ kênh truyền giữa client và server.</p>
+<p>TLS cung cấp ba thuộc tính chính:</p>
+<ul>
+<li><strong>Confidentiality:</strong> dữ liệu trên đường truyền được mã hóa.</li>
+<li><strong>Integrity:</strong> dữ liệu bị sửa trên đường truyền có thể bị phát hiện.</li>
+<li><strong>Authentication:</strong> client xác minh server sở hữu certificate hợp lệ cho hostname.</li>
+</ul>
+<p>HTTPS không ngăn server lừa người dùng, không sửa authorization sai và không cứu password <code>123456</code> khỏi chính chủ.</p>
+<h2 id="Certificate-chain"><a href="#Certificate-chain" class="headerlink" title="Certificate chain"></a>Certificate chain</h2><p>Server gửi certificate và intermediate chain. Browser kiểm tra:</p>
+<ul>
+<li>hostname có khớp SAN;</li>
+<li>certificate còn hạn;</li>
+<li>chữ ký dẫn tới root CA được tin tưởng;</li>
+<li>certificate có bị revoke theo cơ chế client hỗ trợ hay không.</li>
+</ul>
+<p>Certificate chứa public key; private key phải giữ ở server hoặc key-management system. Lộ private key thì cần revoke/rotate, không phải đổi màu ổ khóa.</p>
+<h2 id="TLS-handshake-ban-rut-gon"><a href="#TLS-handshake-ban-rut-gon" class="headerlink" title="TLS handshake, bản rút gọn"></a>TLS handshake, bản rút gọn</h2><ol>
+<li>Client và server thương lượng phiên bản/cipher suite.</li>
+<li>Server chứng minh identity bằng certificate và chữ ký.</li>
+<li>Hai bên tạo shared session keys.</li>
+<li>HTTP được truyền qua kênh mã hóa đối xứng.</li>
 </ol>
-<p><img src="/images/7.gif" alt="tam the tu tin"></p>
-<p>Flow tối thiểu của <strong>https</strong> sẽ như sau:</p>
-<ol>
-<li><p><strong>Client hello</strong>, người dùng sử dụng trình duyệt sẽ request tới google.com.</p>
-</li>
-<li><p><strong>Server hello</strong>, request ở bước một đã tới nơi, server sẽ gửi trả client 2 thông tin quan trọng đó là <strong>ssl certificate</strong> (Để chứng minh “Ê, tao là google.com thật nha, not fake”) và 1 <strong>Public key</strong> (Gọi là Public-key-1. <em>Vậy ta có thể hiểu là ở Server google.com nó đang giữ Private key 1 ứng với Public key 1 kia</em>).</p>
-</li>
-<li><p>Browser sẽ xác minh <strong>ssl certificate</strong> nhận được để xem nó có phải là hàng real hay không. Vậy còn làm sao mà browser có thể phân định thật giả? Chúng ta sẽ tìm hiểu trong 1 bài viết khác.</p>
-</li>
-<li><p>Sau khi browser xác minh và đã tin tưởng máy chủ google.com, browser sẽ tạo 1 cặp khoá bảo mật RSA thứ 2, ta gọi là <strong>Public key 2 và Private key 2</strong>.</p>
-</li>
-<li><p>Browser dùng <strong>Public key 1</strong> đã nhận được từ bước 3, để mã hoá <em>Public key 2 và Private key 2</em> sinh ra trong bước 4, rồi gửi cặp khoá này dưới dạng đã mã hoá tới máy chủ google.com.</p>
-</li>
-<li><p>Như bạn nhớ, thì máy chủ google.com đang giữ <strong>Private key 1</strong> và thế là nó có thể giải mã và lấy được cặp key ở bước 5.</p>
-</li>
-<li><p>Vậy là cả máy chủ google.com và client đều có cặp khoá RSA thứ 2, mọi thông tin truyền gửi từ cả 2 phía bây giờ đều được mã hoá bằng Public key 2.</p>
-</li>
-</ol>
-<p>Note: Nhờ cơ chế mã hoá RSA (Chỉ có thể mã hoá bằng public key và giải mã nội dung bằng private key) kể trên. Server và client đã có thể liên lạc với nhau một cách an toàn. Trong quá trình trên, kể cả kẻ thủ ác có bắt được gói tin ở bước 2, bên trong có public key 1, thì cũng không phải vấn đề, bởi vì với public key đó thì hắn không thể đọc được thông tin mà client gửi ở bước 5.</p>
-<h1 id="Ket-luan"><a href="#Ket-luan" class="headerlink" title="Kết luận"></a>Kết luận</h1><p>Không có kết luận :)</p>
+<p>TLS hiện đại dùng ephemeral key exchange để hỗ trợ forward secrecy: lộ private key sau này không mặc định giải mã được traffic cũ đã ghi lại.</p>
+<h2 id="Redirect-chua-du-dung-HSTS"><a href="#Redirect-chua-du-dung-HSTS" class="headerlink" title="Redirect chưa đủ: dùng HSTS"></a>Redirect chưa đủ: dùng HSTS</h2><p>Redirect HTTP → HTTPS vẫn cho request HTTP đầu tiên cơ hội bị can thiệp. HSTS yêu cầu browser chỉ dùng HTTPS cho domain trong thời hạn nhất định:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Strict-Transport-Security: max-age&#x3D;31536000; includeSubDomains</span><br></pre></td></tr></table></figure>
+
+<p>Chỉ bật <code>includeSubDomains</code>/preload khi toàn bộ subdomain đã hỗ trợ HTTPS; header bảo mật cấu hình sai cũng có thể tự DDoS bằng quy trình rất standards-compliant.</p>
+<h2 id="Checklist"><a href="#Checklist" class="headerlink" title="Checklist"></a>Checklist</h2><ul>
+<li>Chỉ hỗ trợ TLS hiện đại.</li>
+<li>Tự động renew certificate và monitor expiry.</li>
+<li>Redirect HTTP sang HTTPS.</li>
+<li>Bật HSTS sau khi kiểm tra subdomain.</li>
+<li>Đặt cookie <code>Secure</code>.</li>
+<li>Không mixed content.</li>
+<li>Bảo vệ private key và rotate khi cần.</li>
+</ul>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/Security/Transport_Layer_Security" target="_blank" rel="noopener">TLS — MDN</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security" target="_blank" rel="noopener">HSTS — MDN</a></li>
+</ul>
 
   </div>
 </article>
@@ -224,23 +226,23 @@
     
     
       <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Dat-van-de"><span class="toc-number">1.</span> <span class="toc-text">Đặt vấn đề</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Luan-ban"><span class="toc-number">2.</span> <span class="toc-text">Luận bàn</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Http-hieu-don-gian-thi-hoat-dong-the-nao"><span class="toc-number">3.</span> <span class="toc-text">1. Http hiểu đơn giản thì hoạt động thế nào?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Https-khac-phuc-van-de-cua-http-nhu-the-nao"><span class="toc-number">4.</span> <span class="toc-text">2. Https khắc phục vấn đề của http như thế nào?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Https-va-van-de-ma-hoa-du-lieu"><span class="toc-number">5.</span> <span class="toc-text">3. Https và vấn đề mã hoá dữ liệu</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Ket-luan"><span class="toc-number"></span> <span class="toc-text">Kết luận</span></a>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Certificate-chain"><span class="toc-number">1.</span> <span class="toc-text">Certificate chain</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TLS-handshake-ban-rut-gon"><span class="toc-number">2.</span> <span class="toc-text">TLS handshake, bản rút gọn</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redirect-chua-du-dung-HSTS"><span class="toc-number">3.</span> <span class="toc-text">Redirect chưa đủ: dùng HSTS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Checklist"><span class="toc-number">4.</span> <span class="toc-text">Checklist</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#References"><span class="toc-number">5.</span> <span class="toc-text">References</span></a></li></ol>
       </div>
     
 
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/05/04/2019-05-04-https-vai-dieu-can-nho/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/05/04/2019-05-04-https-vai-dieu-can-nho/&text=Tìm Hiểu Về Chữ S Trong Https" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/05/04/2019-05-04-https-vai-dieu-can-nho/&title=Tìm Hiểu Về Chữ S Trong Https" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/05/04/2019-05-04-https-vai-dieu-can-nho/&is_video=false&description=Tìm Hiểu Về Chữ S Trong Https" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Tìm Hiểu Về Chữ S Trong Https&body=Check out this article: https://hdchinh.github.io/2019/05/04/2019-05-04-https-vai-dieu-can-nho/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/05/04/2019-05-04-https-vai-dieu-can-nho/&title=Tìm Hiểu Về Chữ S Trong Https" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/05/04/2019-05-04-https-vai-dieu-can-nho/&title=Tìm Hiểu Về Chữ S Trong Https" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/05/04/2019-05-04-https-vai-dieu-can-nho/&title=Tìm Hiểu Về Chữ S Trong Https" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/05/04/2019-05-04-https-vai-dieu-can-nho/&title=Tìm Hiểu Về Chữ S Trong Https" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/05/04/2019-05-04-https-vai-dieu-can-nho/&name=Tìm Hiểu Về Chữ S Trong Https&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/05/04/2019-05-04-https-vai-dieu-can-nho/&t=Tìm Hiểu Về Chữ S Trong Https" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/05/04/2019-05-04-https-vai-dieu-can-nho/&text=HTTPS thực sự bảo vệ điều gì? TLS, certificate và HSTS" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/05/04/2019-05-04-https-vai-dieu-can-nho/&title=HTTPS thực sự bảo vệ điều gì? TLS, certificate và HSTS" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/05/04/2019-05-04-https-vai-dieu-can-nho/&is_video=false&description=HTTPS thực sự bảo vệ điều gì? TLS, certificate và HSTS" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=HTTPS thực sự bảo vệ điều gì? TLS, certificate và HSTS&body=Check out this article: https://hdchinh.github.io/2019/05/04/2019-05-04-https-vai-dieu-can-nho/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/05/04/2019-05-04-https-vai-dieu-can-nho/&title=HTTPS thực sự bảo vệ điều gì? TLS, certificate và HSTS" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/05/04/2019-05-04-https-vai-dieu-can-nho/&title=HTTPS thực sự bảo vệ điều gì? TLS, certificate và HSTS" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/05/04/2019-05-04-https-vai-dieu-can-nho/&title=HTTPS thực sự bảo vệ điều gì? TLS, certificate và HSTS" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/05/04/2019-05-04-https-vai-dieu-can-nho/&title=HTTPS thực sự bảo vệ điều gì? TLS, certificate và HSTS" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/05/04/2019-05-04-https-vai-dieu-can-nho/&name=HTTPS thực sự bảo vệ điều gì? TLS, certificate và HSTS&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/05/04/2019-05-04-https-vai-dieu-can-nho/&t=HTTPS thực sự bảo vệ điều gì? TLS, certificate và HSTS" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

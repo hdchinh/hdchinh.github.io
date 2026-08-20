@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="Tôi có 1 scope: 12345class Product &lt; ActiveRecord::Base  scope :is_active, -&gt; &amp;#123; where is_active: true &amp;#125;end# Lấy các products có thuộc tính is_active là true.  Tôi có 1 class method: 12">
+    <meta name="description" content="Cả scope và class method đều có thể trả ActiveRecord::Relation: 12345678class Product &lt; ApplicationRecord  scope :active, -&gt; &amp;#123; where(active: true) &amp;#125;  def self.by_type(type)    return a">
 <meta property="og:type" content="article">
-<meta property="og:title" content="So Sánh Class Method Và Scope">
+<meta property="og:title" content="Scope và class method trong ActiveRecord: relation composable mới là điểm chính">
 <meta property="og:url" content="https://hdchinh.github.io/2019/06/09/2019-06-09-luu-y-ngan-gon-ve-scope-va-class-method/index.html">
 <meta property="og:site_name" content="Hudson">
-<meta property="og:description" content="Tôi có 1 scope: 12345class Product &lt; ActiveRecord::Base  scope :is_active, -&gt; &amp;#123; where is_active: true &amp;#125;end# Lấy các products có thuộc tính is_active là true.  Tôi có 1 class method: 12">
+<meta property="og:description" content="Cả scope và class method đều có thể trả ActiveRecord::Relation: 12345678class Product &lt; ApplicationRecord  scope :active, -&gt; &amp;#123; where(active: true) &amp;#125;  def self.by_type(type)    return a">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2019-06-08T17:00:00.000Z">
-<meta property="article:modified_time" content="2026-08-14T07:11:23.739Z">
+<meta property="article:modified_time" content="2026-08-20T05:35:50.843Z">
 <meta property="article:author" content="Hudson">
 <meta property="article:tag" content="RUBY">
 <meta property="article:tag" content="RAILS">
@@ -38,7 +38,7 @@
       
     
     <!-- title -->
-    <title>So Sánh Class Method Và Scope</title>
+    <title>Scope và class method trong ActiveRecord: relation composable mới là điểm chính</title>
     <!-- async scripts -->
     <!-- Google Analytics -->
 
@@ -98,20 +98,24 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/06/09/2019-06-09-luu-y-ngan-gon-ve-scope-va-class-method/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/06/09/2019-06-09-luu-y-ngan-gon-ve-scope-va-class-method/&text=So Sánh Class Method Và Scope" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/06/09/2019-06-09-luu-y-ngan-gon-ve-scope-va-class-method/&title=So Sánh Class Method Và Scope" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/06/09/2019-06-09-luu-y-ngan-gon-ve-scope-va-class-method/&is_video=false&description=So Sánh Class Method Và Scope" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=So Sánh Class Method Và Scope&body=Check out this article: https://hdchinh.github.io/2019/06/09/2019-06-09-luu-y-ngan-gon-ve-scope-va-class-method/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/06/09/2019-06-09-luu-y-ngan-gon-ve-scope-va-class-method/&title=So Sánh Class Method Và Scope" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/06/09/2019-06-09-luu-y-ngan-gon-ve-scope-va-class-method/&title=So Sánh Class Method Và Scope" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/06/09/2019-06-09-luu-y-ngan-gon-ve-scope-va-class-method/&title=So Sánh Class Method Và Scope" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/06/09/2019-06-09-luu-y-ngan-gon-ve-scope-va-class-method/&title=So Sánh Class Method Và Scope" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/06/09/2019-06-09-luu-y-ngan-gon-ve-scope-va-class-method/&name=So Sánh Class Method Và Scope&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/06/09/2019-06-09-luu-y-ngan-gon-ve-scope-va-class-method/&t=So Sánh Class Method Và Scope" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/06/09/2019-06-09-luu-y-ngan-gon-ve-scope-va-class-method/&text=Scope và class method trong ActiveRecord: relation composable mới là điểm chính" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/06/09/2019-06-09-luu-y-ngan-gon-ve-scope-va-class-method/&title=Scope và class method trong ActiveRecord: relation composable mới là điểm chính" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/06/09/2019-06-09-luu-y-ngan-gon-ve-scope-va-class-method/&is_video=false&description=Scope và class method trong ActiveRecord: relation composable mới là điểm chính" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Scope và class method trong ActiveRecord: relation composable mới là điểm chính&body=Check out this article: https://hdchinh.github.io/2019/06/09/2019-06-09-luu-y-ngan-gon-ve-scope-va-class-method/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/06/09/2019-06-09-luu-y-ngan-gon-ve-scope-va-class-method/&title=Scope và class method trong ActiveRecord: relation composable mới là điểm chính" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/06/09/2019-06-09-luu-y-ngan-gon-ve-scope-va-class-method/&title=Scope và class method trong ActiveRecord: relation composable mới là điểm chính" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/06/09/2019-06-09-luu-y-ngan-gon-ve-scope-va-class-method/&title=Scope và class method trong ActiveRecord: relation composable mới là điểm chính" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/06/09/2019-06-09-luu-y-ngan-gon-ve-scope-va-class-method/&title=Scope và class method trong ActiveRecord: relation composable mới là điểm chính" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/06/09/2019-06-09-luu-y-ngan-gon-ve-scope-va-class-method/&name=Scope và class method trong ActiveRecord: relation composable mới là điểm chính&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/06/09/2019-06-09-luu-y-ngan-gon-ve-scope-va-class-method/&t=Scope và class method trong ActiveRecord: relation composable mới là điểm chính" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
     
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Khac-biet-thuc-dung"><span class="toc-number">1.</span> <span class="toc-text">Khác biệt thực dụng</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Khi-nao-dung"><span class="toc-number">2.</span> <span class="toc-text">Khi nào dùng?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#default-scope"><span class="toc-number">3.</span> <span class="toc-text">default_scope</span></a></li></ol>
+      </div>
     
   </span>
 </div>
@@ -123,7 +127,7 @@
   <header>
     
     <h1 class="posttitle p-name" itemprop="name headline">
-        So Sánh Class Method Và Scope
+        Scope và class method trong ActiveRecord: relation composable mới là điểm chính
     </h1>
 
 
@@ -143,7 +147,7 @@
       
     <div class="article-category">
         <i class="fa-solid fa-archive"></i>
-        <a class="category-link" href="/categories/RAILS/">RAILS</a>
+        <a class="category-link" href="/categories/rails-notes/">rails-notes</a>
     </div>
 
 
@@ -159,27 +163,26 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    <p>Tôi có 1 scope:</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Product</span> &lt; ActiveRecord::Base</span></span><br><span class="line">  scope <span class="symbol">:is_active</span>, -&gt; &#123; where <span class="symbol">is_active:</span> <span class="literal">true</span> &#125;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Lấy các products có thuộc tính is_active là true.</span></span><br></pre></td></tr></table></figure>
+    <p>Cả scope và class method đều có thể trả <code>ActiveRecord::Relation</code>:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Product</span> &lt; ApplicationRecord</span></span><br><span class="line">  scope <span class="symbol">:active</span>, -&gt; &#123; where(<span class="symbol">active:</span> <span class="literal">true</span>) &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">by_type</span><span class="params">(type)</span></span></span><br><span class="line">    <span class="keyword">return</span> all <span class="keyword">if</span> type.blank?</span><br><span class="line">    where(<span class="symbol">product_type:</span> type)</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 
-<p>Tôi có 1 class method:</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Product</span> &lt; ActiveRecord::Base</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">is_active</span></span></span><br><span class="line">    where <span class="symbol">is_active:</span> <span class="literal">true</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<h2 id="Khac-biet-thuc-dung"><a href="#Khac-biet-thuc-dung" class="headerlink" title="Khác biệt thực dụng"></a>Khác biệt thực dụng</h2><p>Scope luôn được kỳ vọng composable như relation. Nếu block trả <code>nil</code>/<code>false</code>, Rails có behavior fallback về relation hiện tại, điều này có thể gây bất ngờ:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scope <span class="symbol">:by_type</span>, -&gt;(type) &#123; where(<span class="symbol">product_type:</span> type) <span class="keyword">if</span> type.present? &#125;</span><br></pre></td></tr></table></figure>
 
-<p>2 method này là hoàn toàn tương đương nhau, kết quả trả về cũng vậy. Bây giờ thử 1 ví dụ khác.</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Product</span> &lt; ActiveRecord::Base</span></span><br><span class="line">  <span class="comment"># lấy các products đang active</span></span><br><span class="line">  scope <span class="symbol">:is_active</span>, -&gt; &#123; where <span class="symbol">is_active:</span> <span class="literal">true</span> &#125;</span><br><span class="line">  <span class="comment"># lấy các products có type bằng type được truyền vào scope, và đảm bảo type được truyền vào có giá trị</span></span><br><span class="line">  scope <span class="symbol">:by_type</span>, -&gt; type &#123; where <span class="symbol">type:</span> type <span class="keyword">if</span> type.present? &#125;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>Khi <code>type</code> blank, query có thể trở thành “không filter” thay vì fail. Viết rõ:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">scope <span class="symbol">:by_type</span>, -&gt;(type) &#123;</span><br><span class="line">  type.present? ? where(<span class="symbol">product_type:</span> type) : all</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>Viết ví dụ trên dưới dạng Class Method:</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Product</span> &lt; ActiveRecord::Base</span></span><br><span class="line">  <span class="comment"># lấy các products đang active</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">is_active</span></span></span><br><span class="line">    where <span class="symbol">is_active:</span> <span class="literal">true</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">  <span class="comment"># lấy các products có type bằng type được truyền vào scope và đảm bảo type truyền vào có giá trị</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">by_type</span><span class="params">(type)</span></span></span><br><span class="line">    where <span class="symbol">type:</span> type <span class="keyword">if</span> type.present?</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>Class method linh hoạt hơn cho branching, guard clause và nhiều bước. Nếu trả relation, nó vẫn chain được:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Product.active.by_type(params[<span class="symbol">:type</span>]).order(<span class="symbol">:name</span>)</span><br></pre></td></tr></table></figure>
 
-<p>Tiến hành gọi liên tiếp Scope:</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Product.by_type(<span class="literal">nil</span>).is_active</span><br><span class="line"><span class="comment"># truyền vào type không hợp lệ, nhưng scope is_active vẫn work bình thường</span></span><br></pre></td></tr></table></figure>
-
-<p>Tiến hành gọi liên tiếp Class Method:</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Product.by_type(<span class="literal">nil</span>).is_active</span><br><span class="line"></span><br><span class="line"><span class="comment"># Trản về một error method is_active không được định nghĩa cho nil.</span></span><br></pre></td></tr></table></figure>
-
-<p>Ủa vậy chuyện này là sao? Tại sao Scope vẫn work bình thường trong khi Class Method lại bắn về một exception?</p>
-<p>Đây chính là điểm khác biệt quan trọng của Scopy và Class Method.</p>
-<p>Scope luôn luôn trả về một <strong>ActiveRecord Relation</strong>. Còn Class Method thì sao? Nếu bạn không cover trường hợp <strong>nil/blank</strong> thì nó sẽ văng về <strong>nil/blank</strong> như vậy không thể chạy Class Method phía sau, vì method đó không thể chạy <strong>với nil/blank</strong>.</p>
+<h2 id="Khi-nao-dung"><a href="#Khi-nao-dung" class="headerlink" title="Khi nào dùng?"></a>Khi nào dùng?</h2><ul>
+<li>Query ngắn, declarative, tái sử dụng → scope.</li>
+<li>Logic nhiều nhánh/tham số → class method.</li>
+<li>Domain query lớn → query object.</li>
+</ul>
+<p>Không đặt query evaluation như <code>.to_a</code>, <code>.first</code> vào giữa chain nếu muốn tiếp tục compose.</p>
+<h2 id="default-scope"><a href="#default-scope" class="headerlink" title="default_scope"></a><code>default_scope</code></h2><p>Cẩn thận với <code>default_scope</code>; nó tác động ngầm lên mọi query và update. Multi-tenancy/security không nên chỉ dựa vào một default scope dễ <code>unscoped</code>.</p>
+<p>Scope không tốt hơn class method vì ngắn hơn. Giá trị thật là trả relation có contract rõ. DSL đẹp nhưng trả dữ liệu bất ngờ vẫn chỉ là bug mặc vest.</p>
 
   </div>
 </article>
@@ -202,20 +205,24 @@
 
     
     
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Khac-biet-thuc-dung"><span class="toc-number">1.</span> <span class="toc-text">Khác biệt thực dụng</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Khi-nao-dung"><span class="toc-number">2.</span> <span class="toc-text">Khi nào dùng?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#default-scope"><span class="toc-number">3.</span> <span class="toc-text">default_scope</span></a></li></ol>
+      </div>
+    
 
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/06/09/2019-06-09-luu-y-ngan-gon-ve-scope-va-class-method/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/06/09/2019-06-09-luu-y-ngan-gon-ve-scope-va-class-method/&text=So Sánh Class Method Và Scope" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/06/09/2019-06-09-luu-y-ngan-gon-ve-scope-va-class-method/&title=So Sánh Class Method Và Scope" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/06/09/2019-06-09-luu-y-ngan-gon-ve-scope-va-class-method/&is_video=false&description=So Sánh Class Method Và Scope" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=So Sánh Class Method Và Scope&body=Check out this article: https://hdchinh.github.io/2019/06/09/2019-06-09-luu-y-ngan-gon-ve-scope-va-class-method/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/06/09/2019-06-09-luu-y-ngan-gon-ve-scope-va-class-method/&title=So Sánh Class Method Và Scope" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/06/09/2019-06-09-luu-y-ngan-gon-ve-scope-va-class-method/&title=So Sánh Class Method Và Scope" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/06/09/2019-06-09-luu-y-ngan-gon-ve-scope-va-class-method/&title=So Sánh Class Method Và Scope" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/06/09/2019-06-09-luu-y-ngan-gon-ve-scope-va-class-method/&title=So Sánh Class Method Và Scope" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/06/09/2019-06-09-luu-y-ngan-gon-ve-scope-va-class-method/&name=So Sánh Class Method Và Scope&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/06/09/2019-06-09-luu-y-ngan-gon-ve-scope-va-class-method/&t=So Sánh Class Method Và Scope" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/06/09/2019-06-09-luu-y-ngan-gon-ve-scope-va-class-method/&text=Scope và class method trong ActiveRecord: relation composable mới là điểm chính" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/06/09/2019-06-09-luu-y-ngan-gon-ve-scope-va-class-method/&title=Scope và class method trong ActiveRecord: relation composable mới là điểm chính" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/06/09/2019-06-09-luu-y-ngan-gon-ve-scope-va-class-method/&is_video=false&description=Scope và class method trong ActiveRecord: relation composable mới là điểm chính" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Scope và class method trong ActiveRecord: relation composable mới là điểm chính&body=Check out this article: https://hdchinh.github.io/2019/06/09/2019-06-09-luu-y-ngan-gon-ve-scope-va-class-method/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/06/09/2019-06-09-luu-y-ngan-gon-ve-scope-va-class-method/&title=Scope và class method trong ActiveRecord: relation composable mới là điểm chính" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/06/09/2019-06-09-luu-y-ngan-gon-ve-scope-va-class-method/&title=Scope và class method trong ActiveRecord: relation composable mới là điểm chính" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/06/09/2019-06-09-luu-y-ngan-gon-ve-scope-va-class-method/&title=Scope và class method trong ActiveRecord: relation composable mới là điểm chính" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/06/09/2019-06-09-luu-y-ngan-gon-ve-scope-va-class-method/&title=Scope và class method trong ActiveRecord: relation composable mới là điểm chính" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/06/09/2019-06-09-luu-y-ngan-gon-ve-scope-va-class-method/&name=Scope và class method trong ActiveRecord: relation composable mới là điểm chính&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/06/09/2019-06-09-luu-y-ngan-gon-ve-scope-va-class-method/&t=Scope và class method trong ActiveRecord: relation composable mới là điểm chính" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -223,6 +230,8 @@
     <div id="actions-footer">
         <a id="home" class="icon" href="/"><i class="fa-solid fa-house fa-lg" aria-hidden="true"></i> Home</a>
         <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
         
         <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
         <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>

@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="1. Khái quátBài toán này đơn giản hiểu như sau: Một project bất kỳ sẽ luôn có những thông tin cấu hình vô cùng quan trọng, bắt buộc phải luôn giữ chúng private, còn làm cách nào để giữ chúng private t">
+    <meta name="description" content="API key, database password và private key không phải config bình thường. Nếu commit chúng rồi xóa ở commit sau, secret vẫn còn trong Git history. Git nhớ dai hơn người yêu cũ, và bot quét GitHub thì c">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Lưu Trữ Thông Tin Bảo Mật Trong Rails?">
+<meta property="og:title" content="Quản lý secrets trong Rails: credentials, ENV và những thứ tuyệt đối đừng commit">
 <meta property="og:url" content="https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/index.html">
 <meta property="og:site_name" content="Hudson">
-<meta property="og:description" content="1. Khái quátBài toán này đơn giản hiểu như sau: Một project bất kỳ sẽ luôn có những thông tin cấu hình vô cùng quan trọng, bắt buộc phải luôn giữ chúng private, còn làm cách nào để giữ chúng private t">
+<meta property="og:description" content="API key, database password và private key không phải config bình thường. Nếu commit chúng rồi xóa ở commit sau, secret vẫn còn trong Git history. Git nhớ dai hơn người yêu cũ, và bot quét GitHub thì c">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2019-02-21T17:00:00.000Z">
-<meta property="article:modified_time" content="2026-08-14T07:11:23.737Z">
+<meta property="article:modified_time" content="2026-08-20T05:30:54.175Z">
 <meta property="article:author" content="Hudson">
 <meta property="article:tag" content="secure">
 <meta property="article:tag" content="rails">
@@ -38,7 +38,7 @@
       
     
     <!-- title -->
-    <title>Lưu Trữ Thông Tin Bảo Mật Trong Rails?</title>
+    <title>Quản lý secrets trong Rails: credentials, ENV và những thứ tuyệt đối đừng commit</title>
     <!-- async scripts -->
     <!-- Google Analytics -->
 
@@ -98,23 +98,23 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/&text=Lưu Trữ Thông Tin Bảo Mật Trong Rails?" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/&title=Lưu Trữ Thông Tin Bảo Mật Trong Rails?" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/&is_video=false&description=Lưu Trữ Thông Tin Bảo Mật Trong Rails?" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Lưu Trữ Thông Tin Bảo Mật Trong Rails?&body=Check out this article: https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/&title=Lưu Trữ Thông Tin Bảo Mật Trong Rails?" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/&title=Lưu Trữ Thông Tin Bảo Mật Trong Rails?" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/&title=Lưu Trữ Thông Tin Bảo Mật Trong Rails?" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/&title=Lưu Trữ Thông Tin Bảo Mật Trong Rails?" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/&name=Lưu Trữ Thông Tin Bảo Mật Trong Rails?&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/&t=Lưu Trữ Thông Tin Bảo Mật Trong Rails?" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/&text=Quản lý secrets trong Rails: credentials, ENV và những thứ tuyệt đối đừng commit" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/&title=Quản lý secrets trong Rails: credentials, ENV và những thứ tuyệt đối đừng commit" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/&is_video=false&description=Quản lý secrets trong Rails: credentials, ENV và những thứ tuyệt đối đừng commit" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Quản lý secrets trong Rails: credentials, ENV và những thứ tuyệt đối đừng commit&body=Check out this article: https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/&title=Quản lý secrets trong Rails: credentials, ENV và những thứ tuyệt đối đừng commit" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/&title=Quản lý secrets trong Rails: credentials, ENV và những thứ tuyệt đối đừng commit" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/&title=Quản lý secrets trong Rails: credentials, ENV và những thứ tuyệt đối đừng commit" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/&title=Quản lý secrets trong Rails: credentials, ENV và những thứ tuyệt đối đừng commit" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/&name=Quản lý secrets trong Rails: credentials, ENV và những thứ tuyệt đối đừng commit&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/&t=Quản lý secrets trong Rails: credentials, ENV và những thứ tuyệt đối đừng commit" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
     
     
       <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Khai-quat"><span class="toc-number">1.</span> <span class="toc-text">1. Khái quát</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Rails-4-1"><span class="toc-number">2.</span> <span class="toc-text">2. Rails 4.1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Rails-5-1"><span class="toc-number">3.</span> <span class="toc-text">3. Rails 5.1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Rails-5-2"><span class="toc-number">4.</span> <span class="toc-text">3. Rails 5.2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-secret-key-base"><span class="toc-number">5.</span> <span class="toc-text">4. secret_key_base</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Rails-credentials"><span class="toc-number">1.</span> <span class="toc-text">Rails credentials</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Environment-variables"><span class="toc-number">2.</span> <span class="toc-text">Environment variables</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nguyen-tac-van-hanh"><span class="toc-number">3.</span> <span class="toc-text">Nguyên tắc vận hành</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">4.</span> <span class="toc-text">Reference</span></a></li></ol>
       </div>
     
   </span>
@@ -127,7 +127,7 @@
   <header>
     
     <h1 class="posttitle p-name" itemprop="name headline">
-        Lưu Trữ Thông Tin Bảo Mật Trong Rails?
+        Quản lý secrets trong Rails: credentials, ENV và những thứ tuyệt đối đừng commit
     </h1>
 
 
@@ -147,7 +147,7 @@
       
     <div class="article-category">
         <i class="fa-solid fa-archive"></i>
-        <a class="category-link" href="/categories/rails-notes/">rails notes</a>
+        <a class="category-link" href="/categories/rails-notes/">rails-notes</a>
     </div>
 
 
@@ -163,56 +163,34 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    <h2 id="1-Khai-quat"><a href="#1-Khai-quat" class="headerlink" title="1. Khái quát"></a>1. Khái quát</h2><p>Bài toán này đơn giản hiểu như sau: Một project bất kỳ sẽ luôn có những thông tin cấu hình vô cùng quan trọng, bắt buộc phải luôn giữ chúng private, còn làm cách nào để giữ chúng private trong rails?<br>Câu trả lời là tuỳ vào mỗi phiên bản rails, sẽ có (có thể có) những cách khác nhau để xử lý vấn đề này. Hãy đi đến các dấu mốc cụ thể dưới đây.</p>
-<h2 id="2-Rails-4-1"><a href="#2-Rails-4-1" class="headerlink" title="2. Rails 4.1"></a>2. Rails 4.1</h2><p>Phiên bản rails này sử dụng một file có tên <strong>secrets.yml</strong>, đây là file sẽ lưu toàn bộ các thông tin nhạy cảm chúng ta đã nói ở trên.<br>Với thiết kế như này ta có hai lựa chọn cho ứng dụng của mình:</p>
-<ol>
-<li><p>Đem hết thông tin nhạy cảm dưới đạng text bỏ vào file này, tuy nhiên file này phải được bỏ vào trong danh mục của <strong>gitignore</strong> để đảm bảo thông tin trong đó không bị bạn vô tình hay hữu ý commit đi đâu đó.</p>
-</li>
-<li><p>Thông tin nhạy cảm lưu trong file này thay vì được lưu dưới dạng text thì sẽ được lưu trong máy của bạn dứoi dạng <strong>biến môi trường</strong> và trong file <strong>secrets.yml</strong> chỉ sử dụng phương thức <strong>ENV</strong> mà rails cung cấp để gọi lại các thông tin đó lên, với lựa chọn này bạn có thể commit file này thoải mái, ở các máy tính đồng nghiệp, để có thể sử dụng được những config này thì buộc họ phải thiết lập biến môi trường trên máy tính của họ cho phù hợp.</p>
-</li>
-</ol>
-<p>Nhược điểm: dù sử dụng cách nào, thì để ứng dụng hoạt động được thì vẫn phải truyền giá trị các thông tin nhạy cảm này từ máy của bạn lên một con vps khi triển khai chẳng hạn, không còn cách nào khác. Có thể bạn phải copy từng dòng thông tin nhạy cảm rồi paste qua remote shell để thiết lập (với những dự án lớn có rất nhiều thông tin quan trọng thì đây là 1 công việc vất vả tiềm tàng nguy cơ sai sót).</p>
-<p>Note: Thay vì sử dụng file <strong>secrets.yml</strong>, ta có thể sử dụng một file khác như <strong>application.yml</strong>, mục đích và chức năng của chúng là tương đương.</p>
-<h2 id="3-Rails-5-1"><a href="#3-Rails-5-1" class="headerlink" title="3. Rails 5.1"></a>3. Rails 5.1</h2><p>Sang đến phiên bản rails 5.1, một thay đổi lớn đã tới. Thay vì lưu thông tin dạng text hoặc triệu hồi thông qua biến môi trường, rails khi này cung cấp khả năng mã hoá cho các thông tin nhạy cảm này.<br>Cách chúng hoạt động như sau:</p>
-<p>Một file tên <strong>secrets.yml.key</strong> sẽ chứa giá trị của một biến tên <strong>RAILS_MASTER_KEY</strong>, biến này có giá trị là một chuỗi, có chức năng được sử dụng để mã hoá và giải mã các thông tin quan trọng.</p>
-<p>Nội dung thông tin <strong>sau</strong> mã hoá sẽ được lưu tại file <strong>secrets.yml.enc</strong></p>
-<p>Vậy còn file <strong>secrets.yml</strong> trong rails 4 giờ còn không? Câu trả lời là bạn vẫn có thể sử dụng file này, tuy nhiên trên cùng một môi trường, nếu có cả file <strong>secrets.yml</strong> và <strong>secrets.yml.enc</strong> thì hai file này sẽ được merge.</p>
-<p>Để có thể sử dụng tính năng encypt này của rails 5.1 ta setup như sau:</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rails <span class="symbol">secrets:</span>setup</span><br></pre></td></tr></table></figure>
-<p>Sau câu lệnh này hai file <strong>secrets.yml.key</strong> và <strong>secrets.yml.enc</strong> sẽ được tạo ra. Để thêm xoá sửa nội dung trong <strong>secrets.yml.enc</strong> ta sử dụng lệnh sau:</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rails <span class="symbol">secrets:</span>edit</span><br></pre></td></tr></table></figure>
+    <p>API key, database password và private key không phải config bình thường. Nếu commit chúng rồi xóa ở commit sau, secret vẫn còn trong Git history. Git nhớ dai hơn người yêu cũ, và bot quét GitHub thì chăm hơn cả reviewer.</p>
+<h2 id="Rails-credentials"><a href="#Rails-credentials" class="headerlink" title="Rails credentials"></a>Rails credentials</h2><p>Rails hỗ trợ encrypted credentials:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/rails credentials:edit</span><br></pre></td></tr></table></figure>
 
-<p>Câu lệnh này sẽ mở nội dung file <strong>secrets.yml.enc</strong> dưới dạng đã giải mã. Bạn có thể thoải mái thêm xoá, sửa các thông tin nhạy cảm, sau đó khi bạn save lại và tắt editor thì file <strong>secrets.yml.enc</strong> sẽ tự động được cập nhập phần mã hoá mới nhất khi có thêm thông tin.</p>
-<p>Tôi thích dùng <strong>vim</strong> để chỉnh sửa, và tôi không muốn set mặc định editor nên tôi sử dụng câu lệnh sau: <strong>EDITOR=vi rails secrets:edit</strong>.</p>
-<p>Ưu điểm:</p>
-<ol>
-<li><p>Thay vì phải quản lý nhiều biến môi trường, giờ đây mọi thứ đều nằm trong một file.</p>
-</li>
-<li><p>Việc có thể commit <strong>secrets.yml.enc</strong> giúp chúng ta nắm được lịch sử thay đổi của file này.</p>
-</li>
-</ol>
-<p>Note: Một điểm quan trọng bạn cần lưu ý, đó là tới khi viết bài viết này thì tôi vẫn chưa thấy rails sẽ giải mã thông tin mã hoá trong file <strong>secrets.yml.enc</strong>, chúng ta buộc phải làm thủ công để nhắc rails làm điều đó bằng cách thêm vào config file của bạn <strong>config.read_encrypted_secrets = true</strong>. Với câu lệnh setup bên trên, dòng config trên đã được add vào file config của production. Nếu bạn muốn sử dụng tính năng này cho môi trường development thì hãy thêm dòng config này vào file <strong>config/environments/development.rb</strong>.</p>
-<h2 id="3-Rails-5-2"><a href="#3-Rails-5-2" class="headerlink" title="3. Rails 5.2"></a>3. Rails 5.2</h2><p>Ý tưởng trong rails 5.2 không thay đổi nhiều so với rails 5.1. Nhưng thay vì lưu key để encrypt/decrypt trong file secrets.yml.key giờ nó được lưu trong file <strong>master.key</strong> (tuy nhiên nếu không sử dụng file thì cả rails 5.2 và 5.1 đều có thể gọi biến môi trường RAILS_MASTER_KEY để sử dụng).</p>
-<p>File lưu thông tin đã được mã hoá cũng được thay đổi từ secrets.yml.enc thành <strong>credentials.yml.enc</strong>.  Đó là những điểm khác biệt duy nhất.</p>
-<p>Để chỉnh sửa thông tin trong file mã hoá ta sử dụng lệnh:</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EDITOR=vi rails <span class="symbol">credentials:</span>edit</span><br></pre></td></tr></table></figure>
-<p>Không cần dùng lệnh setup như trên, vì trong rails 5.2, hai file key và mã hoá được sinh ra cùng project.</p>
-<p>Ta có thể truy xuất giá trị được giải mã trong file <strong>credentials.yml.enc</strong> như sau:</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Rails.application.credentials.ten_bien_trong_credentials</span><br></pre></td></tr></table></figure>
+<p>Đọc giá trị:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Rails.application.credentials.dig(<span class="symbol">:aws</span>, <span class="symbol">:access_key_id</span>)</span><br></pre></td></tr></table></figure>
 
-<p>Làm gì khi bạn muốn thay thế <strong>master.key</strong>?</p>
-<ol>
-<li><p><strong>rails credentials:show</strong> dùng lệnh này để hiển thị thông tin dạng giải mã ra editor, copy chúng.</p>
-</li>
-<li><p>Xoá hai file <strong>master.key</strong> và <strong>credentials.yml.enc</strong> đi.</p>
-</li>
-<li><p><strong>EDITOR=vim rails credentials:edit</strong> với lệnh sau bạn sẽ generate lại hai file mới. Việc cần làm bây giờ là paste thông tin ở bước 1 vào editor khi này rồi save lại.</p>
-</li>
-</ol>
-<h2 id="4-secret-key-base"><a href="#4-secret-key-base" class="headerlink" title="4. secret_key_base"></a>4. secret_key_base</h2><p>Nếu làm theo hướng dẫn bên trên, ta sẽ thu được một file mã hoá ví dụ: <strong>credentials.yml.enc</strong> có chứa nội dung ngay cả khi ta mới vừa khởi tạo project. Điều gì đã xảy ra? Tôi còn chưa kịp edit thì nó lấy thông tin gì mà mã hoá ra nội dung đó vậy? Câu trả lời là một thứ được tạo kèm project của bạn có tên là <strong>secret_key_base</strong> sẽ là thứ đầu tiên được tự động lưu mã hoá vào file <strong>credentials.yml.enc</strong>.</p>
-<p>Sao lại phức tạp như vậy? nó với <strong>RAILS_MASTER_KEY</strong> ở trên có quan hệ gì không? Câu trả lời là không? <strong>secret_key_base</strong> được rails sinh ra khi tạo project, nó đảm bảo rằng không thể có hai ứng dụng rails có chung một <strong>secet_key_base</strong>, cái key sẽ được sử dụng để đảo bảo thứ đánh dấu tính duy nhất của một project và nó còn được dùng làm nhiều việc hay ho khác tôi sẽ trình bày trong các bài viết sắp tới.</p>
-<p>Để tạo ra một secret_key_base bạn có thể sử dụng lệnh sau:</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rails secret</span><br></pre></td></tr></table></figure>
+<p>File credentials được mã hóa có thể commit. Khóa giải mã (<code>config/master.key</code> hoặc biến môi trường tương ứng) <strong>không được commit</strong>.</p>
+<p>Rails hiện đại còn hỗ trợ credentials theo environment:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/rails credentials:edit --environment production</span><br></pre></td></tr></table></figure>
+
+<h2 id="Environment-variables"><a href="#Environment-variables" class="headerlink" title="Environment variables"></a>Environment variables</h2><p>ENV phù hợp với platform quản lý secret hoặc container runtime:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ENV.fetch(<span class="string">"DATABASE_URL"</span>)</span><br><span class="line">ENV.fetch(<span class="string">"AWS_REGION"</span>, <span class="string">"ap-southeast-1"</span>)</span><br></pre></td></tr></table></figure>
+
+<p>Dùng <code>fetch</code> cho giá trị bắt buộc để ứng dụng fail sớm thay vì chạy nửa ngày rồi mới phát hiện config là <code>nil</code>.</p>
+<p>File <code>.env</code> chỉ nên dùng local và phải nằm trong <code>.gitignore</code>. Không xem <code>.env</code> là secret manager production chỉ vì tên file có dấu chấm trông khá bí mật.</p>
+<h2 id="Nguyen-tac-van-hanh"><a href="#Nguyen-tac-van-hanh" class="headerlink" title="Nguyên tắc vận hành"></a>Nguyên tắc vận hành</h2><ul>
+<li>Cấp quyền tối thiểu cho từng credential.</li>
+<li>Tách credential theo environment và service.</li>
+<li>Rotate định kỳ và ngay khi nghi ngờ bị lộ.</li>
+<li>Không log secret hoặc nhét secret vào URL.</li>
+<li>Dùng secret manager của cloud/platform khi hệ thống đủ lớn.</li>
+<li>Quét repository bằng secret scanner trong CI.</li>
+</ul>
+<p>Nếu secret từng bị commit, hãy <strong>rotate trước</strong>, sau đó mới cân nhắc rewrite history. Xóa lịch sử mà giữ nguyên credential chỉ làm repository sạch về thẩm mỹ.</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a href="https://guides.rubyonrails.org/security.html#custom-credentials" target="_blank" rel="noopener">Rails Security Guide — Custom Credentials</a></li>
+</ul>
 
   </div>
 </article>
@@ -236,23 +214,23 @@
     
     
       <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Khai-quat"><span class="toc-number">1.</span> <span class="toc-text">1. Khái quát</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Rails-4-1"><span class="toc-number">2.</span> <span class="toc-text">2. Rails 4.1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Rails-5-1"><span class="toc-number">3.</span> <span class="toc-text">3. Rails 5.1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Rails-5-2"><span class="toc-number">4.</span> <span class="toc-text">3. Rails 5.2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-secret-key-base"><span class="toc-number">5.</span> <span class="toc-text">4. secret_key_base</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Rails-credentials"><span class="toc-number">1.</span> <span class="toc-text">Rails credentials</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Environment-variables"><span class="toc-number">2.</span> <span class="toc-text">Environment variables</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nguyen-tac-van-hanh"><span class="toc-number">3.</span> <span class="toc-text">Nguyên tắc vận hành</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">4.</span> <span class="toc-text">Reference</span></a></li></ol>
       </div>
     
 
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/&text=Lưu Trữ Thông Tin Bảo Mật Trong Rails?" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/&title=Lưu Trữ Thông Tin Bảo Mật Trong Rails?" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/&is_video=false&description=Lưu Trữ Thông Tin Bảo Mật Trong Rails?" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Lưu Trữ Thông Tin Bảo Mật Trong Rails?&body=Check out this article: https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/&title=Lưu Trữ Thông Tin Bảo Mật Trong Rails?" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/&title=Lưu Trữ Thông Tin Bảo Mật Trong Rails?" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/&title=Lưu Trữ Thông Tin Bảo Mật Trong Rails?" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/&title=Lưu Trữ Thông Tin Bảo Mật Trong Rails?" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/&name=Lưu Trữ Thông Tin Bảo Mật Trong Rails?&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/&t=Lưu Trữ Thông Tin Bảo Mật Trong Rails?" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/&text=Quản lý secrets trong Rails: credentials, ENV và những thứ tuyệt đối đừng commit" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/&title=Quản lý secrets trong Rails: credentials, ENV và những thứ tuyệt đối đừng commit" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/&is_video=false&description=Quản lý secrets trong Rails: credentials, ENV và những thứ tuyệt đối đừng commit" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Quản lý secrets trong Rails: credentials, ENV và những thứ tuyệt đối đừng commit&body=Check out this article: https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/&title=Quản lý secrets trong Rails: credentials, ENV và những thứ tuyệt đối đừng commit" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/&title=Quản lý secrets trong Rails: credentials, ENV và những thứ tuyệt đối đừng commit" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/&title=Quản lý secrets trong Rails: credentials, ENV và những thứ tuyệt đối đừng commit" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/&title=Quản lý secrets trong Rails: credentials, ENV và những thứ tuyệt đối đừng commit" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/&name=Quản lý secrets trong Rails: credentials, ENV và những thứ tuyệt đối đừng commit&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/&t=Quản lý secrets trong Rails: credentials, ENV và những thứ tuyệt đối đừng commit" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

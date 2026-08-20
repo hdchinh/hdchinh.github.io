@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="1.FoldersNgoài việc có thể mở được thư mục bạn đang làm việc, nó có thể mở được các thư mục khác trong máy tính của bạn chỉ bằng việc bạn cung cấp đường dẫn phía sau câu lệnh open thay vì dấu chấm như">
+    <meta name="description" content="open gửi file hoặc URL cho Launch Services, tức là dùng cùng cơ chế double-click trong Finder nhưng không cần rời Terminal. 123open report.pdfopen https:&#x2F;&#x2F;example.comopen .  open . mở directory hiện t">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Lệnh Open Trên macOS">
+<meta property="og:title" content="Lệnh &#96;open&#96; trên macOS: mở file, app và URL từ Terminal">
 <meta property="og:url" content="https://hdchinh.github.io/2018/01/23/2019-01-23-open-command-in-macos/index.html">
 <meta property="og:site_name" content="Hudson">
-<meta property="og:description" content="1.FoldersNgoài việc có thể mở được thư mục bạn đang làm việc, nó có thể mở được các thư mục khác trong máy tính của bạn chỉ bằng việc bạn cung cấp đường dẫn phía sau câu lệnh open thay vì dấu chấm như">
+<meta property="og:description" content="open gửi file hoặc URL cho Launch Services, tức là dùng cùng cơ chế double-click trong Finder nhưng không cần rời Terminal. 123open report.pdfopen https:&#x2F;&#x2F;example.comopen .  open . mở directory hiện t">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2018-01-22T17:00:00.000Z">
-<meta property="article:modified_time" content="2026-08-14T07:11:23.736Z">
+<meta property="article:modified_time" content="2026-08-20T05:33:27.157Z">
 <meta property="article:author" content="Hudson">
 <meta property="article:tag" content="UNIX">
 <meta name="twitter:card" content="summary">
@@ -37,7 +37,7 @@
       
     
     <!-- title -->
-    <title>Lệnh Open Trên macOS</title>
+    <title>Lệnh `open` trên macOS: mở file, app và URL từ Terminal</title>
     <!-- async scripts -->
     <!-- Google Analytics -->
 
@@ -97,23 +97,23 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2018/01/23/2019-01-23-open-command-in-macos/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2018/01/23/2019-01-23-open-command-in-macos/&text=Lệnh Open Trên macOS" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2018/01/23/2019-01-23-open-command-in-macos/&title=Lệnh Open Trên macOS" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2018/01/23/2019-01-23-open-command-in-macos/&is_video=false&description=Lệnh Open Trên macOS" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Lệnh Open Trên macOS&body=Check out this article: https://hdchinh.github.io/2018/01/23/2019-01-23-open-command-in-macos/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2018/01/23/2019-01-23-open-command-in-macos/&title=Lệnh Open Trên macOS" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2018/01/23/2019-01-23-open-command-in-macos/&title=Lệnh Open Trên macOS" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2018/01/23/2019-01-23-open-command-in-macos/&title=Lệnh Open Trên macOS" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2018/01/23/2019-01-23-open-command-in-macos/&title=Lệnh Open Trên macOS" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2018/01/23/2019-01-23-open-command-in-macos/&name=Lệnh Open Trên macOS&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2018/01/23/2019-01-23-open-command-in-macos/&t=Lệnh Open Trên macOS" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2018/01/23/2019-01-23-open-command-in-macos/&text=Lệnh `open` trên macOS: mở file, app và URL từ Terminal" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2018/01/23/2019-01-23-open-command-in-macos/&title=Lệnh `open` trên macOS: mở file, app và URL từ Terminal" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2018/01/23/2019-01-23-open-command-in-macos/&is_video=false&description=Lệnh `open` trên macOS: mở file, app và URL từ Terminal" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Lệnh `open` trên macOS: mở file, app và URL từ Terminal&body=Check out this article: https://hdchinh.github.io/2018/01/23/2019-01-23-open-command-in-macos/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2018/01/23/2019-01-23-open-command-in-macos/&title=Lệnh `open` trên macOS: mở file, app và URL từ Terminal" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2018/01/23/2019-01-23-open-command-in-macos/&title=Lệnh `open` trên macOS: mở file, app và URL từ Terminal" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2018/01/23/2019-01-23-open-command-in-macos/&title=Lệnh `open` trên macOS: mở file, app và URL từ Terminal" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2018/01/23/2019-01-23-open-command-in-macos/&title=Lệnh `open` trên macOS: mở file, app và URL từ Terminal" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2018/01/23/2019-01-23-open-command-in-macos/&name=Lệnh `open` trên macOS: mở file, app và URL từ Terminal&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2018/01/23/2019-01-23-open-command-in-macos/&t=Lệnh `open` trên macOS: mở file, app và URL từ Terminal" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
     
     
       <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Folders"><span class="toc-number">1.</span> <span class="toc-text">1.Folders</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-File"><span class="toc-number">2.</span> <span class="toc-text">2.File</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Applications"><span class="toc-number">3.</span> <span class="toc-text">3.Applications</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-URLs"><span class="toc-number">4.</span> <span class="toc-text">4.URLs</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Chon-application"><span class="toc-number">1.</span> <span class="toc-text">Chọn application</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Mo-file-moi-hoac-cho-app-dong"><span class="toc-number">2.</span> <span class="toc-text">Mở file mới hoặc chờ app đóng</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Dua-input-vao-app"><span class="toc-number">3.</span> <span class="toc-text">Đưa input vào app</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Luu-y-trong-automation"><span class="toc-number">4.</span> <span class="toc-text">Lưu ý trong automation</span></a></li></ol>
       </div>
     
   </span>
@@ -126,7 +126,7 @@
   <header>
     
     <h1 class="posttitle p-name" itemprop="name headline">
-        Lệnh Open Trên macOS
+        Lệnh `open` trên macOS: mở file, app và URL từ Terminal
     </h1>
 
 
@@ -162,19 +162,27 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    <h2 id="1-Folders"><a href="#1-Folders" class="headerlink" title="1.Folders"></a>1.Folders</h2><p>Ngoài việc có thể mở được thư mục bạn đang làm việc, nó có thể mở được các thư mục khác trong máy tính của bạn chỉ bằng việc bạn cung cấp đường dẫn phía sau câu lệnh open thay vì dấu chấm như chúng ta đã làm ở trên. Bạn cũng có thể mở các thư mục ẩn hay mở nhiều thư mục cùng một lúc.<br>Dưới đây là một vài ví dụ cho những gì chúng ta đã thảo luận ở trên:</p>
-<p><strong>open ~/</strong></p>
-<p><strong>open ~/etc ~/desktop ~/documents</strong></p>
-<h2 id="2-File"><a href="#2-File" class="headerlink" title="2.File"></a>2.File</h2><p>Open cũng có thể mở tập tin, lại tiếp tục suy nghĩ đơn giản, chúng ta có thể thấy câu lệnh này giống như một cú click chuột double vào file hay folder thì đều có chức năng mở nó lên. Ví dụ:</p>
-<p><strong>open ~/desktop/meo.rb</strong></p>
-<p>Nó sẽ mở file meo.rb. Bạn cũng có thể sử dụng điều này với nhiều tệp.</p>
-<p><strong>open ~/desktop/meo.rb ~/desktop/meo.jpg</strong></p>
-<h2 id="3-Applications"><a href="#3-Applications" class="headerlink" title="3.Applications"></a>3.Applications</h2><p>Giả sử tôi có file meo.rb, bây giờ file đó sẽ được mở mặc định bởi phần mềm Xcode trong máy của tôi. Khi đó, tôi có thể override lại phần mềm mặc định để mở file này bằng câu lệnh sau:</p>
-<p><strong>open -a Sublime ~/desktop/meo.rb</strong></p>
-<h2 id="4-URLs"><a href="#4-URLs" class="headerlink" title="4.URLs"></a>4.URLs</h2><p>Open cũng có thể mở các đường dẫn URL với cú pháp đơn giản như sau:</p>
-<p><strong>open <a href="https://google.com.vn" target="_blank" rel="noopener">https://google.com.vn</a></strong></p>
-<p>Với câu lệnh này thì đường dẫn bạn cung cấp sẽ được mở bằng trình duyệt mặc định. Bạn cũng có thể sử dụng trình duyệt khác làm trình duyệt mặc định bằng tuỳ chọn –a như sau:</p>
-<p><strong>open -a Firefox <a href="https://google.com.vn" target="_blank" rel="noopener">https://google.com.vn</a></strong></p>
+    <p><code>open</code> gửi file hoặc URL cho Launch Services, tức là dùng cùng cơ chế double-click trong Finder nhưng không cần rời Terminal.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">open report.pdf</span><br><span class="line">open https://example.com</span><br><span class="line">open .</span><br></pre></td></tr></table></figure>
+
+<p><code>open .</code> mở directory hiện tại trong Finder—một command nhỏ nhưng cứu khá nhiều lần kéo-thả như người tiền sử.</p>
+<h2 id="Chon-application"><a href="#Chon-application" class="headerlink" title="Chọn application"></a>Chọn application</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">open -a <span class="string">"Visual Studio Code"</span> project</span><br><span class="line">open -a Safari https://example.com</span><br></pre></td></tr></table></figure>
+
+<p>Dùng bundle identifier khi tên application không ổn định:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">open -b com.apple.TextEdit notes.txt</span><br></pre></td></tr></table></figure>
+
+<h2 id="Mo-file-moi-hoac-cho-app-dong"><a href="#Mo-file-moi-hoac-cho-app-dong" class="headerlink" title="Mở file mới hoặc chờ app đóng"></a>Mở file mới hoặc chờ app đóng</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">open -n -a Safari</span><br><span class="line">open -W report.pdf</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>-n</code>: mở instance mới.</li>
+<li><code>-W</code>: chờ application được mở đóng lại, hữu ích trong script.</li>
+</ul>
+<h2 id="Dua-input-vao-app"><a href="#Dua-input-vao-app" class="headerlink" title="Đưa input vào app"></a>Đưa input vào app</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span> <span class="string">'hello\n'</span> | open -f -a TextEdit</span><br></pre></td></tr></table></figure>
+
+<h2 id="Luu-y-trong-automation"><a href="#Luu-y-trong-automation" class="headerlink" title="Lưu ý trong automation"></a>Lưu ý trong automation</h2><p><code>open</code> xác nhận request đã được gửi tới GUI application; nó không đảm bảo application xử lý business action thành công. Script cần kết quả deterministic nên gọi CLI/API thật thay vì điều khiển GUI rồi cầu nguyện.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">man open</span><br></pre></td></tr></table></figure>
+
+<p>Manual đi kèm hệ điều hành là reference chính xác nhất cho version macOS đang chạy.</p>
 
   </div>
 </article>
@@ -198,23 +206,23 @@
     
     
       <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Folders"><span class="toc-number">1.</span> <span class="toc-text">1.Folders</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-File"><span class="toc-number">2.</span> <span class="toc-text">2.File</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Applications"><span class="toc-number">3.</span> <span class="toc-text">3.Applications</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-URLs"><span class="toc-number">4.</span> <span class="toc-text">4.URLs</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Chon-application"><span class="toc-number">1.</span> <span class="toc-text">Chọn application</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Mo-file-moi-hoac-cho-app-dong"><span class="toc-number">2.</span> <span class="toc-text">Mở file mới hoặc chờ app đóng</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Dua-input-vao-app"><span class="toc-number">3.</span> <span class="toc-text">Đưa input vào app</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Luu-y-trong-automation"><span class="toc-number">4.</span> <span class="toc-text">Lưu ý trong automation</span></a></li></ol>
       </div>
     
 
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2018/01/23/2019-01-23-open-command-in-macos/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2018/01/23/2019-01-23-open-command-in-macos/&text=Lệnh Open Trên macOS" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2018/01/23/2019-01-23-open-command-in-macos/&title=Lệnh Open Trên macOS" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2018/01/23/2019-01-23-open-command-in-macos/&is_video=false&description=Lệnh Open Trên macOS" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Lệnh Open Trên macOS&body=Check out this article: https://hdchinh.github.io/2018/01/23/2019-01-23-open-command-in-macos/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2018/01/23/2019-01-23-open-command-in-macos/&title=Lệnh Open Trên macOS" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2018/01/23/2019-01-23-open-command-in-macos/&title=Lệnh Open Trên macOS" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2018/01/23/2019-01-23-open-command-in-macos/&title=Lệnh Open Trên macOS" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2018/01/23/2019-01-23-open-command-in-macos/&title=Lệnh Open Trên macOS" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2018/01/23/2019-01-23-open-command-in-macos/&name=Lệnh Open Trên macOS&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2018/01/23/2019-01-23-open-command-in-macos/&t=Lệnh Open Trên macOS" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2018/01/23/2019-01-23-open-command-in-macos/&text=Lệnh `open` trên macOS: mở file, app và URL từ Terminal" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2018/01/23/2019-01-23-open-command-in-macos/&title=Lệnh `open` trên macOS: mở file, app và URL từ Terminal" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2018/01/23/2019-01-23-open-command-in-macos/&is_video=false&description=Lệnh `open` trên macOS: mở file, app và URL từ Terminal" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Lệnh `open` trên macOS: mở file, app và URL từ Terminal&body=Check out this article: https://hdchinh.github.io/2018/01/23/2019-01-23-open-command-in-macos/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2018/01/23/2019-01-23-open-command-in-macos/&title=Lệnh `open` trên macOS: mở file, app và URL từ Terminal" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2018/01/23/2019-01-23-open-command-in-macos/&title=Lệnh `open` trên macOS: mở file, app và URL từ Terminal" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2018/01/23/2019-01-23-open-command-in-macos/&title=Lệnh `open` trên macOS: mở file, app và URL từ Terminal" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2018/01/23/2019-01-23-open-command-in-macos/&title=Lệnh `open` trên macOS: mở file, app và URL từ Terminal" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2018/01/23/2019-01-23-open-command-in-macos/&name=Lệnh `open` trên macOS: mở file, app và URL từ Terminal&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2018/01/23/2019-01-23-open-command-in-macos/&t=Lệnh `open` trên macOS: mở file, app và URL từ Terminal" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

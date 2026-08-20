@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="1. Ruby chạy code của bạn như nào?Trước khi nói về các trình thông dịch, tôi xin nêu khái quát về quá trình ruby thực thi mã code của bạn.Với bất cứ đoạn mã ruby nào, mã nguồn bạn viết sẽ trải qua các">
+    <meta name="description" content="Ruby là language specification và ecosystem; CRuby chỉ là implementation phổ biến nhất. “Ruby interpreter” là cách gọi tiện, nhưng runtime hiện đại còn có bytecode VM, JIT và garbage collector—không c">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Vài Trình Thông Dịch Cho Ruby">
+<meta property="og:title" content="Các Ruby implementation: CRuby, JRuby, TruffleRuby và mruby">
 <meta property="og:url" content="https://hdchinh.github.io/2019/02/20/2019-02-20-cac-trinh-thong-dich-trong-ruby/index.html">
 <meta property="og:site_name" content="Hudson">
-<meta property="og:description" content="1. Ruby chạy code của bạn như nào?Trước khi nói về các trình thông dịch, tôi xin nêu khái quát về quá trình ruby thực thi mã code của bạn.Với bất cứ đoạn mã ruby nào, mã nguồn bạn viết sẽ trải qua các">
+<meta property="og:description" content="Ruby là language specification và ecosystem; CRuby chỉ là implementation phổ biến nhất. “Ruby interpreter” là cách gọi tiện, nhưng runtime hiện đại còn có bytecode VM, JIT và garbage collector—không c">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2019-02-19T17:00:00.000Z">
-<meta property="article:modified_time" content="2026-08-14T07:11:23.737Z">
+<meta property="article:modified_time" content="2026-08-20T05:33:27.158Z">
 <meta property="article:author" content="Hudson">
 <meta property="article:tag" content="RUBY">
 <meta name="twitter:card" content="summary">
@@ -37,7 +37,7 @@
       
     
     <!-- title -->
-    <title>Vài Trình Thông Dịch Cho Ruby</title>
+    <title>Các Ruby implementation: CRuby, JRuby, TruffleRuby và mruby</title>
     <!-- async scripts -->
     <!-- Google Analytics -->
 
@@ -97,23 +97,23 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/02/20/2019-02-20-cac-trinh-thong-dich-trong-ruby/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/02/20/2019-02-20-cac-trinh-thong-dich-trong-ruby/&text=Vài Trình Thông Dịch Cho Ruby" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/02/20/2019-02-20-cac-trinh-thong-dich-trong-ruby/&title=Vài Trình Thông Dịch Cho Ruby" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/02/20/2019-02-20-cac-trinh-thong-dich-trong-ruby/&is_video=false&description=Vài Trình Thông Dịch Cho Ruby" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Vài Trình Thông Dịch Cho Ruby&body=Check out this article: https://hdchinh.github.io/2019/02/20/2019-02-20-cac-trinh-thong-dich-trong-ruby/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/02/20/2019-02-20-cac-trinh-thong-dich-trong-ruby/&title=Vài Trình Thông Dịch Cho Ruby" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/02/20/2019-02-20-cac-trinh-thong-dich-trong-ruby/&title=Vài Trình Thông Dịch Cho Ruby" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/02/20/2019-02-20-cac-trinh-thong-dich-trong-ruby/&title=Vài Trình Thông Dịch Cho Ruby" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/02/20/2019-02-20-cac-trinh-thong-dich-trong-ruby/&title=Vài Trình Thông Dịch Cho Ruby" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/02/20/2019-02-20-cac-trinh-thong-dich-trong-ruby/&name=Vài Trình Thông Dịch Cho Ruby&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/02/20/2019-02-20-cac-trinh-thong-dich-trong-ruby/&t=Vài Trình Thông Dịch Cho Ruby" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/02/20/2019-02-20-cac-trinh-thong-dich-trong-ruby/&text=Các Ruby implementation: CRuby, JRuby, TruffleRuby và mruby" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/02/20/2019-02-20-cac-trinh-thong-dich-trong-ruby/&title=Các Ruby implementation: CRuby, JRuby, TruffleRuby và mruby" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/02/20/2019-02-20-cac-trinh-thong-dich-trong-ruby/&is_video=false&description=Các Ruby implementation: CRuby, JRuby, TruffleRuby và mruby" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Các Ruby implementation: CRuby, JRuby, TruffleRuby và mruby&body=Check out this article: https://hdchinh.github.io/2019/02/20/2019-02-20-cac-trinh-thong-dich-trong-ruby/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/02/20/2019-02-20-cac-trinh-thong-dich-trong-ruby/&title=Các Ruby implementation: CRuby, JRuby, TruffleRuby và mruby" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/02/20/2019-02-20-cac-trinh-thong-dich-trong-ruby/&title=Các Ruby implementation: CRuby, JRuby, TruffleRuby và mruby" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/02/20/2019-02-20-cac-trinh-thong-dich-trong-ruby/&title=Các Ruby implementation: CRuby, JRuby, TruffleRuby và mruby" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/02/20/2019-02-20-cac-trinh-thong-dich-trong-ruby/&title=Các Ruby implementation: CRuby, JRuby, TruffleRuby và mruby" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/02/20/2019-02-20-cac-trinh-thong-dich-trong-ruby/&name=Các Ruby implementation: CRuby, JRuby, TruffleRuby và mruby&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/02/20/2019-02-20-cac-trinh-thong-dich-trong-ruby/&t=Các Ruby implementation: CRuby, JRuby, TruffleRuby và mruby" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
     
     
       <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Ruby-chay-code-cua-ban-nhu-nao"><span class="toc-number">1.</span> <span class="toc-text">1. Ruby chạy code của bạn như nào?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-CRuby-MRI-YARV-KRI"><span class="toc-number">2.</span> <span class="toc-text">2. CRuby, MRI, YARV, KRI</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-JRuby"><span class="toc-number">3.</span> <span class="toc-text">3. JRuby</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Tham-khao"><span class="toc-number">4.</span> <span class="toc-text">4. Tham khảo</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#CRuby-MRI"><span class="toc-number">1.</span> <span class="toc-text">CRuby (MRI)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JRuby"><span class="toc-number">2.</span> <span class="toc-text">JRuby</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TruffleRuby"><span class="toc-number">3.</span> <span class="toc-text">TruffleRuby</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mruby"><span class="toc-number">4.</span> <span class="toc-text">mruby</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chon-runtime"><span class="toc-number">5.</span> <span class="toc-text">Chọn runtime</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#References"><span class="toc-number">6.</span> <span class="toc-text">References</span></a></li></ol>
       </div>
     
   </span>
@@ -126,7 +126,7 @@
   <header>
     
     <h1 class="posttitle p-name" itemprop="name headline">
-        Vài Trình Thông Dịch Cho Ruby
+        Các Ruby implementation: CRuby, JRuby, TruffleRuby và mruby
     </h1>
 
 
@@ -144,6 +144,11 @@
 
 
       
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/ruby-notes/">ruby-notes</a>
+    </div>
+
 
       
     <div class="article-tag">
@@ -157,39 +162,33 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    <h2 id="1-Ruby-chay-code-cua-ban-nhu-nao"><a href="#1-Ruby-chay-code-cua-ban-nhu-nao" class="headerlink" title="1. Ruby chạy code của bạn như nào?"></a>1. Ruby chạy code của bạn như nào?</h2><p>Trước khi nói về các trình thông dịch, tôi xin nêu khái quát về quá trình ruby thực thi mã code của bạn.<br>Với bất cứ đoạn mã ruby nào, mã nguồn bạn viết sẽ trải qua các bước sau để có thể tới được trình thông dịch (chủ đề mà ta đang tìm hiểu).</p>
-<p><strong>Token</strong>: Chuyển đổi mã nguồn ruby thành một dạng keyword. Hiểu đơn giản, ruby sẽ quét qua mã nguồn bạn viết và so sánh với một symbol table nào đó (giả dụ như vậy), để xác định xem trong mã nguồn bạn viết gồm những thành phần nào (để xác định đâu là biến, đâu là keyword, đâu là từ khoá). Ví dụ việc từ <strong>do</strong> xuất hiện trong mã nguồn, có thể nó là một biến local, hoặc nó là một keyword trong một <strong>block</strong>, <strong>Token</strong> sẽ quét mã nguồn và đảm bảo xác định đúng <strong>type</strong> của từng thành phần trong code của bạn, chú ý là <strong>type</strong> nhé, ở bước này ruby chỉ quan tâm đến xác định <strong>type</strong>.</p>
-<p><strong>Parse</strong>: Qua bước đầu tiên, ta đã có một token, đến bước thứ hai nó sẽ chuyển đổi token đó thành một AST (Abstract Syntax Tree).</p>
-<p><strong>Compile</strong>: Đến bước này, ruby sẽ biên dịch kết quả ở bước 2 thành <strong>bytecode</strong> và truyền kết quả biên dịch được sang cho máy ảo ruby (là phần mà chúng ta đang tìm hiểu trong bài viết).</p>
-<h2 id="2-CRuby-MRI-YARV-KRI"><a href="#2-CRuby-MRI-YARV-KRI" class="headerlink" title="2. CRuby, MRI, YARV, KRI"></a>2. CRuby, MRI, YARV, KRI</h2><p>Để kiểm tra xem ruby trên máy tính của bạn đang sử dụng trình thông dịch nào, hãy mở <strong>irb</strong> và sử dụng lệnh sau:</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">RbConfig::CONFIG[<span class="string">"RUBY_INSTALL_NAME"</span>]</span><br><span class="line"><span class="comment">#=&gt; kết quả trả về trên máy của tôi là: ruby</span></span><br></pre></td></tr></table></figure>
-<p>Điều này có nghĩa tôi đang sử dụng trình thông dịch mặc định trong ruby. Được gọi là <strong>MRI</strong>/<strong>CRuby</strong> hay phiên bản nâng cấp sau này là <strong>YARV</strong>/<strong>KRI</strong>. Giải thích về việc có nhiều tên gọi như trên, tôi xin trích dẫn các thông tin trên wiki và trình thông dịch này:</p>
-<blockquote>
-<p>Matz’s Ruby Interpreter or Ruby MRI (also called CRuby) was the reference implementation of the Ruby programming language named after Ruby creator Yukihiro Matsumoto (“Matz”)</p>
-</blockquote>
-<blockquote>
-<p>YARV (Yet another Ruby VM) is a bytecode interpreter that was developed for the Ruby programming language by Koichi Sasada. The goal of the project was to greatly reduce the execution time of Ruby programs.</p>
-</blockquote>
-<blockquote>
-<p>Since YARV has become the official Ruby interpreter for Ruby 1.9, it is also named KRI (Koichi’s Ruby Interpreter), in the same vein as the original Ruby MRI, named for Ruby’s creator Yukihiro Matsumoto.</p>
-</blockquote>
-<blockquote>
-<p>YARV was merged into the Ruby Subversion repository on January 1, 2007. It was released as part of Ruby 1.9.0 on December 26, 2007, replacing Ruby MRI.</p>
-</blockquote>
-<p>Qua vài trích dẫn kể trên, chúng ta có thể thấy đơn giản những khái niệm <strong>CRuby</strong>, <strong>YARV</strong>, <strong>MRI</strong>, <strong>KRI</strong> đều nhằm mô tả về một trình thông dịch được sử dụng mặc định cho ruby (tuỳ phiên bản sẽ có khác nhau, hiểu theo nghĩa là một sự update thay vì là thay thế).</p>
-<h2 id="3-JRuby"><a href="#3-JRuby" class="headerlink" title="3. JRuby"></a>3. JRuby</h2><p>Còn một vài trình thông dịch khác mà tôi đã đọc được, nhưng <strong>JRuby</strong> là phần cuối mà chúng ta sẽ tìm hiểu, vì những những trình thông dịch còn lại không được phổ biến cho lắm.</p>
-<p><strong>JRuby</strong> = <strong>Java</strong> + <strong>Ruby</strong></p>
-<p>Tức là dùng phần java làm core để chạy máy ảo xử lý code ruby. Sự khác biệt với mục 2,chính là ở mục 2, dù dưới tên gọi hay phiên bản nào, thì những trình thông dịch đó đều sử dụng <strong>C</strong> làm ngôn ngữ xây dựng.</p>
-<p>Một số ý kiến xoay quanh <strong>JRuby</strong></p>
-<ol>
-<li><p>JRuby nhanh hơn đáng kể với trình thông dịch mặc định trong ruby, có lợi thế mạnh mẽ khi xử lý đa luồng.</p>
-</li>
-<li><p>Tuy nhiên đồng nghĩa với điều đó là việc <strong>JRuby</strong> chiếm dụng bộ nhớ nhiều hơn và mất thời gian hơn để khởi động.</p>
-</li>
-</ol>
-<p>Vậy sẽ là một thảm hoạ nếu sử dụng <strong>JRuby</strong> để làm trình thông dịch cho ruby trong những ứng dụng nhỏ, hoạt động đơn giản và không cần tốc độ quá cao.</p>
-<h2 id="4-Tham-khao"><a href="#4-Tham-khao" class="headerlink" title="4. Tham khảo"></a>4. Tham khảo</h2><p>[1] <a href="https://en.wikipedia.org/wiki/Ruby_MRI" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Ruby_MRI</a></p>
-<p>[2] <a href="https://en.wikipedia.org/wiki/JRuby" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/JRuby</a></p>
+    <p>Ruby là language specification và ecosystem; CRuby chỉ là implementation phổ biến nhất. “Ruby interpreter” là cách gọi tiện, nhưng runtime hiện đại còn có bytecode VM, JIT và garbage collector—không chỉ đọc từng dòng rồi suy nghĩ.</p>
+<h2 id="CRuby-MRI"><a href="#CRuby-MRI" class="headerlink" title="CRuby (MRI)"></a>CRuby (MRI)</h2><p>Implementation reference, dùng YARV bytecode VM. Tương thích gem tốt nhất và là lựa chọn mặc định của phần lớn Rails app.</p>
+<p>CRuby có Global VM Lock nên Ruby code không chạy song song trên nhiều native thread trong cùng process theo cách CPU-bound thường mong muốn. I/O-bound concurrency vẫn hữu ích vì lock có thể được release khi chờ I/O; nhiều process/Ractor/JIT là các hướng khác tùy workload.</p>
+<h2 id="JRuby"><a href="#JRuby" class="headerlink" title="JRuby"></a>JRuby</h2><p>Chạy trên JVM:</p>
+<ul>
+<li>interop với Java;</li>
+<li>native threads có thể chạy Ruby song song;</li>
+<li>JVM GC/JIT và tooling;</li>
+<li>startup/memory profile khác CRuby;</li>
+<li>gem có native extension C có thể không tương thích trực tiếp.</li>
+</ul>
+<p>Phù hợp khi cần Java ecosystem hoặc thread parallelism và chấp nhận kiểm tra compatibility.</p>
+<h2 id="TruffleRuby"><a href="#TruffleRuby" class="headerlink" title="TruffleRuby"></a>TruffleRuby</h2><p>Xây trên GraalVM, tập trung performance và interoperability. Có thể tối ưu mạnh cho workload dài hạn, nhưng compatibility và operational footprint cần benchmark với application thật.</p>
+<h2 id="mruby"><a href="#mruby" class="headerlink" title="mruby"></a>mruby</h2><p>Implementation nhẹ, hướng embedding vào application/device. Nó không nhằm chạy nguyên một Rails stack; so như vậy giống chê xe đạp không kéo được container.</p>
+<h2 id="Chon-runtime"><a href="#Chon-runtime" class="headerlink" title="Chọn runtime"></a>Chọn runtime</h2><ul>
+<li>Bắt đầu với CRuby nếu không có constraint đặc biệt.</li>
+<li>Chọn JRuby khi JVM integration/threading là lợi thế thật.</li>
+<li>Benchmark TruffleRuby với workload và gem cụ thể.</li>
+<li>Dùng mruby cho embedding/footprint nhỏ.</li>
+</ul>
+<p>Đừng chọn bằng benchmark “Hello World”. Đo startup, throughput, tail latency, memory, native gem compatibility, debugging và kỹ năng vận hành của team.</p>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<li><a href="https://www.ruby-lang.org/en/about/" target="_blank" rel="noopener">Ruby implementations</a></li>
+<li><a href="https://www.jruby.org/" target="_blank" rel="noopener">JRuby</a></li>
+<li><a href="https://www.graalvm.org/ruby/" target="_blank" rel="noopener">TruffleRuby</a></li>
+<li><a href="https://mruby.org/" target="_blank" rel="noopener">mruby</a></li>
+</ul>
 
   </div>
 </article>
@@ -213,23 +212,23 @@
     
     
       <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Ruby-chay-code-cua-ban-nhu-nao"><span class="toc-number">1.</span> <span class="toc-text">1. Ruby chạy code của bạn như nào?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-CRuby-MRI-YARV-KRI"><span class="toc-number">2.</span> <span class="toc-text">2. CRuby, MRI, YARV, KRI</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-JRuby"><span class="toc-number">3.</span> <span class="toc-text">3. JRuby</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Tham-khao"><span class="toc-number">4.</span> <span class="toc-text">4. Tham khảo</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#CRuby-MRI"><span class="toc-number">1.</span> <span class="toc-text">CRuby (MRI)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JRuby"><span class="toc-number">2.</span> <span class="toc-text">JRuby</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TruffleRuby"><span class="toc-number">3.</span> <span class="toc-text">TruffleRuby</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mruby"><span class="toc-number">4.</span> <span class="toc-text">mruby</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chon-runtime"><span class="toc-number">5.</span> <span class="toc-text">Chọn runtime</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#References"><span class="toc-number">6.</span> <span class="toc-text">References</span></a></li></ol>
       </div>
     
 
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/02/20/2019-02-20-cac-trinh-thong-dich-trong-ruby/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/02/20/2019-02-20-cac-trinh-thong-dich-trong-ruby/&text=Vài Trình Thông Dịch Cho Ruby" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/02/20/2019-02-20-cac-trinh-thong-dich-trong-ruby/&title=Vài Trình Thông Dịch Cho Ruby" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/02/20/2019-02-20-cac-trinh-thong-dich-trong-ruby/&is_video=false&description=Vài Trình Thông Dịch Cho Ruby" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Vài Trình Thông Dịch Cho Ruby&body=Check out this article: https://hdchinh.github.io/2019/02/20/2019-02-20-cac-trinh-thong-dich-trong-ruby/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/02/20/2019-02-20-cac-trinh-thong-dich-trong-ruby/&title=Vài Trình Thông Dịch Cho Ruby" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/02/20/2019-02-20-cac-trinh-thong-dich-trong-ruby/&title=Vài Trình Thông Dịch Cho Ruby" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/02/20/2019-02-20-cac-trinh-thong-dich-trong-ruby/&title=Vài Trình Thông Dịch Cho Ruby" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/02/20/2019-02-20-cac-trinh-thong-dich-trong-ruby/&title=Vài Trình Thông Dịch Cho Ruby" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/02/20/2019-02-20-cac-trinh-thong-dich-trong-ruby/&name=Vài Trình Thông Dịch Cho Ruby&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/02/20/2019-02-20-cac-trinh-thong-dich-trong-ruby/&t=Vài Trình Thông Dịch Cho Ruby" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/02/20/2019-02-20-cac-trinh-thong-dich-trong-ruby/&text=Các Ruby implementation: CRuby, JRuby, TruffleRuby và mruby" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/02/20/2019-02-20-cac-trinh-thong-dich-trong-ruby/&title=Các Ruby implementation: CRuby, JRuby, TruffleRuby và mruby" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/02/20/2019-02-20-cac-trinh-thong-dich-trong-ruby/&is_video=false&description=Các Ruby implementation: CRuby, JRuby, TruffleRuby và mruby" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Các Ruby implementation: CRuby, JRuby, TruffleRuby và mruby&body=Check out this article: https://hdchinh.github.io/2019/02/20/2019-02-20-cac-trinh-thong-dich-trong-ruby/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/02/20/2019-02-20-cac-trinh-thong-dich-trong-ruby/&title=Các Ruby implementation: CRuby, JRuby, TruffleRuby và mruby" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/02/20/2019-02-20-cac-trinh-thong-dich-trong-ruby/&title=Các Ruby implementation: CRuby, JRuby, TruffleRuby và mruby" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/02/20/2019-02-20-cac-trinh-thong-dich-trong-ruby/&title=Các Ruby implementation: CRuby, JRuby, TruffleRuby và mruby" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/02/20/2019-02-20-cac-trinh-thong-dich-trong-ruby/&title=Các Ruby implementation: CRuby, JRuby, TruffleRuby và mruby" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/02/20/2019-02-20-cac-trinh-thong-dich-trong-ruby/&name=Các Ruby implementation: CRuby, JRuby, TruffleRuby và mruby&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/02/20/2019-02-20-cac-trinh-thong-dich-trong-ruby/&t=Các Ruby implementation: CRuby, JRuby, TruffleRuby và mruby" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

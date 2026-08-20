@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="SaaS:  Software as a ServiceVí dụ như: TFS, Github.Mua một căn nhà và mua xong thì vào đó ở luôn chứ không cần vất vả xây dựng gì thêm.Ưu: Nhanh, tiện.Nhược: không có tính tuỳ chỉnh, vì dịch vụ sẽ phổ">
+    <meta name="description" content="IaaS, PaaS và SaaS không chỉ là ba định nghĩa để học phỏng vấn. Chúng mô tả ranh giới trách nhiệm giữa provider và khách hàng. IaaS — Infrastructure as a ServiceProvider quản lý datacenter, hardware,">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SaaS, PaaS và IaaS">
+<meta property="og:title" content="IaaS, PaaS và SaaS: ai chịu trách nhiệm khi production cháy?">
 <meta property="og:url" content="https://hdchinh.github.io/2019/04/10/2019-04-10-iaas-paas-saas/index.html">
 <meta property="og:site_name" content="Hudson">
-<meta property="og:description" content="SaaS:  Software as a ServiceVí dụ như: TFS, Github.Mua một căn nhà và mua xong thì vào đó ở luôn chứ không cần vất vả xây dựng gì thêm.Ưu: Nhanh, tiện.Nhược: không có tính tuỳ chỉnh, vì dịch vụ sẽ phổ">
+<meta property="og:description" content="IaaS, PaaS và SaaS không chỉ là ba định nghĩa để học phỏng vấn. Chúng mô tả ranh giới trách nhiệm giữa provider và khách hàng. IaaS — Infrastructure as a ServiceProvider quản lý datacenter, hardware,">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2019-04-09T17:00:00.000Z">
-<meta property="article:modified_time" content="2026-08-14T07:11:23.738Z">
+<meta property="article:modified_time" content="2026-08-20T05:33:27.159Z">
 <meta property="article:author" content="Hudson">
 <meta property="article:tag" content="til">
 <meta name="twitter:card" content="summary">
@@ -37,7 +37,7 @@
       
     
     <!-- title -->
-    <title>SaaS, PaaS và IaaS</title>
+    <title>IaaS, PaaS và SaaS: ai chịu trách nhiệm khi production cháy?</title>
     <!-- async scripts -->
     <!-- Google Analytics -->
 
@@ -97,20 +97,24 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/04/10/2019-04-10-iaas-paas-saas/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/04/10/2019-04-10-iaas-paas-saas/&text=SaaS, PaaS và IaaS" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/04/10/2019-04-10-iaas-paas-saas/&title=SaaS, PaaS và IaaS" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/04/10/2019-04-10-iaas-paas-saas/&is_video=false&description=SaaS, PaaS và IaaS" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=SaaS, PaaS và IaaS&body=Check out this article: https://hdchinh.github.io/2019/04/10/2019-04-10-iaas-paas-saas/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/04/10/2019-04-10-iaas-paas-saas/&title=SaaS, PaaS và IaaS" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/04/10/2019-04-10-iaas-paas-saas/&title=SaaS, PaaS và IaaS" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/04/10/2019-04-10-iaas-paas-saas/&title=SaaS, PaaS và IaaS" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/04/10/2019-04-10-iaas-paas-saas/&title=SaaS, PaaS và IaaS" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/04/10/2019-04-10-iaas-paas-saas/&name=SaaS, PaaS và IaaS&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/04/10/2019-04-10-iaas-paas-saas/&t=SaaS, PaaS và IaaS" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/04/10/2019-04-10-iaas-paas-saas/&text=IaaS, PaaS và SaaS: ai chịu trách nhiệm khi production cháy?" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/04/10/2019-04-10-iaas-paas-saas/&title=IaaS, PaaS và SaaS: ai chịu trách nhiệm khi production cháy?" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/04/10/2019-04-10-iaas-paas-saas/&is_video=false&description=IaaS, PaaS và SaaS: ai chịu trách nhiệm khi production cháy?" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=IaaS, PaaS và SaaS: ai chịu trách nhiệm khi production cháy?&body=Check out this article: https://hdchinh.github.io/2019/04/10/2019-04-10-iaas-paas-saas/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/04/10/2019-04-10-iaas-paas-saas/&title=IaaS, PaaS và SaaS: ai chịu trách nhiệm khi production cháy?" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/04/10/2019-04-10-iaas-paas-saas/&title=IaaS, PaaS và SaaS: ai chịu trách nhiệm khi production cháy?" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/04/10/2019-04-10-iaas-paas-saas/&title=IaaS, PaaS và SaaS: ai chịu trách nhiệm khi production cháy?" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/04/10/2019-04-10-iaas-paas-saas/&title=IaaS, PaaS và SaaS: ai chịu trách nhiệm khi production cháy?" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/04/10/2019-04-10-iaas-paas-saas/&name=IaaS, PaaS và SaaS: ai chịu trách nhiệm khi production cháy?&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/04/10/2019-04-10-iaas-paas-saas/&t=IaaS, PaaS và SaaS: ai chịu trách nhiệm khi production cháy?" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
     
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#IaaS-—-Infrastructure-as-a-Service"><span class="toc-number">1.</span> <span class="toc-text">IaaS — Infrastructure as a Service</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PaaS-—-Platform-as-a-Service"><span class="toc-number">2.</span> <span class="toc-text">PaaS — Platform as a Service</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SaaS-—-Software-as-a-Service"><span class="toc-number">3.</span> <span class="toc-text">SaaS — Software as a Service</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Shared-responsibility"><span class="toc-number">4.</span> <span class="toc-text">Shared responsibility</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chon-the-nao"><span class="toc-number">5.</span> <span class="toc-text">Chọn thế nào?</span></a></li></ol>
+      </div>
     
   </span>
 </div>
@@ -122,7 +126,7 @@
   <header>
     
     <h1 class="posttitle p-name" itemprop="name headline">
-        SaaS, PaaS và IaaS
+        IaaS, PaaS và SaaS: ai chịu trách nhiệm khi production cháy?
     </h1>
 
 
@@ -142,7 +146,7 @@
       
     <div class="article-category">
         <i class="fa-solid fa-archive"></i>
-        <a class="category-link" href="/categories/rails-notes/">rails notes</a>
+        <a class="category-link" href="/categories/til/">til</a>
     </div>
 
 
@@ -158,9 +162,58 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    <p><strong>SaaS:  Software as a Service</strong><br>Ví dụ như: TFS, Github.<br>Mua một căn nhà và mua xong thì vào đó ở luôn chứ không cần vất vả xây dựng gì thêm.<br>Ưu: Nhanh, tiện.<br>Nhược: không có tính tuỳ chỉnh, vì dịch vụ sẽ phổ thông và không thể cover hết được nhu cầu của  chúng ta.</p>
-<p><strong>PaaS:  Platform as a Service</strong><br>Ví dụ như: Heroku, AWS Elastic Beanstalk.<br>Mua một căn nhà đã có một số tiện ích cơ bản để sống, mình chỉ cần dọn thêm đồ đạc của mình(source code) vào là sống được.<br>Ưu: Tuỳ chỉnh dễ dàng hơn SaaS, làm nhanh và đơn giản hơn IaaS<br>Nhược: Vẫn không thể tự thiết lập các cài đặt nâng cao hơn.</p>
-<p><strong>IaaS: Infrastructure as a Service</strong><br>Ví dụ như: EC2, DigitalOcean<br>Mua một mảnh đất sau đó thì tự xây nhà, sắm đồ…<br>Ưu: Được tự chủ hệ thống và có thể tuỳ ý cấu hình(trong giới hạn của cloud cho phép).<br>Nhược: Phức tạp nhất trong 3 loại.</p>
+    <p>IaaS, PaaS và SaaS không chỉ là ba định nghĩa để học phỏng vấn. Chúng mô tả <strong>ranh giới trách nhiệm</strong> giữa provider và khách hàng.</p>
+<h2 id="IaaS-—-Infrastructure-as-a-Service"><a href="#IaaS-—-Infrastructure-as-a-Service" class="headerlink" title="IaaS — Infrastructure as a Service"></a>IaaS — Infrastructure as a Service</h2><p>Provider quản lý datacenter, hardware, network và virtualization. Ta quản lý OS, patching, runtime, application và data.</p>
+<p>Ví dụ: virtual machines trên AWS EC2, Google Compute Engine, Azure Virtual Machines.</p>
+<p>Lợi thế là control cao. Cái giá là ta cũng sở hữu pager lúc kernel, disk hoặc firewall cấu hình sai.</p>
+<h2 id="PaaS-—-Platform-as-a-Service"><a href="#PaaS-—-Platform-as-a-Service" class="headerlink" title="PaaS — Platform as a Service"></a>PaaS — Platform as a Service</h2><p>Provider quản lý thêm OS, runtime/deployment platform và một phần scaling/operations. Team tập trung application và data.</p>
+<p>Ví dụ: Heroku, Render, Google App Engine, AWS Elastic Beanstalk.</p>
+<p>PaaS giảm operational burden nhưng tạo constraint, pricing curve và platform coupling. “Không quản server” thường nghĩa server vẫn tồn tại, chỉ là hóa đơn và incident interface đẹp hơn.</p>
+<h2 id="SaaS-—-Software-as-a-Service"><a href="#SaaS-—-Software-as-a-Service" class="headerlink" title="SaaS — Software as a Service"></a>SaaS — Software as a Service</h2><p>Provider vận hành toàn bộ application; user sử dụng qua web/API.</p>
+<p>Ví dụ: GitHub, Slack, Google Workspace.</p>
+<p>Khách hàng vẫn chịu trách nhiệm về account, access control, data governance, integration và cách sử dụng. SaaS không outsource được quyết định cấp admin cho cả công ty.</p>
+<h2 id="Shared-responsibility"><a href="#Shared-responsibility" class="headerlink" title="Shared responsibility"></a>Shared responsibility</h2><table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>IaaS</th>
+<th>PaaS</th>
+<th>SaaS</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Hardware/network</td>
+<td>Provider</td>
+<td>Provider</td>
+<td>Provider</td>
+</tr>
+<tr>
+<td>OS/runtime</td>
+<td>Customer</td>
+<td>Provider</td>
+<td>Provider</td>
+</tr>
+<tr>
+<td>Application</td>
+<td>Customer</td>
+<td>Customer</td>
+<td>Provider</td>
+</tr>
+<tr>
+<td>Data/access policy</td>
+<td>Customer</td>
+<td>Customer</td>
+<td>Shared</td>
+</tr>
+</tbody></table>
+<p>Boundary thực tế khác theo sản phẩm. Managed database có thể nằm giữa IaaS/PaaS; serverless tiếp tục đẩy boundary lên cao.</p>
+<h2 id="Chon-the-nao"><a href="#Chon-the-nao" class="headerlink" title="Chọn thế nào?"></a>Chọn thế nào?</h2><ul>
+<li>Team nhỏ, cần ship nhanh → PaaS/SaaS thường có leverage tốt.</li>
+<li>Constraint đặc biệt, compliance, networking sâu → IaaS có thể cần thiết.</li>
+<li>Commodity function không tạo lợi thế → mua SaaS trước khi tự xây.</li>
+<li>Đánh giá exit cost, observability, security model và total cost khi scale.</li>
+</ul>
+<p>Không có tầng “chuyên nghiệp nhất”. Có tầng phù hợp với năng lực vận hành và business. Tự quản Kubernetes cho blog ba người đọc không chứng minh engineering maturity; đôi khi chỉ chứng minh YAML rất quyến rũ.</p>
 
   </div>
 </article>
@@ -183,20 +236,24 @@
 
     
     
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#IaaS-—-Infrastructure-as-a-Service"><span class="toc-number">1.</span> <span class="toc-text">IaaS — Infrastructure as a Service</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PaaS-—-Platform-as-a-Service"><span class="toc-number">2.</span> <span class="toc-text">PaaS — Platform as a Service</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SaaS-—-Software-as-a-Service"><span class="toc-number">3.</span> <span class="toc-text">SaaS — Software as a Service</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Shared-responsibility"><span class="toc-number">4.</span> <span class="toc-text">Shared responsibility</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chon-the-nao"><span class="toc-number">5.</span> <span class="toc-text">Chọn thế nào?</span></a></li></ol>
+      </div>
+    
 
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/04/10/2019-04-10-iaas-paas-saas/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/04/10/2019-04-10-iaas-paas-saas/&text=SaaS, PaaS và IaaS" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/04/10/2019-04-10-iaas-paas-saas/&title=SaaS, PaaS và IaaS" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/04/10/2019-04-10-iaas-paas-saas/&is_video=false&description=SaaS, PaaS và IaaS" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=SaaS, PaaS và IaaS&body=Check out this article: https://hdchinh.github.io/2019/04/10/2019-04-10-iaas-paas-saas/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/04/10/2019-04-10-iaas-paas-saas/&title=SaaS, PaaS và IaaS" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/04/10/2019-04-10-iaas-paas-saas/&title=SaaS, PaaS và IaaS" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/04/10/2019-04-10-iaas-paas-saas/&title=SaaS, PaaS và IaaS" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/04/10/2019-04-10-iaas-paas-saas/&title=SaaS, PaaS và IaaS" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/04/10/2019-04-10-iaas-paas-saas/&name=SaaS, PaaS và IaaS&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/04/10/2019-04-10-iaas-paas-saas/&t=SaaS, PaaS và IaaS" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/04/10/2019-04-10-iaas-paas-saas/&text=IaaS, PaaS và SaaS: ai chịu trách nhiệm khi production cháy?" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/04/10/2019-04-10-iaas-paas-saas/&title=IaaS, PaaS và SaaS: ai chịu trách nhiệm khi production cháy?" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/04/10/2019-04-10-iaas-paas-saas/&is_video=false&description=IaaS, PaaS và SaaS: ai chịu trách nhiệm khi production cháy?" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=IaaS, PaaS và SaaS: ai chịu trách nhiệm khi production cháy?&body=Check out this article: https://hdchinh.github.io/2019/04/10/2019-04-10-iaas-paas-saas/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/04/10/2019-04-10-iaas-paas-saas/&title=IaaS, PaaS và SaaS: ai chịu trách nhiệm khi production cháy?" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/04/10/2019-04-10-iaas-paas-saas/&title=IaaS, PaaS và SaaS: ai chịu trách nhiệm khi production cháy?" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/04/10/2019-04-10-iaas-paas-saas/&title=IaaS, PaaS và SaaS: ai chịu trách nhiệm khi production cháy?" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/04/10/2019-04-10-iaas-paas-saas/&title=IaaS, PaaS và SaaS: ai chịu trách nhiệm khi production cháy?" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/04/10/2019-04-10-iaas-paas-saas/&name=IaaS, PaaS và SaaS: ai chịu trách nhiệm khi production cháy?&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/04/10/2019-04-10-iaas-paas-saas/&t=IaaS, PaaS và SaaS: ai chịu trách nhiệm khi production cháy?" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -204,6 +261,8 @@
     <div id="actions-footer">
         <a id="home" class="icon" href="/"><i class="fa-solid fa-house fa-lg" aria-hidden="true"></i> Home</a>
         <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
         
         <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
         <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>

@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="Binary Search123456789101112131415161718192021a &#x3D; [1, 2, 3, 4, 5, 6, 7, 8, 9]def binary_search(nums, left, right, target)  while left &lt;&#x3D; right    mid &#x3D; (left + right) &#x2F; 2    return mid if nums[mid]">
+    <meta name="description" content="Binary search is fast because every comparison discards half of the remaining search space. The price of that speed is a strict precondition: the input must be sorted according to the same ordering us">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Searching In Array">
+<meta property="og:title" content="Binary Search in Ruby: Invariants Before Code">
 <meta property="og:url" content="https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/index.html">
 <meta property="og:site_name" content="Hudson">
-<meta property="og:description" content="Binary Search123456789101112131415161718192021a &#x3D; [1, 2, 3, 4, 5, 6, 7, 8, 9]def binary_search(nums, left, right, target)  while left &lt;&#x3D; right    mid &#x3D; (left + right) &#x2F; 2    return mid if nums[mid]">
+<meta property="og:description" content="Binary search is fast because every comparison discards half of the remaining search space. The price of that speed is a strict precondition: the input must be sorted according to the same ordering us">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2019-12-15T17:00:00.000Z">
-<meta property="article:modified_time" content="2026-08-19T06:19:30.194Z">
+<meta property="article:modified_time" content="2026-08-20T05:25:11.766Z">
 <meta property="article:author" content="Hudson">
 <meta property="article:tag" content="RUBY">
 <meta property="article:tag" content="English">
@@ -38,7 +38,7 @@
       
     
     <!-- title -->
-    <title>Searching In Array</title>
+    <title>Binary Search in Ruby: Invariants Before Code</title>
     <!-- async scripts -->
     <!-- Google Analytics -->
 
@@ -98,23 +98,23 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/&text=Searching In Array" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/&title=Searching In Array" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/&is_video=false&description=Searching In Array" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Searching In Array&body=Check out this article: https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/&title=Searching In Array" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/&title=Searching In Array" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/&title=Searching In Array" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/&title=Searching In Array" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/&name=Searching In Array&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/&t=Searching In Array" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/&text=Binary Search in Ruby: Invariants Before Code" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/&title=Binary Search in Ruby: Invariants Before Code" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/&is_video=false&description=Binary Search in Ruby: Invariants Before Code" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Binary Search in Ruby: Invariants Before Code&body=Check out this article: https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/&title=Binary Search in Ruby: Invariants Before Code" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/&title=Binary Search in Ruby: Invariants Before Code" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/&title=Binary Search in Ruby: Invariants Before Code" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/&title=Binary Search in Ruby: Invariants Before Code" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/&name=Binary Search in Ruby: Invariants Before Code&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/&t=Binary Search in Ruby: Invariants Before Code" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
     
     
       <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Binary-Search"><span class="toc-number">1.</span> <span class="toc-text">Binary Search</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#The-invariant"><span class="toc-number">1.</span> <span class="toc-text">The invariant</span></a></li></ol>
       </div>
     
   </span>
@@ -127,7 +127,7 @@
   <header>
     
     <h1 class="posttitle p-name" itemprop="name headline">
-        Searching In Array
+        Binary Search in Ruby: Invariants Before Code
     </h1>
 
 
@@ -158,11 +158,19 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    <h2 id="Binary-Search"><a href="#Binary-Search" class="headerlink" title="Binary Search"></a>Binary Search</h2><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">binary_search</span><span class="params">(nums, left, right, target)</span></span></span><br><span class="line">  <span class="keyword">while</span> left &lt;= right</span><br><span class="line">    mid = (left + right) / <span class="number">2</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> mid <span class="keyword">if</span> nums[mid] == target</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> target &lt; nums[mid]</span><br><span class="line">      right = mid - <span class="number">1</span></span><br><span class="line">      <span class="keyword">return</span> binary_search(nums, left, right, target)</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      left = mid + <span class="number">1</span></span><br><span class="line">      <span class="keyword">return</span> binary_search(nums, left, right, target)</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">binary_search(a, <span class="number">0</span>, <span class="number">8</span>, <span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+    <p>Binary search is fast because every comparison discards half of the remaining search space. The price of that speed is a strict precondition: <strong>the input must be sorted according to the same ordering used by the search</strong>.</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">binary_search</span><span class="params">(values, target)</span></span></span><br><span class="line">  left = <span class="number">0</span></span><br><span class="line">  right = values.length - <span class="number">1</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> left &lt;= right</span><br><span class="line">    middle = left + (right - left) / <span class="number">2</span></span><br><span class="line">    comparison = values[middle] &lt;=&gt; target</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> middle <span class="keyword">if</span> comparison.zero?</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> comparison.negative?</span><br><span class="line">      left = middle + <span class="number">1</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      right = middle - <span class="number">1</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="literal">nil</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]</span><br><span class="line">binary_search(numbers, <span class="number">5</span>)  <span class="comment"># =&gt; 4</span></span><br><span class="line">binary_search(numbers, <span class="number">42</span>) <span class="comment"># =&gt; nil</span></span><br></pre></td></tr></table></figure>
 
-<blockquote>
-<p>…</p>
-</blockquote>
+<h2 id="The-invariant"><a href="#The-invariant" class="headerlink" title="The invariant"></a>The invariant</h2><p>At the start of every loop, if the target exists, it must be somewhere between <code>left</code> and <code>right</code>, inclusive. Each comparison preserves that invariant while shrinking the interval.</p>
+<ul>
+<li>Time complexity: <code>O(log n)</code>.</li>
+<li>Space complexity: <code>O(1)</code> for the iterative version.</li>
+</ul>
+<p>The old recursive version mixed a loop with recursive calls. It could work, but it paid for two control-flow mechanisms while needing only one. Algorithms are already hard enough; they do not need decorative recursion.</p>
+<p>Ruby also provides <code>Array#bsearch_index</code> for production code:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">numbers.bsearch_index &#123; <span class="params">|value|</span> value &gt;= <span class="number">5</span> &#125; <span class="comment"># =&gt; 4</span></span><br></pre></td></tr></table></figure>
+
+<p>Implement binary search to understand the invariant. Use the standard library when shipping software unless custom behavior is actually required.</p>
 
   </div>
 </article>
@@ -186,23 +194,23 @@
     
     
       <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Binary-Search"><span class="toc-number">1.</span> <span class="toc-text">Binary Search</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#The-invariant"><span class="toc-number">1.</span> <span class="toc-text">The invariant</span></a></li></ol>
       </div>
     
 
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/&text=Searching In Array" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/&title=Searching In Array" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/&is_video=false&description=Searching In Array" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Searching In Array&body=Check out this article: https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/&title=Searching In Array" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/&title=Searching In Array" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/&title=Searching In Array" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/&title=Searching In Array" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/&name=Searching In Array&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/&t=Searching In Array" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/&text=Binary Search in Ruby: Invariants Before Code" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/&title=Binary Search in Ruby: Invariants Before Code" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/&is_video=false&description=Binary Search in Ruby: Invariants Before Code" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Binary Search in Ruby: Invariants Before Code&body=Check out this article: https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/&title=Binary Search in Ruby: Invariants Before Code" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/&title=Binary Search in Ruby: Invariants Before Code" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/&title=Binary Search in Ruby: Invariants Before Code" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/&title=Binary Search in Ruby: Invariants Before Code" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/&name=Binary Search in Ruby: Invariants Before Code&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/&t=Binary Search in Ruby: Invariants Before Code" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

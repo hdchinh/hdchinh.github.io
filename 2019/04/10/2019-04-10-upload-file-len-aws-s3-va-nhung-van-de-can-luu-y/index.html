@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="Ghi chú này được tham khảo từ bài viết Lưu trữ file trên Amazon S3 của tác giả @duyth1993 trên website viblo.com. Bài toán: Hiện tại tôi đang cần tìm một dịch vụ lưu trữ file, trước giờ tôi không sử d">
+    <meta name="description" content="S3 là object storage, không phải filesystem từ xa. Ta lưu object bằng bucket + key và truy cập qua API&#x2F;URL theo policy. CredentialỨng dụng cần region, bucket và quyền AWS phù hợp. Không hard-code acce">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Upload Với S3 Trong Rails">
+<meta property="og:title" content="Upload file lên S3 trong Rails: credential, quyền truy cập và kiến trúc đúng">
 <meta property="og:url" content="https://hdchinh.github.io/2019/04/10/2019-04-10-upload-file-len-aws-s3-va-nhung-van-de-can-luu-y/index.html">
 <meta property="og:site_name" content="Hudson">
-<meta property="og:description" content="Ghi chú này được tham khảo từ bài viết Lưu trữ file trên Amazon S3 của tác giả @duyth1993 trên website viblo.com. Bài toán: Hiện tại tôi đang cần tìm một dịch vụ lưu trữ file, trước giờ tôi không sử d">
+<meta property="og:description" content="S3 là object storage, không phải filesystem từ xa. Ta lưu object bằng bucket + key và truy cập qua API&#x2F;URL theo policy. CredentialỨng dụng cần region, bucket và quyền AWS phù hợp. Không hard-code acce">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2019-04-09T17:00:00.000Z">
-<meta property="article:modified_time" content="2026-08-14T07:11:23.738Z">
+<meta property="article:modified_time" content="2026-08-20T05:33:27.160Z">
 <meta property="article:author" content="Hudson">
 <meta property="article:tag" content="rails">
 <meta property="article:tag" content="til">
@@ -39,7 +39,7 @@
       
     
     <!-- title -->
-    <title>Upload Với S3 Trong Rails</title>
+    <title>Upload file lên S3 trong Rails: credential, quyền truy cập và kiến trúc đúng</title>
     <!-- async scripts -->
     <!-- Google Analytics -->
 
@@ -99,20 +99,24 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/04/10/2019-04-10-upload-file-len-aws-s3-va-nhung-van-de-can-luu-y/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/04/10/2019-04-10-upload-file-len-aws-s3-va-nhung-van-de-can-luu-y/&text=Upload Với S3 Trong Rails" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/04/10/2019-04-10-upload-file-len-aws-s3-va-nhung-van-de-can-luu-y/&title=Upload Với S3 Trong Rails" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/04/10/2019-04-10-upload-file-len-aws-s3-va-nhung-van-de-can-luu-y/&is_video=false&description=Upload Với S3 Trong Rails" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Upload Với S3 Trong Rails&body=Check out this article: https://hdchinh.github.io/2019/04/10/2019-04-10-upload-file-len-aws-s3-va-nhung-van-de-can-luu-y/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/04/10/2019-04-10-upload-file-len-aws-s3-va-nhung-van-de-can-luu-y/&title=Upload Với S3 Trong Rails" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/04/10/2019-04-10-upload-file-len-aws-s3-va-nhung-van-de-can-luu-y/&title=Upload Với S3 Trong Rails" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/04/10/2019-04-10-upload-file-len-aws-s3-va-nhung-van-de-can-luu-y/&title=Upload Với S3 Trong Rails" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/04/10/2019-04-10-upload-file-len-aws-s3-va-nhung-van-de-can-luu-y/&title=Upload Với S3 Trong Rails" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/04/10/2019-04-10-upload-file-len-aws-s3-va-nhung-van-de-can-luu-y/&name=Upload Với S3 Trong Rails&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/04/10/2019-04-10-upload-file-len-aws-s3-va-nhung-van-de-can-luu-y/&t=Upload Với S3 Trong Rails" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/04/10/2019-04-10-upload-file-len-aws-s3-va-nhung-van-de-can-luu-y/&text=Upload file lên S3 trong Rails: credential, quyền truy cập và kiến trúc đúng" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/04/10/2019-04-10-upload-file-len-aws-s3-va-nhung-van-de-can-luu-y/&title=Upload file lên S3 trong Rails: credential, quyền truy cập và kiến trúc đúng" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/04/10/2019-04-10-upload-file-len-aws-s3-va-nhung-van-de-can-luu-y/&is_video=false&description=Upload file lên S3 trong Rails: credential, quyền truy cập và kiến trúc đúng" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Upload file lên S3 trong Rails: credential, quyền truy cập và kiến trúc đúng&body=Check out this article: https://hdchinh.github.io/2019/04/10/2019-04-10-upload-file-len-aws-s3-va-nhung-van-de-can-luu-y/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/04/10/2019-04-10-upload-file-len-aws-s3-va-nhung-van-de-can-luu-y/&title=Upload file lên S3 trong Rails: credential, quyền truy cập và kiến trúc đúng" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/04/10/2019-04-10-upload-file-len-aws-s3-va-nhung-van-de-can-luu-y/&title=Upload file lên S3 trong Rails: credential, quyền truy cập và kiến trúc đúng" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/04/10/2019-04-10-upload-file-len-aws-s3-va-nhung-van-de-can-luu-y/&title=Upload file lên S3 trong Rails: credential, quyền truy cập và kiến trúc đúng" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/04/10/2019-04-10-upload-file-len-aws-s3-va-nhung-van-de-can-luu-y/&title=Upload file lên S3 trong Rails: credential, quyền truy cập và kiến trúc đúng" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/04/10/2019-04-10-upload-file-len-aws-s3-va-nhung-van-de-can-luu-y/&name=Upload file lên S3 trong Rails: credential, quyền truy cập và kiến trúc đúng&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/04/10/2019-04-10-upload-file-len-aws-s3-va-nhung-van-de-can-luu-y/&t=Upload file lên S3 trong Rails: credential, quyền truy cập và kiến trúc đúng" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
     
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Credential"><span class="toc-number">1.</span> <span class="toc-text">Credential</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Public-hay-private"><span class="toc-number">2.</span> <span class="toc-text">Public hay private?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Upload-qua-Rails-hay-direct-upload"><span class="toc-number">3.</span> <span class="toc-text">Upload qua Rails hay direct upload?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Checklist"><span class="toc-number">4.</span> <span class="toc-text">Checklist</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">5.</span> <span class="toc-text">Reference</span></a></li></ol>
+      </div>
     
   </span>
 </div>
@@ -124,7 +128,7 @@
   <header>
     
     <h1 class="posttitle p-name" itemprop="name headline">
-        Upload Với S3 Trong Rails
+        Upload file lên S3 trong Rails: credential, quyền truy cập và kiến trúc đúng
     </h1>
 
 
@@ -144,7 +148,7 @@
       
     <div class="article-category">
         <i class="fa-solid fa-archive"></i>
-        <a class="category-link" href="/categories/rails-notes/">rails notes</a>
+        <a class="category-link" href="/categories/til/">til</a>
     </div>
 
 
@@ -160,19 +164,40 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    <p>Ghi chú này được tham khảo từ bài viết <a href="https://viblo.asia/p/ror-luu-tru-file-tren-amazon-s3-BMvRpNXEzwY#_cau-hinh-connect-toi-dich-vu-s3-trong-ung-dung-rails-3" target="_blank" rel="noopener">Lưu trữ file trên Amazon S3</a> của tác giả <strong>@duyth1993</strong> trên website <strong>viblo.com</strong>.</p>
-<p>Bài toán: Hiện tại tôi đang cần tìm một dịch vụ lưu trữ file, trước giờ tôi không sử dụng vì chưa có nhu cầu. Tìm kiếm một lúc thì tôi quyết định sử dụng S3 vì sẵn cũng đang còn tài khoản free của của AWS, tham khảo bài viết bên trên một số lưu ý khi sử dụng này mà tôi rút ra như sau:</p>
+    <p>S3 là object storage, không phải filesystem từ xa. Ta lưu object bằng bucket + key và truy cập qua API/URL theo policy.</p>
+<h2 id="Credential"><a href="#Credential" class="headerlink" title="Credential"></a>Credential</h2><p>Ứng dụng cần region, bucket và quyền AWS phù hợp. Không hard-code access key trong source:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Rails.application.credentials.dig(<span class="symbol">:aws</span>, <span class="symbol">:region</span>)</span><br></pre></td></tr></table></figure>
+
+<p>Trên AWS, ưu tiên IAM role cho EC2/ECS/Lambda thay vì long-lived access key. SDK tự lấy temporary credentials từ runtime.</p>
+<p>Policy chỉ cấp action/bucket prefix cần thiết. <code>s3:*</code> trên <code>*</code> rất tiện, giống đưa chìa khóa cả tòa nhà vì shipper cần vào sảnh.</p>
+<h2 id="Public-hay-private"><a href="#Public-hay-private" class="headerlink" title="Public hay private?"></a>Public hay private?</h2><p>Bucket nên private mặc định. Với file private, tạo presigned URL có thời hạn:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">s3 = Aws::S3::Resource.new(<span class="symbol">region:</span> ENV.fetch(<span class="string">"AWS_REGION"</span>))</span><br><span class="line">object = s3.bucket(ENV.fetch(<span class="string">"S3_BUCKET"</span>)).object(key)</span><br><span class="line">url = object.presigned_url(<span class="symbol">:get</span>, <span class="symbol">expires_in:</span> <span class="number">10</span>.minutes.to_i)</span><br></pre></td></tr></table></figure>
+
+<p>Public asset có thể phân phối qua CloudFront, dùng origin access control thay vì mở toàn bucket.</p>
+<h2 id="Upload-qua-Rails-hay-direct-upload"><a href="#Upload-qua-Rails-hay-direct-upload" class="headerlink" title="Upload qua Rails hay direct upload?"></a>Upload qua Rails hay direct upload?</h2><p>Upload đi qua Rails đơn giản nhưng web process phải nhận toàn bộ file. Với file lớn/nhiều:</p>
 <ol>
-<li><p>Bài viết trên của tác giả viết rất chi tiết, tuy nhiên hướng dẫn đó là trên rails 4 và cần chú ý thay đổi một số config để phù hợp với rails 5 mà tôi đang sử dụng. Đó là về việc sử dụng <strong>credentials</strong> thay thế cho <strong>secret</strong>, thông tin đầy hơn có thể tham khảo tại bài viết <a href="http://hdchinh.com/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/" target="_blank" rel="noopener">Rails và bảo mật thông tin quan trọng</a>.</p>
-</li>
-<li><p>Có 4 thông tin quan trọng để cấu hình đến S3 đó là: <strong>access_key_id</strong>, <strong>secret_access_key</strong>, <strong>region</strong> và <strong>bucket_name</strong>.</p>
-</li>
-<li><p>Một số config để connect tới server S3 là do thư viện <strong>aws-sdk-rails</strong> quy định vì vậy đơn giản là làm theo và không thắc mắc tại sao.</p>
-</li>
-<li><p>Cần chú ý bước config cho file trước khi upload với các thông tin như: <strong>content_type</strong>(định dạng file, việc sử dụng định dạng file dạng không tương thích với ảnh bạn upload lên dẫn để việc không thể hiển thị view bức ảnh đó.), <strong>acl</strong>(access control list: quy định về việc ai có thể access khi có url của file) và <strong>server_side_encryption</strong>(lựa chọn này để mã hóa file bạn tải lên, đi kèm đó là giảm hiệu năng vì thêm 1 bước cần xử lý.)</p>
-</li>
+<li>Rails xác thực user và tạo presigned POST/URL.</li>
+<li>Browser upload trực tiếp S3.</li>
+<li>Client/server xác nhận object.</li>
+<li>Background job scan/process metadata/thumbnail.</li>
 </ol>
-<p>Source demo xem tại <a href="https://github.com/hdchinh/S3_with_rails_5.2" target="_blank" rel="noopener">đây</a></p>
+<p>Server vẫn phải kiểm tra authorization, key prefix, size/content-type và trạng thái upload. Presigned URL là delegated permission, không phải giấy miễn security review.</p>
+<h2 id="Checklist"><a href="#Checklist" class="headerlink" title="Checklist"></a>Checklist</h2><ul>
+<li>Bucket private mặc định.</li>
+<li>IAM least privilege.</li>
+<li>Không commit credential.</li>
+<li>Validate size/type nhưng không tin MIME từ client tuyệt đối.</li>
+<li>Tạo random key, không dùng nguyên filename làm identity.</li>
+<li>Bật encryption, lifecycle và versioning theo nhu cầu.</li>
+<li>Scan file không tin cậy trước khi public.</li>
+<li>Cấu hình CORS chỉ cho origin/method cần thiết.</li>
+<li>Monitor storage, request và egress cost.</li>
+</ul>
+<p>Source demo cũ có thể hữu ích để đọc lịch sử Rails 5.2, nhưng với Rails hiện đại nên cân nhắc Active Storage và direct upload trước khi tự ghép nhiều gem.</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a href="https://guides.rubyonrails.org/active_storage_overview.html" target="_blank" rel="noopener">Active Storage Overview</a></li>
+<li><a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/security-best-practices.html" target="_blank" rel="noopener">Amazon S3 security best practices</a></li>
+</ul>
 
   </div>
 </article>
@@ -195,20 +220,24 @@
 
     
     
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Credential"><span class="toc-number">1.</span> <span class="toc-text">Credential</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Public-hay-private"><span class="toc-number">2.</span> <span class="toc-text">Public hay private?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Upload-qua-Rails-hay-direct-upload"><span class="toc-number">3.</span> <span class="toc-text">Upload qua Rails hay direct upload?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Checklist"><span class="toc-number">4.</span> <span class="toc-text">Checklist</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">5.</span> <span class="toc-text">Reference</span></a></li></ol>
+      </div>
+    
 
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/04/10/2019-04-10-upload-file-len-aws-s3-va-nhung-van-de-can-luu-y/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/04/10/2019-04-10-upload-file-len-aws-s3-va-nhung-van-de-can-luu-y/&text=Upload Với S3 Trong Rails" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/04/10/2019-04-10-upload-file-len-aws-s3-va-nhung-van-de-can-luu-y/&title=Upload Với S3 Trong Rails" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/04/10/2019-04-10-upload-file-len-aws-s3-va-nhung-van-de-can-luu-y/&is_video=false&description=Upload Với S3 Trong Rails" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Upload Với S3 Trong Rails&body=Check out this article: https://hdchinh.github.io/2019/04/10/2019-04-10-upload-file-len-aws-s3-va-nhung-van-de-can-luu-y/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/04/10/2019-04-10-upload-file-len-aws-s3-va-nhung-van-de-can-luu-y/&title=Upload Với S3 Trong Rails" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/04/10/2019-04-10-upload-file-len-aws-s3-va-nhung-van-de-can-luu-y/&title=Upload Với S3 Trong Rails" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/04/10/2019-04-10-upload-file-len-aws-s3-va-nhung-van-de-can-luu-y/&title=Upload Với S3 Trong Rails" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/04/10/2019-04-10-upload-file-len-aws-s3-va-nhung-van-de-can-luu-y/&title=Upload Với S3 Trong Rails" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/04/10/2019-04-10-upload-file-len-aws-s3-va-nhung-van-de-can-luu-y/&name=Upload Với S3 Trong Rails&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/04/10/2019-04-10-upload-file-len-aws-s3-va-nhung-van-de-can-luu-y/&t=Upload Với S3 Trong Rails" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/04/10/2019-04-10-upload-file-len-aws-s3-va-nhung-van-de-can-luu-y/&text=Upload file lên S3 trong Rails: credential, quyền truy cập và kiến trúc đúng" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/04/10/2019-04-10-upload-file-len-aws-s3-va-nhung-van-de-can-luu-y/&title=Upload file lên S3 trong Rails: credential, quyền truy cập và kiến trúc đúng" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/04/10/2019-04-10-upload-file-len-aws-s3-va-nhung-van-de-can-luu-y/&is_video=false&description=Upload file lên S3 trong Rails: credential, quyền truy cập và kiến trúc đúng" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Upload file lên S3 trong Rails: credential, quyền truy cập và kiến trúc đúng&body=Check out this article: https://hdchinh.github.io/2019/04/10/2019-04-10-upload-file-len-aws-s3-va-nhung-van-de-can-luu-y/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/04/10/2019-04-10-upload-file-len-aws-s3-va-nhung-van-de-can-luu-y/&title=Upload file lên S3 trong Rails: credential, quyền truy cập và kiến trúc đúng" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/04/10/2019-04-10-upload-file-len-aws-s3-va-nhung-van-de-can-luu-y/&title=Upload file lên S3 trong Rails: credential, quyền truy cập và kiến trúc đúng" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/04/10/2019-04-10-upload-file-len-aws-s3-va-nhung-van-de-can-luu-y/&title=Upload file lên S3 trong Rails: credential, quyền truy cập và kiến trúc đúng" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/04/10/2019-04-10-upload-file-len-aws-s3-va-nhung-van-de-can-luu-y/&title=Upload file lên S3 trong Rails: credential, quyền truy cập và kiến trúc đúng" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/04/10/2019-04-10-upload-file-len-aws-s3-va-nhung-van-de-can-luu-y/&name=Upload file lên S3 trong Rails: credential, quyền truy cập và kiến trúc đúng&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/04/10/2019-04-10-upload-file-len-aws-s3-va-nhung-van-de-can-luu-y/&t=Upload file lên S3 trong Rails: credential, quyền truy cập và kiến trúc đúng" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -216,6 +245,8 @@
     <div id="actions-footer">
         <a id="home" class="icon" href="/"><i class="fa-solid fa-house fa-lg" aria-hidden="true"></i> Home</a>
         <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
         
         <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
         <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>

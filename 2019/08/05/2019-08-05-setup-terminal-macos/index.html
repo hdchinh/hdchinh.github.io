@@ -6,17 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="1. Config to show branch in TerminalOpen .bash_profile file then add: 12345parse_git_branch() &amp;#123;    git branch 2&gt; &#x2F;dev&#x2F;null | sed -e &#39;&#x2F;^[^*]&#x2F;d&#39; -e &#39;s&#x2F;* \(.*\)&#x2F; (\1)&#x2F;&#39;&amp;#125;export PS1&#x3D;&quot;\u@\h \[\">
+    <meta name="description" content="A terminal setup should remove friction, not become a second operating system that needs weekly maintenance. These are the few tweaks I still find useful. Show the current Git branchModern macOS uses">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Terminal macOS Tricks">
+<meta property="og:title" content="Practical macOS Terminal Setup">
 <meta property="og:url" content="https://hdchinh.github.io/2019/08/05/2019-08-05-setup-terminal-macos/index.html">
 <meta property="og:site_name" content="Hudson">
-<meta property="og:description" content="1. Config to show branch in TerminalOpen .bash_profile file then add: 12345parse_git_branch() &amp;#123;    git branch 2&gt; &#x2F;dev&#x2F;null | sed -e &#39;&#x2F;^[^*]&#x2F;d&#39; -e &#39;s&#x2F;* \(.*\)&#x2F; (\1)&#x2F;&#39;&amp;#125;export PS1&#x3D;&quot;\u@\h \[\">
+<meta property="og:description" content="A terminal setup should remove friction, not become a second operating system that needs weekly maintenance. These are the few tweaks I still find useful. Show the current Git branchModern macOS uses">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2019-08-04T17:00:00.000Z">
-<meta property="article:modified_time" content="2026-08-19T06:18:46.227Z">
+<meta property="article:modified_time" content="2026-08-20T05:25:11.763Z">
 <meta property="article:author" content="Hudson">
-<meta property="article:tag" content="TIl">
+<meta property="article:tag" content="TIL">
 <meta property="article:tag" content="English">
 <meta name="twitter:card" content="summary">
     
@@ -38,7 +38,7 @@
       
     
     <!-- title -->
-    <title>Terminal macOS Tricks</title>
+    <title>Practical macOS Terminal Setup</title>
     <!-- async scripts -->
     <!-- Google Analytics -->
 
@@ -98,23 +98,23 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/08/05/2019-08-05-setup-terminal-macos/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/08/05/2019-08-05-setup-terminal-macos/&text=Terminal macOS Tricks" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/08/05/2019-08-05-setup-terminal-macos/&title=Terminal macOS Tricks" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/08/05/2019-08-05-setup-terminal-macos/&is_video=false&description=Terminal macOS Tricks" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Terminal macOS Tricks&body=Check out this article: https://hdchinh.github.io/2019/08/05/2019-08-05-setup-terminal-macos/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/08/05/2019-08-05-setup-terminal-macos/&title=Terminal macOS Tricks" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/08/05/2019-08-05-setup-terminal-macos/&title=Terminal macOS Tricks" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/08/05/2019-08-05-setup-terminal-macos/&title=Terminal macOS Tricks" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/08/05/2019-08-05-setup-terminal-macos/&title=Terminal macOS Tricks" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/08/05/2019-08-05-setup-terminal-macos/&name=Terminal macOS Tricks&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/08/05/2019-08-05-setup-terminal-macos/&t=Terminal macOS Tricks" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/08/05/2019-08-05-setup-terminal-macos/&text=Practical macOS Terminal Setup" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/08/05/2019-08-05-setup-terminal-macos/&title=Practical macOS Terminal Setup" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/08/05/2019-08-05-setup-terminal-macos/&is_video=false&description=Practical macOS Terminal Setup" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Practical macOS Terminal Setup&body=Check out this article: https://hdchinh.github.io/2019/08/05/2019-08-05-setup-terminal-macos/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/08/05/2019-08-05-setup-terminal-macos/&title=Practical macOS Terminal Setup" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/08/05/2019-08-05-setup-terminal-macos/&title=Practical macOS Terminal Setup" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/08/05/2019-08-05-setup-terminal-macos/&title=Practical macOS Terminal Setup" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/08/05/2019-08-05-setup-terminal-macos/&title=Practical macOS Terminal Setup" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/08/05/2019-08-05-setup-terminal-macos/&name=Practical macOS Terminal Setup&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/08/05/2019-08-05-setup-terminal-macos/&t=Practical macOS Terminal Setup" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
     
     
       <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Config-to-show-branch-in-Terminal"><span class="toc-number">1.</span> <span class="toc-text">1. Config to show branch in Terminal</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Setup-to-use-subl-command-in-macOS"><span class="toc-number">2.</span> <span class="toc-text">2. Setup to use subl command in macOS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Setup-to-use-code-command-in-macOS"><span class="toc-number">3.</span> <span class="toc-text">3. Setup to use code command in macOS</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Show-the-current-Git-branch"><span class="toc-number">1.</span> <span class="toc-text">Show the current Git branch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Install-the-VS-Code-command"><span class="toc-number">2.</span> <span class="toc-text">Install the VS Code command</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Install-the-Sublime-Text-command"><span class="toc-number">3.</span> <span class="toc-text">Install the Sublime Text command</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Final-note"><span class="toc-number">4.</span> <span class="toc-text">Final note</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#References"><span class="toc-number">5.</span> <span class="toc-text">References</span></a></li></ol>
       </div>
     
   </span>
@@ -127,7 +127,7 @@
   <header>
     
     <h1 class="posttitle p-name" itemprop="name headline">
-        Terminal macOS Tricks
+        Practical macOS Terminal Setup
     </h1>
 
 
@@ -154,7 +154,7 @@
       
     <div class="article-tag">
         <i class="fa-solid fa-tag"></i>
-        <a class="[object Object]-link" href="/tags/English/" rel="tag">English</a>, <a class="[object Object]-link" href="/tags/TIl/" rel="tag">TIl</a>
+        <a class="[object Object]-link" href="/tags/English/" rel="tag">English</a>, <a class="[object Object]-link" href="/tags/TIL/" rel="tag">TIL</a>
     </div>
 
 
@@ -163,16 +163,31 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    <h2 id="1-Config-to-show-branch-in-Terminal"><a href="#1-Config-to-show-branch-in-Terminal" class="headerlink" title="1. Config to show branch in Terminal"></a>1. Config to show branch in Terminal</h2><p>Open <strong>.bash_profile</strong> file then add:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">parse_git_branch() &#123;</span><br><span class="line">    git branch 2&gt; /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export PS1="\u@\h \[\033[32m\]\w - \$(parse_git_branch)\[\033[00m\] $ "</span><br></pre></td></tr></table></figure>
+    <p>A terminal setup should remove friction, not become a second operating system that needs weekly maintenance. These are the few tweaks I still find useful.</p>
+<h2 id="Show-the-current-Git-branch"><a href="#Show-the-current-Git-branch" class="headerlink" title="Show the current Git branch"></a>Show the current Git branch</h2><p>Modern macOS uses Zsh by default. Add this to <code>~/.zshrc</code>:</p>
+<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">autoload</span> -Uz vcs_info</span><br><span class="line"><span class="function"><span class="title">precmd</span></span>() &#123; vcs_info &#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">zstyle</span> <span class="string">':vcs_info:git:*'</span> formats <span class="string">' (%b)'</span></span><br><span class="line"><span class="built_in">setopt</span> PROMPT_SUBST</span><br><span class="line">PROMPT=<span class="string">'%n@%m %F&#123;green&#125;%~%f$&#123;vcs_info_msg_0_&#125; $ '</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="2-Setup-to-use-subl-command-in-macOS"><a href="#2-Setup-to-use-subl-command-in-macOS" class="headerlink" title="2. Setup to use subl command in macOS"></a>2. Setup to use <em>subl</em> command in macOS</h2><p>Run:</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ln -s <span class="regexp">/Applications/</span>Sublime\ Text.app<span class="regexp">/Contents/</span>SharedSupport<span class="regexp">/bin/</span>subl <span class="regexp">/usr/</span>local<span class="regexp">/bin/</span>subl</span><br></pre></td></tr></table></figure>
+<p>Reload the shell:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> ~/.zshrc</span><br></pre></td></tr></table></figure>
 
-<h2 id="3-Setup-to-use-code-command-in-macOS"><a href="#3-Setup-to-use-code-command-in-macOS" class="headerlink" title="3. Setup to use code command in macOS"></a>3. Setup to use code command in macOS</h2><p>In VSCode Window, press <strong>command</strong> + <strong>shift</strong> + <strong>P</strong> to open package install. Type <strong>shell</strong> to find package <strong>Shell Command : Install code in PATH</strong>, install and done.</p>
-<p>References:</p>
-<p>[1]<a href="https://stackoverflow.com/questions/17333531/how-can-i-display-the-current-branch-and-folder-path-in-terminal" target="_blank" rel="noopener">https://stackoverflow.com/questions/17333531/how-can-i-display-the-current-branch-and-folder-path-in-terminal</a></p>
-<p>[2]<a href="https://www.tunnelsup.com/how-to-open-sublime-text-from-the-command-line-using-mac-osx/" target="_blank" rel="noopener">https://www.tunnelsup.com/how-to-open-sublime-text-from-the-command-line-using-mac-osx/</a></p>
+<p>If you intentionally use Bash, put the equivalent prompt configuration in <code>~/.bash_profile</code> or <code>~/.bashrc</code>. Editing a Bash file while running Zsh is a surprisingly effective way to configure absolutely nothing.</p>
+<h2 id="Install-the-VS-Code-command"><a href="#Install-the-VS-Code-command" class="headerlink" title="Install the VS Code command"></a>Install the VS Code command</h2><p>In VS Code:</p>
+<ol>
+<li>Press <code>Command + Shift + P</code>.</li>
+<li>Run <strong>Shell Command: Install ‘code’ command in PATH</strong>.</li>
+<li>Open a project with:</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">code .</span><br></pre></td></tr></table></figure>
+
+<h2 id="Install-the-Sublime-Text-command"><a href="#Install-the-Sublime-Text-command" class="headerlink" title="Install the Sublime Text command"></a>Install the Sublime Text command</h2><p>The safest option is Sublime Text’s <strong>Tools → Install Command Line Tool</strong>. If that option is unavailable, create the symlink manually:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo ln -sf \</span><br><span class="line">  <span class="string">"/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl"</span> \</span><br><span class="line">  /usr/<span class="built_in">local</span>/bin/subl</span><br></pre></td></tr></table></figure>
+
+<p>On Apple Silicon, make sure <code>/usr/local/bin</code> exists and is included in <code>PATH</code>.</p>
+<h2 id="Final-note"><a href="#Final-note" class="headerlink" title="Final note"></a>Final note</h2><p>Keep shell configuration small and version-controlled, but never commit credentials, tokens, or private keys. A pretty prompt is useful. A pretty prompt containing an AWS secret is performance art.</p>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<li><a href="https://zsh.sourceforge.io/Doc/Release/Prompt-Expansion.html" target="_blank" rel="noopener">Zsh expansion and prompt documentation</a></li>
+<li><a href="https://code.visualstudio.com/docs/editor/command-line" target="_blank" rel="noopener">VS Code command-line interface</a></li>
+</ul>
 
   </div>
 </article>
@@ -196,23 +211,23 @@
     
     
       <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Config-to-show-branch-in-Terminal"><span class="toc-number">1.</span> <span class="toc-text">1. Config to show branch in Terminal</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Setup-to-use-subl-command-in-macOS"><span class="toc-number">2.</span> <span class="toc-text">2. Setup to use subl command in macOS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Setup-to-use-code-command-in-macOS"><span class="toc-number">3.</span> <span class="toc-text">3. Setup to use code command in macOS</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Show-the-current-Git-branch"><span class="toc-number">1.</span> <span class="toc-text">Show the current Git branch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Install-the-VS-Code-command"><span class="toc-number">2.</span> <span class="toc-text">Install the VS Code command</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Install-the-Sublime-Text-command"><span class="toc-number">3.</span> <span class="toc-text">Install the Sublime Text command</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Final-note"><span class="toc-number">4.</span> <span class="toc-text">Final note</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#References"><span class="toc-number">5.</span> <span class="toc-text">References</span></a></li></ol>
       </div>
     
 
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/08/05/2019-08-05-setup-terminal-macos/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/08/05/2019-08-05-setup-terminal-macos/&text=Terminal macOS Tricks" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/08/05/2019-08-05-setup-terminal-macos/&title=Terminal macOS Tricks" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/08/05/2019-08-05-setup-terminal-macos/&is_video=false&description=Terminal macOS Tricks" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Terminal macOS Tricks&body=Check out this article: https://hdchinh.github.io/2019/08/05/2019-08-05-setup-terminal-macos/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/08/05/2019-08-05-setup-terminal-macos/&title=Terminal macOS Tricks" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/08/05/2019-08-05-setup-terminal-macos/&title=Terminal macOS Tricks" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/08/05/2019-08-05-setup-terminal-macos/&title=Terminal macOS Tricks" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/08/05/2019-08-05-setup-terminal-macos/&title=Terminal macOS Tricks" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/08/05/2019-08-05-setup-terminal-macos/&name=Terminal macOS Tricks&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/08/05/2019-08-05-setup-terminal-macos/&t=Terminal macOS Tricks" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/08/05/2019-08-05-setup-terminal-macos/&text=Practical macOS Terminal Setup" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/08/05/2019-08-05-setup-terminal-macos/&title=Practical macOS Terminal Setup" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/08/05/2019-08-05-setup-terminal-macos/&is_video=false&description=Practical macOS Terminal Setup" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Practical macOS Terminal Setup&body=Check out this article: https://hdchinh.github.io/2019/08/05/2019-08-05-setup-terminal-macos/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/08/05/2019-08-05-setup-terminal-macos/&title=Practical macOS Terminal Setup" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/08/05/2019-08-05-setup-terminal-macos/&title=Practical macOS Terminal Setup" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/08/05/2019-08-05-setup-terminal-macos/&title=Practical macOS Terminal Setup" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/08/05/2019-08-05-setup-terminal-macos/&title=Practical macOS Terminal Setup" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/08/05/2019-08-05-setup-terminal-macos/&name=Practical macOS Terminal Setup&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/08/05/2019-08-05-setup-terminal-macos/&t=Practical macOS Terminal Setup" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

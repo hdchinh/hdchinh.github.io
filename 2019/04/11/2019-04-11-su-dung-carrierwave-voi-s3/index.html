@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="Gemfile12gem &#39;fog&#39;, require: &#39;fog&#x2F;aws&#39;gem &#39;carrierwave&#39; Class Uploader1storage :fog  File cấu hình config&#x2F;initializers&#x2F;carrierwave.rb123456789101112131415161718require &#39;carrierwave&#x2F;storage&#x2F;fog&#39;Carrier">
+    <meta name="description" content="CarrierWave tách model khỏi storage backend, nhưng abstraction không xóa trách nhiệm cấu hình S3. 12345678910# config&#x2F;initializers&#x2F;carrierwave.rbCarrierWave.configure do |config|  config.fog_provider">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Sử Dụng Carrierwave Với S3">
+<meta property="og:title" content="CarrierWave với S3 trong Rails: cấu hình, security và lifecycle">
 <meta property="og:url" content="https://hdchinh.github.io/2019/04/11/2019-04-11-su-dung-carrierwave-voi-s3/index.html">
 <meta property="og:site_name" content="Hudson">
-<meta property="og:description" content="Gemfile12gem &#39;fog&#39;, require: &#39;fog&#x2F;aws&#39;gem &#39;carrierwave&#39; Class Uploader1storage :fog  File cấu hình config&#x2F;initializers&#x2F;carrierwave.rb123456789101112131415161718require &#39;carrierwave&#x2F;storage&#x2F;fog&#39;Carrier">
+<meta property="og:description" content="CarrierWave tách model khỏi storage backend, nhưng abstraction không xóa trách nhiệm cấu hình S3. 12345678910# config&#x2F;initializers&#x2F;carrierwave.rbCarrierWave.configure do |config|  config.fog_provider">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2019-04-10T17:00:00.000Z">
-<meta property="article:modified_time" content="2026-08-14T07:11:23.738Z">
+<meta property="article:modified_time" content="2026-08-20T05:35:50.843Z">
 <meta property="article:author" content="Hudson">
 <meta property="article:tag" content="rails">
 <meta property="article:tag" content="til">
@@ -40,7 +40,7 @@
       
     
     <!-- title -->
-    <title>Sử Dụng Carrierwave Với S3</title>
+    <title>CarrierWave với S3 trong Rails: cấu hình, security và lifecycle</title>
     <!-- async scripts -->
     <!-- Google Analytics -->
 
@@ -100,23 +100,23 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/04/11/2019-04-11-su-dung-carrierwave-voi-s3/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/04/11/2019-04-11-su-dung-carrierwave-voi-s3/&text=Sử Dụng Carrierwave Với S3" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/04/11/2019-04-11-su-dung-carrierwave-voi-s3/&title=Sử Dụng Carrierwave Với S3" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/04/11/2019-04-11-su-dung-carrierwave-voi-s3/&is_video=false&description=Sử Dụng Carrierwave Với S3" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Sử Dụng Carrierwave Với S3&body=Check out this article: https://hdchinh.github.io/2019/04/11/2019-04-11-su-dung-carrierwave-voi-s3/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/04/11/2019-04-11-su-dung-carrierwave-voi-s3/&title=Sử Dụng Carrierwave Với S3" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/04/11/2019-04-11-su-dung-carrierwave-voi-s3/&title=Sử Dụng Carrierwave Với S3" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/04/11/2019-04-11-su-dung-carrierwave-voi-s3/&title=Sử Dụng Carrierwave Với S3" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/04/11/2019-04-11-su-dung-carrierwave-voi-s3/&title=Sử Dụng Carrierwave Với S3" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/04/11/2019-04-11-su-dung-carrierwave-voi-s3/&name=Sử Dụng Carrierwave Với S3&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/04/11/2019-04-11-su-dung-carrierwave-voi-s3/&t=Sử Dụng Carrierwave Với S3" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/04/11/2019-04-11-su-dung-carrierwave-voi-s3/&text=CarrierWave với S3 trong Rails: cấu hình, security và lifecycle" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/04/11/2019-04-11-su-dung-carrierwave-voi-s3/&title=CarrierWave với S3 trong Rails: cấu hình, security và lifecycle" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/04/11/2019-04-11-su-dung-carrierwave-voi-s3/&is_video=false&description=CarrierWave với S3 trong Rails: cấu hình, security và lifecycle" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=CarrierWave với S3 trong Rails: cấu hình, security và lifecycle&body=Check out this article: https://hdchinh.github.io/2019/04/11/2019-04-11-su-dung-carrierwave-voi-s3/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/04/11/2019-04-11-su-dung-carrierwave-voi-s3/&title=CarrierWave với S3 trong Rails: cấu hình, security và lifecycle" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/04/11/2019-04-11-su-dung-carrierwave-voi-s3/&title=CarrierWave với S3 trong Rails: cấu hình, security và lifecycle" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/04/11/2019-04-11-su-dung-carrierwave-voi-s3/&title=CarrierWave với S3 trong Rails: cấu hình, security và lifecycle" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/04/11/2019-04-11-su-dung-carrierwave-voi-s3/&title=CarrierWave với S3 trong Rails: cấu hình, security và lifecycle" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/04/11/2019-04-11-su-dung-carrierwave-voi-s3/&name=CarrierWave với S3 trong Rails: cấu hình, security và lifecycle&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/04/11/2019-04-11-su-dung-carrierwave-voi-s3/&t=CarrierWave với S3 trong Rails: cấu hình, security và lifecycle" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
     
     
       <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Gemfile"><span class="toc-number">1.</span> <span class="toc-text">Gemfile</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Class-Uploader"><span class="toc-number">2.</span> <span class="toc-text">Class Uploader</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#File-cau-hinh-config-initializers-carrierwave-rb"><span class="toc-number">3.</span> <span class="toc-text">File cấu hình config&#x2F;initializers&#x2F;carrierwave.rb</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Acess-File-uploaded"><span class="toc-number">4.</span> <span class="toc-text">Acess File uploaded</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Source-demo"><span class="toc-number">5.</span> <span class="toc-text">Source demo</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Uploader"><span class="toc-number">1.</span> <span class="toc-text">Uploader</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#URL-private"><span class="toc-number">2.</span> <span class="toc-text">URL private</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Processing"><span class="toc-number">3.</span> <span class="toc-text">Processing</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Khi-nao-dung-Active-Storage"><span class="toc-number">4.</span> <span class="toc-text">Khi nào dùng Active Storage?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Checklist"><span class="toc-number">5.</span> <span class="toc-text">Checklist</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#References"><span class="toc-number">6.</span> <span class="toc-text">References</span></a></li></ol>
       </div>
     
   </span>
@@ -129,7 +129,7 @@
   <header>
     
     <h1 class="posttitle p-name" itemprop="name headline">
-        Sử Dụng Carrierwave Với S3
+        CarrierWave với S3 trong Rails: cấu hình, security và lifecycle
     </h1>
 
 
@@ -149,7 +149,7 @@
       
     <div class="article-category">
         <i class="fa-solid fa-archive"></i>
-        <a class="category-link" href="/categories/rails-notes/">rails notes</a>
+        <a class="category-link" href="/categories/til/">til</a>
     </div>
 
 
@@ -165,13 +165,32 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    <h1 id="Gemfile"><a href="#Gemfile" class="headerlink" title="Gemfile"></a>Gemfile</h1><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gem <span class="string">'fog'</span>, <span class="symbol">require:</span> <span class="string">'fog/aws'</span></span><br><span class="line">gem <span class="string">'carrierwave'</span></span><br></pre></td></tr></table></figure>
-<h1 id="Class-Uploader"><a href="#Class-Uploader" class="headerlink" title="Class Uploader"></a>Class Uploader</h1><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">storage <span class="symbol">:fog</span></span><br></pre></td></tr></table></figure>
+    <p>CarrierWave tách model khỏi storage backend, nhưng abstraction không xóa trách nhiệm cấu hình S3.</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># config/initializers/carrierwave.rb</span></span><br><span class="line">CarrierWave.configure <span class="keyword">do</span> <span class="params">|config|</span></span><br><span class="line">  config.fog_provider = <span class="string">"fog/aws"</span></span><br><span class="line">  config.fog_credentials = &#123;</span><br><span class="line">    <span class="symbol">provider:</span> <span class="string">"AWS"</span>,</span><br><span class="line">    <span class="symbol">region:</span> ENV.fetch(<span class="string">"AWS_REGION"</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  config.fog_directory = ENV.fetch(<span class="string">"S3_BUCKET"</span>)</span><br><span class="line">  config.fog_public = <span class="literal">false</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 
-<h1 id="File-cau-hinh-config-initializers-carrierwave-rb"><a href="#File-cau-hinh-config-initializers-carrierwave-rb" class="headerlink" title="File cấu hình config/initializers/carrierwave.rb"></a>File cấu hình config/initializers/carrierwave.rb</h1><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">require</span> <span class="string">'carrierwave/storage/fog'</span></span><br><span class="line"></span><br><span class="line">CarrierWave.configure <span class="keyword">do</span> <span class="params">|config|</span></span><br><span class="line">  config.fog_credentials = &#123;</span><br><span class="line">    <span class="symbol">:provider</span>              =&gt; <span class="string">'AWS'</span>,</span><br><span class="line">    <span class="symbol">:aws_access_key_id</span>     =&gt; Rails.application.credentials.access_key_id,</span><br><span class="line">    <span class="symbol">:aws_secret_access_key</span> =&gt; Rails.application.credentials.secret_access_key,</span><br><span class="line">    <span class="symbol">:region</span>                =&gt; Rails.application.credentials.s3_region,</span><br><span class="line">    <span class="symbol">:path_style</span>            =&gt; <span class="literal">true</span>,</span><br><span class="line">    <span class="symbol">:host</span>                  =&gt; <span class="string">'s3.us-east-2.amazonaws.com'</span>,</span><br><span class="line">    <span class="symbol">:endpoint</span>              =&gt; <span class="string">'https://s3.us-east-2.amazonaws.com'</span></span><br><span class="line">  &#125;</span><br><span class="line">  config.cache_dir = <span class="string">"<span class="subst">#&#123;Rails.root&#125;</span>/tmp/uploads"</span></span><br><span class="line">  config.fog_directory  = Rails.application.credentials.s3_bucket</span><br><span class="line">  config.fog_public     = <span class="literal">true</span></span><br><span class="line">  config.fog_attributes = &#123; <span class="string">'Cache-Control'</span> =&gt; <span class="string">"max-age=<span class="subst">#&#123;<span class="number">10</span>.day.to_i&#125;</span>"</span> &#125;</span><br><span class="line">  config.storage = <span class="symbol">:fog</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>Trên AWS, SDK/Fog nên nhận credential từ IAM role. Local có thể dùng profile hoặc environment; không commit access key.</p>
+<h2 id="Uploader"><a href="#Uploader" class="headerlink" title="Uploader"></a>Uploader</h2><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DocumentUploader</span> &lt; CarrierWave::Uploader::<span class="title">Base</span></span></span><br><span class="line">  storage <span class="symbol">:fog</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">store_dir</span></span></span><br><span class="line">    <span class="string">"uploads/<span class="subst">#&#123;model<span class="class">.<span class="keyword">class</span>.<span class="title">to_s</span>.<span class="title">underscore</span>&#125;/<span class="comment">#&#123;mounted_as&#125;/#&#123;model.id&#125;"</span></span></span></span></span><br><span class="line"><span class="string"><span class="subst">  <span class="keyword">end</span></span></span></span><br><span class="line"><span class="string"><span class="subst"></span></span></span><br><span class="line"><span class="string"><span class="subst">  <span class="function"><span class="keyword">def</span> <span class="title">extension_allowlist</span></span></span></span></span><br><span class="line"><span class="string"><span class="subst">    <span class="string">%w[pdf png jpg jpeg]</span></span></span></span><br><span class="line"><span class="string"><span class="subst">  <span class="keyword">end</span></span></span></span><br><span class="line"><span class="string"><span class="subst"></span></span></span><br><span class="line"><span class="string"><span class="subst">  <span class="function"><span class="keyword">def</span> <span class="title">size_range</span></span></span></span></span><br><span class="line"><span class="string"><span class="subst">    <span class="number">1</span>.byte..<span class="number">10</span>.megabytes</span></span></span><br><span class="line"><span class="string"><span class="subst">  <span class="keyword">end</span></span></span></span><br><span class="line"><span class="string"><span class="subst"><span class="keyword">end</span></span></span></span><br></pre></td></tr></table></figure>
 
-<h1 id="Acess-File-uploaded"><a href="#Acess-File-uploaded" class="headerlink" title="Acess File uploaded"></a>Acess File uploaded</h1><p><code>Instance.field_name_image.url</code> (get link s3)</p>
-<h1 id="Source-demo"><a href="#Source-demo" class="headerlink" title="Source demo"></a>Source demo</h1><p><a href="https://github.com/hdchinh/s3_carrierwave" target="_blank" rel="noopener">Tại đây</a></p>
+<p>Allowlist extension/MIME chỉ là lớp đầu; metadata client có thể giả. File không tin cậy cần scan và không nên public trước khi processing hoàn tất.</p>
+<h2 id="URL-private"><a href="#URL-private" class="headerlink" title="URL private"></a>URL private</h2><p>Với <code>fog_public = false</code>, tạo URL có thời hạn thay vì mở bucket:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">record.file.url(<span class="symbol">expires:</span> <span class="number">10</span>.minutes.from_now.to_i)</span><br></pre></td></tr></table></figure>
+
+<p>API cụ thể phụ thuộc adapter/version; test integration thay vì đoán option từ blog cũ.</p>
+<h2 id="Processing"><a href="#Processing" class="headerlink" title="Processing"></a>Processing</h2><p>Resize/convert ảnh tốn CPU và memory. Đưa version processing nặng sang background job, giữ original private, và invalidate/version CDN khi object thay đổi.</p>
+<h2 id="Khi-nao-dung-Active-Storage"><a href="#Khi-nao-dung-Active-Storage" class="headerlink" title="Khi nào dùng Active Storage?"></a>Khi nào dùng Active Storage?</h2><p>Rails hiện đại có Active Storage, direct upload, variants và service adapter tích hợp framework. CarrierWave vẫn hợp lý cho project đang dùng ổn định hoặc cần uploader DSL cụ thể. Migration chỉ vì “core Rails nghe sang hơn” cũng có thể tạo incident rất core.</p>
+<h2 id="Checklist"><a href="#Checklist" class="headerlink" title="Checklist"></a>Checklist</h2><ul>
+<li>IAM least privilege, bucket private.</li>
+<li>Credential ngoài source.</li>
+<li>Randomized key và filename sanitization.</li>
+<li>Size/type validation + malware scanning khi cần.</li>
+<li>Background processing.</li>
+<li>Lifecycle rule cho temporary/orphan objects.</li>
+<li>CDN và cache strategy rõ ràng.</li>
+</ul>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<li><a href="https://github.com/carrierwaveuploader/carrierwave" target="_blank" rel="noopener">CarrierWave</a></li>
+<li><a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/security-best-practices.html" target="_blank" rel="noopener">S3 security best practices</a></li>
+</ul>
 
   </div>
 </article>
@@ -195,23 +214,23 @@
     
     
       <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Gemfile"><span class="toc-number">1.</span> <span class="toc-text">Gemfile</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Class-Uploader"><span class="toc-number">2.</span> <span class="toc-text">Class Uploader</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#File-cau-hinh-config-initializers-carrierwave-rb"><span class="toc-number">3.</span> <span class="toc-text">File cấu hình config&#x2F;initializers&#x2F;carrierwave.rb</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Acess-File-uploaded"><span class="toc-number">4.</span> <span class="toc-text">Acess File uploaded</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Source-demo"><span class="toc-number">5.</span> <span class="toc-text">Source demo</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Uploader"><span class="toc-number">1.</span> <span class="toc-text">Uploader</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#URL-private"><span class="toc-number">2.</span> <span class="toc-text">URL private</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Processing"><span class="toc-number">3.</span> <span class="toc-text">Processing</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Khi-nao-dung-Active-Storage"><span class="toc-number">4.</span> <span class="toc-text">Khi nào dùng Active Storage?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Checklist"><span class="toc-number">5.</span> <span class="toc-text">Checklist</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#References"><span class="toc-number">6.</span> <span class="toc-text">References</span></a></li></ol>
       </div>
     
 
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/04/11/2019-04-11-su-dung-carrierwave-voi-s3/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/04/11/2019-04-11-su-dung-carrierwave-voi-s3/&text=Sử Dụng Carrierwave Với S3" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/04/11/2019-04-11-su-dung-carrierwave-voi-s3/&title=Sử Dụng Carrierwave Với S3" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/04/11/2019-04-11-su-dung-carrierwave-voi-s3/&is_video=false&description=Sử Dụng Carrierwave Với S3" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Sử Dụng Carrierwave Với S3&body=Check out this article: https://hdchinh.github.io/2019/04/11/2019-04-11-su-dung-carrierwave-voi-s3/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/04/11/2019-04-11-su-dung-carrierwave-voi-s3/&title=Sử Dụng Carrierwave Với S3" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/04/11/2019-04-11-su-dung-carrierwave-voi-s3/&title=Sử Dụng Carrierwave Với S3" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/04/11/2019-04-11-su-dung-carrierwave-voi-s3/&title=Sử Dụng Carrierwave Với S3" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/04/11/2019-04-11-su-dung-carrierwave-voi-s3/&title=Sử Dụng Carrierwave Với S3" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/04/11/2019-04-11-su-dung-carrierwave-voi-s3/&name=Sử Dụng Carrierwave Với S3&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/04/11/2019-04-11-su-dung-carrierwave-voi-s3/&t=Sử Dụng Carrierwave Với S3" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/04/11/2019-04-11-su-dung-carrierwave-voi-s3/&text=CarrierWave với S3 trong Rails: cấu hình, security và lifecycle" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/04/11/2019-04-11-su-dung-carrierwave-voi-s3/&title=CarrierWave với S3 trong Rails: cấu hình, security và lifecycle" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/04/11/2019-04-11-su-dung-carrierwave-voi-s3/&is_video=false&description=CarrierWave với S3 trong Rails: cấu hình, security và lifecycle" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=CarrierWave với S3 trong Rails: cấu hình, security và lifecycle&body=Check out this article: https://hdchinh.github.io/2019/04/11/2019-04-11-su-dung-carrierwave-voi-s3/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/04/11/2019-04-11-su-dung-carrierwave-voi-s3/&title=CarrierWave với S3 trong Rails: cấu hình, security và lifecycle" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/04/11/2019-04-11-su-dung-carrierwave-voi-s3/&title=CarrierWave với S3 trong Rails: cấu hình, security và lifecycle" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/04/11/2019-04-11-su-dung-carrierwave-voi-s3/&title=CarrierWave với S3 trong Rails: cấu hình, security và lifecycle" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/04/11/2019-04-11-su-dung-carrierwave-voi-s3/&title=CarrierWave với S3 trong Rails: cấu hình, security và lifecycle" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/04/11/2019-04-11-su-dung-carrierwave-voi-s3/&name=CarrierWave với S3 trong Rails: cấu hình, security và lifecycle&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/04/11/2019-04-11-su-dung-carrierwave-voi-s3/&t=CarrierWave với S3 trong Rails: cấu hình, security và lifecycle" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

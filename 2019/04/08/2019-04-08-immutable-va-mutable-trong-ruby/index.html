@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="1. Khái niệm mutable, immutable và rubyĐi thẳng vào vấn đề, chúng ta cần đề cập đến ba vấn đề: mutable, immutable và cách ruby xử lý hai khái niệm đó. Trước hết nếu bạn đã quên, thì tôi xin được nhắc">
+    <meta name="description" content="Variable trong Ruby tham chiếu tới object. Assignment đổi reference; mutation đổi chính object. 12345name &#x3D; &quot;Hudson&quot;alias_name &#x3D; namename &lt;&lt; &quot; Tran&quot;alias_name # &#x3D;&gt; &quot;Hudson Tran&quot;  String mutab">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Immutable Và Mutable Trong Ruby">
+<meta property="og:title" content="Mutable và Immutable trong Ruby: object identity, mutation và allocation">
 <meta property="og:url" content="https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/index.html">
 <meta property="og:site_name" content="Hudson">
-<meta property="og:description" content="1. Khái niệm mutable, immutable và rubyĐi thẳng vào vấn đề, chúng ta cần đề cập đến ba vấn đề: mutable, immutable và cách ruby xử lý hai khái niệm đó. Trước hết nếu bạn đã quên, thì tôi xin được nhắc">
+<meta property="og:description" content="Variable trong Ruby tham chiếu tới object. Assignment đổi reference; mutation đổi chính object. 12345name &#x3D; &quot;Hudson&quot;alias_name &#x3D; namename &lt;&lt; &quot; Tran&quot;alias_name # &#x3D;&gt; &quot;Hudson Tran&quot;  String mutab">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2019-04-07T17:00:00.000Z">
-<meta property="article:modified_time" content="2026-08-14T07:11:23.738Z">
+<meta property="article:modified_time" content="2026-08-20T05:33:27.159Z">
 <meta property="article:author" content="Hudson">
 <meta property="article:tag" content="RUBY">
 <meta name="twitter:card" content="summary">
@@ -37,7 +37,7 @@
       
     
     <!-- title -->
-    <title>Immutable Và Mutable Trong Ruby</title>
+    <title>Mutable và Immutable trong Ruby: object identity, mutation và allocation</title>
     <!-- async scripts -->
     <!-- Google Analytics -->
 
@@ -97,23 +97,23 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&text=Immutable Và Mutable Trong Ruby" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&title=Immutable Và Mutable Trong Ruby" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&is_video=false&description=Immutable Và Mutable Trong Ruby" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Immutable Và Mutable Trong Ruby&body=Check out this article: https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&title=Immutable Và Mutable Trong Ruby" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&title=Immutable Và Mutable Trong Ruby" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&title=Immutable Và Mutable Trong Ruby" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&title=Immutable Và Mutable Trong Ruby" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&name=Immutable Và Mutable Trong Ruby&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&t=Immutable Và Mutable Trong Ruby" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&text=Mutable và Immutable trong Ruby: object identity, mutation và allocation" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&title=Mutable và Immutable trong Ruby: object identity, mutation và allocation" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&is_video=false&description=Mutable và Immutable trong Ruby: object identity, mutation và allocation" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Mutable và Immutable trong Ruby: object identity, mutation và allocation&body=Check out this article: https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&title=Mutable và Immutable trong Ruby: object identity, mutation và allocation" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&title=Mutable và Immutable trong Ruby: object identity, mutation và allocation" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&title=Mutable và Immutable trong Ruby: object identity, mutation và allocation" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&title=Mutable và Immutable trong Ruby: object identity, mutation và allocation" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&name=Mutable và Immutable trong Ruby: object identity, mutation và allocation&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&t=Mutable và Immutable trong Ruby: object identity, mutation và allocation" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
     
     
       <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Khai-niem-mutable-immutable-va-ruby"><span class="toc-number">1.</span> <span class="toc-text">1. Khái niệm mutable, immutable và ruby</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Lieu-day-co-phai-la-mot-kien-thuc-can-thiet"><span class="toc-number">2.</span> <span class="toc-text">2. Liệu đây có phải là một kiến thức cần thiết?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Tham-khao"><span class="toc-number">3.</span> <span class="toc-text">3. Tham khảo</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Rebinding-khong-phai-mutation"><span class="toc-number">1.</span> <span class="toc-text">Rebinding không phải mutation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Object-thuong-immutable-trong-thuc-hanh"><span class="toc-number">2.</span> <span class="toc-text">Object thường immutable trong thực hành</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bang-method-khong-phai-luat-mutation-tuyet-doi"><span class="toc-number">3.</span> <span class="toc-text">Bang method không phải luật mutation tuyệt đối</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Performance"><span class="toc-number">4.</span> <span class="toc-text">Performance</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ket-luan"><span class="toc-number">5.</span> <span class="toc-text">Kết luận</span></a></li></ol>
       </div>
     
   </span>
@@ -126,7 +126,7 @@
   <header>
     
     <h1 class="posttitle p-name" itemprop="name headline">
-        Immutable Và Mutable Trong Ruby
+        Mutable và Immutable trong Ruby: object identity, mutation và allocation
     </h1>
 
 
@@ -144,6 +144,11 @@
 
 
       
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/ruby-notes/">ruby-notes</a>
+    </div>
+
 
       
     <div class="article-tag">
@@ -157,77 +162,39 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    <h2 id="1-Khai-niem-mutable-immutable-va-ruby"><a href="#1-Khai-niem-mutable-immutable-va-ruby" class="headerlink" title="1. Khái niệm mutable, immutable và ruby"></a>1. Khái niệm mutable, immutable và ruby</h2><p>Đi thẳng vào vấn đề, chúng ta cần đề cập đến ba vấn đề: <strong>mutable</strong>, <strong>immutable</strong> và cách ruby xử lý hai khái niệm đó. Trước hết nếu bạn đã quên, thì tôi xin được nhắc lại định nghĩa của chúng.</p>
-<p>Xin trích dẫn <a href="https://en.wikipedia.org/wiki/Immutable_object" target="_blank" rel="noopener">wiki</a>:</p>
-<blockquote>
-<p>In object-oriented and functional programming, an immutable object (unchangeable[1] object) is an object whose state cannot be modified after it is created.[2] This is in contrast to a mutable object (changeable object), which can be modified after it is created.</p>
-</blockquote>
-<p>Translate:</p>
-<blockquote>
-<p>Trong lập trình hướng đối tượng và lập trình hàm, một đối tượng được coi immutable, là một đối tượng <strong>không thể thay đổi</strong> trạng thái sau khi nó được tạo lần đầu, ngược lại với một đối tượng được coi là mutable nó có thể <strong>thay đổi</strong> trạng thái sau khi được khởi tạo lần đầu.</p>
-</blockquote>
-<p>Dùng từ quá khó hiểu, what the hell is “trạng thái”? Theo một cách hàn lâm và đầy đủ, trạng thái của một đối tượng ngoài đời thật được thiết lập bởi tất cả những gì tạo nên chúng.</p>
-<p>Tương tự, các trạng thái của một đối tượng trong lập trình cũng được thiết lập bằng tất cả những gì tạo nên chúng. Ví dụ:</p>
-<p>Với 1 biến integer cơ bản <strong>x = 10</strong> thì trạng thái của nó được tạo ra bởi tên biến và giá trị, ở đây tên biến là <strong>x</strong> và giá trị là <strong>10</strong>, đâu đó trong vùng nhớ (Ram) của bạn sẽ lưu trữ cái chữ <strong>x</strong> kèm số <strong>10</strong> này.</p>
-<p>Đồng nghĩa với đó nếu tôi thay đổi được giá trị 10 của biến x thì x là một đối tượng mutable và ngược lại nó là một đối tượng immutable.</p>
-<p>Tôi gán <strong>x = 11</strong> và thành công</p>
-<p>Từ đó có thể đưa ra kết luận x là một mutable?</p>
-<p>Câu trả lời là không, một số khái niệm rối rắm làm khó ta lúc đầu. Như đã biết, thứ mà CPU làm việc là địa chỉ vùng nhớ và chỉ địa chỉ vùng nhớ mà thôi. Những thứ khác nó không quan tâm.</p>
-<p>Với câu lệnh gán <strong>x = 10</strong>. Nó được hệ điều hành phiên dịch thành “có một biến tên <strong>x</strong> được gán giá trị bằng <strong>10</strong>, Ram, mày hãy bố trí thêm hai slot để lưu trữ <strong>x</strong> và <strong>10</strong>“. Vậy lúc đó:</p>
-<p><strong>x</strong>(tên biến) được lưu ở vị trí AAA<br><strong>10</strong>(giá trị) được lưu ở vị trí BBB</p>
-<p>Với lệnh gán tiếp theo <strong>x = 11</strong>:</p>
-<p><strong>x</strong> vẫn yên vị nằm ở vị trí AAA<br><strong>10</strong> cũng vẫn yên trí nằm ở vị trí BBB<br><strong>11</strong> giá trị mới gán cho biến x thì lúc này nằm ở vị trí CCC</p>
-<p>Vậy khi chạy một lệnh gán mới thì biến x đã được gán bằng giá trị trên một vùng nhớ khác, còn vùng nhớ ban đầu <strong>không thay đổi giá trị</strong> nên ta có thể kết luận x là một immutable.</p>
-<p>Chứng minh bằng ví dụ sau trong ruby, chú ý là ruby là một ngôn ngữ script, với trình thông dịch VM bên dưới để xử lý của nó được viết bằng C, nên ở lớp cơ sở của ruby ta không thể truy xuất vị trí vùng nhớ đến từng thanh ghi như trong C được (việc đó được làm ở lớp core YARV). Tuy nhiên, ta có thể kiếm tra được vị trí tượng trưng trên bộ nhớ của nó thông qua <strong>object_id</strong>.</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="number">10</span></span><br><span class="line">x.object_id</span><br><span class="line"><span class="comment">#=&gt; 21</span></span><br><span class="line">x = <span class="number">11</span></span><br><span class="line">x.object_id</span><br><span class="line"><span class="comment">#=&gt; 23</span></span><br></pre></td></tr></table></figure>
+    <p>Variable trong Ruby tham chiếu tới object. Assignment đổi reference; mutation đổi chính object.</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">name = <span class="string">"Hudson"</span></span><br><span class="line">alias_name = name</span><br><span class="line"></span><br><span class="line">name &lt;&lt; <span class="string">" Tran"</span></span><br><span class="line">alias_name <span class="comment"># =&gt; "Hudson Tran"</span></span><br></pre></td></tr></table></figure>
 
-<p>Note: Nếu bạn gán tiếp x = 12 và kiểm tra lại object_id, lúc này bạn sẽ thấy nó bằng 25. Giá trị 10, 11, 12 tương đương với object_id là 21, 23, 25. Liệu có một quy luật nào ở đây? Câu trả lời là có, nhưng vấn đề này sẽ được đề cập đến trong một bài viết tiếp theo.</p>
-<p>Từ ví dụ trên bạn đã hiểu về immutable, vậy còn mutable? Đơn giản nhất là hãy hiểu ngược lại với immutable, nêu gán x = 11 và x có object_id không đổi thì x chính là mutable.</p>
-<figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">T</span>ấ<span class="built_in">t</span> cả các loại dữ liệu nguyê<span class="built_in">n</span> thuỷ trong ruby đều là immutable.</span><br></pre></td></tr></table></figure>
+<p>String mutable nên hai variable cùng thấy thay đổi.</p>
+<h2 id="Rebinding-khong-phai-mutation"><a href="#Rebinding-khong-phai-mutation" class="headerlink" title="Rebinding không phải mutation"></a>Rebinding không phải mutation</h2><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">name = <span class="string">"Hudson"</span></span><br><span class="line">alias_name = name</span><br><span class="line"></span><br><span class="line">name = name + <span class="string">" Tran"</span></span><br><span class="line">alias_name <span class="comment"># =&gt; "Hudson"</span></span><br></pre></td></tr></table></figure>
 
-<p>Integer, float, string, boolean chúng đều là immutable.</p>
-<h2 id="2-Lieu-day-co-phai-la-mot-kien-thuc-can-thiet"><a href="#2-Lieu-day-co-phai-la-mot-kien-thuc-can-thiet" class="headerlink" title="2. Liệu đây có phải là một kiến thức cần thiết?"></a>2. Liệu đây có phải là một kiến thức cần thiết?</h2><p>Chắc chắn là có.</p>
-<p>Thứ nhất: Nếu trong công việc bạn không bao giờ phải dùng đến nó, bạn có thể nói về nó như một kiến thức hàn lâm để thể hiện khả năng với sếp và yêu cầu tăng lương :worried:</p>
-<p>Thứ hai: Xét ví dụ sau</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">str = <span class="string">""</span></span><br><span class="line">[<span class="string">"Hoang"</span>, <span class="string">"Duy"</span>, <span class="string">"Chinh"</span>].each <span class="keyword">do</span> <span class="params">|i|</span></span><br><span class="line">  str += i</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p><code>+</code> tạo string mới rồi rebind <code>name</code>. Object cũ vẫn được <code>alias_name</code> giữ.</p>
+<p>Kiểm tra identity:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">name.object_id</span><br><span class="line">name.equal?(alias_name)</span><br></pre></td></tr></table></figure>
 
-<p>Tư tưởng của đoạn mã này là cộng tất cả các phần tử trong một mảng string và cho ra kết quả cuối cùng là một chuỗi tổng hợp tất cả các phần tử.<br>Có điều gì bất thường trong đoạn mã này không nhỉ? Câu trả lời là có. Như những gì chúng ta đã nói ở trên có hai điều cần lưu ý:</p>
-<blockquote>
-<ol>
-<li>Các kiểu dữ liệu nguyên thuỷ trong ruby đều là immutable và hiển nhiên string không ngoại lệ.</li>
-</ol>
-</blockquote>
-<blockquote>
-<ol start="2">
-<li>Khi một object là immutable, thì việc bạn gán nó bằng một giá trị khác đồng nghĩa với việc vùng nhớ cũ sẽ không được dùng đến, mà nó sẽ ra một vùng nhớ mới rồi ghi kết quả mới lên đó, cứ lặp lại như vậy mãi mãi.</li>
-</ol>
-</blockquote>
-<p>Từ hai điều trên ta rút ra được kết luận:</p>
-<ol>
-<li>Trong lần gán đầu tiên str có giá trị là chuỗi rỗng và được khởi tạo tại ví trí A1</li>
-<li>Trong lần lặp <strong>each</strong> đầu tiên, str có giá trị là “Hoang” và nó lưu ở vị trí A2</li>
-<li>Trong lần lặp <strong>each</strong> thứ hai, str có giá trị mới là “HoangDuy” và nó lưu ở vị trí mới là A3</li>
-<li>Trong lần lặp cuối cùng thì str có giá trị chúng ta mong đợi là “HoangDuyChinh” và nó lưu ở vị trí A4</li>
-</ol>
-<p>Chứng minh:</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">str = <span class="string">""</span></span><br><span class="line">puts <span class="string">"First location: <span class="subst">#&#123;str.object_id&#125;</span>"</span></span><br><span class="line">[<span class="string">"Hoang"</span>, <span class="string">"Duy"</span>, <span class="string">"Chinh"</span>].each <span class="keyword">do</span> <span class="params">|i|</span></span><br><span class="line">  str += i</span><br><span class="line">  puts <span class="string">"value: <span class="subst">#&#123;str&#125;</span> | location: <span class="subst">#&#123;str.object_id&#125;</span>"</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">puts <span class="string">"Final value: <span class="subst">#&#123;str&#125;</span> | location: <span class="subst">#&#123;str.object_id&#125;</span>"</span></span><br></pre></td></tr></table></figure>
+<h2 id="Object-thuong-immutable-trong-thuc-hanh"><a href="#Object-thuong-immutable-trong-thuc-hanh" class="headerlink" title="Object thường immutable trong thực hành"></a>Object thường immutable trong thực hành</h2><p>Integer, symbol, <code>nil</code>, <code>true</code>, <code>false</code> không mutate theo cách String/Array/Hash làm:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">number = <span class="number">1</span></span><br><span class="line">number += <span class="number">1</span> <span class="comment"># tạo/rebind integer khác</span></span><br></pre></td></tr></table></figure>
 
-<p>Kết quả:</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">First location:</span> <span class="number">47434608564740</span></span><br><span class="line"><span class="attr">value:</span> <span class="string">Hoang</span> <span class="string">|</span> <span class="attr">location:</span> <span class="number">47434608564520</span></span><br><span class="line"><span class="attr">value:</span> <span class="string">HoangDuy</span> <span class="string">|</span> <span class="attr">location:</span> <span class="number">47434608564440</span></span><br><span class="line"><span class="attr">value:</span> <span class="string">HoangDuyChinh</span> <span class="string">|</span> <span class="attr">location:</span> <span class="number">47434608564360</span></span><br><span class="line"><span class="attr">Final value:</span> <span class="string">HoangDuyChinh</span> <span class="string">|</span> <span class="attr">location:</span> <span class="number">47434608564360</span></span><br></pre></td></tr></table></figure>
+<p><code>freeze</code> ngăn mutation trực tiếp:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">config = &#123; <span class="symbol">timeout:</span> <span class="number">5</span> &#125;.freeze</span><br><span class="line">config[<span class="symbol">:timeout</span>] = <span class="number">10</span> <span class="comment"># FrozenError</span></span><br></pre></td></tr></table></figure>
 
-<p>Và thứ chúng ta quan tâm từ đó về sau là vị trí A4 này. Vậy còn A1, A2, A3 cũng đang mang giá trị? Chúng đi đâu về đâu? Chính xác, nó trở thành một vùng nhớ rác và sẽ được GC dọn dẹp nhưng không phải ngay lập tức, vậy trong khoảng thời gian đó nó vẫn nắm giữ các vùng nhớ của chúng ta. Đó cũng là một trong các lý do việc bạn muốn chạy ruby on rails trên một chiếc máy tính sinh viên 2GB là vô cùng khó khăn. Ruby ăn Ram như uống nước lã vậy.</p>
-<p>Ví dụ trên mảng ta có ba phần tử và ta có 3 giá trị rác trên bộ nhớ, hãy tưởng tượng bạn có một mảng một triệu phần tử :worried:</p>
-<p>Giải pháp trong trường hợp này là gì? Đó là duyệt mảng như một <strong>object reference</strong> chứ không phải một biến giá trị:</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">str = <span class="string">""</span></span><br><span class="line">[<span class="string">"Hoang"</span>, <span class="string">"Duy"</span>, <span class="string">"Chinh"</span>].each <span class="keyword">do</span> <span class="params">|i|</span></span><br><span class="line">  str &lt;&lt; i</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>Nhưng freeze là shallow:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">config = &#123; <span class="symbol">headers:</span> &#123;&#125; &#125;.freeze</span><br><span class="line">config[<span class="symbol">:headers</span>][<span class="symbol">:token</span>] = <span class="string">"x"</span> <span class="comment"># vẫn mutate nested hash</span></span><br></pre></td></tr></table></figure>
 
-<p>Như vậy str sẽ ở đúng một vùng nhớ và ta không có một đống biến rác không mong đợi.</p>
-<p>Chứng minh:</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">str = <span class="string">""</span></span><br><span class="line">puts <span class="string">"First location: <span class="subst">#&#123;str.object_id&#125;</span>"</span></span><br><span class="line">[<span class="string">"Hoang"</span>, <span class="string">"Duy"</span>, <span class="string">"Chinh"</span>].each <span class="keyword">do</span> <span class="params">|i|</span></span><br><span class="line">  str &lt;&lt; i</span><br><span class="line">  puts <span class="string">"value: <span class="subst">#&#123;str&#125;</span> | location: <span class="subst">#&#123;str.object_id&#125;</span>"</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">puts <span class="string">"Final value: <span class="subst">#&#123;str&#125;</span> | location: <span class="subst">#&#123;str.object_id&#125;</span>"</span></span><br></pre></td></tr></table></figure>
+<p>Muốn deep immutability cần freeze recursively hoặc dùng data structure/API phù hợp.</p>
+<h2 id="Bang-method-khong-phai-luat-mutation-tuyet-doi"><a href="#Bang-method-khong-phai-luat-mutation-tuyet-doi" class="headerlink" title="Bang method không phải luật mutation tuyệt đối"></a>Bang method không phải luật mutation tuyệt đối</h2><p>Nhiều bang method mutate receiver:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">name.upcase!</span><br></pre></td></tr></table></figure>
 
-<p>Kết quả:</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">First location:</span> <span class="number">47196120971580</span></span><br><span class="line"><span class="attr">value:</span> <span class="string">Hoang</span> <span class="string">|</span> <span class="attr">location:</span> <span class="number">47196120971580</span></span><br><span class="line"><span class="attr">value:</span> <span class="string">HoangDuy</span> <span class="string">|</span> <span class="attr">location:</span> <span class="number">47196120971580</span></span><br><span class="line"><span class="attr">value:</span> <span class="string">HoangDuyChinh</span> <span class="string">|</span> <span class="attr">location:</span> <span class="number">47196120971580</span></span><br><span class="line"><span class="attr">Final value:</span> <span class="string">HoangDuyChinh</span> <span class="string">|</span> <span class="attr">location:</span> <span class="number">47196120971580</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="3-Tham-khao"><a href="#3-Tham-khao" class="headerlink" title="3. Tham khảo"></a>3. Tham khảo</h2><p>[1] <a href="https://en.wikipedia.org/wiki/Immutable_object" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Immutable_object</a></p>
+<p>Nhưng convention <code>!</code> thường nghĩa “phiên bản nguy hiểm hơn so với method cùng tên”, không phải mọi method mutate đều có <code>!</code>. Ví dụ <code>Array#push</code> vẫn mutate.</p>
+<h2 id="Performance"><a href="#Performance" class="headerlink" title="Performance"></a>Performance</h2><p>Mutation có thể giảm allocation, nhưng shared mutable state tăng coupling, race condition và bug khó đoán. Immutable update thường dễ reason hơn nhưng có thể tạo object mới.</p>
+<p>Đừng kết luận “Ruby ăn RAM vì string immutable/mutable” bằng vài <code>object_id</code>. Memory còn phụ thuộc allocator, GC, retained objects, copy-on-write và workload. Benchmark bằng tool như <code>memory_profiler</code>, <code>stackprof</code>, heap dump—không benchmark bằng cảm xúc khi laptop bật quạt.</p>
+<h2 id="Ket-luan"><a href="#Ket-luan" class="headerlink" title="Kết luận"></a>Kết luận</h2><p>Khi truyền object qua nhiều layer, hãy làm rõ ownership:</p>
+<ul>
+<li>method có mutate argument không;</li>
+<li>caller có giữ reference khác không;</li>
+<li>có cần <code>dup</code>, immutable value object hoặc defensive copy không.</li>
+</ul>
+<p>Bug mutable state hiếm khi nằm ở cú pháp. Nó nằm ở hai nơi cùng tin rằng object thuộc về mình.</p>
 
   </div>
 </article>
@@ -251,23 +218,23 @@
     
     
       <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Khai-niem-mutable-immutable-va-ruby"><span class="toc-number">1.</span> <span class="toc-text">1. Khái niệm mutable, immutable và ruby</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Lieu-day-co-phai-la-mot-kien-thuc-can-thiet"><span class="toc-number">2.</span> <span class="toc-text">2. Liệu đây có phải là một kiến thức cần thiết?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Tham-khao"><span class="toc-number">3.</span> <span class="toc-text">3. Tham khảo</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Rebinding-khong-phai-mutation"><span class="toc-number">1.</span> <span class="toc-text">Rebinding không phải mutation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Object-thuong-immutable-trong-thuc-hanh"><span class="toc-number">2.</span> <span class="toc-text">Object thường immutable trong thực hành</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bang-method-khong-phai-luat-mutation-tuyet-doi"><span class="toc-number">3.</span> <span class="toc-text">Bang method không phải luật mutation tuyệt đối</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Performance"><span class="toc-number">4.</span> <span class="toc-text">Performance</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ket-luan"><span class="toc-number">5.</span> <span class="toc-text">Kết luận</span></a></li></ol>
       </div>
     
 
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&text=Immutable Và Mutable Trong Ruby" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&title=Immutable Và Mutable Trong Ruby" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&is_video=false&description=Immutable Và Mutable Trong Ruby" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Immutable Và Mutable Trong Ruby&body=Check out this article: https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&title=Immutable Và Mutable Trong Ruby" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&title=Immutable Và Mutable Trong Ruby" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&title=Immutable Và Mutable Trong Ruby" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&title=Immutable Và Mutable Trong Ruby" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&name=Immutable Và Mutable Trong Ruby&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&t=Immutable Và Mutable Trong Ruby" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&text=Mutable và Immutable trong Ruby: object identity, mutation và allocation" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&title=Mutable và Immutable trong Ruby: object identity, mutation và allocation" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&is_video=false&description=Mutable và Immutable trong Ruby: object identity, mutation và allocation" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Mutable và Immutable trong Ruby: object identity, mutation và allocation&body=Check out this article: https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&title=Mutable và Immutable trong Ruby: object identity, mutation và allocation" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&title=Mutable và Immutable trong Ruby: object identity, mutation và allocation" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&title=Mutable và Immutable trong Ruby: object identity, mutation và allocation" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&title=Mutable và Immutable trong Ruby: object identity, mutation và allocation" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&name=Mutable và Immutable trong Ruby: object identity, mutation và allocation&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/&t=Mutable và Immutable trong Ruby: object identity, mutation và allocation" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

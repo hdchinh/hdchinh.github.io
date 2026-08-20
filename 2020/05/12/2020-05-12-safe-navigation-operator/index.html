@@ -6,17 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="Just take a note from resources on internet!  1. ActiveRecord12345678910111213account &#x3D; Account.new(owner: nil) # account without an owneraccount.owner.address# &#x3D;&gt; NoMethodError: undefined method">
+    <meta name="description" content="Ruby’s safe-navigation operator calls a method only when the receiver is not nil: 1account&amp;.owner&amp;.address  It protects against nil; it does not protect against every invalid object. 123accoun">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Save Navigation Operator">
+<meta property="og:title" content="Safe Navigation in Ruby: &#96;&amp;.&#96;, &#96;try&#96;, and &#96;dig&#96;">
 <meta property="og:url" content="https://hdchinh.github.io/2020/05/12/2020-05-12-safe-navigation-operator/index.html">
 <meta property="og:site_name" content="Hudson">
-<meta property="og:description" content="Just take a note from resources on internet!  1. ActiveRecord12345678910111213account &#x3D; Account.new(owner: nil) # account without an owneraccount.owner.address# &#x3D;&gt; NoMethodError: undefined method">
+<meta property="og:description" content="Ruby’s safe-navigation operator calls a method only when the receiver is not nil: 1account&amp;.owner&amp;.address  It protects against nil; it does not protect against every invalid object. 123accoun">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-05-11T17:00:00.000Z">
-<meta property="article:modified_time" content="2026-08-19T06:18:46.231Z">
+<meta property="article:modified_time" content="2026-08-20T05:27:12.089Z">
 <meta property="article:author" content="Hudson">
-<meta property="article:tag" content="NOTES">
+<meta property="article:tag" content="RUBY">
 <meta property="article:tag" content="English">
 <meta name="twitter:card" content="summary">
     
@@ -38,7 +38,7 @@
       
     
     <!-- title -->
-    <title>Save Navigation Operator</title>
+    <title>Safe Navigation in Ruby: `&amp;.`, `try`, and `dig`</title>
     <!-- async scripts -->
     <!-- Google Analytics -->
 
@@ -98,23 +98,23 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2020/05/12/2020-05-12-safe-navigation-operator/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2020/05/12/2020-05-12-safe-navigation-operator/&text=Save Navigation Operator" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2020/05/12/2020-05-12-safe-navigation-operator/&title=Save Navigation Operator" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2020/05/12/2020-05-12-safe-navigation-operator/&is_video=false&description=Save Navigation Operator" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Save Navigation Operator&body=Check out this article: https://hdchinh.github.io/2020/05/12/2020-05-12-safe-navigation-operator/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2020/05/12/2020-05-12-safe-navigation-operator/&title=Save Navigation Operator" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2020/05/12/2020-05-12-safe-navigation-operator/&title=Save Navigation Operator" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2020/05/12/2020-05-12-safe-navigation-operator/&title=Save Navigation Operator" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2020/05/12/2020-05-12-safe-navigation-operator/&title=Save Navigation Operator" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2020/05/12/2020-05-12-safe-navigation-operator/&name=Save Navigation Operator&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2020/05/12/2020-05-12-safe-navigation-operator/&t=Save Navigation Operator" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2020/05/12/2020-05-12-safe-navigation-operator/&text=Safe Navigation in Ruby: `&amp;.`, `try`, and `dig`" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2020/05/12/2020-05-12-safe-navigation-operator/&title=Safe Navigation in Ruby: `&amp;.`, `try`, and `dig`" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2020/05/12/2020-05-12-safe-navigation-operator/&is_video=false&description=Safe Navigation in Ruby: `&amp;.`, `try`, and `dig`" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Safe Navigation in Ruby: `&amp;.`, `try`, and `dig`&body=Check out this article: https://hdchinh.github.io/2020/05/12/2020-05-12-safe-navigation-operator/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2020/05/12/2020-05-12-safe-navigation-operator/&title=Safe Navigation in Ruby: `&amp;.`, `try`, and `dig`" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2020/05/12/2020-05-12-safe-navigation-operator/&title=Safe Navigation in Ruby: `&amp;.`, `try`, and `dig`" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2020/05/12/2020-05-12-safe-navigation-operator/&title=Safe Navigation in Ruby: `&amp;.`, `try`, and `dig`" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2020/05/12/2020-05-12-safe-navigation-operator/&title=Safe Navigation in Ruby: `&amp;.`, `try`, and `dig`" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2020/05/12/2020-05-12-safe-navigation-operator/&name=Safe Navigation in Ruby: `&amp;.`, `try`, and `dig`&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2020/05/12/2020-05-12-safe-navigation-operator/&t=Safe Navigation in Ruby: `&amp;.`, `try`, and `dig`" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
     
     
       <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-ActiveRecord"><span class="toc-number">1.</span> <span class="toc-text">1. ActiveRecord</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Hash"><span class="toc-number">2.</span> <span class="toc-text">2. Hash</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Resources"><span class="toc-number">3.</span> <span class="toc-text">Resources</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#amp-versus-ActiveSupport-try"><span class="toc-number">1.</span> <span class="toc-text">&amp;. versus ActiveSupport try</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nested-hashes"><span class="toc-number">2.</span> <span class="toc-text">Nested hashes</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Do-not-build-a-nil-tunnel"><span class="toc-number">3.</span> <span class="toc-text">Do not build a nil tunnel</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#References"><span class="toc-number">4.</span> <span class="toc-text">References</span></a></li></ol>
       </div>
     
   </span>
@@ -127,7 +127,7 @@
   <header>
     
     <h1 class="posttitle p-name" itemprop="name headline">
-        Save Navigation Operator
+        Safe Navigation in Ruby: `&amp;.`, `try`, and `dig`
     </h1>
 
 
@@ -149,7 +149,7 @@
       
     <div class="article-tag">
         <i class="fa-solid fa-tag"></i>
-        <a class="[object Object]-link" href="/tags/English/" rel="tag">English</a>, <a class="[object Object]-link" href="/tags/NOTES/" rel="tag">NOTES</a>
+        <a class="[object Object]-link" href="/tags/English/" rel="tag">English</a>, <a class="[object Object]-link" href="/tags/RUBY/" rel="tag">RUBY</a>
     </div>
 
 
@@ -158,26 +158,32 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    <blockquote>
-<p>Just take a note from resources on internet!</p>
-</blockquote>
-<h2 id="1-ActiveRecord"><a href="#1-ActiveRecord" class="headerlink" title="1. ActiveRecord"></a>1. ActiveRecord</h2><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">account = Account.new(<span class="symbol">owner:</span> <span class="literal">nil</span>) <span class="comment"># account without an owner</span></span><br><span class="line"></span><br><span class="line">account.owner.address</span><br><span class="line"><span class="comment"># =&gt; NoMethodError: undefined method `address' for nil:NilClass</span></span><br><span class="line"></span><br><span class="line">account &amp;&amp; account.owner &amp;&amp; account.owner.address</span><br><span class="line"><span class="comment"># =&gt; nil</span></span><br><span class="line"></span><br><span class="line">account.try(<span class="symbol">:owner</span>).try(<span class="symbol">:address</span>)</span><br><span class="line"><span class="comment"># =&gt; nil</span></span><br><span class="line"></span><br><span class="line">account&amp;.owner&amp;.address</span><br><span class="line"><span class="comment"># =&gt; nil</span></span><br></pre></td></tr></table></figure>
+    <p>Ruby’s safe-navigation operator calls a method only when the receiver is not <code>nil</code>:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">account&amp;.owner&amp;.address</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">account = Account.new(<span class="symbol">owner:</span> <span class="literal">false</span>)</span><br><span class="line"></span><br><span class="line">account.owner.address</span><br><span class="line"><span class="comment"># =&gt; NoMethodError: undefined method `address' for false:FalseClass `</span></span><br><span class="line"></span><br><span class="line">account &amp;&amp; account.owner &amp;&amp; account.owner.address</span><br><span class="line"><span class="comment"># =&gt; false</span></span><br><span class="line"></span><br><span class="line">account.try(<span class="symbol">:owner</span>).try(<span class="symbol">:address</span>)</span><br><span class="line"><span class="comment"># =&gt; nil</span></span><br><span class="line"></span><br><span class="line">account&amp;.owner&amp;.address</span><br><span class="line"><span class="comment"># =&gt; undefined method `address' for false:FalseClass`</span></span><br></pre></td></tr></table></figure>
+<p>It protects against <code>nil</code>; it does not protect against every invalid object.</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">account = Struct.new(<span class="symbol">:owner</span>).new(<span class="literal">false</span>)</span><br><span class="line">account&amp;.owner&amp;.address</span><br><span class="line"><span class="comment"># =&gt; NoMethodError: undefined method `address' for false</span></span><br></pre></td></tr></table></figure>
 
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">account = Account.new(<span class="symbol">owner:</span> Object.new)</span><br><span class="line"><span class="comment"># owner have not addreess column</span></span><br><span class="line"></span><br><span class="line">account.owner.address</span><br><span class="line"><span class="comment"># =&gt; NoMethodError: undefined method `address' for #&lt;Object:0x00559996b5bde8&gt;</span></span><br><span class="line"></span><br><span class="line">account &amp;&amp; account.owner &amp;&amp; account.owner.address</span><br><span class="line"><span class="comment"># =&gt; NoMethodError: undefined method `address' for #&lt;Object:0x00559996b5bde8&gt;`</span></span><br><span class="line"></span><br><span class="line">account.try(<span class="symbol">:owner</span>).try(<span class="symbol">:address</span>)</span><br><span class="line"><span class="comment"># =&gt; nil</span></span><br><span class="line"></span><br><span class="line">account&amp;.owner&amp;.address</span><br><span class="line"><span class="comment"># =&gt; NoMethodError: undefined method `address' for #&lt;Object:0x00559996b5bde8&gt;`</span></span><br></pre></td></tr></table></figure>
+<p>That behavior is useful. <code>false</code> is real data, not a missing value wearing a fake moustache.</p>
+<h2 id="amp-versus-ActiveSupport-try"><a href="#amp-versus-ActiveSupport-try" class="headerlink" title="&amp;. versus ActiveSupport try"></a><code>&amp;.</code> versus ActiveSupport <code>try</code></h2><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">nil</span>&amp;.unknown_method</span><br><span class="line"><span class="comment"># =&gt; nil</span></span><br><span class="line"></span><br><span class="line">object.try(<span class="symbol">:unknown_method</span>)</span><br><span class="line"><span class="comment"># =&gt; nil</span></span><br><span class="line"></span><br><span class="line">object.try!(<span class="symbol">:unknown_method</span>)</span><br><span class="line"><span class="comment"># =&gt; NoMethodError</span></span><br></pre></td></tr></table></figure>
 
-<p>Catch exception with <code>try!</code></p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">account.try!(<span class="symbol">:owner</span>).try!(<span class="symbol">:address</span>)</span><br><span class="line"><span class="comment"># =&gt; NoMethodError: undefined method `address' for #&lt;Object:0x00559996b5bde8&gt;`</span></span><br></pre></td></tr></table></figure>
+<p><code>try</code> is provided by ActiveSupport, not core Ruby. It returns <code>nil</code> when the receiver does not respond to the method. <code>try!</code> behaves more like <code>&amp;.</code>: both tolerate a <code>nil</code> receiver but raise when a non-<code>nil</code> receiver lacks the method.</p>
+<p>Prefer <code>&amp;.</code> in ordinary Ruby code because it is language syntax, easier to read, and does not silently hide misspelled methods on non-<code>nil</code> objects.</p>
+<h2 id="Nested-hashes"><a href="#Nested-hashes" class="headerlink" title="Nested hashes"></a>Nested hashes</h2><p>Use <code>dig</code> for nested hash or array access:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">payload = &#123;</span><br><span class="line">  <span class="symbol">user:</span> &#123;</span><br><span class="line">    <span class="symbol">address:</span> &#123;</span><br><span class="line">      <span class="symbol">city:</span> <span class="string">"Saigon"</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">payload.dig(<span class="symbol">:user</span>, <span class="symbol">:address</span>, <span class="symbol">:city</span>)</span><br><span class="line"><span class="comment"># =&gt; "Saigon"</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="2-Hash"><a href="#2-Hash" class="headerlink" title="2. Hash"></a>2. Hash</h2><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">h = &#123;</span><br><span class="line">  <span class="symbol">key_1:</span> &#123;</span><br><span class="line">    <span class="symbol">key_2:</span> &#123;</span><br><span class="line">      <span class="symbol">key_3:</span> <span class="string">"Value"</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>This is clearer than:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">payload&amp;.[](<span class="symbol">:user</span>)&amp;.[](<span class="symbol">:address</span>)&amp;.[](<span class="symbol">:city</span>)</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">h&amp;.[](<span class="symbol">:key_1</span>)&amp;.[](<span class="symbol">:key_2</span>)&amp;.[](<span class="symbol">:key_3</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="Do-not-build-a-nil-tunnel"><a href="#Do-not-build-a-nil-tunnel" class="headerlink" title="Do not build a nil tunnel"></a>Do not build a nil tunnel</h2><p>A long chain such as:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">order&amp;.customer&amp;.profile&amp;.address&amp;.country&amp;.code</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">h.dig(<span class="symbol">:key_1</span>, <span class="symbol">:key_2</span>, <span class="symbol">:key_3</span>)</span><br></pre></td></tr></table></figure>
-
-<h2 id="Resources"><a href="#Resources" class="headerlink" title="Resources"></a>Resources</h2><p>[1]<a href="http://mitrev.net/ruby/2015/11/13/the-operator-in-ruby/" target="_blank" rel="noopener">http://mitrev.net/ruby/2015/11/13/the-operator-in-ruby/</a></p>
-<p>[2]<a href="https://stackoverflow.com/questions/35922774/safe-navigation-equivalent-to-rails-try-for-hashes" target="_blank" rel="noopener">https://stackoverflow.com/questions/35922774/safe-navigation-equivalent-to-rails-try-for-hashes</a></p>
+<p>may be correct, but it can also hide an unclear domain contract. Ask which relationships are truly optional. If a customer must have a profile, silently returning <code>nil</code> may bury corrupted data instead of handling it.</p>
+<p>Safe navigation is a precision tool. Using it everywhere because exceptions look unfriendly is how bugs become introverts.</p>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<li><a href="https://docs.ruby-lang.org/en/master/syntax/calling_methods_rdoc.html#label-Safe+Navigation+Operator" target="_blank" rel="noopener">Safe navigation operator — Ruby syntax</a></li>
+<li><a href="https://api.rubyonrails.org/classes/Object.html#method-i-try" target="_blank" rel="noopener"><code>Object#try</code> — Rails API</a></li>
+</ul>
 
   </div>
 </article>
@@ -201,23 +207,23 @@
     
     
       <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-ActiveRecord"><span class="toc-number">1.</span> <span class="toc-text">1. ActiveRecord</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Hash"><span class="toc-number">2.</span> <span class="toc-text">2. Hash</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Resources"><span class="toc-number">3.</span> <span class="toc-text">Resources</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#amp-versus-ActiveSupport-try"><span class="toc-number">1.</span> <span class="toc-text">&amp;. versus ActiveSupport try</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nested-hashes"><span class="toc-number">2.</span> <span class="toc-text">Nested hashes</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Do-not-build-a-nil-tunnel"><span class="toc-number">3.</span> <span class="toc-text">Do not build a nil tunnel</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#References"><span class="toc-number">4.</span> <span class="toc-text">References</span></a></li></ol>
       </div>
     
 
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2020/05/12/2020-05-12-safe-navigation-operator/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2020/05/12/2020-05-12-safe-navigation-operator/&text=Save Navigation Operator" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2020/05/12/2020-05-12-safe-navigation-operator/&title=Save Navigation Operator" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2020/05/12/2020-05-12-safe-navigation-operator/&is_video=false&description=Save Navigation Operator" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Save Navigation Operator&body=Check out this article: https://hdchinh.github.io/2020/05/12/2020-05-12-safe-navigation-operator/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2020/05/12/2020-05-12-safe-navigation-operator/&title=Save Navigation Operator" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2020/05/12/2020-05-12-safe-navigation-operator/&title=Save Navigation Operator" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2020/05/12/2020-05-12-safe-navigation-operator/&title=Save Navigation Operator" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2020/05/12/2020-05-12-safe-navigation-operator/&title=Save Navigation Operator" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2020/05/12/2020-05-12-safe-navigation-operator/&name=Save Navigation Operator&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2020/05/12/2020-05-12-safe-navigation-operator/&t=Save Navigation Operator" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2020/05/12/2020-05-12-safe-navigation-operator/&text=Safe Navigation in Ruby: `&amp;.`, `try`, and `dig`" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2020/05/12/2020-05-12-safe-navigation-operator/&title=Safe Navigation in Ruby: `&amp;.`, `try`, and `dig`" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2020/05/12/2020-05-12-safe-navigation-operator/&is_video=false&description=Safe Navigation in Ruby: `&amp;.`, `try`, and `dig`" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Safe Navigation in Ruby: `&amp;.`, `try`, and `dig`&body=Check out this article: https://hdchinh.github.io/2020/05/12/2020-05-12-safe-navigation-operator/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2020/05/12/2020-05-12-safe-navigation-operator/&title=Safe Navigation in Ruby: `&amp;.`, `try`, and `dig`" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2020/05/12/2020-05-12-safe-navigation-operator/&title=Safe Navigation in Ruby: `&amp;.`, `try`, and `dig`" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2020/05/12/2020-05-12-safe-navigation-operator/&title=Safe Navigation in Ruby: `&amp;.`, `try`, and `dig`" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2020/05/12/2020-05-12-safe-navigation-operator/&title=Safe Navigation in Ruby: `&amp;.`, `try`, and `dig`" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2020/05/12/2020-05-12-safe-navigation-operator/&name=Safe Navigation in Ruby: `&amp;.`, `try`, and `dig`&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2020/05/12/2020-05-12-safe-navigation-operator/&t=Safe Navigation in Ruby: `&amp;.`, `try`, and `dig`" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

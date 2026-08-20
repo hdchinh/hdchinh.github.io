@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="1. Example1234567891011121314151617181920212223#!&#x2F;bin&#x2F;bashGREEN&#x3D;&#39;\033[0;32m&#39;NC&#x3D;&#39;\033[0m&#39;hexo_clean&#x3D;&quot;hexo clean&quot;hexo_generate&#x3D;&quot;hexo generate&quot;cd_public&#x3D;&quot;cd public&quot;create_file&#x3D;&quot;touch CNAME&quot;add_content&#x3D;&quot;e">
+    <meta name="description" content="The original script stored commands in strings and executed them with eval. That works, but it also turns quoting mistakes into a small security workshop. Shell commands can be called directly. 123456">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Deploy My Blog Use Script">
+<meta property="og:title" content="A Safe Shell Script for Deploying a Hexo Blog">
 <meta property="og:url" content="https://hdchinh.github.io/2019/12/01/2019-12-01-basic-bash-file-to-deploy-my-blog/index.html">
 <meta property="og:site_name" content="Hudson">
-<meta property="og:description" content="1. Example1234567891011121314151617181920212223#!&#x2F;bin&#x2F;bashGREEN&#x3D;&#39;\033[0;32m&#39;NC&#x3D;&#39;\033[0m&#39;hexo_clean&#x3D;&quot;hexo clean&quot;hexo_generate&#x3D;&quot;hexo generate&quot;cd_public&#x3D;&quot;cd public&quot;create_file&#x3D;&quot;touch CNAME&quot;add_content&#x3D;&quot;e">
+<meta property="og:description" content="The original script stored commands in strings and executed them with eval. That works, but it also turns quoting mistakes into a small security workshop. Shell commands can be called directly. 123456">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2019-11-30T17:00:00.000Z">
-<meta property="article:modified_time" content="2026-08-19T06:18:46.227Z">
+<meta property="article:modified_time" content="2026-08-20T05:25:11.763Z">
 <meta property="article:author" content="Hudson">
 <meta property="article:tag" content="TIL">
 <meta property="article:tag" content="English">
@@ -38,7 +38,7 @@
       
     
     <!-- title -->
-    <title>Deploy My Blog Use Script</title>
+    <title>A Safe Shell Script for Deploying a Hexo Blog</title>
     <!-- async scripts -->
     <!-- Google Analytics -->
 
@@ -98,23 +98,23 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/12/01/2019-12-01-basic-bash-file-to-deploy-my-blog/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/12/01/2019-12-01-basic-bash-file-to-deploy-my-blog/&text=Deploy My Blog Use Script" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/12/01/2019-12-01-basic-bash-file-to-deploy-my-blog/&title=Deploy My Blog Use Script" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/12/01/2019-12-01-basic-bash-file-to-deploy-my-blog/&is_video=false&description=Deploy My Blog Use Script" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Deploy My Blog Use Script&body=Check out this article: https://hdchinh.github.io/2019/12/01/2019-12-01-basic-bash-file-to-deploy-my-blog/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/12/01/2019-12-01-basic-bash-file-to-deploy-my-blog/&title=Deploy My Blog Use Script" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/12/01/2019-12-01-basic-bash-file-to-deploy-my-blog/&title=Deploy My Blog Use Script" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/12/01/2019-12-01-basic-bash-file-to-deploy-my-blog/&title=Deploy My Blog Use Script" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/12/01/2019-12-01-basic-bash-file-to-deploy-my-blog/&title=Deploy My Blog Use Script" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/12/01/2019-12-01-basic-bash-file-to-deploy-my-blog/&name=Deploy My Blog Use Script&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/12/01/2019-12-01-basic-bash-file-to-deploy-my-blog/&t=Deploy My Blog Use Script" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/12/01/2019-12-01-basic-bash-file-to-deploy-my-blog/&text=A Safe Shell Script for Deploying a Hexo Blog" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/12/01/2019-12-01-basic-bash-file-to-deploy-my-blog/&title=A Safe Shell Script for Deploying a Hexo Blog" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/12/01/2019-12-01-basic-bash-file-to-deploy-my-blog/&is_video=false&description=A Safe Shell Script for Deploying a Hexo Blog" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=A Safe Shell Script for Deploying a Hexo Blog&body=Check out this article: https://hdchinh.github.io/2019/12/01/2019-12-01-basic-bash-file-to-deploy-my-blog/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/12/01/2019-12-01-basic-bash-file-to-deploy-my-blog/&title=A Safe Shell Script for Deploying a Hexo Blog" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/12/01/2019-12-01-basic-bash-file-to-deploy-my-blog/&title=A Safe Shell Script for Deploying a Hexo Blog" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/12/01/2019-12-01-basic-bash-file-to-deploy-my-blog/&title=A Safe Shell Script for Deploying a Hexo Blog" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/12/01/2019-12-01-basic-bash-file-to-deploy-my-blog/&title=A Safe Shell Script for Deploying a Hexo Blog" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/12/01/2019-12-01-basic-bash-file-to-deploy-my-blog/&name=A Safe Shell Script for Deploying a Hexo Blog&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/12/01/2019-12-01-basic-bash-file-to-deploy-my-blog/&t=A Safe Shell Script for Deploying a Hexo Blog" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
     
     
       <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Example"><span class="toc-number">1.</span> <span class="toc-text">1. Example</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Use-multiple-command-in-oneline"><span class="toc-number">2.</span> <span class="toc-text">2. Use multiple command in oneline</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Command-chaining"><span class="toc-number">1.</span> <span class="toc-text">Command chaining</span></a></li></ol>
       </div>
     
   </span>
@@ -127,7 +127,7 @@
   <header>
     
     <h1 class="posttitle p-name" itemprop="name headline">
-        Deploy My Blog Use Script
+        A Safe Shell Script for Deploying a Hexo Blog
     </h1>
 
 
@@ -158,12 +158,13 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    <h2 id="1-Example"><a href="#1-Example" class="headerlink" title="1. Example"></a>1. Example</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">GREEN=<span class="string">'\033[0;32m'</span></span><br><span class="line">NC=<span class="string">'\033[0m'</span></span><br><span class="line"></span><br><span class="line">hexo_clean=<span class="string">"hexo clean"</span></span><br><span class="line">hexo_generate=<span class="string">"hexo generate"</span></span><br><span class="line">cd_public=<span class="string">"cd public"</span></span><br><span class="line">create_file=<span class="string">"touch CNAME"</span></span><br><span class="line">add_content=<span class="string">"echo "</span>hdchinh.com<span class="string">" &gt;&gt; CNAME"</span></span><br><span class="line">deploy=<span class="string">"hexo deploy"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"<span class="variable">$&#123;GREEN&#125;</span>============ Starting Gengerate ===============<span class="variable">$&#123;NC&#125;</span>"</span></span><br><span class="line"><span class="built_in">eval</span> <span class="variable">$hexo_clean</span></span><br><span class="line"><span class="built_in">eval</span> <span class="variable">$hexo_generate</span></span><br><span class="line"><span class="built_in">eval</span> <span class="variable">$cd_public</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"<span class="variable">$&#123;GREEN&#125;</span>============ Starting Create CNAME ============<span class="variable">$&#123;NC&#125;</span>"</span></span><br><span class="line"><span class="built_in">eval</span> <span class="variable">$create_file</span></span><br><span class="line"><span class="built_in">eval</span> <span class="variable">$add_content</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"<span class="variable">$&#123;GREEN&#125;</span>============ Starting Deploy ==================<span class="variable">$&#123;NC&#125;</span>"</span></span><br><span class="line"><span class="built_in">eval</span> <span class="variable">$deploy</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"<span class="variable">$&#123;GREEN&#125;</span>============ Done =============================<span class="variable">$&#123;NC&#125;</span>"</span></span><br></pre></td></tr></table></figure>
+    <p>The original script stored commands in strings and executed them with <code>eval</code>. That works, but it also turns quoting mistakes into a small security workshop. Shell commands can be called directly.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/env bash</span></span><br><span class="line"><span class="built_in">set</span> -Eeuo pipefail</span><br><span class="line"></span><br><span class="line"><span class="built_in">readonly</span> GREEN=<span class="string">'\033[0;32m'</span></span><br><span class="line"><span class="built_in">readonly</span> NC=<span class="string">'\033[0m'</span></span><br><span class="line"><span class="built_in">readonly</span> DOMAIN=<span class="string">'hdchinh.com'</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">log</span></span>() &#123;</span><br><span class="line">  <span class="built_in">printf</span> <span class="string">'%b%s%b\n'</span> <span class="string">"<span class="variable">$GREEN</span>"</span> <span class="string">"<span class="variable">$1</span>"</span> <span class="string">"<span class="variable">$NC</span>"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">log</span> <span class="string">'Cleaning and generating the site'</span></span><br><span class="line">hexo clean</span><br><span class="line">hexo generate</span><br><span class="line"></span><br><span class="line"><span class="built_in">log</span> <span class="string">'Creating CNAME'</span></span><br><span class="line"><span class="built_in">printf</span> <span class="string">'%s\n'</span> <span class="string">"<span class="variable">$DOMAIN</span>"</span> &gt; public/CNAME</span><br><span class="line"></span><br><span class="line"><span class="built_in">log</span> <span class="string">'Deploying'</span></span><br><span class="line">hexo deploy</span><br><span class="line"></span><br><span class="line"><span class="built_in">log</span> <span class="string">'Done'</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="2-Use-multiple-command-in-oneline"><a href="#2-Use-multiple-command-in-oneline" class="headerlink" title="2. Use multiple command in oneline"></a>2. Use multiple command in oneline</h2><p>We have two commands need to execute:</p>
-<p>eg: A, B</p>
-<p>We have three ways to execute A, B in one line.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">A; B (always run A, B)</span><br><span class="line"></span><br><span class="line">A &amp;&amp; B (run B <span class="keyword">if</span> A execute successful)</span><br><span class="line"></span><br><span class="line">A || B (run B <span class="keyword">if</span> A execute failure)</span><br></pre></td></tr></table></figure>
+<p><code>set -Eeuo pipefail</code> makes the script stop on failed commands, unset variables, and failed commands inside pipelines. <code>printf</code> is safer and more predictable than nested quoted <code>echo</code> commands.</p>
+<h2 id="Command-chaining"><a href="#Command-chaining" class="headerlink" title="Command chaining"></a>Command chaining</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">A; B   <span class="comment"># Run B regardless of whether A succeeds.</span></span><br><span class="line">A &amp;&amp; B  <span class="comment"># Run B only when A succeeds.</span></span><br><span class="line">A || B  <span class="comment"># Run B only when A fails.</span></span><br></pre></td></tr></table></figure>
+
+<p>For deployments, <code>&amp;&amp;</code> or strict mode is usually the sane choice. Publishing half a site because the build failed is technically automation, just not the useful kind.</p>
 
   </div>
 </article>
@@ -187,23 +188,23 @@
     
     
       <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Example"><span class="toc-number">1.</span> <span class="toc-text">1. Example</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Use-multiple-command-in-oneline"><span class="toc-number">2.</span> <span class="toc-text">2. Use multiple command in oneline</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Command-chaining"><span class="toc-number">1.</span> <span class="toc-text">Command chaining</span></a></li></ol>
       </div>
     
 
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/12/01/2019-12-01-basic-bash-file-to-deploy-my-blog/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/12/01/2019-12-01-basic-bash-file-to-deploy-my-blog/&text=Deploy My Blog Use Script" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/12/01/2019-12-01-basic-bash-file-to-deploy-my-blog/&title=Deploy My Blog Use Script" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/12/01/2019-12-01-basic-bash-file-to-deploy-my-blog/&is_video=false&description=Deploy My Blog Use Script" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Deploy My Blog Use Script&body=Check out this article: https://hdchinh.github.io/2019/12/01/2019-12-01-basic-bash-file-to-deploy-my-blog/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/12/01/2019-12-01-basic-bash-file-to-deploy-my-blog/&title=Deploy My Blog Use Script" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/12/01/2019-12-01-basic-bash-file-to-deploy-my-blog/&title=Deploy My Blog Use Script" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/12/01/2019-12-01-basic-bash-file-to-deploy-my-blog/&title=Deploy My Blog Use Script" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/12/01/2019-12-01-basic-bash-file-to-deploy-my-blog/&title=Deploy My Blog Use Script" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/12/01/2019-12-01-basic-bash-file-to-deploy-my-blog/&name=Deploy My Blog Use Script&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/12/01/2019-12-01-basic-bash-file-to-deploy-my-blog/&t=Deploy My Blog Use Script" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/12/01/2019-12-01-basic-bash-file-to-deploy-my-blog/&text=A Safe Shell Script for Deploying a Hexo Blog" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/12/01/2019-12-01-basic-bash-file-to-deploy-my-blog/&title=A Safe Shell Script for Deploying a Hexo Blog" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/12/01/2019-12-01-basic-bash-file-to-deploy-my-blog/&is_video=false&description=A Safe Shell Script for Deploying a Hexo Blog" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=A Safe Shell Script for Deploying a Hexo Blog&body=Check out this article: https://hdchinh.github.io/2019/12/01/2019-12-01-basic-bash-file-to-deploy-my-blog/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/12/01/2019-12-01-basic-bash-file-to-deploy-my-blog/&title=A Safe Shell Script for Deploying a Hexo Blog" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/12/01/2019-12-01-basic-bash-file-to-deploy-my-blog/&title=A Safe Shell Script for Deploying a Hexo Blog" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/12/01/2019-12-01-basic-bash-file-to-deploy-my-blog/&title=A Safe Shell Script for Deploying a Hexo Blog" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/12/01/2019-12-01-basic-bash-file-to-deploy-my-blog/&title=A Safe Shell Script for Deploying a Hexo Blog" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/12/01/2019-12-01-basic-bash-file-to-deploy-my-blog/&name=A Safe Shell Script for Deploying a Hexo Blog&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/12/01/2019-12-01-basic-bash-file-to-deploy-my-blog/&t=A Safe Shell Script for Deploying a Hexo Blog" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

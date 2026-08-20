@@ -6,17 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="1. Install homebrew formulaWhen you install a new homebrew formula, homebrew will update all formula as default option. In almost case, it’s no problem. But, if you’d like to install new formula witho">
+    <meta name="description" content="This is a maintenance note for older Rails projects. MySQL 5.7 reached end of life in October 2023, so installing it today should be a temporary compatibility measure, not an architectural vision. Ski">
 <meta property="og:type" content="article">
-<meta property="og:title" content="New Project Notes [Part 2]">
+<meta property="og:title" content="Legacy Rails Maintenance Notes: Bundler, Homebrew, and MySQL">
 <meta property="og:url" content="https://hdchinh.github.io/2020/03/16/2020-03-16-new-project-notes-2/index.html">
 <meta property="og:site_name" content="Hudson">
-<meta property="og:description" content="1. Install homebrew formulaWhen you install a new homebrew formula, homebrew will update all formula as default option. In almost case, it’s no problem. But, if you’d like to install new formula witho">
+<meta property="og:description" content="This is a maintenance note for older Rails projects. MySQL 5.7 reached end of life in October 2023, so installing it today should be a temporary compatibility measure, not an architectural vision. Ski">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-03-15T17:00:00.000Z">
-<meta property="article:modified_time" content="2026-08-19T06:18:46.230Z">
+<meta property="article:modified_time" content="2026-08-20T05:27:12.089Z">
 <meta property="article:author" content="Hudson">
-<meta property="article:tag" content="NOTES">
+<meta property="article:tag" content="RAILS">
 <meta property="article:tag" content="English">
 <meta name="twitter:card" content="summary">
     
@@ -38,7 +38,7 @@
       
     
     <!-- title -->
-    <title>New Project Notes [Part 2]</title>
+    <title>Legacy Rails Maintenance Notes: Bundler, Homebrew, and MySQL</title>
     <!-- async scripts -->
     <!-- Google Analytics -->
 
@@ -98,23 +98,23 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2020/03/16/2020-03-16-new-project-notes-2/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2020/03/16/2020-03-16-new-project-notes-2/&text=New Project Notes [Part 2]" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2020/03/16/2020-03-16-new-project-notes-2/&title=New Project Notes [Part 2]" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2020/03/16/2020-03-16-new-project-notes-2/&is_video=false&description=New Project Notes [Part 2]" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=New Project Notes [Part 2]&body=Check out this article: https://hdchinh.github.io/2020/03/16/2020-03-16-new-project-notes-2/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2020/03/16/2020-03-16-new-project-notes-2/&title=New Project Notes [Part 2]" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2020/03/16/2020-03-16-new-project-notes-2/&title=New Project Notes [Part 2]" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2020/03/16/2020-03-16-new-project-notes-2/&title=New Project Notes [Part 2]" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2020/03/16/2020-03-16-new-project-notes-2/&title=New Project Notes [Part 2]" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2020/03/16/2020-03-16-new-project-notes-2/&name=New Project Notes [Part 2]&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2020/03/16/2020-03-16-new-project-notes-2/&t=New Project Notes [Part 2]" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2020/03/16/2020-03-16-new-project-notes-2/&text=Legacy Rails Maintenance Notes: Bundler, Homebrew, and MySQL" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2020/03/16/2020-03-16-new-project-notes-2/&title=Legacy Rails Maintenance Notes: Bundler, Homebrew, and MySQL" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2020/03/16/2020-03-16-new-project-notes-2/&is_video=false&description=Legacy Rails Maintenance Notes: Bundler, Homebrew, and MySQL" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Legacy Rails Maintenance Notes: Bundler, Homebrew, and MySQL&body=Check out this article: https://hdchinh.github.io/2020/03/16/2020-03-16-new-project-notes-2/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2020/03/16/2020-03-16-new-project-notes-2/&title=Legacy Rails Maintenance Notes: Bundler, Homebrew, and MySQL" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2020/03/16/2020-03-16-new-project-notes-2/&title=Legacy Rails Maintenance Notes: Bundler, Homebrew, and MySQL" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2020/03/16/2020-03-16-new-project-notes-2/&title=Legacy Rails Maintenance Notes: Bundler, Homebrew, and MySQL" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2020/03/16/2020-03-16-new-project-notes-2/&title=Legacy Rails Maintenance Notes: Bundler, Homebrew, and MySQL" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2020/03/16/2020-03-16-new-project-notes-2/&name=Legacy Rails Maintenance Notes: Bundler, Homebrew, and MySQL&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2020/03/16/2020-03-16-new-project-notes-2/&t=Legacy Rails Maintenance Notes: Bundler, Homebrew, and MySQL" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
     
     
       <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Install-homebrew-formula"><span class="toc-number">1.</span> <span class="toc-text">1. Install homebrew formula</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Why-you-need-run-“bundle-exec”"><span class="toc-number">2.</span> <span class="toc-text">2. Why you need run “bundle exec”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Install-the-older-version-mysql-in-macos-with-homebrew"><span class="toc-number">3.</span> <span class="toc-text">3. Install the older version mysql in macos with homebrew</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Ignore-migration-file-check"><span class="toc-number">4.</span> <span class="toc-text">4. Ignore migration file check</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-References"><span class="toc-number">5.</span> <span class="toc-text">3. References</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Skip-Homebrew-auto-update-for-one-command"><span class="toc-number">1.</span> <span class="toc-text">Skip Homebrew auto-update for one command</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Why-bundle-exec-matters"><span class="toc-number">2.</span> <span class="toc-text">Why bundle exec matters</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Running-a-legacy-MySQL-version"><span class="toc-number">3.</span> <span class="toc-text">Running a legacy MySQL version</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Migration-checks"><span class="toc-number">4.</span> <span class="toc-text">Migration checks</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#References"><span class="toc-number">5.</span> <span class="toc-text">References</span></a></li></ol>
       </div>
     
   </span>
@@ -127,7 +127,7 @@
   <header>
     
     <h1 class="posttitle p-name" itemprop="name headline">
-        New Project Notes [Part 2]
+        Legacy Rails Maintenance Notes: Bundler, Homebrew, and MySQL
     </h1>
 
 
@@ -149,7 +149,7 @@
       
     <div class="article-tag">
         <i class="fa-solid fa-tag"></i>
-        <a class="[object Object]-link" href="/tags/English/" rel="tag">English</a>, <a class="[object Object]-link" href="/tags/NOTES/" rel="tag">NOTES</a>
+        <a class="[object Object]-link" href="/tags/English/" rel="tag">English</a>, <a class="[object Object]-link" href="/tags/RAILS/" rel="tag">RAILS</a>
     </div>
 
 
@@ -158,50 +158,35 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    <h2 id="1-Install-homebrew-formula"><a href="#1-Install-homebrew-formula" class="headerlink" title="1. Install homebrew formula"></a>1. Install homebrew formula</h2><p>When you install a new homebrew formula, homebrew will update all formula as default option. In almost case, it’s no problem. But, if you’d like to install new formula without update current formula, try:</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">HOMEBREW_NO_AUTO_UPDATE</span>=<span class="number">1</span> brew install &lt;formula&gt;</span><br></pre></td></tr></table></figure>
+    <p>This is a maintenance note for older Rails projects. MySQL 5.7 reached end of life in October 2023, so installing it today should be a temporary compatibility measure, not an architectural vision.</p>
+<h2 id="Skip-Homebrew-auto-update-for-one-command"><a href="#Skip-Homebrew-auto-update-for-one-command" class="headerlink" title="Skip Homebrew auto-update for one command"></a>Skip Homebrew auto-update for one command</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HOMEBREW_NO_AUTO_UPDATE=1 brew install &lt;formula&gt;</span><br></pre></td></tr></table></figure>
 
-<h2 id="2-Why-you-need-run-“bundle-exec”"><a href="#2-Why-you-need-run-“bundle-exec”" class="headerlink" title="2. Why you need run “bundle exec”"></a>2. Why you need run “bundle exec”</h2><p>You have installed rspec for your project. sometime you run <strong>rspec</strong> and everything work well, but sometimes it does not, it required you type <strong>bundle exec rspec</strong>.</p>
-<p>The short explain, when you have more than one version of gem (eg. rspec), you need type <strong>bundle exec</strong> to tell rails use the version in Gemfile (Gemfile.lock)</p>
-<h2 id="3-Install-the-older-version-mysql-in-macos-with-homebrew"><a href="#3-Install-the-older-version-mysql-in-macos-with-homebrew" class="headerlink" title="3. Install the older version mysql in macos with homebrew"></a>3. Install the older version mysql in macos with homebrew</h2><p>Today, I have a crazy problem with our project that we are working on. The one f**king lib in this project need mysql 5.7</p>
-<p>But, remember, when you copy paste from go rails to install ruby, rails and related databases, we always install the lastest version of all, :D</p>
-<p>So what? Let quick check mysql version on my machine…</p>
-<p>Oh, shit, above 8.0.</p>
-<p>Ok, no worry, just google “how to install another mysql version with homebrew” and then I take 3 hours to install, remove, run command which I have no idea what it doing for….and still  get error, error and error again. I’m sad, I lost my hope about my carrer :(</p>
-<p>And finally, I try to install mysql 5.7</p>
-<ol>
-<li><p>Remove mysql current version</p>
-<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">brew </span>uninstall mysql</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Remove mysql version 5.7</p>
-<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew uninstall <span class="symbol">mysql@</span><span class="number">5.7</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Remove folder config mysql</p>
-<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">rm</span> -rf /usr/<span class="keyword">local</span>/<span class="keyword">var</span>/mysql</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Remove config file</p>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm /usr/<span class="keyword">local</span>/etc/<span class="keyword">my</span>.cnf</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Reinstall mysql version 5.7</p>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm /usr/<span class="keyword">local</span>/etc/<span class="keyword">my</span>.cnf</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Manually link to mysql 5.7 because it’s not latest version so home brew will do nothing</p>
-</li>
-</ol>
-<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew link --force <span class="symbol">mysql@</span><span class="number">5.7</span></span><br></pre></td></tr></table></figure>
+<p>This saves time in a controlled environment, but skipping updates permanently also skips security and formula fixes. Use it intentionally, not as a lifestyle.</p>
+<h2 id="Why-bundle-exec-matters"><a href="#Why-bundle-exec-matters" class="headerlink" title="Why bundle exec matters"></a>Why <code>bundle exec</code> matters</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bundle <span class="built_in">exec</span> rspec</span><br></pre></td></tr></table></figure>
 
-<ol start="7">
-<li><p>Start mysql 5.7</p>
-<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew services start <span class="symbol">mysql@</span><span class="number">5.7</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Important note<br>When you reinstall mysql with older version, in all projects that you used mysql, you need to <strong>gem uninstall mysql2</strong> and <strong>bundle</strong> to reinstall gems mysql2, if not, you will get error.</p>
-</li>
-</ol>
-<h2 id="4-Ignore-migration-file-check"><a href="#4-Ignore-migration-file-check" class="headerlink" title="4. Ignore migration file check"></a>4. Ignore migration file check</h2><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">config.active_record.migration_error = <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<p>Bundler activates the gem versions recorded in <code>Gemfile.lock</code>. Running <code>rspec</code> directly may execute another globally installed version.</p>
+<p>Binstubs provide a shorter project-scoped command:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bundle binstubs rspec-core</span><br><span class="line">bin/rspec</span><br></pre></td></tr></table></figure>
 
-<p>Add above config to config file.(config/envirements/*.rb)</p>
-<h2 id="3-References"><a href="#3-References" class="headerlink" title="3. References"></a>3. References</h2><p>[1]<a href="https://stackoverflow.com/questions/6588674/what-does-bundle-exec-rake-mean" target="_blank" rel="noopener">https://stackoverflow.com/questions/6588674/what-does-bundle-exec-rake-mean</a></p>
-<p>[2]<a href="https://medium.com/@at0dd/install-mysql-5-7-on-mac-os-mojave-cd07ec936034" target="_blank" rel="noopener">https://medium.com/@at0dd/install-mysql-5-7-on-mac-os-mojave-cd07ec936034</a></p>
+<h2 id="Running-a-legacy-MySQL-version"><a href="#Running-a-legacy-MySQL-version" class="headerlink" title="Running a legacy MySQL version"></a>Running a legacy MySQL version</h2><p>Prefer a container or isolated environment so an obsolete database does not replace the supported system version:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">mysql:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">mysql:5.7</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="attr">MYSQL_ROOT_PASSWORD:</span> <span class="string">local-development-only</span></span><br><span class="line">      <span class="attr">MYSQL_DATABASE:</span> <span class="string">legacy_app_development</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">"3307:3306"</span></span><br></pre></td></tr></table></figure>
+
+<p>Never use that development password in production.</p>
+<p>If Homebrew is unavoidable, use the versioned formula while it remains available:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew install mysql@5.7</span><br><span class="line">brew services start mysql@5.7</span><br></pre></td></tr></table></figure>
+
+<p>Rebuild native gems against the selected client libraries:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bundle config <span class="built_in">set</span> --<span class="built_in">local</span> build.mysql2 \</span><br><span class="line">  --with-mysql-config=<span class="string">"<span class="variable">$(brew --prefix mysql@5.7)</span>/bin/mysql_config"</span></span><br><span class="line">bundle pristine mysql2</span><br></pre></td></tr></table></figure>
+
+<p>Do not begin with <code>rm -rf /usr/local/var/mysql</code>. That directory may contain every local database you forgot to back up, and deletion is a very efficient migration strategy in the wrong direction.</p>
+<h2 id="Migration-checks"><a href="#Migration-checks" class="headerlink" title="Migration checks"></a>Migration checks</h2><p>Rails can raise when pending migrations exist:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">config.active_record.migration_error = <span class="symbol">:page_load</span></span><br></pre></td></tr></table></figure>
+
+<p>Disabling the check with <code>false</code> hides the warning; it does not make the schema current. Use that only when another deployment process guarantees migrations.</p>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<li><a href="https://bundler.io/man/bundle-exec.1.html" target="_blank" rel="noopener"><code>bundle exec</code> — Bundler</a></li>
+<li><a href="https://endoflife.date/mysql" target="_blank" rel="noopener">MySQL lifecycle policy</a></li>
+</ul>
 
   </div>
 </article>
@@ -225,23 +210,23 @@
     
     
       <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Install-homebrew-formula"><span class="toc-number">1.</span> <span class="toc-text">1. Install homebrew formula</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Why-you-need-run-“bundle-exec”"><span class="toc-number">2.</span> <span class="toc-text">2. Why you need run “bundle exec”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Install-the-older-version-mysql-in-macos-with-homebrew"><span class="toc-number">3.</span> <span class="toc-text">3. Install the older version mysql in macos with homebrew</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Ignore-migration-file-check"><span class="toc-number">4.</span> <span class="toc-text">4. Ignore migration file check</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-References"><span class="toc-number">5.</span> <span class="toc-text">3. References</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Skip-Homebrew-auto-update-for-one-command"><span class="toc-number">1.</span> <span class="toc-text">Skip Homebrew auto-update for one command</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Why-bundle-exec-matters"><span class="toc-number">2.</span> <span class="toc-text">Why bundle exec matters</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Running-a-legacy-MySQL-version"><span class="toc-number">3.</span> <span class="toc-text">Running a legacy MySQL version</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Migration-checks"><span class="toc-number">4.</span> <span class="toc-text">Migration checks</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#References"><span class="toc-number">5.</span> <span class="toc-text">References</span></a></li></ol>
       </div>
     
 
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2020/03/16/2020-03-16-new-project-notes-2/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2020/03/16/2020-03-16-new-project-notes-2/&text=New Project Notes [Part 2]" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2020/03/16/2020-03-16-new-project-notes-2/&title=New Project Notes [Part 2]" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2020/03/16/2020-03-16-new-project-notes-2/&is_video=false&description=New Project Notes [Part 2]" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=New Project Notes [Part 2]&body=Check out this article: https://hdchinh.github.io/2020/03/16/2020-03-16-new-project-notes-2/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2020/03/16/2020-03-16-new-project-notes-2/&title=New Project Notes [Part 2]" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2020/03/16/2020-03-16-new-project-notes-2/&title=New Project Notes [Part 2]" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2020/03/16/2020-03-16-new-project-notes-2/&title=New Project Notes [Part 2]" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2020/03/16/2020-03-16-new-project-notes-2/&title=New Project Notes [Part 2]" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2020/03/16/2020-03-16-new-project-notes-2/&name=New Project Notes [Part 2]&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2020/03/16/2020-03-16-new-project-notes-2/&t=New Project Notes [Part 2]" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2020/03/16/2020-03-16-new-project-notes-2/&text=Legacy Rails Maintenance Notes: Bundler, Homebrew, and MySQL" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2020/03/16/2020-03-16-new-project-notes-2/&title=Legacy Rails Maintenance Notes: Bundler, Homebrew, and MySQL" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2020/03/16/2020-03-16-new-project-notes-2/&is_video=false&description=Legacy Rails Maintenance Notes: Bundler, Homebrew, and MySQL" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Legacy Rails Maintenance Notes: Bundler, Homebrew, and MySQL&body=Check out this article: https://hdchinh.github.io/2020/03/16/2020-03-16-new-project-notes-2/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2020/03/16/2020-03-16-new-project-notes-2/&title=Legacy Rails Maintenance Notes: Bundler, Homebrew, and MySQL" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2020/03/16/2020-03-16-new-project-notes-2/&title=Legacy Rails Maintenance Notes: Bundler, Homebrew, and MySQL" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2020/03/16/2020-03-16-new-project-notes-2/&title=Legacy Rails Maintenance Notes: Bundler, Homebrew, and MySQL" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2020/03/16/2020-03-16-new-project-notes-2/&title=Legacy Rails Maintenance Notes: Bundler, Homebrew, and MySQL" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2020/03/16/2020-03-16-new-project-notes-2/&name=Legacy Rails Maintenance Notes: Bundler, Homebrew, and MySQL&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2020/03/16/2020-03-16-new-project-notes-2/&t=Legacy Rails Maintenance Notes: Bundler, Homebrew, and MySQL" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

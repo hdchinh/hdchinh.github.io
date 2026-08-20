@@ -6,17 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="1. Rbenv does not show all version ruby. Reseaon: ruby-build outdated Solution: update ruby-build  Find ruby-build folder and pull the latest code, just type git pull (it is a repository). 2. Apply bo">
+    <meta name="description" content="These notes describe a Rails 6 and Webpacker-era setup. They are useful when maintaining an old application, not as a recommendation for a new Rails project. Software ages; tutorials merely pretend no">
 <meta property="og:type" content="article">
-<meta property="og:title" content="New Project Notes [Part 1]">
+<meta property="og:title" content="Legacy Rails 6 Setup Notes: rbenv, Webpacker, and Git">
 <meta property="og:url" content="https://hdchinh.github.io/2020/02/05/2020-02-05-the-first-note-in-the-new-luna-year/index.html">
 <meta property="og:site_name" content="Hudson">
-<meta property="og:description" content="1. Rbenv does not show all version ruby. Reseaon: ruby-build outdated Solution: update ruby-build  Find ruby-build folder and pull the latest code, just type git pull (it is a repository). 2. Apply bo">
+<meta property="og:description" content="These notes describe a Rails 6 and Webpacker-era setup. They are useful when maintaining an old application, not as a recommendation for a new Rails project. Software ages; tutorials merely pretend no">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-02-04T17:00:00.000Z">
-<meta property="article:modified_time" content="2026-08-19T06:18:46.230Z">
+<meta property="article:modified_time" content="2026-08-20T05:27:12.089Z">
 <meta property="article:author" content="Hudson">
-<meta property="article:tag" content="NOTES">
+<meta property="article:tag" content="RAILS">
 <meta property="article:tag" content="English">
 <meta name="twitter:card" content="summary">
     
@@ -38,7 +38,7 @@
       
     
     <!-- title -->
-    <title>New Project Notes [Part 1]</title>
+    <title>Legacy Rails 6 Setup Notes: rbenv, Webpacker, and Git</title>
     <!-- async scripts -->
     <!-- Google Analytics -->
 
@@ -98,23 +98,23 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2020/02/05/2020-02-05-the-first-note-in-the-new-luna-year/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2020/02/05/2020-02-05-the-first-note-in-the-new-luna-year/&text=New Project Notes [Part 1]" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2020/02/05/2020-02-05-the-first-note-in-the-new-luna-year/&title=New Project Notes [Part 1]" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2020/02/05/2020-02-05-the-first-note-in-the-new-luna-year/&is_video=false&description=New Project Notes [Part 1]" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=New Project Notes [Part 1]&body=Check out this article: https://hdchinh.github.io/2020/02/05/2020-02-05-the-first-note-in-the-new-luna-year/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2020/02/05/2020-02-05-the-first-note-in-the-new-luna-year/&title=New Project Notes [Part 1]" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2020/02/05/2020-02-05-the-first-note-in-the-new-luna-year/&title=New Project Notes [Part 1]" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2020/02/05/2020-02-05-the-first-note-in-the-new-luna-year/&title=New Project Notes [Part 1]" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2020/02/05/2020-02-05-the-first-note-in-the-new-luna-year/&title=New Project Notes [Part 1]" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2020/02/05/2020-02-05-the-first-note-in-the-new-luna-year/&name=New Project Notes [Part 1]&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2020/02/05/2020-02-05-the-first-note-in-the-new-luna-year/&t=New Project Notes [Part 1]" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2020/02/05/2020-02-05-the-first-note-in-the-new-luna-year/&text=Legacy Rails 6 Setup Notes: rbenv, Webpacker, and Git" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2020/02/05/2020-02-05-the-first-note-in-the-new-luna-year/&title=Legacy Rails 6 Setup Notes: rbenv, Webpacker, and Git" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2020/02/05/2020-02-05-the-first-note-in-the-new-luna-year/&is_video=false&description=Legacy Rails 6 Setup Notes: rbenv, Webpacker, and Git" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Legacy Rails 6 Setup Notes: rbenv, Webpacker, and Git&body=Check out this article: https://hdchinh.github.io/2020/02/05/2020-02-05-the-first-note-in-the-new-luna-year/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2020/02/05/2020-02-05-the-first-note-in-the-new-luna-year/&title=Legacy Rails 6 Setup Notes: rbenv, Webpacker, and Git" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2020/02/05/2020-02-05-the-first-note-in-the-new-luna-year/&title=Legacy Rails 6 Setup Notes: rbenv, Webpacker, and Git" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2020/02/05/2020-02-05-the-first-note-in-the-new-luna-year/&title=Legacy Rails 6 Setup Notes: rbenv, Webpacker, and Git" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2020/02/05/2020-02-05-the-first-note-in-the-new-luna-year/&title=Legacy Rails 6 Setup Notes: rbenv, Webpacker, and Git" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2020/02/05/2020-02-05-the-first-note-in-the-new-luna-year/&name=Legacy Rails 6 Setup Notes: rbenv, Webpacker, and Git&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2020/02/05/2020-02-05-the-first-note-in-the-new-luna-year/&t=Legacy Rails 6 Setup Notes: rbenv, Webpacker, and Git" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
     
     
       <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Rbenv-does-not-show-all-version-ruby"><span class="toc-number">1.</span> <span class="toc-text">1. Rbenv does not show all version ruby.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Apply-bootstrap-for-rails-6"><span class="toc-number">2.</span> <span class="toc-text">2. Apply bootstrap for rails 6</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Apply-git-ignore-to-committed-files"><span class="toc-number">3.</span> <span class="toc-text">3. Apply git ignore to committed files</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Rename-both-local-and-remote-branch"><span class="toc-number">4.</span> <span class="toc-text">4. Rename both local and remote branch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-References"><span class="toc-number">5.</span> <span class="toc-text">5. References</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#rbenv-does-not-list-a-Ruby-version"><span class="toc-number">1.</span> <span class="toc-text">rbenv does not list a Ruby version</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bootstrap-in-a-Webpacker-based-Rails-6-app"><span class="toc-number">2.</span> <span class="toc-text">Bootstrap in a Webpacker-based Rails 6 app</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Apply-gitignore-to-files-already-committed"><span class="toc-number">3.</span> <span class="toc-text">Apply .gitignore to files already committed</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Rename-a-local-and-remote-branch"><span class="toc-number">4.</span> <span class="toc-text">Rename a local and remote branch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#References"><span class="toc-number">5.</span> <span class="toc-text">References</span></a></li></ol>
       </div>
     
   </span>
@@ -127,7 +127,7 @@
   <header>
     
     <h1 class="posttitle p-name" itemprop="name headline">
-        New Project Notes [Part 1]
+        Legacy Rails 6 Setup Notes: rbenv, Webpacker, and Git
     </h1>
 
 
@@ -149,7 +149,7 @@
       
     <div class="article-tag">
         <i class="fa-solid fa-tag"></i>
-        <a class="[object Object]-link" href="/tags/English/" rel="tag">English</a>, <a class="[object Object]-link" href="/tags/NOTES/" rel="tag">NOTES</a>
+        <a class="[object Object]-link" href="/tags/English/" rel="tag">English</a>, <a class="[object Object]-link" href="/tags/RAILS/" rel="tag">RAILS</a>
     </div>
 
 
@@ -158,38 +158,32 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    <h2 id="1-Rbenv-does-not-show-all-version-ruby"><a href="#1-Rbenv-does-not-show-all-version-ruby" class="headerlink" title="1. Rbenv does not show all version ruby."></a>1. Rbenv does not show all version ruby.</h2><ul>
-<li>Reseaon: ruby-build outdated</li>
-<li>Solution: update ruby-build</li>
-</ul>
-<p>Find ruby-build folder and pull the latest code, just type <strong>git pull</strong> (it is a repository).</p>
-<h2 id="2-Apply-bootstrap-for-rails-6"><a href="#2-Apply-bootstrap-for-rails-6" class="headerlink" title="2. Apply bootstrap for rails 6"></a>2. Apply bootstrap for rails 6</h2><ul>
-<li><p>step 1: <strong>yarn add bootstrap jquery popper.js</strong></p>
-</li>
-<li><p>step 2: add the code below to <strong>config/webpack/environment.js</strong></p>
-</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; environment &#125; = <span class="built_in">require</span>(<span class="string">'@rails/webpacker'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>)</span><br><span class="line">environment.plugins.append(<span class="string">'Provide'</span>, <span class="keyword">new</span> webpack.ProvidePlugin(&#123;</span><br><span class="line">  $: <span class="string">'jquery'</span>,</span><br><span class="line">  jQuery: <span class="string">'jquery'</span>,</span><br><span class="line">  Popper: [<span class="string">'popper.js'</span>, <span class="string">'default'</span>]</span><br><span class="line">&#125;))</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = environment</span><br></pre></td></tr></table></figure>
+    <p>These notes describe a Rails 6 and Webpacker-era setup. They are useful when maintaining an old application, not as a recommendation for a new Rails project. Software ages; tutorials merely pretend not to.</p>
+<h2 id="rbenv-does-not-list-a-Ruby-version"><a href="#rbenv-does-not-list-a-Ruby-version" class="headerlink" title="rbenv does not list a Ruby version"></a>rbenv does not list a Ruby version</h2><p><code>rbenv install --list</code> gets its version definitions from <code>ruby-build</code>. Update it using the same installation method you originally used.</p>
+<p>With Homebrew:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew update</span><br><span class="line">brew upgrade ruby-build</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li><p>step 3: add to <strong>app/javascript/packs/application.js</strong><br>require(“bootstrap/dist/js/bootstrap”)</p>
-</li>
-<li><p>step 4: add to <strong>app/assets/stylesheets/application.css</strong><br>@import “bootstrap/scss/bootstrap”;</p>
-</li>
+<p>Then verify:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rbenv install --list</span><br></pre></td></tr></table></figure>
+
+<p>Avoid randomly running <code>git pull</code> inside package-manager directories. Homebrew owns those files and would like to keep the custody arrangement uncomplicated.</p>
+<h2 id="Bootstrap-in-a-Webpacker-based-Rails-6-app"><a href="#Bootstrap-in-a-Webpacker-based-Rails-6-app" class="headerlink" title="Bootstrap in a Webpacker-based Rails 6 app"></a>Bootstrap in a Webpacker-based Rails 6 app</h2><p>Legacy applications may contain:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add bootstrap jquery @popperjs/core</span><br></pre></td></tr></table></figure>
+
+<p>Webpacker’s <code>ProvidePlugin</code> can expose jQuery to dependencies that expect globals. The exact configuration depends on the Bootstrap major version: Bootstrap 4 used jQuery and Popper, while Bootstrap 5 removed the jQuery dependency.</p>
+<p>For a modern Rails application, first inspect whether it uses import maps, jsbundling-rails, or another bundler. Do not paste Webpacker configuration into a project that does not have Webpacker; Rails will not be impressed by historical accuracy.</p>
+<h2 id="Apply-gitignore-to-files-already-committed"><a href="#Apply-gitignore-to-files-already-committed" class="headerlink" title="Apply .gitignore to files already committed"></a>Apply <code>.gitignore</code> to files already committed</h2><p>Adding a path to <code>.gitignore</code> does not untrack an existing file. Remove it only from Git’s index:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git rm --cached path/to/file</span><br><span class="line">git rm --cached -r path/to/directory</span><br></pre></td></tr></table></figure>
+
+<p>Then commit the change. This does not remove the local file unless <code>--cached</code> is omitted.</p>
+<p>If the file contained a secret, removing it from the latest commit is not enough. Rotate the secret and, when necessary, rewrite repository history.</p>
+<h2 id="Rename-a-local-and-remote-branch"><a href="#Rename-a-local-and-remote-branch" class="headerlink" title="Rename a local and remote branch"></a>Rename a local and remote branch</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git branch -m new-name</span><br><span class="line">git push -u origin new-name</span><br><span class="line">git push origin --delete old-name</span><br></pre></td></tr></table></figure>
+
+<p>Update the default branch in the hosting provider before deleting the old remote branch when other users or deployments depend on it.</p>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<li><a href="https://github.com/rbenv/ruby-build" target="_blank" rel="noopener">rbenv and ruby-build</a></li>
+<li><a href="https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files" target="_blank" rel="noopener">Ignoring files — GitHub Docs</a></li>
 </ul>
-<h2 id="3-Apply-git-ignore-to-committed-files"><a href="#3-Apply-git-ignore-to-committed-files" class="headerlink" title="3. Apply git ignore to committed files"></a>3. Apply git ignore to committed files</h2><ul>
-<li>step 1: edit <strong>.gitignore</strong></li>
-<li>step 2: <strong>git rm –cached /path/to/file* or *git rm –cached -r /path/to/folder</strong></li>
-</ul>
-<h2 id="4-Rename-both-local-and-remote-branch"><a href="#4-Rename-both-local-and-remote-branch" class="headerlink" title="4. Rename both local and remote branch"></a>4. Rename both local and remote branch</h2><ul>
-<li>step 1: rename local branch <strong>git branch -m new-name</strong></li>
-<li>step 2: delete old remote branch <strong>git push origin :old-name new-name</strong></li>
-<li>step 3: update for the new romote branch <strong>git push origin -u new-name</strong></li>
-</ul>
-<h2 id="5-References"><a href="#5-References" class="headerlink" title="5. References"></a>5. References</h2><p>[1]<a href="https://gorails.com/forum/install-bootstrap-with-webpack-with-rails-6-beta" target="_blank" rel="noopener">https://gorails.com/forum/install-bootstrap-with-webpack-with-rails-6-beta</a></p>
-<p>[2]<a href="https://stackoverflow.com/questions/7527982/applying-gitignore-to-committed-files" target="_blank" rel="noopener">https://stackoverflow.com/questions/7527982/applying-gitignore-to-committed-files</a></p>
-<p>[3]<a href="https://linuxize.com/post/how-to-create-mysql-user-accounts-and-grant-privileges/" target="_blank" rel="noopener">https://linuxize.com/post/how-to-create-mysql-user-accounts-and-grant-privileges/</a></p>
-<p>[4]<a href="https://multiplestates.wordpress.com/2015/02/05/rename-a-local-and-remote-branch-in-git/" target="_blank" rel="noopener">https://multiplestates.wordpress.com/2015/02/05/rename-a-local-and-remote-branch-in-git/</a></p>
 
   </div>
 </article>
@@ -213,23 +207,23 @@
     
     
       <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Rbenv-does-not-show-all-version-ruby"><span class="toc-number">1.</span> <span class="toc-text">1. Rbenv does not show all version ruby.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Apply-bootstrap-for-rails-6"><span class="toc-number">2.</span> <span class="toc-text">2. Apply bootstrap for rails 6</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Apply-git-ignore-to-committed-files"><span class="toc-number">3.</span> <span class="toc-text">3. Apply git ignore to committed files</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Rename-both-local-and-remote-branch"><span class="toc-number">4.</span> <span class="toc-text">4. Rename both local and remote branch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-References"><span class="toc-number">5.</span> <span class="toc-text">5. References</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#rbenv-does-not-list-a-Ruby-version"><span class="toc-number">1.</span> <span class="toc-text">rbenv does not list a Ruby version</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bootstrap-in-a-Webpacker-based-Rails-6-app"><span class="toc-number">2.</span> <span class="toc-text">Bootstrap in a Webpacker-based Rails 6 app</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Apply-gitignore-to-files-already-committed"><span class="toc-number">3.</span> <span class="toc-text">Apply .gitignore to files already committed</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Rename-a-local-and-remote-branch"><span class="toc-number">4.</span> <span class="toc-text">Rename a local and remote branch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#References"><span class="toc-number">5.</span> <span class="toc-text">References</span></a></li></ol>
       </div>
     
 
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2020/02/05/2020-02-05-the-first-note-in-the-new-luna-year/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2020/02/05/2020-02-05-the-first-note-in-the-new-luna-year/&text=New Project Notes [Part 1]" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2020/02/05/2020-02-05-the-first-note-in-the-new-luna-year/&title=New Project Notes [Part 1]" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2020/02/05/2020-02-05-the-first-note-in-the-new-luna-year/&is_video=false&description=New Project Notes [Part 1]" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=New Project Notes [Part 1]&body=Check out this article: https://hdchinh.github.io/2020/02/05/2020-02-05-the-first-note-in-the-new-luna-year/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2020/02/05/2020-02-05-the-first-note-in-the-new-luna-year/&title=New Project Notes [Part 1]" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2020/02/05/2020-02-05-the-first-note-in-the-new-luna-year/&title=New Project Notes [Part 1]" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2020/02/05/2020-02-05-the-first-note-in-the-new-luna-year/&title=New Project Notes [Part 1]" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2020/02/05/2020-02-05-the-first-note-in-the-new-luna-year/&title=New Project Notes [Part 1]" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2020/02/05/2020-02-05-the-first-note-in-the-new-luna-year/&name=New Project Notes [Part 1]&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2020/02/05/2020-02-05-the-first-note-in-the-new-luna-year/&t=New Project Notes [Part 1]" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2020/02/05/2020-02-05-the-first-note-in-the-new-luna-year/&text=Legacy Rails 6 Setup Notes: rbenv, Webpacker, and Git" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2020/02/05/2020-02-05-the-first-note-in-the-new-luna-year/&title=Legacy Rails 6 Setup Notes: rbenv, Webpacker, and Git" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2020/02/05/2020-02-05-the-first-note-in-the-new-luna-year/&is_video=false&description=Legacy Rails 6 Setup Notes: rbenv, Webpacker, and Git" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Legacy Rails 6 Setup Notes: rbenv, Webpacker, and Git&body=Check out this article: https://hdchinh.github.io/2020/02/05/2020-02-05-the-first-note-in-the-new-luna-year/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2020/02/05/2020-02-05-the-first-note-in-the-new-luna-year/&title=Legacy Rails 6 Setup Notes: rbenv, Webpacker, and Git" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2020/02/05/2020-02-05-the-first-note-in-the-new-luna-year/&title=Legacy Rails 6 Setup Notes: rbenv, Webpacker, and Git" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2020/02/05/2020-02-05-the-first-note-in-the-new-luna-year/&title=Legacy Rails 6 Setup Notes: rbenv, Webpacker, and Git" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2020/02/05/2020-02-05-the-first-note-in-the-new-luna-year/&title=Legacy Rails 6 Setup Notes: rbenv, Webpacker, and Git" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2020/02/05/2020-02-05-the-first-note-in-the-new-luna-year/&name=Legacy Rails 6 Setup Notes: rbenv, Webpacker, and Git&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2020/02/05/2020-02-05-the-first-note-in-the-new-luna-year/&t=Legacy Rails 6 Setup Notes: rbenv, Webpacker, and Git" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

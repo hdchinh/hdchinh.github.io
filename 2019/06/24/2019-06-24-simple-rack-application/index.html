@@ -6,21 +6,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="1. Đặt vấn đềCó lẽ cũng như tôi, khi mới tiếp cận với một framework ruby như Rails chẳng hạn, bạn đã nghe về Rack? hoặc ít ra cũng từng thấy cái gem rack trong Gemfile. Nhưng có khi nào bạn dùng đến c">
+    <meta name="description" content="Khi mới học Rails, Rack thường xuất hiện trong Gemfile như một người họ hàng ít nói: luôn có mặt nhưng chẳng ai giải thích. Thực ra contract của Rack rất nhỏ. Một Rack application là object respond to">
 <meta property="og:type" content="article">
-<meta property="og:title" content="A Simple Rack Application">
+<meta property="og:title" content="Rack xử lý một HTTP request như thế nào?">
 <meta property="og:url" content="https://hdchinh.github.io/2019/06/24/2019-06-24-simple-rack-application/index.html">
 <meta property="og:site_name" content="Hudson">
-<meta property="og:description" content="1. Đặt vấn đềCó lẽ cũng như tôi, khi mới tiếp cận với một framework ruby như Rails chẳng hạn, bạn đã nghe về Rack? hoặc ít ra cũng từng thấy cái gem rack trong Gemfile. Nhưng có khi nào bạn dùng đến c">
+<meta property="og:description" content="Khi mới học Rails, Rack thường xuất hiện trong Gemfile như một người họ hàng ít nói: luôn có mặt nhưng chẳng ai giải thích. Thực ra contract của Rack rất nhỏ. Một Rack application là object respond to">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://hdchinh.github.io/images/rack.jpeg">
 <meta property="article:published_time" content="2019-06-23T17:00:00.000Z">
-<meta property="article:modified_time" content="2026-08-14T07:11:23.739Z">
+<meta property="article:modified_time" content="2026-08-20T05:30:54.178Z">
 <meta property="article:author" content="Hudson">
 <meta property="article:tag" content="RUBY">
 <meta property="article:tag" content="RACK">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://hdchinh.github.io/images/rack.jpeg">
     
     
       
@@ -40,7 +38,7 @@
       
     
     <!-- title -->
-    <title>A Simple Rack Application</title>
+    <title>Rack xử lý một HTTP request như thế nào?</title>
     <!-- async scripts -->
     <!-- Google Analytics -->
 
@@ -100,23 +98,23 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/06/24/2019-06-24-simple-rack-application/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/06/24/2019-06-24-simple-rack-application/&text=A Simple Rack Application" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/06/24/2019-06-24-simple-rack-application/&title=A Simple Rack Application" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/06/24/2019-06-24-simple-rack-application/&is_video=false&description=A Simple Rack Application" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=A Simple Rack Application&body=Check out this article: https://hdchinh.github.io/2019/06/24/2019-06-24-simple-rack-application/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/06/24/2019-06-24-simple-rack-application/&title=A Simple Rack Application" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/06/24/2019-06-24-simple-rack-application/&title=A Simple Rack Application" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/06/24/2019-06-24-simple-rack-application/&title=A Simple Rack Application" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/06/24/2019-06-24-simple-rack-application/&title=A Simple Rack Application" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/06/24/2019-06-24-simple-rack-application/&name=A Simple Rack Application&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/06/24/2019-06-24-simple-rack-application/&t=A Simple Rack Application" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/06/24/2019-06-24-simple-rack-application/&text=Rack xử lý một HTTP request như thế nào?" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/06/24/2019-06-24-simple-rack-application/&title=Rack xử lý một HTTP request như thế nào?" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/06/24/2019-06-24-simple-rack-application/&is_video=false&description=Rack xử lý một HTTP request như thế nào?" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Rack xử lý một HTTP request như thế nào?&body=Check out this article: https://hdchinh.github.io/2019/06/24/2019-06-24-simple-rack-application/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/06/24/2019-06-24-simple-rack-application/&title=Rack xử lý một HTTP request như thế nào?" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/06/24/2019-06-24-simple-rack-application/&title=Rack xử lý một HTTP request như thế nào?" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/06/24/2019-06-24-simple-rack-application/&title=Rack xử lý một HTTP request như thế nào?" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/06/24/2019-06-24-simple-rack-application/&title=Rack xử lý một HTTP request như thế nào?" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/06/24/2019-06-24-simple-rack-application/&name=Rack xử lý một HTTP request như thế nào?&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/06/24/2019-06-24-simple-rack-application/&t=Rack xử lý một HTTP request như thế nào?" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
     
     
       <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Dat-van-de"><span class="toc-number">1.</span> <span class="toc-text">1. Đặt vấn đề</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Tham-khao"><span class="toc-number">2.</span> <span class="toc-text">2. Tham khảo?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Kien-thuc-can-chuan-bi-truoc"><span class="toc-number">3.</span> <span class="toc-text">3. Kiến thức cần chuẩn bị trước.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Build-mot-simple-Rack-application"><span class="toc-number">4.</span> <span class="toc-text">4. Build một simple Rack application</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Giai-thich-noi-dung-ma-nguon-cua-app-demo"><span class="toc-number">5.</span> <span class="toc-text">5. Giải thích nội dung mã nguồn của app demo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-Ket-luan"><span class="toc-number">6.</span> <span class="toc-text">6. Kết luận</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Chay-application"><span class="toc-number">1.</span> <span class="toc-text">Chạy application</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Doc-request"><span class="toc-number">2.</span> <span class="toc-text">Đọc request</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Middleware"><span class="toc-number">3.</span> <span class="toc-text">Middleware</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#References"><span class="toc-number">4.</span> <span class="toc-text">References</span></a></li></ol>
       </div>
     
   </span>
@@ -129,7 +127,7 @@
   <header>
     
     <h1 class="posttitle p-name" itemprop="name headline">
-        A Simple Rack Application
+        Rack xử lý một HTTP request như thế nào?
     </h1>
 
 
@@ -147,6 +145,11 @@
 
 
       
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/RUBY/">RUBY</a>
+    </div>
+
 
       
     <div class="article-tag">
@@ -160,67 +163,35 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    <h2 id="1-Dat-van-de"><a href="#1-Dat-van-de" class="headerlink" title="1. Đặt vấn đề"></a>1. Đặt vấn đề</h2><p>Có lẽ cũng như tôi, khi mới tiếp cận với một framework ruby như Rails chẳng hạn, bạn đã nghe về Rack? hoặc ít ra cũng từng thấy cái <strong>gem rack</strong> trong Gemfile. Nhưng có khi nào bạn dùng đến chúng? Không ư? Tôi cũng nghĩ vậy, tôi cũng kệ, tôi cũng chả quan tâm, cuộc sống không đủ high hay sao mà lại đâm đầu vào cái khó :alien:.</p>
-<p>Nhưng làm việc hàng ngày với nó mà không hiểu nó là gì luôn làm cho ta cảm giác bất an vô định, cập nhật CV là Developer mà đi phỏng vấn được hỏi rack là gì, lại trả lời “em…em..em hông biết” thì liệu có bị đánh xuống rank junior hay không? Thôi thì cứ tìm hiểu coi nó ra sao.</p>
-<p>Và thế là tôi đã đọc docs trên trang chủ của Rack, nói chung đọc qua thì có hiểu, mà cái hiểu nó mông lung như một trò đùa, chút nữa thì đành phải “anh xin giơ tay rút lui thôi”.</p>
-<p>Vậy nên tôi sẽ viết một ứng dụng Rack (chạy trên Rack) very..very simple, để tôi và có thể cả bạn có cái nhìn thoáng qua về Rack trước đã, chứ tôi thấy hiểu biết hiện tại của mình chưa đủ để chém gió hàn lâm về chủ đề này (hy vọng tương lai gần sẽ có bài chém gió hàn lâm).</p>
-<h2 id="2-Tham-khao"><a href="#2-Tham-khao" class="headerlink" title="2. Tham khảo?"></a>2. Tham khảo?</h2><ol>
-<li><p>Bài viết này tôi tham khảo cách sử dụng Rack trên trang chủ của Rack <a href="https://rack.github.io/" target="_blank" rel="noopener">tại đây</a> và trên mục docs của ruby <a href="https://www.rubydoc.info/github/rack/rack/" target="_blank" rel="noopener">tại đây</a>.</p>
-</li>
-<li><p>Ứng dụng rất thô sơ và KHÔNG sử dụng “bét pờ rạch tít” nào cả.</p>
-</li>
-</ol>
-<h2 id="3-Kien-thuc-can-chuan-bi-truoc"><a href="#3-Kien-thuc-can-chuan-bi-truoc" class="headerlink" title="3. Kiến thức cần chuẩn bị trước."></a>3. Kiến thức cần chuẩn bị trước.</h2><p>Dù ít dù nhiều thì vẫn phải đánh qua lý thuyết một chút trước khi mày mò làm gì đó. Một số khái niệm/quy trình chúng ta nên nắm trước như sau:</p>
-<p>1) Rack là một lớp nằm giữa web/app server và ứng dụng.</p>
-<p>Ex: Nếu tôi sử dụng Rails với app server là Puma, web server là Nginx thì đường đi của một request sẽ như sau:</p>
-<p><img src="/images/rack.jpeg" alt="hoa"></p>
-<p>Note: Khái niệm <strong>web server</strong> và <strong>app server</strong> chúng ta sẽ bàn tới sau.</p>
-<p>2) Như hình trên, ta có thể thấy Rack sẽ giao tiếp với <strong>app server</strong>, nên Rack sẽ nhận request từ app server gửi qua, với nội dung lằng nhằng rối rắm gì đó, sau đó Rack sẽ <strong>làm gì đó</strong> với cái request rối rắm kia, rồi gửi kết quả mà Rails có thể hiểu và thực thi được. Sau đó Rails sẽ gửi về cho Rack kết quả cũng rối rắm không kém và nhiệm vụ của Rack lại là tiếp tục <strong>làm gì đó</strong> cái kết quả từ Rails, sao cho chuyển kết quả đó thành 1 thứ gì đó mà app server có thể hiểu, cuối cùng app server quăng kết quả về cho người dùng.</p>
-<p>Note: Vậy Rack như một phiên dịch viên để truyền đạt giữa ứng dụng và app server (Không thật sự đúng về bản chất nhưng ta cứ tạm chấp nhận liên tưởng này).</p>
-<h2 id="4-Build-mot-simple-Rack-application"><a href="#4-Build-mot-simple-Rack-application" class="headerlink" title="4. Build một simple Rack application"></a>4. Build một simple Rack application</h2><ul>
-<li>Tạo 1 Folder với 1 file tên <strong>Gemfile</strong> có nội dung như sau:</li>
-</ul>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">source <span class="string">'https://rubygems.org'</span></span><br><span class="line"></span><br><span class="line">gem <span class="string">'rack'</span></span><br></pre></td></tr></table></figure>
+    <p>Khi mới học Rails, Rack thường xuất hiện trong Gemfile như một người họ hàng ít nói: luôn có mặt nhưng chẳng ai giải thích. Thực ra contract của Rack rất nhỏ.</p>
+<p>Một Rack application là object respond to <code>call</code> và nhận <code>env</code>:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">call</span><span class="params">(env)</span></span></span><br><span class="line">    [</span><br><span class="line">      <span class="number">200</span>,</span><br><span class="line">      &#123; <span class="string">"content-type"</span> =&gt; <span class="string">"text/plain; charset=utf-8"</span> &#125;,</span><br><span class="line">      [<span class="string">"Hello from Rack\n"</span>]</span><br><span class="line">    ]</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 
-<ul>
-<li><p>Cài đặt gem vói lệnh <strong>bundle install</strong></p>
-</li>
-<li><p>Tạo file <strong>config.ru</strong>.</p>
-</li>
-</ul>
-<p>Note: Đây sẽ là file main để xử lý request.</p>
-<ul>
-<li>Chạy project với lệnh <strong>bundle exec rackup</strong></li>
-</ul>
-<blockquote>
-<p>Project demo <a href="https://github.com/hdchinh/simple-rack-app" target="_blank" rel="noopener">tại đây!</a></p>
-</blockquote>
-<h2 id="5-Giai-thich-noi-dung-ma-nguon-cua-app-demo"><a href="#5-Giai-thich-noi-dung-ma-nguon-cua-app-demo" class="headerlink" title="5. Giải thích nội dung mã nguồn của app demo"></a>5. Giải thích nội dung mã nguồn của app demo</h2><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">map <span class="string">'/signup_user'</span> <span class="keyword">do</span></span><br><span class="line">  run SignUpUser.new</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">map <span class="string">'/signup'</span> <span class="keyword">do</span></span><br><span class="line">  run MySignUp.new</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">map <span class="string">'/signin'</span> <span class="keyword">do</span></span><br><span class="line">  run MySignIn.new</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">map <span class="string">'/signin_user'</span> <span class="keyword">do</span></span><br><span class="line">  run SignInUser.new</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">map <span class="string">'/'</span> <span class="keyword">do</span></span><br><span class="line">  run HomePage.new</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">run MyNotFound.new</span><br></pre></td></tr></table></figure>
-
-<p>Chắc bạn cũng có thể đoán ra ý nghĩa của nó, nếu map chúng đường dẫn thì sẽ chạy lệnh trong đó.</p>
-<p>Ex:</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">map <span class="string">'/'</span> <span class="keyword">do</span></span><br><span class="line">  run HomePage.new</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-
-<p>Nếu truy cập theo trang chủ thì sẽ chạy lệnh <strong>run HomePage.new</strong>.</p>
-<p>Nếu url người dùng request không trùng bất cứ trường hợp nào thì chạy lệnh <strong>run MyNotFound.new</strong> ở cuối.</p>
-<p>Một class sẽ có dạng như sau:</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SignInUser</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">call</span><span class="params">(env)</span></span></span><br><span class="line">    <span class="comment"># read file data</span></span><br><span class="line">    file = File.read(<span class="string">'data.txt'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># get params</span></span><br><span class="line">    data =  Rack::Utils.parse_nested_query(env[<span class="string">'QUERY_STRING'</span>])</span><br><span class="line">    email = data[<span class="string">'email'</span>]</span><br><span class="line">    pass = data[<span class="string">'password'</span>]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># convert file data from string to hash</span></span><br><span class="line">    hash_data = eval(file)</span><br><span class="line">    <span class="comment"># init variable for user login</span></span><br><span class="line">    user_email = <span class="literal">nil</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># loop hash to find email params</span></span><br><span class="line">    hash_data.each <span class="keyword">do</span> <span class="params">|k, val|</span></span><br><span class="line">      <span class="keyword">if</span> k == email</span><br><span class="line">        <span class="keyword">if</span> val = pass</span><br><span class="line">          user_email = k</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">      <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> user_email</span><br><span class="line">      body = [<span class="string">"&lt;h1&gt;email: <span class="subst">#&#123;user_email&#125;</span>&lt;h/1&gt;"</span>]</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      body = [<span class="string">"&lt;h1&gt;Email or Password Invalid&lt;/h1&gt;"</span>]</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">    [<span class="number">200</span>, &#123;<span class="string">'Content-Type'</span> =&gt; <span class="string">'text/html'</span>&#125;, body]</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-
-<p>Bạn thấy phức tạp? Không sao cả, chỉ cần chú ý đến dòng cuối cùng trong method call. Ta chỉ cần nhớ:</p>
-<ul>
-<li><p>Mỗi class sử dụng method call để cài đặt (yêu cầu của Rack).</p>
-</li>
-<li><p>Trong method này nhận vào một params, đây chính là request đi tới.</p>
-</li>
-<li><p>Kết quả trả về của method call này là một mảng gồm 3 phần tử:</p>
+<p>Response có ba phần:</p>
 <ol>
-<li>Status code (Ví dụ như: 200 -&gt; success, 404 -&gt; not found).</li>
-<li>Một hash, ở đây chính là header, chứa những thông tin mà trình duyệt cần.</li>
-<li>Phần tử cuối cùng là một mảng, chính là phần body của kết quả trả về.</li>
+<li>HTTP status integer.</li>
+<li>Headers dạng hash.</li>
+<li>Body là object có thể <code>each</code> và yield string.</li>
 </ol>
-</li>
+<h2 id="Chay-application"><a href="#Chay-application" class="headerlink" title="Chạy application"></a>Chạy application</h2><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># config.ru</span></span><br><span class="line">require_relative <span class="string">"app"</span></span><br><span class="line"></span><br><span class="line">run App.new</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bundle <span class="built_in">exec</span> rackup</span><br></pre></td></tr></table></figure>
+
+<p>Rack adapter nhận request từ web server, xây <code>env</code>, gọi application và chuyển tuple response trở lại HTTP. Rack không dịch “thứ app server hiểu” sang “thứ Rails hiểu” theo kiểu phép thuật; nó định nghĩa interface chung để server và framework nói cùng protocol.</p>
+<h2 id="Doc-request"><a href="#Doc-request" class="headerlink" title="Đọc request"></a>Đọc request</h2><p>Đừng tự parse <code>QUERY_STRING</code> hoặc <code>eval</code> dữ liệu từ file/request. <code>eval</code> biến input thành Ruby code—một feature khá mạnh nếu mục tiêu là trao server cho người lạ.</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">require</span> <span class="string">"rack"</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">"json"</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">call</span><span class="params">(env)</span></span></span><br><span class="line">    request = Rack::Request.new(env)</span><br><span class="line"></span><br><span class="line">    payload = &#123;</span><br><span class="line">      <span class="symbol">method:</span> request.request_method,</span><br><span class="line">      <span class="symbol">path:</span> request.path,</span><br><span class="line">      <span class="symbol">name:</span> request.params.fetch(<span class="string">"name"</span>, <span class="string">"anonymous"</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    [</span><br><span class="line">      <span class="number">200</span>,</span><br><span class="line">      &#123; <span class="string">"content-type"</span> =&gt; <span class="string">"application/json"</span> &#125;,</span><br><span class="line">      [JSON.generate(payload)]</span><br><span class="line">    ]</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Middleware"><a href="#Middleware" class="headerlink" title="Middleware"></a>Middleware</h2><p>Middleware cũng là Rack app, nhưng giữ reference tới app tiếp theo:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RequestTimer</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">initialize</span><span class="params">(app)</span></span></span><br><span class="line">    @app = app</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">call</span><span class="params">(env)</span></span></span><br><span class="line">    started_at = Process.clock_gettime(Process::CLOCK_MONOTONIC)</span><br><span class="line">    status, headers, body = @app.call(env)</span><br><span class="line">    elapsed = Process.clock_gettime(Process::CLOCK_MONOTONIC) - started_at</span><br><span class="line">    headers[<span class="string">"server-timing"</span>] = <span class="string">"app;dur=<span class="subst">#&#123;(elapsed * <span class="number">1000</span>).round(<span class="number">2</span>)&#125;</span>"</span></span><br><span class="line">    [status, headers, body]</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># config.ru</span></span><br><span class="line">use RequestTimer</span><br><span class="line">run App.new</span><br></pre></td></tr></table></figure>
+
+<p>Rails request đi qua một stack middleware cho logging, cookies, sessions, exceptions, security headers và nhiều việc khác trước khi tới controller.</p>
+<p>Rack đáng học không phải vì ta sẽ bỏ Rails để tự viết framework vào cuối tuần. Nó cho thấy boundary thật sự: <code>env</code> vào, response ba phần ra, middleware bao quanh. Phần còn lại là abstraction—rất hữu ích, nhưng không còn là phép màu.</p>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<li><a href="https://github.com/rack/rack/blob/main/SPEC.rdoc" target="_blank" rel="noopener">Rack specification</a></li>
+<li><a href="https://rack.github.io/" target="_blank" rel="noopener">Rack documentation</a></li>
 </ul>
-<h2 id="6-Ket-luan"><a href="#6-Ket-luan" class="headerlink" title="6. Kết luận"></a>6. Kết luận</h2><p>Trên là một basic app xây dựng với Rack, vì định nghĩa chỉ đọc không làm sẽ rất khó hiểu, nên tôi làm demo trước, hy vọng trong thời gian tới nếu kiến thức thu lượm đủ để viết về cách vận hành của Rack một cách sâu sắc, tôi có thể tiếp tục chủ đề này.</p>
 
   </div>
 </article>
@@ -244,23 +215,23 @@
     
     
       <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Dat-van-de"><span class="toc-number">1.</span> <span class="toc-text">1. Đặt vấn đề</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Tham-khao"><span class="toc-number">2.</span> <span class="toc-text">2. Tham khảo?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Kien-thuc-can-chuan-bi-truoc"><span class="toc-number">3.</span> <span class="toc-text">3. Kiến thức cần chuẩn bị trước.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Build-mot-simple-Rack-application"><span class="toc-number">4.</span> <span class="toc-text">4. Build một simple Rack application</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Giai-thich-noi-dung-ma-nguon-cua-app-demo"><span class="toc-number">5.</span> <span class="toc-text">5. Giải thích nội dung mã nguồn của app demo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-Ket-luan"><span class="toc-number">6.</span> <span class="toc-text">6. Kết luận</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Chay-application"><span class="toc-number">1.</span> <span class="toc-text">Chạy application</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Doc-request"><span class="toc-number">2.</span> <span class="toc-text">Đọc request</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Middleware"><span class="toc-number">3.</span> <span class="toc-text">Middleware</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#References"><span class="toc-number">4.</span> <span class="toc-text">References</span></a></li></ol>
       </div>
     
 
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/06/24/2019-06-24-simple-rack-application/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/06/24/2019-06-24-simple-rack-application/&text=A Simple Rack Application" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/06/24/2019-06-24-simple-rack-application/&title=A Simple Rack Application" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/06/24/2019-06-24-simple-rack-application/&is_video=false&description=A Simple Rack Application" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=A Simple Rack Application&body=Check out this article: https://hdchinh.github.io/2019/06/24/2019-06-24-simple-rack-application/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/06/24/2019-06-24-simple-rack-application/&title=A Simple Rack Application" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/06/24/2019-06-24-simple-rack-application/&title=A Simple Rack Application" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/06/24/2019-06-24-simple-rack-application/&title=A Simple Rack Application" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/06/24/2019-06-24-simple-rack-application/&title=A Simple Rack Application" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/06/24/2019-06-24-simple-rack-application/&name=A Simple Rack Application&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/06/24/2019-06-24-simple-rack-application/&t=A Simple Rack Application" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/06/24/2019-06-24-simple-rack-application/&text=Rack xử lý một HTTP request như thế nào?" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/06/24/2019-06-24-simple-rack-application/&title=Rack xử lý một HTTP request như thế nào?" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/06/24/2019-06-24-simple-rack-application/&is_video=false&description=Rack xử lý một HTTP request như thế nào?" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Rack xử lý một HTTP request như thế nào?&body=Check out this article: https://hdchinh.github.io/2019/06/24/2019-06-24-simple-rack-application/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/06/24/2019-06-24-simple-rack-application/&title=Rack xử lý một HTTP request như thế nào?" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/06/24/2019-06-24-simple-rack-application/&title=Rack xử lý một HTTP request như thế nào?" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/06/24/2019-06-24-simple-rack-application/&title=Rack xử lý một HTTP request như thế nào?" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/06/24/2019-06-24-simple-rack-application/&title=Rack xử lý một HTTP request như thế nào?" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/06/24/2019-06-24-simple-rack-application/&name=Rack xử lý một HTTP request như thế nào?&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/06/24/2019-06-24-simple-rack-application/&t=Rack xử lý một HTTP request như thế nào?" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

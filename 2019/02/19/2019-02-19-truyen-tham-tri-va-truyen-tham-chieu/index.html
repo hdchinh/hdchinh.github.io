@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="1. Định nghĩa Không có một định nghĩa chung nào về pass by value và pass by reference, tuỳ thuộc vào từng ngôn ngữ, chúng lại có cách xử lý và những định nghĩa khác nhau về cách xử lý biến và vùng nhớ">
+    <meta name="description" content="Ruby thường được mô tả là “pass-by-reference”, nhưng mô tả chính xác hơn là pass-by-value, trong đó value được truyền là reference tới object. Nghe hơi vòng, nên xem code. Mutate object1234567def add_">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Pass Reference Vs Pass Value, Ruby!">
+<meta property="og:title" content="Ruby truyền tham số thế nào? Pass-by-value của object reference">
 <meta property="og:url" content="https://hdchinh.github.io/2019/02/19/2019-02-19-truyen-tham-tri-va-truyen-tham-chieu/index.html">
 <meta property="og:site_name" content="Hudson">
-<meta property="og:description" content="1. Định nghĩa Không có một định nghĩa chung nào về pass by value và pass by reference, tuỳ thuộc vào từng ngôn ngữ, chúng lại có cách xử lý và những định nghĩa khác nhau về cách xử lý biến và vùng nhớ">
+<meta property="og:description" content="Ruby thường được mô tả là “pass-by-reference”, nhưng mô tả chính xác hơn là pass-by-value, trong đó value được truyền là reference tới object. Nghe hơi vòng, nên xem code. Mutate object1234567def add_">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2019-02-18T17:00:00.000Z">
-<meta property="article:modified_time" content="2026-08-14T07:11:23.737Z">
+<meta property="article:modified_time" content="2026-08-20T05:33:27.157Z">
 <meta property="article:author" content="Hudson">
 <meta property="article:tag" content="RUBY">
 <meta name="twitter:card" content="summary">
@@ -37,7 +37,7 @@
       
     
     <!-- title -->
-    <title>Pass Reference Vs Pass Value, Ruby!</title>
+    <title>Ruby truyền tham số thế nào? Pass-by-value của object reference</title>
     <!-- async scripts -->
     <!-- Google Analytics -->
 
@@ -97,23 +97,23 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/02/19/2019-02-19-truyen-tham-tri-va-truyen-tham-chieu/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/02/19/2019-02-19-truyen-tham-tri-va-truyen-tham-chieu/&text=Pass Reference Vs Pass Value, Ruby!" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/02/19/2019-02-19-truyen-tham-tri-va-truyen-tham-chieu/&title=Pass Reference Vs Pass Value, Ruby!" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/02/19/2019-02-19-truyen-tham-tri-va-truyen-tham-chieu/&is_video=false&description=Pass Reference Vs Pass Value, Ruby!" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Pass Reference Vs Pass Value, Ruby!&body=Check out this article: https://hdchinh.github.io/2019/02/19/2019-02-19-truyen-tham-tri-va-truyen-tham-chieu/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/02/19/2019-02-19-truyen-tham-tri-va-truyen-tham-chieu/&title=Pass Reference Vs Pass Value, Ruby!" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/02/19/2019-02-19-truyen-tham-tri-va-truyen-tham-chieu/&title=Pass Reference Vs Pass Value, Ruby!" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/02/19/2019-02-19-truyen-tham-tri-va-truyen-tham-chieu/&title=Pass Reference Vs Pass Value, Ruby!" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/02/19/2019-02-19-truyen-tham-tri-va-truyen-tham-chieu/&title=Pass Reference Vs Pass Value, Ruby!" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/02/19/2019-02-19-truyen-tham-tri-va-truyen-tham-chieu/&name=Pass Reference Vs Pass Value, Ruby!&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/02/19/2019-02-19-truyen-tham-tri-va-truyen-tham-chieu/&t=Pass Reference Vs Pass Value, Ruby!" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/02/19/2019-02-19-truyen-tham-tri-va-truyen-tham-chieu/&text=Ruby truyền tham số thế nào? Pass-by-value của object reference" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/02/19/2019-02-19-truyen-tham-tri-va-truyen-tham-chieu/&title=Ruby truyền tham số thế nào? Pass-by-value của object reference" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/02/19/2019-02-19-truyen-tham-tri-va-truyen-tham-chieu/&is_video=false&description=Ruby truyền tham số thế nào? Pass-by-value của object reference" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Ruby truyền tham số thế nào? Pass-by-value của object reference&body=Check out this article: https://hdchinh.github.io/2019/02/19/2019-02-19-truyen-tham-tri-va-truyen-tham-chieu/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/02/19/2019-02-19-truyen-tham-tri-va-truyen-tham-chieu/&title=Ruby truyền tham số thế nào? Pass-by-value của object reference" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/02/19/2019-02-19-truyen-tham-tri-va-truyen-tham-chieu/&title=Ruby truyền tham số thế nào? Pass-by-value của object reference" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/02/19/2019-02-19-truyen-tham-tri-va-truyen-tham-chieu/&title=Ruby truyền tham số thế nào? Pass-by-value của object reference" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/02/19/2019-02-19-truyen-tham-tri-va-truyen-tham-chieu/&title=Ruby truyền tham số thế nào? Pass-by-value của object reference" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/02/19/2019-02-19-truyen-tham-tri-va-truyen-tham-chieu/&name=Ruby truyền tham số thế nào? Pass-by-value của object reference&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/02/19/2019-02-19-truyen-tham-tri-va-truyen-tham-chieu/&t=Ruby truyền tham số thế nào? Pass-by-value của object reference" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
     
     
       <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Dinh-nghia"><span class="toc-number">1.</span> <span class="toc-text">1. Định nghĩa</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Pass-value-va-reference-trong-ruby"><span class="toc-number">2.</span> <span class="toc-text">2. Pass value và reference trong ruby</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Mutate-object"><span class="toc-number">1.</span> <span class="toc-text">Mutate object</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Rebind-parameter"><span class="toc-number">2.</span> <span class="toc-text">Rebind parameter</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Immutable-looking-values"><span class="toc-number">3.</span> <span class="toc-text">Immutable-looking values</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Mental-model"><span class="toc-number">4.</span> <span class="toc-text">Mental model</span></a></li></ol>
       </div>
     
   </span>
@@ -126,7 +126,7 @@
   <header>
     
     <h1 class="posttitle p-name" itemprop="name headline">
-        Pass Reference Vs Pass Value, Ruby!
+        Ruby truyền tham số thế nào? Pass-by-value của object reference
     </h1>
 
 
@@ -144,6 +144,11 @@
 
 
       
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/ruby-notes/">ruby-notes</a>
+    </div>
+
 
       
     <div class="article-tag">
@@ -157,28 +162,28 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    <h2 id="1-Dinh-nghia"><a href="#1-Dinh-nghia" class="headerlink" title="1. Định nghĩa"></a>1. Định nghĩa</h2><ol>
-<li><p>Không có một định nghĩa chung nào về <strong>pass by value</strong> và <strong>pass by reference</strong>, tuỳ thuộc vào từng ngôn ngữ, chúng lại có cách xử lý và những định nghĩa khác nhau về cách xử lý biến và vùng nhớ.</p>
-</li>
-<li><p><strong>Pass value</strong>: Hiểu một cách đơn giản nhất, đó là khi biến bạn truyền vào một method nào đó, dù trong đó logic là gì và nó hà hiếp cái biến bạn bỏ vào ra làm sao, thì khi ra ngoài hàm đó, biến bạn đã truyền ở trên vẫn còn nguyên seal, nguyên kiện, không hề si nhê (không hề thay đổi về giá trị).</p>
-</li>
-<li><p><strong>Pass reference</strong>: ngược lại với sự tử tế trong <strong>Pass value</strong>, khi bạn quyết định truyền tham số dưới dạng một reference, đồng nghĩa với việc bạn chấp nhận rằng cái biến bé bỏng, yếu ớt xinh xinh của bạn sẽ tha hồ bị logic trong hàm hành hạ, và khi ra khỏi hàng nó vẫn mang đầy đủ thương tích đã bị gây ra trong hàm (giá trị biến truyền vào sẽ bị thay đổi theo logic trong hàm).</p>
-</li>
+    <p>Ruby thường được mô tả là “pass-by-reference”, nhưng mô tả chính xác hơn là <strong>pass-by-value</strong>, trong đó value được truyền là reference tới object.</p>
+<p>Nghe hơi vòng, nên xem code.</p>
+<h2 id="Mutate-object"><a href="#Mutate-object" class="headerlink" title="Mutate object"></a>Mutate object</h2><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add_item</span><span class="params">(items)</span></span></span><br><span class="line">  items &lt;&lt; <span class="string">"cat"</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">names = []</span><br><span class="line">add_item(names)</span><br><span class="line">names <span class="comment"># =&gt; ["cat"]</span></span><br></pre></td></tr></table></figure>
+
+<p>Parameter <code>items</code> và variable <code>names</code> ban đầu giữ reference tới cùng array. Mutate qua một reference thì cả hai đều quan sát object đã đổi.</p>
+<h2 id="Rebind-parameter"><a href="#Rebind-parameter" class="headerlink" title="Rebind parameter"></a>Rebind parameter</h2><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">replace</span><span class="params">(items)</span></span></span><br><span class="line">  items = [<span class="string">"dog"</span>]</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">names = []</span><br><span class="line">replace(names)</span><br><span class="line">names <span class="comment"># =&gt; []</span></span><br></pre></td></tr></table></figure>
+
+<p>Assignment chỉ rebind local parameter <code>items</code> sang object khác. Variable <code>names</code> bên ngoài không bị rebind. Nếu Ruby thật sự pass variable by reference, ví dụ này đã thay đổi <code>names</code>.</p>
+<h2 id="Immutable-looking-values"><a href="#Immutable-looking-values" class="headerlink" title="Immutable-looking values"></a>Immutable-looking values</h2><p>Integer, symbol và nhiều object thường được dùng theo cách immutable:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">increment</span><span class="params">(number)</span></span></span><br><span class="line">  number += <span class="number">1</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">value = <span class="number">1</span></span><br><span class="line">increment(value)</span><br><span class="line">value <span class="comment"># =&gt; 1</span></span><br></pre></td></tr></table></figure>
+
+<p><code>+=</code> tạo/rebind value mới; nó không mutate integer cũ.</p>
+<p>String thì mutable:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">shout</span><span class="params">(text)</span></span></span><br><span class="line">  text.upcase!</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">message = <span class="string">"hello"</span></span><br><span class="line">shout(message)</span><br><span class="line">message <span class="comment"># =&gt; "HELLO"</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Mental-model"><a href="#Mental-model" class="headerlink" title="Mental model"></a>Mental model</h2><ol>
+<li>Variable giữ reference tới object.</li>
+<li>Method nhận một bản sao của reference đó.</li>
+<li>Mutating object được quan sát qua mọi reference.</li>
+<li>Rebinding parameter không rebind variable của caller.</li>
 </ol>
-<p>Note: khi còn đi học, tôi đã có một sự nhầm lẫn về value và reference trong C, khi đó tôi đã nghĩ truyền tên biến bình thường thôi là <strong>Pass value</strong>, còn truyền con trỏ là <strong>Pass reference</strong>. Nhưng thực ra đó là không đúng:</p>
-<blockquote>
-<p>The C language is pass-by-value without exception. Passing a pointer as a parameter does not mean pass-by-reference.</p>
-</blockquote>
-<h2 id="2-Pass-value-va-reference-trong-ruby"><a href="#2-Pass-value-va-reference-trong-ruby" class="headerlink" title="2. Pass value và reference trong ruby"></a>2. Pass value và reference trong ruby</h2><p>| Qua thời gian tìm hiểu thì tôi nhận thấy rằng trong ruby không hề có khái niệm rõ ràng về reference hay value, nên mọi kết luận ở đây chỉ là mang tính quy chiếu dựa vào những ý chúng ta đã nói trong mục 1.</p>
-<p>Xem ví dụ sau đây:</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">xinchao</span><span class="params">(a)</span></span></span><br><span class="line">  a = <span class="string">"Nguyen Van A"</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">temp = <span class="string">"Nguyen Van B"</span></span><br><span class="line"></span><br><span class="line">puts <span class="string">"Kq: Xin Chao <span class="subst">#&#123;xinchao(temp)&#125;</span>"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#=&gt; "Kq: Xin Chao Nguyen Van A"</span></span><br></pre></td></tr></table></figure>
-
-<p>Từ ví dụ trên ta có thể rút ra kết luận là ruby <strong>Pass reference</strong>? Vì như bạn đã thấy kết quả là “Nguyen Van A”, giá trị mà chúng ta gán trong hàm <strong>xinchao</strong>.</p>
-<p>Câu trả lời là không, đây là một ví dụ cạm bẫy nếu ta không cẩn thận, khác với một số ngôn ngữ khác bắt buộc phải sử dụng <strong>return</strong> để trả về kết quả trong function, ruby cho phép ta sử dụng giá trị cuối cùng bạn viết ra trong function đó. Tức kết quả trả về trên đơn giản là kết quả thực hiện của function xinchao, chứ còn việc biến temp có thay đổi giá trị hay không thì chúng ta phải thay thế lại một chút như dưới đây để kiểm chứng:</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">xinchao</span><span class="params">(a)</span></span></span><br><span class="line">  a = <span class="string">"Nguyen Van A"</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">temp = <span class="string">"Nguyen Van B"</span></span><br><span class="line"></span><br><span class="line">xinchao(temp)</span><br><span class="line"></span><br><span class="line">puts <span class="string">"Kq: Xin Chao <span class="subst">#&#123;temp&#125;</span>"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#=&gt; "Kq: Xin Chao Nguyen Van B"</span></span><br></pre></td></tr></table></figure>
-
-<p>Oh, vậy ruby là <strong>Pass by value</strong>? Đúng, như đã từng đề cập, ruby không có 1 định nghĩa thuần tuý nào về hai khái niệm mà chúng ta đang thảo luận, nên dựa trên những ý chính mà chúng ta đã thống nhất trong mục 1, ta có thể gọi Ruby là 1 một ngôn ngữ <strong>Pass by value</strong>.</p>
-<p>Vậy có trường hợp ngoại lệ nào không? Như C++ có cả <strong>Pass by value</strong> và <strong>Pass by reference</strong> đó thôi? Theo tôi đọc được thì là không @@.</p>
+<p>Vì vậy câu hỏi khi review method không phải chỉ là “truyền value hay reference?”, mà là <strong>method có mutate object được truyền vào không?</strong> Dấu <code>!</code> có thể gợi ý, nhưng Ruby không bắt buộc; API contract mới là thứ phải đọc.</p>
 
   </div>
 </article>
@@ -202,23 +207,23 @@
     
     
       <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Dinh-nghia"><span class="toc-number">1.</span> <span class="toc-text">1. Định nghĩa</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Pass-value-va-reference-trong-ruby"><span class="toc-number">2.</span> <span class="toc-text">2. Pass value và reference trong ruby</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Mutate-object"><span class="toc-number">1.</span> <span class="toc-text">Mutate object</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Rebind-parameter"><span class="toc-number">2.</span> <span class="toc-text">Rebind parameter</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Immutable-looking-values"><span class="toc-number">3.</span> <span class="toc-text">Immutable-looking values</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Mental-model"><span class="toc-number">4.</span> <span class="toc-text">Mental model</span></a></li></ol>
       </div>
     
 
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/02/19/2019-02-19-truyen-tham-tri-va-truyen-tham-chieu/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/02/19/2019-02-19-truyen-tham-tri-va-truyen-tham-chieu/&text=Pass Reference Vs Pass Value, Ruby!" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/02/19/2019-02-19-truyen-tham-tri-va-truyen-tham-chieu/&title=Pass Reference Vs Pass Value, Ruby!" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/02/19/2019-02-19-truyen-tham-tri-va-truyen-tham-chieu/&is_video=false&description=Pass Reference Vs Pass Value, Ruby!" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Pass Reference Vs Pass Value, Ruby!&body=Check out this article: https://hdchinh.github.io/2019/02/19/2019-02-19-truyen-tham-tri-va-truyen-tham-chieu/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/02/19/2019-02-19-truyen-tham-tri-va-truyen-tham-chieu/&title=Pass Reference Vs Pass Value, Ruby!" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/02/19/2019-02-19-truyen-tham-tri-va-truyen-tham-chieu/&title=Pass Reference Vs Pass Value, Ruby!" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/02/19/2019-02-19-truyen-tham-tri-va-truyen-tham-chieu/&title=Pass Reference Vs Pass Value, Ruby!" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/02/19/2019-02-19-truyen-tham-tri-va-truyen-tham-chieu/&title=Pass Reference Vs Pass Value, Ruby!" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/02/19/2019-02-19-truyen-tham-tri-va-truyen-tham-chieu/&name=Pass Reference Vs Pass Value, Ruby!&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/02/19/2019-02-19-truyen-tham-tri-va-truyen-tham-chieu/&t=Pass Reference Vs Pass Value, Ruby!" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/02/19/2019-02-19-truyen-tham-tri-va-truyen-tham-chieu/&text=Ruby truyền tham số thế nào? Pass-by-value của object reference" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/02/19/2019-02-19-truyen-tham-tri-va-truyen-tham-chieu/&title=Ruby truyền tham số thế nào? Pass-by-value của object reference" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/02/19/2019-02-19-truyen-tham-tri-va-truyen-tham-chieu/&is_video=false&description=Ruby truyền tham số thế nào? Pass-by-value của object reference" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Ruby truyền tham số thế nào? Pass-by-value của object reference&body=Check out this article: https://hdchinh.github.io/2019/02/19/2019-02-19-truyen-tham-tri-va-truyen-tham-chieu/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/02/19/2019-02-19-truyen-tham-tri-va-truyen-tham-chieu/&title=Ruby truyền tham số thế nào? Pass-by-value của object reference" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/02/19/2019-02-19-truyen-tham-tri-va-truyen-tham-chieu/&title=Ruby truyền tham số thế nào? Pass-by-value của object reference" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/02/19/2019-02-19-truyen-tham-tri-va-truyen-tham-chieu/&title=Ruby truyền tham số thế nào? Pass-by-value của object reference" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/02/19/2019-02-19-truyen-tham-tri-va-truyen-tham-chieu/&title=Ruby truyền tham số thế nào? Pass-by-value của object reference" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/02/19/2019-02-19-truyen-tham-tri-va-truyen-tham-chieu/&name=Ruby truyền tham số thế nào? Pass-by-value của object reference&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/02/19/2019-02-19-truyen-tham-tri-va-truyen-tham-chieu/&t=Ruby truyền tham số thế nào? Pass-by-value của object reference" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

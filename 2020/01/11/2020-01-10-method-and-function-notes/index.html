@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="1.What is the different between method and function? A method is on an object. (Tồn tại trên&#x2F;trong một Object)   A function is independent of an object. (Độc lập với các Object)  2.Method and Function">
+    <meta name="description" content="A function is a callable unit of behavior. A method is a function associated with an object or a type and invoked through that association. The exact terminology depends on the language, so universal">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Method And Function">
+<meta property="og:title" content="Function vs. Method: The Distinction That Actually Matters">
 <meta property="og:url" content="https://hdchinh.github.io/2020/01/11/2020-01-10-method-and-function-notes/index.html">
 <meta property="og:site_name" content="Hudson">
-<meta property="og:description" content="1.What is the different between method and function? A method is on an object. (Tồn tại trên&#x2F;trong một Object)   A function is independent of an object. (Độc lập với các Object)  2.Method and Function">
+<meta property="og:description" content="A function is a callable unit of behavior. A method is a function associated with an object or a type and invoked through that association. The exact terminology depends on the language, so universal">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-01-10T17:00:00.000Z">
-<meta property="article:modified_time" content="2026-08-19T06:18:46.229Z">
+<meta property="article:modified_time" content="2026-08-20T05:25:11.766Z">
 <meta property="article:author" content="Hudson">
 <meta property="article:tag" content="NOTES">
 <meta property="article:tag" content="English">
@@ -38,7 +38,7 @@
       
     
     <!-- title -->
-    <title>Method And Function</title>
+    <title>Function vs. Method: The Distinction That Actually Matters</title>
     <!-- async scripts -->
     <!-- Google Analytics -->
 
@@ -98,23 +98,23 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2020/01/11/2020-01-10-method-and-function-notes/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2020/01/11/2020-01-10-method-and-function-notes/&text=Method And Function" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2020/01/11/2020-01-10-method-and-function-notes/&title=Method And Function" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2020/01/11/2020-01-10-method-and-function-notes/&is_video=false&description=Method And Function" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Method And Function&body=Check out this article: https://hdchinh.github.io/2020/01/11/2020-01-10-method-and-function-notes/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2020/01/11/2020-01-10-method-and-function-notes/&title=Method And Function" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2020/01/11/2020-01-10-method-and-function-notes/&title=Method And Function" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2020/01/11/2020-01-10-method-and-function-notes/&title=Method And Function" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2020/01/11/2020-01-10-method-and-function-notes/&title=Method And Function" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2020/01/11/2020-01-10-method-and-function-notes/&name=Method And Function&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2020/01/11/2020-01-10-method-and-function-notes/&t=Method And Function" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2020/01/11/2020-01-10-method-and-function-notes/&text=Function vs. Method: The Distinction That Actually Matters" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2020/01/11/2020-01-10-method-and-function-notes/&title=Function vs. Method: The Distinction That Actually Matters" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2020/01/11/2020-01-10-method-and-function-notes/&is_video=false&description=Function vs. Method: The Distinction That Actually Matters" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Function vs. Method: The Distinction That Actually Matters&body=Check out this article: https://hdchinh.github.io/2020/01/11/2020-01-10-method-and-function-notes/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2020/01/11/2020-01-10-method-and-function-notes/&title=Function vs. Method: The Distinction That Actually Matters" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2020/01/11/2020-01-10-method-and-function-notes/&title=Function vs. Method: The Distinction That Actually Matters" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2020/01/11/2020-01-10-method-and-function-notes/&title=Function vs. Method: The Distinction That Actually Matters" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2020/01/11/2020-01-10-method-and-function-notes/&title=Function vs. Method: The Distinction That Actually Matters" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2020/01/11/2020-01-10-method-and-function-notes/&name=Function vs. Method: The Distinction That Actually Matters&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2020/01/11/2020-01-10-method-and-function-notes/&t=Function vs. Method: The Distinction That Actually Matters" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
     
     
       <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-What-is-the-different-between-method-and-function"><span class="toc-number">1.</span> <span class="toc-text">1.What is the different between method and function?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Method-and-Function-in-programming-languages"><span class="toc-number">2.</span> <span class="toc-text">2.Method and Function in programming languages</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Reference"><span class="toc-number">3.</span> <span class="toc-text">3.Reference</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Across-languages"><span class="toc-number">1.</span> <span class="toc-text">Across languages</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Why-the-distinction-matters"><span class="toc-number">2.</span> <span class="toc-text">Why the distinction matters</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">3.</span> <span class="toc-text">Reference</span></a></li></ol>
       </div>
     
   </span>
@@ -127,7 +127,7 @@
   <header>
     
     <h1 class="posttitle p-name" itemprop="name headline">
-        Method And Function
+        Function vs. Method: The Distinction That Actually Matters
     </h1>
 
 
@@ -158,25 +158,26 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    <h3 id="1-What-is-the-different-between-method-and-function"><a href="#1-What-is-the-different-between-method-and-function" class="headerlink" title="1.What is the different between method and function?"></a>1.What is the different between method and function?</h3><blockquote>
-<p>A method is on an object. (Tồn tại trên/trong một Object)</p>
-</blockquote>
+    <p>A <strong>function</strong> is a callable unit of behavior. A <strong>method</strong> is a function associated with an object or a type and invoked through that association.</p>
+<p>The exact terminology depends on the language, so universal one-line definitions tend to become confidently wrong.</p>
+<h2 id="Across-languages"><a href="#Across-languages" class="headerlink" title="Across languages"></a>Across languages</h2><ul>
+<li><strong>C</strong> has functions but no built-in class-based object model.</li>
+<li><strong>C++</strong> has free functions and member functions.</li>
+<li><strong>JavaScript</strong> functions are values; a function stored on an object is commonly called a method. The call site also affects <code>this</code>.</li>
+<li><strong>Ruby</strong> describes callable behavior as methods. Even a method defined at the top level becomes a private instance method of <code>Object</code>.</li>
+</ul>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">greet</span></span></span><br><span class="line">  <span class="string">"hello"</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">Object.private_instance_methods.<span class="keyword">include</span>?(<span class="symbol">:greet</span>) <span class="comment"># =&gt; true</span></span><br></pre></td></tr></table></figure>
+
+<p>Ruby also has callable objects such as <code>Proc</code>, <code>lambda</code>, and objects implementing <code>call</code>, but those are not ordinary methods.</p>
+<h2 id="Why-the-distinction-matters"><a href="#Why-the-distinction-matters" class="headerlink" title="Why the distinction matters"></a>Why the distinction matters</h2><p>Methods participate in object-oriented dispatch: receiver lookup, inheritance, visibility, and polymorphism. Free functions are resolved according to the language’s function and module rules.</p>
+<p>The useful question is therefore not “Does this syntax look like a function?” but:</p>
 <blockquote>
-<p>A function is independent of an object. (Độc lập với các Object)</p>
+<p>Who owns this callable, how is it resolved, and what context does it receive when invoked?</p>
 </blockquote>
-<h3 id="2-Method-and-Function-in-programming-languages"><a href="#2-Method-and-Function-in-programming-languages" class="headerlink" title="2.Method and Function in programming languages"></a>2.Method and Function in programming languages</h3><blockquote>
-<p>For C, there are only functions (because no OOP context in C)</p>
-</blockquote>
-<blockquote>
-<p>For C++ it would depend on whether or not you’re in a class.</p>
-</blockquote>
-<blockquote>
-<p>For Ruby, there are only methods, because almost anything in Ruby is Object and when you define a “function” not blong to any object, actually it still exist in an “global object” (feeling matrix movie).</p>
-</blockquote>
-<blockquote>
-<p>For Js, existing both.</p>
-</blockquote>
-<h3 id="3-Reference"><a href="#3-Reference" class="headerlink" title="3.Reference"></a>3.Reference</h3><p>[1]<a href="https://stackoverflow.com/questions/155609/whats-the-difference-between-a-method-and-a-function" target="_blank" rel="noopener">https://stackoverflow.com/questions/155609/whats-the-difference-between-a-method-and-a-function</a></p>
+<p>That question survives contact with more than one programming language, which is already an improvement over most definitions found in interview flashcards.</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a href="https://stackoverflow.com/questions/155609/whats-the-difference-between-a-method-and-a-function" target="_blank" rel="noopener">What’s the difference between a method and a function?</a></li>
+</ul>
 
   </div>
 </article>
@@ -200,23 +201,23 @@
     
     
       <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-What-is-the-different-between-method-and-function"><span class="toc-number">1.</span> <span class="toc-text">1.What is the different between method and function?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Method-and-Function-in-programming-languages"><span class="toc-number">2.</span> <span class="toc-text">2.Method and Function in programming languages</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Reference"><span class="toc-number">3.</span> <span class="toc-text">3.Reference</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Across-languages"><span class="toc-number">1.</span> <span class="toc-text">Across languages</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Why-the-distinction-matters"><span class="toc-number">2.</span> <span class="toc-text">Why the distinction matters</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">3.</span> <span class="toc-text">Reference</span></a></li></ol>
       </div>
     
 
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2020/01/11/2020-01-10-method-and-function-notes/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2020/01/11/2020-01-10-method-and-function-notes/&text=Method And Function" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2020/01/11/2020-01-10-method-and-function-notes/&title=Method And Function" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2020/01/11/2020-01-10-method-and-function-notes/&is_video=false&description=Method And Function" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Method And Function&body=Check out this article: https://hdchinh.github.io/2020/01/11/2020-01-10-method-and-function-notes/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2020/01/11/2020-01-10-method-and-function-notes/&title=Method And Function" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2020/01/11/2020-01-10-method-and-function-notes/&title=Method And Function" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2020/01/11/2020-01-10-method-and-function-notes/&title=Method And Function" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2020/01/11/2020-01-10-method-and-function-notes/&title=Method And Function" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2020/01/11/2020-01-10-method-and-function-notes/&name=Method And Function&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2020/01/11/2020-01-10-method-and-function-notes/&t=Method And Function" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2020/01/11/2020-01-10-method-and-function-notes/&text=Function vs. Method: The Distinction That Actually Matters" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2020/01/11/2020-01-10-method-and-function-notes/&title=Function vs. Method: The Distinction That Actually Matters" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2020/01/11/2020-01-10-method-and-function-notes/&is_video=false&description=Function vs. Method: The Distinction That Actually Matters" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Function vs. Method: The Distinction That Actually Matters&body=Check out this article: https://hdchinh.github.io/2020/01/11/2020-01-10-method-and-function-notes/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2020/01/11/2020-01-10-method-and-function-notes/&title=Function vs. Method: The Distinction That Actually Matters" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2020/01/11/2020-01-10-method-and-function-notes/&title=Function vs. Method: The Distinction That Actually Matters" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2020/01/11/2020-01-10-method-and-function-notes/&title=Function vs. Method: The Distinction That Actually Matters" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2020/01/11/2020-01-10-method-and-function-notes/&title=Function vs. Method: The Distinction That Actually Matters" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2020/01/11/2020-01-10-method-and-function-notes/&name=Function vs. Method: The Distinction That Actually Matters&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2020/01/11/2020-01-10-method-and-function-notes/&t=Function vs. Method: The Distinction That Actually Matters" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

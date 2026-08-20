@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="In Linux, these processes are divided into 3 types of processes: Interactive, Batch and Daemon.  The processes which are run by a user at the command line are called Interactive processes. The proces">
+    <meta name="description" content="“Interactive, batch, and daemon” is a useful operational classification, but these are not three mutually exclusive kernel process types. Linux sees processes and threads with states, parents, credent">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux Process Type">
+<meta property="og:title" content="Linux Processes: Interactive Jobs, Batch Work, and Daemons">
 <meta property="og:url" content="https://hdchinh.github.io/2020/05/13/2020-05-13-linux-process-types-dirty-method/index.html">
 <meta property="og:site_name" content="Hudson">
-<meta property="og:description" content="In Linux, these processes are divided into 3 types of processes: Interactive, Batch and Daemon.  The processes which are run by a user at the command line are called Interactive processes. The proces">
+<meta property="og:description" content="“Interactive, batch, and daemon” is a useful operational classification, but these are not three mutually exclusive kernel process types. Linux sees processes and threads with states, parents, credent">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-05-12T17:00:00.000Z">
-<meta property="article:modified_time" content="2026-08-19T06:18:46.231Z">
+<meta property="article:modified_time" content="2026-08-20T05:25:11.767Z">
 <meta property="article:author" content="Hudson">
 <meta property="article:tag" content="NOTES">
 <meta property="article:tag" content="English">
@@ -38,7 +38,7 @@
       
     
     <!-- title -->
-    <title>Linux Process Type</title>
+    <title>Linux Processes: Interactive Jobs, Batch Work, and Daemons</title>
     <!-- async scripts -->
     <!-- Google Analytics -->
 
@@ -98,20 +98,24 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2020/05/13/2020-05-13-linux-process-types-dirty-method/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2020/05/13/2020-05-13-linux-process-types-dirty-method/&text=Linux Process Type" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2020/05/13/2020-05-13-linux-process-types-dirty-method/&title=Linux Process Type" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2020/05/13/2020-05-13-linux-process-types-dirty-method/&is_video=false&description=Linux Process Type" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Linux Process Type&body=Check out this article: https://hdchinh.github.io/2020/05/13/2020-05-13-linux-process-types-dirty-method/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2020/05/13/2020-05-13-linux-process-types-dirty-method/&title=Linux Process Type" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2020/05/13/2020-05-13-linux-process-types-dirty-method/&title=Linux Process Type" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2020/05/13/2020-05-13-linux-process-types-dirty-method/&title=Linux Process Type" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2020/05/13/2020-05-13-linux-process-types-dirty-method/&title=Linux Process Type" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2020/05/13/2020-05-13-linux-process-types-dirty-method/&name=Linux Process Type&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2020/05/13/2020-05-13-linux-process-types-dirty-method/&t=Linux Process Type" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2020/05/13/2020-05-13-linux-process-types-dirty-method/&text=Linux Processes: Interactive Jobs, Batch Work, and Daemons" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2020/05/13/2020-05-13-linux-process-types-dirty-method/&title=Linux Processes: Interactive Jobs, Batch Work, and Daemons" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2020/05/13/2020-05-13-linux-process-types-dirty-method/&is_video=false&description=Linux Processes: Interactive Jobs, Batch Work, and Daemons" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Linux Processes: Interactive Jobs, Batch Work, and Daemons&body=Check out this article: https://hdchinh.github.io/2020/05/13/2020-05-13-linux-process-types-dirty-method/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2020/05/13/2020-05-13-linux-process-types-dirty-method/&title=Linux Processes: Interactive Jobs, Batch Work, and Daemons" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2020/05/13/2020-05-13-linux-process-types-dirty-method/&title=Linux Processes: Interactive Jobs, Batch Work, and Daemons" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2020/05/13/2020-05-13-linux-process-types-dirty-method/&title=Linux Processes: Interactive Jobs, Batch Work, and Daemons" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2020/05/13/2020-05-13-linux-process-types-dirty-method/&title=Linux Processes: Interactive Jobs, Batch Work, and Daemons" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2020/05/13/2020-05-13-linux-process-types-dirty-method/&name=Linux Processes: Interactive Jobs, Batch Work, and Daemons&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2020/05/13/2020-05-13-linux-process-types-dirty-method/&t=Linux Processes: Interactive Jobs, Batch Work, and Daemons" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
     
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Interactive-processes"><span class="toc-number">1.</span> <span class="toc-text">Interactive processes</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Batch-processes"><span class="toc-number">2.</span> <span class="toc-text">Batch processes</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Daemons-and-services"><span class="toc-number">3.</span> <span class="toc-text">Daemons and services</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Process-states"><span class="toc-number">4.</span> <span class="toc-text">Process states</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">5.</span> <span class="toc-text">Reference</span></a></li></ol>
+      </div>
     
   </span>
 </div>
@@ -123,7 +127,7 @@
   <header>
     
     <h1 class="posttitle p-name" itemprop="name headline">
-        Linux Process Type
+        Linux Processes: Interactive Jobs, Batch Work, and Daemons
     </h1>
 
 
@@ -154,14 +158,26 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    <blockquote>
-<p>In Linux, these processes are divided into 3 types of processes: Interactive, Batch and Daemon.</p>
-</blockquote>
-<p>The processes which are run by a user at the command line are called <strong>Interactive processes</strong>.</p>
-<p>The processes which are not associated with the command line and are presented from a queue of processes, which are also most convenient for recurring tasks during the time when the system usage is low is called <strong>the batch processes</strong>.</p>
-<p>The process which is identified by the system and whose PID is always ‘init’, is called as <strong>Daemons</strong>. The ‘init’ is a process which always gets started first at the time when a Linux computer is turned on and it remains on that system until the computer is turned off.</p>
-<p>The Processes due to which Daemons get initiated are forking, making a parent process die when the child process starts performing their normal functions.</p>
-<p>[1]<a href="https://www.quora.com/What-is-a-daemon-process-in-Linux" target="_blank" rel="noopener">https://www.quora.com/What-is-a-daemon-process-in-Linux</a></p>
+    <p>“Interactive, batch, and daemon” is a useful operational classification, but these are not three mutually exclusive kernel process types. Linux sees processes and threads with states, parents, credentials, scheduling properties, and resources. Humans add labels based on how the processes are used.</p>
+<h2 id="Interactive-processes"><a href="#Interactive-processes" class="headerlink" title="Interactive processes"></a>Interactive processes</h2><p>An interactive process is attached to a terminal or user session and exchanges input or output with a user.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vim notes.md</span><br><span class="line">rails console</span><br></pre></td></tr></table></figure>
+
+<p>A process can run in the foreground or background of a shell job. Backgrounding it does not automatically make it a daemon.</p>
+<h2 id="Batch-processes"><a href="#Batch-processes" class="headerlink" title="Batch processes"></a>Batch processes</h2><p>Batch work runs without continuous user interaction, often from a scheduler or queue:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0 2 * * * /usr/<span class="built_in">local</span>/bin/backup</span><br></pre></td></tr></table></figure>
+
+<p>Cron jobs, CI jobs, and background workers are common examples. A batch process can still write logs and fail spectacularly at 2 a.m., when it knows nobody is watching.</p>
+<h2 id="Daemons-and-services"><a href="#Daemons-and-services" class="headerlink" title="Daemons and services"></a>Daemons and services</h2><p>A daemon is a long-running background process that provides a service, such as <code>sshd</code>, <code>nginx</code>, or a database server. Modern Linux systems commonly let <code>systemd</code> manage daemon lifecycle, logs, dependencies, and restart policies.</p>
+<p>A daemon’s PID is <strong>not always <code>init</code></strong>. PID 1 belongs to the init system—commonly <code>systemd</code>—which starts and supervises other processes. Each daemon has its own PID.</p>
+<p>Traditional daemonization involved forking, creating a new session, changing directories, and closing inherited file descriptors. Under <code>systemd</code>, services often stay in the foreground and let the supervisor manage them. Double-forking everything because a 1998 tutorial said so is mostly historical cosplay.</p>
+<h2 id="Process-states"><a href="#Process-states" class="headerlink" title="Process states"></a>Process states</h2><p>Tools such as <code>ps</code> expose kernel states including running, sleeping, stopped, and zombie:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -eo pid,ppid,state,tty,cmd</span><br></pre></td></tr></table></figure>
+
+<p>These states are different from operational labels. A daemon can be sleeping, a batch job can be running, and an interactive process can be stopped.</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a href="https://man7.org/linux/man-pages/man5/proc_pid_stat.5.html" target="_blank" rel="noopener">proc_pid_stat(5) — Linux manual</a></li>
+<li><a href="https://man7.org/linux/man-pages/man5/systemd.service.5.html" target="_blank" rel="noopener">systemd.service(5) — Linux manual</a></li>
+</ul>
 
   </div>
 </article>
@@ -184,20 +200,24 @@
 
     
     
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Interactive-processes"><span class="toc-number">1.</span> <span class="toc-text">Interactive processes</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Batch-processes"><span class="toc-number">2.</span> <span class="toc-text">Batch processes</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Daemons-and-services"><span class="toc-number">3.</span> <span class="toc-text">Daemons and services</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Process-states"><span class="toc-number">4.</span> <span class="toc-text">Process states</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">5.</span> <span class="toc-text">Reference</span></a></li></ol>
+      </div>
+    
 
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2020/05/13/2020-05-13-linux-process-types-dirty-method/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2020/05/13/2020-05-13-linux-process-types-dirty-method/&text=Linux Process Type" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2020/05/13/2020-05-13-linux-process-types-dirty-method/&title=Linux Process Type" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2020/05/13/2020-05-13-linux-process-types-dirty-method/&is_video=false&description=Linux Process Type" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Linux Process Type&body=Check out this article: https://hdchinh.github.io/2020/05/13/2020-05-13-linux-process-types-dirty-method/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2020/05/13/2020-05-13-linux-process-types-dirty-method/&title=Linux Process Type" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2020/05/13/2020-05-13-linux-process-types-dirty-method/&title=Linux Process Type" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2020/05/13/2020-05-13-linux-process-types-dirty-method/&title=Linux Process Type" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2020/05/13/2020-05-13-linux-process-types-dirty-method/&title=Linux Process Type" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2020/05/13/2020-05-13-linux-process-types-dirty-method/&name=Linux Process Type&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2020/05/13/2020-05-13-linux-process-types-dirty-method/&t=Linux Process Type" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2020/05/13/2020-05-13-linux-process-types-dirty-method/&text=Linux Processes: Interactive Jobs, Batch Work, and Daemons" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2020/05/13/2020-05-13-linux-process-types-dirty-method/&title=Linux Processes: Interactive Jobs, Batch Work, and Daemons" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2020/05/13/2020-05-13-linux-process-types-dirty-method/&is_video=false&description=Linux Processes: Interactive Jobs, Batch Work, and Daemons" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Linux Processes: Interactive Jobs, Batch Work, and Daemons&body=Check out this article: https://hdchinh.github.io/2020/05/13/2020-05-13-linux-process-types-dirty-method/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2020/05/13/2020-05-13-linux-process-types-dirty-method/&title=Linux Processes: Interactive Jobs, Batch Work, and Daemons" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2020/05/13/2020-05-13-linux-process-types-dirty-method/&title=Linux Processes: Interactive Jobs, Batch Work, and Daemons" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2020/05/13/2020-05-13-linux-process-types-dirty-method/&title=Linux Processes: Interactive Jobs, Batch Work, and Daemons" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2020/05/13/2020-05-13-linux-process-types-dirty-method/&title=Linux Processes: Interactive Jobs, Batch Work, and Daemons" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2020/05/13/2020-05-13-linux-process-types-dirty-method/&name=Linux Processes: Interactive Jobs, Batch Work, and Daemons&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2020/05/13/2020-05-13-linux-process-types-dirty-method/&t=Linux Processes: Interactive Jobs, Batch Work, and Daemons" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -205,6 +225,8 @@
     <div id="actions-footer">
         <a id="home" class="icon" href="/"><i class="fa-solid fa-house fa-lg" aria-hidden="true"></i> Home</a>
         <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
         
         <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
         <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>

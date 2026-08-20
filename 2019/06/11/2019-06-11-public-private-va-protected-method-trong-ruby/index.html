@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="Đặt vấn đềKhi còn học đại học, chúng ta được học về tầm vực của các phương thức như sau:  Public phương thức, gọi ở đâu cũng được chỉ cần đảm bảo đã include cái class khai báo phương thức đó là được.">
+    <meta name="description" content="Method visibility mô tả API boundary của object. PublicPublic method gọi với explicit receiver: 1account.balance  Đây là contract bên ngoài. PrivatePrivate method chỉ gọi không có explicit receiver (n">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Public, Private Và Protected">
+<meta property="og:title" content="Public, private và protected trong Ruby: visibility là contract">
 <meta property="og:url" content="https://hdchinh.github.io/2019/06/11/2019-06-11-public-private-va-protected-method-trong-ruby/index.html">
 <meta property="og:site_name" content="Hudson">
-<meta property="og:description" content="Đặt vấn đềKhi còn học đại học, chúng ta được học về tầm vực của các phương thức như sau:  Public phương thức, gọi ở đâu cũng được chỉ cần đảm bảo đã include cái class khai báo phương thức đó là được.">
+<meta property="og:description" content="Method visibility mô tả API boundary của object. PublicPublic method gọi với explicit receiver: 1account.balance  Đây là contract bên ngoài. PrivatePrivate method chỉ gọi không có explicit receiver (n">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2019-06-10T17:00:00.000Z">
-<meta property="article:modified_time" content="2026-08-14T07:11:23.739Z">
+<meta property="article:modified_time" content="2026-08-20T05:35:50.844Z">
 <meta property="article:author" content="Hudson">
 <meta property="article:tag" content="RUBY">
 <meta name="twitter:card" content="summary">
@@ -37,7 +37,7 @@
       
     
     <!-- title -->
-    <title>Public, Private Và Protected</title>
+    <title>Public, private và protected trong Ruby: visibility là contract</title>
     <!-- async scripts -->
     <!-- Google Analytics -->
 
@@ -97,23 +97,23 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/06/11/2019-06-11-public-private-va-protected-method-trong-ruby/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/06/11/2019-06-11-public-private-va-protected-method-trong-ruby/&text=Public, Private Và Protected" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/06/11/2019-06-11-public-private-va-protected-method-trong-ruby/&title=Public, Private Và Protected" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/06/11/2019-06-11-public-private-va-protected-method-trong-ruby/&is_video=false&description=Public, Private Và Protected" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Public, Private Và Protected&body=Check out this article: https://hdchinh.github.io/2019/06/11/2019-06-11-public-private-va-protected-method-trong-ruby/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/06/11/2019-06-11-public-private-va-protected-method-trong-ruby/&title=Public, Private Và Protected" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/06/11/2019-06-11-public-private-va-protected-method-trong-ruby/&title=Public, Private Và Protected" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/06/11/2019-06-11-public-private-va-protected-method-trong-ruby/&title=Public, Private Và Protected" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/06/11/2019-06-11-public-private-va-protected-method-trong-ruby/&title=Public, Private Và Protected" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/06/11/2019-06-11-public-private-va-protected-method-trong-ruby/&name=Public, Private Và Protected&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/06/11/2019-06-11-public-private-va-protected-method-trong-ruby/&t=Public, Private Và Protected" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/06/11/2019-06-11-public-private-va-protected-method-trong-ruby/&text=Public, private và protected trong Ruby: visibility là contract" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/06/11/2019-06-11-public-private-va-protected-method-trong-ruby/&title=Public, private và protected trong Ruby: visibility là contract" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/06/11/2019-06-11-public-private-va-protected-method-trong-ruby/&is_video=false&description=Public, private và protected trong Ruby: visibility là contract" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Public, private và protected trong Ruby: visibility là contract&body=Check out this article: https://hdchinh.github.io/2019/06/11/2019-06-11-public-private-va-protected-method-trong-ruby/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/06/11/2019-06-11-public-private-va-protected-method-trong-ruby/&title=Public, private và protected trong Ruby: visibility là contract" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/06/11/2019-06-11-public-private-va-protected-method-trong-ruby/&title=Public, private và protected trong Ruby: visibility là contract" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/06/11/2019-06-11-public-private-va-protected-method-trong-ruby/&title=Public, private và protected trong Ruby: visibility là contract" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/06/11/2019-06-11-public-private-va-protected-method-trong-ruby/&title=Public, private và protected trong Ruby: visibility là contract" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/06/11/2019-06-11-public-private-va-protected-method-trong-ruby/&name=Public, private và protected trong Ruby: visibility là contract&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/06/11/2019-06-11-public-private-va-protected-method-trong-ruby/&t=Public, private và protected trong Ruby: visibility là contract" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
     
     
       <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Dat-van-de"><span class="toc-number">1.</span> <span class="toc-text">Đặt vấn đề</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Luan-ban"><span class="toc-number">2.</span> <span class="toc-text">Luận bàn</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lay-mot-vi-du"><span class="toc-number">3.</span> <span class="toc-text">Lấy một ví dụ</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Them-mot-class-con-ke-thua"><span class="toc-number">4.</span> <span class="toc-text">Thêm một class con kế thừa</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Goi-3-phuong-thuc-Cat-trong-mot-method-thuoc-YellowCat"><span class="toc-number">5.</span> <span class="toc-text">Gọi 3 phương thức Cat trong một method thuộc YellowCat</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Public"><span class="toc-number">1.</span> <span class="toc-text">Public</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Private"><span class="toc-number">2.</span> <span class="toc-text">Private</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Protected"><span class="toc-number">3.</span> <span class="toc-text">Protected</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Class-methods"><span class="toc-number">4.</span> <span class="toc-text">Class methods</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chon-visibility"><span class="toc-number">5.</span> <span class="toc-text">Chọn visibility</span></a></li></ol>
       </div>
     
   </span>
@@ -126,7 +126,7 @@
   <header>
     
     <h1 class="posttitle p-name" itemprop="name headline">
-        Public, Private Và Protected
+        Public, private và protected trong Ruby: visibility là contract
     </h1>
 
 
@@ -146,7 +146,7 @@
       
     <div class="article-category">
         <i class="fa-solid fa-archive"></i>
-        <a class="category-link" href="/categories/RUBY/">RUBY</a>
+        <a class="category-link" href="/categories/ruby-notes/">ruby-notes</a>
     </div>
 
 
@@ -162,52 +162,29 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    <h2 id="Dat-van-de"><a href="#Dat-van-de" class="headerlink" title="Đặt vấn đề"></a>Đặt vấn đề</h2><p>Khi còn học đại học, chúng ta được học về tầm vực của các phương thức như sau:</p>
-<ol>
-<li><p>Public phương thức, gọi ở đâu cũng được chỉ cần đảm bảo đã include cái class khai báo phương thức đó là được.</p>
-</li>
-<li><p>Protected phương thức, gọi ở chính class khai báo nó, ngoài ra còn có thẻ gọi ở các lớp kế thừa class khai báo phương thức này.</p>
-</li>
-<li><p>Private phương thức, gọi ở chính class mà nó được khai báo, ngoài ra…à mà quên không có ngoài ra, chỉ vậy thôi.</p>
-</li>
-</ol>
-<p>Những trích rút trên dựa theo ngôn ngữ mà chúng ta cùng theo đuổi ngày đại học C++. Vậy với Ruby? Liệu những phát biểu trên liệu còn đúng?</p>
-<h2 id="Luan-ban"><a href="#Luan-ban" class="headerlink" title="Luận bàn"></a>Luận bàn</h2><p>Không, những trích rút trên không còn đúng đắn hoàn toàn với ngôn ngữ Ruby. Có một số khác biệt. Trong bài viết này chúng ta sẽ đi sơ qua về nó.</p>
-<p>“Mà sao lại là sơ qua? sao bài nào cũng dùng từ đi sơ qua mà không phải là “đíp đờ rai tu” gì đó, viết blog kiểu cơm nguội như này viết làm gì (angry).”</p>
-<p>=&gt; Vì đây không phải kiến thức cao siêu gì cả, có vô vàn tài liệu anh ngữ đề cập đến nó rồi và tôi không thấy cái lý do gì để cố đọc tài liệu thật nhiều, translate thật đã tay, rồi vietsub ra một bài viết dài như sông Hồng để nói về một chủ đề vô cùng normal để thể hiện bản thân cả :smile:</p>
-<h2 id="Lay-mot-vi-du"><a href="#Lay-mot-vi-du" class="headerlink" title="Lấy một ví dụ"></a>Lấy một ví dụ</h2><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cat</span></span></span><br><span class="line">  <span class="comment"># default public method</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">cat_hello_public</span></span></span><br><span class="line">    puts <span class="string">"T*o ngao ngao public mot cach quy toc"</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  protected</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">cat_hello_protected</span></span></span><br><span class="line">    puts <span class="string">"T*o ngao ngao protected mot cach sexy"</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  private</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">cat_hello_private</span></span></span><br><span class="line">    puts <span class="string">"T*o ngao ngao private mot  cach len lut"</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+    <p>Method visibility mô tả API boundary của object.</p>
+<h2 id="Public"><a href="#Public" class="headerlink" title="Public"></a>Public</h2><p>Public method gọi với explicit receiver:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">account.balance</span><br></pre></td></tr></table></figure>
 
-<p>Ra ngoài scope của class này rồi chạy:</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Cat.new.cat_hello_public</span><br><span class="line"><span class="comment"># =&gt; T*o ngao ngao public mot cach quy toc.</span></span><br><span class="line">Cat.new.cat_hello_protected</span><br><span class="line"><span class="comment"># =&gt; error</span></span><br><span class="line">Cat.new.cat_hello_private</span><br><span class="line"><span class="comment"># =&gt; error</span></span><br></pre></td></tr></table></figure>
+<p>Đây là contract bên ngoài.</p>
+<h2 id="Private"><a href="#Private" class="headerlink" title="Private"></a>Private</h2><p>Private method chỉ gọi không có explicit receiver (ngoại lệ syntax như setter có nuance riêng):</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Account</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">close</span></span></span><br><span class="line">    audit</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  private</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">audit</span></span></span><br><span class="line">    <span class="comment"># ...</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 
-<p><strong>Note:</strong> public có thể gọi ngoài tầm vực của một class, những method còn lại thì không. Đồng nghĩa với việc bạn chỉ cần đảm bảo ref được file chưa class có phương thức public đó thì bạn có thể thoải mái gọi phương thức này.</p>
-<h2 id="Them-mot-class-con-ke-thua"><a href="#Them-mot-class-con-ke-thua" class="headerlink" title="Thêm một class con kế thừa"></a>Thêm một class con kế thừa</h2><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">YellowCat</span> &lt; Cat;</span> <span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>Private không phải security boundary. <code>send</code>, reflection và reopen class vẫn truy cập được. Nó là tín hiệu thiết kế: caller không nên phụ thuộc method này.</p>
+<h2 id="Protected"><a href="#Protected" class="headerlink" title="Protected"></a>Protected</h2><p>Protected method có thể gọi với explicit receiver khi receiver phù hợp trong hierarchy/context:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Account</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">richer_than?</span><span class="params">(other)</span></span></span><br><span class="line">    balance &gt; other.balance</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  protected</span><br><span class="line"></span><br><span class="line">  <span class="keyword">attr_reader</span> <span class="symbol">:balance</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 
-<p>Chạy:</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">YellowCat.new.cat_hello_public</span><br><span class="line"><span class="comment"># =&gt; T*o ngao ngao public mot cach quy toc.</span></span><br></pre></td></tr></table></figure>
+<p>Hữu ích cho object cùng loại cần cộng tác trên internal state, nhưng ít dùng hơn private.</p>
+<h2 id="Class-methods"><a href="#Class-methods" class="headerlink" title="Class methods"></a>Class methods</h2><p>Visibility của instance method và singleton method khác nhau:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Token</span></span></span><br><span class="line">  <span class="class"><span class="keyword">class</span> &lt;&lt; self</span></span><br><span class="line">    private</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">secret</span></span></span><br><span class="line">      <span class="string">"x"</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 
-<p><strong>Note:</strong> Phương thức public có thể được gọi công khai bởi class kế thừa của class chưa phương thức đó.</p>
-<h2 id="Goi-3-phuong-thuc-Cat-trong-mot-method-thuoc-YellowCat"><a href="#Goi-3-phuong-thuc-Cat-trong-mot-method-thuoc-YellowCat" class="headerlink" title="Gọi 3 phương thức Cat trong một method thuộc YellowCat"></a>Gọi 3 phương thức Cat trong một method thuộc YellowCat</h2><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">YellowCat</span> &lt; Cat</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">yellow_cat</span></span></span><br><span class="line">    cat_hello_public</span><br><span class="line">    cat_hello_protected</span><br><span class="line">    cat_hello_private</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-
-<p>Chạy:</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">YellowCat.new.yellow_cat</span><br><span class="line"><span class="comment"># =&gt; T*o ngao ngao public mot cach quy toc</span></span><br><span class="line"><span class="comment"># =&gt; T*o ngao ngao protected mot cach sexy</span></span><br><span class="line"><span class="comment"># =&gt; T*o ngao ngao private mot  cach len lut</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>Note:</strong> Cả 3 dạng phương thức đều có thể được gọi trong lớp con (Trong lớp con nhé).</p>
-<blockquote>
-<p>Trong phương thức yellow_cat khai báo một đối tượng Cat và gọi tới 3 phương thức</p>
-</blockquote>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">YellowCat</span> &lt; Cat</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">yellow_cat</span></span></span><br><span class="line">    cat = Cat.new</span><br><span class="line">    cat.cat_hello_public</span><br><span class="line">    cat.cat_hello_protected</span><br><span class="line">    cat.cat_hello_private</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-
-<p>Chạy:</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">YellowCat.new.yellow_cat</span><br><span class="line"><span class="comment"># =&gt; T*o ngao ngao public mot cach quy toc</span></span><br><span class="line"><span class="comment"># =&gt; T*o ngao ngao protected mot cach sexy</span></span><br><span class="line"><span class="comment"># =&gt;  error</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>Note:</strong> Trong một lớp con kế thừa từ lớp cha, public và protected method của lớp cha có thể được lớp con access thông qua <strong>implicit receiver</strong> and <strong>explicit receiver</strong>. Còn private method thì chỉ có thể được access thông qua <strong>implicit receiver</strong>.</p>
-<ol>
-<li><p><strong>Implicit receiver</strong>: Không chỉ định đối tượng sẽ thực hiện phương thức.</p>
-</li>
-<li><p><strong>Explicit receiver</strong>: Chỉ định rõ ràng đối tượng sẽ thực hiện phương thức.</p>
-</li>
-</ol>
+<p><code>private_class_method</code> cũng có thể dùng.</p>
+<h2 id="Chon-visibility"><a href="#Chon-visibility" class="headerlink" title="Chọn visibility"></a>Chọn visibility</h2><ul>
+<li>Public: stable behavior cho caller.</li>
+<li>Private: implementation detail.</li>
+<li>Protected: collaboration nội bộ giữa related objects.</li>
+</ul>
+<p>Giảm public surface giúp refactor dễ hơn. Mỗi public method là một lời hứa; codebase lâu năm thường đau vì đã hứa quá nhiều lúc còn trẻ.</p>
 
   </div>
 </article>
@@ -231,23 +208,23 @@
     
     
       <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Dat-van-de"><span class="toc-number">1.</span> <span class="toc-text">Đặt vấn đề</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Luan-ban"><span class="toc-number">2.</span> <span class="toc-text">Luận bàn</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lay-mot-vi-du"><span class="toc-number">3.</span> <span class="toc-text">Lấy một ví dụ</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Them-mot-class-con-ke-thua"><span class="toc-number">4.</span> <span class="toc-text">Thêm một class con kế thừa</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Goi-3-phuong-thuc-Cat-trong-mot-method-thuoc-YellowCat"><span class="toc-number">5.</span> <span class="toc-text">Gọi 3 phương thức Cat trong một method thuộc YellowCat</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Public"><span class="toc-number">1.</span> <span class="toc-text">Public</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Private"><span class="toc-number">2.</span> <span class="toc-text">Private</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Protected"><span class="toc-number">3.</span> <span class="toc-text">Protected</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Class-methods"><span class="toc-number">4.</span> <span class="toc-text">Class methods</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Chon-visibility"><span class="toc-number">5.</span> <span class="toc-text">Chọn visibility</span></a></li></ol>
       </div>
     
 
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/06/11/2019-06-11-public-private-va-protected-method-trong-ruby/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/06/11/2019-06-11-public-private-va-protected-method-trong-ruby/&text=Public, Private Và Protected" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/06/11/2019-06-11-public-private-va-protected-method-trong-ruby/&title=Public, Private Và Protected" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/06/11/2019-06-11-public-private-va-protected-method-trong-ruby/&is_video=false&description=Public, Private Và Protected" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Public, Private Và Protected&body=Check out this article: https://hdchinh.github.io/2019/06/11/2019-06-11-public-private-va-protected-method-trong-ruby/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/06/11/2019-06-11-public-private-va-protected-method-trong-ruby/&title=Public, Private Và Protected" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/06/11/2019-06-11-public-private-va-protected-method-trong-ruby/&title=Public, Private Và Protected" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/06/11/2019-06-11-public-private-va-protected-method-trong-ruby/&title=Public, Private Và Protected" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/06/11/2019-06-11-public-private-va-protected-method-trong-ruby/&title=Public, Private Và Protected" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/06/11/2019-06-11-public-private-va-protected-method-trong-ruby/&name=Public, Private Và Protected&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/06/11/2019-06-11-public-private-va-protected-method-trong-ruby/&t=Public, Private Và Protected" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/06/11/2019-06-11-public-private-va-protected-method-trong-ruby/&text=Public, private và protected trong Ruby: visibility là contract" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/06/11/2019-06-11-public-private-va-protected-method-trong-ruby/&title=Public, private và protected trong Ruby: visibility là contract" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/06/11/2019-06-11-public-private-va-protected-method-trong-ruby/&is_video=false&description=Public, private và protected trong Ruby: visibility là contract" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Public, private và protected trong Ruby: visibility là contract&body=Check out this article: https://hdchinh.github.io/2019/06/11/2019-06-11-public-private-va-protected-method-trong-ruby/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/06/11/2019-06-11-public-private-va-protected-method-trong-ruby/&title=Public, private và protected trong Ruby: visibility là contract" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/06/11/2019-06-11-public-private-va-protected-method-trong-ruby/&title=Public, private và protected trong Ruby: visibility là contract" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/06/11/2019-06-11-public-private-va-protected-method-trong-ruby/&title=Public, private và protected trong Ruby: visibility là contract" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/06/11/2019-06-11-public-private-va-protected-method-trong-ruby/&title=Public, private và protected trong Ruby: visibility là contract" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/06/11/2019-06-11-public-private-va-protected-method-trong-ruby/&name=Public, private và protected trong Ruby: visibility là contract&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/06/11/2019-06-11-public-private-va-protected-method-trong-ruby/&t=Public, private và protected trong Ruby: visibility là contract" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

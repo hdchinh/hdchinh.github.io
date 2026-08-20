@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="Đặt vấn đề123class CatsController &lt; ApplicationController  # do somethingend  Đoạn mã trên là một đoạn mã rất quen thuộc khi sử dụng rails framework, một câu hỏi đó là tại sao trong class CatsContr">
+    <meta name="description" content="Rails hiện đại dùng Zeitwerk để map tên constant với đường dẫn file. Ý tưởng cốt lõi: cấu trúc thư mục và namespace phải nói cùng một ngôn ngữ. 1app&#x2F;services&#x2F;billing&#x2F;invoice_creator.rb">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Cơ Chế Autoloading Và Reloading">
+<meta property="og:title" content="Zeitwerk, Autoloading và Reloading trong Rails">
 <meta property="og:url" content="https://hdchinh.github.io/2019/04/17/2019-05-16-autoloading-va-reloading-constants-trong-rails/index.html">
 <meta property="og:site_name" content="Hudson">
-<meta property="og:description" content="Đặt vấn đề123class CatsController &lt; ApplicationController  # do somethingend  Đoạn mã trên là một đoạn mã rất quen thuộc khi sử dụng rails framework, một câu hỏi đó là tại sao trong class CatsContr">
+<meta property="og:description" content="Rails hiện đại dùng Zeitwerk để map tên constant với đường dẫn file. Ý tưởng cốt lõi: cấu trúc thư mục và namespace phải nói cùng một ngôn ngữ. 1app&#x2F;services&#x2F;billing&#x2F;invoice_creator.rb">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2019-04-16T17:00:00.000Z">
-<meta property="article:modified_time" content="2026-08-14T07:11:23.738Z">
+<meta property="article:modified_time" content="2026-08-20T05:30:54.176Z">
 <meta property="article:author" content="Hudson">
 <meta property="article:tag" content="rails">
 <meta name="twitter:card" content="summary">
@@ -37,7 +37,7 @@
       
     
     <!-- title -->
-    <title>Cơ Chế Autoloading Và Reloading</title>
+    <title>Zeitwerk, Autoloading và Reloading trong Rails</title>
     <!-- async scripts -->
     <!-- Google Analytics -->
 
@@ -97,23 +97,23 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/04/17/2019-05-16-autoloading-va-reloading-constants-trong-rails/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/04/17/2019-05-16-autoloading-va-reloading-constants-trong-rails/&text=Cơ Chế Autoloading Và Reloading" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/04/17/2019-05-16-autoloading-va-reloading-constants-trong-rails/&title=Cơ Chế Autoloading Và Reloading" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/04/17/2019-05-16-autoloading-va-reloading-constants-trong-rails/&is_video=false&description=Cơ Chế Autoloading Và Reloading" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Cơ Chế Autoloading Và Reloading&body=Check out this article: https://hdchinh.github.io/2019/04/17/2019-05-16-autoloading-va-reloading-constants-trong-rails/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/04/17/2019-05-16-autoloading-va-reloading-constants-trong-rails/&title=Cơ Chế Autoloading Và Reloading" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/04/17/2019-05-16-autoloading-va-reloading-constants-trong-rails/&title=Cơ Chế Autoloading Và Reloading" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/04/17/2019-05-16-autoloading-va-reloading-constants-trong-rails/&title=Cơ Chế Autoloading Và Reloading" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/04/17/2019-05-16-autoloading-va-reloading-constants-trong-rails/&title=Cơ Chế Autoloading Và Reloading" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/04/17/2019-05-16-autoloading-va-reloading-constants-trong-rails/&name=Cơ Chế Autoloading Và Reloading&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/04/17/2019-05-16-autoloading-va-reloading-constants-trong-rails/&t=Cơ Chế Autoloading Và Reloading" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/04/17/2019-05-16-autoloading-va-reloading-constants-trong-rails/&text=Zeitwerk, Autoloading và Reloading trong Rails" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/04/17/2019-05-16-autoloading-va-reloading-constants-trong-rails/&title=Zeitwerk, Autoloading và Reloading trong Rails" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/04/17/2019-05-16-autoloading-va-reloading-constants-trong-rails/&is_video=false&description=Zeitwerk, Autoloading và Reloading trong Rails" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Zeitwerk, Autoloading và Reloading trong Rails&body=Check out this article: https://hdchinh.github.io/2019/04/17/2019-05-16-autoloading-va-reloading-constants-trong-rails/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/04/17/2019-05-16-autoloading-va-reloading-constants-trong-rails/&title=Zeitwerk, Autoloading và Reloading trong Rails" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/04/17/2019-05-16-autoloading-va-reloading-constants-trong-rails/&title=Zeitwerk, Autoloading và Reloading trong Rails" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/04/17/2019-05-16-autoloading-va-reloading-constants-trong-rails/&title=Zeitwerk, Autoloading và Reloading trong Rails" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/04/17/2019-05-16-autoloading-va-reloading-constants-trong-rails/&title=Zeitwerk, Autoloading và Reloading trong Rails" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/04/17/2019-05-16-autoloading-va-reloading-constants-trong-rails/&name=Zeitwerk, Autoloading và Reloading trong Rails&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/04/17/2019-05-16-autoloading-va-reloading-constants-trong-rails/&t=Zeitwerk, Autoloading và Reloading trong Rails" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
     
     
       <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Dat-van-de"><span class="toc-number">1.</span> <span class="toc-text">Đặt vấn đề</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Luan-ban"><span class="toc-number">2.</span> <span class="toc-text">Luận bàn</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ket-luan"><span class="toc-number">3.</span> <span class="toc-text">Kết luận</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Autoload-paths"><span class="toc-number">1.</span> <span class="toc-text">Autoload paths</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Eager-loading"><span class="toc-number">2.</span> <span class="toc-text">Eager loading</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reloading-trong-development"><span class="toc-number">3.</span> <span class="toc-text">Reloading trong development</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#require-dung-khi-nao"><span class="toc-number">4.</span> <span class="toc-text">require dùng khi nào?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">5.</span> <span class="toc-text">Reference</span></a></li></ol>
       </div>
     
   </span>
@@ -126,7 +126,7 @@
   <header>
     
     <h1 class="posttitle p-name" itemprop="name headline">
-        Cơ Chế Autoloading Và Reloading
+        Zeitwerk, Autoloading và Reloading trong Rails
     </h1>
 
 
@@ -146,7 +146,7 @@
       
     <div class="article-category">
         <i class="fa-solid fa-archive"></i>
-        <a class="category-link" href="/categories/rails-notes/">rails notes</a>
+        <a class="category-link" href="/categories/rails-notes/">rails-notes</a>
     </div>
 
 
@@ -162,46 +162,37 @@
   
 
   <div class="content e-content" itemprop="articleBody">
-    <h2 id="Dat-van-de"><a href="#Dat-van-de" class="headerlink" title="Đặt vấn đề"></a>Đặt vấn đề</h2><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CatsController</span> &lt; ApplicationController</span></span><br><span class="line">  <span class="comment"># do something</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+    <p>Rails hiện đại dùng Zeitwerk để map tên constant với đường dẫn file. Ý tưởng cốt lõi: cấu trúc thư mục và namespace phải nói cùng một ngôn ngữ.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app&#x2F;services&#x2F;billing&#x2F;invoice_creator.rb</span><br></pre></td></tr></table></figure>
 
-<p>Đoạn mã trên là một đoạn mã rất quen thuộc khi sử dụng rails framework, một câu hỏi đó là tại sao trong class CatsController không require file chưa class ApplicationController nhưng ta vẫn có thể sử dụng. Câu trả lời nằm ở việc rails có cơ chế autoloading một số folder nhất định để support cho việc coding và vận hành, bài viết này sẽ nêu một cách khái quát về giải pháp này trong rails.</p>
-<h2 id="Luan-ban"><a href="#Luan-ban" class="headerlink" title="Luận bàn"></a>Luận bàn</h2><p>Như bài viết trước đã đề cập về cách mà phương thức require hoạt động:</p>
-<ol>
-<li><p>Tìm file được require theo các đường dẫn được lưu trong biến $LOAD_PATH (biến này là 1 mảng các đường dẫn).</p>
-</li>
-<li><p>Khi tìm được file tương ứng thì dừng quá trình tìm file và bắt đầu load file tìm được vào bộ nhớ.</p>
-</li>
-<li><p>Nếu tìm hết các đường dẫn và không thấy thì gọi tới LoadError.</p>
-</li>
-</ol>
-<p><strong>autoload_paths</strong> là một tập hợp các thư mục được tự động load mà không cần require. Mặc định thì autoload_paths sẽ chứa các thư mục sau:</p>
-<ol>
-<li><p>Tất cả các thư mục con cấp 1 của thư mục app, ví dụ như app/controllers, app/views…</p>
-</li>
-<li><p>Tất cả các thư mục cấp 2 tên là concerns trong app, ví dụ như app/helpers/concerns, app/lib/concerns…</p>
-</li>
-<li><p>Thư mục test/mailers/previews.</p>
-</li>
-</ol>
-<p>Ta có thể xem danh sách này bằng câu lệnh:</p>
-<p><strong>bin/rails r ‘puts ActiveSupport::Dependencies.autoload_paths’</strong></p>
-<p><strong>eager_load_paths</strong> hoàn toàn giống như khái niệm về autoload_paths đã nêu ở trên. Điểm chúng ta cần lưu ý đó là:</p>
-<ol>
-<li><p>Những thư mục nằm trong eager_load_paths sẽ được load một lần duy nhất TRƯỚC khi ứng dụng của bạn khởi chạy.</p>
-</li>
-<li><p>Những thư mục nằm trong autoload_paths sẽ được sử dụng để tìm kiếm khi chương trình ĐANG CHẠY và gặp 1 từ khoá chưa được định nghĩa trong file hiện tại.</p>
-</li>
-</ol>
-<p>Ta có 2 từ in hoa, đó là phần quan trọng, để đảm bảo tính nhất quán và hoạt động một cách ổn định và chính xác, trong môi trường production ta sử dụng eager_load_paths để load toàn bộ những file cần thiết cho các hệ thống cần thì sử dụng, còn ở môi trường phát triển, để khởi chạy ứng dụng nhanh chóng hơn và dễ dàng cập nhật các thay đổi thì ta sử dụng autoload_paths.</p>
-<p>Việc thiết lập này phụ thuộc vào cấu hình của bạn trong thư mục <strong>app/config/envirements/…</strong> với 2 cấu hình là:</p>
-<ol>
-<li><p>config.cache_classes</p>
-</li>
-<li><p>config.eager_load</p>
-</li>
-</ol>
-<h2 id="Ket-luan"><a href="#Ket-luan" class="headerlink" title="Kết luận"></a>Kết luận</h2><p>Tham khảo:</p>
-<p>[1] <a href="https://guides.rubyonrails.org/autoloading_and_reloading_constants.html" target="_blank" rel="noopener">autoloading_and_reloading_constants</a></p>
+<p>phải định nghĩa:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">module</span> <span class="title">Billing</span></span></span><br><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">InvoiceCreator</span></span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>Nếu file tên một đằng, constant tên một nẻo, Rails không “đoán thông minh”; nó báo lỗi, và lần này Rails đúng.</p>
+<h2 id="Autoload-paths"><a href="#Autoload-paths" class="headerlink" title="Autoload paths"></a>Autoload paths</h2><p>Các thư mục như <code>app/models</code>, <code>app/controllers</code>, <code>app/jobs</code> và custom directories dưới <code>app</code> thường nằm trong autoload paths. Không cần <code>require</code> file application theo cách thủ công.</p>
+<p>Kiểm tra setup:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/rails zeitwerk:check</span><br></pre></td></tr></table></figure>
+
+<p>Command này nên chạy trong CI trước deploy.</p>
+<h2 id="Eager-loading"><a href="#Eager-loading" class="headerlink" title="Eager loading"></a>Eager loading</h2><p>Ở production, Rails thường eager load application code khi boot:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">config.eager_load = <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p>Lợi ích:</p>
+<ul>
+<li>phát hiện naming error khi boot thay vì request đầu tiên;</li>
+<li>tránh autoload không thread-safe theo kiểu cổ điển;</li>
+<li>phù hợp với copy-on-write khi preload trước khi fork worker.</li>
+</ul>
+<h2 id="Reloading-trong-development"><a href="#Reloading-trong-development" class="headerlink" title="Reloading trong development"></a>Reloading trong development</h2><p>Development reloader unload constant có thể reload rồi load lại code khi file thay đổi. Vì vậy không nên cache object class có thể reload trong global state lâu dài.</p>
+<p>Code cần chạy lại sau mỗi reload đặt trong:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Rails.application.config.to_prepare <span class="keyword">do</span></span><br><span class="line">  <span class="comment"># Decorator/patch cần idempotent</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>Block có thể chạy nhiều lần, nên code phải idempotent. “Chạy đúng lần đầu” không phải lifecycle contract.</p>
+<h2 id="require-dung-khi-nao"><a href="#require-dung-khi-nao" class="headerlink" title="require dùng khi nào?"></a><code>require</code> dùng khi nào?</h2><p>Vẫn dùng <code>require</code> cho thư viện Ruby/gem không được Zeitwerk quản lý. Với code trong autoload paths, ưu tiên naming convention và constant reference.</p>
+<p>Custom directory ngoài convention có thể cấu hình rõ ràng, nhưng đừng thêm mọi thư mục vào <code>autoload_paths</code> để lỗi biến mất. Đó là quét bụi xuống dưới carpet, chỉ khác là carpet biết Ruby.</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a href="https://guides.rubyonrails.org/autoloading_and_reloading_constants.html" target="_blank" rel="noopener">Autoloading and Reloading Constants — Rails Guides</a></li>
+</ul>
 
   </div>
 </article>
@@ -225,23 +216,23 @@
     
     
       <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Dat-van-de"><span class="toc-number">1.</span> <span class="toc-text">Đặt vấn đề</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Luan-ban"><span class="toc-number">2.</span> <span class="toc-text">Luận bàn</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ket-luan"><span class="toc-number">3.</span> <span class="toc-text">Kết luận</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Autoload-paths"><span class="toc-number">1.</span> <span class="toc-text">Autoload paths</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Eager-loading"><span class="toc-number">2.</span> <span class="toc-text">Eager loading</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reloading-trong-development"><span class="toc-number">3.</span> <span class="toc-text">Reloading trong development</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#require-dung-khi-nao"><span class="toc-number">4.</span> <span class="toc-text">require dùng khi nào?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">5.</span> <span class="toc-text">Reference</span></a></li></ol>
       </div>
     
 
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/04/17/2019-05-16-autoloading-va-reloading-constants-trong-rails/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/04/17/2019-05-16-autoloading-va-reloading-constants-trong-rails/&text=Cơ Chế Autoloading Và Reloading" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/04/17/2019-05-16-autoloading-va-reloading-constants-trong-rails/&title=Cơ Chế Autoloading Và Reloading" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/04/17/2019-05-16-autoloading-va-reloading-constants-trong-rails/&is_video=false&description=Cơ Chế Autoloading Và Reloading" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Cơ Chế Autoloading Và Reloading&body=Check out this article: https://hdchinh.github.io/2019/04/17/2019-05-16-autoloading-va-reloading-constants-trong-rails/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/04/17/2019-05-16-autoloading-va-reloading-constants-trong-rails/&title=Cơ Chế Autoloading Và Reloading" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/04/17/2019-05-16-autoloading-va-reloading-constants-trong-rails/&title=Cơ Chế Autoloading Và Reloading" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/04/17/2019-05-16-autoloading-va-reloading-constants-trong-rails/&title=Cơ Chế Autoloading Và Reloading" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/04/17/2019-05-16-autoloading-va-reloading-constants-trong-rails/&title=Cơ Chế Autoloading Và Reloading" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/04/17/2019-05-16-autoloading-va-reloading-constants-trong-rails/&name=Cơ Chế Autoloading Và Reloading&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/04/17/2019-05-16-autoloading-va-reloading-constants-trong-rails/&t=Cơ Chế Autoloading Và Reloading" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/04/17/2019-05-16-autoloading-va-reloading-constants-trong-rails/&text=Zeitwerk, Autoloading và Reloading trong Rails" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/04/17/2019-05-16-autoloading-va-reloading-constants-trong-rails/&title=Zeitwerk, Autoloading và Reloading trong Rails" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/04/17/2019-05-16-autoloading-va-reloading-constants-trong-rails/&is_video=false&description=Zeitwerk, Autoloading và Reloading trong Rails" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Zeitwerk, Autoloading và Reloading trong Rails&body=Check out this article: https://hdchinh.github.io/2019/04/17/2019-05-16-autoloading-va-reloading-constants-trong-rails/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/04/17/2019-05-16-autoloading-va-reloading-constants-trong-rails/&title=Zeitwerk, Autoloading và Reloading trong Rails" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/04/17/2019-05-16-autoloading-va-reloading-constants-trong-rails/&title=Zeitwerk, Autoloading và Reloading trong Rails" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/04/17/2019-05-16-autoloading-va-reloading-constants-trong-rails/&title=Zeitwerk, Autoloading và Reloading trong Rails" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/04/17/2019-05-16-autoloading-va-reloading-constants-trong-rails/&title=Zeitwerk, Autoloading và Reloading trong Rails" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/04/17/2019-05-16-autoloading-va-reloading-constants-trong-rails/&name=Zeitwerk, Autoloading và Reloading trong Rails&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/04/17/2019-05-16-autoloading-va-reloading-constants-trong-rails/&t=Zeitwerk, Autoloading và Reloading trong Rails" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

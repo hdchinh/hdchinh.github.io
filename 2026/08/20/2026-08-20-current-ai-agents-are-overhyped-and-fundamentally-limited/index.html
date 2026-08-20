@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Most “AI agents” today are not the breakthrough they are marketed as. They are essentially large language models wrapped in a harness: tool calling, memory files or databases, cron jobs, and messaging">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Current AI Agents Are Overhyped and Fundamentally Limited">
+<meta property="og:url" content="https://hdchinh.github.io/2026/08/20/2026-08-20-current-ai-agents-are-overhyped-and-fundamentally-limited/index.html">
+<meta property="og:site_name" content="Hudson">
+<meta property="og:description" content="Most “AI agents” today are not the breakthrough they are marketed as. They are essentially large language models wrapped in a harness: tool calling, memory files or databases, cron jobs, and messaging">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-08-19T17:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-20T05:00:40.887Z">
+<meta property="article:author" content="Hudson">
+<meta property="article:tag" content="English">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Current AI Agents Are Overhyped and Fundamentally Limited</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        <li><a class="icon" aria-label="Home" href="/"><i class="fa-solid fa-house" aria-hidden="true" onmouseover="$('#i-home').toggle();" onmouseout="$('#i-home').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2026/08/19/2026-08-19-procedural-memory-vs-working-memory-va-co-che-dat-flow-state/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-home" class="info" style="display:none;">Home</span>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2026/08/20/2026-08-20-current-ai-agents-are-overhyped-and-fundamentally-limited/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2026/08/20/2026-08-20-current-ai-agents-are-overhyped-and-fundamentally-limited/&text=Current AI Agents Are Overhyped and Fundamentally Limited" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2026/08/20/2026-08-20-current-ai-agents-are-overhyped-and-fundamentally-limited/&title=Current AI Agents Are Overhyped and Fundamentally Limited" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2026/08/20/2026-08-20-current-ai-agents-are-overhyped-and-fundamentally-limited/&is_video=false&description=Current AI Agents Are Overhyped and Fundamentally Limited" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Current AI Agents Are Overhyped and Fundamentally Limited&body=Check out this article: https://hdchinh.github.io/2026/08/20/2026-08-20-current-ai-agents-are-overhyped-and-fundamentally-limited/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2026/08/20/2026-08-20-current-ai-agents-are-overhyped-and-fundamentally-limited/&title=Current AI Agents Are Overhyped and Fundamentally Limited" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2026/08/20/2026-08-20-current-ai-agents-are-overhyped-and-fundamentally-limited/&title=Current AI Agents Are Overhyped and Fundamentally Limited" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2026/08/20/2026-08-20-current-ai-agents-are-overhyped-and-fundamentally-limited/&title=Current AI Agents Are Overhyped and Fundamentally Limited" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2026/08/20/2026-08-20-current-ai-agents-are-overhyped-and-fundamentally-limited/&title=Current AI Agents Are Overhyped and Fundamentally Limited" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2026/08/20/2026-08-20-current-ai-agents-are-overhyped-and-fundamentally-limited/&name=Current AI Agents Are Overhyped and Fundamentally Limited&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2026/08/20/2026-08-20-current-ai-agents-are-overhyped-and-fundamentally-limited/&t=Current AI Agents Are Overhyped and Fundamentally Limited" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Current AI Agents Are Overhyped and Fundamentally Limited
+    </h1>
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Hudson</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2026-08-19T17:00:00.000Z" class="dt-published" itemprop="datePublished">Aug 20</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="[object Object]-link" href="/tags/English/" rel="tag">English</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p>Most “AI agents” today are not the breakthrough they are marketed as. They are essentially large language models wrapped in a harness: tool calling, memory files or databases, cron jobs, and messaging integrations. The core intelligence still comes from next-token prediction. Everything else is scaffolding.</p>
+<p>This architecture has a clear ceiling. Because the model generates text probabilistically, it remains unreliable for any task that requires consistent judgment, long-horizon planning, or accountability. Errors compound, silent failures occur, and human supervision is still required for anything important. When supervision is necessary, the time and cost savings often shrink dramatically.</p>
+<p>Building better harnesses does not solve this. More sophisticated memory systems, skill libraries, multi-agent orchestration, or self-improving loops are still constrained by the same underlying model. They can make the system look more autonomous in demos, but they do not remove the fundamental brittleness of token prediction. Adding another layer of glue code does not create genuine understanding or dependable agency.</p>
+<p>The current wave of agent frameworks is therefore heavily overhyped. Real-world useful applications exist—coding assistance, simple automation, research summarization—but they are narrower and more fragile than the narrative suggests. Until the field moves beyond pure next-token architectures, agents will remain helpful tools rather than trustworthy autonomous workers. Better harnesses are incremental improvements at best; they are not the path past the ceiling.</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2026/08/20/2026-08-20-current-ai-agents-are-overhyped-and-fundamentally-limited/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2026/08/20/2026-08-20-current-ai-agents-are-overhyped-and-fundamentally-limited/&text=Current AI Agents Are Overhyped and Fundamentally Limited" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2026/08/20/2026-08-20-current-ai-agents-are-overhyped-and-fundamentally-limited/&title=Current AI Agents Are Overhyped and Fundamentally Limited" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2026/08/20/2026-08-20-current-ai-agents-are-overhyped-and-fundamentally-limited/&is_video=false&description=Current AI Agents Are Overhyped and Fundamentally Limited" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Current AI Agents Are Overhyped and Fundamentally Limited&body=Check out this article: https://hdchinh.github.io/2026/08/20/2026-08-20-current-ai-agents-are-overhyped-and-fundamentally-limited/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2026/08/20/2026-08-20-current-ai-agents-are-overhyped-and-fundamentally-limited/&title=Current AI Agents Are Overhyped and Fundamentally Limited" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2026/08/20/2026-08-20-current-ai-agents-are-overhyped-and-fundamentally-limited/&title=Current AI Agents Are Overhyped and Fundamentally Limited" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2026/08/20/2026-08-20-current-ai-agents-are-overhyped-and-fundamentally-limited/&title=Current AI Agents Are Overhyped and Fundamentally Limited" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2026/08/20/2026-08-20-current-ai-agents-are-overhyped-and-fundamentally-limited/&title=Current AI Agents Are Overhyped and Fundamentally Limited" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2026/08/20/2026-08-20-current-ai-agents-are-overhyped-and-fundamentally-limited/&name=Current AI Agents Are Overhyped and Fundamentally Limited&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2026/08/20/2026-08-20-current-ai-agents-are-overhyped-and-fundamentally-limited/&t=Current AI Agents Are Overhyped and Fundamentally Limited" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="home" class="icon" href="/"><i class="fa-solid fa-house fa-lg" aria-hidden="true"></i> Home</a>
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

@@ -8,13 +8,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
     <meta name="description" content="Exception biểu diễn control flow bất thường. Không phải mọi failure đều cần exception, nhưng exception đã xảy ra thì đừng rescue chỉ để hệ thống giả vờ khỏe. Raise exception có nghĩa123class Insuffici">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Exception trong Ruby: &#96;raise&#96;, &#96;rescue&#96;, &#96;ensure&#96; và boundary">
+<meta property="og:title" content="Exception trong Ruby: raise, rescue, ensure và boundary">
 <meta property="og:url" content="https://hdchinh.github.io/2019/06/10/2019-06-10-xu-ly-ngoai-le-trong-rails/index.html">
 <meta property="og:site_name" content="Hudson">
 <meta property="og:description" content="Exception biểu diễn control flow bất thường. Không phải mọi failure đều cần exception, nhưng exception đã xảy ra thì đừng rescue chỉ để hệ thống giả vờ khỏe. Raise exception có nghĩa123class Insuffici">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2019-06-09T17:00:00.000Z">
-<meta property="article:modified_time" content="2026-08-20T05:38:18.213Z">
+<meta property="article:modified_time" content="2026-08-20T05:48:35.913Z">
 <meta property="article:author" content="Hudson">
 <meta property="article:tag" content="RAILS">
 <meta name="twitter:card" content="summary">
@@ -37,7 +37,7 @@
       
     
     <!-- title -->
-    <title>Exception trong Ruby: `raise`, `rescue`, `ensure` và boundary</title>
+    <title>Exception trong Ruby: raise, rescue, ensure và boundary</title>
     <!-- async scripts -->
     <!-- Google Analytics -->
 
@@ -97,16 +97,16 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/06/10/2019-06-10-xu-ly-ngoai-le-trong-rails/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/06/10/2019-06-10-xu-ly-ngoai-le-trong-rails/&text=Exception trong Ruby: `raise`, `rescue`, `ensure` và boundary" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/06/10/2019-06-10-xu-ly-ngoai-le-trong-rails/&title=Exception trong Ruby: `raise`, `rescue`, `ensure` và boundary" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/06/10/2019-06-10-xu-ly-ngoai-le-trong-rails/&is_video=false&description=Exception trong Ruby: `raise`, `rescue`, `ensure` và boundary" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Exception trong Ruby: `raise`, `rescue`, `ensure` và boundary&body=Check out this article: https://hdchinh.github.io/2019/06/10/2019-06-10-xu-ly-ngoai-le-trong-rails/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/06/10/2019-06-10-xu-ly-ngoai-le-trong-rails/&title=Exception trong Ruby: `raise`, `rescue`, `ensure` và boundary" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/06/10/2019-06-10-xu-ly-ngoai-le-trong-rails/&title=Exception trong Ruby: `raise`, `rescue`, `ensure` và boundary" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/06/10/2019-06-10-xu-ly-ngoai-le-trong-rails/&title=Exception trong Ruby: `raise`, `rescue`, `ensure` và boundary" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/06/10/2019-06-10-xu-ly-ngoai-le-trong-rails/&title=Exception trong Ruby: `raise`, `rescue`, `ensure` và boundary" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/06/10/2019-06-10-xu-ly-ngoai-le-trong-rails/&name=Exception trong Ruby: `raise`, `rescue`, `ensure` và boundary&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/06/10/2019-06-10-xu-ly-ngoai-le-trong-rails/&t=Exception trong Ruby: `raise`, `rescue`, `ensure` và boundary" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/06/10/2019-06-10-xu-ly-ngoai-le-trong-rails/&text=Exception trong Ruby: raise, rescue, ensure và boundary" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/06/10/2019-06-10-xu-ly-ngoai-le-trong-rails/&title=Exception trong Ruby: raise, rescue, ensure và boundary" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/06/10/2019-06-10-xu-ly-ngoai-le-trong-rails/&is_video=false&description=Exception trong Ruby: raise, rescue, ensure và boundary" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Exception trong Ruby: raise, rescue, ensure và boundary&body=Check out this article: https://hdchinh.github.io/2019/06/10/2019-06-10-xu-ly-ngoai-le-trong-rails/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/06/10/2019-06-10-xu-ly-ngoai-le-trong-rails/&title=Exception trong Ruby: raise, rescue, ensure và boundary" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/06/10/2019-06-10-xu-ly-ngoai-le-trong-rails/&title=Exception trong Ruby: raise, rescue, ensure và boundary" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/06/10/2019-06-10-xu-ly-ngoai-le-trong-rails/&title=Exception trong Ruby: raise, rescue, ensure và boundary" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/06/10/2019-06-10-xu-ly-ngoai-le-trong-rails/&title=Exception trong Ruby: raise, rescue, ensure và boundary" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/06/10/2019-06-10-xu-ly-ngoai-le-trong-rails/&name=Exception trong Ruby: raise, rescue, ensure và boundary&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/06/10/2019-06-10-xu-ly-ngoai-le-trong-rails/&t=Exception trong Ruby: raise, rescue, ensure và boundary" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -126,7 +126,7 @@
   <header>
     
     <h1 class="posttitle p-name" itemprop="name headline">
-        Exception trong Ruby: `raise`, `rescue`, `ensure` và boundary
+        Exception trong Ruby: raise, rescue, ensure và boundary
     </h1>
 
 
@@ -219,16 +219,16 @@
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2019/06/10/2019-06-10-xu-ly-ngoai-le-trong-rails/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/06/10/2019-06-10-xu-ly-ngoai-le-trong-rails/&text=Exception trong Ruby: `raise`, `rescue`, `ensure` và boundary" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/06/10/2019-06-10-xu-ly-ngoai-le-trong-rails/&title=Exception trong Ruby: `raise`, `rescue`, `ensure` và boundary" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/06/10/2019-06-10-xu-ly-ngoai-le-trong-rails/&is_video=false&description=Exception trong Ruby: `raise`, `rescue`, `ensure` và boundary" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Exception trong Ruby: `raise`, `rescue`, `ensure` và boundary&body=Check out this article: https://hdchinh.github.io/2019/06/10/2019-06-10-xu-ly-ngoai-le-trong-rails/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/06/10/2019-06-10-xu-ly-ngoai-le-trong-rails/&title=Exception trong Ruby: `raise`, `rescue`, `ensure` và boundary" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/06/10/2019-06-10-xu-ly-ngoai-le-trong-rails/&title=Exception trong Ruby: `raise`, `rescue`, `ensure` và boundary" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/06/10/2019-06-10-xu-ly-ngoai-le-trong-rails/&title=Exception trong Ruby: `raise`, `rescue`, `ensure` và boundary" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/06/10/2019-06-10-xu-ly-ngoai-le-trong-rails/&title=Exception trong Ruby: `raise`, `rescue`, `ensure` và boundary" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/06/10/2019-06-10-xu-ly-ngoai-le-trong-rails/&name=Exception trong Ruby: `raise`, `rescue`, `ensure` và boundary&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/06/10/2019-06-10-xu-ly-ngoai-le-trong-rails/&t=Exception trong Ruby: `raise`, `rescue`, `ensure` và boundary" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2019/06/10/2019-06-10-xu-ly-ngoai-le-trong-rails/&text=Exception trong Ruby: raise, rescue, ensure và boundary" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2019/06/10/2019-06-10-xu-ly-ngoai-le-trong-rails/&title=Exception trong Ruby: raise, rescue, ensure và boundary" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2019/06/10/2019-06-10-xu-ly-ngoai-le-trong-rails/&is_video=false&description=Exception trong Ruby: raise, rescue, ensure và boundary" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Exception trong Ruby: raise, rescue, ensure và boundary&body=Check out this article: https://hdchinh.github.io/2019/06/10/2019-06-10-xu-ly-ngoai-le-trong-rails/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2019/06/10/2019-06-10-xu-ly-ngoai-le-trong-rails/&title=Exception trong Ruby: raise, rescue, ensure và boundary" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2019/06/10/2019-06-10-xu-ly-ngoai-le-trong-rails/&title=Exception trong Ruby: raise, rescue, ensure và boundary" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2019/06/10/2019-06-10-xu-ly-ngoai-le-trong-rails/&title=Exception trong Ruby: raise, rescue, ensure và boundary" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2019/06/10/2019-06-10-xu-ly-ngoai-le-trong-rails/&title=Exception trong Ruby: raise, rescue, ensure và boundary" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2019/06/10/2019-06-10-xu-ly-ngoai-le-trong-rails/&name=Exception trong Ruby: raise, rescue, ensure và boundary&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2019/06/10/2019-06-10-xu-ly-ngoai-le-trong-rails/&t=Exception trong Ruby: raise, rescue, ensure và boundary" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

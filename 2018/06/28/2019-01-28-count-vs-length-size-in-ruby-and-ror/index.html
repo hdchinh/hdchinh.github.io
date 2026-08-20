@@ -8,13 +8,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
     <meta name="description" content="Ba method cùng trả về “số lượng”, nhưng với ActiveRecord::Relation, chúng có thể tạo ra ba hành vi khác nhau. Đây là kiểu API nhìn hiền lành cho đến khi production có vài triệu record. Với Array12345v">
 <meta property="og:type" content="article">
-<meta property="og:title" content="&#96;length&#96;, &#96;count&#96; và &#96;size&#96; trong Ruby&#x2F;Rails: giống mà không giống">
+<meta property="og:title" content="length, count và size trong Ruby&#x2F;Rails: giống mà không giống">
 <meta property="og:url" content="https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/index.html">
 <meta property="og:site_name" content="Hudson">
 <meta property="og:description" content="Ba method cùng trả về “số lượng”, nhưng với ActiveRecord::Relation, chúng có thể tạo ra ba hành vi khác nhau. Đây là kiểu API nhìn hiền lành cho đến khi production có vài triệu record. Với Array12345v">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2018-06-27T17:00:00.000Z">
-<meta property="article:modified_time" content="2026-08-20T05:38:18.207Z">
+<meta property="article:modified_time" content="2026-08-20T05:48:35.910Z">
 <meta property="article:author" content="Hudson">
 <meta property="article:tag" content="RUBY">
 <meta property="article:tag" content="RAILS">
@@ -38,7 +38,7 @@
       
     
     <!-- title -->
-    <title>`length`, `count` và `size` trong Ruby/Rails: giống mà không giống</title>
+    <title>length, count và size trong Ruby/Rails: giống mà không giống</title>
     <!-- async scripts -->
     <!-- Google Analytics -->
 
@@ -98,16 +98,16 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/&text=`length`, `count` và `size` trong Ruby/Rails: giống mà không giống" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/&title=`length`, `count` và `size` trong Ruby/Rails: giống mà không giống" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/&is_video=false&description=`length`, `count` và `size` trong Ruby/Rails: giống mà không giống" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=`length`, `count` và `size` trong Ruby/Rails: giống mà không giống&body=Check out this article: https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/&title=`length`, `count` và `size` trong Ruby/Rails: giống mà không giống" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/&title=`length`, `count` và `size` trong Ruby/Rails: giống mà không giống" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/&title=`length`, `count` và `size` trong Ruby/Rails: giống mà không giống" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/&title=`length`, `count` và `size` trong Ruby/Rails: giống mà không giống" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/&name=`length`, `count` và `size` trong Ruby/Rails: giống mà không giống&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/&t=`length`, `count` và `size` trong Ruby/Rails: giống mà không giống" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/&text=length, count và size trong Ruby/Rails: giống mà không giống" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/&title=length, count và size trong Ruby/Rails: giống mà không giống" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/&is_video=false&description=length, count và size trong Ruby/Rails: giống mà không giống" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=length, count và size trong Ruby/Rails: giống mà không giống&body=Check out this article: https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/&title=length, count và size trong Ruby/Rails: giống mà không giống" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/&title=length, count và size trong Ruby/Rails: giống mà không giống" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/&title=length, count và size trong Ruby/Rails: giống mà không giống" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/&title=length, count và size trong Ruby/Rails: giống mà không giống" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/&name=length, count và size trong Ruby/Rails: giống mà không giống&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/&t=length, count và size trong Ruby/Rails: giống mà không giống" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -127,7 +127,7 @@
   <header>
     
     <h1 class="posttitle p-name" itemprop="name headline">
-        `length`, `count` và `size` trong Ruby/Rails: giống mà không giống
+        length, count và size trong Ruby/Rails: giống mà không giống
     </h1>
 
 
@@ -224,16 +224,16 @@
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/&text=`length`, `count` và `size` trong Ruby/Rails: giống mà không giống" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/&title=`length`, `count` và `size` trong Ruby/Rails: giống mà không giống" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/&is_video=false&description=`length`, `count` và `size` trong Ruby/Rails: giống mà không giống" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=`length`, `count` và `size` trong Ruby/Rails: giống mà không giống&body=Check out this article: https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/&title=`length`, `count` và `size` trong Ruby/Rails: giống mà không giống" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/&title=`length`, `count` và `size` trong Ruby/Rails: giống mà không giống" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/&title=`length`, `count` và `size` trong Ruby/Rails: giống mà không giống" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/&title=`length`, `count` và `size` trong Ruby/Rails: giống mà không giống" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/&name=`length`, `count` và `size` trong Ruby/Rails: giống mà không giống&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/&t=`length`, `count` và `size` trong Ruby/Rails: giống mà không giống" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/&text=length, count và size trong Ruby/Rails: giống mà không giống" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/&title=length, count và size trong Ruby/Rails: giống mà không giống" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/&is_video=false&description=length, count và size trong Ruby/Rails: giống mà không giống" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=length, count và size trong Ruby/Rails: giống mà không giống&body=Check out this article: https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/&title=length, count và size trong Ruby/Rails: giống mà không giống" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/&title=length, count và size trong Ruby/Rails: giống mà không giống" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/&title=length, count và size trong Ruby/Rails: giống mà không giống" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/&title=length, count và size trong Ruby/Rails: giống mà không giống" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/&name=length, count và size trong Ruby/Rails: giống mà không giống&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/&t=length, count và size trong Ruby/Rails: giống mà không giống" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

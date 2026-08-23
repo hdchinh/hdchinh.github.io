@@ -482,7 +482,7 @@ body {
   color: #363533;
   font-weight: 400;
   font-size: 16px;
-  font-family: "Menlo", "Meslo LG", monospace;
+  font-family: "Georgia", "Times New Roman", serif;
   line-height: 1.7;
   text-rendering: geometricPrecision;
   -moz-osx-font-smoothing: grayscale;
@@ -1522,7 +1522,7 @@ article .content .caption {
   font-display: swap;
   font-weight: 400;
   font-size: 12.8px;
-  font-family: "Menlo", "Meslo LG", monospace;
+  font-family: "Georgia", "Times New Roman", serif;
   line-height: 1.7;
   text-rendering: geometricPrecision;
   text-align: center;

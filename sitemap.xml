@@ -4,44 +4,40 @@
     <loc>https://hdchinh.github.io/</loc>
   </url>
   <url>
-    <loc>https://hdchinh.github.io/2018/01/23/2019-01-23-open-command-in-macos/</loc>
-    <lastmod>2026-08-20T05:48:35.910Z</lastmod>
-  </url>
-  <url>
     <loc>https://hdchinh.github.io/2018/01/01/2018-01-01-file-permission-in-linux/</loc>
     <lastmod>2026-08-20T05:48:35.913Z</lastmod>
   </url>
   <url>
-    <loc>https://hdchinh.github.io/2019/02/19/2019-02-19-truyen-tham-tri-va-truyen-tham-chieu/</loc>
-    <lastmod>2026-08-20T05:38:18.207Z</lastmod>
+    <loc>https://hdchinh.github.io/2018/01/23/2019-01-23-open-command-in-macos/</loc>
+    <lastmod>2026-08-20T05:48:35.910Z</lastmod>
   </url>
   <url>
     <loc>https://hdchinh.github.io/2018/06/28/2019-01-28-count-vs-length-size-in-ruby-and-ror/</loc>
     <lastmod>2026-08-20T05:48:35.910Z</lastmod>
   </url>
   <url>
-    <loc>https://hdchinh.github.io/2019/02/20/2019-02-20-cac-trinh-thong-dich-trong-ruby/</loc>
-    <lastmod>2026-08-20T05:38:18.207Z</lastmod>
+    <loc>https://hdchinh.github.io/2019/02/05/2019-02-05-root-sudo-and-package-management-system/</loc>
+    <lastmod>2026-08-20T05:33:27.158Z</lastmod>
   </url>
   <url>
     <loc>https://hdchinh.github.io/2018/12/30/2019-01-30-bash-file-in-macos-and-linux/</loc>
     <lastmod>2026-08-20T05:33:27.157Z</lastmod>
   </url>
   <url>
-    <loc>https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/</loc>
-    <lastmod>2026-08-20T05:38:18.208Z</lastmod>
+    <loc>https://hdchinh.github.io/2019/02/19/2019-02-19-truyen-tham-tri-va-truyen-tham-chieu/</loc>
+    <lastmod>2026-08-20T05:38:18.207Z</lastmod>
   </url>
   <url>
     <loc>https://hdchinh.github.io/2019/02/22/2019-02-22-quy-luat-80-20/</loc>
     <lastmod>2026-08-20T05:38:18.207Z</lastmod>
   </url>
   <url>
-    <loc>https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/</loc>
-    <lastmod>2026-08-20T05:48:35.910Z</lastmod>
+    <loc>https://hdchinh.github.io/2019/02/20/2019-02-20-cac-trinh-thong-dich-trong-ruby/</loc>
+    <lastmod>2026-08-20T05:38:18.207Z</lastmod>
   </url>
   <url>
-    <loc>https://hdchinh.github.io/2019/02/05/2019-02-05-root-sudo-and-package-management-system/</loc>
-    <lastmod>2026-08-20T05:33:27.158Z</lastmod>
+    <loc>https://hdchinh.github.io/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/</loc>
+    <lastmod>2026-08-20T05:38:18.208Z</lastmod>
   </url>
   <url>
     <loc>https://hdchinh.github.io/2019/02/24/2019-02-24-ruby-method-lookup/</loc>
@@ -52,11 +48,7 @@
     <lastmod>2026-08-20T05:38:18.209Z</lastmod>
   </url>
   <url>
-    <loc>https://hdchinh.github.io/2019/04/10/2019-04-10-iaas-paas-saas/</loc>
-    <lastmod>2026-08-20T05:38:18.209Z</lastmod>
-  </url>
-  <url>
-    <loc>https://hdchinh.github.io/2019/05/15/2019-05-15-require-load-include-va-extend-trong-ruby/</loc>
+    <loc>https://hdchinh.github.io/2019/02/25/2019-02-25-van-de-n-1-trong-rails/</loc>
     <lastmod>2026-08-20T05:48:35.910Z</lastmod>
   </url>
   <url>
@@ -64,16 +56,12 @@
     <lastmod>2026-08-20T05:38:18.210Z</lastmod>
   </url>
   <url>
-    <loc>https://hdchinh.github.io/2019/04/17/2019-04-17-doi-dieu-ve-session-va-cookie-trong-rails/</loc>
-    <lastmod>2026-08-20T05:38:18.210Z</lastmod>
+    <loc>https://hdchinh.github.io/2019/04/10/2019-04-10-upload-file-len-aws-s3-va-nhung-van-de-can-luu-y/</loc>
+    <lastmod>2026-08-20T05:38:18.209Z</lastmod>
   </url>
   <url>
     <loc>https://hdchinh.github.io/2019/05/04/2019-05-04-https-vai-dieu-can-nho/</loc>
     <lastmod>2026-08-20T05:38:18.211Z</lastmod>
-  </url>
-  <url>
-    <loc>https://hdchinh.github.io/2019/05/17/2019-05-17-nguyen-ly-solid-trong-code-ruby/</loc>
-    <lastmod>2026-08-20T05:38:18.212Z</lastmod>
   </url>
   <url>
     <loc>https://hdchinh.github.io/2019/05/08/2019-05-08-phan-biet-update-update-column-va-update-attribute-trong-rails/</loc>
@@ -84,15 +72,23 @@
     <lastmod>2026-08-20T05:38:18.211Z</lastmod>
   </url>
   <url>
-    <loc>https://hdchinh.github.io/2019/04/10/2019-04-10-upload-file-len-aws-s3-va-nhung-van-de-can-luu-y/</loc>
-    <lastmod>2026-08-20T05:38:18.209Z</lastmod>
+    <loc>https://hdchinh.github.io/2019/04/17/2019-04-17-doi-dieu-ve-session-va-cookie-trong-rails/</loc>
+    <lastmod>2026-08-20T05:38:18.210Z</lastmod>
   </url>
   <url>
-    <loc>https://hdchinh.github.io/2019/06/09/2019-06-09-so-sanh-symbol-va-string-trong-ruby/</loc>
-    <lastmod>2026-08-20T05:38:18.212Z</lastmod>
+    <loc>https://hdchinh.github.io/2019/05/15/2019-05-15-require-load-include-va-extend-trong-ruby/</loc>
+    <lastmod>2026-08-20T05:48:35.910Z</lastmod>
   </url>
   <url>
     <loc>https://hdchinh.github.io/2019/06/08/2019-06-08-tan-cong-sql-injection-va-cach-phong-chong-trong-rails/</loc>
+    <lastmod>2026-08-20T05:38:18.212Z</lastmod>
+  </url>
+  <url>
+    <loc>https://hdchinh.github.io/2019/05/17/2019-05-17-nguyen-ly-solid-trong-code-ruby/</loc>
+    <lastmod>2026-08-20T05:38:18.212Z</lastmod>
+  </url>
+  <url>
+    <loc>https://hdchinh.github.io/2019/06/09/2019-06-09-luu-y-ngan-gon-ve-scope-va-class-method/</loc>
     <lastmod>2026-08-20T05:38:18.212Z</lastmod>
   </url>
   <url>
@@ -100,8 +96,8 @@
     <lastmod>2026-08-20T05:48:35.913Z</lastmod>
   </url>
   <url>
-    <loc>https://hdchinh.github.io/2019/06/11/2019-06-11-public-private-va-protected-method-trong-ruby/</loc>
-    <lastmod>2026-08-20T05:38:18.213Z</lastmod>
+    <loc>https://hdchinh.github.io/2019/06/09/2019-06-09-so-sanh-symbol-va-string-trong-ruby/</loc>
+    <lastmod>2026-08-20T05:38:18.212Z</lastmod>
   </url>
   <url>
     <loc>https://hdchinh.github.io/2019/06/24/2019-06-24-simple-rack-application/</loc>
@@ -112,35 +108,27 @@
     <lastmod>2026-08-20T05:48:35.912Z</lastmod>
   </url>
   <url>
-    <loc>https://hdchinh.github.io/2019/09/20/2019-10-30-basic-vim-setup/</loc>
-    <lastmod>2026-08-20T05:38:18.218Z</lastmod>
+    <loc>https://hdchinh.github.io/2019/04/10/2019-04-10-iaas-paas-saas/</loc>
+    <lastmod>2026-08-20T05:38:18.209Z</lastmod>
   </url>
   <url>
     <loc>https://hdchinh.github.io/2019/06/26/2019-06-25-build-a-simple-orm-with-ruby/</loc>
     <lastmod>2026-08-19T06:18:46.226Z</lastmod>
   </url>
   <url>
-    <loc>https://hdchinh.github.io/2019/08/05/2019-08-05-setup-terminal-macos/</loc>
+    <loc>https://hdchinh.github.io/2019/09/20/2019-10-30-basic-vim-setup/</loc>
+    <lastmod>2026-08-20T05:38:18.218Z</lastmod>
+  </url>
+  <url>
+    <loc>https://hdchinh.github.io/2019/09/20/2019-09-20-vscode-extension/</loc>
     <lastmod>2026-08-20T05:25:11.763Z</lastmod>
-  </url>
-  <url>
-    <loc>https://hdchinh.github.io/2019/12/01/2019-12-01-basic-bash-file-to-deploy-my-blog/</loc>
-    <lastmod>2026-08-20T05:25:11.763Z</lastmod>
-  </url>
-  <url>
-    <loc>https://hdchinh.github.io/2019/12/01/2019-12-01-simple-bst-in-ruby/</loc>
-    <lastmod>2026-08-20T05:27:12.091Z</lastmod>
-  </url>
-  <url>
-    <loc>https://hdchinh.github.io/2019/06/09/2019-06-09-luu-y-ngan-gon-ve-scope-va-class-method/</loc>
-    <lastmod>2026-08-20T05:38:18.212Z</lastmod>
   </url>
   <url>
     <loc>https://hdchinh.github.io/2019/12/01/2019-12-01-how-to-use-multi-account-with-ssh/</loc>
     <lastmod>2026-08-20T05:25:11.765Z</lastmod>
   </url>
   <url>
-    <loc>https://hdchinh.github.io/2019/09/20/2019-09-20-vscode-extension/</loc>
+    <loc>https://hdchinh.github.io/2019/12/01/2019-12-01-basic-bash-file-to-deploy-my-blog/</loc>
     <lastmod>2026-08-20T05:25:11.763Z</lastmod>
   </url>
   <url>
@@ -148,27 +136,47 @@
     <lastmod>2026-08-20T05:25:11.765Z</lastmod>
   </url>
   <url>
-    <loc>https://hdchinh.github.io/2019/09/21/2019-8-10-meta-programming-ruby/</loc>
-    <lastmod>2026-08-20T05:38:18.218Z</lastmod>
+    <loc>https://hdchinh.github.io/2019/12/01/2019-12-01-simple-bst-in-ruby/</loc>
+    <lastmod>2026-08-20T05:27:12.091Z</lastmod>
   </url>
   <url>
     <loc>https://hdchinh.github.io/2019/12/16/2019-12-16-search-in-array/</loc>
     <lastmod>2026-08-20T05:25:11.766Z</lastmod>
   </url>
   <url>
-    <loc>https://hdchinh.github.io/2019/12/20/2019-12-20-example-of-two-pointer/</loc>
-    <lastmod>2026-08-20T05:25:11.766Z</lastmod>
+    <loc>https://hdchinh.github.io/2019/06/11/2019-06-11-public-private-va-protected-method-trong-ruby/</loc>
+    <lastmod>2026-08-20T05:38:18.213Z</lastmod>
+  </url>
+  <url>
+    <loc>https://hdchinh.github.io/2019/12/06/2019-12-06-linked-list-with-ruby/</loc>
+    <lastmod>2026-08-20T05:27:12.092Z</lastmod>
+  </url>
+  <url>
+    <loc>https://hdchinh.github.io/2019/09/21/2019-8-10-meta-programming-ruby/</loc>
+    <lastmod>2026-08-20T05:38:18.218Z</lastmod>
   </url>
   <url>
     <loc>https://hdchinh.github.io/2019/11/12/2019-8-21-hello-hexo/</loc>
     <lastmod>2026-08-20T05:27:12.091Z</lastmod>
   </url>
   <url>
+    <loc>https://hdchinh.github.io/2019/12/20/2019-12-20-example-of-two-pointer/</loc>
+    <lastmod>2026-08-20T05:25:11.766Z</lastmod>
+  </url>
+  <url>
     <loc>https://hdchinh.github.io/2019/12/28/2019-12-28-clone-object-and-array-in-javascript/</loc>
     <lastmod>2026-08-20T05:25:11.766Z</lastmod>
   </url>
   <url>
+    <loc>https://hdchinh.github.io/2019/08/05/2019-08-05-setup-terminal-macos/</loc>
+    <lastmod>2026-08-20T05:25:11.763Z</lastmod>
+  </url>
+  <url>
     <loc>https://hdchinh.github.io/2020/01/05/2020-01-05-sql-performance-explained-notes/</loc>
+    <lastmod>2026-08-20T05:30:54.178Z</lastmod>
+  </url>
+  <url>
+    <loc>https://hdchinh.github.io/2020/01/08/2020-01-08-reactjs-notes/</loc>
     <lastmod>2026-08-20T05:30:54.178Z</lastmod>
   </url>
   <url>
@@ -176,12 +184,8 @@
     <lastmod>2026-08-20T05:30:54.179Z</lastmod>
   </url>
   <url>
-    <loc>https://hdchinh.github.io/2020/03/16/2020-03-16-new-project-notes-2/</loc>
-    <lastmod>2026-08-20T05:27:12.089Z</lastmod>
-  </url>
-  <url>
-    <loc>https://hdchinh.github.io/2020/01/08/2020-01-08-reactjs-notes/</loc>
-    <lastmod>2026-08-20T05:30:54.178Z</lastmod>
+    <loc>https://hdchinh.github.io/2020/01/11/2020-01-10-method-and-function-notes/</loc>
+    <lastmod>2026-08-20T05:25:11.766Z</lastmod>
   </url>
   <url>
     <loc>https://hdchinh.github.io/2020/01/10/2020-01-11-this-in-javascript/</loc>
@@ -192,43 +196,39 @@
     <lastmod>2026-08-20T05:27:12.089Z</lastmod>
   </url>
   <url>
+    <loc>https://hdchinh.github.io/2020/03/16/2020-03-16-new-project-notes-2/</loc>
+    <lastmod>2026-08-20T05:27:12.089Z</lastmod>
+  </url>
+  <url>
+    <loc>https://hdchinh.github.io/2020/01/09/2020-03-8-redux-co-ban/</loc>
+    <lastmod>2026-08-20T05:27:12.091Z</lastmod>
+  </url>
+  <url>
+    <loc>https://hdchinh.github.io/2020/05/12/2020-05-12-safe-navigation-operator/</loc>
+    <lastmod>2026-08-20T05:48:35.912Z</lastmod>
+  </url>
+  <url>
     <loc>https://hdchinh.github.io/2020/04/23/2020-04-23-handle-exception-in-rails/</loc>
     <lastmod>2026-08-20T05:30:54.179Z</lastmod>
-  </url>
-  <url>
-    <loc>https://hdchinh.github.io/2020/01/11/2020-01-10-method-and-function-notes/</loc>
-    <lastmod>2026-08-20T05:25:11.766Z</lastmod>
-  </url>
-  <url>
-    <loc>https://hdchinh.github.io/2020/05/14/2020-05-14-url-dash-vs-underscore/</loc>
-    <lastmod>2026-08-20T05:25:11.767Z</lastmod>
   </url>
   <url>
     <loc>https://hdchinh.github.io/2020/05/13/2020-05-13-linux-process-types-dirty-method/</loc>
     <lastmod>2026-08-20T05:25:11.767Z</lastmod>
   </url>
   <url>
-    <loc>https://hdchinh.github.io/2020/06/27/2020-06-27-viet-side-project/</loc>
-    <lastmod>2026-08-20T05:35:50.845Z</lastmod>
-  </url>
-  <url>
-    <loc>https://hdchinh.github.io/2019/12/06/2019-12-06-linked-list-with-ruby/</loc>
-    <lastmod>2026-08-20T05:27:12.092Z</lastmod>
+    <loc>https://hdchinh.github.io/2020/05/14/2020-05-14-url-dash-vs-underscore/</loc>
+    <lastmod>2026-08-20T05:25:11.767Z</lastmod>
   </url>
   <url>
     <loc>https://hdchinh.github.io/2020/05/17/2020-05-17-lam-mini-app-cho-vo-phan-1/</loc>
     <lastmod>2026-08-20T05:35:50.845Z</lastmod>
   </url>
   <url>
-    <loc>https://hdchinh.github.io/2022/06/18/2022-02-01-docker-2021/</loc>
-    <lastmod>2026-08-19T06:19:30.202Z</lastmod>
+    <loc>https://hdchinh.github.io/2020/06/27/2020-06-27-viet-side-project/</loc>
+    <lastmod>2026-08-20T05:35:50.845Z</lastmod>
   </url>
   <url>
     <loc>https://hdchinh.github.io/2020/07/03/2020-07-03-leetcode-track-list/</loc>
-    <lastmod>2026-08-20T05:27:12.091Z</lastmod>
-  </url>
-  <url>
-    <loc>https://hdchinh.github.io/2020/01/09/2020-03-8-redux-co-ban/</loc>
     <lastmod>2026-08-20T05:27:12.091Z</lastmod>
   </url>
   <url>
@@ -240,16 +240,8 @@
     <lastmod>2026-08-19T06:19:30.202Z</lastmod>
   </url>
   <url>
-    <loc>https://hdchinh.github.io/2022/09/12/2022-09-12-nginx-basic-configuration/</loc>
+    <loc>https://hdchinh.github.io/2022/06/18/2022-02-01-docker-2021/</loc>
     <lastmod>2026-08-19T06:19:30.202Z</lastmod>
-  </url>
-  <url>
-    <loc>https://hdchinh.github.io/2022/09/12/2022-09-12-moving-from-heroku-to-render/</loc>
-    <lastmod>2026-08-19T06:19:30.202Z</lastmod>
-  </url>
-  <url>
-    <loc>https://hdchinh.github.io/2020/05/12/2020-05-12-safe-navigation-operator/</loc>
-    <lastmod>2026-08-20T05:48:35.912Z</lastmod>
   </url>
   <url>
     <loc>https://hdchinh.github.io/2022/09/18/2022-09-18-sidekiq-for-heroku/</loc>
@@ -260,11 +252,15 @@
     <lastmod>2026-08-19T06:19:30.203Z</lastmod>
   </url>
   <url>
-    <loc>https://hdchinh.github.io/2026/08/14/2026-08-14-cong-thuc-veritasium-cho-presentation-va-blog/</loc>
-    <lastmod>2026-08-20T06:12:26.064Z</lastmod>
+    <loc>https://hdchinh.github.io/2022/09/12/2022-09-12-nginx-basic-configuration/</loc>
+    <lastmod>2026-08-19T06:19:30.202Z</lastmod>
   </url>
   <url>
-    <loc>https://hdchinh.github.io/2022/09/23/2022-09-23-spead-up-image-with-carrierwave/</loc>
+    <loc>https://hdchinh.github.io/2022/09/12/2022-09-12-moving-from-heroku-to-render/</loc>
+    <lastmod>2026-08-19T06:19:30.202Z</lastmod>
+  </url>
+  <url>
+    <loc>https://hdchinh.github.io/2022/09/18/2022-09-18-upgrade-heroku-postgres-plan/</loc>
     <lastmod>2026-08-19T06:19:30.203Z</lastmod>
   </url>
   <url>
@@ -272,16 +268,20 @@
     <lastmod>2026-08-19T06:19:30.203Z</lastmod>
   </url>
   <url>
+    <loc>https://hdchinh.github.io/2022/09/23/2022-09-23-spead-up-image-with-carrierwave/</loc>
+    <lastmod>2026-08-19T06:19:30.203Z</lastmod>
+  </url>
+  <url>
     <loc>https://hdchinh.github.io/2026/08/14/2026-08-14-cau-truc-menh-de-va-tense-aspect-trong-tieng-anh/</loc>
     <lastmod>2026-08-14T08:34:58.155Z</lastmod>
   </url>
   <url>
-    <loc>https://hdchinh.github.io/2026/08/14/2026-08-14-7-bai-hoc-ve-ban-hang/</loc>
-    <lastmod>2026-08-14T08:12:19.690Z</lastmod>
+    <loc>https://hdchinh.github.io/2026/08/14/2026-08-14-cong-thuc-veritasium-cho-presentation-va-blog/</loc>
+    <lastmod>2026-08-20T06:12:26.064Z</lastmod>
   </url>
   <url>
-    <loc>https://hdchinh.github.io/2026/08/15/2026-08-15-market-research-vs-market-validation/</loc>
-    <lastmod>2026-08-20T06:12:26.065Z</lastmod>
+    <loc>https://hdchinh.github.io/2026/08/14/2026-08-14-7-bai-hoc-ve-ban-hang/</loc>
+    <lastmod>2026-08-14T08:12:19.690Z</lastmod>
   </url>
   <url>
     <loc>https://hdchinh.github.io/2026/08/17/2026-08-17-kinh-te-dong-chay-fiat-va-chien-luoc-tai-san/</loc>
@@ -292,8 +292,16 @@
     <lastmod>2026-08-18T01:42:34.696Z</lastmod>
   </url>
   <url>
+    <loc>https://hdchinh.github.io/2026/08/15/2026-08-15-market-research-vs-market-validation/</loc>
+    <lastmod>2026-08-20T06:12:26.065Z</lastmod>
+  </url>
+  <url>
     <loc>https://hdchinh.github.io/2026/08/18/2026-08-18-framework-luan-tu-vi-trung-chau-phai-theo-vuong-dinh-chi/</loc>
     <lastmod>2026-08-18T10:00:20.668Z</lastmod>
+  </url>
+  <url>
+    <loc>https://hdchinh.github.io/2026/08/18/2026-08-18-hoc-ma-khong-co-phan-hoi/</loc>
+    <lastmod>2026-08-20T06:12:26.063Z</lastmod>
   </url>
   <url>
     <loc>https://hdchinh.github.io/2026/08/18/2026-08-18-hai-goc-nhin-ve-ai-assisted-programming/</loc>
@@ -304,44 +312,36 @@
     <lastmod>2026-08-20T06:12:26.063Z</lastmod>
   </url>
   <url>
-    <loc>https://hdchinh.github.io/2026/08/18/2026-08-18-hoc-ma-khong-co-phan-hoi/</loc>
-    <lastmod>2026-08-20T06:12:26.063Z</lastmod>
-  </url>
-  <url>
     <loc>https://hdchinh.github.io/2026/08/19/2026-08-19-china-viet-nam-va-cai-bay-bao-hoa-kinh-te/</loc>
     <lastmod>2026-08-20T06:12:26.066Z</lastmod>
-  </url>
-  <url>
-    <loc>https://hdchinh.github.io/2026/08/19/2026-08-19-procedural-memory-vs-working-memory-va-co-che-dat-flow-state/</loc>
-    <lastmod>2026-08-20T06:12:26.064Z</lastmod>
-  </url>
-  <url>
-    <loc>https://hdchinh.github.io/2026/08/20/2026-08-20-compound-dao-va-nhung-cuoc-dai-han/</loc>
-    <lastmod>2026-08-23T08:04:23.987Z</lastmod>
-  </url>
-  <url>
-    <loc>https://hdchinh.github.io/2026/08/19/2026-08-19-discussion-notes-friston-prior-meta-awareness-tinh-thuc/</loc>
-    <lastmod>2026-08-19T06:30:15.642Z</lastmod>
-  </url>
-  <url>
-    <loc>https://hdchinh.github.io/2026/08/22/2026-08-22-the-intent-first-communication-framework-ifcf/</loc>
-    <lastmod>2026-08-23T00:28:46.519Z</lastmod>
-  </url>
-  <url>
-    <loc>https://hdchinh.github.io/2026/08/19/2026-08-19-practice-rest-and-motor-learning/</loc>
-    <lastmod>2026-08-20T06:12:26.062Z</lastmod>
   </url>
   <url>
     <loc>https://hdchinh.github.io/2026/08/19/2026-08-19-tu-khung-hoang-1997-den-bitcoin-nhung-nguyen-tac-ve-dong-chay-von-va-niem-tin-tap-the/</loc>
     <lastmod>2026-08-20T06:12:26.064Z</lastmod>
   </url>
   <url>
+    <loc>https://hdchinh.github.io/2026/08/20/2026-08-20-compound-dao-va-nhung-cuoc-dai-han/</loc>
+    <lastmod>2026-08-23T09:12:21.106Z</lastmod>
+  </url>
+  <url>
+    <loc>https://hdchinh.github.io/2026/08/19/2026-08-19-procedural-memory-vs-working-memory-va-co-che-dat-flow-state/</loc>
+    <lastmod>2026-08-20T06:12:26.064Z</lastmod>
+  </url>
+  <url>
+    <loc>https://hdchinh.github.io/2026/08/19/2026-08-19-discussion-notes-friston-prior-meta-awareness-tinh-thuc/</loc>
+    <lastmod>2026-08-19T06:30:15.642Z</lastmod>
+  </url>
+  <url>
+    <loc>https://hdchinh.github.io/2026/08/19/2026-08-19-practice-rest-and-motor-learning/</loc>
+    <lastmod>2026-08-20T06:12:26.062Z</lastmod>
+  </url>
+  <url>
     <loc>https://hdchinh.github.io/2026/08/20/2026-08-20-current-ai-agents-are-overhyped-and-fundamentally-limited/</loc>
     <lastmod>2026-08-20T06:12:26.062Z</lastmod>
   </url>
   <url>
-    <loc>https://hdchinh.github.io/2022/09/18/2022-09-18-upgrade-heroku-postgres-plan/</loc>
-    <lastmod>2026-08-19T06:19:30.203Z</lastmod>
+    <loc>https://hdchinh.github.io/2026/08/22/2026-08-22-the-intent-first-communication-framework-ifcf/</loc>
+    <lastmod>2026-08-23T00:28:46.519Z</lastmod>
   </url>
   <url>
     <loc>https://hdchinh.github.io/about/</loc>

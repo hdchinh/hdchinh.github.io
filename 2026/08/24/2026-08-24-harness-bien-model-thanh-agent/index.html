@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Những từ nghe “fancy” như harness, system prompt, agentic loop, tool-calling, translation layer… cuối cùng thường quy về vài việc cơ bản mà một hệ thống cần làm để biến model thành một agent có thể sử">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Harness: cái khung biến model thành agent">
+<meta property="og:url" content="https://hdchinh.github.io/2026/08/24/2026-08-24-harness-bien-model-thanh-agent/">
+<meta property="og:site_name" content="Hudson">
+<meta property="og:description" content="Những từ nghe “fancy” như harness, system prompt, agentic loop, tool-calling, translation layer… cuối cùng thường quy về vài việc cơ bản mà một hệ thống cần làm để biến model thành một agent có thể sử">
+<meta property="og:locale" content="vi_VN">
+<meta property="article:published_time" content="2026-08-23T17:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-24T03:27:25.544Z">
+<meta property="article:author" content="Hudson">
+<meta name="twitter:card" content="summary">
+    <link rel="canonical" href="https://hdchinh.github.io/2026/08/24/2026-08-24-harness-bien-model-thanh-agent/">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Harness: cái khung biến model thành agent","description":"Những từ nghe “fancy” như harness, system prompt, agentic loop, tool-calling, translation layer… cuối cùng thường quy về vài việc cơ bản mà một hệ thống cần làm để biến model thành một agent có thể sử","inLanguage":"vi","url":"https://hdchinh.github.io/2026/08/24/2026-08-24-harness-bien-model-thanh-agent/","mainEntityOfPage":{"@type":"WebPage","@id":"https://hdchinh.github.io/2026/08/24/2026-08-24-harness-bien-model-thanh-agent/"},"datePublished":"2026-08-23T17:00:00.000Z","dateModified":"2026-08-24T03:27:25.544Z","author":{"@type":"Person","name":"Hudson","url":"https://hdchinh.github.io/"},"publisher":{"@type":"Person","name":"Hudson","url":"https://hdchinh.github.io/"}}</script>
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Harness: cái khung biến model thành agent</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        <li><a class="icon" aria-label="Home" href="/"><i class="fa-solid fa-house" aria-hidden="true" onmouseover="$('#i-home').toggle();" onmouseout="$('#i-home').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2026/08/23/2026-08-23-noi-tieng-anh-tu-nhien-hon-bang-cach-nhan-dung-tu/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-home" class="info" style="display:none;">Home</span>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2026/08/24/2026-08-24-harness-bien-model-thanh-agent/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2026/08/24/2026-08-24-harness-bien-model-thanh-agent/&text=Harness: cái khung biến model thành agent" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2026/08/24/2026-08-24-harness-bien-model-thanh-agent/&title=Harness: cái khung biến model thành agent" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2026/08/24/2026-08-24-harness-bien-model-thanh-agent/&is_video=false&description=Harness: cái khung biến model thành agent" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Harness: cái khung biến model thành agent&body=Check out this article: https://hdchinh.github.io/2026/08/24/2026-08-24-harness-bien-model-thanh-agent/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2026/08/24/2026-08-24-harness-bien-model-thanh-agent/&title=Harness: cái khung biến model thành agent" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2026/08/24/2026-08-24-harness-bien-model-thanh-agent/&title=Harness: cái khung biến model thành agent" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2026/08/24/2026-08-24-harness-bien-model-thanh-agent/&title=Harness: cái khung biến model thành agent" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2026/08/24/2026-08-24-harness-bien-model-thanh-agent/&title=Harness: cái khung biến model thành agent" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2026/08/24/2026-08-24-harness-bien-model-thanh-agent/&name=Harness: cái khung biến model thành agent&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2026/08/24/2026-08-24-harness-bien-model-thanh-agent/&t=Harness: cái khung biến model thành agent" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Agent-tra-loi-Slack-hoat-dong-nhu-the-nao"><span class="toc-number">1.</span> <span class="toc-text">Agent trả lời Slack hoạt động như thế nào?</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Harness: cái khung biến model thành agent
+    </h1>
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Hudson</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2026-08-23T17:00:00.000Z" class="dt-published" itemprop="datePublished">Aug 24</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p>Những từ nghe “fancy” như <em>harness</em>, <em>system prompt</em>, <em>agentic loop</em>, <em>tool-calling</em>, <em>translation layer</em>… cuối cùng thường quy về vài việc cơ bản mà một hệ thống cần làm để biến model thành một agent có thể sử dụng được:</p>
+<ul>
+<li><strong>Nhồi system prompt</strong> — để model biết nó là ai, có quy tắc gì và nên nói chuyện theo style nào.</li>
+<li><strong>Cung cấp tools</strong> — mô tả rõ những function model được gọi, cùng input và output của chúng.</li>
+<li><strong>Chạy agentic loop</strong> — nhận message → quyết định bước tiếp theo → gọi tool nếu cần → nhận kết quả → tiếp tục cho đến khi xong.</li>
+<li><strong>Dịch giữa các API model</strong> — để cùng một harness có thể chạy với Claude, GPT, Gemini, Grok… mà không phải viết lại toàn bộ code.</li>
+</ul>
+<p>Về bản chất, <em>harness</em> chỉ là cái khung bao quanh model để biến nó từ một API chat thuần thành một hệ thống có thể hành động, giữ session state và tương tác qua nhiều giao diện như terminal, email hay Slack.</p>
+<p><strong>Harness không có “tư duy”. Nó chỉ là pure logic: condition, rule, API call và vòng lặp.</strong> Nó không tự hiểu yêu cầu, không tự biết nên tìm gì và không tự quyết định bước tiếp theo theo cách có ý nghĩa.</p>
+<p>Phần có thể diễn giải yêu cầu và chọn hành động không máy móc là model. Harness chỉ nhận quyết định đó, thực thi đúng logic đã được lập trình, rồi đưa kết quả trở lại model.</p>
+<p>Không có gì thần thánh hơn thế.</p>
+<h2 id="Agent-tra-loi-Slack-hoat-dong-nhu-the-nao"><a href="#Agent-tra-loi-Slack-hoat-dong-nhu-the-nao" class="headerlink" title="Agent trả lời Slack hoạt động như thế nào?"></a>Agent trả lời Slack hoạt động như thế nào?</h2><p>Flow cơ bản không phải là harness tự phân tích câu hỏi rồi quyết định phải làm gì. Harness chỉ nhận message từ Slack và tạo request gửi đến model.</p>
+<p>Request ban đầu có thể gồm:</p>
+<ul>
+<li>system prompt;</li>
+<li>các skill hoặc instruction bổ sung;</li>
+<li>danh sách tools và schema của chúng;</li>
+<li>message người dùng gửi từ Slack.</li>
+</ul>
+<p>Sau đó model tự quyết định bước tiếp theo. Với cùng một message, model có thể:</p>
+<ul>
+<li>trả lời ngay;</li>
+<li>gọi Slack API để lấy thêm lịch sử hoặc message liên quan;</li>
+<li>gọi web search;</li>
+<li>gọi một tool khác.</li>
+</ul>
+<p>Nếu model trả lời ngay, harness lấy text đó và gửi lại vào Slack. Nếu model yêu cầu gọi tool, harness thực thi tool tương ứng rồi tạo một request mới gửi kết quả về model. Model lại quyết định bước tiếp theo: trả lời, gọi thêm tool, hoặc kết thúc.</p>
+<p>Ví dụ, flow có thể là:</p>
+<ol>
+<li>Slack gửi message mới cho harness.</li>
+<li>Harness gửi message đó cùng system prompt, skills và tool definitions cho model.</li>
+<li>Model yêu cầu gọi Slack API để lấy lịch sử gần đây.</li>
+<li>Harness gọi Slack API và nhận kết quả.</li>
+<li>Harness gửi kết quả đó cho model trong request tiếp theo.</li>
+<li>Model quyết định đã đủ thông tin và tạo câu trả lời.</li>
+<li>Harness gửi câu trả lời vào Slack.</li>
+</ol>
+<p>Nếu kết quả Slack chưa đủ, model có thể yêu cầu gọi lại Slack API với tham số khác. Nếu cần thông tin bên ngoài, model có thể gọi web search. Harness không tự quyết định các bước này; nó chỉ thực thi yêu cầu của model và gửi kết quả trở lại.</p>
+<p>Luồng tối giản là:</p>
+<p><strong>Slack message → model request → model quyết định → tool call nếu cần → tool result → model request tiếp theo → Slack reply</strong></p>
+<p>Đó chính là agentic loop. Harness chịu trách nhiệm kết nối các thành phần và lặp các API call. <strong>Harness không quyết định ý nghĩa của công việc; model mới là thành phần diễn giải yêu cầu và chọn bước tiếp theo.</strong></p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Agent-tra-loi-Slack-hoat-dong-nhu-the-nao"><span class="toc-number">1.</span> <span class="toc-text">Agent trả lời Slack hoạt động như thế nào?</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2026/08/24/2026-08-24-harness-bien-model-thanh-agent/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2026/08/24/2026-08-24-harness-bien-model-thanh-agent/&text=Harness: cái khung biến model thành agent" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2026/08/24/2026-08-24-harness-bien-model-thanh-agent/&title=Harness: cái khung biến model thành agent" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2026/08/24/2026-08-24-harness-bien-model-thanh-agent/&is_video=false&description=Harness: cái khung biến model thành agent" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Harness: cái khung biến model thành agent&body=Check out this article: https://hdchinh.github.io/2026/08/24/2026-08-24-harness-bien-model-thanh-agent/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2026/08/24/2026-08-24-harness-bien-model-thanh-agent/&title=Harness: cái khung biến model thành agent" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2026/08/24/2026-08-24-harness-bien-model-thanh-agent/&title=Harness: cái khung biến model thành agent" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2026/08/24/2026-08-24-harness-bien-model-thanh-agent/&title=Harness: cái khung biến model thành agent" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2026/08/24/2026-08-24-harness-bien-model-thanh-agent/&title=Harness: cái khung biến model thành agent" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2026/08/24/2026-08-24-harness-bien-model-thanh-agent/&name=Harness: cái khung biến model thành agent&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2026/08/24/2026-08-24-harness-bien-model-thanh-agent/&t=Harness: cái khung biến model thành agent" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="home" class="icon" href="/"><i class="fa-solid fa-house fa-lg" aria-hidden="true"></i> Home</a>
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

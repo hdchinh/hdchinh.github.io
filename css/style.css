@@ -933,9 +933,6 @@ body {
   }
 }
 @media screen and (min-width: 1200px) {
-  #header-post #menu {
-    display: block;
-  }
   #header-post #actions {
     width: auto;
   }
@@ -1219,18 +1216,30 @@ article .content h6 {
   line-height: 1.5;
 }
 article .content table {
-  display: table;
+  display: block;
+  overflow-x: auto;
+  width: 100%;
   font-size: 19px;
   border: 1px solid rgba(204,42,65,0.25);
 }
 article .content table th {
+  min-width: 10rem;
+  max-width: 24rem;
+  white-space: normal;
+  vertical-align: top;
+  overflow-wrap: anywhere;
   font-size: 19px;
   color: #cc2a41;
   background: rgba(204,42,65,0.08);
   border-bottom: 2px solid rgba(204,42,65,0.35);
 }
 article .content table td {
+  min-width: 10rem;
+  max-width: 24rem;
   padding: 0.6em 0.8em;
+  white-space: normal;
+  vertical-align: top;
+  overflow-wrap: anywhere;
   border-bottom: 1px solid rgba(204,42,65,0.15);
 }
 article .content table code {

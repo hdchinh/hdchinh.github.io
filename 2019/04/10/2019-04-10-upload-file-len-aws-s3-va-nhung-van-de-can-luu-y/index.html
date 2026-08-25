@@ -17,11 +17,11 @@
 <meta property="article:modified_time" content="2026-08-20T05:38:18.209Z">
 <meta property="article:author" content="Hudson">
 <meta property="article:tag" content="rails">
-<meta property="article:tag" content="aws">
 <meta property="article:tag" content="til">
+<meta property="article:tag" content="aws">
 <meta name="twitter:card" content="summary">
     <link rel="canonical" href="https://hdchinh.github.io/2019/04/10/2019-04-10-upload-file-len-aws-s3-va-nhung-van-de-can-luu-y/">
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Upload file lên S3 trong Rails: credential, quyền truy cập và kiến trúc đúng","description":"S3 là object storage, không phải filesystem từ xa. Ta lưu object bằng bucket + key và truy cập qua API/URL theo policy. CredentialỨng dụng cần region, bucket và quyền AWS phù hợp. Không hard-code acce","inLanguage":"vi","url":"https://hdchinh.github.io/2019/04/10/2019-04-10-upload-file-len-aws-s3-va-nhung-van-de-can-luu-y/","mainEntityOfPage":{"@type":"WebPage","@id":"https://hdchinh.github.io/2019/04/10/2019-04-10-upload-file-len-aws-s3-va-nhung-van-de-can-luu-y/"},"datePublished":"2019-04-09T17:00:00.000Z","dateModified":"2026-08-20T05:38:18.209Z","author":{"@type":"Person","name":"Hudson","url":"https://hdchinh.github.io/"},"publisher":{"@type":"Person","name":"Hudson","url":"https://hdchinh.github.io/"},"keywords":["rails","aws","til"]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Upload file lên S3 trong Rails: credential, quyền truy cập và kiến trúc đúng","description":"S3 là object storage, không phải filesystem từ xa. Ta lưu object bằng bucket + key và truy cập qua API/URL theo policy. CredentialỨng dụng cần region, bucket và quyền AWS phù hợp. Không hard-code acce","inLanguage":"vi","url":"https://hdchinh.github.io/2019/04/10/2019-04-10-upload-file-len-aws-s3-va-nhung-van-de-can-luu-y/","mainEntityOfPage":{"@type":"WebPage","@id":"https://hdchinh.github.io/2019/04/10/2019-04-10-upload-file-len-aws-s3-va-nhung-van-de-can-luu-y/"},"datePublished":"2019-04-09T17:00:00.000Z","dateModified":"2026-08-20T05:38:18.209Z","author":{"@type":"Person","name":"Hudson","url":"https://hdchinh.github.io/"},"publisher":{"@type":"Person","name":"Hudson","url":"https://hdchinh.github.io/"},"keywords":["rails","til","aws"]}</script>
     
     
       
@@ -83,10 +83,10 @@
       <ul>
         <li><a class="icon" aria-label="Home" href="/"><i class="fa-solid fa-house" aria-hidden="true" onmouseover="$('#i-home').toggle();" onmouseout="$('#i-home').toggle();"></i></a></li>
         
-        <li><a class="icon" aria-label="Previous post" href="/2019/04/11/2019-04-11-su-dung-carrierwave-voi-s3/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Previous post" href="/2019/04/10/2019-04-10-iaas-paas-saas/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
-        <li><a class="icon" aria-label="Next post" href="/2019/04/10/2019-04-10-iaas-paas-saas/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Next post" href="/2019/04/08/2019-04-08-immutable-va-mutable-trong-ruby/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
         <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>

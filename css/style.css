@@ -1216,10 +1216,8 @@ article .content h6 {
   line-height: 1.5;
 }
 article .content table {
-  display: block;
-  overflow-x: auto;
-  width: 100%;
-  font-size: 19px;
+  font-size: 16px;
+  line-height: 1.55;
   border: 1px solid rgba(204,42,65,0.25);
 }
 article .content table th {
@@ -1228,7 +1226,7 @@ article .content table th {
   white-space: normal;
   vertical-align: top;
   overflow-wrap: anywhere;
-  font-size: 19px;
+  font-size: 16px;
   color: #cc2a41;
   background: rgba(204,42,65,0.08);
   border-bottom: 2px solid rgba(204,42,65,0.35);
@@ -1244,6 +1242,18 @@ article .content table td {
 }
 article .content table code {
   white-space: nowrap;
+}
+article .content .table-scroll {
+  margin: 1.5rem 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+article .content .table-scroll table {
+  display: table;
+  width: max-content;
+  min-width: 100%;
+  margin: 0;
+  border: none;
 }
 article .content .highlight {
   font-size: 13px;

@@ -12,6 +12,9 @@ if (!!$.prototype.justifiedGallery) {
 
 $(document).ready(function() {
 
+  // Keep wide article tables readable without forcing the whole page to grow.
+  $(".post .content table").not(".highlight table").wrap('<div class="table-scroll"></div>');
+
   /**
    * Shows the responsive navigation menu on mobile.
    */

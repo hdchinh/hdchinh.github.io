@@ -1260,6 +1260,9 @@ article .content .highlight {
   font-size: 13px;
 }
 article .content .highlight table {
+  display: table;
+  width: auto;
+  margin: 0;
   border: none;
   font-size: inherit;
 }

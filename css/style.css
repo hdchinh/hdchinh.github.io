@@ -1261,7 +1261,8 @@ article .content .highlight {
 }
 article .content .highlight table {
   display: table;
-  width: auto;
+  width: max-content;
+  min-width: 0;
   margin: 0;
   border: none;
   font-size: inherit;
@@ -1274,8 +1275,11 @@ article .content .highlight table th {
   font-size: inherit;
 }
 article .content .highlight table td {
+  min-width: 0;
+  max-width: none;
   padding: 0 8px;
   border: none;
+  white-space: nowrap;
 }
 article .content h2:before {
   position: absolute;

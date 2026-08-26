@@ -160,6 +160,7 @@
   
 
   <div class="content e-content" itemprop="articleBody">
+    
     <p>Assigning an object to another variable does not clone it:</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> original = &#123; <span class="attr">name</span>: <span class="string">'Hudson'</span> &#125;;</span><br><span class="line"><span class="keyword">const</span> alias = original;</span><br><span class="line"></span><br><span class="line">alias.name = <span class="string">'Chinh'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(original.name); <span class="comment">// "Chinh"</span></span><br></pre></td></tr></table></figure>
 

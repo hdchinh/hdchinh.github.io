@@ -159,6 +159,7 @@
   
 
   <div class="content e-content" itemprop="articleBody">
+    
     <p>JavaScript không biến thành multi-threaded chỉ vì có <code>async</code>. Trên browser, event loop phối hợp call stack, task queues và Web APIs để callback tiếp tục chạy khi công việc bất đồng bộ hoàn tất.</p>
 <h2 id="Callback"><a href="#Callback" class="headerlink" title="Callback"></a>Callback</h2><p>Callback là function được truyền để gọi sau:</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">loadUser</span>(<span class="params">id, callback</span>) </span>&#123;</span><br><span class="line">  setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> callback(<span class="literal">null</span>, &#123; id, <span class="attr">name</span>: <span class="string">'Hudson'</span> &#125;), <span class="number">100</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>

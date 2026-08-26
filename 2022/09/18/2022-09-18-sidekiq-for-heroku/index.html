@@ -81,7 +81,7 @@
       <ul>
         <li><a class="icon" aria-label="Home" href="/"><i class="fa-solid fa-house" aria-hidden="true" onmouseover="$('#i-home').toggle();" onmouseout="$('#i-home').toggle();"></i></a></li>
         
-        <li><a class="icon" aria-label="Previous post" href="/2022/09/23/2022-09-23-spead-up-image-with-carrierwave/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Previous post" href="/2022/09/23/2022-09-23-direct-upload-image-to-s3-with-sam/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
         <li><a class="icon" aria-label="Next post" href="/2022/09/18/2022-09-18-upgrade-heroku-postgres-plan/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
@@ -159,6 +159,7 @@
   
 
   <div class="content e-content" itemprop="articleBody">
+    
     <h2 id="1-Handle-version-incompatibilities"><a href="#1-Handle-version-incompatibilities" class="headerlink" title="1. Handle version incompatibilities"></a>1. Handle version incompatibilities</h2><p>If your Sidekiq version is incompatible with Redis 4.6 or later, pin the Redis gem version:</p>
 <figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">gem</span> <span class="string">'redis'</span>, <span class="string">'&lt; 4.6'</span></span><br></pre></td></tr></table></figure>
 

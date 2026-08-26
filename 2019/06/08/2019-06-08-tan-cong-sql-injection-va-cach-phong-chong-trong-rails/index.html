@@ -165,6 +165,7 @@
   
 
   <div class="content e-content" itemprop="articleBody">
+    
     <p>SQL injection xảy ra khi dữ liệu không đáng tin được ghép vào cấu trúc SQL, khiến input của người dùng biến thành một phần câu lệnh.</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Nguy hiểm</span></span><br><span class="line">User.where(<span class="string">"email = '<span class="subst">#&#123;params[<span class="symbol">:email</span>]&#125;</span>'"</span>)</span><br></pre></td></tr></table></figure>
 

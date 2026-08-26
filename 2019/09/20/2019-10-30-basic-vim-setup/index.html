@@ -82,10 +82,10 @@
       <ul>
         <li><a class="icon" aria-label="Home" href="/"><i class="fa-solid fa-house" aria-hidden="true" onmouseover="$('#i-home').toggle();" onmouseout="$('#i-home').toggle();"></i></a></li>
         
-        <li><a class="icon" aria-label="Previous post" href="/2019/09/20/2019-09-20-vscode-extension/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Previous post" href="/2019/09/21/2019-8-10-meta-programming-ruby/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
-        <li><a class="icon" aria-label="Next post" href="/2019/08/05/2019-08-05-setup-terminal-macos/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Next post" href="/2019/09/20/2019-09-20-vscode-extension/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
         <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
@@ -165,6 +165,7 @@
   
 
   <div class="content e-content" itemprop="articleBody">
+    
     <p>A useful Vim configuration should make editing predictable. If opening <code>.vimrc</code> feels like debugging a distributed system, the configuration has won and you have lost.</p>
 <h2 id="Plugin-management"><a href="#Plugin-management" class="headerlink" title="Plugin management"></a>Plugin management</h2><p>Install <a href="https://github.com/junegunn/vim-plug" target="_blank" rel="noopener">vim-plug</a>, then keep the plugin list short:</p>
 <figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">call</span> plug#begin(<span class="string">'~/.vim/plugged'</span>)</span><br><span class="line"></span><br><span class="line">Plug <span class="string">'preservim/nerdtree'</span></span><br><span class="line">Plug <span class="string">'preservim/nerdcommenter'</span></span><br><span class="line">Plug <span class="string">'vim-airline/vim-airline'</span></span><br><span class="line">Plug <span class="string">'morhetz/gruvbox'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">call</span> plug#end()</span><br></pre></td></tr></table></figure>

@@ -160,6 +160,7 @@
   
 
   <div class="content e-content" itemprop="articleBody">
+    
     <p>Khi mới học Rails, Rack thường xuất hiện trong Gemfile như một người họ hàng ít nói: luôn có mặt nhưng chẳng ai giải thích. Thực ra contract của Rack rất nhỏ.</p>
 <p>Một Rack application là object respond to <code>call</code> và nhận <code>env</code>:</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">call</span><span class="params">(env)</span></span></span><br><span class="line">    [</span><br><span class="line">      <span class="number">200</span>,</span><br><span class="line">      &#123; <span class="string">"content-type"</span> =&gt; <span class="string">"text/plain; charset=utf-8"</span> &#125;,</span><br><span class="line">      [<span class="string">"Hello from Rack\n"</span>]</span><br><span class="line">    ]</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>

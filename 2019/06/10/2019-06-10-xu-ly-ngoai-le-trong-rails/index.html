@@ -164,6 +164,7 @@
   
 
   <div class="content e-content" itemprop="articleBody">
+    
     <p>Exception biểu diễn control flow bất thường. Không phải mọi failure đều cần exception, nhưng exception đã xảy ra thì đừng rescue chỉ để hệ thống giả vờ khỏe.</p>
 <h2 id="Raise-exception-co-nghia"><a href="#Raise-exception-co-nghia" class="headerlink" title="Raise exception có nghĩa"></a>Raise exception có nghĩa</h2><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">InsufficientBalance</span> &lt; StandardError;</span> <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">raise InsufficientBalance, <span class="string">"balance is too low"</span></span><br></pre></td></tr></table></figure>
 

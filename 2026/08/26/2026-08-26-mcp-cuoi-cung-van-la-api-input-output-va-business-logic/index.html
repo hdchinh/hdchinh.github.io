@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Nhìn từ bên ngoài, MCP (Model Context Protocol) dễ khiến người ta nghĩ đây là một lớp hạ tầng đặc biệt cho AI agent: có server riêng, cơ chế execution riêng và cách giao tiếp hoàn toàn khác REST API.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MCP không có gì thần thánh: cuối cùng vẫn là API, input&#x2F;output và business logic">
+<meta property="og:url" content="https://hdchinh.github.io/2026/08/26/2026-08-26-mcp-cuoi-cung-van-la-api-input-output-va-business-logic/">
+<meta property="og:site_name" content="Hudson">
+<meta property="og:description" content="Nhìn từ bên ngoài, MCP (Model Context Protocol) dễ khiến người ta nghĩ đây là một lớp hạ tầng đặc biệt cho AI agent: có server riêng, cơ chế execution riêng và cách giao tiếp hoàn toàn khác REST API.">
+<meta property="og:locale" content="vi_VN">
+<meta property="article:published_time" content="2026-08-25T17:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-26T09:30:15.325Z">
+<meta property="article:author" content="Hudson">
+<meta name="twitter:card" content="summary">
+    <link rel="canonical" href="https://hdchinh.github.io/2026/08/26/2026-08-26-mcp-cuoi-cung-van-la-api-input-output-va-business-logic/">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"MCP không có gì thần thánh: cuối cùng vẫn là API, input/output và business logic","description":"Nhìn từ bên ngoài, MCP (Model Context Protocol) dễ khiến người ta nghĩ đây là một lớp hạ tầng đặc biệt cho AI agent: có server riêng, cơ chế execution riêng và cách giao tiếp hoàn toàn khác REST API. ","inLanguage":"vi","url":"https://hdchinh.github.io/2026/08/26/2026-08-26-mcp-cuoi-cung-van-la-api-input-output-va-business-logic/","mainEntityOfPage":{"@type":"WebPage","@id":"https://hdchinh.github.io/2026/08/26/2026-08-26-mcp-cuoi-cung-van-la-api-input-output-va-business-logic/"},"datePublished":"2026-08-25T17:00:00.000Z","dateModified":"2026-08-26T09:30:15.325Z","author":{"@type":"Person","name":"Hudson","url":"https://hdchinh.github.io/"},"publisher":{"@type":"Person","name":"Hudson","url":"https://hdchinh.github.io/"}}</script>
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>MCP không có gì thần thánh: cuối cùng vẫn là API, input/output và business logic</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        <li><a class="icon" aria-label="Home" href="/"><i class="fa-solid fa-house" aria-hidden="true" onmouseover="$('#i-home').toggle();" onmouseout="$('#i-home').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2026/08/25/2026-08-25-sap-c02-aws-service-keyword-reference/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-home" class="info" style="display:none;">Home</span>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2026/08/26/2026-08-26-mcp-cuoi-cung-van-la-api-input-output-va-business-logic/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2026/08/26/2026-08-26-mcp-cuoi-cung-van-la-api-input-output-va-business-logic/&text=MCP không có gì thần thánh: cuối cùng vẫn là API, input/output và business logic" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2026/08/26/2026-08-26-mcp-cuoi-cung-van-la-api-input-output-va-business-logic/&title=MCP không có gì thần thánh: cuối cùng vẫn là API, input/output và business logic" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2026/08/26/2026-08-26-mcp-cuoi-cung-van-la-api-input-output-va-business-logic/&is_video=false&description=MCP không có gì thần thánh: cuối cùng vẫn là API, input/output và business logic" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=MCP không có gì thần thánh: cuối cùng vẫn là API, input/output và business logic&body=Check out this article: https://hdchinh.github.io/2026/08/26/2026-08-26-mcp-cuoi-cung-van-la-api-input-output-va-business-logic/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2026/08/26/2026-08-26-mcp-cuoi-cung-van-la-api-input-output-va-business-logic/&title=MCP không có gì thần thánh: cuối cùng vẫn là API, input/output và business logic" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2026/08/26/2026-08-26-mcp-cuoi-cung-van-la-api-input-output-va-business-logic/&title=MCP không có gì thần thánh: cuối cùng vẫn là API, input/output và business logic" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2026/08/26/2026-08-26-mcp-cuoi-cung-van-la-api-input-output-va-business-logic/&title=MCP không có gì thần thánh: cuối cùng vẫn là API, input/output và business logic" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2026/08/26/2026-08-26-mcp-cuoi-cung-van-la-api-input-output-va-business-logic/&title=MCP không có gì thần thánh: cuối cùng vẫn là API, input/output và business logic" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2026/08/26/2026-08-26-mcp-cuoi-cung-van-la-api-input-output-va-business-logic/&name=MCP không có gì thần thánh: cuối cùng vẫn là API, input/output và business logic&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2026/08/26/2026-08-26-mcp-cuoi-cung-van-la-api-input-output-va-business-logic/&t=MCP không có gì thần thánh: cuối cùng vẫn là API, input/output và business logic" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#MCP-nam-o-dau-trong-he-thong"><span class="toc-number">1.</span> <span class="toc-text">MCP nằm ở đâu trong hệ thống?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vi-du-Rails-server-ban-quyen-doc-blog"><span class="toc-number">2.</span> <span class="toc-text">Ví dụ: Rails server bán quyền đọc blog</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Co-can-cai-MCP-gem-khong"><span class="toc-number">3.</span> <span class="toc-text">Có cần cài MCP gem không?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mcp-van-chi-la-mot-endpoint"><span class="toc-number">4.</span> <span class="toc-text">&#x2F;mcp vẫn chỉ là một endpoint</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tools-list-la-phan-dang-gia-nhat"><span class="toc-number">5.</span> <span class="toc-text">tools&#x2F;list là phần đáng giá nhất</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MCP-client-layer-trong-coding-harness"><span class="toc-number">6.</span> <span class="toc-text">MCP client layer trong coding harness</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Model-chon-tool-harness-thuc-thi"><span class="toc-number">7.</span> <span class="toc-text">Model chọn tool, harness thực thi</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Response-chi-la-data-co-them-envelope"><span class="toc-number">8.</span> <span class="toc-text">Response chỉ là data có thêm envelope</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MCP-khac-REST-API-o-diem-nao"><span class="toc-number">9.</span> <span class="toc-text">MCP khác REST API ở điểm nào?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Capability-discovery-cung-co-cai-gia-cua-no"><span class="toc-number">10.</span> <span class="toc-text">Capability discovery cũng có cái giá của nó</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Authentication-va-payment-van-la-viec-cua-application"><span class="toc-number">11.</span> <span class="toc-text">Authentication và payment vẫn là việc của application</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ket-luan"><span class="toc-number">12.</span> <span class="toc-text">Kết luận</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        MCP không có gì thần thánh: cuối cùng vẫn là API, input/output và business logic
+    </h1>
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Hudson</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2026-08-25T17:00:00.000Z" class="dt-published" itemprop="datePublished">Aug 26</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    
+    <p>Nhìn từ bên ngoài, MCP (Model Context Protocol) dễ khiến người ta nghĩ đây là một lớp hạ tầng đặc biệt cho AI agent: có server riêng, cơ chế execution riêng và cách giao tiếp hoàn toàn khác REST API.</p>
+<p>Nhưng bóc từng lớp ra thì nó không bí ẩn đến vậy. MCP cung cấp một cách chuẩn để agent hoặc harness biết server có những function nào, input của chúng có dạng gì và gọi chúng ra sao. Database, business logic, authentication, payment—những phần quyết định hệ thống làm gì—vẫn nằm ở application như trước.</p>
+<blockquote>
+<p>Nói chung tìm hiểu cho vui thôi. Cái này không practical, cái chuẩn này sẽ sớm oẳng.</p>
+</blockquote>
+<h2 id="MCP-nam-o-dau-trong-he-thong"><a href="#MCP-nam-o-dau-trong-he-thong" class="headerlink" title="MCP nằm ở đâu trong hệ thống?"></a>MCP nằm ở đâu trong hệ thống?</h2><p>Một hệ thống thông thường có thể trông như thế này:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Database</span><br><span class="line">   ↑</span><br><span class="line">Business Logic</span><br><span class="line">   ↑</span><br><span class="line">REST &#x2F; GraphQL API</span><br><span class="line">   ↑</span><br><span class="line">Client</span><br></pre></td></tr></table></figure>
+
+<p>Khi thêm MCP, ta có thêm một adapter dành cho agent:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Database</span><br><span class="line">   ↑</span><br><span class="line">Business Logic</span><br><span class="line">   ↑</span><br><span class="line">MCP Adapter</span><br><span class="line">   ↑</span><br><span class="line">MCP Client &#x2F; Agent Harness</span><br><span class="line">   ↑</span><br><span class="line">LLM</span><br></pre></td></tr></table></figure>
+
+<p>MCP không thay database, business logic, authentication hay HTTP. Nó thêm một interface có format chuẩn để các MCP client biết cách khám phá và sử dụng capability của server.</p>
+<h2 id="Vi-du-Rails-server-ban-quyen-doc-blog"><a href="#Vi-du-Rails-server-ban-quyen-doc-blog" class="headerlink" title="Ví dụ: Rails server bán quyền đọc blog"></a>Ví dụ: Rails server bán quyền đọc blog</h2><p>Giả sử một Rails application có các bài viết premium. Agent cần ba tool:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">search_articles</span><br><span class="line">get_article</span><br><span class="line">purchase_article</span><br></pre></td></tr></table></figure>
+
+<p>Service layer phía Rails vẫn là code application bình thường:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ArticlesService</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">search</span><span class="params">(query)</span></span></span><br><span class="line">    Article.where(<span class="string">"title ILIKE ?"</span>, <span class="string">"%<span class="subst">#&#123;query&#125;</span>%"</span>)</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">get</span><span class="params">(id, user)</span></span></span><br><span class="line">    <span class="comment"># check permission</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>Phần thanh toán cũng không liên quan đến MCP:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ArticlePurchaseService</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">purchase</span><span class="params">(<span class="symbol">user:</span>, <span class="symbol">article:</span>)</span></span></span><br><span class="line">    <span class="comment"># charge wallet / Stripe / stablecoin / whatever</span></span><br><span class="line">    <span class="comment"># create ArticlePurchase</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>MCP chỉ đứng ở phía trước các service này và chuyển request vào đúng chỗ.</p>
+<h2 id="Co-can-cai-MCP-gem-khong"><a href="#Co-can-cai-MCP-gem-khong" class="headerlink" title="Có cần cài MCP gem không?"></a>Có cần cài MCP gem không?</h2><p>Không bắt buộc. Ruby SDK chủ yếu giúp viết sẵn các phần lặp lại của adapter:</p>
+<ul>
+<li>nhận MCP request;</li>
+<li>parse JSON;</li>
+<li>validate schema;</li>
+<li>route request;</li>
+<li>format response;</li>
+<li>xử lý lỗi protocol.</li>
+</ul>
+<p>Nếu muốn tự kiểm soát mọi thứ, một Rails app có thể bắt đầu bằng một route:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># routes.rb</span></span><br><span class="line">post <span class="string">"/mcp"</span>, <span class="symbol">to:</span> <span class="string">"mcp#handle"</span></span><br></pre></td></tr></table></figure>
+
+<p>Controller tối giản:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">McpController</span> &lt; ApplicationController</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">handle</span></span></span><br><span class="line">    <span class="keyword">case</span> params[<span class="symbol">:method</span>]</span><br><span class="line">    <span class="keyword">when</span> <span class="string">"tools/list"</span></span><br><span class="line">      list_tools</span><br><span class="line">    <span class="keyword">when</span> <span class="string">"tools/call"</span></span><br><span class="line">      call_tool</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      render_mcp_error</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>SDK giúp giảm boilerplate và tránh tự xử lý sai protocol. Nhưng nó không làm business logic thay cho application.</p>
+<h2 id="mcp-van-chi-la-mot-endpoint"><a href="#mcp-van-chi-la-mot-endpoint" class="headerlink" title="/mcp vẫn chỉ là một endpoint"></a><code>/mcp</code> vẫn chỉ là một endpoint</h2><p>Một request có thể trông như sau:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">POST /mcp</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"jsonrpc"</span>: <span class="string">"2.0"</span>,</span><br><span class="line">  <span class="attr">"id"</span>: <span class="string">"abc-123"</span>,</span><br><span class="line">  <span class="attr">"method"</span>: <span class="string">"tools/list"</span>,</span><br><span class="line">  <span class="attr">"params"</span>: &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>id</code> là request ID của JSON-RPC. Nó không phải database ID và cũng không phải idempotency key. Client có thể dùng số tuần tự hoặc UUID; server chỉ cần trả lại đúng giá trị đó trong response.</p>
+<p>Không cần tạo riêng các route kiểu:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;mcp&#x2F;tools&#x2F;search</span><br><span class="line">&#x2F;mcp&#x2F;articles</span><br><span class="line">&#x2F;mcp&#x2F;purchase</span><br></pre></td></tr></table></figure>
+
+<p>Trong ví dụ này, <code>method</code> và <code>params.name</code> làm nhiệm vụ routing bên trong một endpoint.</p>
+<h2 id="tools-list-la-phan-dang-gia-nhat"><a href="#tools-list-la-phan-dang-gia-nhat" class="headerlink" title="tools/list là phần đáng giá nhất"></a><code>tools/list</code> là phần đáng giá nhất</h2><p>Server mô tả các tool của mình cho client:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"jsonrpc"</span>: <span class="string">"2.0"</span>,</span><br><span class="line">  <span class="attr">"id"</span>: <span class="string">"abc-123"</span>,</span><br><span class="line">  <span class="attr">"result"</span>: &#123;</span><br><span class="line">    <span class="attr">"tools"</span>: [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">"name"</span>: <span class="string">"search_articles"</span>,</span><br><span class="line">        <span class="attr">"description"</span>: <span class="string">"Search blog articles"</span>,</span><br><span class="line">        <span class="attr">"inputSchema"</span>: &#123;</span><br><span class="line">          <span class="attr">"type"</span>: <span class="string">"object"</span>,</span><br><span class="line">          <span class="attr">"properties"</span>: &#123;</span><br><span class="line">            <span class="attr">"query"</span>: &#123;</span><br><span class="line">              <span class="attr">"type"</span>: <span class="string">"string"</span></span><br><span class="line">            &#125;</span><br><span class="line">          &#125;,</span><br><span class="line">          <span class="attr">"required"</span>: [<span class="string">"query"</span>]</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">"name"</span>: <span class="string">"get_article"</span>,</span><br><span class="line">        <span class="attr">"description"</span>: <span class="string">"Get an article"</span>,</span><br><span class="line">        <span class="attr">"inputSchema"</span>: &#123;</span><br><span class="line">          <span class="attr">"type"</span>: <span class="string">"object"</span>,</span><br><span class="line">          <span class="attr">"properties"</span>: &#123;</span><br><span class="line">            <span class="attr">"article_id"</span>: &#123;</span><br><span class="line">              <span class="attr">"type"</span>: <span class="string">"string"</span></span><br><span class="line">            &#125;</span><br><span class="line">          &#125;,</span><br><span class="line">          <span class="attr">"required"</span>: [<span class="string">"article_id"</span>]</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">"name"</span>: <span class="string">"purchase_article"</span>,</span><br><span class="line">        <span class="attr">"description"</span>: <span class="string">"Purchase access to an article"</span>,</span><br><span class="line">        <span class="attr">"inputSchema"</span>: &#123;</span><br><span class="line">          <span class="attr">"type"</span>: <span class="string">"object"</span>,</span><br><span class="line">          <span class="attr">"properties"</span>: &#123;</span><br><span class="line">            <span class="attr">"article_id"</span>: &#123;</span><br><span class="line">              <span class="attr">"type"</span>: <span class="string">"string"</span></span><br><span class="line">            &#125;</span><br><span class="line">          &#125;,</span><br><span class="line">          <span class="attr">"required"</span>: [<span class="string">"article_id"</span>]</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Client lấy metadata này rồi đưa tool definitions vào context của model. Khi đó model biết server có thể tìm bài, lấy bài hoặc mua quyền đọc bài. Nếu không có bước này, model không tự biết API nào đang tồn tại.</p>
+<h2 id="MCP-client-layer-trong-coding-harness"><a href="#MCP-client-layer-trong-coding-harness" class="headerlink" title="MCP client layer trong coding harness"></a>MCP client layer trong coding harness</h2><p>Nếu coding harness như Pi chưa hỗ trợ MCP native, chỉ cần một extension mỏng làm bridge:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">MCP Server</span><br><span class="line">   ↓</span><br><span class="line">MCP Client Extension</span><br><span class="line">   ↓</span><br><span class="line">Pi Harness</span><br><span class="line">   ↓</span><br><span class="line">LLM</span><br></pre></td></tr></table></figure>
+
+<p>Extension khởi động bằng cách gọi <code>tools/list</code>, sau đó đăng ký các tool với Pi—mỗi MCP tool là một tool riêng, hoặc gói tất cả vào một generic tool như <code>mcp(name, arguments)</code>.</p>
+<p>Khi model yêu cầu gọi tool, extension chỉ convert request thành <code>tools/call</code>, gửi <code>POST /mcp</code>, parse response rồi trả result về cho Pi. Pi đưa result vào context và để model quyết định bước tiếp theo: trả lời, gọi tool khác hoặc kết thúc.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Pi extension: call API → parse response → return result</span><br><span class="line">LLM:          chọn tool → quyết định gọi tiếp hay dừng</span><br></pre></td></tr></table></figure>
+
+<p>Client layer không cần intelligence. Nó chỉ là bridge giữa harness và MCP server—đồng thời là nơi dễ làm tool list phình vào context nếu đăng ký quá nhiều tool.</p>
+<h2 id="Model-chon-tool-harness-thuc-thi"><a href="#Model-chon-tool-harness-thuc-thi" class="headerlink" title="Model chọn tool, harness thực thi"></a>Model chọn tool, harness thực thi</h2><p>Nếu user hỏi:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Find me articles about Bitcoin monetary policy.</span><br></pre></td></tr></table></figure>
+
+<p>Model có thể yêu cầu gọi <code>search_articles</code>. Model không tự gửi HTTP; harness nhận tool call và gửi request đến MCP server:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"jsonrpc"</span>: <span class="string">"2.0"</span>,</span><br><span class="line">  <span class="attr">"id"</span>: <span class="string">"req-456"</span>,</span><br><span class="line">  <span class="attr">"method"</span>: <span class="string">"tools/call"</span>,</span><br><span class="line">  <span class="attr">"params"</span>: &#123;</span><br><span class="line">    <span class="attr">"name"</span>: <span class="string">"search_articles"</span>,</span><br><span class="line">    <span class="attr">"arguments"</span>: &#123;</span><br><span class="line">      <span class="attr">"query"</span>: <span class="string">"Bitcoin monetary policy"</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Rails nhận request rồi gọi service tương ứng:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">call_tool</span></span></span><br><span class="line">  name = params.dig(<span class="symbol">:params</span>, <span class="symbol">:name</span>)</span><br><span class="line">  arguments = params.dig(<span class="symbol">:params</span>, <span class="symbol">:arguments</span>)</span><br><span class="line"></span><br><span class="line">  result =</span><br><span class="line">    <span class="keyword">case</span> name</span><br><span class="line">    <span class="keyword">when</span> <span class="string">"search_articles"</span></span><br><span class="line">      ArticlesService.search(arguments[<span class="string">"query"</span>])</span><br><span class="line"></span><br><span class="line">    <span class="keyword">when</span> <span class="string">"get_article"</span></span><br><span class="line">      ArticlesService.get(</span><br><span class="line">        arguments[<span class="string">"article_id"</span>],</span><br><span class="line">        current_agent</span><br><span class="line">      )</span><br><span class="line"></span><br><span class="line">    <span class="keyword">when</span> <span class="string">"purchase_article"</span></span><br><span class="line">      ArticlePurchaseService.purchase(</span><br><span class="line">        <span class="symbol">user:</span> current_agent,</span><br><span class="line">        <span class="symbol">article:</span> Article.find(arguments[<span class="string">"article_id"</span>])</span><br><span class="line">      )</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  render_mcp_result(result)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>Từ đây trở đi, việc tìm bài, kiểm tra quyền đọc hay charge tiền đều là việc của application.</p>
+<h2 id="Response-chi-la-data-co-them-envelope"><a href="#Response-chi-la-data-co-them-envelope" class="headerlink" title="Response chỉ là data có thêm envelope"></a>Response chỉ là data có thêm envelope</h2><p>Một response cho <code>get_article</code> có thể chứa dữ liệu như sau:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"jsonrpc"</span>: <span class="string">"2.0"</span>,</span><br><span class="line">  <span class="attr">"id"</span>: <span class="string">"req-456"</span>,</span><br><span class="line">  <span class="attr">"result"</span>: &#123;</span><br><span class="line">    <span class="attr">"structuredContent"</span>: &#123;</span><br><span class="line">      <span class="attr">"id"</span>: <span class="string">"123"</span>,</span><br><span class="line">      <span class="attr">"title"</span>: <span class="string">"Bitcoin and Monetary Policy"</span>,</span><br><span class="line">      <span class="attr">"content"</span>: <span class="string">"..."</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>MCP chuẩn hóa envelope và một số field như <code>jsonrpc</code>, <code>id</code>, <code>result</code>, <code>error</code>, <code>content</code> hay <code>structuredContent</code>. Nó không thể chuẩn hóa domain của từng ứng dụng.</p>
+<p>Blog có thể trả:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"article_id"</span>: <span class="string">"123"</span>,</span><br><span class="line">  <span class="attr">"title"</span>: <span class="string">"..."</span>,</span><br><span class="line">  <span class="attr">"content"</span>: <span class="string">"..."</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Polymarket có thể trả:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"market_id"</span>: <span class="string">"..."</span>,</span><br><span class="line">  <span class="attr">"probability"</span>: <span class="number">0.62</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>GitHub có thể trả:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"pull_request"</span>: <span class="number">123</span>,</span><br><span class="line">  <span class="attr">"status"</span>: <span class="string">"open"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Schema không khiến model khỏi phải suy luận. Nó cho model biết capability nhận input gì và dữ liệu trả về có hình dạng nào trước khi gọi.</p>
+<h2 id="MCP-khac-REST-API-o-diem-nao"><a href="#MCP-khac-REST-API-o-diem-nao" class="headerlink" title="MCP khác REST API ở điểm nào?"></a>MCP khác REST API ở điểm nào?</h2><p>REST có thể expose những endpoint rất rõ ràng:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GET &#x2F;articles</span><br><span class="line">GET &#x2F;articles&#x2F;:id</span><br><span class="line">POST &#x2F;articles&#x2F;:id&#x2F;purchase</span><br></pre></td></tr></table></figure>
+
+<p>Vấn đề là agent harness không mặc nhiên biết các endpoint đó tồn tại. Ta phải viết plugin, dùng OpenAPI adapter, viết custom tool hoặc hard-code API definition vào harness.</p>
+<p>MCP đưa capability discovery vào protocol thông qua <code>tools/list</code>. Client có thể hỏi server đang có tool gì, lấy schema của chúng rồi expose cho model. Sau đó <code>tools/call</code> cung cấp một convention chung để gọi tool.</p>
+<p>Đó là giá trị chính của MCP: <strong>capability discovery và standardized tool calling</strong>. Nó không biến REST API thành thứ khác; nhiều MCP server thực chất vẫn chỉ là lớp chuyển đổi từ API hiện có:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">REST API → MCP tools</span><br></pre></td></tr></table></figure>
+
+<p>Ví dụ một Polymarket MCP server không tạo ra Polymarket mới. Nó chỉ map các API như:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GET &#x2F;markets</span><br><span class="line">GET &#x2F;events</span><br><span class="line">POST &#x2F;orders</span><br></pre></td></tr></table></figure>
+
+<p>thành những tool mà Claude, Cursor, Pi hoặc agent khác có thể khám phá và gọi. Nếu Polymarket có official MCP server đủ tốt, adapter bên ngoài sẽ chỉ còn lý do tồn tại khi cung cấp thêm capability riêng.</p>
+<h2 id="Capability-discovery-cung-co-cai-gia-cua-no"><a href="#Capability-discovery-cung-co-cai-gia-cua-no" class="headerlink" title="Capability discovery cũng có cái giá của nó"></a>Capability discovery cũng có cái giá của nó</h2><p><code>tools/list</code> nghe tiện, nhưng mỗi tool đi kèm name, description và schema. Tất cả đống metadata này thường được đưa vào context của model. Có vài tool thì không sao. Có vài chục hoặc vài trăm tool, context bắt đầu phình ra và model phải chọn trong một danh sách dài những thứ có thể chẳng liên quan đến request hiện tại.</p>
+<p>Đó là chưa kể metadata bị gửi lại qua nhiều lượt gọi, description viết không nhất quán hoặc hai tool có tên gần giống nhau. Khi ấy MCP không còn giúp model “biết mình có gì” một cách gọn gàng nữa; nó biến context thành một catalog API khá dài.</p>
+<p>Với một hệ thống chỉ có vài endpoint ổn định, cách đơn giản hơn có thể là đưa API document hoặc OpenAPI spec làm source of truth, rồi dùng một HTTP client/tool để gọi endpoint cần thiết. Không có capability discovery đẹp bằng MCP, nhưng dễ debug hơn, ít metadata hơn và không phải expose toàn bộ tool list trong mọi request.</p>
+<p>MCP vẫn hợp lý khi cần interoperability giữa nhiều client, tool có schema rõ ràng hoặc capability thay đổi động. Nhưng đó không phải lý do để mặc định bọc mọi REST API bằng MCP.</p>
+<h2 id="Authentication-va-payment-van-la-viec-cua-application"><a href="#Authentication-va-payment-van-la-viec-cua-application" class="headerlink" title="Authentication và payment vẫn là việc của application"></a>Authentication và payment vẫn là việc của application</h2><p>Không thể mở endpoint rồi cho bất kỳ agent nào mua bài bằng tài khoản của người khác. Remote MCP vẫn có thể dùng Bearer token như các API khác:</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">POST /mcp</span><br><span class="line"><span class="attribute">Authorization</span>: Bearer eyJ...</span><br></pre></td></tr></table></figure>
+
+<p>Rails vẫn authenticate request rồi kiểm tra token, user, scope, permission, balance và purchase history. Chẳng hạn:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">articles:search</span><br><span class="line">articles:read</span><br><span class="line">articles:purchase</span><br></pre></td></tr></table></figure>
+
+<p>MCP không thay authentication system. Nó chỉ tạo ra một convention để client và server interoperable.</p>
+<p>Với <code>purchase_article</code>, flow có thể là:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Check user</span><br><span class="line">    ↓</span><br><span class="line">Check existing purchase</span><br><span class="line">    ↓</span><br><span class="line">Charge wallet</span><br><span class="line">    ↓</span><br><span class="line">Create ArticlePurchase</span><br><span class="line">    ↓</span><br><span class="line">Grant access</span><br></pre></td></tr></table></figure>
+
+<p>Payment rail có thể là Stripe, credits, stablecoin, x402 hoặc internal wallet. MCP không cần biết.</p>
+<p>Vì <code>purchase_article</code> có side effect, application vẫn nên tự xử lý idempotency. JSON-RPC <code>id</code> chỉ dùng để ghép request với response, không đảm bảo một operation chỉ chạy một lần.</p>
+<h2 id="Ket-luan"><a href="#Ket-luan" class="headerlink" title="Kết luận"></a>Kết luận</h2><p>Một MCP server tối giản cho Rails vẫn gồm những phần quen thuộc:</p>
+<ol>
+<li><strong>Internal logic</strong>: database, CRUD và service layer.</li>
+<li><strong>Public interface</strong>: HTTP endpoint.</li>
+<li><strong>Authentication và authorization</strong>.</li>
+<li><strong>Input/output</strong>: schema, validation và serialization.</li>
+<li><strong>Routing</strong>: map tool name vào application logic.</li>
+</ol>
+<p>MCP bổ sung cách chuẩn để:</p>
+<ul>
+<li>khám phá capability;</li>
+<li>mô tả input;</li>
+<li>gọi tool;</li>
+<li>trả kết quả về client.</li>
+</ul>
+<p>Nhưng capability discovery không miễn phí. Tool list càng lớn thì context càng phình, và lợi ích của convention có thể không bù được chi phí token, độ nhiễu và công sức debug.</p>
+<p>Với server bán bài viết, một endpoint và service layer hiện tại là đủ để thử nghiệm. Còn có nên thêm MCP hay không thì phải nhìn vào use case thật: cần nhiều client khác nhau và discovery động thì có thể đáng; chỉ cần nối một agent vào vài API nội bộ thì API document cùng một HTTP tool thường thực dụng hơn. Không phải project nào cũng cần thêm một adapter chỉ để chứng minh rằng nó có thể thêm adapter.</p>
+<p>Sau khi tìm hiểu cho biết, tôi không thấy MCP là thứ cần phải nhét vào mọi hệ thống AI. Nó là một convention hữu ích trong một số trường hợp, nhưng cũng có thể nhanh chóng trở thành lớp bloat nằm giữa model và API. Nếu phần lớn use case chỉ là đưa một đống endpoint vào context rồi chờ model chọn, một API document tốt và cách gọi trực tiếp có khi đã đủ.</p>
+<p>REST hoặc API vẫn làm công việc thực tế. MCP chỉ là một cách khác để agent biết API nào tồn tại—và đôi khi là một cách hơi đắt để làm việc đó.</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#MCP-nam-o-dau-trong-he-thong"><span class="toc-number">1.</span> <span class="toc-text">MCP nằm ở đâu trong hệ thống?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vi-du-Rails-server-ban-quyen-doc-blog"><span class="toc-number">2.</span> <span class="toc-text">Ví dụ: Rails server bán quyền đọc blog</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Co-can-cai-MCP-gem-khong"><span class="toc-number">3.</span> <span class="toc-text">Có cần cài MCP gem không?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mcp-van-chi-la-mot-endpoint"><span class="toc-number">4.</span> <span class="toc-text">&#x2F;mcp vẫn chỉ là một endpoint</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tools-list-la-phan-dang-gia-nhat"><span class="toc-number">5.</span> <span class="toc-text">tools&#x2F;list là phần đáng giá nhất</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MCP-client-layer-trong-coding-harness"><span class="toc-number">6.</span> <span class="toc-text">MCP client layer trong coding harness</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Model-chon-tool-harness-thuc-thi"><span class="toc-number">7.</span> <span class="toc-text">Model chọn tool, harness thực thi</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Response-chi-la-data-co-them-envelope"><span class="toc-number">8.</span> <span class="toc-text">Response chỉ là data có thêm envelope</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MCP-khac-REST-API-o-diem-nao"><span class="toc-number">9.</span> <span class="toc-text">MCP khác REST API ở điểm nào?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Capability-discovery-cung-co-cai-gia-cua-no"><span class="toc-number">10.</span> <span class="toc-text">Capability discovery cũng có cái giá của nó</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Authentication-va-payment-van-la-viec-cua-application"><span class="toc-number">11.</span> <span class="toc-text">Authentication và payment vẫn là việc của application</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ket-luan"><span class="toc-number">12.</span> <span class="toc-text">Kết luận</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2026/08/26/2026-08-26-mcp-cuoi-cung-van-la-api-input-output-va-business-logic/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2026/08/26/2026-08-26-mcp-cuoi-cung-van-la-api-input-output-va-business-logic/&text=MCP không có gì thần thánh: cuối cùng vẫn là API, input/output và business logic" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2026/08/26/2026-08-26-mcp-cuoi-cung-van-la-api-input-output-va-business-logic/&title=MCP không có gì thần thánh: cuối cùng vẫn là API, input/output và business logic" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2026/08/26/2026-08-26-mcp-cuoi-cung-van-la-api-input-output-va-business-logic/&is_video=false&description=MCP không có gì thần thánh: cuối cùng vẫn là API, input/output và business logic" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=MCP không có gì thần thánh: cuối cùng vẫn là API, input/output và business logic&body=Check out this article: https://hdchinh.github.io/2026/08/26/2026-08-26-mcp-cuoi-cung-van-la-api-input-output-va-business-logic/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2026/08/26/2026-08-26-mcp-cuoi-cung-van-la-api-input-output-va-business-logic/&title=MCP không có gì thần thánh: cuối cùng vẫn là API, input/output và business logic" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2026/08/26/2026-08-26-mcp-cuoi-cung-van-la-api-input-output-va-business-logic/&title=MCP không có gì thần thánh: cuối cùng vẫn là API, input/output và business logic" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2026/08/26/2026-08-26-mcp-cuoi-cung-van-la-api-input-output-va-business-logic/&title=MCP không có gì thần thánh: cuối cùng vẫn là API, input/output và business logic" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2026/08/26/2026-08-26-mcp-cuoi-cung-van-la-api-input-output-va-business-logic/&title=MCP không có gì thần thánh: cuối cùng vẫn là API, input/output và business logic" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2026/08/26/2026-08-26-mcp-cuoi-cung-van-la-api-input-output-va-business-logic/&name=MCP không có gì thần thánh: cuối cùng vẫn là API, input/output và business logic&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2026/08/26/2026-08-26-mcp-cuoi-cung-van-la-api-input-output-va-business-logic/&t=MCP không có gì thần thánh: cuối cùng vẫn là API, input/output và business logic" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="home" class="icon" href="/"><i class="fa-solid fa-house fa-lg" aria-hidden="true"></i> Home</a>
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

@@ -159,6 +159,7 @@
   
 
   <div class="content e-content" itemprop="articleBody">
+    
     <p>Exception handling không phải nghệ thuật làm cho error biến mất. Mục tiêu là giữ invariant, trả response phù hợp và để lại đủ context cho người trực production—thường là chính ta, nhưng ít ngủ hơn.</p>
 <h2 id="Rescue-exception-cu-the"><a href="#Rescue-exception-cu-the" class="headerlink" title="Rescue exception cụ thể"></a>Rescue exception cụ thể</h2><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">begin</span></span><br><span class="line">  user = User.find(params[<span class="symbol">:id</span>])</span><br><span class="line"><span class="keyword">rescue</span> ActiveRecord::RecordNotFound</span><br><span class="line">  render <span class="symbol">json:</span> &#123; <span class="symbol">error:</span> <span class="string">"user_not_found"</span> &#125;, <span class="symbol">status:</span> <span class="symbol">:not_found</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 

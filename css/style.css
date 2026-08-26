@@ -1151,8 +1151,9 @@ article header .posttitle {
   margin-top: 0;
   margin-bottom: 0;
   text-transform: none;
-  font-size: 1.5em;
-  line-height: 1.25;
+  font-size: 2.25em;
+  font-weight: 700;
+  line-height: 1.2;
 }
 article header .meta {
   margin-top: 0;
@@ -1281,6 +1282,69 @@ article .content h2:before {
   content: "#";
   font-weight: bold;
   font-size: 1.2rem;
+}
+article .content .document-toc {
+  margin: 1.5rem 0 2.5rem;
+  padding: 1.25rem 1.5rem;
+  border: 1px solid rgba(204,42,65,0.25);
+  background: rgba(204,42,65,0.04);
+}
+article .content .document-toc .document-toc-title {
+  display: block;
+  margin-bottom: 0.75rem;
+  color: #cc2a41;
+  font-weight: 700;
+  font-size: 1.1em;
+}
+article .content .document-toc .document-toc-list,
+article .content .document-toc .document-toc-list-child {
+  margin: 0;
+  padding-left: 1.5rem;
+  list-style: none;
+}
+article .content .document-toc > .document-toc-list {
+  padding-left: 0;
+}
+article .content .document-toc .document-toc-list-item {
+  margin: 0.35rem 0;
+}
+article .content .document-toc .document-toc-list-link {
+  text-decoration: none;
+}
+article .content .document-toc .document-toc-list-number {
+  color: #cc2a41;
+  font-weight: 700;
+}
+article .content.numbered-sections {
+  counter-reset: document-section;
+}
+article .content.numbered-sections > h2 {
+  counter-increment: document-section;
+  counter-reset: document-subsection;
+}
+article .content.numbered-sections > h2:before {
+  position: static;
+  color: inherit;
+  content: counter(document-section) ". ";
+  font-weight: inherit;
+  font-size: inherit;
+}
+article .content.numbered-sections > h3 {
+  counter-increment: document-subsection;
+  counter-reset: document-subsubsection;
+}
+article .content.numbered-sections > h3:before {
+  color: inherit;
+  content: counter(document-section) "." counter(document-subsection) " ";
+  font-weight: inherit;
+}
+article .content.numbered-sections > h4 {
+  counter-increment: document-subsubsection;
+}
+article .content.numbered-sections > h4:before {
+  color: inherit;
+  content: counter(document-section) "." counter(document-subsection) "." counter(document-subsubsection) " ";
+  font-weight: inherit;
 }
 article .content img,
 article .content video {

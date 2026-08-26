@@ -166,6 +166,7 @@
   
 
   <div class="content e-content" itemprop="articleBody">
+    
     <p>S3 là object storage, không phải filesystem từ xa. Ta lưu object bằng bucket + key và truy cập qua API/URL theo policy.</p>
 <h2 id="Credential"><a href="#Credential" class="headerlink" title="Credential"></a>Credential</h2><p>Ứng dụng cần region, bucket và quyền AWS phù hợp. Không hard-code access key trong source:</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Rails.application.credentials.dig(<span class="symbol">:aws</span>, <span class="symbol">:region</span>)</span><br></pre></td></tr></table></figure>

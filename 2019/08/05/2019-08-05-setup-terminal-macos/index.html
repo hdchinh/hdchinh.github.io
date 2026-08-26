@@ -82,7 +82,7 @@
       <ul>
         <li><a class="icon" aria-label="Home" href="/"><i class="fa-solid fa-house" aria-hidden="true" onmouseover="$('#i-home').toggle();" onmouseout="$('#i-home').toggle();"></i></a></li>
         
-        <li><a class="icon" aria-label="Previous post" href="/2019/09/20/2019-10-30-basic-vim-setup/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Previous post" href="/2019/09/20/2019-09-20-vscode-extension/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
         <li><a class="icon" aria-label="Next post" href="/2019/06/26/2019-06-25-build-a-simple-orm-with-ruby/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
@@ -165,6 +165,7 @@
   
 
   <div class="content e-content" itemprop="articleBody">
+    
     <p>A terminal setup should remove friction, not become a second operating system that needs weekly maintenance. These are the few tweaks I still find useful.</p>
 <h2 id="Show-the-current-Git-branch"><a href="#Show-the-current-Git-branch" class="headerlink" title="Show the current Git branch"></a>Show the current Git branch</h2><p>Modern macOS uses Zsh by default. Add this to <code>~/.zshrc</code>:</p>
 <figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">autoload</span> -Uz vcs_info</span><br><span class="line"><span class="function"><span class="title">precmd</span></span>() &#123; vcs_info &#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">zstyle</span> <span class="string">':vcs_info:git:*'</span> formats <span class="string">' (%b)'</span></span><br><span class="line"><span class="built_in">setopt</span> PROMPT_SUBST</span><br><span class="line">PROMPT=<span class="string">'%n@%m %F&#123;green&#125;%~%f$&#123;vcs_info_msg_0_&#125; $ '</span></span><br></pre></td></tr></table></figure>

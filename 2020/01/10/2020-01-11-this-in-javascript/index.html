@@ -160,6 +160,7 @@
   
 
   <div class="content e-content" itemprop="articleBody">
+    
     <p><code>this</code> is not “the object a function belongs to.” In JavaScript, its value is usually determined by <strong>how a function is called</strong>, not where the function was written.</p>
 <h2 id="Method-calls"><a href="#Method-calls" class="headerlink" title="Method calls"></a>Method calls</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> cat = &#123;</span><br><span class="line">  name: <span class="string">'Milo'</span>,</span><br><span class="line">  speak() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">cat.speak(); <span class="comment">// "Milo"</span></span><br></pre></td></tr></table></figure>
 

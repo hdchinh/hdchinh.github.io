@@ -159,6 +159,7 @@
   
 
   <div class="content e-content" itemprop="articleBody">
+    
     <p>Index không phải “bật chế độ nhanh” cho database. Nó là cấu trúc dữ liệu bổ sung giúp database tìm row với ít I/O hơn, đổi lại tốn storage và chi phí khi ghi.</p>
 <h2 id="B-tree-index-thuc-su-lam-gi"><a href="#B-tree-index-thuc-su-lam-gi" class="headerlink" title="B-tree index thực sự làm gì?"></a>B-tree index thực sự làm gì?</h2><p>Phần lớn relational database dùng biến thể B-tree cho index thông thường. Leaf pages được tổ chức để hỗ trợ lookup và range scan hiệu quả. “B-tree + doubly linked list” là cách hình dung đơn giản, nhưng implementation khác nhau theo database; đừng biến sơ đồ minh họa thành hiến pháp.</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">INDEX</span> index_users_on_email <span class="keyword">ON</span> <span class="keyword">users</span>(email);</span><br></pre></td></tr></table></figure>

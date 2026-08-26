@@ -160,6 +160,7 @@
   
 
   <div class="content e-content" itemprop="articleBody">
+    
     <p>Ba method cùng trả về “số lượng”, nhưng với <code>ActiveRecord::Relation</code>, chúng có thể tạo ra ba hành vi khác nhau. Đây là kiểu API nhìn hiền lành cho đến khi production có vài triệu record.</p>
 <h2 id="Voi-Array"><a href="#Voi-Array" class="headerlink" title="Với Array"></a>Với Array</h2><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">values = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"></span><br><span class="line">values.length <span class="comment"># =&gt; 3</span></span><br><span class="line">values.size   <span class="comment"># =&gt; 3</span></span><br><span class="line">values.count  <span class="comment"># =&gt; 3</span></span><br></pre></td></tr></table></figure>
 

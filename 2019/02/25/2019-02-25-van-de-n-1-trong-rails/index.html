@@ -159,6 +159,7 @@
   
 
   <div class="content e-content" itemprop="articleBody">
+    
     <p>N+1 xuất hiện khi ta load một tập record bằng một query, rồi mỗi record lại âm thầm tạo thêm query cho association.</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">users = User.limit(<span class="number">100</span>)</span><br><span class="line">users.each &#123; <span class="params">|user|</span> puts user.articles.size &#125;</span><br></pre></td></tr></table></figure>
 

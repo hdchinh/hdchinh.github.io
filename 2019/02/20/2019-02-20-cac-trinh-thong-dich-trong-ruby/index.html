@@ -81,7 +81,7 @@
       <ul>
         <li><a class="icon" aria-label="Home" href="/"><i class="fa-solid fa-house" aria-hidden="true" onmouseover="$('#i-home').toggle();" onmouseout="$('#i-home').toggle();"></i></a></li>
         
-        <li><a class="icon" aria-label="Previous post" href="/2019/02/22/2019-02-22-quy-luat-80-20/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Previous post" href="/2019/02/22/2019-02-22-xu-ly-thong-tin-quan-trong-trong-rails/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
         <li><a class="icon" aria-label="Next post" href="/2019/02/19/2019-02-19-truyen-tham-tri-va-truyen-tham-chieu/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
@@ -159,6 +159,7 @@
   
 
   <div class="content e-content" itemprop="articleBody">
+    
     <p>Ruby là language specification và ecosystem; CRuby chỉ là implementation phổ biến nhất. “Ruby interpreter” là cách gọi tiện, nhưng runtime hiện đại còn có bytecode VM, JIT và garbage collector—không chỉ đọc từng dòng rồi suy nghĩ.</p>
 <h2 id="CRuby-MRI"><a href="#CRuby-MRI" class="headerlink" title="CRuby (MRI)"></a>CRuby (MRI)</h2><p>Implementation reference, dùng YARV bytecode VM. Tương thích gem tốt nhất và là lựa chọn mặc định của phần lớn Rails app.</p>
 <p>CRuby có Global VM Lock nên Ruby code không chạy song song trên nhiều native thread trong cùng process theo cách CPU-bound thường mong muốn. I/O-bound concurrency vẫn hữu ích vì lock có thể được release khi chờ I/O; nhiều process/Ractor/JIT là các hướng khác tùy workload.</p>

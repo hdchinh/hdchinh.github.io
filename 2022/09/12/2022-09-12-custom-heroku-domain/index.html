@@ -159,6 +159,7 @@
   
 
   <div class="content e-content" itemprop="articleBody">
+    
     <h2 id="1-Add-a-custom-domain"><a href="#1-Add-a-custom-domain" class="headerlink" title="1. Add a custom domain"></a>1. Add a custom domain</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">heroku</span> <span class="selector-tag">domains</span><span class="selector-pseudo">:add</span> <span class="selector-tag">coolname</span><span class="selector-class">.com</span> <span class="selector-tag">--app</span> &lt;<span class="selector-tag">HEROKU</span> <span class="selector-tag">APP</span> <span class="selector-tag">NAME</span>&gt;</span><br></pre></td></tr></table></figure>
 
 <h2 id="2-Add-DNS-records"><a href="#2-Add-DNS-records" class="headerlink" title="2. Add DNS records"></a>2. Add DNS records</h2><p>Go to your domain registrar and add the DNS record required by Heroku. For an apex domain, use an ALIAS or ANAME record for <code>@</code> that points to the Heroku DNS target.</p>

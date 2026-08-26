@@ -167,6 +167,7 @@
   
 
   <div class="content e-content" itemprop="articleBody">
+    
     <p>CarrierWave tách model khỏi storage backend, nhưng abstraction không xóa trách nhiệm cấu hình S3.</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># config/initializers/carrierwave.rb</span></span><br><span class="line">CarrierWave.configure <span class="keyword">do</span> <span class="params">|config|</span></span><br><span class="line">  config.fog_provider = <span class="string">"fog/aws"</span></span><br><span class="line">  config.fog_credentials = &#123;</span><br><span class="line">    <span class="symbol">provider:</span> <span class="string">"AWS"</span>,</span><br><span class="line">    <span class="symbol">region:</span> ENV.fetch(<span class="string">"AWS_REGION"</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  config.fog_directory = ENV.fetch(<span class="string">"S3_BUCKET"</span>)</span><br><span class="line">  config.fog_public = <span class="literal">false</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 

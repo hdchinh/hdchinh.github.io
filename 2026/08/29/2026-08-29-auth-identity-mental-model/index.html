@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Auth &#x2F; Identity — Mental Model1. OAuth 2.0OAuth chỉ là một standard&#x2F;protocol, không phải technology hay framework. Bản chất implementation vẫn là:  database random token conditions API endpoints expir">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Auth &#x2F; Identity — Mental Model">
+<meta property="og:url" content="https://hdchinh.github.io/2026/08/29/2026-08-29-auth-identity-mental-model/">
+<meta property="og:site_name" content="Hudson">
+<meta property="og:description" content="Auth &#x2F; Identity — Mental Model1. OAuth 2.0OAuth chỉ là một standard&#x2F;protocol, không phải technology hay framework. Bản chất implementation vẫn là:  database random token conditions API endpoints expir">
+<meta property="og:locale" content="vi_VN">
+<meta property="article:published_time" content="2026-08-28T17:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-29T09:08:08.629Z">
+<meta property="article:author" content="Hudson">
+<meta name="twitter:card" content="summary">
+    <link rel="canonical" href="https://hdchinh.github.io/2026/08/29/2026-08-29-auth-identity-mental-model/">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Auth / Identity — Mental Model","description":"Auth / Identity — Mental Model1. OAuth 2.0OAuth chỉ là một standard/protocol, không phải technology hay framework. Bản chất implementation vẫn là: database random token conditions API endpoints expiry","inLanguage":"vi","url":"https://hdchinh.github.io/2026/08/29/2026-08-29-auth-identity-mental-model/","mainEntityOfPage":{"@type":"WebPage","@id":"https://hdchinh.github.io/2026/08/29/2026-08-29-auth-identity-mental-model/"},"datePublished":"2026-08-28T17:00:00.000Z","dateModified":"2026-08-29T09:08:08.629Z","author":{"@type":"Person","name":"Hudson","url":"https://hdchinh.github.io/"},"publisher":{"@type":"Person","name":"Hudson","url":"https://hdchinh.github.io/"}}</script>
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Auth / Identity — Mental Model</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        <li><a class="icon" aria-label="Home" href="/"><i class="fa-solid fa-house" aria-hidden="true" onmouseover="$('#i-home').toggle();" onmouseout="$('#i-home').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2026/08/26/2026-08-26-mcp-cuoi-cung-van-la-api-input-output-va-business-logic/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-home" class="info" style="display:none;">Home</span>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2026/08/29/2026-08-29-auth-identity-mental-model/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2026/08/29/2026-08-29-auth-identity-mental-model/&text=Auth / Identity — Mental Model" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2026/08/29/2026-08-29-auth-identity-mental-model/&title=Auth / Identity — Mental Model" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2026/08/29/2026-08-29-auth-identity-mental-model/&is_video=false&description=Auth / Identity — Mental Model" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Auth / Identity — Mental Model&body=Check out this article: https://hdchinh.github.io/2026/08/29/2026-08-29-auth-identity-mental-model/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2026/08/29/2026-08-29-auth-identity-mental-model/&title=Auth / Identity — Mental Model" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2026/08/29/2026-08-29-auth-identity-mental-model/&title=Auth / Identity — Mental Model" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2026/08/29/2026-08-29-auth-identity-mental-model/&title=Auth / Identity — Mental Model" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2026/08/29/2026-08-29-auth-identity-mental-model/&title=Auth / Identity — Mental Model" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2026/08/29/2026-08-29-auth-identity-mental-model/&name=Auth / Identity — Mental Model&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2026/08/29/2026-08-29-auth-identity-mental-model/&t=Auth / Identity — Mental Model" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Auth-Identity-—-Mental-Model"><span class="toc-number">1.</span> <span class="toc-text">Auth &#x2F; Identity — Mental Model</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-OAuth-2-0"><span class="toc-number">1.1.</span> <span class="toc-text">1. OAuth 2.0</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Server-to-server"><span class="toc-number">1.1.1.</span> <span class="toc-text">Server-to-server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#User-delegated-flow"><span class="toc-number">1.1.2.</span> <span class="toc-text">User-delegated flow</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-OpenID-Connect"><span class="toc-number">2.</span> <span class="toc-text">2. OpenID Connect</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-Identity-database"><span class="toc-number">3.</span> <span class="toc-text">3. Identity database</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-SCIM"><span class="toc-number">4.</span> <span class="toc-text">4. SCIM</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-AWS-Cognito-User-Pool"><span class="toc-number">5.</span> <span class="toc-text">5. AWS Cognito User Pool</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-Passkeys-WebAuthn"><span class="toc-number">6.</span> <span class="toc-text">6. Passkeys &#x2F; WebAuthn</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Register-Passkey"><span class="toc-number">6.1.</span> <span class="toc-text">Register Passkey</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Login"><span class="toc-number">6.2.</span> <span class="toc-text">Login</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Standards"><span class="toc-number">6.3.</span> <span class="toc-text">Standards</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Core-conclusion"><span class="toc-number">7.</span> <span class="toc-text">Core conclusion</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Auth / Identity — Mental Model
+    </h1>
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Hudson</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2026-08-28T17:00:00.000Z" class="dt-published" itemprop="datePublished">Aug 29</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    
+    <h1 id="Auth-Identity-—-Mental-Model"><a href="#Auth-Identity-—-Mental-Model" class="headerlink" title="Auth / Identity — Mental Model"></a>Auth / Identity — Mental Model</h1><h2 id="1-OAuth-2-0"><a href="#1-OAuth-2-0" class="headerlink" title="1. OAuth 2.0"></a>1. OAuth 2.0</h2><p>OAuth chỉ là <strong>một standard/protocol</strong>, không phải technology hay framework.</p>
+<p>Bản chất implementation vẫn là:</p>
+<ul>
+<li>database</li>
+<li>random token</li>
+<li>conditions</li>
+<li>API endpoints</li>
+<li>expiry / permission checks</li>
+</ul>
+<h3 id="Server-to-server"><a href="#Server-to-server" class="headerlink" title="Server-to-server"></a>Server-to-server</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">client_id + client_secret</span><br><span class="line">→ Authorization Server</span><br><span class="line">→ access_token</span><br><span class="line">→ Resource Server</span><br></pre></td></tr></table></figure>
+
+<p><code>client_id</code> chỉ cần unique.<br><code>client_secret</code> là random secret đủ mạnh.</p>
+<p>Access token:</p>
+<ul>
+<li>có thể là JWT</li>
+<li>có thể chỉ là random opaque string</li>
+<li>format không phải điểm quan trọng</li>
+</ul>
+<p>Điểm quan trọng là:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Authorization Server phát token</span><br><span class="line">→ Resource Server có cách verify token</span><br><span class="line">→ biết token đại diện cho client&#x2F;user nào và có quyền gì</span><br></pre></td></tr></table></figure>
+
+<h3 id="User-delegated-flow"><a href="#User-delegated-flow" class="headerlink" title="User-delegated flow"></a>User-delegated flow</h3><p>Core vẫn giống server-to-server, chỉ thêm bước:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">user consent</span><br></pre></td></tr></table></figure>
+
+<p>Flow:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Client</span><br><span class="line">→ redirect Authorization Server</span><br><span class="line">→ user login + consent</span><br><span class="line">→ Authorization Server tạo authorization_code</span><br><span class="line">→ redirect về Client</span><br><span class="line">→ Client gửi code + client credentials&#x2F;PKCE</span><br><span class="line">→ Authorization Server trả access_token</span><br><span class="line">→ Client dùng access_token gọi Resource Server</span><br></pre></td></tr></table></figure>
+
+<p><code>authorization_code</code> có thể đơn giản là random string.</p>
+<p>Backend Authorization Server lưu:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">code</span><br><span class="line">→ user_id</span><br><span class="line">→ client_id</span><br><span class="line">→ scope</span><br><span class="line">→ expires_at</span><br><span class="line">→ used_at</span><br></pre></td></tr></table></figure>
+
+<p>Code tồn tại chủ yếu để access token không phải đi qua browser redirect.</p>
+<hr>
+<h1 id="2-OpenID-Connect"><a href="#2-OpenID-Connect" class="headerlink" title="2. OpenID Connect"></a>2. OpenID Connect</h1><p>OIDC là <strong>standard xây trực tiếp trên OAuth 2.0</strong>, reuse lại flow và concepts của OAuth.</p>
+<p>OAuth chủ yếu nói về:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">client được phép làm gì</span><br></pre></td></tr></table></figure>
+
+<p>OIDC thêm:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">user này là ai</span><br></pre></td></tr></table></figure>
+
+<p>Nó thêm một <strong>ID Token</strong>, thường là JWT.</p>
+<p>Ví dụ:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"iss"</span>: <span class="string">"https://accounts.google.com"</span>,</span><br><span class="line">  <span class="attr">"sub"</span>: <span class="string">"user_123"</span>,</span><br><span class="line">  <span class="attr">"aud"</span>: <span class="string">"google-drive-client"</span>,</span><br><span class="line">  <span class="attr">"exp"</span>: <span class="number">123456</span>,</span><br><span class="line">  <span class="attr">"iat"</span>: <span class="number">123000</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Client verify:</p>
+<ul>
+<li>signature</li>
+<li>issuer</li>
+<li>audience</li>
+<li>expiration</li>
+</ul>
+<p>Sau khi verify được ID Token, application có thể tạo <strong>local session riêng</strong>.</p>
+<p>Mental model:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Identity Provider xác thực user</span><br><span class="line">→ phát ID Token</span><br><span class="line">→ App verify</span><br><span class="line">→ biết user là ai</span><br><span class="line">→ tạo session riêng cho app</span><br></pre></td></tr></table></figure>
+
+<p>OIDC không bắt buộc app phải dùng JWT cho local session; random session ID + database cũng được.</p>
+<hr>
+<h1 id="3-Identity-database"><a href="#3-Identity-database" class="headerlink" title="3. Identity database"></a>3. Identity database</h1><p>OIDC dẫn đến bài toán:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Identity lưu tập trung</span><br><span class="line">Application data lưu phân tán</span><br></pre></td></tr></table></figure>
+
+<p>Ví dụ:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Google Accounts:</span><br><span class="line">user identity &#x2F; password &#x2F; MFA &#x2F; sub</span><br><span class="line"></span><br><span class="line">Google Drive:</span><br><span class="line">oidc_sub</span><br><span class="line">files</span><br><span class="line">preferences</span><br><span class="line"></span><br><span class="line">Gmail:</span><br><span class="line">oidc_sub</span><br><span class="line">mailbox</span><br><span class="line">settings</span><br></pre></td></tr></table></figure>
+
+<p>App có thể tạo local user ngay lần login đầu:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">verify ID Token</span><br><span class="line">→ lấy iss + sub</span><br><span class="line">→ không có local user</span><br><span class="line">→ create local user</span><br><span class="line">→ create session</span><br></pre></td></tr></table></figure>
+
+<p>Đây là JIT provisioning.</p>
+<hr>
+<h1 id="4-SCIM"><a href="#4-SCIM" class="headerlink" title="4. SCIM"></a>4. SCIM</h1><p>OIDC không xử lý việc:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">user bị create&#x2F;update&#x2F;disable&#x2F;delete</span><br><span class="line">→ sync sang các application khác</span><br></pre></td></tr></table></figure>
+
+<p>Standard cho việc này là <strong>SCIM 2.0</strong>.</p>
+<p>Bản chất vẫn chỉ là standardized API:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">POST &#x2F;Users</span><br><span class="line">PATCH &#x2F;Users&#x2F;:id</span><br><span class="line">DELETE &#x2F;Users&#x2F;:id</span><br><span class="line">&#x2F;Groups</span><br></pre></td></tr></table></figure>
+
+<p>Không có technology đặc biệt; giá trị nằm ở việc mọi Identity Provider và SaaS cùng hiểu một contract.</p>
+<hr>
+<h1 id="5-AWS-Cognito-User-Pool"><a href="#5-AWS-Cognito-User-Pool" class="headerlink" title="5. AWS Cognito User Pool"></a>5. AWS Cognito User Pool</h1><p>Cognito User Pool về bản chất là:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">User database</span><br><span class="line">+ Authentication Server</span><br><span class="line">+ OAuth Authorization Server</span><br><span class="line">+ OpenID Provider</span><br></pre></td></tr></table></figure>
+
+<p>User login:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">email&#x2F;password</span><br><span class="line">→ Cognito</span><br><span class="line">→ ID Token + Access Token + Refresh Token</span><br></pre></td></tr></table></figure>
+
+<p>Backend app không cần call Cognito mỗi request.</p>
+<p>Thay vào đó:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">request có JWT</span><br><span class="line">→ lấy kid</span><br><span class="line">→ lấy public key từ JWKS</span><br><span class="line">→ verify signature</span><br><span class="line">→ check exp &#x2F; iss &#x2F; client_id &#x2F; token_use</span><br><span class="line">→ allow &#x2F; reject</span><br></pre></td></tr></table></figure>
+
+<p>JWKS chỉ là public endpoint chứa public keys để verify JWT signatures.</p>
+<p>Trade-off:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">local JWT verification</span><br><span class="line">&#x3D; fast + cheap</span><br><span class="line">but</span><br><span class="line">revocation&#x2F;disable có thể không realtime</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="6-Passkeys-WebAuthn"><a href="#6-Passkeys-WebAuthn" class="headerlink" title="6. Passkeys / WebAuthn"></a>6. Passkeys / WebAuthn</h1><p>Passkey cuối cùng vẫn chỉ dựa trên <strong>asymmetric cryptography</strong>.</p>
+<h2 id="Register-Passkey"><a href="#Register-Passkey" class="headerlink" title="Register Passkey"></a>Register Passkey</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Facebook backend tạo random challenge</span><br><span class="line">→ frontend gọi WebAuthn API</span><br><span class="line">→ browser nói chuyện với macOS authenticator</span><br><span class="line">→ macOS tạo:</span><br><span class="line"></span><br><span class="line">private key</span><br><span class="line">public key</span><br><span class="line"></span><br><span class="line">→ private key giữ trong passkey store &#x2F; iCloud Keychain</span><br><span class="line">→ public key trả qua WebAuthn</span><br><span class="line">→ frontend gửi public key về Facebook backend</span><br><span class="line">→ Facebook lưu:</span><br><span class="line"></span><br><span class="line">user_id</span><br><span class="line">credential_id</span><br><span class="line">public_key</span><br></pre></td></tr></table></figure>
+
+<h2 id="Login"><a href="#Login" class="headerlink" title="Login"></a>Login</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Facebook tạo challenge mới</span><br><span class="line">→ browser&#x2F;WebAuthn</span><br><span class="line">→ macOS tìm private key</span><br><span class="line">→ Touch ID cho phép sử dụng private key</span><br><span class="line">→ private key ký challenge</span><br><span class="line">→ signature gửi về Facebook</span><br><span class="line">→ Facebook lấy public key đã lưu</span><br><span class="line">→ verify</span><br><span class="line">→ tạo Facebook session</span><br></pre></td></tr></table></figure>
+
+<p><code>challenge</code> chỉ là random bytes để mỗi request authentication khác nhau và chống replay.</p>
+<p>Touch ID không được gửi cho Facebook.</p>
+<p>Nó chỉ làm:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">user consent locally</span><br><span class="line">→ macOS cho phép dùng private key</span><br></pre></td></tr></table></figure>
+
+<h2 id="Standards"><a href="#Standards" class="headerlink" title="Standards"></a>Standards</h2><p>Umbrella:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">FIDO2</span><br><span class="line">├── WebAuthn</span><br><span class="line">└── CTAP</span><br></pre></td></tr></table></figure>
+
+<p><strong>WebAuthn</strong> chuẩn hóa website/browser flow.</p>
+<p><strong>CTAP</strong> chuẩn hóa browser/OS ↔ authenticator.</p>
+<p>Backend vẫn tự do chọn Rails/Go/Postgres/Redis…, nhưng phải follow WebAuthn verification rules.</p>
+<hr>
+<h1 id="Core-conclusion"><a href="#Core-conclusion" class="headerlink" title="Core conclusion"></a>Core conclusion</h1><p>Hầu hết những thứ nghe rất phức tạp trong auth thực ra vẫn là:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">normal programming</span><br><span class="line">+ database</span><br><span class="line">+ cryptography</span><br><span class="line">+ API</span><br><span class="line">+ conditions</span><br><span class="line">+ standardized contracts</span><br></pre></td></tr></table></figure>
+
+<p>OAuth, OIDC, SCIM, WebAuthn không phải magic hoặc technology mới.</p>
+<p>Giá trị lớn nhất của chúng là:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">nhiều hệ thống khác nhau</span><br><span class="line">→ cùng nói một ngôn ngữ</span><br><span class="line">→ interoperable</span><br><span class="line">→ không phải tự invent auth protocol</span><br></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Auth-Identity-—-Mental-Model"><span class="toc-number">1.</span> <span class="toc-text">Auth &#x2F; Identity — Mental Model</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-OAuth-2-0"><span class="toc-number">1.1.</span> <span class="toc-text">1. OAuth 2.0</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Server-to-server"><span class="toc-number">1.1.1.</span> <span class="toc-text">Server-to-server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#User-delegated-flow"><span class="toc-number">1.1.2.</span> <span class="toc-text">User-delegated flow</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-OpenID-Connect"><span class="toc-number">2.</span> <span class="toc-text">2. OpenID Connect</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-Identity-database"><span class="toc-number">3.</span> <span class="toc-text">3. Identity database</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-SCIM"><span class="toc-number">4.</span> <span class="toc-text">4. SCIM</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-AWS-Cognito-User-Pool"><span class="toc-number">5.</span> <span class="toc-text">5. AWS Cognito User Pool</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-Passkeys-WebAuthn"><span class="toc-number">6.</span> <span class="toc-text">6. Passkeys &#x2F; WebAuthn</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Register-Passkey"><span class="toc-number">6.1.</span> <span class="toc-text">Register Passkey</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Login"><span class="toc-number">6.2.</span> <span class="toc-text">Login</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Standards"><span class="toc-number">6.3.</span> <span class="toc-text">Standards</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Core-conclusion"><span class="toc-number">7.</span> <span class="toc-text">Core conclusion</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2026/08/29/2026-08-29-auth-identity-mental-model/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2026/08/29/2026-08-29-auth-identity-mental-model/&text=Auth / Identity — Mental Model" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2026/08/29/2026-08-29-auth-identity-mental-model/&title=Auth / Identity — Mental Model" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2026/08/29/2026-08-29-auth-identity-mental-model/&is_video=false&description=Auth / Identity — Mental Model" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Auth / Identity — Mental Model&body=Check out this article: https://hdchinh.github.io/2026/08/29/2026-08-29-auth-identity-mental-model/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2026/08/29/2026-08-29-auth-identity-mental-model/&title=Auth / Identity — Mental Model" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2026/08/29/2026-08-29-auth-identity-mental-model/&title=Auth / Identity — Mental Model" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2026/08/29/2026-08-29-auth-identity-mental-model/&title=Auth / Identity — Mental Model" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2026/08/29/2026-08-29-auth-identity-mental-model/&title=Auth / Identity — Mental Model" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2026/08/29/2026-08-29-auth-identity-mental-model/&name=Auth / Identity — Mental Model&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2026/08/29/2026-08-29-auth-identity-mental-model/&t=Auth / Identity — Mental Model" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="home" class="icon" href="/"><i class="fa-solid fa-house fa-lg" aria-hidden="true"></i> Home</a>
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

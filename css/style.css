@@ -457,11 +457,15 @@ body td {
 }
 .english-chunks-page .content.e-content > table th:first-child,
 .english-chunks-page .content.e-content > table td:first-child {
-  width: 50% !important;
+  width: 5rem !important;
+  text-align: center;
+  white-space: nowrap;
 }
-.english-chunks-page .content.e-content > table th:last-child,
-.english-chunks-page .content.e-content > table td:last-child {
-  width: 50% !important;
+.english-chunks-page .content.e-content > table th:nth-child(2),
+.english-chunks-page .content.e-content > table td:nth-child(2),
+.english-chunks-page .content.e-content > table th:nth-child(3),
+.english-chunks-page .content.e-content > table td:nth-child(3) {
+  width: calc((100% - 5rem) / 2) !important;
 }
 @font-face {
   font-family: "Roboto Slab";

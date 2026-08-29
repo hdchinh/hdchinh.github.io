@@ -434,6 +434,35 @@ body td {
   padding: 0 8px;
   border-bottom: none;
 }
+.english-chunks-page .content.e-content > table {
+  display: table !important;
+  table-layout: fixed;
+}
+@media (min-width: 768px) {
+  .english-chunks-page .content.e-content > table {
+    position: relative;
+    left: 50%;
+    width: 90vw !important;
+    max-width: 90rem !important;
+    margin-left: 0;
+    transform: translateX(-50%);
+  }
+}
+.english-chunks-page .content.e-content > table th,
+.english-chunks-page .content.e-content > table td {
+  min-width: 0 !important;
+  max-width: none !important;
+  vertical-align: top;
+  overflow-wrap: anywhere;
+}
+.english-chunks-page .content.e-content > table th:first-child,
+.english-chunks-page .content.e-content > table td:first-child {
+  width: 50% !important;
+}
+.english-chunks-page .content.e-content > table th:last-child,
+.english-chunks-page .content.e-content > table td:last-child {
+  width: 50% !important;
+}
 @font-face {
   font-family: "Roboto Slab";
   font-style: normal;

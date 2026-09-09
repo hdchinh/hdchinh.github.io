@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Hầu hết tài liệu về AWS IAM dạy theo thứ tự: IAM User → Group → Policy → Role. Đọc xong vẫn không hiểu cái đéo gì vì đó là thứ tự AWS present trên Console cho đẹp, không phải thứ tự để hiểu. Bài này đ">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AWS IAM: Hiểu Đúng Từ Nền Tảng">
+<meta property="og:url" content="https://hdchinh.github.io/2026/09/09/2026-09-09-aws-iam-hieu-dung-tu-nen-tang/">
+<meta property="og:site_name" content="Hudson">
+<meta property="og:description" content="Hầu hết tài liệu về AWS IAM dạy theo thứ tự: IAM User → Group → Policy → Role. Đọc xong vẫn không hiểu cái đéo gì vì đó là thứ tự AWS present trên Console cho đẹp, không phải thứ tự để hiểu. Bài này đ">
+<meta property="og:locale" content="vi_VN">
+<meta property="article:published_time" content="2026-09-08T17:00:00.000Z">
+<meta property="article:modified_time" content="2026-09-09T10:01:30.398Z">
+<meta property="article:author" content="Hudson">
+<meta name="twitter:card" content="summary">
+    <link rel="canonical" href="https://hdchinh.github.io/2026/09/09/2026-09-09-aws-iam-hieu-dung-tu-nen-tang/">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"AWS IAM: Hiểu Đúng Từ Nền Tảng","description":"Hầu hết tài liệu về AWS IAM dạy theo thứ tự: IAM User → Group → Policy → Role. Đọc xong vẫn không hiểu cái đéo gì vì đó là thứ tự AWS present trên Console cho đẹp, không phải thứ tự để hiểu. Bài này đ","inLanguage":"vi","url":"https://hdchinh.github.io/2026/09/09/2026-09-09-aws-iam-hieu-dung-tu-nen-tang/","mainEntityOfPage":{"@type":"WebPage","@id":"https://hdchinh.github.io/2026/09/09/2026-09-09-aws-iam-hieu-dung-tu-nen-tang/"},"datePublished":"2026-09-08T17:00:00.000Z","dateModified":"2026-09-09T10:01:30.398Z","author":{"@type":"Person","name":"Hudson","url":"https://hdchinh.github.io/"},"publisher":{"@type":"Person","name":"Hudson","url":"https://hdchinh.github.io/"}}</script>
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>AWS IAM: Hiểu Đúng Từ Nền Tảng</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        <li><a class="icon" aria-label="Home" href="/"><i class="fa-solid fa-house" aria-hidden="true" onmouseover="$('#i-home').toggle();" onmouseout="$('#i-home').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2026/09/06/2026-09-06-tai-sao-toi-chan-va-nao-toi-dang-noi-gi/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-home" class="info" style="display:none;">Home</span>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2026/09/09/2026-09-09-aws-iam-hieu-dung-tu-nen-tang/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2026/09/09/2026-09-09-aws-iam-hieu-dung-tu-nen-tang/&text=AWS IAM: Hiểu Đúng Từ Nền Tảng" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2026/09/09/2026-09-09-aws-iam-hieu-dung-tu-nen-tang/&title=AWS IAM: Hiểu Đúng Từ Nền Tảng" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2026/09/09/2026-09-09-aws-iam-hieu-dung-tu-nen-tang/&is_video=false&description=AWS IAM: Hiểu Đúng Từ Nền Tảng" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=AWS IAM: Hiểu Đúng Từ Nền Tảng&body=Check out this article: https://hdchinh.github.io/2026/09/09/2026-09-09-aws-iam-hieu-dung-tu-nen-tang/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2026/09/09/2026-09-09-aws-iam-hieu-dung-tu-nen-tang/&title=AWS IAM: Hiểu Đúng Từ Nền Tảng" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2026/09/09/2026-09-09-aws-iam-hieu-dung-tu-nen-tang/&title=AWS IAM: Hiểu Đúng Từ Nền Tảng" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2026/09/09/2026-09-09-aws-iam-hieu-dung-tu-nen-tang/&title=AWS IAM: Hiểu Đúng Từ Nền Tảng" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2026/09/09/2026-09-09-aws-iam-hieu-dung-tu-nen-tang/&title=AWS IAM: Hiểu Đúng Từ Nền Tảng" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2026/09/09/2026-09-09-aws-iam-hieu-dung-tu-nen-tang/&name=AWS IAM: Hiểu Đúng Từ Nền Tảng&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2026/09/09/2026-09-09-aws-iam-hieu-dung-tu-nen-tang/&t=AWS IAM: Hiểu Đúng Từ Nền Tảng" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Policy-–-Thu-Duy-Nhat-Thuc-Su-Quan-Trong"><span class="toc-number">1.</span> <span class="toc-text">Policy – Thứ Duy Nhất Thực Sự Quan Trọng</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ARN-–-Dia-Chi-Duy-Nhat-Cua-Moi-Thu-Tren-AWS"><span class="toc-number">2.</span> <span class="toc-text">ARN – Địa Chỉ Duy Nhất Của Mọi Thứ Trên AWS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IAM-User-–-Dai-Dien-Cho-Con-Nguoi"><span class="toc-number">3.</span> <span class="toc-text">IAM User – Đại Diện Cho Con Người</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IAM-Group-–-Gom-Nguoi-Lai-Cho-Tien"><span class="toc-number">4.</span> <span class="toc-text">IAM Group – Gom Người Lại Cho Tiện</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IAM-Role-–-Quyen-Tam-Thoi-Cho-Service"><span class="toc-number">5.</span> <span class="toc-text">IAM Role – Quyền Tạm Thời Cho Service</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Access-Key-vs-API-Key-–-Dung-Nham"><span class="toc-number">6.</span> <span class="toc-text">Access Key vs API Key – Đừng Nhầm</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#STS-–-Cai-May-In-Tien-Tam-Thoi"><span class="toc-number">7.</span> <span class="toc-text">STS – Cái Máy In Tiền Tạm Thời</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Tai-sao-can-ca-3-thu"><span class="toc-number">7.1.</span> <span class="toc-text">Tại sao cần cả 3 thứ?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SessionToken-thuc-chat-la-gi"><span class="toc-number">7.2.</span> <span class="toc-text">SessionToken thực chất là gì?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Tai-sao-khong-dung-Asymmetric-Cryptography-RSA-ECDSA"><span class="toc-number">7.3.</span> <span class="toc-text">Tại sao không dùng Asymmetric Cryptography (RSA&#x2F;ECDSA)?</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tong-Ket"><span class="toc-number">8.</span> <span class="toc-text">Tổng Kết</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        AWS IAM: Hiểu Đúng Từ Nền Tảng
+    </h1>
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Hudson</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2026-09-08T17:00:00.000Z" class="dt-published" itemprop="datePublished">Sep 9</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content numbered-sections" itemprop="articleBody">
+    
+      
+      
+        <nav class="document-toc" aria-label="Table of contents">
+          <span class="document-toc-title">Contents</span>
+          <ol class="document-toc-list"><li class="document-toc-list-item document-toc-list-level-2"><a class="document-toc-list-link" href="#Policy-–-Thu-Duy-Nhat-Thuc-Su-Quan-Trong"><span class="document-toc-list-number">1.</span> <span class="document-toc-list-text">Policy – Thứ Duy Nhất Thực Sự Quan Trọng</span></a></li><li class="document-toc-list-item document-toc-list-level-2"><a class="document-toc-list-link" href="#ARN-–-Dia-Chi-Duy-Nhat-Cua-Moi-Thu-Tren-AWS"><span class="document-toc-list-number">2.</span> <span class="document-toc-list-text">ARN – Địa Chỉ Duy Nhất Của Mọi Thứ Trên AWS</span></a></li><li class="document-toc-list-item document-toc-list-level-2"><a class="document-toc-list-link" href="#IAM-User-–-Dai-Dien-Cho-Con-Nguoi"><span class="document-toc-list-number">3.</span> <span class="document-toc-list-text">IAM User – Đại Diện Cho Con Người</span></a></li><li class="document-toc-list-item document-toc-list-level-2"><a class="document-toc-list-link" href="#IAM-Group-–-Gom-Nguoi-Lai-Cho-Tien"><span class="document-toc-list-number">4.</span> <span class="document-toc-list-text">IAM Group – Gom Người Lại Cho Tiện</span></a></li><li class="document-toc-list-item document-toc-list-level-2"><a class="document-toc-list-link" href="#IAM-Role-–-Quyen-Tam-Thoi-Cho-Service"><span class="document-toc-list-number">5.</span> <span class="document-toc-list-text">IAM Role – Quyền Tạm Thời Cho Service</span></a></li><li class="document-toc-list-item document-toc-list-level-2"><a class="document-toc-list-link" href="#Access-Key-vs-API-Key-–-Dung-Nham"><span class="document-toc-list-number">6.</span> <span class="document-toc-list-text">Access Key vs API Key – Đừng Nhầm</span></a></li><li class="document-toc-list-item document-toc-list-level-2"><a class="document-toc-list-link" href="#STS-–-Cai-May-In-Tien-Tam-Thoi"><span class="document-toc-list-number">7.</span> <span class="document-toc-list-text">STS – Cái Máy In Tiền Tạm Thời</span></a><ol class="document-toc-list-child"><li class="document-toc-list-item document-toc-list-level-3"><a class="document-toc-list-link" href="#Tai-sao-can-ca-3-thu"><span class="document-toc-list-number">7.1.</span> <span class="document-toc-list-text">Tại sao cần cả 3 thứ?</span></a></li><li class="document-toc-list-item document-toc-list-level-3"><a class="document-toc-list-link" href="#SessionToken-thuc-chat-la-gi"><span class="document-toc-list-number">7.2.</span> <span class="document-toc-list-text">SessionToken thực chất là gì?</span></a></li><li class="document-toc-list-item document-toc-list-level-3"><a class="document-toc-list-link" href="#Tai-sao-khong-dung-Asymmetric-Cryptography-RSA-ECDSA"><span class="document-toc-list-number">7.3.</span> <span class="document-toc-list-text">Tại sao không dùng Asymmetric Cryptography (RSA&#x2F;ECDSA)?</span></a></li></ol></li><li class="document-toc-list-item document-toc-list-level-2"><a class="document-toc-list-link" href="#Tong-Ket"><span class="document-toc-list-number">8.</span> <span class="document-toc-list-text">Tổng Kết</span></a></li></ol>
+        </nav>
+      
+    
+    <p>Hầu hết tài liệu về AWS IAM dạy theo thứ tự: IAM User → Group → Policy → Role. Đọc xong vẫn không hiểu cái đéo gì vì đó là thứ tự AWS <strong>present</strong> trên Console cho đẹp, không phải thứ tự để hiểu. Bài này đi từ nền tảng lên – hiểu cái gốc trước, mọi thứ còn lại tự khắc click.</p>
+<h2 id="Policy-–-Thu-Duy-Nhat-Thuc-Su-Quan-Trong"><a href="#Policy-–-Thu-Duy-Nhat-Thuc-Su-Quan-Trong" class="headerlink" title="Policy – Thứ Duy Nhất Thực Sự Quan Trọng"></a>Policy – Thứ Duy Nhất Thực Sự Quan Trọng</h2><p>Mọi người cứ hay nói về IAM User, Group, Role – nhưng thực ra tất cả chỉ là vỏ bọc. <strong>Policy mới là thứ thực sự định nghĩa “được làm gì, không được làm gì.”</strong> Hiểu Policy là hiểu 80% IAM rồi.</p>
+<p>Policy là một JSON document gồm 2 phần tách biệt – và đây là điểm nhiều người không để ý:</p>
+<p><strong>Metadata</strong> (định danh bên ngoài):</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"PolicyName"</span>: <span class="string">"S3ReadPolicy"</span>,</span><br><span class="line">  <span class="attr">"PolicyID"</span>: <span class="string">"ANPAEXAMPLE123"</span>,</span><br><span class="line">  <span class="attr">"ARN"</span>: <span class="string">"arn:aws:iam::123456789012:policy/S3ReadPolicy"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Document</strong> (logic thực sự – phần quan trọng):</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"Version"</span>: <span class="string">"2012-10-17"</span>,</span><br><span class="line">  <span class="attr">"Statement"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"Effect"</span>: <span class="string">"Allow"</span>,</span><br><span class="line">      <span class="attr">"Action"</span>: [<span class="string">"s3:GetObject"</span>, <span class="string">"s3:PutObject"</span>],</span><br><span class="line">      <span class="attr">"Resource"</span>: <span class="string">"arn:aws:s3:::my-bucket/*"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"Effect"</span>: <span class="string">"Deny"</span>,</span><br><span class="line">      <span class="attr">"Action"</span>: <span class="string">"s3:DeleteObject"</span>,</span><br><span class="line">      <span class="attr">"Resource"</span>: <span class="string">"arn:aws:s3:::my-bucket/*"</span></span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>Quy tắc cốt lõi:</strong> Deny luôn thắng Allow, không có ngoại lệ.</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Mặc định &#x3D; Deny</span><br><span class="line">    ↓</span><br><span class="line">Có Explicit Deny? → Deny ngay, không cần xem tiếp</span><br><span class="line">    ↓</span><br><span class="line">Có Allow? → Allow</span><br><span class="line">    ↓</span><br><span class="line">Không có gì? → Implicit Deny (vẫn là Deny)</span><br></pre></td></tr></table></figure>
+
+<p>Và cái hay của Policy là <strong>reusable</strong> – một Policy attach vào bao nhiêu User, Group, Role tùy thích. Muốn thay đổi quyền thì sửa một chỗ, tất cả nơi dùng Policy đó đều được cập nhật ngay. Không phải đi sửa từng thằng một như thằng ngốc.</p>
+<h2 id="ARN-–-Dia-Chi-Duy-Nhat-Cua-Moi-Thu-Tren-AWS"><a href="#ARN-–-Dia-Chi-Duy-Nhat-Cua-Moi-Thu-Tren-AWS" class="headerlink" title="ARN – Địa Chỉ Duy Nhất Của Mọi Thứ Trên AWS"></a>ARN – Địa Chỉ Duy Nhất Của Mọi Thứ Trên AWS</h2><p>Trước khi nói về User, Group, Role – cần hiểu ARN vì nó xuất hiện ở khắp nơi.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">arn:aws:iam::123456789012:user&#x2F;hudson</span><br><span class="line">arn:aws:s3:::my-bucket</span><br><span class="line">arn:aws:lambda:ap-southeast-1:123456789012:function:my-function</span><br></pre></td></tr></table></figure>
+
+<p>Cấu trúc:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arn : partition : service : region : account-id : resource</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>partition</strong> – thường là <code>aws</code>. Xong.</li>
+<li><strong>service</strong> – <code>iam</code>, <code>s3</code>, <code>lambda</code>, <code>ec2</code>…</li>
+<li><strong>region</strong> – IAM bỏ trống vì global. S3 cũng bỏ trống trong ARN vì bucket name đã unique toàn cầu – nhưng đừng nhầm: S3 vẫn là Regional Service, dữ liệu vẫn nằm cố định ở một Region cụ thể.</li>
+<li><strong>account-id</strong> – số tài khoản AWS</li>
+<li><strong>resource</strong> – tên resource cụ thể</li>
+</ul>
+<p>Tại sao cần ARN khi đã có UniqueID? Vì ARN encode đủ context trong một string – service nào, account nào, region nào. Policy cần ARN để reference chính xác “thằng này ở đâu”, chứ UniqueID như <code>AIDAEXAMPLE123</code> thì biết đéo gì.</p>
+<h2 id="IAM-User-–-Dai-Dien-Cho-Con-Nguoi"><a href="#IAM-User-–-Dai-Dien-Cho-Con-Nguoi" class="headerlink" title="IAM User – Đại Diện Cho Con Người"></a>IAM User – Đại Diện Cho Con Người</h2><p>IAM User đại diện cho một người cụ thể. Object trông như này:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"Metadata"</span>: &#123;</span><br><span class="line">    <span class="attr">"UserName"</span>: <span class="string">"hudson"</span>,</span><br><span class="line">    <span class="attr">"UniqueID"</span>: <span class="string">"AIDAEXAMPLE123"</span>,</span><br><span class="line">    <span class="attr">"ARN"</span>: <span class="string">"arn:aws:iam::123456789012:user/hudson"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"Credentials"</span>: &#123;</span><br><span class="line">    <span class="attr">"PasswordHash"</span>: <span class="string">"&lt;salted_hash&gt;"</span>,</span><br><span class="line">    <span class="attr">"AccessKeys"</span>: [<span class="string">"AKIAEXAMPLE123"</span>],</span><br><span class="line">    <span class="attr">"MFADevices"</span>: [<span class="string">"arn:aws:iam::123456789012:mfa/hudson"</span>]</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"Authorization"</span>: &#123;</span><br><span class="line">    <span class="attr">"GroupMemberships"</span>: [<span class="string">"arn:aws:iam::123456789012:group/Developers"</span>],</span><br><span class="line">    <span class="attr">"AttachedPolicies"</span>: [<span class="string">"arn:aws:iam::123456789012:policy/S3ReadPolicy"</span>]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>2 phần quan trọng nhất:</p>
+<ul>
+<li><strong>Credentials</strong> – “Mày là ai?”</li>
+<li><strong>Authorization Links</strong> – “Mày được làm gì?”</li>
+</ul>
+<p><code>UniqueID</code> là bất biến – đổi username thì ID vẫn không đổi. AWS dùng cái này để track nội bộ.</p>
+<h2 id="IAM-Group-–-Gom-Nguoi-Lai-Cho-Tien"><a href="#IAM-Group-–-Gom-Nguoi-Lai-Cho-Tien" class="headerlink" title="IAM Group – Gom Người Lại Cho Tiện"></a>IAM Group – Gom Người Lại Cho Tiện</h2><p>Không có gì phức tạp. Group là cách gom nhiều User lại để quản lý quyền chung – thay vì đi attach Policy từng thằng một như thằng điên.</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"GroupName"</span>: <span class="string">"Developers"</span>,</span><br><span class="line">  <span class="attr">"GroupID"</span>: <span class="string">"AGPAEXAMPLE456"</span>,</span><br><span class="line">  <span class="attr">"ARN"</span>: <span class="string">"arn:aws:iam::123456789012:group/Developers"</span>,</span><br><span class="line">  <span class="attr">"Members"</span>: [</span><br><span class="line">    <span class="string">"arn:aws:iam::123456789012:user/hudson"</span>,</span><br><span class="line">    <span class="string">"arn:aws:iam::123456789012:user/alice"</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">"AttachedPolicies"</span>: [</span><br><span class="line">    <span class="string">"arn:aws:iam::123456789012:policy/S3ReadPolicy"</span></span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Điểm cần nhớ:</p>
+<ul>
+<li>Group <strong>không thể chứa Group khác</strong> – chỉ chứa User thôi</li>
+<li>User thuộc nhiều Group thì quyền là tổng hợp tất cả Policy – nhưng Deny từ bất kỳ đâu vẫn thắng hết</li>
+</ul>
+<h2 id="IAM-Role-–-Quyen-Tam-Thoi-Cho-Service"><a href="#IAM-Role-–-Quyen-Tam-Thoi-Cho-Service" class="headerlink" title="IAM Role – Quyền Tạm Thời Cho Service"></a>IAM Role – Quyền Tạm Thời Cho Service</h2><p>Đây là phần nhiều người bị confuse nhất – vì Role khác hoàn toàn với User.</p>
+<p>Role không thuộc về ai cố định. Không có credentials cố định. Được thiết kế cho <strong>service</strong> như Lambda, EC2 – những thứ không có username hay password.</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"RoleName"</span>: <span class="string">"EC2S3SQSRole"</span>,</span><br><span class="line">  <span class="attr">"RoleID"</span>: <span class="string">"AROAEXAMPLE789"</span>,</span><br><span class="line">  <span class="attr">"ARN"</span>: <span class="string">"arn:aws:iam::123456789012:role/EC2S3SQSRole"</span>,</span><br><span class="line"></span><br><span class="line">  <span class="attr">"TrustPolicy"</span>: &#123;</span><br><span class="line">    <span class="attr">"Statement"</span>: [&#123;</span><br><span class="line">      <span class="attr">"Effect"</span>: <span class="string">"Allow"</span>,</span><br><span class="line">      <span class="attr">"Principal"</span>: &#123; <span class="attr">"Service"</span>: <span class="string">"ec2.amazonaws.com"</span> &#125;,</span><br><span class="line">      <span class="attr">"Action"</span>: <span class="string">"sts:AssumeRole"</span></span><br><span class="line">    &#125;]</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  <span class="attr">"AttachedPolicies"</span>: [</span><br><span class="line">    <span class="string">"arn:aws:iam::123456789012:policy/S3ReadPolicy"</span>,</span><br><span class="line">    <span class="string">"arn:aws:iam::123456789012:policy/SQSAccessPolicy"</span></span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Một điểm quan trọng mà docs hay bỏ qua: <strong>không thể gán Role thẳng vào EC2 được</strong>. AWS yêu cầu phải có một object trung gian gọi là <strong>Instance Profile</strong>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">IAM Role</span><br><span class="line">    ↓</span><br><span class="line">Instance Profile (wrapper bắt buộc)</span><br><span class="line">    ↓</span><br><span class="line">EC2 Instance</span><br></pre></td></tr></table></figure>
+
+<p>Instance Profile chỉ là một cái vỏ bọc chứa Role – 1 Instance Profile chứa đúng 1 Role. Khi tạo Role cho EC2 trên Console, AWS tự động tạo Instance Profile cùng tên nên mình không để ý. Nhưng nếu dùng CLI hay Terraform thì phải tạo thủ công, không tạo là gán không được.</p>
+<p>Role phải trả lời 2 câu hỏi:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">TrustPolicy      → &quot;Thằng nào được phép dùng Role này?&quot;</span><br><span class="line">AttachedPolicies → &quot;Sau khi dùng thì được làm gì?&quot;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>Mental model:</strong> TrustPolicy giống như visa, còn AttachedPolicies là luật pháp trong nước. Có visa không có nghĩa làm gì cũng được; có quyền bên trong mà không có visa thì cũng vào không được.</p>
+</blockquote>
+<p>Analogy chuẩn nhất là <strong>quy trình xin visa</strong>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">TrustPolicy      &#x3D; Visa (được phép nhập cảnh không?)</span><br><span class="line">AttachedPolicies &#x3D; Luật pháp trong nước (vào rồi được làm gì?)</span><br></pre></td></tr></table></figure>
+
+<p>Hai lớp độc lập – thiếu một là xong.</p>
+<p>Và đây là lý do TrustPolicy tồn tại: nếu không có nó, bất kỳ service nào cũng có thể assume Role đó – kể cả hacker compromise được một service bất kỳ. TrustPolicy là lớp bảo vệ đầu tiên, chặn ngay trước khi Policy bên trong được evaluate.</p>
+<h2 id="Access-Key-vs-API-Key-–-Dung-Nham"><a href="#Access-Key-vs-API-Key-–-Dung-Nham" class="headerlink" title="Access Key vs API Key – Đừng Nhầm"></a>Access Key vs API Key – Đừng Nhầm</h2><p><strong>Access Key</strong> – long-term credentials gắn với IAM User:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"AccessKeyId"</span>: <span class="string">"AKIAEXAMPLE123"</span>,</span><br><span class="line">  <span class="attr">"SecretAccessKey"</span>: <span class="string">"xxxxxxxxxxx"</span>,</span><br><span class="line">  <span class="attr">"Status"</span>: <span class="string">"Active"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>AccessKeyId</code> bắt đầu bằng <code>AKIA</code> – đây là dấu hiệu long-term credentials</li>
+<li><code>SecretAccessKey</code> chỉ hiển thị <strong>một lần duy nhất</strong> – mất thì tạo lại, không recover được</li>
+<li>Quyền vẫn phụ thuộc hoàn toàn vào Policy – Access Key chỉ là cơ chế authentication, không phải authorization</li>
+</ul>
+<p><strong>API Key</strong> (service-specific credentials) – chỉ dùng được cho <strong>một service cụ thể</strong>:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"ServiceName"</span>: <span class="string">"codecommit.amazonaws.com"</span>,</span><br><span class="line">  <span class="attr">"ServiceUserName"</span>: <span class="string">"hudson-at-123456789012"</span>,</span><br><span class="line">  <span class="attr">"ServicePassword"</span>: <span class="string">"xxxxxxxxxxx"</span>,</span><br><span class="line">  <span class="attr">"Status"</span>: <span class="string">"Active"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Sự khác biệt thực sự:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Access Key</th>
+<th>API Key</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Authenticate với</td>
+<td>Mọi AWS service</td>
+<td>Một service cụ thể</td>
+</tr>
+<tr>
+<td>Format</td>
+<td>KeyId + Secret</td>
+<td>Username + Password</td>
+</tr>
+<tr>
+<td>Expire</td>
+<td>Không tự động</td>
+<td>Có thể set</td>
+</tr>
+</tbody></table>
+<p>API Key ra đời để giải quyết bài toán <strong>security scope</strong> – lỡ bị lộ thì hacker cũng chỉ access được đúng một service, không phải toàn bộ AWS account.</p>
+<h2 id="STS-–-Cai-May-In-Tien-Tam-Thoi"><a href="#STS-–-Cai-May-In-Tien-Tam-Thoi" class="headerlink" title="STS – Cái Máy In Tiền Tạm Thời"></a>STS – Cái Máy In Tiền Tạm Thời</h2><p>STS (Security Token Service) là service đứng sau toàn bộ cơ chế temporary credentials. Mỗi khi EC2 hay Lambda assume Role, STS generate ra bộ credentials tạm thời:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"AccessKeyId"</span>: <span class="string">"ASIAEXAMPLE123"</span>,</span><br><span class="line">  <span class="attr">"SecretAccessKey"</span>: <span class="string">"xxxxxxxxxxx"</span>,</span><br><span class="line">  <span class="attr">"SessionToken"</span>: <span class="string">"xxxxxxxxxxx"</span>,</span><br><span class="line">  <span class="attr">"Expiration"</span>: <span class="string">"2024-01-15T10:00:00Z"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>AccessKeyId</code> bắt đầu bằng <code>ASIA</code> – AWS nhìn vào prefix này biết ngay đây là temporary credentials.</p>
+<h3 id="Tai-sao-can-ca-3-thu"><a href="#Tai-sao-can-ca-3-thu" class="headerlink" title="Tại sao cần cả 3 thứ?"></a>Tại sao cần cả 3 thứ?</h3><p>Đây là phần confuse nhất – và câu trả lời không đơn giản như mình nghĩ ban đầu.</p>
+<p><strong>SecretAccessKey</strong> và <strong>SessionToken</strong> giải quyết 2 vấn đề hoàn toàn khác nhau:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">SecretAccessKey → dùng ở CLIENT-SIDE để sign HTTP request (AWS SigV4)</span><br><span class="line">                  KHÔNG BAO GIỜ truyền đi qua mạng</span><br><span class="line">                  chứng minh &quot;mày đúng là chủ sở hữu credentials này&quot;</span><br><span class="line"></span><br><span class="line">SessionToken    → gửi kèm trong MỌI HTTP request (header: x-amz-security-token)</span><br><span class="line">                  chứa SecretAccessKey đã mã hóa + permissions + expiration</span><br><span class="line">                  AWS giải mã ra, tính lại signature, so sánh</span><br><span class="line">                  → không cần lookup database</span><br></pre></td></tr></table></figure>
+
+<h3 id="SessionToken-thuc-chat-la-gi"><a href="#SessionToken-thuc-chat-la-gi" class="headerlink" title="SessionToken thực chất là gì?"></a>SessionToken thực chất là gì?</h3><p>Đây là phần hay nhất – <strong>SessionToken chứa SecretAccessKey bên trong nó</strong>, dưới dạng đã được mã hóa bằng Master Key của AWS STS.</p>
+<p>Flow khi S3 nhận request:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">EC2 gửi request kèm:</span><br><span class="line">  Header: Signature (ký bằng SecretAccessKey)</span><br><span class="line">  Header: SessionToken (chứa SecretAccessKey đã mã hóa)</span><br><span class="line">        ↓</span><br><span class="line">S3 nhận request:</span><br><span class="line">  1. Giải mã SessionToken bằng Master Key</span><br><span class="line">  2. Lấy SecretAccessKey ra từ bên trong</span><br><span class="line">  3. Tự tính lại Signature</span><br><span class="line">  4. So sánh với Signature EC2 gửi lên</span><br><span class="line">        ↓</span><br><span class="line">Trùng khớp → Allow ✓</span><br></pre></td></tr></table></figure>
+
+<p><strong>Stateless hoàn toàn</strong> – S3 không cần gọi về STS hay database để verify. Chỉ cần Master Key trong RAM, giải mã xong trong vài microseconds. Đây là lý do AWS xử lý được hàng tỷ request mỗi giây mà không chết.</p>
+<h3 id="Tai-sao-khong-dung-Asymmetric-Cryptography-RSA-ECDSA"><a href="#Tai-sao-khong-dung-Asymmetric-Cryptography-RSA-ECDSA" class="headerlink" title="Tại sao không dùng Asymmetric Cryptography (RSA/ECDSA)?"></a>Tại sao không dùng Asymmetric Cryptography (RSA/ECDSA)?</h3><p>Câu hỏi hợp lý – JWT dùng RS256, TLS dùng RSA, tại sao AWS SigV4 lại dùng HMAC-SHA256?</p>
+<p>3 lý do:</p>
+<p><strong>1. Performance</strong> – HMAC-SHA256 nhanh hơn RSA từ 10-100 lần. CPU có hardware acceleration sẵn cho SHA-256. Với hàng chục triệu request mỗi giây, chuyển sang RSA thì chi phí CPU tăng vọt và latency tăng đáng kể.</p>
+<p><strong>2. AWS kiểm soát cả 2 đầu</strong> – Điểm yếu của symmetric cryptography là chia sẻ key giữa 2 bên không biết nhau. Nhưng AWS không có vấn đề này – STS và S3/DynamoDB đều là của họ, truyền SecretAccessKey an toàn bằng cách nhúng vào SessionToken. Không cần asymmetric để giải quyết bài toán key exchange.</p>
+<p><strong>3. Payload size</strong> – HMAC-SHA256 chỉ 32 bytes. RSA-2048 là 256 bytes. Nhân với hàng tỷ request thì tiết kiệm băng thông rất lớn.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>HMAC-SHA256 (AWS đang dùng)</th>
+<th>RSA/ECDSA</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Tốc độ verify</td>
+<td>Cực nhanh (microseconds)</td>
+<td>Chậm hơn 10-100 lần</td>
+</tr>
+<tr>
+<td>CPU overhead</td>
+<td>Thấp, có hardware acceleration</td>
+<td>Cao, tốn phép toán số lớn</td>
+</tr>
+<tr>
+<td>Signature size</td>
+<td>32 bytes</td>
+<td>256-512 bytes</td>
+</tr>
+<tr>
+<td>Key exchange</td>
+<td>Cần kênh an toàn</td>
+<td>Public key phát công khai</td>
+</tr>
+<tr>
+<td>Dùng khi</td>
+<td>Kiểm soát cả 2 đầu (AWS)</td>
+<td>Hai bên không biết nhau (Internet)</td>
+</tr>
+</tbody></table>
+<h2 id="Tong-Ket"><a href="#Tong-Ket" class="headerlink" title="Tổng Kết"></a>Tổng Kết</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Policy (nền tảng -- định nghĩa quyền)</span><br><span class="line">    ↓</span><br><span class="line">attach vào...</span><br><span class="line">    ├── IAM User  (con người, long-term credentials)</span><br><span class="line">    ├── IAM Group (tập hợp người, inherit policy từ Group)</span><br><span class="line">    └── IAM Role  (service, temporary credentials từ STS)</span><br><span class="line"></span><br><span class="line">Credentials:</span><br><span class="line">    ├── Access Key (AKIA...)  → long-term, authenticate mọi service</span><br><span class="line">    ├── API Key               → long-term, một service cụ thể</span><br><span class="line">    └── STS Token (ASIA...)   → short-term, tự động refresh, stateless verify</span><br></pre></td></tr></table></figure>
+
+<p>Flow cơ bản nhất – con người dùng AWS:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Tạo IAM User → Attach Policy → Generate Access Key → Call API</span><br></pre></td></tr></table></figure>
+
+<p>Flow khi build application trên AWS:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Tạo Policy → Tạo Role + TrustPolicy → Gán Role vào EC2&#x2F;Lambda</span><br><span class="line">→ SDK tự động lấy temporary credentials từ STS</span><br><span class="line">→ Call API mà không cần hard-code credentials</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>Điểm cần nhớ:</strong> Hard-code Access Key vào source code là hành động của thằng không biết Role là gì. Đừng làm vậy.</p>
+</blockquote>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Policy-–-Thu-Duy-Nhat-Thuc-Su-Quan-Trong"><span class="toc-number">1.</span> <span class="toc-text">Policy – Thứ Duy Nhất Thực Sự Quan Trọng</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ARN-–-Dia-Chi-Duy-Nhat-Cua-Moi-Thu-Tren-AWS"><span class="toc-number">2.</span> <span class="toc-text">ARN – Địa Chỉ Duy Nhất Của Mọi Thứ Trên AWS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IAM-User-–-Dai-Dien-Cho-Con-Nguoi"><span class="toc-number">3.</span> <span class="toc-text">IAM User – Đại Diện Cho Con Người</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IAM-Group-–-Gom-Nguoi-Lai-Cho-Tien"><span class="toc-number">4.</span> <span class="toc-text">IAM Group – Gom Người Lại Cho Tiện</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IAM-Role-–-Quyen-Tam-Thoi-Cho-Service"><span class="toc-number">5.</span> <span class="toc-text">IAM Role – Quyền Tạm Thời Cho Service</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Access-Key-vs-API-Key-–-Dung-Nham"><span class="toc-number">6.</span> <span class="toc-text">Access Key vs API Key – Đừng Nhầm</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#STS-–-Cai-May-In-Tien-Tam-Thoi"><span class="toc-number">7.</span> <span class="toc-text">STS – Cái Máy In Tiền Tạm Thời</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Tai-sao-can-ca-3-thu"><span class="toc-number">7.1.</span> <span class="toc-text">Tại sao cần cả 3 thứ?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SessionToken-thuc-chat-la-gi"><span class="toc-number">7.2.</span> <span class="toc-text">SessionToken thực chất là gì?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Tai-sao-khong-dung-Asymmetric-Cryptography-RSA-ECDSA"><span class="toc-number">7.3.</span> <span class="toc-text">Tại sao không dùng Asymmetric Cryptography (RSA&#x2F;ECDSA)?</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tong-Ket"><span class="toc-number">8.</span> <span class="toc-text">Tổng Kết</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2026/09/09/2026-09-09-aws-iam-hieu-dung-tu-nen-tang/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2026/09/09/2026-09-09-aws-iam-hieu-dung-tu-nen-tang/&text=AWS IAM: Hiểu Đúng Từ Nền Tảng" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2026/09/09/2026-09-09-aws-iam-hieu-dung-tu-nen-tang/&title=AWS IAM: Hiểu Đúng Từ Nền Tảng" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2026/09/09/2026-09-09-aws-iam-hieu-dung-tu-nen-tang/&is_video=false&description=AWS IAM: Hiểu Đúng Từ Nền Tảng" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=AWS IAM: Hiểu Đúng Từ Nền Tảng&body=Check out this article: https://hdchinh.github.io/2026/09/09/2026-09-09-aws-iam-hieu-dung-tu-nen-tang/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2026/09/09/2026-09-09-aws-iam-hieu-dung-tu-nen-tang/&title=AWS IAM: Hiểu Đúng Từ Nền Tảng" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2026/09/09/2026-09-09-aws-iam-hieu-dung-tu-nen-tang/&title=AWS IAM: Hiểu Đúng Từ Nền Tảng" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2026/09/09/2026-09-09-aws-iam-hieu-dung-tu-nen-tang/&title=AWS IAM: Hiểu Đúng Từ Nền Tảng" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2026/09/09/2026-09-09-aws-iam-hieu-dung-tu-nen-tang/&title=AWS IAM: Hiểu Đúng Từ Nền Tảng" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2026/09/09/2026-09-09-aws-iam-hieu-dung-tu-nen-tang/&name=AWS IAM: Hiểu Đúng Từ Nền Tảng&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2026/09/09/2026-09-09-aws-iam-hieu-dung-tu-nen-tang/&t=AWS IAM: Hiểu Đúng Từ Nền Tảng" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="home" class="icon" href="/"><i class="fa-solid fa-house fa-lg" aria-hidden="true"></i> Home</a>
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+     --><li><a href="/english/">English</a></li>
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

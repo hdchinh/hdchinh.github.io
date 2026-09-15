@@ -24,6 +24,7 @@
   let loading = false;
 
   for (const [id, name] of Object.entries(categories)) select.add(new Option(name, id));
+  select.value = 'tin-noi-bat';
 
   function formatDate(value) {
     const date = new Date(value);

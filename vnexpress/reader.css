@@ -1,3 +1,5 @@
+#vne-reader { font-size: 22px; line-height: 1.75; }
+
 #vne-reader .vne-toolbar {
   display: flex;
   flex-wrap: wrap;
@@ -23,7 +25,7 @@
 
 #vne-status,
 #vne-reader .vne-meta,
-#vne-reader .vne-source { font-size: 0.85rem; opacity: 0.8; }
+#vne-reader .vne-source { font-size: 16px; opacity: 0.8; }
 #vne-error { border-left: 3px solid currentColor; padding-left: 0.8rem; }
 
 #vne-reader .vne-article {
@@ -34,7 +36,7 @@
 
 #vne-reader .vne-article h2 {
   margin: 0 0 0.55rem;
-  font-size: 1.1rem;
+  font-size: 26px;
   line-height: 1.6;
   letter-spacing: normal;
 }
@@ -59,7 +61,7 @@ html.vne-dialog-open { overflow: hidden; }
 
 #vne-dialog {
   box-sizing: border-box;
-  width: min(900px, 94vw);
+  width: min(1100px, 94vw);
   max-width: 94vw;
   height: 100vh;
   height: 100dvh;
@@ -68,7 +70,7 @@ html.vne-dialog-open { overflow: hidden; }
   inset-block: 0;
   margin: 0 auto;
   overflow: auto;
-  padding: 1.25rem;
+  padding: 1.25rem clamp(20px, 8vw, 120px);
   border: 1px solid #ddd;
   border-radius: 8px;
   background: #fff;
@@ -84,16 +86,19 @@ html.vne-dialog-open { overflow: hidden; }
 #vne-dialog h2,
 #vne-dialog h3,
 #vne-dialog h4 { line-height: 1.5; letter-spacing: normal; }
-#vne-detail-title { margin: 1rem 0; font-size: 1.5rem; }
-#vne-detail-description { font-size: 1.05rem; font-weight: 600; }
-#vne-detail-body { font: 18px/1.8 Georgia, 'Times New Roman', serif; overflow-wrap: anywhere; }
+#vne-detail-source { overflow-wrap: anywhere; }
+#vne-detail-title { margin: 1rem 0; font-size: 32px; }
+#vne-detail-description { font-size: 22px; font-weight: 600; }
+#vne-detail-body { font: 22px/1.8 Georgia, 'Times New Roman', serif; overflow-wrap: anywhere; }
 #vne-detail-body p { margin: 1rem 0; }
 #vne-detail-body figure { margin: 1.5rem 0; }
 #vne-detail-body img { display: block; max-width: 100%; height: auto; margin: 1rem auto; }
 #vne-detail-body figcaption { font-size: 0.85em; color: #555; }
-#vne-detail-body table { display: block; max-width: 100%; overflow-x: auto; }
+#vne-detail-body table { display: block; max-width: 100%; overflow-x: auto; font-size: inherit; }
+#vne-detail-body th,
+#vne-detail-body td { font-size: inherit; }
 
 @media (max-width: 480px) {
   #vne-reader .vne-thumbnail { width: 110px; margin-right: 0.7rem; }
-  #vne-reader .vne-article h2 { font-size: 1rem; }
+  #vne-reader .vne-article h2 { font-size: 24px; }
 }

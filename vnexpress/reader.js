@@ -20,6 +20,7 @@
   const refresh = root.querySelector('#vne-refresh');
   const dialog = root.querySelector('#vne-dialog');
   const detailTitle = root.querySelector('#vne-detail-title');
+  const detailSource = root.querySelector('#vne-detail-source');
   const detailMeta = root.querySelector('#vne-detail-meta');
   const detailDescription = root.querySelector('#vne-detail-description');
   const detailStatus = root.querySelector('#vne-detail-status');
@@ -54,6 +55,10 @@
     detailRequest = controller;
     const timer = setTimeout(() => controller.abort(), 15000);
     detailTitle.textContent = article.title;
+    if (detailSource) {
+      detailSource.href = article.url;
+      detailSource.textContent = article.url;
+    }
     detailMeta.textContent = [categories[article.category], formatDate(article.publishedAt)].filter(Boolean).join(' · ');
     detailDescription.textContent = article.description || '';
     detailBody.replaceChildren();

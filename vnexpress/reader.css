@@ -55,6 +55,55 @@
   border-radius: 3px;
 }
 
+html.vne-dialog-open { overflow: hidden; }
+
+#vne-dialog {
+  box-sizing: border-box;
+  width: min(900px, 94vw);
+  max-width: 94vw;
+  max-height: 90vh;
+  max-height: 90dvh;
+  overflow: auto;
+  padding: 1.25rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fff;
+  color: #222;
+  text-align: left;
+  overscroll-behavior: contain;
+}
+
+#vne-dialog::backdrop { background: rgb(0 0 0 / 65%); }
+#vne-dialog .vne-dialog-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem 0;
+  margin-bottom: 1rem;
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+  font-size: 0.85rem;
+}
+#vne-dialog #vne-close { flex-shrink: 0; }
+#vne-dialog h2::before,
+#vne-dialog h3::before,
+#vne-dialog h4::before { content: none; }
+#vne-dialog h2,
+#vne-dialog h3,
+#vne-dialog h4 { line-height: 1.5; letter-spacing: normal; }
+#vne-detail-title { margin: 1rem 0; font-size: 1.5rem; }
+#vne-detail-description { font-size: 1.05rem; font-weight: 600; }
+#vne-detail-body { font: 18px/1.8 Georgia, 'Times New Roman', serif; overflow-wrap: anywhere; }
+#vne-detail-body p { margin: 1rem 0; }
+#vne-detail-body figure { margin: 1.5rem 0; }
+#vne-detail-body img { display: block; max-width: 100%; height: auto; margin: 1rem auto; }
+#vne-detail-body figcaption { font-size: 0.85em; color: #555; }
+#vne-detail-body table { display: block; max-width: 100%; overflow-x: auto; }
+
 @media (max-width: 480px) {
   #vne-reader .vne-thumbnail { width: 110px; margin-right: 0.7rem; }
   #vne-reader .vne-article h2 { font-size: 1rem; }

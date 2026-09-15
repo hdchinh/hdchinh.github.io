@@ -18,6 +18,14 @@
   const error = root.querySelector('#vne-error');
   const select = root.querySelector('#vne-category');
   const refresh = root.querySelector('#vne-refresh');
+  const dialog = root.querySelector('#vne-dialog');
+  const detailTitle = root.querySelector('#vne-detail-title');
+  const detailMeta = root.querySelector('#vne-detail-meta');
+  const detailDescription = root.querySelector('#vne-detail-description');
+  const detailStatus = root.querySelector('#vne-detail-status');
+  const detailBody = root.querySelector('#vne-detail-body');
+  const originalLink = root.querySelector('#vne-original');
+  let detailRequest = null;
   const dateFormat = new Intl.DateTimeFormat('vi-VN', { dateStyle: 'short', timeStyle: 'short' });
   let articles = [];
   let fetchedAt = '';
@@ -41,6 +49,60 @@
     }
   }
 
+  async function openArticle(article) {
+    detailRequest?.abort();
+    const controller = new AbortController();
+    detailRequest = controller;
+    const timer = setTimeout(() => controller.abort(), 15000);
+    originalLink.href = article.url;
+    detailTitle.textContent = article.title;
+    detailMeta.textContent = [categories[article.category], formatDate(article.publishedAt)].filter(Boolean).join(' · ');
+    detailDescription.textContent = article.description || '';
+    detailBody.replaceChildren();
+    detailBody.setAttribute('aria-busy', 'true');
+    detailStatus.hidden = false;
+    detailStatus.textContent = 'Đang tải nội dung bài viết…';
+    if (!dialog.open) dialog.showModal();
+    document.documentElement.classList.add('vne-dialog-open');
+    dialog.scrollTop = 0;
+    detailTitle.focus({ preventScroll: true });
+
+    try {
+      const url = new URL('article', endpoint);
+      url.searchParams.set('url', article.url);
+      const response = await fetch(url, { cache: 'no-store', credentials: 'omit', signal: controller.signal });
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      const data = await response.json();
+      if (detailRequest !== controller || !dialog.open) return;
+      if (typeof data.contentHtml !== 'string' || !data.contentHtml.trim()) throw new Error('Missing article content');
+      detailTitle.textContent = data.title || article.title;
+      detailDescription.textContent = data.description || '';
+      // Only the backend's allowlist-sanitized body is inserted, never the full source page.
+      detailBody.innerHTML = data.contentHtml;
+      detailStatus.hidden = true;
+    } catch {
+      if (detailRequest === controller && dialog.open) {
+        detailStatus.textContent = 'Không đọc được bài này trong popup. Bạn có thể bấm “Đọc bản gốc trên VnExpress” ở trên.';
+      }
+    } finally {
+      clearTimeout(timer);
+      if (detailRequest === controller) detailBody.setAttribute('aria-busy', 'false');
+    }
+  }
+
+  root.querySelector('#vne-close')?.addEventListener('click', () => dialog.close());
+  dialog?.addEventListener('close', () => {
+    detailRequest?.abort();
+    detailRequest = null;
+    detailBody.replaceChildren();
+    document.documentElement.classList.remove('vne-dialog-open');
+  });
+  dialog?.addEventListener('click', event => {
+    if (event.target !== dialog) return;
+    const bounds = dialog.getBoundingClientRect();
+    if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) dialog.close();
+  });
+
   function render() {
     const visible = articles.filter(article => select.value === 'tin-noi-bat'
       ? article.featured === true : !select.value || article.category === select.value);
@@ -54,6 +116,11 @@
       link.target = '_blank';
       link.rel = 'noopener noreferrer';
       link.textContent = article.title;
+      link.addEventListener('click', event => {
+        if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || typeof dialog?.showModal !== 'function') return;
+        event.preventDefault();
+        openArticle(article);
+      });
       heading.append(link);
       card.append(heading);
 

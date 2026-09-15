@@ -14,7 +14,7 @@
 <meta property="og:description" content="Tin VnExpress từ các chuyên mục tôi chọn đọc, ưu tiên Tin nổi bật. RSS được cache 5 phút tại backend.">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2026-09-14T17:00:00.000Z">
-<meta property="article:modified_time" content="2026-09-15T07:52:45.548Z">
+<meta property="article:modified_time" content="2026-09-15T08:07:10.997Z">
 <meta property="article:author" content="Hudson">
 <meta name="twitter:card" content="summary">
     <link rel="canonical" href="https://hdchinh.github.io/vnexpress/">
@@ -97,7 +97,7 @@
 
   <div class="content" itemprop="articleBody">
       
-          <link rel="stylesheet" href="/vnexpress/reader.css">
+          <link rel="stylesheet" href="/vnexpress/reader.css?v=article-popup-1">
 
 <section id="vne-reader" lang="vi">
   <h1>VnExpress</h1>
@@ -111,10 +111,22 @@
   <p id="vne-error" role="alert" hidden></p>
   <div id="vne-articles" aria-busy="true"></div>
   <noscript>Bật JavaScript để tải RSS và hiển thị danh sách bài.</noscript>
-  <p class="vne-source">Nguồn: <a href="https://vnexpress.net/rss" target="_blank" rel="noopener noreferrer">RSS VnExpress</a>. Bấm tiêu đề để đọc bài gốc. Tin nổi bật chỉ hiển thị khi cũng nằm trong 7 mục đã chọn; bài chứa từ khóa bị chặn trong tiêu đề hoặc mô tả được loại ở backend. RSS được cache 5 phút tại backend, không lưu trên trình duyệt. Nút Tải lại lấy dữ liệu hiện có từ backend, không bỏ qua cache.</p>
+  <dialog id="vne-dialog" aria-labelledby="vne-detail-title">
+    <div class="vne-dialog-toolbar">
+      <a id="vne-original" href="https://vnexpress.net/" target="_blank" rel="noopener noreferrer">Đọc bản gốc trên VnExpress ↗</a>
+      <button id="vne-close" type="button" aria-label="Đóng bài viết">Đóng ✕</button>
+    </div>
+    <h2 id="vne-detail-title" tabindex="-1"></h2>
+    <p id="vne-detail-meta" class="vne-meta"></p>
+    <p id="vne-detail-description"></p>
+    <p id="vne-detail-status" role="status" aria-live="polite"></p>
+    <div id="vne-detail-body" aria-busy="false"></div>
+    <p class="vne-source">Bản đọc gọn từ VnExpress. Video, nội dung tương tác hoặc bài yêu cầu đăng nhập có thể cần đọc trên trang gốc. Nội dung được cache 5 phút tại backend.</p>
+  </dialog>
+  <p class="vne-source">Nguồn: <a href="https://vnexpress.net/rss" target="_blank" rel="noopener noreferrer">RSS VnExpress</a>. Bấm tiêu đề để đọc ngay trong popup; nút Đọc bản gốc mở trang VnExpress. Tin nổi bật chỉ hiển thị khi cũng nằm trong 7 mục đã chọn; bài chứa từ khóa bị chặn trong tiêu đề hoặc mô tả được loại ở backend. RSS được cache 5 phút tại backend, không lưu trên trình duyệt. Nút Tải lại lấy dữ liệu hiện có từ backend, không bỏ qua cache.</p>
 </section>
 
-<script src="/vnexpress/reader.js" defer></script>
+<script src="/vnexpress/reader.js?v=article-popup-1" defer></script>
 
         
   </div>

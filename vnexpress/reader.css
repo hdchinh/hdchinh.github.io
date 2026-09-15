@@ -61,8 +61,12 @@ html.vne-dialog-open { overflow: hidden; }
   box-sizing: border-box;
   width: min(900px, 94vw);
   max-width: 94vw;
-  max-height: 90vh;
-  max-height: 90dvh;
+  height: 100vh;
+  height: 100dvh;
+  max-height: 100vh;
+  max-height: 100dvh;
+  inset-block: 0;
+  margin: 0 auto;
   overflow: auto;
   padding: 1.25rem;
   border: 1px solid #ddd;
@@ -74,21 +78,6 @@ html.vne-dialog-open { overflow: hidden; }
 }
 
 #vne-dialog::backdrop { background: rgb(0 0 0 / 65%); }
-#vne-dialog .vne-dialog-toolbar {
-  position: sticky;
-  top: 0;
-  z-index: 1;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
-  padding: 0.5rem 0;
-  margin-bottom: 1rem;
-  background: #fff;
-  border-bottom: 1px solid #ddd;
-  font-size: 0.85rem;
-}
-#vne-dialog #vne-close { flex-shrink: 0; }
 #vne-dialog h2::before,
 #vne-dialog h3::before,
 #vne-dialog h4::before { content: none; }

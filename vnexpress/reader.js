@@ -24,7 +24,6 @@
   const detailDescription = root.querySelector('#vne-detail-description');
   const detailStatus = root.querySelector('#vne-detail-status');
   const detailBody = root.querySelector('#vne-detail-body');
-  const originalLink = root.querySelector('#vne-original');
   let detailRequest = null;
   const dateFormat = new Intl.DateTimeFormat('vi-VN', { dateStyle: 'short', timeStyle: 'short' });
   let articles = [];
@@ -54,7 +53,6 @@
     const controller = new AbortController();
     detailRequest = controller;
     const timer = setTimeout(() => controller.abort(), 15000);
-    originalLink.href = article.url;
     detailTitle.textContent = article.title;
     detailMeta.textContent = [categories[article.category], formatDate(article.publishedAt)].filter(Boolean).join(' · ');
     detailDescription.textContent = article.description || '';
@@ -82,7 +80,13 @@
       detailStatus.hidden = true;
     } catch {
       if (detailRequest === controller && dialog.open) {
-        detailStatus.textContent = 'Không đọc được bài này trong popup. Bạn có thể bấm “Đọc bản gốc trên VnExpress” ở trên.';
+        detailStatus.textContent = 'Không đọc được bài này trong popup. ';
+        const fallback = document.createElement('a');
+        fallback.href = article.url;
+        fallback.target = '_blank';
+        fallback.rel = 'noopener noreferrer';
+        fallback.textContent = 'Đọc trên VnExpress';
+        detailStatus.append(fallback);
       }
     } finally {
       clearTimeout(timer);
@@ -90,7 +94,6 @@
     }
   }
 
-  root.querySelector('#vne-close')?.addEventListener('click', () => dialog.close());
   dialog?.addEventListener('close', () => {
     detailRequest?.abort();
     detailRequest = null;

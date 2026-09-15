@@ -1,0 +1,61 @@
+#vne-reader .vne-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 1.5rem 0 0.75rem;
+}
+
+#vne-reader select,
+#vne-reader button {
+  padding: 0.45rem 0.65rem;
+  border: 1px solid #8888;
+  border-radius: 4px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+}
+
+#vne-reader button { cursor: pointer; }
+#vne-reader :disabled { cursor: wait; opacity: 0.6; }
+#vne-reader :focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+#vne-reader [hidden] { display: none !important; }
+
+#vne-status,
+#vne-reader .vne-meta,
+#vne-reader .vne-source { font-size: 0.85rem; opacity: 0.8; }
+#vne-error { border-left: 3px solid currentColor; padding-left: 0.8rem; }
+
+#vne-reader .vne-article {
+  display: flow-root;
+  padding: 1.2rem 0;
+  border-top: 1px solid #8885;
+}
+
+#vne-reader .vne-article h2 {
+  margin: 0 0 0.55rem;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  letter-spacing: normal;
+}
+
+#vne-reader .vne-article h2::before { content: none; }
+#vne-reader .vne-article h2 a { text-decoration: none; background: none; }
+#vne-reader .vne-article h2 a:hover { text-decoration: underline; }
+#vne-reader .vne-article p { margin: 0 0 0.5rem; }
+
+#vne-reader .vne-thumbnail {
+  float: left;
+  width: 160px;
+  max-width: 35%;
+  height: auto;
+  aspect-ratio: 5 / 3;
+  object-fit: cover;
+  margin: 0.2rem 1rem 0.5rem 0;
+  border-radius: 3px;
+}
+
+@media (max-width: 480px) {
+  #vne-reader .vne-thumbnail { width: 110px; margin-right: 0.7rem; }
+  #vne-reader .vne-article h2 { font-size: 1rem; }
+}

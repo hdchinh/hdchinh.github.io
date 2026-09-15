@@ -4,6 +4,7 @@
 
   const endpoint = 'https://api-sirrista-singapore.com/api/v1/vnexpress/rss';
   const categories = {
+    'tin-noi-bat': 'Tin nổi bật',
     'thoi-su': 'Thời sự',
     'the-gioi': 'Thế giới',
     'kinh-doanh': 'Kinh doanh',
@@ -40,7 +41,8 @@
   }
 
   function render() {
-    const visible = articles.filter(article => !select.value || article.category === select.value);
+    const visible = articles.filter(article => select.value === 'tin-noi-bat'
+      ? article.featured === true : !select.value || article.category === select.value);
     const fragment = document.createDocumentFragment();
     for (const article of visible) {
       const card = document.createElement('article');
@@ -71,14 +73,15 @@
 
       const meta = document.createElement('p');
       meta.className = 'vne-meta';
-      meta.textContent = [categories[article.category], formatDate(article.publishedAt)].filter(Boolean).join(' · ');
+      meta.textContent = [article.featured === true ? '★ Tin nổi bật' : '',
+        categories[article.category], formatDate(article.publishedAt)].filter(Boolean).join(' · ');
       const description = document.createElement('p');
       description.textContent = article.description || '';
       card.append(meta, description);
       fragment.append(card);
     }
     list.replaceChildren(fragment);
-    status.textContent = `${visible.length} bài · Lấy mới lúc ${fetchedAt}`;
+    status.textContent = `${visible.length} bài · Dữ liệu từ ${fetchedAt} · Cache backend 5 phút`;
   }
 
   async function load() {
@@ -89,7 +92,7 @@
     articles = [];
     list.replaceChildren();
     error.hidden = true;
-    status.textContent = 'Đang lấy RSS mới…';
+    status.textContent = 'Đang tải danh sách tin…';
     try {
       const url = new URL(endpoint);
       url.searchParams.set('categories', Object.keys(categories).join(','));
@@ -107,12 +110,12 @@
       render();
       if (data.errors?.length) {
         const failed = data.errors.map(item => categories[item.category] || item.category).join(', ');
-        error.textContent = `Chưa lấy được mục: ${failed}. Bấm “Lấy tin mới” để thử lại.`;
+        error.textContent = `Chưa lấy được mục: ${failed}. Bấm “Tải lại” để thử lại.`;
         error.hidden = false;
       }
     } catch {
       status.textContent = 'Chưa tải được danh sách bài.';
-      error.textContent = 'Không kết nối được nguồn RSS. Bấm “Lấy tin mới” để thử lại.';
+      error.textContent = 'Không kết nối được nguồn RSS. Bấm “Tải lại” để thử lại.';
       error.hidden = false;
     } finally {
       loading = false;

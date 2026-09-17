@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://hdchinh.github.io/sitemap.xml
+Sitemap: https://read.hihudson.com/sitemap.xml

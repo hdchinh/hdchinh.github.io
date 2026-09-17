@@ -9,7 +9,7 @@
     <meta name="description" content="1. Enable maintenance mode1heroku maintenance:on --app APP_NAME  2. Add a new plan1heroku addons:create heroku-postgresql:hobby-basic --app APP_NAME  3. Copy data from the current database to the new">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Upgrade a Heroku Postgres plan">
-<meta property="og:url" content="https://hdchinh.github.io/2022/09/18/2022-09-18-upgrade-heroku-postgres-plan/">
+<meta property="og:url" content="https://read.hihudson.com/2022/09/18/2022-09-18-upgrade-heroku-postgres-plan/">
 <meta property="og:site_name" content="Hudson">
 <meta property="og:description" content="1. Enable maintenance mode1heroku maintenance:on --app APP_NAME  2. Add a new plan1heroku addons:create heroku-postgresql:hobby-basic --app APP_NAME  3. Copy data from the current database to the new">
 <meta property="og:locale" content="en_US">
@@ -18,8 +18,8 @@
 <meta property="article:author" content="Hudson">
 <meta property="article:tag" content="English">
 <meta name="twitter:card" content="summary">
-    <link rel="canonical" href="https://hdchinh.github.io/2022/09/18/2022-09-18-upgrade-heroku-postgres-plan/">
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Upgrade a Heroku Postgres plan","description":"1. Enable maintenance mode1heroku maintenance:on --app APP_NAME 2. Add a new plan1heroku addons:create heroku-postgresql:hobby-basic --app APP_NAME 3. Copy data from the current database to the new on","inLanguage":"en","url":"https://hdchinh.github.io/2022/09/18/2022-09-18-upgrade-heroku-postgres-plan/","mainEntityOfPage":{"@type":"WebPage","@id":"https://hdchinh.github.io/2022/09/18/2022-09-18-upgrade-heroku-postgres-plan/"},"datePublished":"2022-09-17T17:00:00.000Z","dateModified":"2026-08-19T06:19:30.203Z","author":{"@type":"Person","name":"Hudson","url":"https://hdchinh.github.io/"},"publisher":{"@type":"Person","name":"Hudson","url":"https://hdchinh.github.io/"},"keywords":["English"]}</script>
+    <link rel="canonical" href="https://read.hihudson.com/2022/09/18/2022-09-18-upgrade-heroku-postgres-plan/">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Upgrade a Heroku Postgres plan","description":"1. Enable maintenance mode1heroku maintenance:on --app APP_NAME 2. Add a new plan1heroku addons:create heroku-postgresql:hobby-basic --app APP_NAME 3. Copy data from the current database to the new on","inLanguage":"en","url":"https://read.hihudson.com/2022/09/18/2022-09-18-upgrade-heroku-postgres-plan/","mainEntityOfPage":{"@type":"WebPage","@id":"https://read.hihudson.com/2022/09/18/2022-09-18-upgrade-heroku-postgres-plan/"},"datePublished":"2022-09-17T17:00:00.000Z","dateModified":"2026-08-19T06:19:30.203Z","author":{"@type":"Person","name":"Hudson","url":"https://read.hihudson.com/"},"publisher":{"@type":"Person","name":"Hudson","url":"https://read.hihudson.com/"},"keywords":["English"]}</script>
     
     
       
@@ -101,17 +101,17 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2022/09/18/2022-09-18-upgrade-heroku-postgres-plan/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2022/09/18/2022-09-18-upgrade-heroku-postgres-plan/&text=Upgrade a Heroku Postgres plan" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2022/09/18/2022-09-18-upgrade-heroku-postgres-plan/&title=Upgrade a Heroku Postgres plan" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2022/09/18/2022-09-18-upgrade-heroku-postgres-plan/&is_video=false&description=Upgrade a Heroku Postgres plan" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Upgrade a Heroku Postgres plan&body=Check out this article: https://hdchinh.github.io/2022/09/18/2022-09-18-upgrade-heroku-postgres-plan/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2022/09/18/2022-09-18-upgrade-heroku-postgres-plan/&title=Upgrade a Heroku Postgres plan" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2022/09/18/2022-09-18-upgrade-heroku-postgres-plan/&title=Upgrade a Heroku Postgres plan" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2022/09/18/2022-09-18-upgrade-heroku-postgres-plan/&title=Upgrade a Heroku Postgres plan" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2022/09/18/2022-09-18-upgrade-heroku-postgres-plan/&title=Upgrade a Heroku Postgres plan" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2022/09/18/2022-09-18-upgrade-heroku-postgres-plan/&name=Upgrade a Heroku Postgres plan&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2022/09/18/2022-09-18-upgrade-heroku-postgres-plan/&t=Upgrade a Heroku Postgres plan" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://read.hihudson.com/2022/09/18/2022-09-18-upgrade-heroku-postgres-plan/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://read.hihudson.com/2022/09/18/2022-09-18-upgrade-heroku-postgres-plan/&text=Upgrade a Heroku Postgres plan" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://read.hihudson.com/2022/09/18/2022-09-18-upgrade-heroku-postgres-plan/&title=Upgrade a Heroku Postgres plan" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://read.hihudson.com/2022/09/18/2022-09-18-upgrade-heroku-postgres-plan/&is_video=false&description=Upgrade a Heroku Postgres plan" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Upgrade a Heroku Postgres plan&body=Check out this article: https://read.hihudson.com/2022/09/18/2022-09-18-upgrade-heroku-postgres-plan/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://read.hihudson.com/2022/09/18/2022-09-18-upgrade-heroku-postgres-plan/&title=Upgrade a Heroku Postgres plan" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://read.hihudson.com/2022/09/18/2022-09-18-upgrade-heroku-postgres-plan/&title=Upgrade a Heroku Postgres plan" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://read.hihudson.com/2022/09/18/2022-09-18-upgrade-heroku-postgres-plan/&title=Upgrade a Heroku Postgres plan" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://read.hihudson.com/2022/09/18/2022-09-18-upgrade-heroku-postgres-plan/&title=Upgrade a Heroku Postgres plan" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://read.hihudson.com/2022/09/18/2022-09-18-upgrade-heroku-postgres-plan/&name=Upgrade a Heroku Postgres plan&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://read.hihudson.com/2022/09/18/2022-09-18-upgrade-heroku-postgres-plan/&t=Upgrade a Heroku Postgres plan" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -205,17 +205,17 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://hdchinh.github.io/2022/09/18/2022-09-18-upgrade-heroku-postgres-plan/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://hdchinh.github.io/2022/09/18/2022-09-18-upgrade-heroku-postgres-plan/&text=Upgrade a Heroku Postgres plan" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://hdchinh.github.io/2022/09/18/2022-09-18-upgrade-heroku-postgres-plan/&title=Upgrade a Heroku Postgres plan" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://hdchinh.github.io/2022/09/18/2022-09-18-upgrade-heroku-postgres-plan/&is_video=false&description=Upgrade a Heroku Postgres plan" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Upgrade a Heroku Postgres plan&body=Check out this article: https://hdchinh.github.io/2022/09/18/2022-09-18-upgrade-heroku-postgres-plan/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://hdchinh.github.io/2022/09/18/2022-09-18-upgrade-heroku-postgres-plan/&title=Upgrade a Heroku Postgres plan" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://hdchinh.github.io/2022/09/18/2022-09-18-upgrade-heroku-postgres-plan/&title=Upgrade a Heroku Postgres plan" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://hdchinh.github.io/2022/09/18/2022-09-18-upgrade-heroku-postgres-plan/&title=Upgrade a Heroku Postgres plan" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://hdchinh.github.io/2022/09/18/2022-09-18-upgrade-heroku-postgres-plan/&title=Upgrade a Heroku Postgres plan" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://hdchinh.github.io/2022/09/18/2022-09-18-upgrade-heroku-postgres-plan/&name=Upgrade a Heroku Postgres plan&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://hdchinh.github.io/2022/09/18/2022-09-18-upgrade-heroku-postgres-plan/&t=Upgrade a Heroku Postgres plan" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://read.hihudson.com/2022/09/18/2022-09-18-upgrade-heroku-postgres-plan/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://read.hihudson.com/2022/09/18/2022-09-18-upgrade-heroku-postgres-plan/&text=Upgrade a Heroku Postgres plan" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://read.hihudson.com/2022/09/18/2022-09-18-upgrade-heroku-postgres-plan/&title=Upgrade a Heroku Postgres plan" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://read.hihudson.com/2022/09/18/2022-09-18-upgrade-heroku-postgres-plan/&is_video=false&description=Upgrade a Heroku Postgres plan" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Upgrade a Heroku Postgres plan&body=Check out this article: https://read.hihudson.com/2022/09/18/2022-09-18-upgrade-heroku-postgres-plan/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://read.hihudson.com/2022/09/18/2022-09-18-upgrade-heroku-postgres-plan/&title=Upgrade a Heroku Postgres plan" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://read.hihudson.com/2022/09/18/2022-09-18-upgrade-heroku-postgres-plan/&title=Upgrade a Heroku Postgres plan" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://read.hihudson.com/2022/09/18/2022-09-18-upgrade-heroku-postgres-plan/&title=Upgrade a Heroku Postgres plan" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://read.hihudson.com/2022/09/18/2022-09-18-upgrade-heroku-postgres-plan/&title=Upgrade a Heroku Postgres plan" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://read.hihudson.com/2022/09/18/2022-09-18-upgrade-heroku-postgres-plan/&name=Upgrade a Heroku Postgres plan&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://read.hihudson.com/2022/09/18/2022-09-18-upgrade-heroku-postgres-plan/&t=Upgrade a Heroku Postgres plan" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>

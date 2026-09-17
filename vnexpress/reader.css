@@ -84,8 +84,10 @@ h1, h2, h3 { font-family: Arial, Helvetica, sans-serif; font-weight: 750; }
 .vne-reading-bar { display: flex; justify-content: space-between; gap: 20px; padding-block: 24px; margin-bottom: 20px; border-bottom: 1px solid var(--line); font-size: 15px; }
 #vne-detail-category { color: var(--accent); }
 .vne-reading-column { max-width: 800px; margin-inline: auto; }
-.vne-source { margin-bottom: 22px; color: #666; font-size: 15px; line-height: 1.7; }
-#vne-detail-source { color: var(--accent); overflow-wrap: anywhere; text-decoration: underline; text-underline-offset: 3px; }
+.vne-source { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; margin-top: 20px; padding: 18px 20px; border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 6px; background: #faf7f8; color: #666; font-size: 15px; line-height: 1.7; }
+.vne-source strong { color: #333; }
+#vne-detail-source { padding-block: 4px; color: var(--accent); font-weight: 700; text-underline-offset: 4px; }
+#vne-detail-source:hover { text-decoration: underline; }
 #vne-detail-title { margin-bottom: 20px; font-size: clamp(32px, 3.6vw, 44px); line-height: 1.2; font-weight: 700; }
 #vne-detail-meta { margin-bottom: 24px; font-size: 15px; }
 #vne-detail-description { margin-bottom: 24px; font: bold 22px/1.65 Georgia, 'Times New Roman', serif; }

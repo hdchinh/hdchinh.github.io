@@ -285,7 +285,6 @@
     const timer = setTimeout(() => controller.abort(), 15000);
     detailTitle.textContent = article.title || 'Đang tải bài viết…';
     detailSource.href = article.url;
-    detailSource.textContent = article.url;
     detailCategory.textContent = categories[article.category] || 'Tin tức';
     detailCategory.href = categoryHash(article.category || currentCategory);
     detailMeta.textContent = formatDate(article.publishedAt);

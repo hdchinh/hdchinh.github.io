@@ -170,7 +170,7 @@
           : currentCategory === 'spotlight' ? article.spotlight === true
             : currentCategory === 'vne-go' ? article.vneGo === true
               : currentCategory === 'all' || article.categories.includes(currentCategory)));
-    // RSS rank applies to the featured tab and remaining featured stream, not the random homepage top four.
+    // RSS rank applies to the featured tab and remaining stream; homepage top four use publisher matches plus fallback.
     if (home || currentCategory === 'featured') visible.sort((a, b) => (a.featuredRank ?? Number.MAX_SAFE_INTEGER) - (b.featuredRank ?? Number.MAX_SAFE_INTEGER));
     const topItems = home ? homeTopArticles : visible.slice(0, 4);
     const fragment = document.createDocumentFragment();
@@ -434,6 +434,7 @@
           return;
         }
         const data = result.value;
+        if (index === 0 && data.homepage?.error) failures.push('Ưu tiên trang chủ VnExpress');
         if (data.fetchedAt) timestamps.push(data.fetchedAt);
         for (const article of data.articles) {
           if (!article || !Object.hasOwn(index === 1 ? englishCategories : categories, article.category) || typeof article.title !== 'string') continue;
@@ -449,14 +450,18 @@
       });
       articles = [...new Map(merged.map(article => [article.url, article])).values()]
         .sort((a, b) => (Date.parse(b.publishedAt) || 0) - (Date.parse(a.publishedAt) || 0));
-      // Sample the filtered, URL-deduplicated union once per load; keep it stable across routes.
-      const topPool = articles.filter(article => !article.external
+      // Publisher homepage ranks only exist on filtered RSS matches. Fill gaps with the existing random pool.
+      const homepageItems = articles.filter(article => !article.external
+        && Number.isInteger(article.homepageRank) && article.homepageRank > 0)
+        .sort((a, b) => a.homepageRank - b.homepageRank).slice(0, 4);
+      const homepageUrls = new Set(homepageItems.map(article => article.url));
+      const topPool = articles.filter(article => !article.external && !homepageUrls.has(article.url)
         && (article.featured === true || article.latest === true || article.categories.includes('the-gioi')));
       for (let i = topPool.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [topPool[i], topPool[j]] = [topPool[j], topPool[i]];
       }
-      homeTopArticles = topPool.slice(0, 4);
+      homeTopArticles = [...homepageItems, ...topPool.slice(0, 4 - homepageItems.length)];
       fetchedAt = formatDate(timestamps.sort()[0]);
       loaded = true;
       render();

@@ -12,7 +12,6 @@
     'tin-noi-bat': 'Tin tổng hợp',
     'tin-moi-nhat': 'Tin mới nhất',
     'spotlight': 'Spotlight',
-    'goc-nhin': 'Góc nhìn',
     'thoi-su': 'Thời sự',
     'the-gioi': 'Thế giới',
     'kinh-doanh': 'Kinh doanh',
@@ -87,11 +86,12 @@
   }
 
   function validCategory(id) {
-    return ['all', 'e-vnexpress'].includes(id) || Object.hasOwn(categories, id)
+    return ['all', 'featured', 'e-vnexpress'].includes(id) || Object.hasOwn(categories, id)
       || (id.startsWith('e-vnexpress/') && Object.hasOwn(englishCategories, id.slice(12)));
   }
 
   function categoryName(id) {
+    if (id === 'featured') return 'Tin nổi bật';
     if (id === 'e-vnexpress') return 'E-Vnexpress';
     if (id.startsWith('e-vnexpress/')) return `E-Vnexpress · ${englishCategories[id.slice(12)]}`;
     return id === 'all' ? 'Tất cả' : categories[id];
@@ -165,13 +165,13 @@
     const englishHome = eVnexpress && topic === 'home';
     const visible = articles.filter(article => eVnexpress
       ? article.source === 'e-vnexpress' && (englishHome ? article.featured : article.categories.includes(topic))
-      : !article.external && (home ? article.featured === true
+      : !article.external && (home || currentCategory === 'featured' ? article.featured === true
         : currentCategory === 'tin-moi-nhat' ? article.latest === true
           : currentCategory === 'spotlight' ? article.spotlight === true
             : currentCategory === 'vne-go' ? article.vneGo === true
               : currentCategory === 'all' || article.categories.includes(currentCategory)));
-    // Keep RSS rank only for the remaining featured stream, not the randomized top four.
-    if (home) visible.sort((a, b) => (a.featuredRank ?? Number.MAX_SAFE_INTEGER) - (b.featuredRank ?? Number.MAX_SAFE_INTEGER));
+    // RSS rank applies to the featured tab and remaining featured stream, not the random homepage top four.
+    if (home || currentCategory === 'featured') visible.sort((a, b) => (a.featuredRank ?? Number.MAX_SAFE_INTEGER) - (b.featuredRank ?? Number.MAX_SAFE_INTEGER));
     const topItems = home ? homeTopArticles : visible.slice(0, 4);
     const fragment = document.createDocumentFragment();
     const displayedUrls = new Set(topItems.map(article => article.url));

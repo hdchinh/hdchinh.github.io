@@ -3,8 +3,14 @@
   if (!root) return;
 
   const endpoint = 'https://api-sirrista-singapore.com/api/v1/vnexpress/rss';
+  const internationalEndpoint = 'https://api-sirrista-singapore.com/api/v1/international/rss';
+  const externalSources = {
+    bbc: { name: 'BBC', hosts: ['www.bbc.co.uk', 'bbc.co.uk', 'www.bbc.com', 'bbc.com'] },
+    guardian: { name: 'The Guardian', hosts: ['www.theguardian.com', 'theguardian.com'] },
+    ars: { name: 'Ars Technica', hosts: ['arstechnica.com', 'www.arstechnica.com'] }
+  };
   const categories = {
-    'tin-noi-bat': 'Tin nổi bật',
+    'tin-noi-bat': 'Tin tổng hợp',
     'thoi-su': 'Thời sự',
     'the-gioi': 'Thế giới',
     'kinh-doanh': 'Kinh doanh',
@@ -49,10 +55,13 @@
     return value && !Number.isNaN(date.getTime()) ? dateFormat.format(date) : '';
   }
 
-  function safeUrl(value, image = false) {
+  function safeUrl(value, image = false, source = 'vnexpress') {
     try {
       const url = new URL(value);
-      const allowedHost = image ? url.hostname.endsWith('.vnecdn.net') : url.hostname === 'vnexpress.net';
+      const allowedHost = image
+        ? url.hostname.endsWith('.vnecdn.net') || ['ichef.bbci.co.uk', 'i.guim.co.uk', 'cdn.arstechnica.net', 'cdn.arstechnica.com'].includes(url.hostname)
+        : source === 'vnexpress' ? url.hostname === 'vnexpress.net'
+          : Object.hasOwn(externalSources, source) && externalSources[source].hosts.includes(url.hostname);
       return url.protocol === 'https:' && allowedHost && !url.username && !url.password && !url.port ? url.href : null;
     } catch {
       return null;
@@ -78,14 +87,20 @@
     const link = element('a');
     // Modified clicks still open the original source, not a duplicate reader tab.
     link.href = article.url;
-    link.target = '_blank';
     link.rel = 'noopener noreferrer';
-    link.dataset.articleUrl = article.url;
+    if (article.external) {
+      // Ordinary navigation to the publisher; never request international article bodies.
+      link.dataset.externalArticle = 'true';
+    } else {
+      link.target = '_blank';
+      link.dataset.articleUrl = article.url;
+    }
     return link;
   }
 
   function card(article, { hero = false, brief = false, heading = 'h2' } = {}) {
     const node = element('article', `vne-card${hero ? ' vne-hero' : ''}`);
+    if (article.external) node.lang = 'en';
     const imageUrl = !brief && safeUrl(article.imageUrl, true);
     if (imageUrl) {
       const link = articleLink(article);
@@ -115,7 +130,8 @@
     title.append(link);
     text.append(title);
     if (!brief && article.description) text.append(element('p', 'vne-description', article.description));
-    text.append(element('p', 'vne-meta', [categories[article.category], formatDate(article.publishedAt)].filter(Boolean).join(' · ')));
+    text.append(element('p', 'vne-meta', [article.sourceName, categories[article.category], formatDate(article.publishedAt),
+      article.external ? 'Đọc tại nguồn ↗' : ''].filter(Boolean).join(' · ')));
     node.append(text);
     return node;
   }
@@ -130,7 +146,7 @@
 
   function render() {
     const home = currentCategory === 'tin-noi-bat';
-    const visible = articles.filter(article => home ? article.featured === true
+    const visible = articles.filter(article => home ? article.featured === true || article.external
       : currentCategory === 'all' || article.category === currentCategory);
     const fragment = document.createDocumentFragment();
     if (visible.length) {
@@ -145,9 +161,9 @@
     if (home) {
       const columns = element('div', 'vne-news-columns');
       const stream = element('section', 'vne-stream');
-      stream.append(sectionHeading('Tiếp dòng tin nổi bật'));
+      stream.append(sectionHeading('Tiếp dòng tin'));
       visible.slice(4).forEach(article => stream.append(card(article, { heading: 'h3' })));
-      if (visible.length <= 4) stream.append(element('p', 'vne-empty', 'Bạn đã xem hết tin nổi bật. Đọc tiếp theo chuyên mục.'));
+      if (visible.length <= 4) stream.append(element('p', 'vne-empty', 'Bạn đã xem hết dòng tin. Đọc tiếp theo chuyên mục.'));
       const sections = element('div', 'vne-sections');
       for (const id of Object.keys(categories).slice(1)) {
         const items = articles.filter(article => article.category === id).slice(0, 3);
@@ -225,6 +241,10 @@
       detailDescription.textContent = data.description || '';
       // Only the backend's allowlist-sanitized body is inserted, never the full source page.
       detailBody.innerHTML = data.contentHtml;
+      // Source toolbar icons are stripped by sanitization, leaving empty bullet lists.
+      detailBody.querySelectorAll('ul, ol').forEach(list => {
+        if (!list.textContent.trim() && !list.querySelector('img')) list.remove();
+      });
       detailStatus.hidden = true;
       document.title = `${detailTitle.textContent} · Góc đọc`;
       if (scrollTop) restoreScroll(scrollTop);
@@ -298,6 +318,8 @@
     } else if (link.dataset.articleUrl) {
       event.preventDefault();
       navigate(`#article/${encodeURIComponent(link.dataset.articleUrl)}`);
+    } else if (link.dataset.externalArticle) {
+      history.replaceState({ ...history.state, vne: true, scroll: window.scrollY, category: currentCategory }, '');
     } else {
       const hash = link.getAttribute('href');
       if (hash === '#' || hash?.startsWith('#category/')) {
@@ -317,15 +339,40 @@
     try {
       const url = new URL(endpoint);
       url.searchParams.set('categories', Object.keys(categories).join(','));
-      const response = await fetch(url, {
-        cache: 'no-store', credentials: 'omit', signal: AbortSignal.timeout(25000)
+      const results = await Promise.allSettled([url, internationalEndpoint].map(async feedUrl => {
+        const response = await fetch(feedUrl, {
+          cache: 'no-store', credentials: 'omit', signal: AbortSignal.timeout(25000)
+        });
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const data = await response.json();
+        if (!Array.isArray(data.articles)) throw new Error('Invalid RSS response');
+        return data;
+      }));
+      if (results.every(result => result.status === 'rejected')) throw new Error('All RSS APIs failed');
+      const merged = [];
+      const failures = [];
+      const timestamps = [];
+      results.forEach((result, index) => {
+        if (result.status === 'rejected') {
+          failures.push(index === 0 ? 'VnExpress' : 'BBC / The Guardian / Ars Technica');
+          return;
+        }
+        const data = result.value;
+        if (data.fetchedAt) timestamps.push(data.fetchedAt);
+        for (const article of data.articles) {
+          if (!article || !Object.hasOwn(categories, article.category) || typeof article.title !== 'string') continue;
+          const source = index === 0 ? 'vnexpress' : article.source;
+          if (index !== 0 && !Object.hasOwn(externalSources, source)) continue;
+          const articleUrl = safeUrl(article.url, false, source);
+          if (!articleUrl) continue;
+          merged.push({ ...article, url: articleUrl, source, external: index !== 0,
+            sourceName: index === 0 ? 'VnExpress' : externalSources[source].name });
+        }
+        for (const item of data.errors || []) failures.push(item.sourceName || categories[item.category] || item.feed || item.category);
       });
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      const data = await response.json();
-      if (!Array.isArray(data.articles)) throw new Error('Invalid RSS response');
-      articles = data.articles.filter(article => article && Object.hasOwn(categories, article.category)
-        && typeof article.title === 'string' && safeUrl(article.url));
-      fetchedAt = formatDate(data.fetchedAt);
+      articles = [...new Map(merged.map(article => [article.url, article])).values()]
+        .sort((a, b) => (Date.parse(b.publishedAt) || 0) - (Date.parse(a.publishedAt) || 0));
+      fetchedAt = formatDate(timestamps.sort()[0]);
       loaded = true;
       render();
       if (activeArticle) {
@@ -340,9 +387,8 @@
       } else {
         restoreScroll(history.state?.vne ? history.state.scroll || 0 : 0);
       }
-      if (data.errors?.length) {
-        const failed = data.errors.map(item => categories[item.category] || item.category).join(', ');
-        error.textContent = `Chưa lấy được mục: ${failed}. Bấm “Tải lại” để thử lại.`;
+      if (failures.length) {
+        error.textContent = `Chưa lấy được: ${[...new Set(failures)].join(', ')}. Các nguồn còn lại vẫn hiển thị. Bấm “Tải lại” để thử lại.`;
         error.hidden = false;
       }
     } catch {

@@ -3,14 +3,10 @@
   if (!root) return;
 
   const endpoint = 'https://api-sirrista-singapore.com/api/v1/vnexpress/rss';
-  const internationalEndpoint = 'https://api-sirrista-singapore.com/api/v1/international/rss';
   const eVnexpressEndpoint = 'https://api-sirrista-singapore.com/api/v1/e-vnexpress/rss';
   const englishCategories = { home: 'Home', news: 'News', business: 'Business', tech: 'Tech', world: 'World', perspectives: 'Perspectives' };
   const externalSources = {
-    'e-vnexpress': { name: 'E-Vnexpress', hosts: ['e.vnexpress.net'] },
-    bbc: { name: 'BBC', hosts: ['www.bbc.co.uk', 'bbc.co.uk', 'www.bbc.com', 'bbc.com'] },
-    guardian: { name: 'The Guardian', hosts: ['www.theguardian.com', 'theguardian.com'] },
-    ars: { name: 'Ars Technica', hosts: ['arstechnica.com', 'www.arstechnica.com'] }
+    'e-vnexpress': { name: 'E-Vnexpress', hosts: ['e.vnexpress.net'] }
   };
   const categories = {
     'tin-noi-bat': 'Tin tổng hợp',
@@ -65,7 +61,7 @@
     try {
       const url = new URL(value);
       const allowedHost = image
-        ? url.hostname.endsWith('.vnecdn.net') || ['ichef.bbci.co.uk', 'i.guim.co.uk', 'cdn.arstechnica.net', 'cdn.arstechnica.com'].includes(url.hostname)
+        ? url.hostname.endsWith('.vnecdn.net')
         : source === 'vnexpress' ? url.hostname === 'vnexpress.net'
           : Object.hasOwn(externalSources, source) && externalSources[source].hosts.includes(url.hostname);
       return url.protocol === 'https:' && allowedHost && !url.username && !url.password && !url.port ? url.href : null;
@@ -86,14 +82,14 @@
   }
 
   function validCategory(id) {
-    return ['all', 'english-news', 'e-vnexpress'].includes(id) || Object.hasOwn(categories, id)
+    return ['all', 'e-vnexpress'].includes(id) || Object.hasOwn(categories, id)
       || (id.startsWith('e-vnexpress/') && Object.hasOwn(englishCategories, id.slice(12)));
   }
 
   function categoryName(id) {
     if (id === 'e-vnexpress') return 'E-Vnexpress';
     if (id.startsWith('e-vnexpress/')) return `E-Vnexpress · ${englishCategories[id.slice(12)]}`;
-    return id === 'english-news' ? 'English news' : id === 'all' ? 'Tất cả' : categories[id];
+    return id === 'all' ? 'Tất cả' : categories[id];
   }
 
   function articleLink(article) {
@@ -164,11 +160,10 @@
     const englishHome = eVnexpress && topic === 'home';
     const visible = articles.filter(article => eVnexpress
       ? article.source === 'e-vnexpress' && (englishHome ? article.featured : article.categories.includes(topic))
-      : currentCategory === 'english-news' ? article.external && article.source !== 'e-vnexpress'
-        : !article.external && (home ? article.featured === true || article.mostRead === true
-          : currentCategory === 'tin-xem-nhieu' ? article.mostRead === true
-            : currentCategory === 'spotlight' ? article.spotlight === true
-              : currentCategory === 'all' || article.category === currentCategory));
+      : !article.external && (home ? article.featured === true || article.mostRead === true
+        : currentCategory === 'tin-xem-nhieu' ? article.mostRead === true
+          : currentCategory === 'spotlight' ? article.spotlight === true
+            : currentCategory === 'all' || article.category === currentCategory));
     const mostRead = articles.filter(article => !article.external && article.mostRead === true)
       .sort((a, b) => a.mostReadRank - b.mostReadRank);
     // Preserve publisher ranks after backend filtering; most-read headlines also get a top sidebar.
@@ -192,7 +187,7 @@
       if (headlineItems.length) {
         const sidebar = element('aside', 'vne-headlines');
         sidebar.append(sectionHeading(showMostRead ? 'Xem nhiều'
-          : eVnexpress || currentCategory === 'english-news' ? 'Latest headlines' : 'Điểm tin',
+          : eVnexpress ? 'Latest headlines' : 'Điểm tin',
         showMostRead ? 'tin-xem-nhieu' : null));
         const headlines = element('ol');
         headlineItems.forEach(article => {
@@ -243,7 +238,7 @@
     const remaining = visible.filter(article => !displayedUrls.has(article.url));
     if (remaining.length) {
       const stream = element('section', 'vne-stream');
-      stream.append(sectionHeading(eVnexpress || currentCategory === 'english-news' ? 'More stories' : 'Tiếp dòng tin'));
+      stream.append(sectionHeading(eVnexpress ? 'More stories' : 'Tiếp dòng tin'));
       const grid = element('div', 'vne-category-stream');
       remaining.forEach(article => grid.append(card(article, { heading: 'h3' })));
       stream.append(grid);
@@ -409,7 +404,7 @@
     try {
       const url = new URL(endpoint);
       url.searchParams.set('categories', Object.keys(categories).join(','));
-      const results = await Promise.allSettled([url, internationalEndpoint, eVnexpressEndpoint].map(async feedUrl => {
+      const results = await Promise.allSettled([url, eVnexpressEndpoint].map(async feedUrl => {
         const response = await fetch(feedUrl, {
           cache: 'no-store', credentials: 'omit', signal: AbortSignal.timeout(30000)
         });
@@ -424,18 +419,17 @@
       const timestamps = [];
       results.forEach((result, index) => {
         if (result.status === 'rejected') {
-          failures.push(['VnExpress', 'BBC / The Guardian / Ars Technica', 'E-Vnexpress'][index]);
+          failures.push(['VnExpress', 'E-Vnexpress'][index]);
           return;
         }
         const data = result.value;
         if (data.fetchedAt) timestamps.push(data.fetchedAt);
         for (const article of data.articles) {
-          if (!article || !Object.hasOwn(index === 2 ? englishCategories : categories, article.category) || typeof article.title !== 'string') continue;
-          const source = index === 0 ? 'vnexpress' : index === 2 ? 'e-vnexpress' : article.source;
-          if (index === 1 && (!Object.hasOwn(externalSources, source) || source === 'e-vnexpress')) continue;
+          if (!article || !Object.hasOwn(index === 1 ? englishCategories : categories, article.category) || typeof article.title !== 'string') continue;
+          const source = index === 0 ? 'vnexpress' : 'e-vnexpress';
           const articleUrl = safeUrl(article.url, false, source);
           if (!articleUrl) continue;
-          const topics = index === 2 && Array.isArray(article.categories)
+          const topics = index === 1 && Array.isArray(article.categories)
             ? article.categories.filter(id => Object.hasOwn(englishCategories, id)) : [article.category];
           merged.push({ ...article, url: articleUrl, source, categories: topics, external: index !== 0,
             sourceName: index === 0 ? 'VnExpress' : externalSources[source].name });

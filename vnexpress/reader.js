@@ -42,6 +42,7 @@
   const related = root.querySelector('#vne-related');
   const dateFormat = new Intl.DateTimeFormat('vi-VN', { dateStyle: 'short', timeStyle: 'short' });
   let articles = [];
+  let homeTopArticles = [];
   let fetchedAt = '';
   let loading = false;
   let loaded = false;
@@ -169,21 +170,22 @@
           : currentCategory === 'spotlight' ? article.spotlight === true
             : currentCategory === 'vne-go' ? article.vneGo === true
               : currentCategory === 'all' || article.categories.includes(currentCategory)));
-    // Preserve the featured RSS order after backend filtering.
+    // Keep RSS rank only for the remaining featured stream, not the randomized top four.
     if (home) visible.sort((a, b) => (a.featuredRank ?? Number.MAX_SAFE_INTEGER) - (b.featuredRank ?? Number.MAX_SAFE_INTEGER));
+    const topItems = home ? homeTopArticles : visible.slice(0, 4);
     const fragment = document.createDocumentFragment();
-    const displayedUrls = new Set(visible.slice(0, 4).map(article => article.url));
+    const displayedUrls = new Set(topItems.map(article => article.url));
     const headlineItems = home
       ? articles.filter(article => !article.external && article.latest === true && !displayedUrls.has(article.url)).slice(0, 5)
       : visible.slice(4, 9);
-    if (visible.length || headlineItems.length) {
+    if (topItems.length || headlineItems.length) {
       const frontpage = element('div', 'vne-front-grid');
-      if (visible.length) {
+      if (topItems.length) {
         const lead = element('div', 'vne-lead');
-        lead.append(card(visible[0], { hero: true }));
-        if (visible[1]) lead.append(card(visible[1], { brief: true, summary: true }));
+        lead.append(card(topItems[0], { hero: true }));
+        if (topItems[1]) lead.append(card(topItems[1], { brief: true, summary: true }));
         const secondary = element('div', 'vne-secondary');
-        visible.slice(2, 4).forEach(article => secondary.append(card(article)));
+        topItems.slice(2, 4).forEach(article => secondary.append(card(article)));
         frontpage.append(lead);
         if (secondary.childElementCount) frontpage.append(secondary);
       }
@@ -447,6 +449,14 @@
       });
       articles = [...new Map(merged.map(article => [article.url, article])).values()]
         .sort((a, b) => (Date.parse(b.publishedAt) || 0) - (Date.parse(a.publishedAt) || 0));
+      // Sample the filtered, URL-deduplicated union once per load; keep it stable across routes.
+      const topPool = articles.filter(article => !article.external
+        && (article.featured === true || article.latest === true || article.categories.includes('the-gioi')));
+      for (let i = topPool.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [topPool[i], topPool[j]] = [topPool[j], topPool[i]];
+      }
+      homeTopArticles = topPool.slice(0, 4);
       fetchedAt = formatDate(timestamps.sort()[0]);
       loaded = true;
       render();

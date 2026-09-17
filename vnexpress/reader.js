@@ -4,13 +4,19 @@
 
   const endpoint = 'https://api-sirrista-singapore.com/api/v1/vnexpress/rss';
   const internationalEndpoint = 'https://api-sirrista-singapore.com/api/v1/international/rss';
+  const eVnexpressEndpoint = 'https://api-sirrista-singapore.com/api/v1/e-vnexpress/rss';
+  const englishCategories = { home: 'Home', news: 'News', business: 'Business', tech: 'Tech', world: 'World', perspectives: 'Perspectives' };
   const externalSources = {
+    'e-vnexpress': { name: 'E-Vnexpress', hosts: ['e.vnexpress.net'] },
     bbc: { name: 'BBC', hosts: ['www.bbc.co.uk', 'bbc.co.uk', 'www.bbc.com', 'bbc.com'] },
     guardian: { name: 'The Guardian', hosts: ['www.theguardian.com', 'theguardian.com'] },
     ars: { name: 'Ars Technica', hosts: ['arstechnica.com', 'www.arstechnica.com'] }
   };
   const categories = {
     'tin-noi-bat': 'Tin tổng hợp',
+    'tin-xem-nhieu': 'Xem nhiều',
+    'spotlight': 'Spotlight',
+    'goc-nhin': 'Góc nhìn',
     'thoi-su': 'Thời sự',
     'the-gioi': 'Thế giới',
     'kinh-doanh': 'Kinh doanh',
@@ -79,8 +85,15 @@
     return id === 'tin-noi-bat' ? '#' : `#category/${id}`;
   }
 
+  function validCategory(id) {
+    return ['all', 'english-news', 'e-vnexpress'].includes(id) || Object.hasOwn(categories, id)
+      || (id.startsWith('e-vnexpress/') && Object.hasOwn(englishCategories, id.slice(12)));
+  }
+
   function categoryName(id) {
-    return id === 'all' ? 'Tất cả' : categories[id];
+    if (id === 'e-vnexpress') return 'E-Vnexpress';
+    if (id.startsWith('e-vnexpress/')) return `E-Vnexpress · ${englishCategories[id.slice(12)]}`;
+    return id === 'english-news' ? 'English news' : id === 'all' ? 'Tất cả' : categories[id];
   }
 
   function articleLink(article) {
@@ -98,7 +111,7 @@
     return link;
   }
 
-  function card(article, { hero = false, brief = false, heading = 'h2' } = {}) {
+  function card(article, { hero = false, brief = false, summary = !brief, heading = 'h2' } = {}) {
     const node = element('article', `vne-card${hero ? ' vne-hero' : ''}`);
     if (article.external) node.lang = 'en';
     const imageUrl = !brief && safeUrl(article.imageUrl, true);
@@ -129,8 +142,8 @@
     link.textContent = article.title;
     title.append(link);
     text.append(title);
-    if (!brief && article.description) text.append(element('p', 'vne-description', article.description));
-    text.append(element('p', 'vne-meta', [article.sourceName, categories[article.category], formatDate(article.publishedAt),
+    if (summary && article.description) text.append(element('p', 'vne-description', article.description));
+    text.append(element('p', 'vne-meta', [article.sourceName, article.source === 'e-vnexpress' ? englishCategories[article.category] : categories[article.category], formatDate(article.publishedAt),
       article.external ? 'Đọc tại nguồn ↗' : ''].filter(Boolean).join(' · ')));
     node.append(text);
     return node;
@@ -146,43 +159,94 @@
 
   function render() {
     const home = currentCategory === 'tin-noi-bat';
-    const visible = articles.filter(article => home ? article.featured === true || article.external
-      : currentCategory === 'all' || article.category === currentCategory);
+    const eVnexpress = currentCategory === 'e-vnexpress' || currentCategory.startsWith('e-vnexpress/');
+    const topic = currentCategory.split('/')[1] || 'home';
+    const englishHome = eVnexpress && topic === 'home';
+    const visible = articles.filter(article => eVnexpress
+      ? article.source === 'e-vnexpress' && (englishHome ? article.featured : article.categories.includes(topic))
+      : currentCategory === 'english-news' ? article.external && article.source !== 'e-vnexpress'
+        : !article.external && (home ? article.featured === true || article.mostRead === true
+          : currentCategory === 'tin-xem-nhieu' ? article.mostRead === true
+            : currentCategory === 'spotlight' ? article.spotlight === true
+              : currentCategory === 'all' || article.category === currentCategory));
+    const mostRead = articles.filter(article => !article.external && article.mostRead === true)
+      .sort((a, b) => a.mostReadRank - b.mostReadRank);
+    // Preserve publisher ranks after backend filtering; most-read headlines also get a top sidebar.
+    if (home) visible.sort((a, b) => (a.featuredRank ?? Number.MAX_SAFE_INTEGER) - (b.featuredRank ?? Number.MAX_SAFE_INTEGER)
+      || (a.mostReadRank ?? Number.MAX_SAFE_INTEGER) - (b.mostReadRank ?? Number.MAX_SAFE_INTEGER));
+    if (currentCategory === 'tin-xem-nhieu') visible.sort((a, b) => a.mostReadRank - b.mostReadRank);
     const fragment = document.createDocumentFragment();
+    const displayedUrls = new Set();
     if (visible.length) {
-      fragment.append(card(visible[0], { hero: true }));
-      const top = element('div', 'vne-top-stories');
-      visible.slice(1, 4).forEach(article => top.append(card(article)));
-      if (top.childElementCount) fragment.append(top);
+      const frontpage = element('div', 'vne-front-grid');
+      const lead = element('div', 'vne-lead');
+      lead.append(card(visible[0], { hero: true }));
+      if (visible[1]) lead.append(card(visible[1], { brief: true, summary: true }));
+      const secondary = element('div', 'vne-secondary');
+      visible.slice(2, 4).forEach(article => secondary.append(card(article)));
+      frontpage.append(lead);
+      if (secondary.childElementCount) frontpage.append(secondary);
+      visible.slice(0, 4).forEach(article => displayedUrls.add(article.url));
+      const showMostRead = home && mostRead.length > 0;
+      const headlineItems = showMostRead ? mostRead.slice(0, 5) : visible.slice(4, 9);
+      if (headlineItems.length) {
+        const sidebar = element('aside', 'vne-headlines');
+        sidebar.append(sectionHeading(showMostRead ? 'Xem nhiều'
+          : eVnexpress || currentCategory === 'english-news' ? 'Latest headlines' : 'Điểm tin',
+        showMostRead ? 'tin-xem-nhieu' : null));
+        const headlines = element('ol');
+        headlineItems.forEach(article => {
+          displayedUrls.add(article.url);
+          const item = element('li');
+          const link = articleLink(article);
+          link.textContent = article.title;
+          if (article.external) link.lang = 'en';
+          item.append(link, element('p', 'vne-meta', formatDate(article.publishedAt)));
+          headlines.append(item);
+        });
+        sidebar.append(headlines);
+        frontpage.append(sidebar);
+      }
+      fragment.append(frontpage);
     } else {
-      fragment.append(element('p', 'vne-empty', 'Chưa có tin trong mục này. Bạn có thể chọn chuyên mục khác hoặc tải lại.'));
+      fragment.append(element('p', 'vne-empty', currentCategory === 'tin-xem-nhieu'
+        ? 'Chưa có bài Xem nhiều trong 14 ngày gần nhất vượt qua bộ lọc.'
+        : 'Chưa có tin trong mục này. Bạn có thể chọn chuyên mục khác hoặc tải lại.'));
     }
 
-    if (home) {
-      const columns = element('div', 'vne-news-columns');
-      const stream = element('section', 'vne-stream');
-      stream.append(sectionHeading('Tiếp dòng tin'));
-      visible.slice(4).forEach(article => stream.append(card(article, { heading: 'h3' })));
-      if (visible.length <= 4) stream.append(element('p', 'vne-empty', 'Bạn đã xem hết dòng tin. Đọc tiếp theo chuyên mục.'));
-      const sections = element('div', 'vne-sections');
-      for (const id of Object.keys(categories).slice(1)) {
-        const items = articles.filter(article => article.category === id).slice(0, 3);
+    if (home || englishHome) {
+      const topics = englishHome ? englishCategories : categories;
+      for (const id of Object.keys(topics).slice(1)) {
+        if (!englishHome && id === 'tin-xem-nhieu') continue;
+        const items = articles.filter(article => englishHome
+          ? article.source === 'e-vnexpress' && article.categories.includes(id)
+          : !article.external && (id === 'spotlight' ? article.spotlight === true : article.category === id)).slice(0, 6);
         if (!items.length) continue;
+        const route = englishHome ? `e-vnexpress/${id}` : id;
         const section = element('section', 'vne-category-section');
-        section.append(sectionHeading(categories[id], id), card(items[0], { heading: 'h3' }));
-        const briefs = element('div', 'vne-section-briefs');
-        items.slice(1).forEach(article => briefs.append(card(article, { brief: true, heading: 'h3' })));
-        if (briefs.childElementCount) section.append(briefs);
-        const more = element('a', 'vne-more', `Xem thêm ${categories[id]} →`);
-        more.href = categoryHash(id);
-        section.append(more);
-        sections.append(section);
+        if (englishHome) section.lang = 'en';
+        const header = element('div', 'vne-section-header');
+        const more = element('a', 'vne-more', englishHome ? 'View all →' : 'Xem tất cả →');
+        more.href = categoryHash(route);
+        header.append(sectionHeading(topics[id], route), more);
+        const grid = element('div', 'vne-section-grid');
+        const lead = element('div', 'vne-section-lead');
+        lead.append(card(items[0], { hero: true, heading: 'h3' }));
+        if (items[5]) lead.append(card(items[5], { brief: true, summary: true, heading: 'h3' }));
+        const stories = element('div', 'vne-section-stories');
+        items.slice(1, 5).forEach(article => stories.append(card(article, { heading: 'h3' })));
+        grid.append(lead, stories);
+        section.append(header, grid);
+        fragment.append(section);
       }
-      columns.append(stream, sections);
-      fragment.append(columns);
-    } else if (visible.length > 4) {
-      const stream = element('div', 'vne-stream vne-category-stream');
-      visible.slice(4).forEach(article => stream.append(card(article)));
+    }
+    const remaining = visible.filter(article => !displayedUrls.has(article.url));
+    if (remaining.length) {
+      const stream = element('section', 'vne-stream');
+      stream.append(sectionHeading(eVnexpress || currentCategory === 'english-news' ? 'More stories' : 'Tiếp dòng tin'));
+      const grid = element('div', 'vne-category-stream');
+      remaining.forEach(article => grid.append(card(article, { heading: 'h3' })));
+      stream.append(grid);
       fragment.append(stream);
     }
     list.replaceChildren(fragment);
@@ -192,7 +256,7 @@
 
   function renderRelated(article) {
     related.replaceChildren();
-    const items = articles.filter(item => item.category === article.category && item.url !== article.url).slice(0, 3);
+    const items = articles.filter(item => !item.external && item.category === article.category && item.url !== article.url).slice(0, 3);
     related.hidden = !items.length;
     if (!items.length) return;
     related.append(sectionHeading('Đọc tiếp cùng chuyên mục', article.category));
@@ -276,7 +340,7 @@
     if (articleUrl) {
       front.hidden = true;
       detail.hidden = false;
-      if (state.category && (state.category === 'all' || Object.hasOwn(categories, state.category))) currentCategory = state.category;
+      if (state.category && validCategory(state.category)) currentCategory = state.category;
       const article = articles.find(item => item.url === articleUrl) || { url: articleUrl };
       openArticle(article, scrollTop);
     } else {
@@ -284,15 +348,21 @@
       detail.hidden = true;
       front.hidden = false;
       const id = currentHash.startsWith('#category/') ? currentHash.slice(10) : 'tin-noi-bat';
-      currentCategory = id === 'all' || Object.hasOwn(categories, id) ? id : 'tin-noi-bat';
+      currentCategory = validCategory(id) ? id : 'tin-noi-bat';
       sectionTitle.textContent = categoryName(currentCategory);
       document.title = `${categoryName(currentCategory)} · Góc đọc của Hudson`;
       if (loaded && renderedCategory !== currentCategory) render();
       sectionTitle.focus({ preventScroll: true });
       restoreScroll(scrollTop);
     }
+    const eVnexpress = currentCategory === 'e-vnexpress' || currentCategory.startsWith('e-vnexpress/');
+    root.querySelector('#vne-english-categories').hidden = !eVnexpress;
+    for (const link of root.querySelectorAll('[data-topic]')) {
+      if (eVnexpress && link.dataset.topic === (currentCategory.split('/')[1] || 'home')) link.setAttribute('aria-current', 'page');
+      else link.removeAttribute('aria-current');
+    }
     for (const link of root.querySelectorAll('[data-category]')) {
-      if (link.dataset.category === (activeArticle?.category || currentCategory)) link.setAttribute('aria-current', 'page');
+      if (link.dataset.category === (activeArticle?.category || (eVnexpress ? 'e-vnexpress' : currentCategory))) link.setAttribute('aria-current', 'page');
       else link.removeAttribute('aria-current');
     }
   }
@@ -339,9 +409,9 @@
     try {
       const url = new URL(endpoint);
       url.searchParams.set('categories', Object.keys(categories).join(','));
-      const results = await Promise.allSettled([url, internationalEndpoint].map(async feedUrl => {
+      const results = await Promise.allSettled([url, internationalEndpoint, eVnexpressEndpoint].map(async feedUrl => {
         const response = await fetch(feedUrl, {
-          cache: 'no-store', credentials: 'omit', signal: AbortSignal.timeout(25000)
+          cache: 'no-store', credentials: 'omit', signal: AbortSignal.timeout(30000)
         });
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         const data = await response.json();
@@ -354,18 +424,20 @@
       const timestamps = [];
       results.forEach((result, index) => {
         if (result.status === 'rejected') {
-          failures.push(index === 0 ? 'VnExpress' : 'BBC / The Guardian / Ars Technica');
+          failures.push(['VnExpress', 'BBC / The Guardian / Ars Technica', 'E-Vnexpress'][index]);
           return;
         }
         const data = result.value;
         if (data.fetchedAt) timestamps.push(data.fetchedAt);
         for (const article of data.articles) {
-          if (!article || !Object.hasOwn(categories, article.category) || typeof article.title !== 'string') continue;
-          const source = index === 0 ? 'vnexpress' : article.source;
-          if (index !== 0 && !Object.hasOwn(externalSources, source)) continue;
+          if (!article || !Object.hasOwn(index === 2 ? englishCategories : categories, article.category) || typeof article.title !== 'string') continue;
+          const source = index === 0 ? 'vnexpress' : index === 2 ? 'e-vnexpress' : article.source;
+          if (index === 1 && (!Object.hasOwn(externalSources, source) || source === 'e-vnexpress')) continue;
           const articleUrl = safeUrl(article.url, false, source);
           if (!articleUrl) continue;
-          merged.push({ ...article, url: articleUrl, source, external: index !== 0,
+          const topics = index === 2 && Array.isArray(article.categories)
+            ? article.categories.filter(id => Object.hasOwn(englishCategories, id)) : [article.category];
+          merged.push({ ...article, url: articleUrl, source, categories: topics, external: index !== 0,
             sourceName: index === 0 ? 'VnExpress' : externalSources[source].name });
         }
         for (const item of data.errors || []) failures.push(item.sourceName || categories[item.category] || item.feed || item.category);

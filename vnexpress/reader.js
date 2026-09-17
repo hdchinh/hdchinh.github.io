@@ -10,7 +10,7 @@
   };
   const categories = {
     'tin-noi-bat': 'Tin tổng hợp',
-    'tin-xem-nhieu': 'Xem nhiều',
+    'tin-moi-nhat': 'Tin mới nhất',
     'spotlight': 'Spotlight',
     'goc-nhin': 'Góc nhìn',
     'thoi-su': 'Thời sự',
@@ -18,8 +18,12 @@
     'kinh-doanh': 'Kinh doanh',
     'phap-luat': 'Pháp luật',
     'khoa-hoc-cong-nghe': 'Khoa học công nghệ',
+    'giao-duc': 'Giáo dục',
     'bat-dong-san': 'Bất động sản',
-    'gia-dinh': 'Đời sống'
+    'gia-dinh': 'Đời sống',
+    'oto-xe-may': 'Xe',
+    'du-lich': 'Du lịch',
+    'vne-go': 'VnE Go'
   };
   const list = root.querySelector('#vne-articles');
   const front = root.querySelector('#vne-front');
@@ -160,35 +164,33 @@
     const englishHome = eVnexpress && topic === 'home';
     const visible = articles.filter(article => eVnexpress
       ? article.source === 'e-vnexpress' && (englishHome ? article.featured : article.categories.includes(topic))
-      : !article.external && (home ? article.featured === true || article.mostRead === true
-        : currentCategory === 'tin-xem-nhieu' ? article.mostRead === true
+      : !article.external && (home ? article.featured === true
+        : currentCategory === 'tin-moi-nhat' ? article.latest === true
           : currentCategory === 'spotlight' ? article.spotlight === true
-            : currentCategory === 'all' || article.category === currentCategory));
-    const mostRead = articles.filter(article => !article.external && article.mostRead === true)
-      .sort((a, b) => a.mostReadRank - b.mostReadRank);
-    // Preserve publisher ranks after backend filtering; most-read headlines also get a top sidebar.
-    if (home) visible.sort((a, b) => (a.featuredRank ?? Number.MAX_SAFE_INTEGER) - (b.featuredRank ?? Number.MAX_SAFE_INTEGER)
-      || (a.mostReadRank ?? Number.MAX_SAFE_INTEGER) - (b.mostReadRank ?? Number.MAX_SAFE_INTEGER));
-    if (currentCategory === 'tin-xem-nhieu') visible.sort((a, b) => a.mostReadRank - b.mostReadRank);
+            : currentCategory === 'vne-go' ? article.vneGo === true
+              : currentCategory === 'all' || article.categories.includes(currentCategory)));
+    // Preserve the featured RSS order after backend filtering.
+    if (home) visible.sort((a, b) => (a.featuredRank ?? Number.MAX_SAFE_INTEGER) - (b.featuredRank ?? Number.MAX_SAFE_INTEGER));
     const fragment = document.createDocumentFragment();
-    const displayedUrls = new Set();
-    if (visible.length) {
+    const displayedUrls = new Set(visible.slice(0, 4).map(article => article.url));
+    const headlineItems = home
+      ? articles.filter(article => !article.external && article.latest === true && !displayedUrls.has(article.url)).slice(0, 5)
+      : visible.slice(4, 9);
+    if (visible.length || headlineItems.length) {
       const frontpage = element('div', 'vne-front-grid');
-      const lead = element('div', 'vne-lead');
-      lead.append(card(visible[0], { hero: true }));
-      if (visible[1]) lead.append(card(visible[1], { brief: true, summary: true }));
-      const secondary = element('div', 'vne-secondary');
-      visible.slice(2, 4).forEach(article => secondary.append(card(article)));
-      frontpage.append(lead);
-      if (secondary.childElementCount) frontpage.append(secondary);
-      visible.slice(0, 4).forEach(article => displayedUrls.add(article.url));
-      const showMostRead = home && mostRead.length > 0;
-      const headlineItems = showMostRead ? mostRead.slice(0, 5) : visible.slice(4, 9);
+      if (visible.length) {
+        const lead = element('div', 'vne-lead');
+        lead.append(card(visible[0], { hero: true }));
+        if (visible[1]) lead.append(card(visible[1], { brief: true, summary: true }));
+        const secondary = element('div', 'vne-secondary');
+        visible.slice(2, 4).forEach(article => secondary.append(card(article)));
+        frontpage.append(lead);
+        if (secondary.childElementCount) frontpage.append(secondary);
+      }
       if (headlineItems.length) {
         const sidebar = element('aside', 'vne-headlines');
-        sidebar.append(sectionHeading(showMostRead ? 'Xem nhiều'
-          : eVnexpress ? 'Latest headlines' : 'Điểm tin',
-        showMostRead ? 'tin-xem-nhieu' : null));
+        sidebar.append(sectionHeading(home ? 'Tin mới nhất' : eVnexpress ? 'Latest headlines' : 'Điểm tin',
+          home ? 'tin-moi-nhat' : null));
         const headlines = element('ol');
         headlineItems.forEach(article => {
           displayedUrls.add(article.url);
@@ -202,21 +204,22 @@
         sidebar.append(headlines);
         frontpage.append(sidebar);
       }
+      if (home && frontpage.childElementCount < 3) frontpage.classList.add(`vne-columns-${frontpage.childElementCount}`);
       fragment.append(frontpage);
-    } else {
-      fragment.append(element('p', 'vne-empty', currentCategory === 'tin-xem-nhieu'
-        ? 'Chưa có bài Xem nhiều trong 14 ngày gần nhất vượt qua bộ lọc.'
-        : 'Chưa có tin trong mục này. Bạn có thể chọn chuyên mục khác hoặc tải lại.'));
+    } else if (!home) {
+      fragment.append(element('p', 'vne-empty', 'Chưa có tin trong mục này. Bạn có thể chọn chuyên mục khác hoặc tải lại.'));
     }
 
     if (home || englishHome) {
       const topics = englishHome ? englishCategories : categories;
       for (const id of Object.keys(topics).slice(1)) {
-        if (!englishHome && id === 'tin-xem-nhieu') continue;
+        if (home && id === 'tin-moi-nhat') continue;
         const items = articles.filter(article => englishHome
           ? article.source === 'e-vnexpress' && article.categories.includes(id)
-          : !article.external && (id === 'spotlight' ? article.spotlight === true : article.category === id)).slice(0, 6);
+          : !article.external && !displayedUrls.has(article.url) && (id === 'spotlight' ? article.spotlight === true
+            : id === 'vne-go' ? article.vneGo === true : article.categories.includes(id))).slice(0, 6);
         if (!items.length) continue;
+        if (home) items.forEach(article => displayedUrls.add(article.url));
         const route = englishHome ? `e-vnexpress/${id}` : id;
         const section = element('section', 'vne-category-section');
         if (englishHome) section.lang = 'en';
@@ -240,13 +243,19 @@
       const stream = element('section', 'vne-stream');
       stream.append(sectionHeading(eVnexpress ? 'More stories' : 'Tiếp dòng tin'));
       const grid = element('div', 'vne-category-stream');
-      remaining.forEach(article => grid.append(card(article, { heading: 'h3' })));
+      remaining.forEach(article => {
+        grid.append(card(article, { heading: 'h3' }));
+        displayedUrls.add(article.url);
+      });
       stream.append(grid);
       fragment.append(stream);
     }
+    if (home && !displayedUrls.size) {
+      fragment.append(element('p', 'vne-empty', 'Chưa có tin vượt qua bộ lọc. Bạn có thể tải lại để thử lại.'));
+    }
     list.replaceChildren(fragment);
     renderedCategory = currentCategory;
-    status.textContent = `${visible.length} bài · Cập nhật ${fetchedAt}`;
+    status.textContent = `${home ? displayedUrls.size : visible.length} bài · Cập nhật ${fetchedAt}`;
   }
 
   function renderRelated(article) {
@@ -406,7 +415,7 @@
       url.searchParams.set('categories', Object.keys(categories).join(','));
       const results = await Promise.allSettled([url, eVnexpressEndpoint].map(async feedUrl => {
         const response = await fetch(feedUrl, {
-          cache: 'no-store', credentials: 'omit', signal: AbortSignal.timeout(30000)
+          cache: 'no-store', credentials: 'omit', signal: AbortSignal.timeout(35000)
         });
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         const data = await response.json();
@@ -429,8 +438,8 @@
           const source = index === 0 ? 'vnexpress' : 'e-vnexpress';
           const articleUrl = safeUrl(article.url, false, source);
           if (!articleUrl) continue;
-          const topics = index === 1 && Array.isArray(article.categories)
-            ? article.categories.filter(id => Object.hasOwn(englishCategories, id)) : [article.category];
+          const topics = Array.isArray(article.categories)
+            ? article.categories.filter(id => Object.hasOwn(index === 1 ? englishCategories : categories, id)) : [article.category];
           merged.push({ ...article, url: articleUrl, source, categories: topics, external: index !== 0,
             sourceName: index === 0 ? 'VnExpress' : externalSources[source].name });
         }

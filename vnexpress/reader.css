@@ -132,29 +132,23 @@ h1, h2, h3 { font-family: Arial, Helvetica, sans-serif; font-weight: 750; }
   .vne-topic-nav { gap: 24px; margin-bottom: 20px; }
   .vne-topic-nav a { font-size: 16px; }
   .vne-front-grid, .vne-front-grid.vne-columns-2, .vne-section-grid { grid-template-columns: 1fr; gap: 24px; }
-  .vne-hero h2, .vne-hero h3 { font-size: 28px; }
-  .vne-hero .vne-description { font-size: 20px; }
-  .vne-lead > .vne-card + .vne-card h2 { font-size: 24px; }
-  .vne-secondary { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
-  .vne-secondary h2 { font-size: 20px; }
-  .vne-secondary .vne-description { font-size: 17px; }
+  .vne-secondary { grid-template-columns: 1fr; gap: 24px; }
+  .vne-secondary > .vne-card + .vne-card { padding-top: 24px; border-top: 1px solid var(--line); }
+  .vne-card, .vne-section-stories > .vne-card, .vne-section-stories > .vne-card.vne-no-image { display: flex; flex-direction: column; align-items: stretch; gap: 0; }
+  .vne-card-text { display: contents; }
+  .vne-card h2, .vne-card h3, .vne-lead > .vne-card + .vne-card h2 { order: 0; font: bold 24px/1.3 Georgia, 'Times New Roman', serif; letter-spacing: 0; }
+  .vne-card .vne-description { order: 1; font: 18px/1.55 Arial, Helvetica, sans-serif; }
+  .vne-card .vne-image-link { order: 2; width: 100%; margin: 16px 0 0; border-radius: 4px; }
+  .vne-card .vne-meta { order: 3; margin-top: 12px; }
   .vne-headlines ol { display: block; }
   .vne-category-section { margin-top: 32px; }
   .vne-section-header { gap: 12px; }
   .vne-section-header .vne-section-heading { min-width: 0; font-size: 23px; }
   .vne-section-stories > .vne-card { padding-bottom: 18px; border-bottom: 1px solid var(--line); }
   .vne-category-stream, .vne-top-stories { grid-template-columns: 1fr; gap: 20px; }
-  .vne-category-stream > .vne-card, .vne-top-stories > .vne-card { display: flow-root; }
-  .vne-category-stream .vne-image-link, .vne-top-stories .vne-image-link { float: right; width: 34%; margin: 4px 0 8px 16px; }
-  .vne-category-stream .vne-meta, .vne-top-stories .vne-meta { clear: both; }
   .vne-reading-bar { font-size: 14px; margin-bottom: 18px; }
   .vne-source { font-size: 14px; }
   #vne-detail-title { font-size: 32px; }
   #vne-detail-description, #vne-detail-body { font-size: 21px; }
   .vne-footer { margin-top: 36px; }
-}
-@media (max-width: 380px) {
-  .vne-secondary { grid-template-columns: 1fr; }
-  .vne-section-stories > .vne-card { display: block; }
-  .vne-section-stories .vne-image-link { margin-bottom: 12px; }
 }

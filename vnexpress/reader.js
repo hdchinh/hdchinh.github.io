@@ -11,7 +11,6 @@
   const categories = {
     'tin-noi-bat': 'Tin tổng hợp',
     'tin-moi-nhat': 'Tin mới nhất',
-    'spotlight': 'Spotlight',
     'thoi-su': 'Thời sự',
     'the-gioi': 'Thế giới',
     'kinh-doanh': 'Kinh doanh',
@@ -21,8 +20,7 @@
     'bat-dong-san': 'Bất động sản',
     'gia-dinh': 'Đời sống',
     'oto-xe-may': 'Xe',
-    'du-lich': 'Du lịch',
-    'vne-go': 'VnE Go'
+    'du-lich': 'Du lịch'
   };
   const list = root.querySelector('#vne-articles');
   const front = root.querySelector('#vne-front');
@@ -169,9 +167,7 @@
       ? article.source === 'e-vnexpress' && (englishHome ? article.featured : article.categories.includes(topic))
       : !article.external && (home || currentCategory === 'featured' ? article.featured === true
         : currentCategory === 'tin-moi-nhat' ? article.latest === true
-          : currentCategory === 'spotlight' ? article.spotlight === true
-            : currentCategory === 'vne-go' ? article.vneGo === true
-              : currentCategory === 'all' || article.categories.includes(currentCategory)));
+          : currentCategory === 'all' || article.categories.includes(currentCategory)));
     // RSS rank applies to the featured tab and remaining stream; homepage top four use publisher matches plus fallback.
     if (home || currentCategory === 'featured') visible.sort((a, b) => (a.featuredRank ?? Number.MAX_SAFE_INTEGER) - (b.featuredRank ?? Number.MAX_SAFE_INTEGER));
     const topItems = home ? homeTopArticles : visible.slice(0, 4);
@@ -220,8 +216,8 @@
         if (home && id === 'tin-moi-nhat') continue;
         const items = articles.filter(article => englishHome
           ? article.source === 'e-vnexpress' && article.categories.includes(id)
-          : !article.external && !displayedUrls.has(article.url) && (id === 'spotlight' ? article.spotlight === true
-            : id === 'vne-go' ? article.vneGo === true : article.categories.includes(id))).slice(0, 6);
+          : !article.external && !displayedUrls.has(article.url)
+            && article.categories.includes(id)).slice(0, 6);
         if (!items.length) continue;
         if (home) items.forEach(article => displayedUrls.add(article.url));
         const route = englishHome ? `e-vnexpress/${id}` : id;

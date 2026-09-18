@@ -33,6 +33,8 @@
   const detail = root.querySelector('#vne-detail');
   const detailTitle = root.querySelector('#vne-detail-title');
   const detailSource = root.querySelector('#vne-detail-source');
+  const detailSourceName = root.querySelector('#vne-detail-source-name');
+  const readingNote = root.querySelector('.vne-reading-note');
   const detailCategory = root.querySelector('#vne-detail-category');
   const detailMeta = root.querySelector('#vne-detail-meta');
   const detailDescription = root.querySelector('#vne-detail-description');
@@ -102,8 +104,8 @@
     // Modified clicks still open the original source, not a duplicate reader tab.
     link.href = article.url;
     link.rel = 'noopener noreferrer';
-    if (article.external) {
-      // Ordinary navigation to the publisher; never request international article bodies.
+    if (article.external && article.source !== 'e-vnexpress') {
+      // Unsupported external sources continue to open at the publisher.
       link.dataset.externalArticle = 'true';
     } else {
       link.target = '_blank';
@@ -145,7 +147,7 @@
     text.append(title);
     if (summary && article.description) text.append(element('p', 'vne-description', article.description));
     text.append(element('p', 'vne-meta', [article.sourceName, article.source === 'e-vnexpress' ? englishCategories[article.category] : categories[article.category], formatDate(article.publishedAt),
-      article.external ? 'Đọc tại nguồn ↗' : ''].filter(Boolean).join(' · ')));
+      article.external && article.source !== 'e-vnexpress' ? 'Đọc tại nguồn ↗' : ''].filter(Boolean).join(' · ')));
     node.append(text);
     return node;
   }
@@ -262,10 +264,12 @@
 
   function renderRelated(article) {
     related.replaceChildren();
-    const items = articles.filter(item => !item.external && item.category === article.category && item.url !== article.url).slice(0, 3);
+    const english = article.source === 'e-vnexpress';
+    const items = articles.filter(item => item.source === article.source && item.url !== article.url
+      && (english ? item.categories.includes(article.category) : item.category === article.category)).slice(0, 3);
     related.hidden = !items.length;
     if (!items.length) return;
-    related.append(sectionHeading('Đọc tiếp cùng chuyên mục', article.category));
+    related.append(sectionHeading('Đọc tiếp cùng chuyên mục', english ? `e-vnexpress/${article.category}` : article.category));
     const grid = element('div', 'vne-top-stories');
     items.forEach(item => grid.append(card(item, { heading: 'h3' })));
     related.append(grid);
@@ -282,11 +286,16 @@
     const controller = new AbortController();
     detailRequest = controller;
     activeArticle = article;
+    const english = article.source === 'e-vnexpress';
+    const sourceName = english ? 'VnExpress International' : 'VnExpress';
     const timer = setTimeout(() => controller.abort(), 15000);
     detailTitle.textContent = article.title || 'Đang tải bài viết…';
+    for (const node of [detailTitle, detailDescription, detailBody]) node.lang = english ? 'en' : 'vi';
     detailSource.href = article.url;
-    detailCategory.textContent = categories[article.category] || 'Tin tức';
-    detailCategory.href = categoryHash(article.category || currentCategory);
+    detailSourceName.textContent = sourceName;
+    readingNote.textContent = `Bản đọc gọn từ ${sourceName}. Video, nội dung tương tác hoặc bài yêu cầu đăng nhập có thể cần đọc trên trang gốc.`;
+    detailCategory.textContent = (english ? englishCategories[article.category] : categories[article.category]) || (english ? 'E-Vnexpress' : 'Tin tức');
+    detailCategory.href = categoryHash(english ? (article.category ? `e-vnexpress/${article.category}` : 'e-vnexpress') : article.category || currentCategory);
     detailMeta.textContent = formatDate(article.publishedAt);
     detailDescription.textContent = article.description || '';
     detailBody.replaceChildren();
@@ -299,15 +308,16 @@
     document.title = `${article.title || 'Đọc bài'} · Góc đọc`;
 
     try {
-      const url = new URL('article', endpoint);
+      const url = new URL('article', english ? eVnexpressEndpoint : endpoint);
       url.searchParams.set('url', article.url);
       const response = await fetch(url, { cache: 'no-store', credentials: 'omit', signal: controller.signal });
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       const data = await response.json();
       if (detailRequest !== controller) return;
       if (typeof data.contentHtml !== 'string' || !data.contentHtml.trim()) throw new Error('Missing article content');
-      detailTitle.textContent = data.title || article.title || 'Bài viết VnExpress';
+      detailTitle.textContent = data.title || article.title || `Bài viết ${sourceName}`;
       detailDescription.textContent = data.description || '';
+      if (data.publishedAt) detailMeta.textContent = formatDate(data.publishedAt);
       // Only the backend's allowlist-sanitized body is inserted, never the full source page.
       detailBody.innerHTML = data.contentHtml;
       // Source toolbar icons are stripped by sanitization, leaving empty bullet lists.
@@ -320,7 +330,7 @@
     } catch {
       if (detailRequest === controller) {
         detailStatus.textContent = 'Chưa đọc được bài này tại đây. ';
-        const fallback = element('a', '', 'Đọc trên VnExpress ↗');
+        const fallback = element('a', '', `Đọc trên ${sourceName} ↗`);
         fallback.href = article.url;
         fallback.target = '_blank';
         fallback.rel = 'noopener noreferrer';
@@ -340,13 +350,19 @@
     const scrollTop = Number.isFinite(state.scroll) ? state.scroll : 0;
     let articleUrl = null;
     if (currentHash.startsWith('#article/')) {
-      try { articleUrl = safeUrl(decodeURIComponent(currentHash.slice(9))); } catch { /* Invalid route falls back to the list. */ }
+      try {
+        const decoded = decodeURIComponent(currentHash.slice(9));
+        articleUrl = safeUrl(decoded) || safeUrl(decoded, false, 'e-vnexpress');
+      } catch { /* Invalid route falls back to the list. */ }
     }
     if (articleUrl) {
       front.hidden = true;
       detail.hidden = false;
+      const english = Boolean(safeUrl(articleUrl, false, 'e-vnexpress'));
       if (state.category && validCategory(state.category)) currentCategory = state.category;
-      const article = articles.find(item => item.url === articleUrl) || { url: articleUrl };
+      else currentCategory = english ? 'e-vnexpress' : 'tin-noi-bat';
+      const article = articles.find(item => item.url === articleUrl)
+        || { url: articleUrl, source: english ? 'e-vnexpress' : 'vnexpress', external: english };
       openArticle(article, scrollTop);
     } else {
       activeArticle = null;
@@ -367,7 +383,7 @@
       else link.removeAttribute('aria-current');
     }
     for (const link of root.querySelectorAll('[data-category]')) {
-      if (link.dataset.category === (activeArticle?.category || (eVnexpress ? 'e-vnexpress' : currentCategory))) link.setAttribute('aria-current', 'page');
+      if (link.dataset.category === (eVnexpress ? 'e-vnexpress' : activeArticle?.category || currentCategory)) link.setAttribute('aria-current', 'page');
       else link.removeAttribute('aria-current');
     }
   }
@@ -468,8 +484,9 @@
         const article = articles.find(item => item.url === activeArticle.url);
         if (article) {
           activeArticle = article;
-          detailCategory.textContent = categories[article.category];
-          detailCategory.href = categoryHash(article.category);
+          const english = article.source === 'e-vnexpress';
+          detailCategory.textContent = english ? englishCategories[article.category] : categories[article.category];
+          detailCategory.href = categoryHash(english ? `e-vnexpress/${article.category}` : article.category);
           detailMeta.textContent = formatDate(article.publishedAt);
           renderRelated(article);
         }

@@ -4,9 +4,11 @@
 
   const endpoint = 'https://api-sirrista-singapore.com/api/v1/vnexpress/rss';
   const eVnexpressEndpoint = 'https://api-sirrista-singapore.com/api/v1/e-vnexpress/rss';
+  const bbcEndpoint = 'https://api-sirrista-singapore.com/api/v1/bbc/rss';
   const englishCategories = { home: 'Home', news: 'News', business: 'Business', tech: 'Tech', world: 'World', perspectives: 'Perspectives' };
   const externalSources = {
-    'e-vnexpress': { name: 'E-Vnexpress', hosts: ['e.vnexpress.net'] }
+    'e-vnexpress': { name: 'E-Vnexpress', hosts: ['e.vnexpress.net'] },
+    bbc: { name: 'BBC News Tiếng Việt', hosts: ['www.bbc.com'] }
   };
   const categories = {
     'tin-noi-bat': 'Tin tổng hợp',
@@ -65,7 +67,7 @@
     try {
       const url = new URL(value);
       const allowedHost = image
-        ? url.hostname.endsWith('.vnecdn.net')
+        ? (source === 'bbc' ? url.hostname === 'ichef.bbci.co.uk' : url.hostname.endsWith('.vnecdn.net'))
         : source === 'vnexpress' ? url.hostname === 'vnexpress.net'
           : Object.hasOwn(externalSources, source) && externalSources[source].hosts.includes(url.hostname);
       return url.protocol === 'https:' && allowedHost && !url.username && !url.password && !url.port ? url.href : null;
@@ -86,11 +88,12 @@
   }
 
   function validCategory(id) {
-    return ['all', 'featured', 'e-vnexpress'].includes(id) || Object.hasOwn(categories, id)
+    return ['all', 'featured', 'e-vnexpress', 'bbc'].includes(id) || Object.hasOwn(categories, id)
       || (id.startsWith('e-vnexpress/') && Object.hasOwn(englishCategories, id.slice(12)));
   }
 
   function categoryName(id) {
+    if (id === 'bbc') return 'BBC';
     if (id === 'featured') return 'Tin nổi bật';
     if (id === 'e-vnexpress') return 'E-Vnexpress';
     if (id.startsWith('e-vnexpress/')) return `E-Vnexpress · ${englishCategories[id.slice(12)]}`;
@@ -102,7 +105,7 @@
     // Modified clicks still open the original source, not a duplicate reader tab.
     link.href = article.url;
     link.rel = 'noopener noreferrer';
-    if (article.external && article.source !== 'e-vnexpress') {
+    if (article.external && !['e-vnexpress', 'bbc'].includes(article.source)) {
       // Unsupported external sources continue to open at the publisher.
       link.dataset.externalArticle = 'true';
     } else {
@@ -114,8 +117,8 @@
 
   function card(article, { hero = false, brief = false, summary = !brief, heading = 'h2' } = {}) {
     const node = element('article', `vne-card${hero ? ' vne-hero' : ''}`);
-    if (article.external) node.lang = 'en';
-    const imageUrl = !brief && safeUrl(article.imageUrl, true);
+    if (article.external) node.lang = article.source === 'e-vnexpress' ? 'en' : 'vi';
+    const imageUrl = !brief && safeUrl(article.imageUrl, true, article.source);
     if (imageUrl) {
       const link = articleLink(article);
       link.className = 'vne-image-link';
@@ -145,7 +148,7 @@
     text.append(title);
     if (summary && article.description) text.append(element('p', 'vne-description', article.description));
     text.append(element('p', 'vne-meta', [article.sourceName, article.source === 'e-vnexpress' ? englishCategories[article.category] : categories[article.category], formatDate(article.publishedAt),
-      article.external && article.source !== 'e-vnexpress' ? 'Đọc tại nguồn ↗' : ''].filter(Boolean).join(' · ')));
+      article.external && !['e-vnexpress', 'bbc'].includes(article.source) ? 'Đọc tại nguồn ↗' : ''].filter(Boolean).join(' · ')));
     node.append(text);
     return node;
   }
@@ -163,7 +166,7 @@
     const eVnexpress = currentCategory === 'e-vnexpress' || currentCategory.startsWith('e-vnexpress/');
     const topic = currentCategory.split('/')[1] || 'home';
     const englishHome = eVnexpress && topic === 'home';
-    const visible = articles.filter(article => eVnexpress
+    const visible = articles.filter(article => currentCategory === 'bbc' ? article.source === 'bbc' : eVnexpress
       ? article.source === 'e-vnexpress' && (englishHome ? article.featured : article.categories.includes(topic))
       : !article.external && (home || currentCategory === 'featured' ? article.featured === true
         : currentCategory === 'tin-moi-nhat' ? article.latest === true
@@ -197,7 +200,7 @@
           const item = element('li');
           const link = articleLink(article);
           link.textContent = article.title;
-          if (article.external) link.lang = 'en';
+          if (article.external) link.lang = article.source === 'e-vnexpress' ? 'en' : 'vi';
           item.append(link, element('p', 'vne-meta', formatDate(article.publishedAt)));
           headlines.append(item);
         });
@@ -283,15 +286,16 @@
     detailRequest = controller;
     activeArticle = article;
     const english = article.source === 'e-vnexpress';
-    const sourceName = english ? 'VnExpress International' : 'VnExpress';
+    const bbc = article.source === 'bbc';
+    const sourceName = bbc ? 'BBC News Tiếng Việt' : english ? 'VnExpress International' : 'VnExpress';
     const timer = setTimeout(() => controller.abort(), 15000);
     detailTitle.textContent = article.title || 'Đang tải bài viết…';
     for (const node of [detailTitle, detailDescription, detailBody]) node.lang = english ? 'en' : 'vi';
     detailSource.href = article.url;
     detailSourceName.textContent = sourceName;
     readingNote.textContent = `Bản đọc gọn từ ${sourceName}. Video, nội dung tương tác hoặc bài yêu cầu đăng nhập có thể cần đọc trên trang gốc.`;
-    detailCategory.textContent = (english ? englishCategories[article.category] : categories[article.category]) || (english ? 'E-Vnexpress' : 'Tin tức');
-    detailCategory.href = categoryHash(english ? (article.category ? `e-vnexpress/${article.category}` : 'e-vnexpress') : article.category || currentCategory);
+    detailCategory.textContent = bbc ? 'BBC' : (english ? englishCategories[article.category] : categories[article.category]) || (english ? 'E-Vnexpress' : 'Tin tức');
+    detailCategory.href = categoryHash(bbc ? 'bbc' : english ? (article.category ? `e-vnexpress/${article.category}` : 'e-vnexpress') : article.category || currentCategory);
     detailMeta.textContent = formatDate(article.publishedAt);
     detailDescription.textContent = article.description || '';
     detailBody.replaceChildren();
@@ -304,7 +308,7 @@
     document.title = `${article.title || 'Đọc bài'} · Góc đọc`;
 
     try {
-      const url = new URL('article', english ? eVnexpressEndpoint : endpoint);
+      const url = new URL('article', bbc ? bbcEndpoint : english ? eVnexpressEndpoint : endpoint);
       url.searchParams.set('url', article.url);
       const response = await fetch(url, { cache: 'no-store', credentials: 'omit', signal: controller.signal });
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
@@ -348,17 +352,18 @@
     if (currentHash.startsWith('#article/')) {
       try {
         const decoded = decodeURIComponent(currentHash.slice(9));
-        articleUrl = safeUrl(decoded) || safeUrl(decoded, false, 'e-vnexpress');
+        articleUrl = safeUrl(decoded) || safeUrl(decoded, false, 'e-vnexpress') || safeUrl(decoded, false, 'bbc');
       } catch { /* Invalid route falls back to the list. */ }
     }
     if (articleUrl) {
       front.hidden = true;
       detail.hidden = false;
       const english = Boolean(safeUrl(articleUrl, false, 'e-vnexpress'));
+      const bbc = Boolean(safeUrl(articleUrl, false, 'bbc'));
       if (state.category && validCategory(state.category)) currentCategory = state.category;
-      else currentCategory = english ? 'e-vnexpress' : 'tin-noi-bat';
+      else currentCategory = bbc ? 'bbc' : english ? 'e-vnexpress' : 'tin-noi-bat';
       const article = articles.find(item => item.url === articleUrl)
-        || { url: articleUrl, source: english ? 'e-vnexpress' : 'vnexpress', external: english };
+        || { url: articleUrl, source: bbc ? 'bbc' : english ? 'e-vnexpress' : 'vnexpress', external: english || bbc };
       openArticle(article, scrollTop);
     } else {
       activeArticle = null;
@@ -426,7 +431,7 @@
     try {
       const url = new URL(endpoint);
       url.searchParams.set('categories', Object.keys(categories).join(','));
-      const results = await Promise.allSettled([url, eVnexpressEndpoint].map(async feedUrl => {
+      const results = await Promise.allSettled([url, eVnexpressEndpoint, bbcEndpoint].map(async feedUrl => {
         const response = await fetch(feedUrl, {
           cache: 'no-store', credentials: 'omit', signal: AbortSignal.timeout(35000)
         });
@@ -441,18 +446,18 @@
       const timestamps = [];
       results.forEach((result, index) => {
         if (result.status === 'rejected') {
-          failures.push(['VnExpress', 'E-Vnexpress'][index]);
+          failures.push(['VnExpress', 'E-Vnexpress', 'BBC'][index]);
           return;
         }
         const data = result.value;
         if (index === 0 && data.homepage?.error) failures.push('Ưu tiên trang chủ VnExpress');
         if (data.fetchedAt) timestamps.push(data.fetchedAt);
         for (const article of data.articles) {
-          if (!article || !Object.hasOwn(index === 1 ? englishCategories : categories, article.category) || typeof article.title !== 'string') continue;
-          const source = index === 0 ? 'vnexpress' : 'e-vnexpress';
+          if (!article || !(index === 2 ? article.category === 'bbc' : Object.hasOwn(index === 1 ? englishCategories : categories, article.category)) || typeof article.title !== 'string') continue;
+          const source = ['vnexpress', 'e-vnexpress', 'bbc'][index];
           const articleUrl = safeUrl(article.url, false, source);
           if (!articleUrl) continue;
-          const topics = Array.isArray(article.categories)
+          const topics = index === 2 ? ['bbc'] : Array.isArray(article.categories)
             ? article.categories.filter(id => Object.hasOwn(index === 1 ? englishCategories : categories, id)) : [article.category];
           merged.push({ ...article, url: articleUrl, source, categories: topics, external: index !== 0,
             sourceName: index === 0 ? 'VnExpress' : externalSources[source].name });
@@ -481,7 +486,7 @@
         if (article) {
           activeArticle = article;
           const english = article.source === 'e-vnexpress';
-          detailCategory.textContent = english ? englishCategories[article.category] : categories[article.category];
+          detailCategory.textContent = article.source === 'bbc' ? 'BBC' : english ? englishCategories[article.category] : categories[article.category];
           detailCategory.href = categoryHash(english ? `e-vnexpress/${article.category}` : article.category);
           detailMeta.textContent = formatDate(article.publishedAt);
           renderRelated(article);

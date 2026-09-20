@@ -311,9 +311,15 @@
       const url = new URL('article', bbc ? bbcEndpoint : english ? eVnexpressEndpoint : endpoint);
       url.searchParams.set('url', article.url);
       const response = await fetch(url, { cache: 'no-store', credentials: 'omit', signal: controller.signal });
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
       const data = await response.json();
       if (detailRequest !== controller) return;
+      if (response.status === 403 && data.error === 'reader_ip_restricted') {
+        const originalUrl = safeUrl(article.url, false, article.source || 'vnexpress');
+        if (!originalUrl) throw new Error('Invalid source URL');
+        window.location.replace(originalUrl);
+        return;
+      }
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
       if (typeof data.contentHtml !== 'string' || !data.contentHtml.trim()) throw new Error('Missing article content');
       detailTitle.textContent = data.title || article.title || `Bài viết ${sourceName}`;
       detailDescription.textContent = data.description || '';

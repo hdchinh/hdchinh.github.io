@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Docker: để không surprise khi run ứng dụngđi vào Docker, để không surprise khi run ứng dụng kiểu:  á đĩ mẹ nó run được ở máy của em  thì bản chất vẫn là make the environment consistent cho mọi môi trư">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker, CI&#x2F;CD, Testing, IaC, Auto-scale... tất cả ra đời chỉ vì nỗi sợ surprise và uncertainty">
+<meta property="og:url" content="https://read.hihudson.com/2026/09/19/2026-09-19-docker-ci-cd-testing-iac-auto-scale-tat-ca-ra-doi-chi-vi-noi-so-surprise-va-uncertainty/">
+<meta property="og:site_name" content="Hudson">
+<meta property="og:description" content="Docker: để không surprise khi run ứng dụngđi vào Docker, để không surprise khi run ứng dụng kiểu:  á đĩ mẹ nó run được ở máy của em  thì bản chất vẫn là make the environment consistent cho mọi môi trư">
+<meta property="og:locale" content="vi_VN">
+<meta property="article:published_time" content="2026-09-18T17:00:00.000Z">
+<meta property="article:modified_time" content="2026-09-20T13:10:14.905Z">
+<meta property="article:author" content="Hudson">
+<meta name="twitter:card" content="summary">
+    <link rel="canonical" href="https://read.hihudson.com/2026/09/19/2026-09-19-docker-ci-cd-testing-iac-auto-scale-tat-ca-ra-doi-chi-vi-noi-so-surprise-va-uncertainty/">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Docker, CI/CD, Testing, IaC, Auto-scale... tất cả ra đời chỉ vì nỗi sợ surprise và uncertainty","description":"Docker: để không surprise khi run ứng dụngđi vào Docker, để không surprise khi run ứng dụng kiểu: á đĩ mẹ nó run được ở máy của em thì bản chất vẫn là make the environment consistent cho mọi môi trườn","inLanguage":"vi","url":"https://read.hihudson.com/2026/09/19/2026-09-19-docker-ci-cd-testing-iac-auto-scale-tat-ca-ra-doi-chi-vi-noi-so-surprise-va-uncertainty/","mainEntityOfPage":{"@type":"WebPage","@id":"https://read.hihudson.com/2026/09/19/2026-09-19-docker-ci-cd-testing-iac-auto-scale-tat-ca-ra-doi-chi-vi-noi-so-surprise-va-uncertainty/"},"datePublished":"2026-09-18T17:00:00.000Z","dateModified":"2026-09-20T13:10:14.905Z","author":{"@type":"Person","name":"Hudson","url":"https://read.hihudson.com/"},"publisher":{"@type":"Person","name":"Hudson","url":"https://read.hihudson.com/"}}</script>
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Docker, CI/CD, Testing, IaC, Auto-scale... tất cả ra đời chỉ vì nỗi sợ surprise và uncertainty</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/blog/">Blog</a></li><!--
+     --><!--
+       --><li><a href="/english/">English</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        <li><a class="icon" aria-label="Home" href="/"><i class="fa-solid fa-house" aria-hidden="true" onmouseover="$('#i-home').toggle();" onmouseout="$('#i-home').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Previous post" href="/2026/09/19/english/muc-tieu-cua-giao-tiep-la-giao-tiep/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2026/09/14/english/mastering-essential-english-connectors-a-personal-cheat-sheet/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-home" class="info" style="display:none;">Home</span>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://read.hihudson.com/2026/09/19/2026-09-19-docker-ci-cd-testing-iac-auto-scale-tat-ca-ra-doi-chi-vi-noi-so-surprise-va-uncertainty/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://read.hihudson.com/2026/09/19/2026-09-19-docker-ci-cd-testing-iac-auto-scale-tat-ca-ra-doi-chi-vi-noi-so-surprise-va-uncertainty/&text=Docker, CI/CD, Testing, IaC, Auto-scale... tất cả ra đời chỉ vì nỗi sợ surprise và uncertainty" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://read.hihudson.com/2026/09/19/2026-09-19-docker-ci-cd-testing-iac-auto-scale-tat-ca-ra-doi-chi-vi-noi-so-surprise-va-uncertainty/&title=Docker, CI/CD, Testing, IaC, Auto-scale... tất cả ra đời chỉ vì nỗi sợ surprise và uncertainty" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://read.hihudson.com/2026/09/19/2026-09-19-docker-ci-cd-testing-iac-auto-scale-tat-ca-ra-doi-chi-vi-noi-so-surprise-va-uncertainty/&is_video=false&description=Docker, CI/CD, Testing, IaC, Auto-scale... tất cả ra đời chỉ vì nỗi sợ surprise và uncertainty" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Docker, CI/CD, Testing, IaC, Auto-scale... tất cả ra đời chỉ vì nỗi sợ surprise và uncertainty&body=Check out this article: https://read.hihudson.com/2026/09/19/2026-09-19-docker-ci-cd-testing-iac-auto-scale-tat-ca-ra-doi-chi-vi-noi-so-surprise-va-uncertainty/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://read.hihudson.com/2026/09/19/2026-09-19-docker-ci-cd-testing-iac-auto-scale-tat-ca-ra-doi-chi-vi-noi-so-surprise-va-uncertainty/&title=Docker, CI/CD, Testing, IaC, Auto-scale... tất cả ra đời chỉ vì nỗi sợ surprise và uncertainty" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://read.hihudson.com/2026/09/19/2026-09-19-docker-ci-cd-testing-iac-auto-scale-tat-ca-ra-doi-chi-vi-noi-so-surprise-va-uncertainty/&title=Docker, CI/CD, Testing, IaC, Auto-scale... tất cả ra đời chỉ vì nỗi sợ surprise và uncertainty" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://read.hihudson.com/2026/09/19/2026-09-19-docker-ci-cd-testing-iac-auto-scale-tat-ca-ra-doi-chi-vi-noi-so-surprise-va-uncertainty/&title=Docker, CI/CD, Testing, IaC, Auto-scale... tất cả ra đời chỉ vì nỗi sợ surprise và uncertainty" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://read.hihudson.com/2026/09/19/2026-09-19-docker-ci-cd-testing-iac-auto-scale-tat-ca-ra-doi-chi-vi-noi-so-surprise-va-uncertainty/&title=Docker, CI/CD, Testing, IaC, Auto-scale... tất cả ra đời chỉ vì nỗi sợ surprise và uncertainty" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://read.hihudson.com/2026/09/19/2026-09-19-docker-ci-cd-testing-iac-auto-scale-tat-ca-ra-doi-chi-vi-noi-so-surprise-va-uncertainty/&name=Docker, CI/CD, Testing, IaC, Auto-scale... tất cả ra đời chỉ vì nỗi sợ surprise và uncertainty&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://read.hihudson.com/2026/09/19/2026-09-19-docker-ci-cd-testing-iac-auto-scale-tat-ca-ra-doi-chi-vi-noi-so-surprise-va-uncertainty/&t=Docker, CI/CD, Testing, IaC, Auto-scale... tất cả ra đời chỉ vì nỗi sợ surprise và uncertainty" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-de-khong-surprise-khi-run-ung-dung"><span class="toc-number">1.</span> <span class="toc-text">Docker: để không surprise khi run ứng dụng</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Vay-van-de-goc-lam-sao-de-dong-goi"><span class="toc-number">1.1.</span> <span class="toc-text">Vậy vấn đề gốc, làm sao để đóng gói?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Vai-cai-file-concept-quan-trong"><span class="toc-number">1.2.</span> <span class="toc-text">Vài cái file &#x2F; concept quan trọng</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CI-CD-khoi-phai-nho-15-buoc-moi-lan-release"><span class="toc-number">2.</span> <span class="toc-text">CI&#x2F;CD: khỏi phải nhớ 15 bước mỗi lần release</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CI-va-CD"><span class="toc-number">2.1.</span> <span class="toc-text">CI và CD</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CI-CD-provider-thuc-su-lam-gi"><span class="toc-number">2.2.</span> <span class="toc-text">CI&#x2F;CD provider thực sự làm gì?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ben-trong-CI-CD-provider"><span class="toc-number">2.3.</span> <span class="toc-text">Bên trong CI&#x2F;CD provider</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Queue-va-worker"><span class="toc-number">2.4.</span> <span class="toc-text">Queue và worker</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Security"><span class="toc-number">2.5.</span> <span class="toc-text">Security</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cuoi-cung-van-la-giam-surprise"><span class="toc-number">2.6.</span> <span class="toc-text">Cuối cùng vẫn là giảm surprise</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Playwright-robot-user-observer"><span class="toc-number">3.</span> <span class="toc-text">Playwright: robot user + observer</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Truoc-het-browser-la-gi"><span class="toc-number">3.1.</span> <span class="toc-text">Trước hết, browser là gì?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Playwright-khong-phai-browser"><span class="toc-number">3.2.</span> <span class="toc-text">Playwright không phải browser</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#click-thuc-ra-la-gi"><span class="toc-number">3.3.</span> <span class="toc-text">click() thực ra là gì?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Vay-Playwright-dung-de-test-kieu-gi"><span class="toc-number">3.4.</span> <span class="toc-text">Vậy Playwright dùng để test kiểu gì?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Con-data-thi-sao"><span class="toc-number">3.5.</span> <span class="toc-text">Còn data thì sao?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Test-login-va-test-sau-login-la-hai-chuyen-khac-nhau"><span class="toc-number">3.6.</span> <span class="toc-text">Test login và test sau login là hai chuyện khác nhau</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Playwright-con-gi-can-care"><span class="toc-number">3.7.</span> <span class="toc-text">Playwright còn gì cần care?</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Locator"><span class="toc-number">3.7.1.</span> <span class="toc-text">Locator</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Auto-wait"><span class="toc-number">3.7.2.</span> <span class="toc-text">Auto-wait</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Assertions"><span class="toc-number">3.7.3.</span> <span class="toc-text">Assertions</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Isolation"><span class="toc-number">3.7.4.</span> <span class="toc-text">Isolation</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Network-mocking"><span class="toc-number">3.7.5.</span> <span class="toc-text">Network mocking</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Trace-screenshot-video"><span class="toc-number">3.7.6.</span> <span class="toc-text">Trace &#x2F; screenshot &#x2F; video</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Mot-diem-rat-quan-trong-test-environment-va-parallelism"><span class="toc-number">3.8.</span> <span class="toc-text">Một điểm rất quan trọng: test environment và parallelism</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Con-1-000-test-cases-thi-sao"><span class="toc-number">3.8.1.</span> <span class="toc-text">Còn 1,000 test cases thì sao?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Worker-thuc-ra-cung-kha-dat"><span class="toc-number">3.8.2.</span> <span class="toc-text">Worker thực ra cũng khá đắt</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Bot-detection-thi-sao"><span class="toc-number">3.9.</span> <span class="toc-text">Bot detection thì sao?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#De-khoi-moi-release-lai-click-tay-100-flows"><span class="toc-number">3.10.</span> <span class="toc-text">Để khỏi mỗi release lại click tay 100 flows</span></a></li></ol></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Docker, CI/CD, Testing, IaC, Auto-scale... tất cả ra đời chỉ vì nỗi sợ surprise và uncertainty
+    </h1>
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Hudson</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2026-09-18T17:00:00.000Z" class="dt-published" itemprop="datePublished">Sep 19</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    
+    <h2 id="Docker-de-khong-surprise-khi-run-ung-dung"><a href="#Docker-de-khong-surprise-khi-run-ung-dung" class="headerlink" title="Docker: để không surprise khi run ứng dụng"></a>Docker: để không surprise khi run ứng dụng</h2><p>đi vào Docker, để không surprise khi run ứng dụng kiểu:</p>
+<blockquote>
+<p>á đĩ mẹ nó run được ở máy của em</p>
+</blockquote>
+<p>thì bản chất vẫn là <strong>make the environment consistent</strong> cho mọi môi trường (máy tôi, máy anh, máy của mấy đứa kia).</p>
+<h3 id="Vay-van-de-goc-lam-sao-de-dong-goi"><a href="#Vay-van-de-goc-lam-sao-de-dong-goi" class="headerlink" title="Vậy vấn đề gốc, làm sao để đóng gói?"></a>Vậy vấn đề gốc, làm sao để đóng gói?</h3><p>muốn đóng gói thì… đóng gói thôi :D như chơi lego vậy, phải có từng component riêng lẻ, ghép lại thành hình thù.</p>
+<p>máy tôi run Ruby 3.0 thì máy anh run 3.0, máy tôi dùng Postgres 14 thì máy anh cũng vậy.</p>
+<p><strong>biến số lớn còn lại là?… hệ điều hành và các system dependencies.</strong> mỗi thằng dùng một môi trường khác nhau thì có thể tạo ra vô số lỗi bất ngờ.</p>
+<p>giải quyết → đơn giản bằng… <strong>ép environment của application về cùng một chuẩn luôn</strong> :D với Linux container, Docker đóng gói Linux userspace và các dependencies vào image, còn kernel vẫn dùng chung với host Linux.</p>
+<p>trên Linux thì container dùng chung kernel của host nên rất nhẹ. còn trên macOS, để chạy Linux container, Docker phải chạy thêm một Linux VM ở bên dưới, nên cũng là một lý do mà trên macOS run Docker nó thường nặng và lag hơn, trong khi trên Ubuntu cấu hình yếu hơn vẫn có thể mượt hơn hẳn.</p>
+<h3 id="Vai-cai-file-concept-quan-trong"><a href="#Vai-cai-file-concept-quan-trong" class="headerlink" title="Vài cái file / concept quan trọng"></a>Vài cái file / concept quan trọng</h3><p>vậy là có đủ gia vị cần thiết:</p>
+<ul>
+<li><p><strong>Dockerfile</strong> → file mô tả cần dùng component nào cho con lego này: base image nào, cài package gì, copy source code nào, chạy command gì.</p>
+</li>
+<li><p><strong>Docker Compose</strong> → nhiều lego kết hợp thì cần một file <code>compose.yaml</code> để define cách chúng phối hợp với nhau: app, postgres, redis, network, volume, dependency… thì chính là nó. như 5 anh em siêu nhân lúc gặp boss cuối thì lại kết hợp làm 1 thực thể, lúc này phải biết thằng nào là tay, thằng nào là chân, thằng nào cần thằng nào chạy trước :D</p>
+<p>Compose thường define services, và mỗi service có thể dùng một image có sẵn hoặc tự build image từ Dockerfile.</p>
+</li>
+<li><p><strong>volume</strong> → vùng lưu trữ nằm ngoài lifecycle của container, data được giữ nguyên kể cả container bị xoá rồi tạo lại, miễn là không xoá luôn volume.</p>
+</li>
+<li><p><strong>image</strong> → sản phẩm được build từ Dockerfile, là một package đã chứa environment và application cần thiết để chạy. nó nằm trên disk và bản thân nó không chạy.</p>
+</li>
+<li><p><strong>container</strong> → chỉ là một instance của image, có thể đang chạy hoặc đã dừng. khi run thì ngoài disk, nó bắt đầu ăn thêm RAM và CPU. trên Linux nó không cần một virtual machine riêng cho từng container; nó dùng chung kernel của host và isolate process/network/filesystem…</p>
+</li>
+</ul>
+<p>đơn giản là vậy :D</p>
+<h2 id="CI-CD-khoi-phai-nho-15-buoc-moi-lan-release"><a href="#CI-CD-khoi-phai-nho-15-buoc-moi-lan-release" class="headerlink" title="CI/CD: khỏi phải nhớ 15 bước mỗi lần release"></a>CI/CD: khỏi phải nhớ 15 bước mỗi lần release</h2><p>CI/CD nghe thì fancy, nhưng primitive của nó cực kỳ đơn giản: <strong>run một chuỗi công việc tự động để khỏi phải làm bằng tay, từ đó giảm surprise.</strong></p>
+<p>manual process luôn có nhiều biến số:</p>
+<ul>
+<li>hôm nay tôi nhớ chạy test, ngày mai tôi quên</li>
+<li>thằng A deploy theo cách này, thằng B deploy theo cách khác</li>
+<li>có người nhớ build production mode, có người quên</li>
+<li>có người chạy migration trước, có người deploy trước rồi mới nhớ migration :D</li>
+</ul>
+<p>CI/CD đơn giản là: <strong>có event xảy ra → chạy một procedure đã được define sẵn.</strong> ví dụ:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">push code</span><br><span class="line">-&gt; install dependencies</span><br><span class="line">-&gt; lint</span><br><span class="line">-&gt; test</span><br><span class="line">-&gt; build image</span><br><span class="line">-&gt; push image</span><br><span class="line">-&gt; deploy</span><br></pre></td></tr></table></figure>
+
+<p>thay vì mỗi lần release lại có một người ngồi nhớ 15 bước, ta <strong>encode 15 bước đó vào một file</strong>.</p>
+<p>Bitbucket thì <code>bitbucket-pipelines.yml</code>. GitHub thì GitHub Actions workflow. CircleCI, GitLab CI… cũng vậy. syntax khác nhau, provider khác nhau, nhưng primitive giống nhau:</p>
+<blockquote>
+<p><strong>event X xảy ra → chạy command A → B → C</strong></p>
+</blockquote>
+<h3 id="CI-va-CD"><a href="#CI-va-CD" class="headerlink" title="CI và CD"></a>CI và CD</h3><p><strong>CI</strong>: code được tích hợp thường xuyên → check ngay xem có gì vỡ không. ví dụ build, lint, unit test, integration test, Playwright… mục tiêu là <strong>detect surprise càng sớm càng tốt</strong>.</p>
+<p><strong>CD</strong>: sau khi mọi thứ pass → package/deploy bằng cùng một procedure. Continuous Delivery thì giữ bản build sẵn sàng để release, có thể vẫn chờ người duyệt; Continuous Deployment thì tự deploy khi đủ điều kiện. mục tiêu là <strong>tránh surprise ở release</strong>.</p>
+<p>nên CI/CD về bản chất là <strong>reduce human variance bằng automation</strong>.</p>
+<h3 id="CI-CD-provider-thuc-su-lam-gi"><a href="#CI-CD-provider-thuc-su-lam-gi" class="headerlink" title="CI/CD provider thực sự làm gì?"></a>CI/CD provider thực sự làm gì?</h3><p>repo không tự nhiên có CPU để chạy test :D nó chỉ gửi một cái order cho CI/CD provider:</p>
+<blockquote>
+<p>“tao cần Linux, Node 22, Docker, rồi chạy mấy command này”</p>
+</blockquote>
+<p>repo cũng chỉ order được thứ mà cửa hàng có. provider support Linux thì dùng Linux. có ARM runner thì mới order chạy native trên ARM được. provider không có cái gì thì YAML có viết thần chú cũng đéo summon ra được :D</p>
+<p>nên có thể tưởng tượng CI/CD provider như một cửa hàng xây dựng:</p>
+<ul>
+<li><strong>file cấu hình pipeline</strong> là đơn đặt hàng + hướng dẫn thi công</li>
+<li><strong>runner</strong> là chỗ thực sự chạy mấy command đó</li>
+</ul>
+<p>có provider cho một isolated slot sạch sẽ, có nơi dùng shared infrastructure, nhưng shared infrastructure vẫn có thể cấp environment riêng cho từng job. có thể dùng VM, container, Kubernetes pod, bare metal… tuỳ implementation của provider.</p>
+<p>nếu muốn tự quản môi trường chạy thì dùng <strong>self-hosted runner</strong>. lúc đó CI/CD provider chủ yếu làm control plane, còn cái máy thực sự chạy code là của mình.</p>
+<h3 id="Ben-trong-CI-CD-provider"><a href="#Ben-trong-CI-CD-provider" class="headerlink" title="Bên trong CI/CD provider"></a>Bên trong CI/CD provider</h3><p>CI/CD provider thường xử lý job bất đồng bộ. chứ thử tưởng tượng:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git push</span><br><span class="line">-&gt; giữ nguyên HTTP request</span><br><span class="line">-&gt; build 20 phút</span><br><span class="line">-&gt; trả response</span><br></pre></td></tr></table></figure>
+
+<p>vãi lồn :D</p>
+<p>nên nó thường là một <strong>asynchronous job system</strong>, architecture đại khái:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">git push</span><br><span class="line">-&gt; event&#x2F;webhook</span><br><span class="line">-&gt; tạo job</span><br><span class="line">-&gt; queue</span><br><span class="line">-&gt; scheduler</span><br><span class="line">-&gt; runner&#x2F;worker pick job</span><br><span class="line">-&gt; build&#x2F;test&#x2F;deploy</span><br><span class="line">-&gt; trả log + result</span><br></pre></td></tr></table></figure>
+
+<p>thế nên nhìn sâu xuống thì phần thực thi của CI/CD platform thực chất là <strong>distributed background job system chuyên chạy code từ repository</strong>. fancy UI, YAML, dashboard, artifact… là lớp product ở trên.</p>
+<h3 id="Queue-va-worker"><a href="#Queue-va-worker" class="headerlink" title="Queue và worker"></a>Queue và worker</h3><p>giả sử cùng lúc có 100,000 repo push code. provider không thể có vô hạn machine đứng chờ sẵn. nó có <strong>queue</strong>, job vào queue và chờ runner available.</p>
+<p>để điều phối và scale worker, provider có thể monitor những thứ rất cơ bản:</p>
+<ul>
+<li><strong>queue depth</strong></li>
+<li><strong>average queue wait time</strong></li>
+<li><strong>worker utilization</strong></li>
+<li>job arrival rate</li>
+<li>average job duration</li>
+</ul>
+<p>ví dụ:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">average wait &gt; 2 minutes</span><br><span class="line">-&gt; scale up workers</span><br><span class="line"></span><br><span class="line">worker utilization thấp trong một thời gian</span><br><span class="line">-&gt; scale down workers</span><br></pre></td></tr></table></figure>
+
+<p>vì giữ 10,000 VM ngồi chơi cũng đốt tiền vãi cả lồn. nên bên dưới CI/CD lại quay về một bài toán rất cũ:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">demand tăng -&gt; add workers</span><br><span class="line">demand giảm -&gt; remove workers</span><br></pre></td></tr></table></figure>
+
+<p>tất nhiên phải có <strong>cooldown/hysteresis</strong>, không thì vừa scale up xong queue giảm lại scale down, rồi 30 giây sau scale up tiếp :D</p>
+<h3 id="Security"><a href="#Security" class="headerlink" title="Security"></a>Security</h3><p>runner thực chất chỉ là <strong>một cái máy đang chạy code mà repository yêu cầu</strong>, nên câu hỏi security cũng primitive:</p>
+<ul>
+<li>code này chạy ở đâu?</li>
+<li><strong>chạy với quyền gì?</strong></li>
+<li><strong>được access secret nào?</strong></li>
+<li>network access tới đâu?</li>
+<li><strong>sau khi chạy xong còn state gì lại không?</strong></li>
+</ul>
+<p><strong>ephemeral isolated runner</strong>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tạo environment sạch -&gt; chạy job -&gt; destroy</span><br></pre></td></tr></table></figure>
+
+<p>có thêm chi phí khởi tạo và dọn environment, nhưng giảm surprise giữa các job rất nhiều.</p>
+<p>persistent runner thì có thể tiết kiệm chi phí khởi tạo và tận dụng cache tốt hơn, nhưng <strong>nếu isolation ngu</strong> thì job trước có thể để lại file, credential, process, cache độc… cho job sau. shared infrastructure không tự động có nghĩa là các job dùng chung state.</p>
+<p>case ngu nhất:</p>
+<blockquote>
+<p><strong>persistent runner + untrusted PR + production credentials + quyền rộng</strong></p>
+</blockquote>
+<p>địt con đĩ mẹ, lúc đó pipeline không còn là automation nữa mà thành remote code execution service :D</p>
+<h3 id="Cuoi-cung-van-la-giam-surprise"><a href="#Cuoi-cung-van-la-giam-surprise" class="headerlink" title="Cuối cùng vẫn là giảm surprise"></a>Cuối cùng vẫn là giảm surprise</h3><p><strong>đừng để con người lặp lại manual process nếu máy có thể làm chính xác cùng một procedure mỗi lần.</strong></p>
+<p>ở phía user:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">event -&gt; pipeline -&gt; commands</span><br></pre></td></tr></table></figure>
+
+<p>ở phía provider:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">event -&gt; queue -&gt; scheduler -&gt; workers -&gt; autoscaling</span><br></pre></td></tr></table></figure>
+
+<p>CI giảm surprise khi code thay đổi, CD giảm surprise khi release. isolated runner giảm surprise giữa các lần build. queue giúp hấp thụ job dồn vào, autoscaling điều chỉnh số worker theo workload.</p>
+<p>cuối cùng fancy word vẫn chỉ là <strong>make the process predictable</strong>.</p>
+<h2 id="Playwright-robot-user-observer"><a href="#Playwright-robot-user-observer" class="headerlink" title="Playwright: robot user + observer"></a>Playwright: robot user + observer</h2><p>Playwright nghe thì fancy, nhưng primitive của nó cũng cực kỳ đơn giản: <strong>viết script để browser làm lại hành vi của user, rồi check xem application có phản ứng đúng không.</strong></p>
+<p>vậy thôi :D</p>
+<h3 id="Truoc-het-browser-la-gi"><a href="#Truoc-het-browser-la-gi" class="headerlink" title="Trước hết, browser là gì?"></a>Trước hết, browser là gì?</h3><p>browser đơn giản là một chương trình:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">có địa chỉ</span><br><span class="line">-&gt; connect tới web server</span><br><span class="line">-&gt; nhận data</span><br><span class="line">-&gt; parse HTML&#x2F;CSS&#x2F;JS</span><br><span class="line">-&gt; xử lý logic</span><br><span class="line">-&gt; render kết quả</span><br></pre></td></tr></table></figure>
+
+<p>headless browser cũng làm gần như y chang, chỉ khác là <strong>không mở visible window ra UI của OS cho người nhìn</strong>.</p>
+<p>nó vẫn parse, chạy JS, tính layout, xử lý event, network request, cookie, storage… nên <strong>headless browser không phải browser giả</strong>. nó vẫn là browser, chỉ là không show cái cửa sổ lên màn hình.</p>
+<h3 id="Playwright-khong-phai-browser"><a href="#Playwright-khong-phai-browser" class="headerlink" title="Playwright không phải browser"></a>Playwright không phải browser</h3><p>Playwright là tool/library để <strong>control browser</strong>. mental model:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Playwright script</span><br><span class="line">-&gt; Playwright API</span><br><span class="line">-&gt; browser-specific backend&#x2F;protocol</span><br><span class="line">-&gt; Chromium &#x2F; Firefox &#x2F; WebKit</span><br></pre></td></tr></table></figure>
+
+<p>ví dụ dev viết:</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">await</span> page.locator(<span class="string">"#login"</span>).click();</span><br></pre></td></tr></table></figure>
+
+<p>Playwright expose một abstraction chung là <code>click()</code>, nhưng bên dưới:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Chromium -&gt; translate thành command mà Chromium hiểu</span><br><span class="line">Firefox  -&gt; translate thành command mà Firefox hiểu</span><br><span class="line">WebKit   -&gt; translate thành command mà WebKit hiểu</span><br></pre></td></tr></table></figure>
+
+<p>đa số use case dev không cần care đoạn dưới. giống như mình gọi một interface chung, còn implementation phía sau khác nhau.</p>
+<h3 id="click-thuc-ra-la-gi"><a href="#click-thuc-ra-la-gi" class="headerlink" title="click() thực ra là gì?"></a>click() thực ra là gì?</h3><p>ví dụ:</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">await</span> page.mouse.click(<span class="number">100</span>, <span class="number">200</span>);</span><br></pre></td></tr></table></figure>
+
+<p>Playwright có thể biến intent đó thành:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">move tới x&#x3D;100, y&#x3D;200</span><br><span class="line">-&gt; mouse down</span><br><span class="line">-&gt; mouse up</span><br></pre></td></tr></table></figure>
+
+<p>với Chromium thì backend gửi command theo protocol của Chromium, với Firefox thì gửi command theo protocol của Firefox. syntax/protocol/payload phía dưới có thể khác nhau, nhưng intent phía trên vẫn là <strong>click chỗ này</strong>. Playwright che sự khác nhau đó đi.</p>
+<h3 id="Vay-Playwright-dung-de-test-kieu-gi"><a href="#Vay-Playwright-dung-de-test-kieu-gi" class="headerlink" title="Vậy Playwright dùng để test kiểu gì?"></a>Vậy Playwright dùng để test kiểu gì?</h3><p>primitive flow:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">prepare state</span><br><span class="line">-&gt; perform user action</span><br><span class="line">-&gt; verify result</span><br></pre></td></tr></table></figure>
+
+<p>ví dụ:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">open login page</span><br><span class="line">-&gt; fill email</span><br><span class="line">-&gt; fill password</span><br><span class="line">-&gt; click Login</span><br><span class="line">-&gt; expect dashboard xuất hiện</span><br></pre></td></tr></table></figure>
+
+<p>nó chính xác là <strong>robot user + observer</strong>. robot làm hành động, observer check consequence.</p>
+<p><strong>nếu chỉ click mà không assert gì thì đó chỉ là browser automation, chưa chắc đã là useful test.</strong></p>
+<h3 id="Con-data-thi-sao"><a href="#Con-data-thi-sao" class="headerlink" title="Còn data thì sao?"></a>Còn data thì sao?</h3><p>Playwright không tự nhiên biết:</p>
+<ul>
+<li>user nào để login</li>
+<li>password nào</li>
+<li>database có data gì</li>
+<li>account nào đang active</li>
+<li>order nào cần test</li>
+</ul>
+<p>nên <strong>test system vẫn phải prepare test data</strong>. ví dụ test login:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">TEST_EMAIL</span><br><span class="line">TEST_PASSWORD</span><br></pre></td></tr></table></figure>
+
+<p><strong>credentials không nên hardcode trong repo</strong>. local có thể lấy từ env, CI có thể lấy từ secret variables, môi trường test gần production có thể lấy từ Secrets Manager / Vault…</p>
+<p>lại quay về primitive cũ: <strong>secret cần tồn tại, nhưng không cần nằm trong source code.</strong></p>
+<h3 id="Test-login-va-test-sau-login-la-hai-chuyen-khac-nhau"><a href="#Test-login-va-test-sau-login-la-hai-chuyen-khac-nhau" class="headerlink" title="Test login và test sau login là hai chuyện khác nhau"></a>Test login và test sau login là hai chuyện khác nhau</h3><p>nếu đang test chính login flow:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">open login</span><br><span class="line">-&gt; fill credentials</span><br><span class="line">-&gt; submit</span><br><span class="line">-&gt; verify login success</span><br></pre></td></tr></table></figure>
+
+<p>thì phải đi qua login thật. nhưng nếu có 100 tests phía sau login mà không cần kiểm tra lại login flow, cứ login lại 100 lần là ngu :D có thể:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">login once</span><br><span class="line">-&gt; lưu auth state bằng storageState</span><br><span class="line">-&gt; các tests khác reuse</span><br></pre></td></tr></table></figure>
+
+<p>hoặc thậm chí gọi login API trực tiếp rồi đưa auth state phù hợp vào browser. vì <strong>mục tiêu của test page dashboard không phải là test lại login</strong>.</p>
+<p>file auth state cũng có thể chứa cookie/token đăng nhập, nên <strong>không commit vào repo</strong>.</p>
+<h3 id="Playwright-con-gi-can-care"><a href="#Playwright-con-gi-can-care" class="headerlink" title="Playwright còn gì cần care?"></a>Playwright còn gì cần care?</h3><h4 id="Locator"><a href="#Locator" class="headerlink" title="Locator"></a>Locator</h4><p>cần tìm đúng element để interact. ví dụ:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">button Login</span><br><span class="line">input Email</span><br><span class="line">link Settings</span><br></pre></td></tr></table></figure>
+
+<p>nên <strong>ưu tiên locator gần với cách user nhìn application</strong> hơn là selector mong manh, ví dụ <code>getByRole()</code> hoặc <code>getByLabel()</code>.</p>
+<h4 id="Auto-wait"><a href="#Auto-wait" class="headerlink" title="Auto-wait"></a>Auto-wait</h4><p>browser UI không phải lúc nào cũng ready ngay lập tức. button có thể chưa render, API có thể chưa trả, animation có thể chưa xong.</p>
+<p>Playwright có logic wait để tránh kiểu:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sleep 3 seconds rồi cầu nguyện :D</span><br></pre></td></tr></table></figure>
+
+<p><strong>locator action tự chờ các điều kiện cần để thao tác</strong>, nhưng không có nghĩa là tự biết mọi API hay business flow đã xong. phần đó vẫn cần chờ hoặc assert đúng trạng thái mong đợi.</p>
+<h4 id="Assertions"><a href="#Assertions" class="headerlink" title="Assertions"></a>Assertions</h4><p>sau khi robot làm action thì cần verify:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">element visible?</span><br><span class="line">text đúng?</span><br><span class="line">URL đúng?</span><br><span class="line">button disabled?</span><br><span class="line">dashboard xuất hiện?</span><br></pre></td></tr></table></figure>
+
+<h4 id="Isolation"><a href="#Isolation" class="headerlink" title="Isolation"></a>Isolation</h4><p><strong>test A không nên làm bẩn test B</strong>. Playwright Test mặc định tạo browser context riêng cho mỗi test, nhưng data trên backend thì vẫn phải tự tách hoặc dọn.</p>
+<p>primitive là <strong>test phải predictable</strong>. nếu test fail vì thằng test trước để lại cookie hoặc data thì lại surprise :D</p>
+<h4 id="Network-mocking"><a href="#Network-mocking" class="headerlink" title="Network mocking"></a>Network mocking</h4><p>đôi lúc không muốn phụ thuộc backend thật. ví dụ muốn test:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">API trả 500</span><br><span class="line">network chậm</span><br><span class="line">empty response</span><br><span class="line">specific data</span><br></pre></td></tr></table></figure>
+
+<p>thì Playwright có thể <strong>intercept/mock network</strong>.</p>
+<h4 id="Trace-screenshot-video"><a href="#Trace-screenshot-video" class="headerlink" title="Trace / screenshot / video"></a>Trace / screenshot / video</h4><p>local test fail thì còn nhìn được. CI test fail lúc 3 giờ sáng thì không có ai ngồi nhìn browser, nên Playwright có thể lưu:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">trace</span><br><span class="line">screenshot</span><br><span class="line">video</span><br><span class="line">network info</span><br></pre></td></tr></table></figure>
+
+<p>để debug lại sau.</p>
+<h3 id="Mot-diem-rat-quan-trong-test-environment-va-parallelism"><a href="#Mot-diem-rat-quan-trong-test-environment-va-parallelism" class="headerlink" title="Một điểm rất quan trọng: test environment và parallelism"></a>Một điểm rất quan trọng: test environment và parallelism</h3><p>Playwright là thằng điều khiển browser. nếu test dashboard thật sự cần login qua hệ thống thật thì browser phải gọi tới một backend nào đó.</p>
+<p>có 3 cách chuẩn bị môi trường test:</p>
+<ol>
+<li><strong>test against staging/dev environment có sẵn</strong>.</li>
+<li><strong>trong CI dựng cả stack FE + BE + DB</strong>, chờ các service ready rồi mới run Playwright.</li>
+<li><strong>mock API response</strong>.</li>
+</ol>
+<p>cách 3 thường đơn giản và deterministic hơn ở phần response mình kiểm soát, nhưng <strong>chủ yếu chỉ cover FE/UI behavior</strong>. nó không cover được những surprise thật giữa:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FE &lt;-&gt; BE &lt;-&gt; DB</span><br></pre></td></tr></table></figure>
+
+<p>ví dụ payload mismatch, auth, CORS, schema DB, migration, serialization…</p>
+<h4 id="Con-1-000-test-cases-thi-sao"><a href="#Con-1-000-test-cases-thi-sao" class="headerlink" title="Còn 1,000 test cases thì sao?"></a>Còn 1,000 test cases thì sao?</h4><p>nếu có 1,000 tests mà chạy từng cái một thì ngồi chờ tới mùa quýt. nhưng 1,000 tests không có nghĩa là:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1,000 tests</span><br><span class="line">-&gt; 1,000 browser tabs cùng lúc</span><br></pre></td></tr></table></figure>
+
+<p>RAM nổ mẹ luôn :D</p>
+<p><strong>Playwright Test dùng bounded parallelism</strong>. ví dụ:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1,000 tests</span><br><span class="line">20 workers</span><br></pre></td></tr></table></figure>
+
+<p>thì tại một thời điểm <strong>tối đa khoảng 20 tests chạy song song</strong>, nếu suite có đủ việc có thể chạy độc lập. worker chạy xong test này thì lấy test tiếp theo. hình dung đơn giản:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">worker 1</span><br><span class="line">-&gt; test 1</span><br><span class="line">-&gt; test 21</span><br><span class="line">-&gt; test 41</span><br><span class="line"></span><br><span class="line">worker 2</span><br><span class="line">-&gt; test 2</span><br><span class="line">-&gt; test 22</span><br><span class="line">-&gt; test 42</span><br></pre></td></tr></table></figure>
+
+<p>đây chỉ là minh hoạ chia việc, không phải thứ tự cố định của scheduler.</p>
+<p><strong>reuse auth không có nghĩa là để mấy test song song cùng sửa data của một account rồi giẫm lên nhau</strong> :D</p>
+<h4 id="Worker-thuc-ra-cung-kha-dat"><a href="#Worker-thuc-ra-cung-kha-dat" class="headerlink" title="Worker thực ra cũng khá đắt"></a>Worker thực ra cũng khá đắt</h4><p>một Playwright Test worker thường có browser instance riêng. nên:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">20 Playwright workers</span><br></pre></td></tr></table></figure>
+
+<p>thực tế có thể còn nặng hơn:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">20 tabs trong cùng một Chrome</span><br></pre></td></tr></table></figure>
+
+<p>vì 20 tabs còn share một phần browser infrastructure, còn 20 workers có thể là <strong>20 browser instances riêng</strong>.</p>
+<p>thứ Playwright Test thường reuse là <strong>browser instance trong mỗi worker</strong>, còn mỗi test được tạo một <code>BrowserContext</code> riêng. mental model:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">1 worker</span><br><span class="line">-&gt; 1 browser</span><br><span class="line"></span><br><span class="line">browser</span><br><span class="line">-&gt; tạo context test A</span><br><span class="line">-&gt; chạy test A</span><br><span class="line">-&gt; destroy context</span><br><span class="line"></span><br><span class="line">-&gt; tạo context test B</span><br><span class="line">-&gt; chạy test B</span><br><span class="line">-&gt; destroy context</span><br><span class="line"></span><br><span class="line">-&gt; tạo context test C</span><br><span class="line">-&gt; chạy test C</span><br><span class="line">-&gt; destroy context</span><br></pre></td></tr></table></figure>
+
+<p><strong>BrowserContext giống một isolated/incognito profile, nhẹ hơn nhiều so với launch browser mới</strong>. nên parallelism vẫn là trade-off:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">ít workers</span><br><span class="line">-&gt; chậm</span><br><span class="line"></span><br><span class="line">nhiều workers</span><br><span class="line">-&gt; nhanh hơn nếu còn đủ resource</span><br><span class="line"></span><br><span class="line">quá nhiều workers</span><br><span class="line">-&gt; CPU&#x2F;RAM&#x2F;network&#x2F;DB contention</span><br><span class="line">-&gt; test flaky hoặc còn chậm hơn</span><br></pre></td></tr></table></figure>
+
+<p>suite lớn thì có thể <strong>scale ngang bằng sharding</strong>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1,000 tests</span><br><span class="line">-&gt; shard qua nhiều CI machines</span><br><span class="line">-&gt; mỗi machine chạy một số workers</span><br></pre></td></tr></table></figure>
+
+<p>lại quay về đúng primitive cũ: <strong>queue + workers + bounded concurrency</strong>.</p>
+<p>UI automation không có magic gì cả. mỗi test thật sự vẫn cần compute để chạy browser. muốn chạy nhanh hơn thì hoặc dùng nhiều resource hơn, hoặc chia workload thông minh hơn.</p>
+<h3 id="Bot-detection-thi-sao"><a href="#Bot-detection-thi-sao" class="headerlink" title="Bot detection thì sao?"></a>Bot detection thì sao?</h3><p>web server có thể đoán browser đang được automate. nó không nhất thiết nhìn thấy:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">isPlaywright &#x3D; true</span><br></pre></td></tr></table></figure>
+
+<p>mà hệ thống bot detection thường nhìn nhiều signal từ request và JavaScript phía client:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">browser fingerprint</span><br><span class="line">network fingerprint</span><br><span class="line">IP</span><br><span class="line">behavior</span><br><span class="line">request rate</span><br><span class="line">mouse&#x2F;keyboard pattern</span><br><span class="line">session pattern</span><br></pre></td></tr></table></figure>
+
+<p>rồi suy luận user thật hay bot. nên <strong>headless browser không có nghĩa là automatically bị detect</strong>, nhưng cũng không có nghĩa là không thể bị detect.</p>
+<h3 id="De-khoi-moi-release-lai-click-tay-100-flows"><a href="#De-khoi-moi-release-lai-click-tay-100-flows" class="headerlink" title="Để khỏi mỗi release lại click tay 100 flows"></a>Để khỏi mỗi release lại click tay 100 flows</h3><p>Playwright là <strong>một abstraction layer để script điều khiển Chromium / Firefox / WebKit</strong>, và test flow vẫn chỉ là:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">prepare state</span><br><span class="line">-&gt; imitate user</span><br><span class="line">-&gt; observe result</span><br><span class="line">-&gt; assert expected behavior</span><br></pre></td></tr></table></figure>
+
+<p>thay vì QA mỗi release tự nhớ và click 100 flows bằng tay:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">login</span><br><span class="line">checkout</span><br><span class="line">search</span><br><span class="line">settings</span><br><span class="line">logout</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>ta <strong>encode chúng thành script</strong>. machine sẽ làm lại cùng một procedure mỗi lần, không mệt, không quên, không “hôm nay em chưa test case đó”.</p>
+<p>và nếu application bắt đầu behave khác expectation ở những case đã được viết và chạy thì <strong>Playwright báo surprise ngay</strong> :D</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+          <li><a href="/blog/">Blog</a></li>
+        
+          <li><a href="/english/">English</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-de-khong-surprise-khi-run-ung-dung"><span class="toc-number">1.</span> <span class="toc-text">Docker: để không surprise khi run ứng dụng</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Vay-van-de-goc-lam-sao-de-dong-goi"><span class="toc-number">1.1.</span> <span class="toc-text">Vậy vấn đề gốc, làm sao để đóng gói?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Vai-cai-file-concept-quan-trong"><span class="toc-number">1.2.</span> <span class="toc-text">Vài cái file &#x2F; concept quan trọng</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CI-CD-khoi-phai-nho-15-buoc-moi-lan-release"><span class="toc-number">2.</span> <span class="toc-text">CI&#x2F;CD: khỏi phải nhớ 15 bước mỗi lần release</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CI-va-CD"><span class="toc-number">2.1.</span> <span class="toc-text">CI và CD</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CI-CD-provider-thuc-su-lam-gi"><span class="toc-number">2.2.</span> <span class="toc-text">CI&#x2F;CD provider thực sự làm gì?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ben-trong-CI-CD-provider"><span class="toc-number">2.3.</span> <span class="toc-text">Bên trong CI&#x2F;CD provider</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Queue-va-worker"><span class="toc-number">2.4.</span> <span class="toc-text">Queue và worker</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Security"><span class="toc-number">2.5.</span> <span class="toc-text">Security</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cuoi-cung-van-la-giam-surprise"><span class="toc-number">2.6.</span> <span class="toc-text">Cuối cùng vẫn là giảm surprise</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Playwright-robot-user-observer"><span class="toc-number">3.</span> <span class="toc-text">Playwright: robot user + observer</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Truoc-het-browser-la-gi"><span class="toc-number">3.1.</span> <span class="toc-text">Trước hết, browser là gì?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Playwright-khong-phai-browser"><span class="toc-number">3.2.</span> <span class="toc-text">Playwright không phải browser</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#click-thuc-ra-la-gi"><span class="toc-number">3.3.</span> <span class="toc-text">click() thực ra là gì?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Vay-Playwright-dung-de-test-kieu-gi"><span class="toc-number">3.4.</span> <span class="toc-text">Vậy Playwright dùng để test kiểu gì?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Con-data-thi-sao"><span class="toc-number">3.5.</span> <span class="toc-text">Còn data thì sao?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Test-login-va-test-sau-login-la-hai-chuyen-khac-nhau"><span class="toc-number">3.6.</span> <span class="toc-text">Test login và test sau login là hai chuyện khác nhau</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Playwright-con-gi-can-care"><span class="toc-number">3.7.</span> <span class="toc-text">Playwright còn gì cần care?</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Locator"><span class="toc-number">3.7.1.</span> <span class="toc-text">Locator</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Auto-wait"><span class="toc-number">3.7.2.</span> <span class="toc-text">Auto-wait</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Assertions"><span class="toc-number">3.7.3.</span> <span class="toc-text">Assertions</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Isolation"><span class="toc-number">3.7.4.</span> <span class="toc-text">Isolation</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Network-mocking"><span class="toc-number">3.7.5.</span> <span class="toc-text">Network mocking</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Trace-screenshot-video"><span class="toc-number">3.7.6.</span> <span class="toc-text">Trace &#x2F; screenshot &#x2F; video</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Mot-diem-rat-quan-trong-test-environment-va-parallelism"><span class="toc-number">3.8.</span> <span class="toc-text">Một điểm rất quan trọng: test environment và parallelism</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Con-1-000-test-cases-thi-sao"><span class="toc-number">3.8.1.</span> <span class="toc-text">Còn 1,000 test cases thì sao?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Worker-thuc-ra-cung-kha-dat"><span class="toc-number">3.8.2.</span> <span class="toc-text">Worker thực ra cũng khá đắt</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Bot-detection-thi-sao"><span class="toc-number">3.9.</span> <span class="toc-text">Bot detection thì sao?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#De-khoi-moi-release-lai-click-tay-100-flows"><span class="toc-number">3.10.</span> <span class="toc-text">Để khỏi mỗi release lại click tay 100 flows</span></a></li></ol></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://read.hihudson.com/2026/09/19/2026-09-19-docker-ci-cd-testing-iac-auto-scale-tat-ca-ra-doi-chi-vi-noi-so-surprise-va-uncertainty/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://read.hihudson.com/2026/09/19/2026-09-19-docker-ci-cd-testing-iac-auto-scale-tat-ca-ra-doi-chi-vi-noi-so-surprise-va-uncertainty/&text=Docker, CI/CD, Testing, IaC, Auto-scale... tất cả ra đời chỉ vì nỗi sợ surprise và uncertainty" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://read.hihudson.com/2026/09/19/2026-09-19-docker-ci-cd-testing-iac-auto-scale-tat-ca-ra-doi-chi-vi-noi-so-surprise-va-uncertainty/&title=Docker, CI/CD, Testing, IaC, Auto-scale... tất cả ra đời chỉ vì nỗi sợ surprise và uncertainty" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://read.hihudson.com/2026/09/19/2026-09-19-docker-ci-cd-testing-iac-auto-scale-tat-ca-ra-doi-chi-vi-noi-so-surprise-va-uncertainty/&is_video=false&description=Docker, CI/CD, Testing, IaC, Auto-scale... tất cả ra đời chỉ vì nỗi sợ surprise và uncertainty" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Docker, CI/CD, Testing, IaC, Auto-scale... tất cả ra đời chỉ vì nỗi sợ surprise và uncertainty&body=Check out this article: https://read.hihudson.com/2026/09/19/2026-09-19-docker-ci-cd-testing-iac-auto-scale-tat-ca-ra-doi-chi-vi-noi-so-surprise-va-uncertainty/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://read.hihudson.com/2026/09/19/2026-09-19-docker-ci-cd-testing-iac-auto-scale-tat-ca-ra-doi-chi-vi-noi-so-surprise-va-uncertainty/&title=Docker, CI/CD, Testing, IaC, Auto-scale... tất cả ra đời chỉ vì nỗi sợ surprise và uncertainty" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://read.hihudson.com/2026/09/19/2026-09-19-docker-ci-cd-testing-iac-auto-scale-tat-ca-ra-doi-chi-vi-noi-so-surprise-va-uncertainty/&title=Docker, CI/CD, Testing, IaC, Auto-scale... tất cả ra đời chỉ vì nỗi sợ surprise và uncertainty" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://read.hihudson.com/2026/09/19/2026-09-19-docker-ci-cd-testing-iac-auto-scale-tat-ca-ra-doi-chi-vi-noi-so-surprise-va-uncertainty/&title=Docker, CI/CD, Testing, IaC, Auto-scale... tất cả ra đời chỉ vì nỗi sợ surprise và uncertainty" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://read.hihudson.com/2026/09/19/2026-09-19-docker-ci-cd-testing-iac-auto-scale-tat-ca-ra-doi-chi-vi-noi-so-surprise-va-uncertainty/&title=Docker, CI/CD, Testing, IaC, Auto-scale... tất cả ra đời chỉ vì nỗi sợ surprise và uncertainty" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://read.hihudson.com/2026/09/19/2026-09-19-docker-ci-cd-testing-iac-auto-scale-tat-ca-ra-doi-chi-vi-noi-so-surprise-va-uncertainty/&name=Docker, CI/CD, Testing, IaC, Auto-scale... tất cả ra đời chỉ vì nỗi sợ surprise và uncertainty&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://read.hihudson.com/2026/09/19/2026-09-19-docker-ci-cd-testing-iac-auto-scale-tat-ca-ra-doi-chi-vi-noi-so-surprise-va-uncertainty/&t=Docker, CI/CD, Testing, IaC, Auto-scale... tất cả ra đời chỉ vì nỗi sợ surprise và uncertainty" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="home" class="icon" href="/"><i class="fa-solid fa-house fa-lg" aria-hidden="true"></i> Home</a>
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a href="/blog/">Blog</a></li><!--
+     --><!--
+       --><li><a href="/english/">English</a></li><!--
+     --><!--
+     --><li><a href="/english/">English</a></li><!--
+     --><li><a href="/til/">TIL</a></li>
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

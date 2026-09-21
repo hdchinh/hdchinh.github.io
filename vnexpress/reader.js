@@ -288,7 +288,7 @@
     const english = article.source === 'e-vnexpress';
     const bbc = article.source === 'bbc';
     const sourceName = bbc ? 'BBC News Tiếng Việt' : english ? 'VnExpress International' : 'VnExpress';
-    const timer = setTimeout(() => controller.abort(), english ? 15000 : 60000);
+    const timer = setTimeout(() => controller.abort(), 15000);
     detailTitle.textContent = article.title || 'Đang tải bài viết…';
     for (const node of [detailTitle, detailDescription, detailBody]) node.lang = english ? 'en' : 'vi';
     detailSource.href = article.url;
@@ -301,7 +301,7 @@
     detailBody.replaceChildren();
     detailBody.setAttribute('aria-busy', 'true');
     detailStatus.hidden = false;
-    detailStatus.textContent = english ? 'Đang tải nội dung bài viết…' : 'Đang tải và dịch bài sang tiếng Anh…';
+    detailStatus.textContent = 'Đang tải nội dung bài viết…';
     renderRelated(article);
     detailTitle.focus({ preventScroll: true });
     restoreScroll(0);
@@ -310,7 +310,6 @@
     try {
       const url = new URL('article', bbc ? bbcEndpoint : english ? eVnexpressEndpoint : endpoint);
       url.searchParams.set('url', article.url);
-      if (!english) url.searchParams.set('language', 'en');
       const response = await fetch(url, { cache: 'no-store', credentials: 'omit', signal: controller.signal });
       const data = await response.json();
       if (detailRequest !== controller) return;
@@ -325,17 +324,13 @@
       detailTitle.textContent = data.title || article.title || `Bài viết ${sourceName}`;
       detailDescription.textContent = data.description || '';
       if (data.publishedAt) detailMeta.textContent = formatDate(data.publishedAt);
-      const translated = data.translated === true && data.language === 'en';
-      for (const node of [detailTitle, detailDescription, detailBody]) node.lang = english || translated ? 'en' : 'vi';
-      if (translated) readingNote.textContent = `Bản dịch tiếng Anh tự động bằng Claude Haiku từ ${sourceName}. Bản dịch có thể có sai sót; xem bài gốc tại liên kết nguồn.`;
-      // The backend preserves sanitized HTML and inserts translations as escaped text only.
+      // Only the backend's allowlist-sanitized body is inserted, never the full source page.
       detailBody.innerHTML = data.contentHtml;
       // Source toolbar icons are stripped by sanitization, leaving empty bullet lists.
       detailBody.querySelectorAll('ul, ol').forEach(list => {
         if (!list.textContent.trim() && !list.querySelector('img')) list.remove();
       });
-      detailStatus.hidden = english || translated;
-      if (!english && !translated) detailStatus.textContent = 'Chưa dịch được bài này. Đang hiển thị bản gốc tiếng Việt.';
+      detailStatus.hidden = true;
       document.title = `${detailTitle.textContent} · Góc đọc`;
       if (scrollTop) restoreScroll(scrollTop);
     } catch {

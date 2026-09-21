@@ -143,6 +143,10 @@ button:hover { border-color: var(--sap-accent); color: var(--sap-accent); }
 .sap-lesson + .sap-lesson { margin-top: 4rem; }
 .sap-ready .sap-lesson { margin-top: 0; }
 .sap-lesson-meta { display: flex; flex-wrap: wrap; align-items: baseline; gap: .75rem; font-size: .8rem; color: var(--sap-muted); }
+.sap-copy-tools { display: flex; align-items: center; gap: .5rem; margin-left: auto; }
+.sap-copy-status { max-width: 16rem; font-size: .75rem; }
+.sap-copy { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; flex-shrink: 0; }
+.sap-copy:disabled { opacity: .5; cursor: wait; }
 .sap-lesson h1 { font-size: clamp(1.5rem, 2.3vw, 2.2rem); line-height: 1.35; letter-spacing: -.025em; margin: .75rem 0 2rem; font-weight: 700; }
 .sap-lesson h2 { margin: 2rem 0 .85rem; font-size: 1.25rem; line-height: 1.45; color: var(--sap-accent); }
 .sap-lesson p, .sap-lesson ul, .sap-lesson ol { margin: 0 0 1.2rem; color: #363737; font-size: 19px; line-height: 1.6; }
@@ -195,7 +199,7 @@ button:hover { border-color: var(--sap-accent); color: var(--sap-accent); }
 @media print {
   html { height: auto; border: 0; }
   body.sap-ready { display: block; height: auto; overflow: visible; }
-  .sap-topbar, .sap-sidebar, .sap-reading-tools, .sap-skip { display: none !important; }
+  .sap-topbar, .sap-sidebar, .sap-reading-tools, .sap-skip, .sap-copy-tools { display: none !important; }
   .sap-workspace { display: block; }
   .sap-ready .sap-reading-pane { overflow: visible; }
   .sap-lessons { padding: 0; max-width: none; }

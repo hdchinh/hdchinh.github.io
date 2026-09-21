@@ -31,6 +31,24 @@
     normalize(`${article.dataset.scenario} ${article.dataset.groupLabel} ${article.textContent}`)
   ]));
 
+  articles.forEach(article => {
+    const button = article.querySelector('.sap-copy');
+    const status = article.querySelector('.sap-copy-status');
+    article.querySelector('.sap-copy-tools').hidden = false;
+    button.addEventListener('click', async () => {
+      button.disabled = true;
+      status.textContent = '';
+      try {
+        await navigator.clipboard.writeText(article.querySelector('.sap-copy-source').content.textContent);
+        status.textContent = 'Đã copy';
+      } catch (error) {
+        status.textContent = 'Không copy được. Hãy chọn nội dung và sao chép thủ công.';
+      } finally {
+        button.disabled = false;
+      }
+    });
+  });
+
   function setStep(link, id) {
     if (id) {
       link.href = `#${id}`;

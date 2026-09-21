@@ -434,39 +434,6 @@ body td {
   padding: 0 8px;
   border-bottom: none;
 }
-.english-chunks-page .content.e-content > table {
-  display: table !important;
-  table-layout: fixed;
-}
-@media (min-width: 768px) {
-  .english-chunks-page .content.e-content > table {
-    position: relative;
-    left: 50%;
-    width: 90vw !important;
-    max-width: 90rem !important;
-    margin-left: 0;
-    transform: translateX(-50%);
-  }
-}
-.english-chunks-page .content.e-content > table th,
-.english-chunks-page .content.e-content > table td {
-  min-width: 0 !important;
-  max-width: none !important;
-  vertical-align: top;
-  overflow-wrap: anywhere;
-}
-.english-chunks-page .content.e-content > table th:first-child,
-.english-chunks-page .content.e-content > table td:first-child {
-  width: 5rem !important;
-  text-align: center;
-  white-space: nowrap;
-}
-.english-chunks-page .content.e-content > table th:nth-child(2),
-.english-chunks-page .content.e-content > table td:nth-child(2),
-.english-chunks-page .content.e-content > table th:nth-child(3),
-.english-chunks-page .content.e-content > table td:nth-child(3) {
-  width: calc((100% - 5rem) / 2) !important;
-}
 @font-face {
   font-family: "Roboto Slab";
   font-style: normal;
@@ -779,7 +746,7 @@ body {
   background: none;
 }
 #header-post a.icon:hover {
-  color: rgba(86,124,119,0.4);
+  color: #cc2a41;
 }
 #header-post ol {
   list-style-type: none;
@@ -902,8 +869,8 @@ body {
   padding: 0;
   list-style: none;
 }
-#header-post #toc a:hover {
-  color: rgba(86,124,119,0.4);
+#header-post #toc .toc-link:hover {
+  color: #cc2a41;
 }
 #header-post #toc .toc-level-1 > .toc-link {
   display: none;
@@ -1008,7 +975,7 @@ body {
   background: none;
 }
 #footer-post a.icon:hover {
-  color: rgba(86,124,119,0.4);
+  color: #cc2a41;
 }
 #footer-post #nav-footer {
   padding-right: 1rem;
@@ -1088,8 +1055,8 @@ body {
 #footer-post #toc-footer ol li {
   line-height: 30px;
 }
-#footer-post #toc-footer a:hover {
-  color: rgba(86,124,119,0.4);
+#footer-post #toc-footer .toc-link:hover {
+  color: #cc2a41;
 }
 #footer-post #toc-footer .toc-level-1 > .toc-link {
   display: none;

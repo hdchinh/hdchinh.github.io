@@ -613,6 +613,35 @@ body {
     text-align: justify;
   }
 }
+#floating-blog-home {
+  position: fixed;
+  left: 1rem;
+  bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+  z-index: 5000001;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0.6rem 1rem;
+  border-radius: 999px;
+  background: #cc2a41;
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+#floating-blog-home:hover {
+  background: #b8263a;
+}
+#floating-blog-home:focus-visible {
+  outline: 2px solid #22272a;
+  outline-offset: 3px;
+}
+@media screen and (max-width: 500px) {
+  #floating-blog-home {
+    bottom: calc(5rem + env(safe-area-inset-bottom, 0px));
+  }
+}
 #header {
   margin: 0 auto 2rem;
   width: 100%;

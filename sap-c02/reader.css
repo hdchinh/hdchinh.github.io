@@ -78,6 +78,7 @@ button:hover { border-color: var(--sap-accent); color: var(--sap-accent); }
 .sap-skip:focus { top: .5rem; }
 .sap-topbar {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
@@ -88,7 +89,8 @@ button:hover { border-color: var(--sap-accent); color: var(--sap-accent); }
 .sap-brand { display: flex; align-items: baseline; gap: 1rem; text-decoration: none; }
 .sap-brand strong { color: var(--sap-accent); font-size: 1.35rem; }
 .sap-brand span { font-size: .85rem; color: var(--sap-muted); }
-.sap-topbar nav { display: flex; gap: 1.2rem; font-size: .85rem; }
+.sap-topbar nav { display: flex; flex-wrap: wrap; align-items: center; gap: 1.2rem; font-size: .85rem; }
+#sap-random { min-height: 44px; white-space: nowrap; }
 .sap-topbar nav a { white-space: nowrap; }
 .sap-workspace { display: grid; grid-template-columns: 350px minmax(0, 1fr); }
 .sap-sidebar { min-width: 0; border-right: 1px solid var(--sap-line); }

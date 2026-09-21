@@ -138,6 +138,16 @@
     else location.hash = id;
   });
 
+  const random = document.getElementById('sap-random');
+  random.hidden = false;
+  random.addEventListener('click', () => {
+    const candidates = ids.filter(id => id !== active);
+    if (!candidates.length) return;
+    const id = candidates[Math.floor(Math.random() * candidates.length)];
+    positions.delete(id);
+    location.hash = id;
+  });
+
   search.addEventListener('input', filter);
   group.addEventListener('change', filter);
   clear.addEventListener('click', () => {

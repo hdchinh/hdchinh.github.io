@@ -14,11 +14,11 @@
 <meta property="og:description" content="nhìn đống tên trong title thì có vẻ mỗi thằng giải quyết một chuyện chẳng liên quan. nhưng thử nhìn từ nỗi sợ “đang chạy ngon mà tự nhiên vỡ” thì thấy chúng có một điểm chung: mỗi công cụ giảm một loạ">
 <meta property="og:locale" content="vi_VN">
 <meta property="article:published_time" content="2026-09-18T17:00:00.000Z">
-<meta property="article:modified_time" content="2026-09-21T01:27:37.178Z">
+<meta property="article:modified_time" content="2026-09-21T05:18:24.180Z">
 <meta property="article:author" content="Hudson">
 <meta name="twitter:card" content="summary">
     <link rel="canonical" href="https://read.hihudson.com/2026/09/19/2026-09-19-docker-ci-cd-testing-iac-auto-scale-tat-ca-ra-doi-chi-vi-noi-so-surprise-va-uncertainty/">
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Docker, CI/CD, Testing, IaC, Auto-scale... tất cả ra đời chỉ vì nỗi sợ surprise và uncertainty","description":"nhìn đống tên trong title thì có vẻ mỗi thằng giải quyết một chuyện chẳng liên quan. nhưng thử nhìn từ nỗi sợ “đang chạy ngon mà tự nhiên vỡ” thì thấy chúng có một điểm chung: mỗi công cụ giảm một loạ","inLanguage":"vi","url":"https://read.hihudson.com/2026/09/19/2026-09-19-docker-ci-cd-testing-iac-auto-scale-tat-ca-ra-doi-chi-vi-noi-so-surprise-va-uncertainty/","mainEntityOfPage":{"@type":"WebPage","@id":"https://read.hihudson.com/2026/09/19/2026-09-19-docker-ci-cd-testing-iac-auto-scale-tat-ca-ra-doi-chi-vi-noi-so-surprise-va-uncertainty/"},"datePublished":"2026-09-18T17:00:00.000Z","dateModified":"2026-09-21T01:27:37.178Z","author":{"@type":"Person","name":"Hudson","url":"https://read.hihudson.com/"},"publisher":{"@type":"Person","name":"Hudson","url":"https://read.hihudson.com/"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Docker, CI/CD, Testing, IaC, Auto-scale... tất cả ra đời chỉ vì nỗi sợ surprise và uncertainty","description":"nhìn đống tên trong title thì có vẻ mỗi thằng giải quyết một chuyện chẳng liên quan. nhưng thử nhìn từ nỗi sợ “đang chạy ngon mà tự nhiên vỡ” thì thấy chúng có một điểm chung: mỗi công cụ giảm một loạ","inLanguage":"vi","url":"https://read.hihudson.com/2026/09/19/2026-09-19-docker-ci-cd-testing-iac-auto-scale-tat-ca-ra-doi-chi-vi-noi-so-surprise-va-uncertainty/","mainEntityOfPage":{"@type":"WebPage","@id":"https://read.hihudson.com/2026/09/19/2026-09-19-docker-ci-cd-testing-iac-auto-scale-tat-ca-ra-doi-chi-vi-noi-so-surprise-va-uncertainty/"},"datePublished":"2026-09-18T17:00:00.000Z","dateModified":"2026-09-21T05:18:24.180Z","author":{"@type":"Person","name":"Hudson","url":"https://read.hihudson.com/"},"publisher":{"@type":"Person","name":"Hudson","url":"https://read.hihudson.com/"}}</script>
     
     
       
@@ -147,7 +147,7 @@
 
 
       
-      <span class="reading-time">· ~25 phút đọc</span>
+      <span class="reading-time">· ~26 phút đọc</span>
       
 
       
@@ -194,7 +194,7 @@
 </li>
 </ul>
 <p>đơn giản là vậy :D</p>
-<h2 id="CI-CD-khoi-phai-nho-15-buoc-moi-lan-release"><a href="#CI-CD-khoi-phai-nho-15-buoc-moi-lan-release" class="headerlink" title="CI/CD: khỏi phải nhớ 15 bước mỗi lần release"></a>CI/CD: khỏi phải nhớ 15 bước mỗi lần release</h2><p>CI/CD nghe thì fancy, nhưng primitive của nó cực kỳ đơn giản: <strong>run một chuỗi công việc tự động để khỏi phải làm bằng tay, từ đó giảm surprise.</strong></p>
+<h2 id="CI-CD-khoi-phai-nho-15-buoc-moi-lan-release"><a href="#CI-CD-khoi-phai-nho-15-buoc-moi-lan-release" class="headerlink" title="CI/CD: khỏi phải nhớ 15 bước mỗi lần release"></a>CI/CD: khỏi phải nhớ 15 bước mỗi lần release</h2><p>CI/CD nghe thì fancy, nhưng thực ra rất đơn giản: <strong>run một chuỗi công việc tự động để khỏi phải làm bằng tay, từ đó giảm surprise.</strong></p>
 <p>manual process luôn có nhiều biến số:</p>
 <ul>
 <li>hôm nay tôi nhớ chạy test, ngày mai tôi quên</li>
@@ -206,7 +206,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">push code</span><br><span class="line">-&gt; install dependencies</span><br><span class="line">-&gt; lint</span><br><span class="line">-&gt; test</span><br><span class="line">-&gt; build image</span><br><span class="line">-&gt; push image</span><br><span class="line">-&gt; deploy</span><br></pre></td></tr></table></figure>
 
 <p>thay vì mỗi lần release lại có một người ngồi nhớ 15 bước, ta <strong>encode 15 bước đó vào một file</strong>.</p>
-<p>Bitbucket thì <code>bitbucket-pipelines.yml</code>. GitHub thì GitHub Actions workflow. CircleCI, GitLab CI… cũng vậy. syntax khác nhau, provider khác nhau, nhưng primitive giống nhau:</p>
+<p>Bitbucket thì <code>bitbucket-pipelines.yml</code>. GitHub thì GitHub Actions workflow. CircleCI, GitLab CI… cũng vậy. syntax khác nhau, provider khác nhau, nhưng cách làm vẫn giống nhau:</p>
 <blockquote>
 <p><strong>event X xảy ra → chạy command A → B → C</strong></p>
 </blockquote>
@@ -249,7 +249,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">demand tăng -&gt; add workers</span><br><span class="line">demand giảm -&gt; remove workers</span><br></pre></td></tr></table></figure>
 
 <p>tất nhiên phải có <strong>cooldown/hysteresis</strong>, không thì vừa scale up xong queue giảm lại scale down, rồi 30 giây sau scale up tiếp :D</p>
-<h3 id="Security"><a href="#Security" class="headerlink" title="Security"></a>Security</h3><p>runner thực chất chỉ là <strong>một cái máy đang chạy code mà repository yêu cầu</strong>, nên câu hỏi security cũng primitive:</p>
+<h3 id="Security"><a href="#Security" class="headerlink" title="Security"></a>Security</h3><p>runner thực chất chỉ là <strong>một cái máy đang chạy code mà repository yêu cầu</strong>, nên chuyện security cũng bắt đầu từ mấy câu hỏi rất cơ bản:</p>
 <ul>
 <li>code này chạy ở đâu?</li>
 <li><strong>chạy với quyền gì?</strong></li>
@@ -299,7 +299,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">move tới x&#x3D;100, y&#x3D;200</span><br><span class="line">-&gt; mouse down</span><br><span class="line">-&gt; mouse up</span><br></pre></td></tr></table></figure>
 
 <p>với Chromium thì backend gửi command theo protocol của Chromium, với Firefox thì gửi command theo protocol của Firefox. syntax/protocol/payload phía dưới có thể khác nhau, nhưng intent phía trên vẫn là <strong>click chỗ này</strong>. Playwright che sự khác nhau đó đi.</p>
-<h3 id="Vay-Playwright-dung-de-test-kieu-gi"><a href="#Vay-Playwright-dung-de-test-kieu-gi" class="headerlink" title="Vậy Playwright dùng để test kiểu gì?"></a>Vậy Playwright dùng để test kiểu gì?</h3><p>primitive flow:</p>
+<h3 id="Vay-Playwright-dung-de-test-kieu-gi"><a href="#Vay-Playwright-dung-de-test-kieu-gi" class="headerlink" title="Vậy Playwright dùng để test kiểu gì?"></a>Vậy Playwright dùng để test kiểu gì?</h3><p>các bước cơ bản:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">prepare state</span><br><span class="line">-&gt; perform user action</span><br><span class="line">-&gt; verify result</span><br></pre></td></tr></table></figure>
 
 <p>ví dụ:</p>
@@ -319,7 +319,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">TEST_EMAIL</span><br><span class="line">TEST_PASSWORD</span><br></pre></td></tr></table></figure>
 
 <p><strong>credentials không nên hardcode trong repo</strong>. local có thể lấy từ env, CI có thể lấy từ secret variables, môi trường test gần production có thể lấy từ Secrets Manager / Vault…</p>
-<p>lại quay về primitive cũ: <strong>secret cần tồn tại, nhưng không cần nằm trong source code.</strong></p>
+<p>lại quay về nguyên tắc cũ: <strong>secret cần tồn tại, nhưng không cần nằm trong source code.</strong></p>
 <h3 id="Test-login-va-test-sau-login-la-hai-chuyen-khac-nhau"><a href="#Test-login-va-test-sau-login-la-hai-chuyen-khac-nhau" class="headerlink" title="Test login và test sau login là hai chuyện khác nhau"></a>Test login và test sau login là hai chuyện khác nhau</h3><p>nếu đang test chính login flow:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">open login</span><br><span class="line">-&gt; fill credentials</span><br><span class="line">-&gt; submit</span><br><span class="line">-&gt; verify login success</span><br></pre></td></tr></table></figure>
 
@@ -341,7 +341,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">element visible?</span><br><span class="line">text đúng?</span><br><span class="line">URL đúng?</span><br><span class="line">button disabled?</span><br><span class="line">dashboard xuất hiện?</span><br></pre></td></tr></table></figure>
 
 <h4 id="Isolation"><a href="#Isolation" class="headerlink" title="Isolation"></a>Isolation</h4><p><strong>test A không nên làm bẩn test B</strong>. Playwright Test mặc định tạo browser context riêng cho mỗi test, nhưng data trên backend thì vẫn phải tự tách hoặc dọn.</p>
-<p>primitive là <strong>test phải predictable</strong>. nếu test fail vì thằng test trước để lại cookie hoặc data thì lại surprise :D</p>
+<p>điều cốt lõi là <strong>test phải predictable</strong>. nếu test fail vì thằng test trước để lại cookie hoặc data thì lại surprise :D</p>
 <h4 id="Network-mocking"><a href="#Network-mocking" class="headerlink" title="Network mocking"></a>Network mocking</h4><p>đôi lúc không muốn phụ thuộc backend thật. ví dụ muốn test:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">API trả 500</span><br><span class="line">network chậm</span><br><span class="line">empty response</span><br><span class="line">specific data</span><br></pre></td></tr></table></figure>
 
@@ -389,7 +389,7 @@
 <p>suite lớn thì có thể <strong>scale ngang bằng sharding</strong>:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1,000 tests</span><br><span class="line">-&gt; shard qua nhiều CI machines</span><br><span class="line">-&gt; mỗi machine chạy một số workers</span><br></pre></td></tr></table></figure>
 
-<p>lại quay về đúng primitive cũ: <strong>queue + workers + bounded concurrency</strong>.</p>
+<p>lại quay về đúng cách làm quen thuộc: <strong>queue + workers + bounded concurrency</strong>.</p>
 <p>UI automation không có magic gì cả. mỗi test thật sự vẫn cần compute để chạy browser. muốn chạy nhanh hơn thì hoặc dùng nhiều resource hơn, hoặc chia workload thông minh hơn.</p>
 <h3 id="Bot-detection-thi-sao"><a href="#Bot-detection-thi-sao" class="headerlink" title="Bot detection thì sao?"></a>Bot detection thì sao?</h3><p>web server có thể đoán browser đang được automate. nó không nhất thiết nhìn thấy:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">isPlaywright &#x3D; true</span><br></pre></td></tr></table></figure>
@@ -428,7 +428,7 @@
 <h3 id="IAM-co-hai-tang-dang-care"><a href="#IAM-co-hai-tang-dang-care" class="headerlink" title="IAM có hai tầng đáng care"></a>IAM có hai tầng đáng care</h3><p>trong setup dùng deployment role, thường sẽ có:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">người &#x2F; CI chạy cdk deploy</span><br><span class="line">-&gt; có quyền deploy &#x2F; assume deployment role</span><br><span class="line"></span><br><span class="line">CloudFormation execution role</span><br><span class="line">-&gt; có quyền thực sự tạo&#x2F;update&#x2F;delete infrastructure</span><br></pre></td></tr></table></figure>
 
-<p>primitive vẫn là: <strong>ai đang yêu cầu AWS làm gì, và identity đó được quyền làm tới đâu?</strong></p>
+<p>câu hỏi cốt lõi vẫn là: <strong>ai đang yêu cầu AWS làm gì, và identity đó được quyền làm tới đâu?</strong></p>
 <h3 id="CDK-khac-Terraform-Pulumi-o-dau"><a href="#CDK-khac-Terraform-Pulumi-o-dau" class="headerlink" title="CDK khác Terraform/Pulumi ở đâu?"></a>CDK khác Terraform/Pulumi ở đâu?</h3><p>về concept thì không khác nhiều. tất cả đều giải quyết <strong>manual infrastructure → infrastructure described as code</strong>.</p>
 <p>AWS CDK chọn một đường rất AWS-native:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">code -&gt; CloudFormation -&gt; AWS</span><br></pre></td></tr></table></figure>
@@ -462,7 +462,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ECS</span><br><span class="line">-&gt; cần network</span><br><span class="line"></span><br><span class="line">application</span><br><span class="line">-&gt; cần database</span><br><span class="line"></span><br><span class="line">database</span><br><span class="line">-&gt; cần subnet&#x2F;security group</span><br></pre></td></tr></table></figure>
 
 <p>CDK/CloudFormation build dependency graph từ các reference và dependency được khai báo, rồi tạo theo đúng order. <strong>dependency của application không phải lúc nào cũng được tự suy ra</strong>, cần thì phải khai báo rõ.</p>
-<p>primitive là <strong>resource A cần B tồn tại trước → dependency edge</strong>. cũng lại giống Lego thôi. tay chưa có thì chưa gắn được bàn tay :D</p>
+<p>hiểu đơn giản là <strong>resource A cần B tồn tại trước → dependency edge</strong>. cũng lại giống Lego thôi. tay chưa có thì chưa gắn được bàn tay :D</p>
 <h3 id="Construct"><a href="#Construct" class="headerlink" title="Construct"></a>Construct</h3><p>construct có thể đại diện cho một resource, hoặc <strong>package nhiều resource thành một Lego lớn hơn</strong>. ví dụ thay vì mỗi project đều manually define:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">VPC</span><br><span class="line">subnets</span><br><span class="line">security groups</span><br><span class="line">load balancer</span><br><span class="line">ECS service</span><br><span class="line">logging</span><br></pre></td></tr></table></figure>
 
@@ -492,7 +492,7 @@
 
 <p>AI có thể viết code. thứ con người cần care hơn là <strong>review intent, permissions, diff, state và blast radius</strong>.</p>
 <h2 id="ECS-va-Fargate"><a href="#ECS-va-Fargate" class="headerlink" title="ECS và Fargate"></a>ECS và Fargate</h2><p>ECS nghe ban đầu rất dễ bị hiểu nhầm là một dạng EC2 nâng cấp chuyên chạy container. thực ra không phải. <strong>EC2 và ECS không cùng category.</strong></p>
-<p><strong>EC2 là compute</strong>, nói primitive là một cái máy có CPU, RAM, disk, network. còn <strong>ECS là phần mềm orchestration do AWS tự host và vận hành</strong>.</p>
+<p><strong>EC2 là compute</strong>, nói đơn giản là một cái máy có CPU, RAM, disk, network. còn <strong>ECS là phần mềm orchestration do AWS tự host và vận hành</strong>.</p>
 <p>nó không phải cái máy để app chạy. nó là thằng control:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">container nào cần chạy</span><br><span class="line">chạy bao nhiêu bản</span><br><span class="line">chạy ở compute nào</span><br><span class="line">container chết thì làm gì</span><br><span class="line">deploy version mới thế nào</span><br><span class="line">scale lên&#x2F;xuống ra sao</span><br></pre></td></tr></table></figure>
 

@@ -157,11 +157,10 @@ button:hover { border-color: var(--sap-accent); color: var(--sap-accent); }
 .sap-lesson blockquote { margin: 1.2rem 0; padding: .9rem 1.2rem; background: var(--sap-tint); border-left: 3px solid var(--sap-accent); }
 .sap-lesson blockquote p { margin: 0; font-size: .95rem; }
 .sap-table { overflow-x: auto; margin: 1rem 0 1.5rem; border: 1px solid rgba(204, 42, 65, .25); border-radius: 5px; }
-.sap-table table { width: 100%; min-width: 660px; border-collapse: collapse; font-size: 15px; line-height: 1.6; }
+.sap-table table { width: 100%; min-width: 660px; table-layout: fixed; border-collapse: collapse; font-size: 15px; line-height: 1.6; }
 .sap-table th, .sap-table td { padding: .8rem .9rem; vertical-align: top; text-align: left; border-bottom: 1px solid rgba(204, 42, 65, .15); }
 .sap-table th { color: var(--sap-accent); background: rgba(204, 42, 65, .08); font-weight: 700; }
-.sap-table td:first-child { width: 23%; font-weight: 600; }
-.sap-table td:last-child { width: 18%; }
+.sap-table td:first-child { font-weight: 600; }
 .sap-table tbody tr:last-child td { border-bottom: 0; background: var(--sap-tint); }
 .sap-lesson .sap-services { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--sap-line); font-size: .8rem; color: var(--sap-muted); }
 .sap-lesson .sap-disclaimer { margin: 0; font-size: .75rem; color: var(--sap-muted); }

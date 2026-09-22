@@ -1,0 +1,184 @@
+(() => {
+  'use strict';
+
+  const articles = Array.from(document.querySelectorAll('[data-scenario]'));
+  if (!articles.length) return;
+
+  const pane = document.getElementById('sap-reading');
+  const listPane = document.querySelector('.sap-list-pane');
+  const list = document.getElementById('sap-list');
+  const search = document.getElementById('sap-search');
+  const group = document.getElementById('sap-group');
+  const clear = document.getElementById('sap-clear');
+  const results = document.getElementById('sap-results');
+  const previous = document.getElementById('sap-previous');
+  const next = document.getElementById('sap-next');
+  const showList = document.getElementById('sap-show-list');
+  const byId = new Map(articles.map(article => [article.dataset.scenario, article]));
+  const items = Array.from(list.children);
+  const ids = articles.map(article => article.dataset.scenario);
+  const positions = new Map();
+  let active = '';
+  let visible = ids.slice();
+
+  function normalize(text) {
+    return text.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd');
+  }
+
+  // Index once. Searching never downloads content or rewrites the lesson HTML.
+  const searchIndex = new Map(articles.map(article => [
+    article.dataset.scenario,
+    normalize(`${article.dataset.scenario} ${article.dataset.groupLabel} ${article.textContent}`)
+  ]));
+
+  articles.forEach(article => {
+    const button = article.querySelector('.sap-copy');
+    const status = article.querySelector('.sap-copy-status');
+    article.querySelector('.sap-copy-tools').hidden = false;
+    button.addEventListener('click', async () => {
+      button.disabled = true;
+      status.textContent = '';
+      try {
+        await navigator.clipboard.writeText(article.querySelector('.sap-copy-source').content.textContent);
+        status.textContent = 'Đã copy';
+      } catch (error) {
+        status.textContent = 'Không copy được. Hãy chọn nội dung và sao chép thủ công.';
+      } finally {
+        button.disabled = false;
+      }
+    });
+  });
+
+  function setStep(link, id) {
+    if (id) {
+      link.href = `#${id}`;
+      link.removeAttribute('aria-disabled');
+      link.removeAttribute('tabindex');
+    } else {
+      link.removeAttribute('href');
+      link.setAttribute('aria-disabled', 'true');
+      link.setAttribute('tabindex', '-1');
+    }
+  }
+
+  function updateSteps() {
+    const index = visible.indexOf(active);
+    document.getElementById('sap-position').textContent = index < 0
+      ? 'Ngoài bộ lọc'
+      : `${index + 1} / ${visible.length}`;
+    setStep(previous, index > 0 ? visible[index - 1] : null);
+    setStep(next, index < 0 ? visible[0] : visible[index + 1]);
+  }
+
+  function filter() {
+    const terms = normalize(search.value).trim().split(/\s+/).filter(Boolean);
+    visible = [];
+    items.forEach(item => {
+      const id = item.dataset.id;
+      const matches = (group.value === 'all' || item.dataset.group === group.value) &&
+        terms.every(term => searchIndex.get(id).includes(term));
+      item.hidden = !matches;
+      if (matches) visible.push(id);
+    });
+    results.textContent = `${visible.length} / ${ids.length} tình huống`;
+    document.getElementById('sap-empty').hidden = visible.length !== 0;
+    clear.hidden = !search.value && group.value === 'all';
+    updateSteps();
+  }
+
+  function revealActiveLink() {
+    const item = items.find(candidate => candidate.dataset.id === active);
+    if (!item || item.hidden) return;
+    const rect = item.getBoundingClientRect();
+    const container = listPane.getBoundingClientRect();
+    if (rect.top < container.top || rect.bottom > container.bottom) {
+      listPane.scrollTop += rect.top - container.top - (container.height - rect.height) / 2;
+    }
+  }
+
+  function showArticle(id, focus) {
+    if (!byId.has(id)) id = ids[0];
+    if (active && pane.getClientRects().length) positions.set(active, pane.scrollTop);
+    active = id;
+    articles.forEach(article => { article.hidden = article.dataset.scenario !== id; });
+    items.forEach(item => {
+      const link = item.querySelector('a');
+      if (item.dataset.id === id) link.setAttribute('aria-current', 'page');
+      else link.removeAttribute('aria-current');
+    });
+    document.body.classList.remove('sap-list-open');
+    showList.setAttribute('aria-expanded', 'false');
+    const article = byId.get(id);
+    const title = article.querySelector('h1');
+    document.getElementById('sap-current-group').textContent = article.dataset.groupLabel;
+    document.title = `${id}: ${title.textContent} | SCS-C03 | Hudson`;
+    pane.scrollTop = positions.get(id) || 0;
+    updateSteps();
+    revealActiveLink();
+    if (focus) title.focus({ preventScroll: true });
+  }
+
+  function route() {
+    let id = location.hash.slice(1).toUpperCase();
+    if (!byId.has(id)) {
+      id = ids[0];
+      history.replaceState(history.state, '', `${location.pathname}${location.search}#${id}`);
+    }
+    showArticle(id, true);
+  }
+
+  document.addEventListener('click', event => {
+    if (event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+    const link = event.target.closest('a[href^="#"]');
+    if (!link) return;
+    const id = link.getAttribute('href').slice(1);
+    if (!byId.has(id)) return;
+    event.preventDefault();
+    if (location.hash === `#${id}`) showArticle(id, true);
+    else location.hash = id;
+  });
+
+  const random = document.getElementById('sap-random');
+  random.hidden = false;
+  random.addEventListener('click', () => {
+    const candidates = ids.filter(id => id !== active);
+    if (!candidates.length) return;
+    const id = candidates[Math.floor(Math.random() * candidates.length)];
+    positions.delete(id);
+    location.hash = id;
+  });
+
+  search.addEventListener('input', filter);
+  group.addEventListener('change', filter);
+  clear.addEventListener('click', () => {
+    search.value = '';
+    group.value = 'all';
+    filter();
+    search.focus({ preventScroll: true });
+  });
+  showList.addEventListener('click', () => {
+    positions.set(active, pane.scrollTop);
+    document.body.classList.add('sap-list-open');
+    showList.setAttribute('aria-expanded', 'true');
+    revealActiveLink();
+    search.focus({ preventScroll: true });
+  });
+  document.getElementById('sap-skip').addEventListener('click', event => {
+    event.preventDefault();
+    showArticle(active, true);
+  });
+  window.addEventListener('hashchange', route);
+
+  const initial = location.hash.slice(1).toUpperCase();
+  document.getElementById('sap-filter-controls').hidden = false;
+  document.getElementById('sap-reading-tools').hidden = false;
+  document.body.classList.add('sap-ready');
+  showArticle(byId.has(initial) ? initial : ids[0], false);
+  if (!location.hash) {
+    document.body.classList.add('sap-list-open');
+    showList.setAttribute('aria-expanded', 'true');
+  } else if (!byId.has(initial)) {
+    history.replaceState(history.state, '', `${location.pathname}${location.search}#${ids[0]}`);
+  }
+  filter();
+})();

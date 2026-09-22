@@ -8,6 +8,9 @@
     <loc>https://read.hihudson.com/sap-c02/</loc>
   </url>
   <url>
+    <loc>https://read.hihudson.com/scs-c03/</loc>
+  </url>
+  <url>
     <loc>https://read.hihudson.com/2018/01/23/2019-01-23-open-command-in-macos/</loc>
     <lastmod>2026-08-20T05:48:35.910Z</lastmod>
   </url>
@@ -422,5 +425,13 @@
   <url>
     <loc>https://read.hihudson.com/sap-c02/reader.js</loc>
     <lastmod>2026-09-21T23:52:43.100Z</lastmod>
+  </url>
+  <url>
+    <loc>https://read.hihudson.com/scs-c03/reader.css</loc>
+    <lastmod>2026-09-22T09:42:43.637Z</lastmod>
+  </url>
+  <url>
+    <loc>https://read.hihudson.com/scs-c03/reader.js</loc>
+    <lastmod>2026-09-22T09:43:37.327Z</lastmod>
   </url>
 </urlset>

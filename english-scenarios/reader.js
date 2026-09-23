@@ -4,16 +4,16 @@
   const articles = Array.from(document.querySelectorAll('[data-scenario]'));
   if (!articles.length) return;
 
-  const pane = document.getElementById('sap-reading');
-  const listPane = document.querySelector('.sap-list-pane');
-  const list = document.getElementById('sap-list');
-  const search = document.getElementById('sap-search');
-  const group = document.getElementById('sap-group');
-  const clear = document.getElementById('sap-clear');
-  const results = document.getElementById('sap-results');
-  const previous = document.getElementById('sap-previous');
-  const next = document.getElementById('sap-next');
-  const showList = document.getElementById('sap-show-list');
+  const pane = document.getElementById('eng-reading');
+  const listPane = document.querySelector('.eng-list-pane');
+  const list = document.getElementById('eng-list');
+  const search = document.getElementById('eng-search');
+  const group = document.getElementById('eng-group');
+  const clear = document.getElementById('eng-clear');
+  const results = document.getElementById('eng-results');
+  const previous = document.getElementById('eng-previous');
+  const next = document.getElementById('eng-next');
+  const showList = document.getElementById('eng-show-list');
   const byId = new Map(articles.map(article => [article.dataset.scenario, article]));
   const items = Array.from(list.children);
   const ids = articles.map(article => article.dataset.scenario);
@@ -25,29 +25,11 @@
     return text.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd');
   }
 
-  // Index once. Searching never downloads content or rewrites the lesson HTML.
+  // Local HTML only: index once, without fetching or rewriting lesson content.
   const searchIndex = new Map(articles.map(article => [
     article.dataset.scenario,
     normalize(`${article.dataset.scenario} ${article.dataset.groupLabel} ${article.textContent}`)
   ]));
-
-  articles.forEach(article => {
-    const button = article.querySelector('.sap-copy');
-    const status = article.querySelector('.sap-copy-status');
-    article.querySelector('.sap-copy-tools').hidden = false;
-    button.addEventListener('click', async () => {
-      button.disabled = true;
-      status.textContent = '';
-      try {
-        await navigator.clipboard.writeText(article.querySelector('.sap-copy-source').content.textContent);
-        status.textContent = 'Đã copy';
-      } catch (error) {
-        status.textContent = 'Không copy được. Hãy chọn nội dung và sao chép thủ công.';
-      } finally {
-        button.disabled = false;
-      }
-    });
-  });
 
   function setStep(link, id) {
     if (id) {
@@ -63,7 +45,7 @@
 
   function updateSteps() {
     const index = visible.indexOf(active);
-    document.getElementById('sap-position').textContent = index < 0
+    document.getElementById('eng-position').textContent = index < 0
       ? 'Ngoài bộ lọc'
       : `${index + 1} / ${visible.length}`;
     setStep(previous, index > 0 ? visible[index - 1] : null);
@@ -81,7 +63,7 @@
       if (matches) visible.push(id);
     });
     results.textContent = `${visible.length} / ${ids.length} tình huống`;
-    document.getElementById('sap-empty').hidden = visible.length !== 0;
+    document.getElementById('eng-empty').hidden = visible.length !== 0;
     clear.hidden = !search.value && group.value === 'all';
     updateSteps();
   }
@@ -106,25 +88,33 @@
       if (item.dataset.id === id) link.setAttribute('aria-current', 'page');
       else link.removeAttribute('aria-current');
     });
-    document.body.classList.remove('sap-list-open');
+    document.body.classList.remove('eng-list-open');
     showList.setAttribute('aria-expanded', 'false');
     const article = byId.get(id);
     const title = article.querySelector('h1');
-    document.getElementById('sap-current-group').textContent = article.dataset.groupLabel;
-    document.title = `${id}: ${title.textContent} | SCS-C03`;
+    document.getElementById('eng-current-group').textContent = article.dataset.groupLabel;
+    document.title = `${id}: ${title.textContent} | Luyện tiếng Anh`;
     pane.scrollTop = positions.get(id) || 0;
     updateSteps();
     revealActiveLink();
     if (focus) title.focus({ preventScroll: true });
   }
 
-  function route() {
+  function route(focus) {
     let id = location.hash.slice(1).toUpperCase();
+    const showInitialList = !id;
     if (!byId.has(id)) {
       id = ids[0];
-      history.replaceState(history.state, '', `${location.pathname}${location.search}#${id}`);
+      if (!showInitialList) {
+        history.replaceState(history.state, '', `${location.pathname}${location.search}#${id}`);
+      }
     }
-    showArticle(id, true);
+    showArticle(id, focus && !showInitialList);
+    if (showInitialList) {
+      document.body.classList.add('eng-list-open');
+      showList.setAttribute('aria-expanded', 'true');
+      if (focus && window.matchMedia('(max-width: 760px)').matches) search.focus({ preventScroll: true });
+    }
   }
 
   document.addEventListener('click', event => {
@@ -138,7 +128,7 @@
     else location.hash = id;
   });
 
-  const random = document.getElementById('sap-random');
+  const random = document.getElementById('eng-random');
   random.hidden = false;
   random.addEventListener('click', () => {
     const candidates = ids.filter(id => id !== active);
@@ -158,27 +148,20 @@
   });
   showList.addEventListener('click', () => {
     positions.set(active, pane.scrollTop);
-    document.body.classList.add('sap-list-open');
+    document.body.classList.add('eng-list-open');
     showList.setAttribute('aria-expanded', 'true');
     revealActiveLink();
     search.focus({ preventScroll: true });
   });
-  document.getElementById('sap-skip').addEventListener('click', event => {
+  document.getElementById('eng-skip').addEventListener('click', event => {
     event.preventDefault();
     showArticle(active, true);
   });
-  window.addEventListener('hashchange', route);
+  window.addEventListener('hashchange', () => route(true));
 
-  const initial = location.hash.slice(1).toUpperCase();
-  document.getElementById('sap-filter-controls').hidden = false;
-  document.getElementById('sap-reading-tools').hidden = false;
-  document.body.classList.add('sap-ready');
-  showArticle(byId.has(initial) ? initial : ids[0], false);
-  if (!location.hash) {
-    document.body.classList.add('sap-list-open');
-    showList.setAttribute('aria-expanded', 'true');
-  } else if (!byId.has(initial)) {
-    history.replaceState(history.state, '', `${location.pathname}${location.search}#${ids[0]}`);
-  }
+  document.getElementById('eng-filter-controls').hidden = false;
+  document.getElementById('eng-reading-tools').hidden = false;
+  document.body.classList.add('eng-ready');
+  route(false);
   filter();
 })();

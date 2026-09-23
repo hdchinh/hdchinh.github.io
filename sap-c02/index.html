@@ -3,17 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="76 tình huống kiến trúc AWS với bảng so sánh, lời giải và cách các dịch vụ phối hợp. Góc học SAP-C02 của Hudson.">
+  <meta name="description" content="76 tình huống kiến trúc AWS với bảng so sánh, lời giải và cách các dịch vụ phối hợp.">
   <meta name="theme-color" content="#fafafa">
-  <title>SAP-C02: học bằng tình huống | Hudson</title>
+  <title>SAP-C02: học bằng tình huống</title>
   <link rel="canonical" href="https:&#x2F;&#x2F;read.hihudson.com&#x2F;sap-c02&#x2F;">
   <link rel="stylesheet" href="/sap-c02/reader.css?v=4">
-  <script src="/sap-c02/reader.js?v=3" defer></script>
+  <script src="/sap-c02/reader.js?v=4" defer></script>
+  <script src="/scenario-reactions.js?v=1" data-collection="sap-c02" defer></script>
 </head>
 <body>
   <a class="sap-skip" id="sap-skip" href="#sap-reading">Đến bài đang đọc</a>
   <header class="sap-topbar">
-    <a class="sap-brand" href="/sap-c02/"><strong>SAP-C02</strong><span>Góc kiến trúc của Hudson</span></a>
+    <a class="sap-brand" href="/sap-c02/"><strong>SAP-C02</strong></a>
     <nav aria-label="Điều hướng và tham khảo">
       <button id="sap-random" type="button" title="Mở ngẫu nhiên một bài khác trong toàn bộ danh mục" hidden><span aria-hidden="true">🎲</span> Ngẫu nhiên</button>
       <a href="/2026/08/25/2026-08-25-sap-c02-aws-service-keyword-reference/" target="_blank" rel="noopener noreferrer">Cheatsheet ↗</a>
@@ -493,7 +494,6 @@
     </li></ul>
         <p id="sap-empty" class="sap-empty" hidden>Không tìm thấy tình huống. Thử từ khóa khác hoặc xóa bộ lọc.</p>
       </nav>
-      <p class="sap-sidebar-note">73 bài chính/mở rộng · 3 bài AI pretest.<br>Lời giải luôn hiển thị, không có bài quiz.</p>
     </aside>
     <main class="sap-reading-pane" id="sap-reading" tabindex="-1" aria-label="Bài toán và lời giải">
       <nav class="sap-reading-tools" id="sap-reading-tools" aria-label="Điều hướng bài đọc" hidden>
@@ -687,7 +687,6 @@ Services: VPC, Transit Gateway, AWS RAM</template>
 <p><a href="https://docs.aws.amazon.com/vpc/latest/tgw/tgw-route-tables.html" target="_blank" rel="noopener">AWS: TGW route tables</a> · <a href="https://docs.aws.amazon.com/vpc/latest/peering/invalid-peering-configurations.html" target="_blank" rel="noopener">AWS: peering limitations</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> VPC · Transit Gateway · AWS RAM</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="N02" data-scenario="N02" data-group-label="Kết nối và mạng" aria-labelledby="sap-title-N02">
         <div class="sap-lesson-meta">
@@ -808,7 +807,6 @@ Services: VPC, PrivateLink, Network Load Balancer</template>
 <p><a href="https://docs.aws.amazon.com/vpc/latest/privatelink/concepts.html" target="_blank" rel="noopener">AWS: PrivateLink concepts</a> · <a href="https://docs.aws.amazon.com/vpc/latest/privatelink/create-endpoint-service.html" target="_blank" rel="noopener">AWS: endpoint services</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> VPC · PrivateLink · Network Load Balancer</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="N03" data-scenario="N03" data-group-label="Kết nối và mạng" aria-labelledby="sap-title-N03">
         <div class="sap-lesson-meta">
@@ -932,7 +930,6 @@ Services: Direct Connect, Direct Connect Gateway, Site-to-Site VPN, Transit Gate
 <p><a href="https://aws.amazon.com/directconnect/resiliency-recommendation/" target="_blank" rel="noopener">AWS: DX resiliency</a> · <a href="https://docs.aws.amazon.com/directconnect/latest/UserGuide/encryption-in-transit.html" target="_blank" rel="noopener">AWS: DX encryption</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> Direct Connect · Direct Connect Gateway · Site-to-Site VPN · Transit Gateway</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="N04" data-scenario="N04" data-group-label="Kết nối và mạng" aria-labelledby="sap-title-N04">
         <div class="sap-lesson-meta">
@@ -1060,7 +1057,6 @@ AWS app → VPC resolver → outbound endpoint → corporate DNS</code></pre>
 <p><a href="https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver.html" target="_blank" rel="noopener">AWS: hybrid Resolver</a> · <a href="https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/hosted-zone-private-considerations.html" target="_blank" rel="noopener">AWS: private-zone considerations</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> Route 53 Resolver · Route 53 Private Hosted Zones · AWS RAM</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="N05" data-scenario="N05" data-group-label="Kết nối và mạng" aria-labelledby="sap-title-N05">
         <div class="sap-lesson-meta">
@@ -1188,7 +1184,6 @@ Worker → private DNS → interface endpoint ENI → Secrets Manager</code></pr
 <p><a href="https://docs.aws.amazon.com/vpc/latest/privatelink/vpc-endpoints-s3.html" target="_blank" rel="noopener">AWS: S3 gateway endpoints</a> · <a href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/vpc-endpoint-overview.html" target="_blank" rel="noopener">AWS: Secrets Manager endpoints</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> VPC Endpoints · S3 · Secrets Manager · IAM · KMS</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="N06" data-scenario="N06" data-group-label="Kết nối và mạng" aria-labelledby="sap-title-N06">
         <div class="sap-lesson-meta">
@@ -1316,7 +1311,6 @@ Response: RDS:5432 → pod:40000</code></pre>
 <p><a href="https://docs.aws.amazon.com/vpc/latest/reachability/what-is-reachability-analyzer.html" target="_blank" rel="noopener">AWS: Reachability Analyzer</a> · <a href="https://docs.aws.amazon.com/vpc/latest/userguide/custom-network-acl.html" target="_blank" rel="noopener">AWS: ACLs and ephemeral ports</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> VPC Flow Logs · Reachability Analyzer · EKS · RDS</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="N07" data-scenario="N07" data-group-label="Kết nối và mạng" aria-labelledby="sap-title-N07">
         <div class="sap-lesson-meta">
@@ -1446,7 +1440,6 @@ Checkout → Singapore API → Singapore database</code></pre>
 <p><a href="https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html" target="_blank" rel="noopener">AWS: CloudFront</a> · <a href="https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/restrict-access-to-load-balancer.html" target="_blank" rel="noopener">AWS: restrict ALB origins</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> CloudFront · S3 · Application Load Balancer · Global Accelerator · Route 53</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="N08" data-scenario="N08" data-group-label="Kết nối và mạng" aria-labelledby="sap-title-N08">
         <div class="sap-lesson-meta">
@@ -1570,7 +1563,6 @@ Services: Network Firewall, NAT Gateway, Gateway Load Balancer, Route 53 Resolve
 <p><a href="https://docs.aws.amazon.com/network-firewall/latest/developerguide/architectures.html" target="_blank" rel="noopener">AWS: Network Firewall architectures</a> · <a href="https://docs.aws.amazon.com/waf/latest/developerguide/fms-prereq.html" target="_blank" rel="noopener">AWS: Firewall Manager prerequisites</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> Network Firewall · NAT Gateway · Gateway Load Balancer · Route 53 Resolver DNS Firewall · Firewall Manager</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="O01" data-scenario="O01" data-group-label="Multi-account và governance" aria-labelledby="sap-title-O01">
         <div class="sap-lesson-meta">
@@ -1694,7 +1686,6 @@ Services: Organizations, Control Tower, IAM</template>
 <p><a href="https://docs.aws.amazon.com/whitepapers/latest/organizing-your-aws-environment/welcome.html" target="_blank" rel="noopener">AWS: organizing a multi-account environment</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> Organizations · Control Tower · IAM</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="O02" data-scenario="O02" data-group-label="Multi-account và governance" aria-labelledby="sap-title-O02">
         <div class="sap-lesson-meta">
@@ -1818,7 +1809,6 @@ Services: IAM, Organizations</template>
 <p><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_boundaries.html" target="_blank" rel="noopener">AWS: permissions boundaries</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> IAM · Organizations</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="O03" data-scenario="O03" data-group-label="Multi-account và governance" aria-labelledby="sap-title-O03">
         <div class="sap-lesson-meta">
@@ -1948,7 +1938,6 @@ Threat finding → EventBridge → security incident workflow</code></pre>
 <p><a href="https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-trail-organization.html" target="_blank" rel="noopener">AWS: organization trails</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> CloudTrail · Config · GuardDuty · Security Hub · EventBridge</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="O04" data-scenario="O04" data-group-label="Multi-account và governance" aria-labelledby="sap-title-O04">
         <div class="sap-lesson-meta">
@@ -2072,7 +2061,6 @@ Services: RAM, VPC, Route 53 Resolver</template>
 <p><a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-sharing.html" target="_blank" rel="noopener">AWS: VPC sharing</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> RAM · VPC · Route 53 Resolver</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="O05" data-scenario="O05" data-group-label="Multi-account và governance" aria-labelledby="sap-title-O05">
         <div class="sap-lesson-meta">
@@ -2196,7 +2184,6 @@ Services: Control Tower, CloudFormation StackSets, Service Catalog</template>
 <p><a href="https://docs.aws.amazon.com/controltower/latest/userguide/account-factory.html" target="_blank" rel="noopener">AWS: Account Factory</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> Control Tower · CloudFormation StackSets · Service Catalog</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="O06" data-scenario="O06" data-group-label="Multi-account và governance" aria-labelledby="sap-title-O06">
         <div class="sap-lesson-meta">
@@ -2320,7 +2307,6 @@ Services: Cost Categories, Cost Explorer, CUR, Organizations</template>
 <p><a href="https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html" target="_blank" rel="noopener">AWS: cost-allocation tags</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> Cost Categories · Cost Explorer · CUR · Organizations</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="S01" data-scenario="S01" data-group-label="Identity và security" aria-labelledby="sap-title-S01">
         <div class="sap-lesson-meta">
@@ -2441,7 +2427,6 @@ Services: IAM Identity Center, IAM, STS</template>
 <p><a href="https://docs.aws.amazon.com/singlesignon/latest/userguide/what-is.html" target="_blank" rel="noopener">AWS: IAM Identity Center</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> IAM Identity Center · IAM · STS</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="S02" data-scenario="S02" data-group-label="Identity và security" aria-labelledby="sap-title-S02">
         <div class="sap-lesson-meta">
@@ -2565,7 +2550,6 @@ Services: IAM, STS, IAM Access Analyzer, CloudTrail</template>
 <p><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_common-scenarios_third-party.html" target="_blank" rel="noopener">AWS: third-party access and external IDs</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> IAM · STS · IAM Access Analyzer · CloudTrail</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="S03" data-scenario="S03" data-group-label="Identity và security" aria-labelledby="sap-title-S03">
         <div class="sap-lesson-meta">
@@ -2686,7 +2670,6 @@ Services: S3, KMS, ACM, CloudHSM</template>
 <p><a href="https://docs.aws.amazon.com/kms/latest/developerguide/key-policy-modifying-external-accounts.html" target="_blank" rel="noopener">AWS: cross-account KMS permissions</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> S3 · KMS · ACM · CloudHSM</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="S04" data-scenario="S04" data-group-label="Identity và security" aria-labelledby="sap-title-S04">
         <div class="sap-lesson-meta">
@@ -2810,7 +2793,6 @@ Services: Secrets Manager, Systems Manager Parameter Store, IAM, RDS</template>
 <p><a href="https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotating-secrets.html" target="_blank" rel="noopener">AWS: Secrets Manager rotation</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> Secrets Manager · Systems Manager Parameter Store · IAM · RDS</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="S05" data-scenario="S05" data-group-label="Identity và security" aria-labelledby="sap-title-S05">
         <div class="sap-lesson-meta">
@@ -2934,7 +2916,6 @@ Services: CloudFront, WAF, Shield, ALB</template>
 <p><a href="https://docs.aws.amazon.com/waf/latest/developerguide/what-is-aws-waf.html" target="_blank" rel="noopener">AWS: WAF</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> CloudFront · WAF · Shield · ALB</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="S06" data-scenario="S06" data-group-label="Identity và security" aria-labelledby="sap-title-S06">
         <div class="sap-lesson-meta">
@@ -3058,7 +3039,6 @@ Services: Config, Security Hub, Inspector, Systems Manager, Audit Manager, Artif
 <p><a href="https://docs.aws.amazon.com/config/latest/developerguide/remediation.html" target="_blank" rel="noopener">AWS: Config remediation</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> Config · Security Hub · Inspector · Systems Manager · Audit Manager · Artifact</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="S07" data-scenario="S07" data-group-label="Identity và security" aria-labelledby="sap-title-S07">
         <div class="sap-lesson-meta">
@@ -3182,7 +3162,6 @@ Services: GuardDuty, Detective, CloudTrail, EC2, Systems Manager</template>
 <p><a href="https://docs.aws.amazon.com/whitepapers/latest/aws-security-incident-response-guide/welcome.html" target="_blank" rel="noopener">AWS: security incident response guide</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> GuardDuty · Detective · CloudTrail · EC2 · Systems Manager</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="S08" data-scenario="S08" data-group-label="Identity và security" aria-labelledby="sap-title-S08">
         <div class="sap-lesson-meta">
@@ -3303,7 +3282,6 @@ Services: S3 Object Lock, Macie, KMS</template>
 <p><a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html" target="_blank" rel="noopener">AWS: S3 Object Lock</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> S3 Object Lock · Macie · KMS</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="R01" data-scenario="R01" data-group-label="Availability và recovery" aria-labelledby="sap-title-R01">
         <div class="sap-lesson-meta">
@@ -3430,7 +3408,6 @@ Services: RDS, Route 53, AWS Backup, Elastic Disaster Recovery</template>
 <p><a href="https://docs.aws.amazon.com/whitepapers/latest/disaster-recovery-workloads-on-aws/disaster-recovery-options-in-the-cloud.html" target="_blank" rel="noopener">AWS: disaster recovery strategies</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> RDS · Route 53 · AWS Backup · Elastic Disaster Recovery</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="R02" data-scenario="R02" data-group-label="Availability và recovery" aria-labelledby="sap-title-R02">
         <div class="sap-lesson-meta">
@@ -3551,7 +3528,6 @@ Services: AWS Backup, KMS, Organizations</template>
 <p><a href="https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html" target="_blank" rel="noopener">AWS: AWS Backup</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> AWS Backup · KMS · Organizations</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="R03" data-scenario="R03" data-group-label="Availability và recovery" aria-labelledby="sap-title-R03">
         <div class="sap-lesson-meta">
@@ -3675,7 +3651,6 @@ Services: ALB, Auto Scaling, RDS, ElastiCache</template>
 <p><a href="https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/welcome.html" target="_blank" rel="noopener">AWS: Reliability pillar</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> ALB · Auto Scaling · RDS · ElastiCache</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="R04" data-scenario="R04" data-group-label="Availability và recovery" aria-labelledby="sap-title-R04">
         <div class="sap-lesson-meta">
@@ -3799,7 +3774,6 @@ Services: RDS, Aurora, Route 53</template>
 <p><a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.html" target="_blank" rel="noopener">AWS: RDS Multi-AZ deployments</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> RDS · Aurora · Route 53</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="R05" data-scenario="R05" data-group-label="Availability và recovery" aria-labelledby="sap-title-R05">
         <div class="sap-lesson-meta">
@@ -3923,7 +3897,6 @@ Services: Route 53, ARC</template>
 <p><a href="https://docs.aws.amazon.com/r53recovery/latest/dg/routing-control.html" target="_blank" rel="noopener">AWS: ARC routing controls</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> Route 53 · ARC</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="R06" data-scenario="R06" data-group-label="Availability và recovery" aria-labelledby="sap-title-R06">
         <div class="sap-lesson-meta">
@@ -4044,7 +4017,6 @@ Services: Service Quotas, Auto Scaling, EC2, CloudWatch</template>
 <p><a href="https://docs.aws.amazon.com/servicequotas/latest/userguide/intro.html" target="_blank" rel="noopener">AWS: Service Quotas</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> Service Quotas · Auto Scaling · EC2 · CloudWatch</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="R07" data-scenario="R07" data-group-label="Availability và recovery" aria-labelledby="sap-title-R07">
         <div class="sap-lesson-meta">
@@ -4168,7 +4140,6 @@ Services: Fault Injection Service, CloudWatch, AWS Backup, Well-Architected Tool
 <p><a href="https://docs.aws.amazon.com/fis/latest/userguide/what-is.html" target="_blank" rel="noopener">AWS: Fault Injection Service</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> Fault Injection Service · CloudWatch · AWS Backup · Well-Architected Tool</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="R08" data-scenario="R08" data-group-label="Availability và recovery" aria-labelledby="sap-title-R08">
         <div class="sap-lesson-meta">
@@ -4292,7 +4263,6 @@ Services: Aurora, RDS, S3, DynamoDB, Route 53</template>
 <p><a href="https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database-disaster-recovery.html" target="_blank" rel="noopener">AWS: Aurora global recovery</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> Aurora · RDS · S3 · DynamoDB · Route 53</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="D01" data-scenario="D01" data-group-label="Deployment và operations" aria-labelledby="sap-title-D01">
         <div class="sap-lesson-meta">
@@ -4416,7 +4386,6 @@ Services: CodePipeline, CodeBuild, ECR, CodeArtifact</template>
 <p><a href="https://docs.aws.amazon.com/codepipeline/latest/userguide/concepts.html" target="_blank" rel="noopener">AWS: CodePipeline concepts</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> CodePipeline · CodeBuild · ECR · CodeArtifact</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="D02" data-scenario="D02" data-group-label="Deployment và operations" aria-labelledby="sap-title-D02">
         <div class="sap-lesson-meta">
@@ -4540,7 +4509,6 @@ Services: CodeDeploy, ALB, CloudWatch, ECS</template>
 <p><a href="https://docs.aws.amazon.com/codedeploy/latest/userguide/deployment-steps-ecs.html" target="_blank" rel="noopener">AWS: ECS blue/green deployment</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> CodeDeploy · ALB · CloudWatch · ECS</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="D03" data-scenario="D03" data-group-label="Deployment và operations" aria-labelledby="sap-title-D03">
         <div class="sap-lesson-meta">
@@ -4664,7 +4632,6 @@ Services: CloudFormation, Config</template>
 <p><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-changesets.html" target="_blank" rel="noopener">AWS: CloudFormation change sets</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> CloudFormation · Config</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="D04" data-scenario="D04" data-group-label="Deployment và operations" aria-labelledby="sap-title-D04">
         <div class="sap-lesson-meta">
@@ -4792,7 +4759,6 @@ Legacy: patch baseline → scan → maintenance wave → reboot → application 
 <p><a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-patch.html" target="_blank" rel="noopener">AWS: Systems Manager Patch Manager</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> Systems Manager · Inspector · EC2 Image Builder</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="D05" data-scenario="D05" data-group-label="Deployment và operations" aria-labelledby="sap-title-D05">
         <div class="sap-lesson-meta">
@@ -4916,7 +4882,6 @@ Services: CloudWatch, X-Ray, Managed Service for Prometheus, Managed Grafana</te
 <p><a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html" target="_blank" rel="noopener">AWS: CloudWatch</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> CloudWatch · X-Ray · Managed Service for Prometheus · Managed Grafana</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="D06" data-scenario="D06" data-group-label="Deployment và operations" aria-labelledby="sap-title-D06">
         <div class="sap-lesson-meta">
@@ -5040,7 +5005,6 @@ Services: AppConfig, Systems Manager Parameter Store, Secrets Manager</template>
 <p><a href="https://docs.aws.amazon.com/appconfig/latest/userguide/what-is-appconfig.html" target="_blank" rel="noopener">AWS: AppConfig</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> AppConfig · Systems Manager Parameter Store · Secrets Manager</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="D07" data-scenario="D07" data-group-label="Deployment và operations" aria-labelledby="sap-title-D07">
         <div class="sap-lesson-meta">
@@ -5164,7 +5128,6 @@ Services: EventBridge, Systems Manager Automation, Lambda, AWS Health</template>
 <p><a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-automation.html" target="_blank" rel="noopener">AWS: Systems Manager Automation</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> EventBridge · Systems Manager Automation · Lambda · AWS Health</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="P01" data-scenario="P01" data-group-label="Compute, dữ liệu và performance" aria-labelledby="sap-title-P01">
         <div class="sap-lesson-meta">
@@ -5285,7 +5248,6 @@ Services: EC2, Auto Scaling, ALB, CloudWatch</template>
 <p><a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-scale-based-on-demand.html" target="_blank" rel="noopener">AWS: dynamic scaling</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> EC2 · Auto Scaling · ALB · CloudWatch</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="P02" data-scenario="P02" data-group-label="Compute, dữ liệu và performance" aria-labelledby="sap-title-P02">
         <div class="sap-lesson-meta">
@@ -5406,7 +5368,6 @@ Services: RDS, Aurora, DynamoDB</template>
 <p><a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/best-practices.html" target="_blank" rel="noopener">AWS: DynamoDB design best practices</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> RDS · Aurora · DynamoDB</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="P03" data-scenario="P03" data-group-label="Compute, dữ liệu và performance" aria-labelledby="sap-title-P03">
         <div class="sap-lesson-meta">
@@ -5530,7 +5491,6 @@ Services: EBS, EFS, S3, FSx</template>
 <p><a href="https://docs.aws.amazon.com/efs/latest/ug/whatisefs.html" target="_blank" rel="noopener">AWS: Amazon EFS</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> EBS · EFS · S3 · FSx</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="P04" data-scenario="P04" data-group-label="Compute, dữ liệu và performance" aria-labelledby="sap-title-P04">
         <div class="sap-lesson-meta">
@@ -5654,7 +5614,6 @@ Services: ElastiCache, DAX, RDS, CloudFront</template>
 <p><a href="https://docs.aws.amazon.com/AmazonElastiCache/latest/dg/WhatIs.html" target="_blank" rel="noopener">AWS: ElastiCache</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> ElastiCache · DAX · RDS · CloudFront</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="P05" data-scenario="P05" data-group-label="Compute, dữ liệu và performance" aria-labelledby="sap-title-P05">
         <div class="sap-lesson-meta">
@@ -5775,7 +5734,6 @@ Services: CloudWatch, X-Ray, RDS, Compute Optimizer</template>
 <p><a href="https://docs.aws.amazon.com/wellarchitected/latest/performance-efficiency-pillar/welcome.html" target="_blank" rel="noopener">AWS: Performance Efficiency pillar</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> CloudWatch · X-Ray · RDS · Compute Optimizer</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="P06" data-scenario="P06" data-group-label="Compute, dữ liệu và performance" aria-labelledby="sap-title-P06">
         <div class="sap-lesson-meta">
@@ -5899,7 +5857,6 @@ Services: EC2, EFA, FSx for Lustre, Batch</template>
 <p><a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html" target="_blank" rel="noopener">AWS: Elastic Fabric Adapter</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> EC2 · EFA · FSx for Lustre · Batch</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="P07" data-scenario="P07" data-group-label="Compute, dữ liệu và performance" aria-labelledby="sap-title-P07">
         <div class="sap-lesson-meta">
@@ -6023,7 +5980,6 @@ Services: S3, Glue, Athena, Redshift, EMR, Lake Formation, QuickSight</template>
 <p><a href="https://docs.aws.amazon.com/athena/latest/ug/performance-tuning.html" target="_blank" rel="noopener">AWS: Athena performance tuning</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> S3 · Glue · Athena · Redshift · EMR · Lake Formation · QuickSight</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="P08" data-scenario="P08" data-group-label="Compute, dữ liệu và performance" aria-labelledby="sap-title-P08">
         <div class="sap-lesson-meta">
@@ -6153,7 +6109,6 @@ Services: Kinesis Data Streams, Firehose, MSK, Managed Service for Apache Flink<
 <p><a href="https://docs.aws.amazon.com/streams/latest/dev/building-consumers.html" target="_blank" rel="noopener">AWS: Kinesis consumers</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> Kinesis Data Streams · Firehose · MSK · Managed Service for Apache Flink</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="P09" data-scenario="P09" data-group-label="Compute, dữ liệu và performance" aria-labelledby="sap-title-P09">
         <div class="sap-lesson-meta">
@@ -6277,7 +6232,6 @@ Services: EBS, EC2, CloudWatch</template>
 <p><a href="https://docs.aws.amazon.com/ebs/latest/userguide/ebs-performance.html" target="_blank" rel="noopener">AWS: EBS performance</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> EBS · EC2 · CloudWatch</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="C01" data-scenario="C01" data-group-label="Chi phí" aria-labelledby="sap-title-C01">
         <div class="sap-lesson-meta">
@@ -6401,7 +6355,6 @@ Services: Savings Plans, Reserved Instances, EC2 Spot, Cost Explorer</template>
 <p><a href="https://docs.aws.amazon.com/savingsplans/latest/userguide/what-is-savings-plans.html" target="_blank" rel="noopener">AWS: Savings Plans</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> Savings Plans · Reserved Instances · EC2 Spot · Cost Explorer</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="C02" data-scenario="C02" data-group-label="Chi phí" aria-labelledby="sap-title-C02">
         <div class="sap-lesson-meta">
@@ -6529,7 +6482,6 @@ After: worker AZ B → S3 gateway endpoint → S3</code></pre>
 <p><a href="https://docs.aws.amazon.com/wellarchitected/latest/cost-optimization-pillar/cost_data_transfer.html" target="_blank" rel="noopener">AWS: data transfer cost guidance</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> CUR · VPC Flow Logs · NAT Gateway · VPC Endpoints · CloudFront</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="C03" data-scenario="C03" data-group-label="Chi phí" aria-labelledby="sap-title-C03">
         <div class="sap-lesson-meta">
@@ -6653,7 +6605,6 @@ Services: S3, S3 Storage Lens, S3 Intelligent-Tiering</template>
 <p><a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-class-intro.html" target="_blank" rel="noopener">AWS: S3 storage classes</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> S3 · S3 Storage Lens · S3 Intelligent-Tiering</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="C04" data-scenario="C04" data-group-label="Chi phí" aria-labelledby="sap-title-C04">
         <div class="sap-lesson-meta">
@@ -6777,7 +6728,6 @@ Services: Cost Explorer, CUR, Compute Optimizer, Trusted Advisor, CloudWatch</te
 <p><a href="https://docs.aws.amazon.com/compute-optimizer/latest/ug/what-is-compute-optimizer.html" target="_blank" rel="noopener">AWS: Compute Optimizer</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> Cost Explorer · CUR · Compute Optimizer · Trusted Advisor · CloudWatch</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="C05" data-scenario="C05" data-group-label="Chi phí" aria-labelledby="sap-title-C05">
         <div class="sap-lesson-meta">
@@ -6901,7 +6851,6 @@ Services: RDS, Aurora, EC2, Pricing Calculator</template>
 <p><a href="https://calculator.aws/" target="_blank" rel="noopener">AWS Pricing Calculator</a> · <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html" target="_blank" rel="noopener">AWS: RDS overview</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> RDS · Aurora · EC2 · Pricing Calculator</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="C06" data-scenario="C06" data-group-label="Chi phí" aria-labelledby="sap-title-C06">
         <div class="sap-lesson-meta">
@@ -7028,7 +6977,6 @@ Services: Budgets, Cost Anomaly Detection, Organizations, IAM</template>
 <p><a href="https://docs.aws.amazon.com/cost-management/latest/userguide/budgets-controls.html" target="_blank" rel="noopener">AWS: Budgets Actions</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> Budgets · Cost Anomaly Detection · Organizations · IAM</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="M01" data-scenario="M01" data-group-label="Migration và hybrid" aria-labelledby="sap-title-M01">
         <div class="sap-lesson-meta">
@@ -7152,7 +7100,6 @@ Services: Migration Hub, Application Discovery Service, Migration Evaluator</tem
 <p><a href="https://docs.aws.amazon.com/migrationhub/latest/ug/whatishub.html" target="_blank" rel="noopener">AWS: Migration Hub overview</a> · <a href="https://docs.aws.amazon.com/migrationhub/latest/ug/migrationhub-availability-change.html" target="_blank" rel="noopener">AWS: availability change</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> Migration Hub · Application Discovery Service · Migration Evaluator</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="M02" data-scenario="M02" data-group-label="Migration và hybrid" aria-labelledby="sap-title-M02">
         <div class="sap-lesson-meta">
@@ -7281,7 +7228,6 @@ Services: Application Migration Service, RDS, License Manager</template>
 <p><a href="https://docs.aws.amazon.com/prescriptive-guidance/latest/large-migration-guide/migration-strategies.html" target="_blank" rel="noopener">AWS: migration strategies</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> Application Migration Service · RDS · License Manager</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="M03" data-scenario="M03" data-group-label="Migration và hybrid" aria-labelledby="sap-title-M03">
         <div class="sap-lesson-meta">
@@ -7405,7 +7351,6 @@ Services: Control Tower, Organizations, Direct Connect, Route 53</template>
 <p><a href="https://docs.aws.amazon.com/prescriptive-guidance/latest/large-migration-guide/welcome.html" target="_blank" rel="noopener">AWS: large migration guide</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> Control Tower · Organizations · Direct Connect · Route 53</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="M04" data-scenario="M04" data-group-label="Migration và hybrid" aria-labelledby="sap-title-M04">
         <div class="sap-lesson-meta">
@@ -7529,7 +7474,6 @@ Services: Application Migration Service, EC2, IAM</template>
 <p><a href="https://docs.aws.amazon.com/mgn/latest/ug/what-is-application-migration-service.html" target="_blank" rel="noopener">AWS: Application Migration Service</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> Application Migration Service · EC2 · IAM</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="M05" data-scenario="M05" data-group-label="Migration và hybrid" aria-labelledby="sap-title-M05">
         <div class="sap-lesson-meta">
@@ -7656,7 +7600,6 @@ Services: DMS, SCT, RDS, Aurora</template>
 <p><a href="https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Introduction.html" target="_blank" rel="noopener">AWS: Database Migration Service</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> DMS · SCT · RDS · Aurora</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="M06" data-scenario="M06" data-group-label="Migration và hybrid" aria-labelledby="sap-title-M06">
         <div class="sap-lesson-meta">
@@ -7780,7 +7723,6 @@ Services: DataSync, Transfer Family, S3, Direct Connect, Snowball</template>
 <p><a href="https://docs.aws.amazon.com/datasync/latest/userguide/what-is-datasync.html" target="_blank" rel="noopener">AWS: DataSync</a> · <a href="https://aws.amazon.com/blogs/storage/aws-snow-device-updates/" target="_blank" rel="noopener">AWS: Snow availability update</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> DataSync · Transfer Family · S3 · Direct Connect · Snowball</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="M07" data-scenario="M07" data-group-label="Migration và hybrid" aria-labelledby="sap-title-M07">
         <div class="sap-lesson-meta">
@@ -7904,7 +7846,6 @@ Services: Directory Service, Managed Microsoft AD, AD Connector, Site-to-Site VP
 <p><a href="https://docs.aws.amazon.com/directoryservice/latest/admin-guide/what_is.html" target="_blank" rel="noopener">AWS: Directory Service</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> Directory Service · Managed Microsoft AD · AD Connector · Site-to-Site VPN</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="M08" data-scenario="M08" data-group-label="Migration và hybrid" aria-labelledby="sap-title-M08">
         <div class="sap-lesson-meta">
@@ -8025,7 +7966,6 @@ Services: Storage Gateway, S3, FSx, EFS</template>
 <p><a href="https://docs.aws.amazon.com/storagegateway/latest/userguide/WhatIsStorageGateway.html" target="_blank" rel="noopener">AWS: Storage Gateway</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> Storage Gateway · S3 · FSx · EFS</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="A01" data-scenario="A01" data-group-label="Modernization và integration" aria-labelledby="sap-title-A01">
         <div class="sap-lesson-meta">
@@ -8149,7 +8089,6 @@ Services: ECS, EKS, Fargate, ECR, Elastic Beanstalk, App Runner</template>
 <p><a href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_types.html" target="_blank" rel="noopener">AWS: ECS launch types</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> ECS · EKS · Fargate · ECR · Elastic Beanstalk · App Runner</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="A02" data-scenario="A02" data-group-label="Modernization và integration" aria-labelledby="sap-title-A02">
         <div class="sap-lesson-meta">
@@ -8273,7 +8212,6 @@ Services: S3, SQS, Lambda, Step Functions, Batch, ECS</template>
 <p><a href="https://docs.aws.amazon.com/step-functions/latest/dg/connect-to-resource.html" target="_blank" rel="noopener">AWS: Step Functions service integrations</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> S3 · SQS · Lambda · Step Functions · Batch · ECS</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="A03" data-scenario="A03" data-group-label="Modernization và integration" aria-labelledby="sap-title-A03">
         <div class="sap-lesson-meta">
@@ -8397,7 +8335,6 @@ Services: SQS, Lambda, DynamoDB</template>
 <p><a href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html" target="_blank" rel="noopener">AWS: SQS visibility timeout</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> SQS · Lambda · DynamoDB</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="A04" data-scenario="A04" data-group-label="Modernization và integration" aria-labelledby="sap-title-A04">
         <div class="sap-lesson-meta">
@@ -8527,7 +8464,6 @@ Services: SNS, SQS, EventBridge, Amazon MQ</template>
 <p><a href="https://docs.aws.amazon.com/sns/latest/dg/sns-sqs-as-subscriber.html" target="_blank" rel="noopener">AWS: SNS fan-out to SQS</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> SNS · SQS · EventBridge · Amazon MQ</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="A05" data-scenario="A05" data-group-label="Modernization và integration" aria-labelledby="sap-title-A05">
         <div class="sap-lesson-meta">
@@ -8654,7 +8590,6 @@ Services: Step Functions, Lambda, SQS, DynamoDB</template>
 <p><a href="https://docs.aws.amazon.com/step-functions/latest/dg/concepts-error-handling.html" target="_blank" rel="noopener">AWS: Step Functions error handling</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> Step Functions · Lambda · SQS · DynamoDB</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="X01" data-scenario="X01" data-group-label="Tình huống mở rộng" aria-labelledby="sap-title-X01">
         <div class="sap-lesson-meta">
@@ -8778,7 +8713,6 @@ Services: Textract, Comprehend, Transcribe, Translate, Polly, SageMaker AI</temp
 <p><a href="https://docs.aws.amazon.com/textract/latest/dg/what-is.html" target="_blank" rel="noopener">AWS: Textract</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> Textract · Comprehend · Transcribe · Translate · Polly · SageMaker AI</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="X02" data-scenario="X02" data-group-label="Tình huống mở rộng" aria-labelledby="sap-title-X02">
         <div class="sap-lesson-meta">
@@ -8902,7 +8836,6 @@ Services: IoT Core, IoT Greengrass, IoT Device Management, IoT Device Defender, 
 <p><a href="https://docs.aws.amazon.com/greengrass/v2/developerguide/what-is-iot-greengrass.html" target="_blank" rel="noopener">AWS: Greengrass v2</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> IoT Core · IoT Greengrass · IoT Device Management · IoT Device Defender · IoT SiteWise</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="X03" data-scenario="X03" data-group-label="Tình huống mở rộng" aria-labelledby="sap-title-X03">
         <div class="sap-lesson-meta">
@@ -9026,7 +8959,6 @@ Services: S3, MediaConvert, CloudFront, EventBridge, Kinesis Video Streams</temp
 <p><a href="https://docs.aws.amazon.com/mediaconvert/latest/ug/what-is.html" target="_blank" rel="noopener">AWS: MediaConvert</a> · <a href="https://docs.aws.amazon.com/elastictranscoder/latest/developerguide/history.html" target="_blank" rel="noopener">AWS: Elastic Transcoder support notice</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> S3 · MediaConvert · CloudFront · EventBridge · Kinesis Video Streams</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="X04" data-scenario="X04" data-group-label="Tình huống mở rộng" aria-labelledby="sap-title-X04">
         <div class="sap-lesson-meta">
@@ -9150,7 +9082,6 @@ Services: WorkSpaces, AppStream 2.0, Directory Service</template>
 <p><a href="https://docs.aws.amazon.com/appstream2/latest/developerguide/what-is-appstream.html" target="_blank" rel="noopener">AWS: application-streaming administration</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> WorkSpaces · AppStream 2.0 · Directory Service</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="X05" data-scenario="X05" data-group-label="Tình huống mở rộng" aria-labelledby="sap-title-X05">
         <div class="sap-lesson-meta">
@@ -9277,7 +9208,6 @@ Customer token → API → order-ownership check → response</code></pre>
 <p><a href="https://docs.aws.amazon.com/appflow/latest/userguide/what-is-appflow.html" target="_blank" rel="noopener">AWS: AppFlow</a> · <a href="https://docs.aws.amazon.com/ses/latest/dg/Welcome.html" target="_blank" rel="noopener">AWS: SES</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> AppFlow · EventBridge · SNS · SES · API Gateway · AppSync · Cognito</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="X06" data-scenario="X06" data-group-label="Tình huống mở rộng" aria-labelledby="sap-title-X06">
         <div class="sap-lesson-meta">
@@ -9398,7 +9328,6 @@ Services: OpenSearch Service, Neptune, DocumentDB, Keyspaces, RDS</template>
 <p><a href="https://docs.aws.amazon.com/opensearch-service/latest/developerguide/what-is.html" target="_blank" rel="noopener">AWS: OpenSearch Service</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> OpenSearch Service · Neptune · DocumentDB · Keyspaces · RDS</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="X07" data-scenario="X07" data-group-label="Tình huống mở rộng" aria-labelledby="sap-title-X07">
         <div class="sap-lesson-meta">
@@ -9522,7 +9451,6 @@ Services: Managed Blockchain, RDS, S3 Object Lock</template>
 <p><a href="https://docs.aws.amazon.com/managed-blockchain/latest/managementguide/what-is-managed-blockchain.html" target="_blank" rel="noopener">AWS: Managed Blockchain</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> Managed Blockchain · RDS · S3 Object Lock</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="X08" data-scenario="X08" data-group-label="Tình huống mở rộng" aria-labelledby="sap-title-X08">
         <div class="sap-lesson-meta">
@@ -9650,7 +9578,6 @@ Browser → Cognito sign-in → token → API Gateway → backend ownership chec
 <p><a href="https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html" target="_blank" rel="noopener">AWS: CloudFront access to private S3 content</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> S3 · CloudFront · Amplify · Cognito · API Gateway · Lambda · Lightsail</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="E01" data-scenario="E01" data-group-label="Emerging Topics (không tính điểm)" aria-labelledby="sap-title-E01">
         <div class="sap-lesson-meta">
@@ -9779,7 +9706,6 @@ Services: Bedrock Guardrails, Bedrock, KMS</template>
 <p><a href="https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html" target="_blank" rel="noopener">AWS: Bedrock Guardrails</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> Bedrock Guardrails · Bedrock · KMS</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="E02" data-scenario="E02" data-group-label="Emerging Topics (không tính điểm)" aria-labelledby="sap-title-E02">
         <div class="sap-lesson-meta">
@@ -9908,7 +9834,6 @@ Services: Bedrock AgentCore Identity, IAM, Cognito</template>
 <p><a href="https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/runtime-oauth.html" target="_blank" rel="noopener">AWS: AgentCore authentication</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> Bedrock AgentCore Identity · IAM · Cognito</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article>
       <article class="sap-lesson" id="E03" data-scenario="E03" data-group-label="Emerging Topics (không tính điểm)" aria-labelledby="sap-title-E03">
         <div class="sap-lesson-meta">
@@ -10037,7 +9962,6 @@ Services: Step Functions, API Gateway, Lambda, DynamoDB</template>
 <p><a href="https://docs.aws.amazon.com/step-functions/latest/dg/connect-to-resource.html#connect-wait-token" target="_blank" rel="noopener">AWS: Step Functions callback tasks</a></p>
 
         <p class="sap-services"><strong>Dịch vụ trong bài:</strong> Step Functions · API Gateway · Lambda · DynamoDB</p>
-        <p class="sap-disclaimer">Số liệu là giả định học tập. Phần kiểm chứng mô tả cách đánh giá khi triển khai, không phải kết quả lab đã chạy.</p>
       </article></div>
     </main>
   </div>

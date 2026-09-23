@@ -8,6 +8,9 @@
     <loc>https://read.hihudson.com/sap-c02/</loc>
   </url>
   <url>
+    <loc>https://read.hihudson.com/english-scenarios/</loc>
+  </url>
+  <url>
     <loc>https://read.hihudson.com/scs-c03/</loc>
   </url>
   <url>
@@ -424,7 +427,7 @@
   </url>
   <url>
     <loc>https://read.hihudson.com/sap-c02/reader.js</loc>
-    <lastmod>2026-09-21T23:52:43.100Z</lastmod>
+    <lastmod>2026-09-23T05:19:58.515Z</lastmod>
   </url>
   <url>
     <loc>https://read.hihudson.com/scs-c03/reader.css</loc>
@@ -432,6 +435,18 @@
   </url>
   <url>
     <loc>https://read.hihudson.com/scs-c03/reader.js</loc>
-    <lastmod>2026-09-22T09:43:37.327Z</lastmod>
+    <lastmod>2026-09-23T05:19:58.514Z</lastmod>
+  </url>
+  <url>
+    <loc>https://read.hihudson.com/english-scenarios/reader.js</loc>
+    <lastmod>2026-09-23T05:19:58.523Z</lastmod>
+  </url>
+  <url>
+    <loc>https://read.hihudson.com/english-scenarios/reader.css</loc>
+    <lastmod>2026-09-23T05:05:12.320Z</lastmod>
+  </url>
+  <url>
+    <loc>https://read.hihudson.com/scenario-reactions.js</loc>
+    <lastmod>2026-09-23T05:44:02.847Z</lastmod>
   </url>
 </urlset>

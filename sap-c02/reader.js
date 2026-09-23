@@ -111,7 +111,7 @@
     const article = byId.get(id);
     const title = article.querySelector('h1');
     document.getElementById('sap-current-group').textContent = article.dataset.groupLabel;
-    document.title = `${id}: ${title.textContent} | SAP-C02 | Hudson`;
+    document.title = `${id}: ${title.textContent} | SAP-C02`;
     pane.scrollTop = positions.get(id) || 0;
     updateSteps();
     revealActiveLink();

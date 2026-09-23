@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Khi mở một trang HTTPS, bạn không chỉ đang dùng một thuật toán mã hóa. Phía sau là nhiều cơ chế phối hợp để trả lời những câu hỏi khác nhau:  Làm sao gửi bí mật cho một người mà chưa có sẵn khóa chung">
+<meta property="og:type" content="article">
+<meta property="og:title" content="4 trụ cột của Internet">
+<meta property="og:url" content="https://read.hihudson.com/2026/09/23/2026-09-23-4-tru-cot-cua-internet/">
+<meta property="og:site_name" content="Hudson">
+<meta property="og:description" content="Khi mở một trang HTTPS, bạn không chỉ đang dùng một thuật toán mã hóa. Phía sau là nhiều cơ chế phối hợp để trả lời những câu hỏi khác nhau:  Làm sao gửi bí mật cho một người mà chưa có sẵn khóa chung">
+<meta property="og:locale" content="vi_VN">
+<meta property="article:published_time" content="2026-09-22T17:00:00.000Z">
+<meta property="article:modified_time" content="2026-09-23T13:04:10.022Z">
+<meta property="article:author" content="Hudson">
+<meta name="twitter:card" content="summary">
+    <link rel="canonical" href="https://read.hihudson.com/2026/09/23/2026-09-23-4-tru-cot-cua-internet/">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"4 trụ cột của Internet","description":"Khi mở một trang HTTPS, bạn không chỉ đang dùng một thuật toán mã hóa. Phía sau là nhiều cơ chế phối hợp để trả lời những câu hỏi khác nhau: Làm sao gửi bí mật cho một người mà chưa có sẵn khóa chung?","inLanguage":"vi","url":"https://read.hihudson.com/2026/09/23/2026-09-23-4-tru-cot-cua-internet/","mainEntityOfPage":{"@type":"WebPage","@id":"https://read.hihudson.com/2026/09/23/2026-09-23-4-tru-cot-cua-internet/"},"datePublished":"2026-09-22T17:00:00.000Z","dateModified":"2026-09-23T13:04:10.022Z","author":{"@type":"Person","name":"Hudson","url":"https://read.hihudson.com/"},"publisher":{"@type":"Person","name":"Hudson","url":"https://read.hihudson.com/"}}</script>
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>4 trụ cột của Internet</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">News</a></li><!--
+     --><!--
+       --><li><a href="/blog/">Home</a></li><!--
+     --><!--
+       --><li><a href="/english/">English</a></li><!--
+     --><!--
+       --><li><a href="/english-scenarios/">Luyện tiếng Anh</a></li><!--
+     --><!--
+       --><li><a href="/sap-c02/">SAP-C02</a></li><!--
+     --><!--
+       --><li><a href="/scs-c03/">SCS-C03</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        <li><a class="icon" aria-label="Home" href="/"><i class="fa-solid fa-house" aria-hidden="true" onmouseover="$('#i-home').toggle();" onmouseout="$('#i-home').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2026/09/19/2026-09-19-docker-ci-cd-testing-iac-auto-scale-tat-ca-ra-doi-chi-vi-noi-so-surprise-va-uncertainty/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-home" class="info" style="display:none;">Home</span>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://read.hihudson.com/2026/09/23/2026-09-23-4-tru-cot-cua-internet/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://read.hihudson.com/2026/09/23/2026-09-23-4-tru-cot-cua-internet/&text=4 trụ cột của Internet" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://read.hihudson.com/2026/09/23/2026-09-23-4-tru-cot-cua-internet/&title=4 trụ cột của Internet" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://read.hihudson.com/2026/09/23/2026-09-23-4-tru-cot-cua-internet/&is_video=false&description=4 trụ cột của Internet" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=4 trụ cột của Internet&body=Check out this article: https://read.hihudson.com/2026/09/23/2026-09-23-4-tru-cot-cua-internet/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://read.hihudson.com/2026/09/23/2026-09-23-4-tru-cot-cua-internet/&title=4 trụ cột của Internet" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://read.hihudson.com/2026/09/23/2026-09-23-4-tru-cot-cua-internet/&title=4 trụ cột của Internet" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://read.hihudson.com/2026/09/23/2026-09-23-4-tru-cot-cua-internet/&title=4 trụ cột của Internet" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://read.hihudson.com/2026/09/23/2026-09-23-4-tru-cot-cua-internet/&title=4 trụ cột của Internet" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://read.hihudson.com/2026/09/23/2026-09-23-4-tru-cot-cua-internet/&name=4 trụ cột của Internet&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://read.hihudson.com/2026/09/23/2026-09-23-4-tru-cot-cua-internet/&t=4 trụ cột của Internet" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Ma-hoa-bat-doi-xung-RSA"><span class="toc-number">1.</span> <span class="toc-text">1. Mã hóa bất đối xứng: RSA</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Ma-hoa-doi-xung-AES"><span class="toc-number">2.</span> <span class="toc-text">2. Mã hóa đối xứng: AES</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Chu-ky-so-ECDSA"><span class="toc-number">3.</span> <span class="toc-text">3. Chữ ký số: ECDSA</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Hashing-SHA"><span class="toc-number">4.</span> <span class="toc-text">4. Hashing: SHA</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ECDHE-Lam-sao-hai-ben-co-cung-bi-mat-ma-khong-gui-no-qua-mang"><span class="toc-number">5.</span> <span class="toc-text">ECDHE: Làm sao hai bên có cùng bí mật mà không gửi nó qua mạng?</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Y-tuong-cot-loi-Vi-du-ve-mau-sac"><span class="toc-number">5.1.</span> <span class="toc-text">Ý tưởng cốt lõi: Ví dụ về màu sắc</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ECDHE-giai-thich-tung-ky-tu-la-gi"><span class="toc-number">5.2.</span> <span class="toc-text">ECDHE giải thích từng ký tự là gì?</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ghep-lai-Khi-ban-mo-mot-trang-HTTPS"><span class="toc-number">6.</span> <span class="toc-text">Ghép lại: Khi bạn mở một trang HTTPS</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        4 trụ cột của Internet
+    </h1>
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Hudson</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2026-09-22T17:00:00.000Z" class="dt-published" itemprop="datePublished">Sep 23, 2026</time>
+        
+      
+    </div>
+
+
+      
+      <span class="reading-time">· ~11 phút đọc</span>
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    
+    <p>Khi mở một trang HTTPS, bạn không chỉ đang dùng một thuật toán mã hóa. Phía sau là nhiều cơ chế phối hợp để trả lời những câu hỏi khác nhau:</p>
+<ul>
+<li><strong>Làm sao gửi bí mật cho một người mà chưa có sẵn khóa chung?</strong> Mã hóa bất đối xứng, ví dụ RSA.</li>
+<li><strong>Làm sao mã hóa cả trang web hay video thật nhanh?</strong> Mã hóa đối xứng, ví dụ AES.</li>
+<li><strong>Làm sao xác minh đúng người đang nói chuyện với mình?</strong> Chữ ký số, ví dụ ECDSA, kết hợp với chứng chỉ và kiểm tra danh tính.</li>
+<li><strong>Làm sao tạo một dấu vân tay cho dữ liệu?</strong> Hashing, ví dụ SHA-256.</li>
+</ul>
+<p>Tôi gọi đây là <strong>4 trụ cột của Internet</strong>, cụ thể hơn là bốn mảnh ghép mật mã quan trọng giúp bảo vệ giao tiếp trên Internet. Đây không phải bốn nhóm hoàn toàn tách biệt: <strong>chữ ký số cũng thuộc mật mã bất đối xứng</strong>, còn trao đổi khóa ECDHE là mảnh ghép nối chúng lại trong HTTPS hiện đại.</p>
+<hr>
+<h2 id="1-Ma-hoa-bat-doi-xung-RSA"><a href="#1-Ma-hoa-bat-doi-xung-RSA" class="headerlink" title="1. Mã hóa bất đối xứng: RSA"></a>1. Mã hóa bất đối xứng: RSA</h2><p>Hãy tưởng tượng bạn có một <strong>ổ khóa công khai</strong>. Ai cũng có thể lấy ổ khóa đó để khóa một chiếc hộp gửi cho bạn, nhưng <strong>chỉ bạn giữ chìa khóa để mở hộp</strong>.</p>
+<p>Mã hóa bất đối xứng có ý tưởng tương tự, với hai khóa liên quan về mặt toán học:</p>
+<ul>
+<li><strong>Public Key (khóa công khai):</strong> Có thể chia sẻ cho người khác.</li>
+<li><strong>Private Key (khóa bí mật):</strong> Phải giữ kín.</li>
+</ul>
+<p>Khi dùng RSA để mã hóa đúng cách, chẳng hạn với RSA-OAEP:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Người gửi + Public Key của người nhận → Mã hóa dữ liệu</span><br><span class="line">Người nhận + Private Key tương ứng  → Giải mã dữ liệu</span><br></pre></td></tr></table></figure>
+
+<p><strong>Điểm hay:</strong> Người gửi không cần biết Private Key và hai bên không cần có sẵn một khóa bí mật chung.</p>
+<p><strong>Điểm khó:</strong> Bạn phải xác minh Public Key đó thực sự thuộc về người muốn liên lạc. Nếu hacker tráo Public Key của họ vào, bạn có thể đang khóa chiếc hộp cho nhầm người.</p>
+<p>RSA cũng không phù hợp để mã hóa trực tiếp cả video hay file lớn: nó chậm hơn mã hóa đối xứng và giới hạn kích thước thông điệp có thể mã hóa. Thực tế thường dùng <strong>mã hóa lai</strong>: cơ chế bất đối xứng bảo vệ hoặc thiết lập khóa, còn thuật toán đối xứng mã hóa dữ liệu lớn.</p>
+<p>Một chỗ dễ nhầm: <strong>RSA có thể dùng cho cả mã hóa và chữ ký số, nhưng đó là các cơ chế khác nhau</strong>, dùng các scheme khác nhau. Không nên hiểu chữ ký số đơn giản là “mã hóa bằng Private Key”.</p>
+<p>Trong <strong>TLS 1.3, RSA không còn được dùng để vận chuyển khóa mã hóa phiên</strong>. Server vẫn có thể dùng RSA-PSS để ký dữ liệu bắt tay; việc thỏa thuận khóa có thể do ECDHE đảm nhiệm.</p>
+<hr>
+<h2 id="2-Ma-hoa-doi-xung-AES"><a href="#2-Ma-hoa-doi-xung-AES" class="headerlink" title="2. Mã hóa đối xứng: AES"></a>2. Mã hóa đối xứng: AES</h2><p>Nếu bất đối xứng giống một ổ khóa công khai và một chìa khóa riêng, thì đối xứng giống <strong>hai người cùng giữ bản sao của một chìa khóa bí mật</strong>.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Dữ liệu gốc + Secret Key → Mã hóa → Dữ liệu đã mã hóa</span><br><span class="line">Dữ liệu đã mã hóa + cùng Secret Key → Giải mã → Dữ liệu gốc</span><br></pre></td></tr></table></figure>
+
+<p><strong>AES (Advanced Encryption Standard)</strong> là một thuật toán mã hóa đối xứng phổ biến, hỗ trợ khóa 128, 192 hoặc 256 bit.</p>
+<p><strong>Điểm mạnh:</strong> Rất nhanh, phù hợp để mã hóa lượng dữ liệu lớn như trang web, ảnh, video hoặc file tải xuống.</p>
+<p><strong>Câu hỏi còn lại:</strong> Làm sao hai bên có được cùng một Secret Key mà không để lộ nó khi truyền qua mạng? Đây là lúc cơ chế trao đổi khóa như ECDHE xuất hiện.</p>
+<p>Trong HTTPS, ta thường gặp <strong>AES-GCM</strong>, không chỉ tên AES:</p>
+<ul>
+<li><strong>AES</strong> là thuật toán mã hóa khối.</li>
+<li><strong>GCM</strong> là chế độ giúp vừa mã hóa vừa xác thực dữ liệu, phát hiện việc sửa đổi trái phép.</li>
+<li>GCM cần nonce không bị lặp lại với cùng một khóa. <strong>Thuật toán mạnh không cứu được cách sử dụng sai.</strong></li>
+</ul>
+<p>TLS 1.3 cũng hỗ trợ <strong>ChaCha20-Poly1305</strong> cho vai trò mã hóa có xác thực, nên không phải kết nối HTTPS nào cũng dùng AES.</p>
+<hr>
+<h2 id="3-Chu-ky-so-ECDSA"><a href="#3-Chu-ky-so-ECDSA" class="headerlink" title="3. Chữ ký số: ECDSA"></a>3. Chữ ký số: ECDSA</h2><p><strong>ECDSA không phải thuật toán mã hóa.</strong> Nó là thuật toán <strong>chữ ký số</strong>, viết tắt của <em>Elliptic Curve Digital Signature Algorithm</em>.</p>
+<p>Mã hóa trả lời: <em>“Làm sao để người khác không đọc được?”</em></p>
+<p>Chữ ký số trả lời: <em>“Dữ liệu này có được ký bằng đúng Private Key tương ứng, và có bị thay đổi sau khi ký không?”</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Người ký:   Private Key + thông điệp → Tạo chữ ký</span><br><span class="line">Người nhận: Public Key + thông điệp + chữ ký → Kiểm tra chữ ký</span><br></pre></td></tr></table></figure>
+
+<p><strong>Chữ ký không che giấu nội dung.</strong> Người khác vẫn có thể đọc thông điệp nếu nó không được mã hóa riêng. Nhưng nếu thông điệp bị sửa, chữ ký cũ sẽ không còn hợp lệ khi kiểm tra với thông điệp mới.</p>
+<p>Để từ “đúng khóa” đi đến “đúng Google”, trình duyệt còn phải <strong>xác minh chứng chỉ, chuỗi tin cậy và tên miền</strong>. Chữ ký hợp lệ của một khóa không rõ nguồn gốc chưa chứng minh được danh tính của website.</p>
+<p>Trong một lần bắt tay TLS 1.3 dùng chứng chỉ, Server có thể dùng Private Key ECDSA tương ứng với chứng chỉ để ký dữ liệu bắt tay. Trình duyệt dùng Public Key trong chứng chỉ để kiểm tra.</p>
+<p>Hai cái tên rất dễ lẫn:</p>
+<ul>
+<li><strong>ECDSA:</strong> Ký và kiểm tra chữ ký.</li>
+<li><strong>ECDHE:</strong> Thỏa thuận bí mật chung để dẫn xuất khóa.</li>
+</ul>
+<p>Cùng dùng toán học đường cong Elliptic, nhưng <strong>khác nhiệm vụ</strong>, không thể lấy cái này thay cho cái kia.</p>
+<hr>
+<h2 id="4-Hashing-SHA"><a href="#4-Hashing-SHA" class="headerlink" title="4. Hashing: SHA"></a>4. Hashing: SHA</h2><p>Hashing giống như lấy <strong>dấu vân tay của dữ liệu</strong>: đưa một thông điệp vào hàm băm và nhận lại một giá trị có độ dài cố định.</p>
+<p>Ví dụ, <strong>SHA-256</strong> luôn tạo ra kết quả dài 256 bit, dù đầu vào là một câu ngắn hay một file lớn.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Dữ liệu → SHA-256 → Giá trị hash 256 bit</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Cùng đầu vào thì luôn có cùng kết quả.</li>
+<li>Thay đổi rất nhỏ ở đầu vào thường khiến kết quả thay đổi mạnh.</li>
+<li>Hàm băm mật mã được thiết kế để rất khó tìm đầu vào từ hash hoặc tìm hai đầu vào khác nhau có cùng hash.</li>
+</ul>
+<p><strong>Hashing không phải mã hóa:</strong> Không có Private Key hay Secret Key để “giải mã” hash về dữ liệu ban đầu. Tuy nhiên, nếu đầu vào dễ đoán, người ta vẫn có thể thử từng giá trị rồi so sánh hash.</p>
+<p>Và <strong>hash không bảo đảm mỗi dữ liệu có một dấu vân tay duy nhất tuyệt đối</strong>. Va chạm vẫn tồn tại về mặt toán học; yêu cầu an toàn là việc tìm ra chúng phải không khả thi về mặt tính toán.</p>
+<p>Một giới hạn quan trọng: <strong>hash đơn thuần không xác thực người gửi</strong>. Nếu hacker sửa được cả file lẫn giá trị hash đính kèm, họ có thể tính lại hash cho file giả. Muốn chống việc đó, cần nguồn hash đáng tin cậy, chữ ký số hoặc cơ chế có khóa như HMAC.</p>
+<p>Trong TLS 1.3, hàm băm được dùng để tạo hash của dữ liệu bắt tay và làm nền tảng cho <strong>HKDF</strong>, cơ chế dẫn xuất khóa. Nó hỗ trợ quá trình xác thực và tạo khóa, chứ không trực tiếp mã hóa trang web.</p>
+<p><strong>SHA là tên một họ thuật toán</strong>, không phải tất cả đều còn an toàn cho mọi mục đích. SHA-256 thuộc SHA-2; không nên nhầm nó với SHA-1, vốn đã bị phá khả năng chống va chạm.</p>
+<hr>
+<h2 id="ECDHE-Lam-sao-hai-ben-co-cung-bi-mat-ma-khong-gui-no-qua-mang"><a href="#ECDHE-Lam-sao-hai-ben-co-cung-bi-mat-ma-khong-gui-no-qua-mang" class="headerlink" title="ECDHE: Làm sao hai bên có cùng bí mật mà không gửi nó qua mạng?"></a>ECDHE: Làm sao hai bên có cùng bí mật mà không gửi nó qua mạng?</h2><p><strong>Diffie-Hellman (một biến thể hiện đại là ECDHE)</strong> là thuật toán giúp 2 người, ví dụ máy của bạn và Server, <strong>tự tạo ra cùng một bí mật chung để dẫn xuất khóa mã hóa đối xứng, mà KHÔNG CẦN gửi bí mật chung đó qua mạng</strong>.</p>
+<p>Dù hacker có nghe lén và capture lại 100% dữ liệu truyền qua truyền lại, việc tính ra bí mật chung đó vẫn <strong>không khả thi về mặt tính toán với các phương pháp tấn công cổ điển hiện biết</strong>, nếu dùng tham số đủ mạnh và triển khai đúng. Đây không phải bảo đảm tuyệt đối: Diffie-Hellman tự nó <strong>không ngăn được tấn công đứng giữa chủ động (MITM)</strong> nếu thiếu xác thực.</p>
+<h3 id="Y-tuong-cot-loi-Vi-du-ve-mau-sac"><a href="#Y-tuong-cot-loi-Vi-du-ve-mau-sac" class="headerlink" title="Ý tưởng cốt lõi: Ví dụ về màu sắc"></a>Ý tưởng cốt lõi: Ví dụ về màu sắc</h3><p>Hãy tưởng tượng Diffie-Hellman hoạt động giống như việc <strong>trộn màu sơn</strong>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[Máy bạn]                                                    [Server]</span><br><span class="line">   │                                                            │</span><br><span class="line">   ├────────── Chốt chung 1 màu công khai (VD: Vàng) ───────────┤</span><br><span class="line">   │                                                            │</span><br><span class="line">   │ 1. Tự chọn 1 màu bí mật (Đỏ)   1. Tự chọn 1 màu bí mật (Xanh)│</span><br><span class="line">   │ 2. Trộn: Vàng + Đỏ &#x3D; Cam       2. Trộn: Vàng + Xanh &#x3D; Lục  │</span><br><span class="line">   │                                                            │</span><br><span class="line">   ├── Gửi màu Cam qua mạng ──────────&gt;                         │</span><br><span class="line">   │                         &lt;────────── Gửi màu Lục qua mạng ──┤</span><br><span class="line">   │                                                            │</span><br><span class="line">   │ 3. Lấy Lục + Đỏ (bí mật)       3. Lấy Cam + Xanh (bí mật)  │</span><br><span class="line">   │    &#x3D;&#x3D;&gt; Ra màu Nâu              &#x3D;&#x3D;&gt; Ra màu Nâu              │</span><br><span class="line">   ▼                                                            ▼</span><br><span class="line"> [KẾT QUẢ: Cả 2 cùng có màu NÂU làm bí mật chung mà không bao giờ gửi màu Nâu đi]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>Hacker thấy gì trên mạng?</strong> Thấy màu Vàng (công khai), màu Cam, màu Lục.</li>
+<li><strong>Tại sao Hacker thua?</strong> Trong mô hình minh họa này, từ Cam và Lục <strong>rất khó (gần như không thể) bóc tách ngược lại</strong> để tìm ra màu Đỏ hay Xanh ban đầu. Vì thiếu màu bí mật, Hacker không dễ pha ra màu Nâu. Màu sơn chỉ là phép ví von; độ an toàn thực tế dựa trên các bài toán khó trong nhóm toán học được chọn.</li>
+</ul>
+<h3 id="ECDHE-giai-thich-tung-ky-tu-la-gi"><a href="#ECDHE-giai-thich-tung-ky-tu-la-gi" class="headerlink" title="ECDHE giải thích từng ký tự là gì?"></a>ECDHE giải thích từng ký tự là gì?</h3><p>Tên gọi <strong>ECDHE</strong> ghép từ 3 thành phần:</p>
+<ol>
+<li><strong>DH (Diffie-Hellman):</strong> Tên của 2 nhà khoa học công bố cơ chế trao đổi khóa này từ năm 1976.</li>
+<li><strong>EC (Elliptic Curve - Đường cong Elliptic):</strong> Thay vì dùng lũy thừa modulo số nguyên lớn như DH truyền thống, ECDHE dùng <strong>các phép toán trên điểm của đường cong Elliptic trên trường hữu hạn</strong>. Nó đạt <strong>mức an toàn tương đương với khóa nhỏ hơn nhiều</strong>, giúp giảm lượng dữ liệu trao đổi; hiệu năng CPU còn tùy thuật toán và cách triển khai.</li>
+<li><strong>E (Ephemeral - Ngắn hạn/Tạm thời):</strong><ul>
+<li>Mỗi lần bắt tay HTTPS có trao đổi ECDHE mới, mỗi bên tạo một cặp khóa Diffie-Hellman <strong>mới</strong> và xóa khóa bí mật tạm thời khi không còn cần. Không phải mỗi lần vào web đều tạo kết nối hay bắt tay mới.</li>
+<li><strong>Tác dụng (Forward Secrecy):</strong> Dù sau này lộ Private Key dùng để xác thực Server, hacker cũng không thể chỉ dựa vào khóa đó để giải mã lại các phiên ECDHE trong quá khứ, nếu các bí mật tạm thời đã được xóa an toàn.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="Ghep-lai-Khi-ban-mo-mot-trang-HTTPS"><a href="#Ghep-lai-Khi-ban-mo-mot-trang-HTTPS" class="headerlink" title="Ghép lại: Khi bạn mở một trang HTTPS"></a>Ghép lại: Khi bạn mở một trang HTTPS</h2><p>Trong một lần bắt tay TLS 1.3 dùng chứng chỉ và ECDHE, các cơ chế phối hợp như sau. Đây là cách tách vai trò để dễ hiểu, không phải thứ tự chính xác của từng gói tin:</p>
+<ol>
+<li><strong>Xác thực Server:</strong> Server dùng Private Key tương ứng với Certificate để ký dữ liệu bắt tay, ví dụ bằng ECDSA hoặc RSA-PSS. Trình duyệt kiểm tra chữ ký, chuỗi chứng chỉ và tên miền để xác minh <em>“Tôi đúng là Google, không phải giả mạo”</em>.</li>
+<li><strong>Thỏa thuận bí mật:</strong> Hai bên chạy ECDHE để tự suy ra cùng một bí mật chung mà không truyền bí mật đó qua mạng.</li>
+<li><strong>Dẫn xuất khóa:</strong> TLS dùng HKDF dựa trên hàm băm như SHA-256 hoặc SHA-384, kết hợp bí mật chung với ngữ cảnh bắt tay để dẫn xuất các khóa. Hai chiều truyền có khóa riêng, không dùng một khóa duy nhất cho mọi việc.</li>
+<li><strong>Truyền dữ liệu:</strong> AES-GCM hoặc ChaCha20-Poly1305 mã hóa và xác thực dữ liệu web/video với tốc độ cao.</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Mảnh ghép</th>
+<th>Vai trò chính</th>
+<th>Không nên nhầm với</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>RSA-OAEP</td>
+<td>Mã hóa bất đối xứng</td>
+<td>Cơ chế trao đổi khóa của TLS 1.3</td>
+</tr>
+<tr>
+<td>AES-GCM</td>
+<td>Mã hóa và xác thực dữ liệu bằng khóa đối xứng</td>
+<td>Tự xác minh danh tính website</td>
+</tr>
+<tr>
+<td>ECDSA / RSA-PSS</td>
+<td>Chữ ký số</td>
+<td>Mã hóa để che giấu nội dung</td>
+</tr>
+<tr>
+<td>SHA-256 / SHA-384</td>
+<td>Hashing, nền tảng cho các cơ chế khác</td>
+<td>Mã hóa có thể giải mã ngược</td>
+</tr>
+<tr>
+<td>ECDHE</td>
+<td>Thỏa thuận bí mật chung</td>
+<td>Chữ ký số hoặc mã hóa dữ liệu lớn</td>
+</tr>
+</tbody></table>
+<p><strong>Tóm lại: bất đối xứng giải quyết bài toán khóa và xác thực theo từng cơ chế; đối xứng xử lý dữ liệu lớn; chữ ký chứng minh quyền sở hữu khóa ký; hashing tạo dấu vân tay cho dữ liệu. ECDHE giúp hai bên thống nhất bí mật để các mảnh ghép đó cùng bảo vệ một kết nối HTTPS.</strong></p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">News</a></li>
+        
+          <li><a href="/blog/">Home</a></li>
+        
+          <li><a href="/english/">English</a></li>
+        
+          <li><a href="/english-scenarios/">Luyện tiếng Anh</a></li>
+        
+          <li><a href="/sap-c02/">SAP-C02</a></li>
+        
+          <li><a href="/scs-c03/">SCS-C03</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Ma-hoa-bat-doi-xung-RSA"><span class="toc-number">1.</span> <span class="toc-text">1. Mã hóa bất đối xứng: RSA</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Ma-hoa-doi-xung-AES"><span class="toc-number">2.</span> <span class="toc-text">2. Mã hóa đối xứng: AES</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Chu-ky-so-ECDSA"><span class="toc-number">3.</span> <span class="toc-text">3. Chữ ký số: ECDSA</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Hashing-SHA"><span class="toc-number">4.</span> <span class="toc-text">4. Hashing: SHA</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ECDHE-Lam-sao-hai-ben-co-cung-bi-mat-ma-khong-gui-no-qua-mang"><span class="toc-number">5.</span> <span class="toc-text">ECDHE: Làm sao hai bên có cùng bí mật mà không gửi nó qua mạng?</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Y-tuong-cot-loi-Vi-du-ve-mau-sac"><span class="toc-number">5.1.</span> <span class="toc-text">Ý tưởng cốt lõi: Ví dụ về màu sắc</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ECDHE-giai-thich-tung-ky-tu-la-gi"><span class="toc-number">5.2.</span> <span class="toc-text">ECDHE giải thích từng ký tự là gì?</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ghep-lai-Khi-ban-mo-mot-trang-HTTPS"><span class="toc-number">6.</span> <span class="toc-text">Ghép lại: Khi bạn mở một trang HTTPS</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://read.hihudson.com/2026/09/23/2026-09-23-4-tru-cot-cua-internet/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://read.hihudson.com/2026/09/23/2026-09-23-4-tru-cot-cua-internet/&text=4 trụ cột của Internet" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://read.hihudson.com/2026/09/23/2026-09-23-4-tru-cot-cua-internet/&title=4 trụ cột của Internet" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://read.hihudson.com/2026/09/23/2026-09-23-4-tru-cot-cua-internet/&is_video=false&description=4 trụ cột của Internet" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=4 trụ cột của Internet&body=Check out this article: https://read.hihudson.com/2026/09/23/2026-09-23-4-tru-cot-cua-internet/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://read.hihudson.com/2026/09/23/2026-09-23-4-tru-cot-cua-internet/&title=4 trụ cột của Internet" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://read.hihudson.com/2026/09/23/2026-09-23-4-tru-cot-cua-internet/&title=4 trụ cột của Internet" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://read.hihudson.com/2026/09/23/2026-09-23-4-tru-cot-cua-internet/&title=4 trụ cột của Internet" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://read.hihudson.com/2026/09/23/2026-09-23-4-tru-cot-cua-internet/&title=4 trụ cột của Internet" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://read.hihudson.com/2026/09/23/2026-09-23-4-tru-cot-cua-internet/&name=4 trụ cột của Internet&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://read.hihudson.com/2026/09/23/2026-09-23-4-tru-cot-cua-internet/&t=4 trụ cột của Internet" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="home" class="icon" href="/"><i class="fa-solid fa-house fa-lg" aria-hidden="true"></i> Home</a>
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">News</a></li><!--
+     --><!--
+       --><li><a href="/blog/">Home</a></li><!--
+     --><!--
+       --><li><a href="/english/">English</a></li><!--
+     --><!--
+       --><li><a href="/english-scenarios/">Luyện tiếng Anh</a></li><!--
+     --><!--
+       --><li><a href="/sap-c02/">SAP-C02</a></li><!--
+     --><!--
+       --><li><a href="/scs-c03/">SCS-C03</a></li><!--
+     --><!--
+     --><li><a href="/english/">English</a></li><!--
+     --><li><a href="/til/">TIL</a></li>
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <a id="floating-blog-home" href="/blog/" aria-label="Về danh sách bài blog">
+      <i class="fa-solid fa-house" aria-hidden="true"></i> Home
+    </a>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

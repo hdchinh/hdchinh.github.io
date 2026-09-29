@@ -14,11 +14,11 @@
 <meta property="og:description" content="Auth &#x2F; Identity — Mental Model1. OAuth 2.0 OAuth 2.0 chuẩn hóa cách Client lấy access token để gọi Resource Server. Điểm chính là quyền được cấp và cách kiểm tra quyền đó, không phải token có format g">
 <meta property="og:locale" content="vi_VN">
 <meta property="article:published_time" content="2026-08-28T17:00:00.000Z">
-<meta property="article:modified_time" content="2026-09-29T07:42:49.992Z">
+<meta property="article:modified_time" content="2026-09-29T13:03:13.476Z">
 <meta property="article:author" content="Hudson">
 <meta name="twitter:card" content="summary">
     <link rel="canonical" href="https://read.hihudson.com/2026/08/29/2026-08-29-auth-identity-mental-model/">
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Auth / Identity — Mental Model","description":"Auth / Identity — Mental Model1. OAuth 2.0 OAuth 2.0 chuẩn hóa cách Client lấy access token để gọi Resource Server. Điểm chính là quyền được cấp và cách kiểm tra quyền đó, không phải token có format g","inLanguage":"vi","url":"https://read.hihudson.com/2026/08/29/2026-08-29-auth-identity-mental-model/","mainEntityOfPage":{"@type":"WebPage","@id":"https://read.hihudson.com/2026/08/29/2026-08-29-auth-identity-mental-model/"},"datePublished":"2026-08-28T17:00:00.000Z","dateModified":"2026-09-29T07:42:49.992Z","author":{"@type":"Person","name":"Hudson","url":"https://read.hihudson.com/"},"publisher":{"@type":"Person","name":"Hudson","url":"https://read.hihudson.com/"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Auth / Identity — Mental Model","description":"Auth / Identity — Mental Model1. OAuth 2.0 OAuth 2.0 chuẩn hóa cách Client lấy access token để gọi Resource Server. Điểm chính là quyền được cấp và cách kiểm tra quyền đó, không phải token có format g","inLanguage":"vi","url":"https://read.hihudson.com/2026/08/29/2026-08-29-auth-identity-mental-model/","mainEntityOfPage":{"@type":"WebPage","@id":"https://read.hihudson.com/2026/08/29/2026-08-29-auth-identity-mental-model/"},"datePublished":"2026-08-28T17:00:00.000Z","dateModified":"2026-09-29T13:03:13.476Z","author":{"@type":"Person","name":"Hudson","url":"https://read.hihudson.com/"},"publisher":{"@type":"Person","name":"Hudson","url":"https://read.hihudson.com/"}}</script>
     
     
       
@@ -170,11 +170,12 @@
 <p><strong>OAuth 2.0 chuẩn hóa cách Client lấy access token để gọi Resource Server. Điểm chính là quyền được cấp và cách kiểm tra quyền đó, không phải token có format gì.</strong></p>
 </blockquote>
 <p>Authorization Server phát token; Resource Server kiểm tra token để biết request đại diện cho client/user nào và được làm gì. Token có thể là JWT hoặc chỉ là random opaque string. Bên dưới vẫn là database, API endpoints, expiry và permission checks, không có magic.</p>
-<h3 id="Server-to-server"><a href="#Server-to-server" class="headerlink" title="Server-to-server"></a>Server-to-server</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">client_id + client_secret</span><br><span class="line">→ Authorization Server cấp access_token</span><br><span class="line">→ Client dùng token gọi Resource Server</span><br></pre></td></tr></table></figure>
+<h3 id="Server-to-server"><a href="#Server-to-server" class="headerlink" title="Server-to-server"></a>Server-to-server</h3><p>Ví dụ, một job cần gọi API báo cáo của công ty:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">job gửi client_id + client_secret cho Authorization Server</span><br><span class="line">→ nhận access_token có quyền đọc báo cáo</span><br><span class="line">→ gọi GET &#x2F;reports với token</span><br><span class="line">→ Report API kiểm token và trả dữ liệu</span><br></pre></td></tr></table></figure>
 
-<p><code>client_id</code> là định danh unique; <code>client_secret</code> là random secret đủ mạnh. Ở đây client xin quyền cho chính nó, không có user tham gia.</p>
-<h3 id="User-delegated-flow"><a href="#User-delegated-flow" class="headerlink" title="User-delegated flow"></a>User-delegated flow</h3><p>Khi client cần quyền thay mặt user, user login và đồng ý cấp quyền tại Authorization Server:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Client redirect user đến Authorization Server</span><br><span class="line">→ user login + consent</span><br><span class="line">→ Authorization Server redirect authorization_code về Client</span><br><span class="line">→ Client đổi code lấy access_token (dùng PKCE hoặc client credentials tùy loại client)</span><br><span class="line">→ Client gọi Resource Server</span><br></pre></td></tr></table></figure>
+<p><code>client_id</code> là định danh unique; <code>client_secret</code> là random secret đủ mạnh. Ở đây job xin quyền cho chính nó, không có user tham gia.</p>
+<h3 id="User-delegated-flow"><a href="#User-delegated-flow" class="headerlink" title="User-delegated flow"></a>User-delegated flow</h3><p>Ví dụ, một app muốn đọc lịch Google của user:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">App đưa user đến Google → user login và đồng ý quyền đọc lịch</span><br><span class="line">→ Google redirect authorization_code về App</span><br><span class="line">→ App đổi code lấy access_token (dùng PKCE hoặc client credentials tùy loại client)</span><br><span class="line">→ App dùng token gọi Calendar API → nhận sự kiện lịch</span><br></pre></td></tr></table></figure>
 
 <p><strong>Code đi qua browser redirect, access token thì không.</strong> Code có thể chỉ là random string; Authorization Server lưu nó cùng user, client, scope, hạn dùng và trạng thái đã sử dụng để kiểm tra khi đổi token.</p>
 <hr>
@@ -182,43 +183,45 @@
 <p><strong>OAuth cho client quyền truy cập tài nguyên; OIDC cho app biết user đã đăng nhập là ai.</strong></p>
 </blockquote>
 <p>OIDC xây trên OAuth 2.0 và thêm <strong>ID Token</strong>, thường là JWT. Identity Provider xác thực user rồi phát ID Token cho app. App kiểm tra chữ ký, issuer, audience và hạn dùng trước khi tin danh tính trong token.</p>
-<p>Ví dụ, <code>iss</code> cho biết ai phát token, <code>sub</code> là định danh user ở nơi đó:</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"iss"</span>: <span class="string">"https://accounts.google.com"</span>,</span><br><span class="line">  <span class="attr">"sub"</span>: <span class="string">"user_123"</span>,</span><br><span class="line">  <span class="attr">"aud"</span>: <span class="string">"google-drive-client"</span>,</span><br><span class="line">  <span class="attr">"exp"</span>: <span class="number">123456</span>,</span><br><span class="line">  <span class="attr">"iat"</span>: <span class="number">123000</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Ví dụ, user chọn <strong>Login with Google</strong> trong app Notes. App nhận ID Token chứa:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"iss"</span>: <span class="string">"https://accounts.google.com"</span>,</span><br><span class="line">  <span class="attr">"sub"</span>: <span class="string">"user_123"</span>,</span><br><span class="line">  <span class="attr">"aud"</span>: <span class="string">"notes-client"</span>,</span><br><span class="line">  <span class="attr">"exp"</span>: <span class="number">1800000300</span>,</span><br><span class="line">  <span class="attr">"iat"</span>: <span class="number">1800000000</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>Từ danh tính đã xác minh, app có thể tạo <strong>local session riêng</strong>. Session đó không bắt buộc là JWT; random session ID lưu trong database cũng được.</p>
+<p>Sau khi verify, Notes dùng <code>iss + sub</code> để tìm user và tạo <strong>local session riêng</strong>. Session đó không bắt buộc là JWT; random session ID lưu trong database cũng được. ID Token trả lời “user là ai”, không phải token để gọi API lịch ở ví dụ OAuth.</p>
 <hr>
 <h1 id="3-Identity-database"><a href="#3-Identity-database" class="headerlink" title="3. Identity database"></a>3. Identity database</h1><blockquote>
 <p><strong>Identity có thể nằm tập trung, nhưng dữ liệu của từng app vẫn nằm ở app đó.</strong></p>
 </blockquote>
-<p>Ví dụ:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Google Accounts: identity &#x2F; password &#x2F; MFA &#x2F; sub</span><br><span class="line">Google Drive: iss + sub → files &#x2F; preferences</span><br><span class="line">Gmail: iss + sub → mailbox &#x2F; settings</span><br></pre></td></tr></table></figure>
+<p>Ví dụ cùng một Google user đăng nhập hai app:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Google Accounts: sub &#x3D; user_123, password &#x2F; MFA</span><br><span class="line">Google Drive: user_123 → files &#x2F; preferences</span><br><span class="line">Gmail: user_123 → mailbox &#x2F; settings</span><br></pre></td></tr></table></figure>
 
-<p>Mỗi app liên kết danh tính từ Google với user trong database của mình, thay vì chia sẻ toàn bộ dữ liệu user.</p>
-<p>Khi user login lần đầu, app verify ID Token, lấy cặp <code>iss + sub</code> để tìm local user. Chưa có thì tạo user và session ngay lúc đó: <strong>JIT provisioning</strong>.</p>
+<p>Drive không giữ mailbox, Gmail không giữ files. Mỗi app liên kết danh tính từ Google với user trong database của mình bằng <code>iss + sub</code>, thay vì chia sẻ toàn bộ dữ liệu user.</p>
+<p>Lần đầu login, app verify ID Token, chưa tìm thấy <code>iss + sub</code> thì tạo local user và session: <strong>JIT provisioning</strong>.</p>
 <hr>
 <h1 id="4-SCIM"><a href="#4-SCIM" class="headerlink" title="4. SCIM"></a>4. SCIM</h1><blockquote>
 <p><strong>OIDC giúp app nhận diện user khi họ login. SCIM giúp đồng bộ vòng đời user giữa Identity Provider và các app.</strong></p>
 </blockquote>
-<p>Khi user được tạo, cập nhật, disable hoặc xóa, Identity Provider cần báo thay đổi đó cho SaaS, không thể chờ user login lại. SCIM 2.0 chuẩn hóa API cho việc này:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">POST &#x2F;Users</span><br><span class="line">PATCH &#x2F;Users&#x2F;:id</span><br><span class="line">DELETE &#x2F;Users&#x2F;:id</span><br><span class="line">&#x2F;Groups</span><br></pre></td></tr></table></figure>
-
-<p>Giá trị nằm ở contract chung, không phải một technology đặc biệt.</p>
+<p>Ví dụ nhân viên nghỉ việc: admin disable account ở Identity Provider, nó gọi <code>PATCH /Users/42</code> tới SaaS để đặt <code>active: false</code>. SaaS cập nhật user của mình, không phải chờ người đó login lại mới biết tài khoản đã bị disable.</p>
+<p>SCIM 2.0 chuẩn hóa các API như <code>POST /Users</code>, <code>PATCH /Users/:id</code>, <code>DELETE /Users/:id</code> và <code>/Groups</code>. Giá trị nằm ở contract chung, không phải một technology đặc biệt.</p>
 <hr>
 <h1 id="5-AWS-Cognito-User-Pool"><a href="#5-AWS-Cognito-User-Pool" class="headerlink" title="5. AWS Cognito User Pool"></a>5. AWS Cognito User Pool</h1><p>Cognito User Pool giữ user và xử lý login. Sau khi user đăng nhập, Cognito phát token cho app.</p>
 <blockquote>
 <p><strong>Cognito xác thực user và ký token. Backend dùng public key của Cognito để verify chữ ký, không cần gọi Cognito mỗi request.</strong></p>
 </blockquote>
-<p>Public keys nằm ở JWKS endpoint của Cognito. Backend lấy key tương ứng để verify JWT: chữ ký hợp lệ cho biết token do Cognito ký và nội dung chưa bị sửa.</p>
-<p>Backend vẫn phải kiểm token còn hạn và đúng mục đích trước khi dùng thông tin trong đó để quyết định quyền truy cập. API dùng Access Token, không coi ID Token (dành cho app nhận diện user) là vé gọi API.</p>
+<p>Ví dụ user đã login qua Cognito và gọi API của app:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">GET &#x2F;me với Access Token do Cognito phát</span><br><span class="line">→ backend lấy public key từ Cognito JWKS để verify chữ ký JWT</span><br><span class="line">→ dùng danh tính trong token tìm user của app</span><br><span class="line">→ trả profile của user đó</span><br></pre></td></tr></table></figure>
+
+<p>Chữ ký hợp lệ cho biết token do Cognito ký và nội dung chưa bị sửa. Backend vẫn phải kiểm token còn hạn và đúng mục đích trước khi dùng thông tin trong đó để quyết định quyền truy cập. API dùng Access Token, không coi ID Token (dành cho app nhận diện user) là vé gọi API.</p>
 <p>Đổi lại, nếu backend chỉ verify token tại chỗ, việc disable user hoặc thu hồi quyền ở Cognito có thể chưa có hiệu lực ngay với token đã phát.</p>
 <hr>
 <h1 id="6-Passkeys-WebAuthn"><a href="#6-Passkeys-WebAuthn" class="headerlink" title="6. Passkeys / WebAuthn"></a>6. Passkeys / WebAuthn</h1><blockquote>
 <p><strong>Passkey cho phép user chứng minh mình giữ private key, mà không gửi private key hay vân tay cho website.</strong></p>
 </blockquote>
 <p>Nền tảng là asymmetric cryptography. Ví dụ login Facebook bằng passkey trên macOS:</p>
-<h2 id="Register-Passkey"><a href="#Register-Passkey" class="headerlink" title="Register Passkey"></a>Register Passkey</h2><p>Facebook tạo random challenge; frontend gọi WebAuthn API để browser làm việc với authenticator trên macOS. Authenticator tạo cặp key: private key ở lại passkey store / iCloud Keychain; public key đi về Facebook. Facebook lưu <code>user_id</code>, <code>credential_id</code> và public key để dùng lúc login.</p>
-<h2 id="Login"><a href="#Login" class="headerlink" title="Login"></a>Login</h2><p>Facebook gửi challenge mới. Touch ID chỉ cho phép macOS <strong>dùng private key tại máy</strong> để ký challenge, không gửi dữ liệu vân tay cho Facebook. Facebook dùng public key đã lưu để verify chữ ký rồi tạo session.</p>
-<p><code>challenge</code> là random bytes khác nhau cho mỗi lần xác thực, để chữ ký cũ không dùng lại được.</p>
+<h2 id="Register-Passkey"><a href="#Register-Passkey" class="headerlink" title="Register Passkey"></a>Register Passkey</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Facebook gửi challenge → browser gọi WebAuthn trên macOS</span><br><span class="line">→ authenticator tạo private key + public key</span><br><span class="line">→ private key ở lại passkey store &#x2F; iCloud Keychain</span><br><span class="line">→ Facebook nhận public key, lưu cùng user_id và credential_id</span><br></pre></td></tr></table></figure>
+
+<h2 id="Login"><a href="#Login" class="headerlink" title="Login"></a>Login</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Facebook gửi challenge mới → Touch ID cho phép macOS dùng private key ký</span><br><span class="line">→ Facebook nhận signature, dùng public key đã lưu để verify</span><br><span class="line">→ chữ ký hợp lệ → Facebook tạo session</span><br></pre></td></tr></table></figure>
+
+<p><strong>Touch ID và private key không được gửi cho Facebook.</strong> <code>challenge</code> là random bytes khác nhau cho mỗi lần xác thực, để chữ ký cũ không dùng lại được.</p>
 <h2 id="Standards"><a href="#Standards" class="headerlink" title="Standards"></a>Standards</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">FIDO2</span><br><span class="line">├── WebAuthn: website ↔ browser</span><br><span class="line">└── CTAP: browser&#x2F;OS ↔ authenticator</span><br></pre></td></tr></table></figure>
 
 <p>Backend chọn Rails/Go/Postgres/Redis tùy ý, nhưng vẫn phải tuân theo WebAuthn verification rules.</p>

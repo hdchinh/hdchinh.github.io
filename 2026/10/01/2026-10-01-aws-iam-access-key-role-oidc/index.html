@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="1. IAM User vs. IAM Role: Căn cước công dân vs. Visa nhập cảnhĐể dễ phân biệt IAM User và IAM Role, cứ hình dung:  IAM User &#x3D; Căn cước công dân (gắn với một danh tính cố định): Biết rõ mặt đặt tên (Hu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AWS IAM thực chiến: Tại sao nhúng Access Key là tối kỵ, và IAM Role + OIDC giải quyết thế nào?">
+<meta property="og:url" content="https://read.hihudson.com/2026/10/01/2026-10-01-aws-iam-access-key-role-oidc/">
+<meta property="og:site_name" content="Hudson">
+<meta property="og:description" content="1. IAM User vs. IAM Role: Căn cước công dân vs. Visa nhập cảnhĐể dễ phân biệt IAM User và IAM Role, cứ hình dung:  IAM User &#x3D; Căn cước công dân (gắn với một danh tính cố định): Biết rõ mặt đặt tên (Hu">
+<meta property="og:locale" content="vi_VN">
+<meta property="article:published_time" content="2026-09-30T17:00:00.000Z">
+<meta property="article:modified_time" content="2026-09-30T23:46:38.339Z">
+<meta property="article:author" content="Hudson">
+<meta name="twitter:card" content="summary">
+    <link rel="canonical" href="https://read.hihudson.com/2026/10/01/2026-10-01-aws-iam-access-key-role-oidc/">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"AWS IAM thực chiến: Tại sao nhúng Access Key là tối kỵ, và IAM Role + OIDC giải quyết thế nào?","description":"1. IAM User vs. IAM Role: Căn cước công dân vs. Visa nhập cảnhĐể dễ phân biệt IAM User và IAM Role, cứ hình dung: IAM User = Căn cước công dân (gắn với một danh tính cố định): Biết rõ mặt đặt tên (Hud","inLanguage":"vi","url":"https://read.hihudson.com/2026/10/01/2026-10-01-aws-iam-access-key-role-oidc/","mainEntityOfPage":{"@type":"WebPage","@id":"https://read.hihudson.com/2026/10/01/2026-10-01-aws-iam-access-key-role-oidc/"},"datePublished":"2026-09-30T17:00:00.000Z","dateModified":"2026-09-30T23:46:38.339Z","author":{"@type":"Person","name":"Hudson","url":"https://read.hihudson.com/"},"publisher":{"@type":"Person","name":"Hudson","url":"https://read.hihudson.com/"}}</script>
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>AWS IAM thực chiến: Tại sao nhúng Access Key là tối kỵ, và IAM Role + OIDC giải quyết thế nào?</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">News</a></li><!--
+     --><!--
+       --><li><a href="/blog/">Home</a></li><!--
+     --><!--
+       --><li><a href="/english/">English</a></li><!--
+     --><!--
+       --><li><a href="/english-scenarios/">Luyện tiếng Anh</a></li><!--
+     --><!--
+       --><li><a href="/sap-c02/">SAP-C02</a></li><!--
+     --><!--
+       --><li><a href="/scs-c03/">SCS-C03</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        <li><a class="icon" aria-label="Home" href="/"><i class="fa-solid fa-house" aria-hidden="true" onmouseover="$('#i-home').toggle();" onmouseout="$('#i-home').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/2026/09/23/2026-09-23-4-tru-cot-cua-internet/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-home" class="info" style="display:none;">Home</span>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://read.hihudson.com/2026/10/01/2026-10-01-aws-iam-access-key-role-oidc/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://read.hihudson.com/2026/10/01/2026-10-01-aws-iam-access-key-role-oidc/&text=AWS IAM thực chiến: Tại sao nhúng Access Key là tối kỵ, và IAM Role + OIDC giải quyết thế nào?" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://read.hihudson.com/2026/10/01/2026-10-01-aws-iam-access-key-role-oidc/&title=AWS IAM thực chiến: Tại sao nhúng Access Key là tối kỵ, và IAM Role + OIDC giải quyết thế nào?" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://read.hihudson.com/2026/10/01/2026-10-01-aws-iam-access-key-role-oidc/&is_video=false&description=AWS IAM thực chiến: Tại sao nhúng Access Key là tối kỵ, và IAM Role + OIDC giải quyết thế nào?" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=AWS IAM thực chiến: Tại sao nhúng Access Key là tối kỵ, và IAM Role + OIDC giải quyết thế nào?&body=Check out this article: https://read.hihudson.com/2026/10/01/2026-10-01-aws-iam-access-key-role-oidc/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://read.hihudson.com/2026/10/01/2026-10-01-aws-iam-access-key-role-oidc/&title=AWS IAM thực chiến: Tại sao nhúng Access Key là tối kỵ, và IAM Role + OIDC giải quyết thế nào?" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://read.hihudson.com/2026/10/01/2026-10-01-aws-iam-access-key-role-oidc/&title=AWS IAM thực chiến: Tại sao nhúng Access Key là tối kỵ, và IAM Role + OIDC giải quyết thế nào?" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://read.hihudson.com/2026/10/01/2026-10-01-aws-iam-access-key-role-oidc/&title=AWS IAM thực chiến: Tại sao nhúng Access Key là tối kỵ, và IAM Role + OIDC giải quyết thế nào?" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://read.hihudson.com/2026/10/01/2026-10-01-aws-iam-access-key-role-oidc/&title=AWS IAM thực chiến: Tại sao nhúng Access Key là tối kỵ, và IAM Role + OIDC giải quyết thế nào?" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://read.hihudson.com/2026/10/01/2026-10-01-aws-iam-access-key-role-oidc/&name=AWS IAM thực chiến: Tại sao nhúng Access Key là tối kỵ, và IAM Role + OIDC giải quyết thế nào?&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://read.hihudson.com/2026/10/01/2026-10-01-aws-iam-access-key-role-oidc/&t=AWS IAM thực chiến: Tại sao nhúng Access Key là tối kỵ, và IAM Role + OIDC giải quyết thế nào?" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-IAM-User-vs-IAM-Role-Can-cuoc-cong-dan-vs-Visa-nhap-canh"><span class="toc-number">1.</span> <span class="toc-text">1. IAM User vs. IAM Role: Căn cước công dân vs. Visa nhập cảnh</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Co-che-IAM-Role-“Bo-loc-visa-My”"><span class="toc-number">2.</span> <span class="toc-text">2. Cơ chế IAM Role: “Bộ lọc visa Mỹ”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Tai-sao-nhung-Access-Key-amp-Secret-Key-vao-code-la-bad-practice"><span class="toc-number">3.</span> <span class="toc-text">3. Tại sao nhúng Access Key &amp; Secret Key vào code là bad practice?</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Rui-ro-“chay-tui”-sau-mot-dem-Leaked-Credentials"><span class="toc-number">3.1.</span> <span class="toc-text">1. Rủi ro “cháy túi” sau một đêm (Leaked Credentials)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Chia-khoa-“bat-tu”-Khong-tu-het-han"><span class="toc-number">3.2.</span> <span class="toc-text">2. Chìa khóa “bất tử” (Không tự hết hạn)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Ganh-nang-audit-bao-mat-Compliance"><span class="toc-number">3.3.</span> <span class="toc-text">3. Gánh nặng audit bảo mật (Compliance)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-IAM-Role-OIDC-OpenID-Connect"><span class="toc-number">4.</span> <span class="toc-text">4. IAM Role + OIDC (OpenID Connect)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Nho-may-dieu-nay-la-du"><span class="toc-number">5.</span> <span class="toc-text">5. Nhớ mấy điều này là đủ</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        AWS IAM thực chiến: Tại sao nhúng Access Key là tối kỵ, và IAM Role + OIDC giải quyết thế nào?
+    </h1>
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">Hudson</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2026-09-30T17:00:00.000Z" class="dt-published" itemprop="datePublished">Oct 1, 2026</time>
+        
+      
+    </div>
+
+
+      
+      <span class="reading-time">· ~5 phút đọc</span>
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    
+    <h2 id="1-IAM-User-vs-IAM-Role-Can-cuoc-cong-dan-vs-Visa-nhap-canh"><a href="#1-IAM-User-vs-IAM-Role-Can-cuoc-cong-dan-vs-Visa-nhap-canh" class="headerlink" title="1. IAM User vs. IAM Role: Căn cước công dân vs. Visa nhập cảnh"></a>1. IAM User vs. IAM Role: Căn cước công dân vs. Visa nhập cảnh</h2><p>Để dễ phân biệt IAM User và IAM Role, cứ hình dung:</p>
+<ul>
+<li><strong>IAM User = Căn cước công dân (gắn với một danh tính cố định):</strong><ul>
+<li>Biết rõ mặt đặt tên (Hudson, Alice).</li>
+<li>Có thể có mật khẩu hoặc Access Key / Secret Key dài hạn, không tự hết hạn.</li>
+<li>Có thể đại diện cho người hoặc ứng dụng. Nhưng với người thật đăng nhập làm việc, hiện nên dùng SSO thay vì tạo IAM User riêng.</li>
+</ul>
+</li>
+<li><strong>IAM Role = Bộ đồng phục ca trực / Visa tạm thời (không gắn cố định với ai):</strong><ul>
+<li>Đại diện cho một vai trò / chức danh.</li>
+<li>Ai chứng minh được mình đủ điều kiện thì được “khoác áo vào” để làm việc trong một phiên có thời hạn.</li>
+<li>Hết ca thì thẻ hết hiệu lực, không có chìa khóa dài hạn mang về nhà.</li>
+<li>Dùng cho máy chủ (EC2, ECS), tác vụ tự động (Lambda), CI/CD (Bitbucket, GitHub Actions), và cả người dùng qua SSO hoặc assume role.</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-Co-che-IAM-Role-“Bo-loc-visa-My”"><a href="#2-Co-che-IAM-Role-“Bo-loc-visa-My”" class="headerlink" title="2. Cơ chế IAM Role: “Bộ lọc visa Mỹ”"></a>2. Cơ chế IAM Role: “Bộ lọc visa Mỹ”</h2><p>Một IAM Role có hai phần cần phân biệt:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[ Đối tượng xin quyền: Bitbucket ]</span><br><span class="line">               |</span><br><span class="line">               v</span><br><span class="line">1. TRUST POLICY (Vòng xét duyệt visa)</span><br><span class="line">   &quot;Ai có quyền mượn chiếc thẻ này?&quot;</span><br><span class="line">   Không đủ điều kiện? -&gt; Chặn từ cửa khẩu.</span><br><span class="line">               |</span><br><span class="line">               | Hợp lệ, được cấp phiên làm việc</span><br><span class="line">               v</span><br><span class="line">2. PERMISSIONS POLICY (Quyền hạn visa)</span><br><span class="line">   &quot;Được làm những trò gì trên AWS?&quot;</span><br><span class="line">   Có thẻ rồi vẫn chỉ được làm đúng quyền.</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>Vòng 1: Trust Policy</strong> (<code>assumed_by</code> khi khai báo Role bằng AWS CDK Python): Kiểm tra ai được assume role và với điều kiện nào. Kẻ lạ gõ cửa thì chặn ngay từ vòng gửi xe, chưa được cấp credentials của role.</li>
+<li><strong>Vòng 2: Permissions Policy:</strong> Khi đã được mượn thẻ, bạn chỉ được làm đúng việc cho phép. Ví dụ: chỉ được đẩy ảnh Docker lên ECR, không được xóa Database. Quyền thực tế còn chịu giới hạn của các policy khác nếu có, chứ không phải cứ role cho phép là làm được tất cả.</li>
+</ul>
+<h2 id="3-Tai-sao-nhung-Access-Key-amp-Secret-Key-vao-code-la-bad-practice"><a href="#3-Tai-sao-nhung-Access-Key-amp-Secret-Key-vao-code-la-bad-practice" class="headerlink" title="3. Tại sao nhúng Access Key &amp; Secret Key vào code là bad practice?"></a>3. Tại sao nhúng Access Key &amp; Secret Key vào code là bad practice?</h2><p>Nhúng key cố định vào code hay lưu trong cấu hình CI/CD vẫn chạy được (works). Nhưng hardcode vào code là tối kỵ; lưu trong CI/CD secrets đỡ hơn, vẫn còn bài toán giữ và xoay vòng key dài hạn.</p>
+<h3 id="1-Rui-ro-“chay-tui”-sau-mot-dem-Leaked-Credentials"><a href="#1-Rui-ro-“chay-tui”-sau-mot-dem-Leaked-Credentials" class="headerlink" title="1. Rủi ro “cháy túi” sau một đêm (Leaked Credentials)"></a>1. Rủi ro “cháy túi” sau một đêm (Leaked Credentials)</h3><p>Lỡ tay git push nhầm file cấu hình lên GitHub hoặc vô tình in key ra log CI/CD. Bot của hacker quét tự động và có thể tóm key rất nhanh. Nếu key có quyền đủ rộng, chúng có thể bật hàng loạt máy chủ ảo đào tiền mã hóa -&gt; Bạn có thể nợ AWS hàng chục nghìn USD chỉ sau một đêm.</p>
+<h3 id="2-Chia-khoa-“bat-tu”-Khong-tu-het-han"><a href="#2-Chia-khoa-“bat-tu”-Khong-tu-het-han" class="headerlink" title="2. Chìa khóa “bất tử” (Không tự hết hạn)"></a>2. Chìa khóa “bất tử” (Không tự hết hạn)</h3><p>Key cố định sống cho đến khi bị vô hiệu hóa hoặc xóa. Không có cơ chế rotate riêng thì nó cứ nằm đó. Nhân viên cũ nghỉ việc vẫn có thể giữ key này.</p>
+<h3 id="3-Ganh-nang-audit-bao-mat-Compliance"><a href="#3-Ganh-nang-audit-bao-mat-Compliance" class="headerlink" title="3. Gánh nặng audit bảo mật (Compliance)"></a>3. Gánh nặng audit bảo mật (Compliance)</h3><p>Dùng key dài hạn thì phải quản lý ai giữ key, key có quyền gì, rotate và thu hồi thế nào. SOC 2 hay ISO 27001 không cấm tuyệt đối mọi Access Key tĩnh, nhưng key bị chia sẻ, không kiểm soát hoặc không thu hồi đúng lúc là vấn đề khi audit.</p>
+<h2 id="4-IAM-Role-OIDC-OpenID-Connect"><a href="#4-IAM-Role-OIDC-OpenID-Connect" class="headerlink" title="4. IAM Role + OIDC (OpenID Connect)"></a>4. IAM Role + OIDC (OpenID Connect)</h2><p>Thay vì giữ chìa khóa dài hạn, Bitbucket và AWS chơi trò “soi con dấu để phát chìa khóa tạm”:</p>
+<ol>
+<li><strong>Tin tưởng trước:</strong> Bạn đăng ký OIDC provider của Bitbucket với AWS, gồm issuer URL và audience. Trust Policy của role giới hạn repo nào được mượn thẻ, có thể giới hạn thêm deployment environment. AWS lấy public key từ provider để kiểm tra chữ ký, không phải bạn dán một public key cố định vào role.</li>
+<li><strong>Đóng dấu số:</strong> Khi step CI/CD đã bật OIDC chạy, Bitbucket cấp token có chữ ký, ghi rõ danh tính của step, repo và environment nếu có.</li>
+<li><strong>Cấp chìa khóa tạm:</strong> Pipeline gửi token tới AWS STS qua <code>AssumeRoleWithWebIdentity</code>. AWS kiểm tra chữ ký, issuer, audience, thời hạn token và điều kiện trong Trust Policy -&gt; Cấp bộ credentials tạm gồm Access Key ID, Secret Access Key và Session Token.</li>
+<li><strong>Hết hạn:</strong> Credentials chỉ dùng được trong thời hạn đã cấp. Với luồng này, có thể yêu cầu từ 15 phút đến thời lượng tối đa role cho phép, mặc định là 1 giờ. Hết hạn thì credentials mất hiệu lực, không phải tự biến mất khỏi file hay log.</li>
+</ol>
+<p><strong>Pipeline không cần lưu AWS key dài hạn.</strong> Key tạm vẫn cần giữ kín trong lúc còn hiệu lực, nhưng lộ rồi thì không dùng mãi được như key cố định.</p>
+<h2 id="5-Nho-may-dieu-nay-la-du"><a href="#5-Nho-may-dieu-nay-la-du" class="headerlink" title="5. Nhớ mấy điều này là đủ"></a>5. Nhớ mấy điều này là đủ</h2><ul>
+<li><strong>Người thật đăng nhập:</strong> Dùng IAM Identity Center (SSO), bật MFA.</li>
+<li><strong>Server / Bot / CI/CD chạy:</strong> Ưu tiên IAM Role. EC2 dùng Instance Profile, ECS dùng Task Role, Lambda dùng Execution Role; CI/CD bên ngoài AWS có thể dùng OIDC.</li>
+<li><strong>Không hardcode key dài hạn vào code.</strong> Nếu CI/CD hỗ trợ OIDC thì dùng nó, đừng tạo key cố định rồi dán vào cấu hình cho nhanh.</li>
+<li><code>AWS_ACCESS_KEY_ID</code> / <code>AWS_SECRET_ACCESS_KEY</code> trong biến môi trường không tự nó là sai: credentials tạm cũng có thể được truyền theo cách này, kèm <code>AWS_SESSION_TOKEN</code>. Vấn đề là nguồn credentials, thời hạn và cách giữ kín chúng.</li>
+</ul>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">News</a></li>
+        
+          <li><a href="/blog/">Home</a></li>
+        
+          <li><a href="/english/">English</a></li>
+        
+          <li><a href="/english-scenarios/">Luyện tiếng Anh</a></li>
+        
+          <li><a href="/sap-c02/">SAP-C02</a></li>
+        
+          <li><a href="/scs-c03/">SCS-C03</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-IAM-User-vs-IAM-Role-Can-cuoc-cong-dan-vs-Visa-nhap-canh"><span class="toc-number">1.</span> <span class="toc-text">1. IAM User vs. IAM Role: Căn cước công dân vs. Visa nhập cảnh</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Co-che-IAM-Role-“Bo-loc-visa-My”"><span class="toc-number">2.</span> <span class="toc-text">2. Cơ chế IAM Role: “Bộ lọc visa Mỹ”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Tai-sao-nhung-Access-Key-amp-Secret-Key-vao-code-la-bad-practice"><span class="toc-number">3.</span> <span class="toc-text">3. Tại sao nhúng Access Key &amp; Secret Key vào code là bad practice?</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Rui-ro-“chay-tui”-sau-mot-dem-Leaked-Credentials"><span class="toc-number">3.1.</span> <span class="toc-text">1. Rủi ro “cháy túi” sau một đêm (Leaked Credentials)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Chia-khoa-“bat-tu”-Khong-tu-het-han"><span class="toc-number">3.2.</span> <span class="toc-text">2. Chìa khóa “bất tử” (Không tự hết hạn)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Ganh-nang-audit-bao-mat-Compliance"><span class="toc-number">3.3.</span> <span class="toc-text">3. Gánh nặng audit bảo mật (Compliance)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-IAM-Role-OIDC-OpenID-Connect"><span class="toc-number">4.</span> <span class="toc-text">4. IAM Role + OIDC (OpenID Connect)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Nho-may-dieu-nay-la-du"><span class="toc-number">5.</span> <span class="toc-text">5. Nhớ mấy điều này là đủ</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://read.hihudson.com/2026/10/01/2026-10-01-aws-iam-access-key-role-oidc/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://read.hihudson.com/2026/10/01/2026-10-01-aws-iam-access-key-role-oidc/&text=AWS IAM thực chiến: Tại sao nhúng Access Key là tối kỵ, và IAM Role + OIDC giải quyết thế nào?" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://read.hihudson.com/2026/10/01/2026-10-01-aws-iam-access-key-role-oidc/&title=AWS IAM thực chiến: Tại sao nhúng Access Key là tối kỵ, và IAM Role + OIDC giải quyết thế nào?" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://read.hihudson.com/2026/10/01/2026-10-01-aws-iam-access-key-role-oidc/&is_video=false&description=AWS IAM thực chiến: Tại sao nhúng Access Key là tối kỵ, và IAM Role + OIDC giải quyết thế nào?" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=AWS IAM thực chiến: Tại sao nhúng Access Key là tối kỵ, và IAM Role + OIDC giải quyết thế nào?&body=Check out this article: https://read.hihudson.com/2026/10/01/2026-10-01-aws-iam-access-key-role-oidc/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://read.hihudson.com/2026/10/01/2026-10-01-aws-iam-access-key-role-oidc/&title=AWS IAM thực chiến: Tại sao nhúng Access Key là tối kỵ, và IAM Role + OIDC giải quyết thế nào?" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://read.hihudson.com/2026/10/01/2026-10-01-aws-iam-access-key-role-oidc/&title=AWS IAM thực chiến: Tại sao nhúng Access Key là tối kỵ, và IAM Role + OIDC giải quyết thế nào?" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://read.hihudson.com/2026/10/01/2026-10-01-aws-iam-access-key-role-oidc/&title=AWS IAM thực chiến: Tại sao nhúng Access Key là tối kỵ, và IAM Role + OIDC giải quyết thế nào?" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://read.hihudson.com/2026/10/01/2026-10-01-aws-iam-access-key-role-oidc/&title=AWS IAM thực chiến: Tại sao nhúng Access Key là tối kỵ, và IAM Role + OIDC giải quyết thế nào?" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://read.hihudson.com/2026/10/01/2026-10-01-aws-iam-access-key-role-oidc/&name=AWS IAM thực chiến: Tại sao nhúng Access Key là tối kỵ, và IAM Role + OIDC giải quyết thế nào?&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=https://read.hihudson.com/2026/10/01/2026-10-01-aws-iam-access-key-role-oidc/&t=AWS IAM thực chiến: Tại sao nhúng Access Key là tối kỵ, và IAM Role + OIDC giải quyết thế nào?" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="home" class="icon" href="/"><i class="fa-solid fa-house fa-lg" aria-hidden="true"></i> Home</a>
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">News</a></li><!--
+     --><!--
+       --><li><a href="/blog/">Home</a></li><!--
+     --><!--
+       --><li><a href="/english/">English</a></li><!--
+     --><!--
+       --><li><a href="/english-scenarios/">Luyện tiếng Anh</a></li><!--
+     --><!--
+       --><li><a href="/sap-c02/">SAP-C02</a></li><!--
+     --><!--
+       --><li><a href="/scs-c03/">SCS-C03</a></li><!--
+     --><!--
+     --><li><a href="/english/">English</a></li><!--
+     --><li><a href="/til/">TIL</a></li>
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <a id="floating-blog-home" href="/blog/" aria-label="Về danh sách bài blog">
+      <i class="fa-solid fa-house" aria-hidden="true"></i> Home
+    </a>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>

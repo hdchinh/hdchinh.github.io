@@ -14,11 +14,11 @@
 <meta property="og:description" content="1. IAM User vs. IAM Role: Căn cước công dân vs. Visa nhập cảnhĐể dễ phân biệt IAM User và IAM Role, cứ hình dung:  IAM User &#x3D; Căn cước công dân (gắn với một danh tính cố định): Biết rõ mặt đặt tên (Hu">
 <meta property="og:locale" content="vi_VN">
 <meta property="article:published_time" content="2026-09-30T17:00:00.000Z">
-<meta property="article:modified_time" content="2026-09-30T23:46:38.339Z">
+<meta property="article:modified_time" content="2026-10-01T07:28:39.507Z">
 <meta property="article:author" content="Hudson">
 <meta name="twitter:card" content="summary">
     <link rel="canonical" href="https://read.hihudson.com/2026/10/01/2026-10-01-aws-iam-access-key-role-oidc/">
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"AWS IAM thực chiến: Tại sao nhúng Access Key là tối kỵ, và IAM Role + OIDC giải quyết thế nào?","description":"1. IAM User vs. IAM Role: Căn cước công dân vs. Visa nhập cảnhĐể dễ phân biệt IAM User và IAM Role, cứ hình dung: IAM User = Căn cước công dân (gắn với một danh tính cố định): Biết rõ mặt đặt tên (Hud","inLanguage":"vi","url":"https://read.hihudson.com/2026/10/01/2026-10-01-aws-iam-access-key-role-oidc/","mainEntityOfPage":{"@type":"WebPage","@id":"https://read.hihudson.com/2026/10/01/2026-10-01-aws-iam-access-key-role-oidc/"},"datePublished":"2026-09-30T17:00:00.000Z","dateModified":"2026-09-30T23:46:38.339Z","author":{"@type":"Person","name":"Hudson","url":"https://read.hihudson.com/"},"publisher":{"@type":"Person","name":"Hudson","url":"https://read.hihudson.com/"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"AWS IAM thực chiến: Tại sao nhúng Access Key là tối kỵ, và IAM Role + OIDC giải quyết thế nào?","description":"1. IAM User vs. IAM Role: Căn cước công dân vs. Visa nhập cảnhĐể dễ phân biệt IAM User và IAM Role, cứ hình dung: IAM User = Căn cước công dân (gắn với một danh tính cố định): Biết rõ mặt đặt tên (Hud","inLanguage":"vi","url":"https://read.hihudson.com/2026/10/01/2026-10-01-aws-iam-access-key-role-oidc/","mainEntityOfPage":{"@type":"WebPage","@id":"https://read.hihudson.com/2026/10/01/2026-10-01-aws-iam-access-key-role-oidc/"},"datePublished":"2026-09-30T17:00:00.000Z","dateModified":"2026-10-01T07:28:39.507Z","author":{"@type":"Person","name":"Hudson","url":"https://read.hihudson.com/"},"publisher":{"@type":"Person","name":"Hudson","url":"https://read.hihudson.com/"}}</script>
     
     
       
@@ -73,8 +73,6 @@
        --><li><a href="/">News</a></li><!--
      --><!--
        --><li><a href="/blog/">Home</a></li><!--
-     --><!--
-       --><li><a href="/english/">English</a></li><!--
      --><!--
        --><li><a href="/english-scenarios/">Luyện tiếng Anh</a></li><!--
      --><!--
@@ -133,7 +131,6 @@
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
   <header>
     
-    
     <h1 class="posttitle p-name" itemprop="name headline">
         AWS IAM thực chiến: Tại sao nhúng Access Key là tối kỵ, và IAM Role + OIDC giải quyết thế nào?
     </h1>
@@ -155,6 +152,11 @@
       
       <span class="reading-time">· ~5 phút đọc</span>
       
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/AWS-Security/">AWS & Security</a>
+    </div>
+
 
       
 
@@ -222,8 +224,6 @@
         
           <li><a href="/blog/">Home</a></li>
         
-          <li><a href="/english/">English</a></li>
-        
           <li><a href="/english-scenarios/">Luyện tiếng Anh</a></li>
         
           <li><a href="/sap-c02/">SAP-C02</a></li>
@@ -280,15 +280,12 @@
      --><!--
        --><li><a href="/blog/">Home</a></li><!--
      --><!--
-       --><li><a href="/english/">English</a></li><!--
-     --><!--
        --><li><a href="/english-scenarios/">Luyện tiếng Anh</a></li><!--
      --><!--
        --><li><a href="/sap-c02/">SAP-C02</a></li><!--
      --><!--
        --><li><a href="/scs-c03/">SCS-C03</a></li><!--
      --><!--
-     --><li><a href="/english/">English</a></li><!--
      --><li><a href="/til/">TIL</a></li>
       </ul>
     </nav>

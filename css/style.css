@@ -1141,6 +1141,12 @@ body {
   color: #cc2a41;
   font-size: 1.1rem;
 }
+.post-year-group .post-topic {
+  margin-top: 1.25rem;
+  margin-bottom: 0.5rem;
+  color: #22272a;
+  font-size: 1rem;
+}
 .post-list {
   padding: 0;
 }

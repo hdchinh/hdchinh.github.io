@@ -426,10 +426,6 @@
     <lastmod>2026-09-23T05:19:58.515Z</lastmod>
   </url>
   <url>
-    <loc>https://read.hihudson.com/random/</loc>
-    <lastmod>2026-09-23T02:28:49.955Z</lastmod>
-  </url>
-  <url>
     <loc>https://read.hihudson.com/til/</loc>
     <lastmod>2026-09-23T13:04:49.585Z</lastmod>
   </url>
@@ -456,5 +452,9 @@
   <url>
     <loc>https://read.hihudson.com/vnexpress/reader.js</loc>
     <lastmod>2026-09-21T09:36:03.710Z</lastmod>
+  </url>
+  <url>
+    <loc>https://read.hihudson.com/hdchinh/</loc>
+    <lastmod>2026-10-03T08:06:53.514Z</lastmod>
   </url>
 </urlset>

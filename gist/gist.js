@@ -1,7 +1,8 @@
 (() => {
   'use strict';
 
-  const API = 'https://api-sirrista-singapore.com/api/v1/gist';
+  const local = ['localhost', '127.0.0.1'].includes(location.hostname);
+  const API = local ? `http://${location.hostname}:8081/api/v1/gist` : 'https://api-sirrista-singapore.com/api/v1/gist';
   const STORAGE_KEY = 'hudson.gist.session.v1';
   const $ = (id) => document.getElementById(id);
   const dateFormat = new Intl.DateTimeFormat('vi-VN', { dateStyle: 'medium', timeStyle: 'short' });
@@ -11,6 +12,12 @@
   let complete = false;
   let loadController = null;
   let expiryTimer = null;
+  let previewController = null;
+  let selectedId = null;
+  let previewData = null;
+  let rawView = false;
+  const shortDate = new Intl.DateTimeFormat('vi-VN', { day: '2-digit', month: '2-digit', year: 'numeric' });
+  const title = (gist) => gist.description || (gist.files[0] && gist.files[0].filename) || 'Không có mô tả';
 
   function storedSession() {
     try {
@@ -25,6 +32,9 @@
   function lock(message = '', removeStored = true) {
     if (loadController) loadController.abort();
     clearTimeout(expiryTimer);
+    resetPreview();
+    document.body.classList.add('locked');
+    $('login-panel').querySelector('.login-card').append($('message'));
     session = null;
     items = [];
     loading = false;
@@ -44,10 +54,12 @@
 
   function unlock(value) {
     session = value;
+    document.body.classList.remove('locked');
+    $('library').before($('message'));
     $('login-panel').hidden = true;
     $('library').hidden = false;
     $('logout').hidden = false;
-    $('expiry').textContent = `Hết hạn: ${dateFormat.format(new Date(value.expiresAt))}`;
+    $('expiry').textContent = `Khóa lúc ${new Date(value.expiresAt).toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' })}`;
     clearTimeout(expiryTimer);
     expiryTimer = setTimeout(() => lock('Phiên đã hết hạn. Nhập mã để mở lại.'), Math.max(0, Date.parse(value.expiresAt) - Date.now()));
   }
@@ -87,7 +99,7 @@
     if (error.code === 'gist_session_expired') return 'Phiên đã hết hạn hoặc không còn hợp lệ. Nhập mã để mở lại.';
     if (error.code === 'invalid_gist_code') return `Mã không đúng. Còn ${Number(error.remaining)} lần nhập sai trước khi IP bị chặn.`;
     if (error.code === 'gist_not_configured') return 'Backend chưa được cấu hình mã truy cập hoặc GitHub token.';
-    if (error.code === 'gist_upstream_unavailable') return 'Chưa lấy được danh sách từ GitHub. Thử Tải lại sau.';
+    if (error.code === 'gist_upstream_unavailable') return 'Chưa tải được gist từ GitHub. Thử lại hoặc mở trên GitHub.';
     if (error.code === 'gist_origin_rejected') return 'Domain này chưa được phép truy cập Gist API.';
     return 'Request không hoàn tất. Nếu vừa nhập mã, lần nhập đó có thể đã được backend tính; không tự động thử lại.';
   }
@@ -123,27 +135,129 @@
     }).sort((a, b) => Date.parse(b.updatedAt) - Date.parse(a.updatedAt));
     const fragment = document.createDocumentFragment();
     filtered.forEach((gist) => {
-      const card = text('article', '', 'gist');
-      const heading = document.createElement('h2');
-      const link = text('a', gist.description || (gist.files[0] && gist.files[0].filename) || 'Không có mô tả');
-      if (/^https:\/\/gist\.github\.com\/[0-9a-f]+$/.test(gist.url)) {
-        link.href = gist.url;
-        link.target = '_blank';
-        link.rel = 'noopener noreferrer';
-      }
-      heading.append(link);
-      card.append(heading, text('span', gist.public ? 'Public' : 'Secret', 'badge'));
-      languages(gist).forEach((languageName) => card.append(text('span', languageName, 'badge')));
-      const files = document.createElement('ul');
-      gist.files.forEach((file) => files.append(text('li', file.filename)));
-      card.append(files);
+      const row = text('button', '', 'gist');
+      row.type = 'button';
+      row.dataset.id = gist.id;
+      row.setAttribute('aria-current', String(gist.id === selectedId));
+      row.append(text('span', title(gist), 'gist-title'));
+      row.append(text('span', gist.files.map((file) => file.filename).join(', '), 'gist-file'));
+      const meta = text('span', '', 'gist-meta');
+      meta.append(text('span', `${gist.public ? 'Public' : 'Secret'} · ${gist.files.length} file`));
       const date = new Date(gist.updatedAt);
-      if (!Number.isNaN(date.getTime())) card.append(text('p', `Cập nhật ${dateFormat.format(date)}`, 'muted'));
-      fragment.append(card);
+      if (!Number.isNaN(date.getTime())) meta.append(text('span', shortDate.format(date)));
+      row.append(meta);
+      row.addEventListener('click', () => selectGist(gist));
+      fragment.append(row);
     });
     $('gists').replaceChildren(fragment);
     $('count').textContent = `${filtered.length} / ${items.length} gist${complete ? '' : ' đã tải (chưa đầy đủ)'}`;
     $('empty').hidden = filtered.length > 0 || loading;
+  }
+
+  function resetPreview() {
+    if (previewController) previewController.abort();
+    selectedId = null;
+    previewData = null;
+    $('library').classList.remove('has-selection');
+    $('preview-empty').hidden = false;
+    $('preview-detail').hidden = true;
+    $('preview-content').replaceChildren();
+    $('preview-content').removeAttribute('aria-busy');
+    $('file-select').replaceChildren();
+    $('preview-title').textContent = '';
+    $('preview-meta').textContent = '';
+    $('preview-status').textContent = '';
+    $('gist-source').removeAttribute('href');
+  }
+
+  function markdownPreview(content) {
+    // Parse in an inert template, then copy ONLY allowed elements into the live DOM.
+    // Never insert raw Markdown HTML, images, styles or event attributes.
+    const template = document.createElement('template');
+    template.innerHTML = marked(content, { headerIds: false, mangle: false });
+    const allowed = new Set('P BR HR H1 H2 H3 H4 H5 H6 STRONG EM DEL BLOCKQUOTE PRE CODE UL OL LI A TABLE THEAD TBODY TR TH TD'.split(' '));
+    function copy(node, parent) {
+      if (node.nodeType === Node.TEXT_NODE) { parent.append(document.createTextNode(node.textContent)); return; }
+      if (node.nodeType !== Node.ELEMENT_NODE) return;
+      if (['SCRIPT', 'STYLE', 'IFRAME', 'OBJECT', 'SVG', 'MATH', 'TEMPLATE'].includes(node.tagName)) return;
+      let target = parent;
+      if (allowed.has(node.tagName)) {
+        target = document.createElement(node.tagName.toLowerCase());
+        if (node.tagName === 'A' && /^https?:\/\//i.test(node.getAttribute('href') || '')) {
+          target.href = node.getAttribute('href');
+          target.target = '_blank';
+          target.rel = 'noopener noreferrer';
+        }
+        parent.append(target);
+      }
+      node.childNodes.forEach((child) => copy(child, target));
+    }
+    const result = text('div', '', 'markdown');
+    template.content.childNodes.forEach((node) => copy(node, result));
+    return result;
+  }
+
+  function showFile() {
+    if (!previewData) return;
+    const file = previewData.files[Number($('file-select').value)];
+    const container = $('preview-content');
+    container.replaceChildren();
+    if (!file) return;
+    const markdown = file.language === 'Markdown' || /\.(md|markdown)$/i.test(file.filename);
+    $('view-source').hidden = !markdown;
+    $('view-source').setAttribute('aria-pressed', String(rawView));
+    $('view-source').textContent = rawView ? 'Bản đọc' : 'Mã nguồn';
+    $('preview-status').textContent = file.truncated ? 'File lớn: chỉ hiển thị một phần. Mở GitHub để xem đầy đủ.' : '';
+    if (markdown && !rawView) {
+      container.append(markdownPreview(file.content || ''));
+    } else {
+      const pre = document.createElement('pre');
+      pre.append(text('code', file.content || '(File trống hoặc không có bản xem trước dạng text)'));
+      container.append(pre);
+    }
+    container.scrollTop = 0;
+  }
+
+  async function selectGist(gist) {
+    if (!session) return;
+    if (Date.parse(session.expiresAt) <= Date.now()) return lock('Phiên đã hết hạn. Nhập mã để mở lại.');
+    $('library').classList.add('has-selection');
+    if (selectedId === gist.id && previewData) return;
+    if (previewController) previewController.abort();
+    const controller = new AbortController();
+    previewController = controller;
+    const sessionId = session.sessionId;
+    selectedId = gist.id;
+    previewData = null;
+    rawView = false;
+    document.querySelectorAll('.gist').forEach((row) => row.setAttribute('aria-current', String(row.dataset.id === selectedId)));
+    $('preview-empty').hidden = true;
+    $('preview-detail').hidden = false;
+    $('preview-title').textContent = title(gist);
+    $('preview-meta').textContent = `${gist.public ? 'Public' : 'Secret'} · Cập nhật ${dateFormat.format(new Date(gist.updatedAt))}`;
+    $('gist-source').removeAttribute('href');
+    if (/^https:\/\/gist\.github\.com\/[0-9a-f]+$/.test(gist.url)) $('gist-source').href = gist.url;
+    $('file-bar').hidden = true;
+    $('preview-content').replaceChildren();
+    $('preview-content').setAttribute('aria-busy', 'true');
+    $('preview-status').textContent = 'Đang tải nội dung…';
+    try {
+      const data = await api(`/${encodeURIComponent(gist.id)}`, { sessionId, signal: controller.signal });
+      if (controller.signal.aborted || !session || session.sessionId !== sessionId) return;
+      if (!Array.isArray(data.files)) throw new Error('Invalid file list');
+      previewData = data;
+      $('file-select').replaceChildren();
+      data.files.forEach((file, index) => $('file-select').add(new Option(file.filename, String(index))));
+      $('file-bar').hidden = data.files.length === 0;
+      $('preview-status').textContent = data.files.length ? '' : 'Gist không có file để hiển thị.';
+      showFile();
+    } catch (error) {
+      if (controller.signal.aborted || !session || session.sessionId !== sessionId) return;
+      if (['gist_ip_blocked', 'gist_session_expired'].includes(error.code)) lock(errorMessage(error));
+      else $('preview-status').textContent = errorMessage(error);
+    } finally {
+      if (previewController === controller) $('preview-content').setAttribute('aria-busy', 'false');
+    }
   }
 
   async function load() {
@@ -156,6 +270,7 @@
     const controller = new AbortController();
     loadController = controller;
     const sessionId = session.sessionId;
+    resetPreview();
     items = [];
     complete = false;
     loading = true;
@@ -237,6 +352,13 @@
     }
   });
 
+  $('file-select').addEventListener('change', () => { rawView = false; showFile(); });
+  $('view-source').addEventListener('click', () => { rawView = !rawView; showFile(); });
+  $('back-to-list').addEventListener('click', () => {
+    $('library').classList.remove('has-selection');
+    const selected = document.querySelector('.gist[aria-current="true"]');
+    if (selected) selected.focus();
+  });
   $('refresh').addEventListener('click', load);
   $('search').addEventListener('input', render);
   $('visibility').addEventListener('change', render);

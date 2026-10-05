@@ -6,38 +6,52 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
   <meta name="referrer" content="no-referrer">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; connect-src https://api-sirrista-singapore.com; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; connect-src https://api-sirrista-singapore.com http://localhost:8081 http://127.0.0.1:8081; object-src 'none'; base-uri 'none'; form-action 'none'">
   <title>Gist của Hudson</title>
-  <link rel="stylesheet" href="/gist/gist.css?v=1">
-  <script src="/gist/gist.js?v=1" defer></script>
+  <link rel="stylesheet" href="/gist/gist.css?v=2">
+  <script src="/gist/vendor/marked.min.js?v=1" defer></script>
+  <script src="/gist/gist.js?v=2" defer></script>
 <meta name="generator" content="Hexo 4.2.1"></head>
-<body>
+<body class="locked">
   <main>
-    <header>
-      <div><a class="back" href="/blog/">← Blog</a><h1>Gist của Hudson</h1><p class="muted">Một chỗ để tìm lại ghi chú.</p></div>
-      <button id="logout" type="button" hidden>Khóa lại</button>
+    <header class="app-header">
+      <a class="brand" href="/gist/">Gist<span> / Hudson</span></a>
+      <div class="header-actions"><span id="expiry"></span><a href="/blog/">Blog ↗</a><button id="logout" type="button" hidden>Khóa lại</button></div>
     </header>
-    <section id="login-panel" class="login-panel" aria-labelledby="login-title">
-      <h2 id="login-title">Mở kho Gist</h2>
-      <p>Phiên truy cập kéo dài 1 giờ, kể cả khi đóng rồi mở lại trình duyệt.</p>
-      <form id="login-form">
-        <label for="code">Mã truy cập 6 chữ số</label>
-        <div class="login-fields"><input id="code" type="password" inputmode="numeric" pattern="[0-9]{6}" minlength="6" maxlength="6" autocomplete="off" required aria-describedby="login-warning"><button id="login-button" type="submit">Mở khóa</button></div>
-      </form>
-      <p id="login-warning" class="muted">Sai tổng cộng 5 lần: IP bị chặn đến khi record được xóa thủ công.</p>
-    </section>
+    <div class="login-stage" id="login-panel">
+      <section class="login-card" aria-labelledby="login-title">
+        <div class="lock-icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="10" width="14" height="11" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3"/></svg></div>
+        <p class="eyebrow">KHO GHI CHÚ CÁ NHÂN</p>
+        <h1>Mở kho Gist</h1>
+        <p class="login-description">Nhập mã 6 số để tiếp tục. Phiên giữ trong 1 giờ.</p>
+        <form id="login-form">
+          <label for="code" class="sr-only">Mã truy cập 6 chữ số</label>
+          <input id="code" type="password" inputmode="numeric" pattern="[0-9]{6}" minlength="6" maxlength="6" autocomplete="off" placeholder="······" required aria-describedby="login-warning" autofocus>
+          <button id="login-button" type="submit">Mở khóa <span aria-hidden="true">→</span></button>
+        </form>
+        <p id="login-warning">Sai tổng cộng 5 lần sẽ khóa IP.<br>Chỉ mở lại bằng cách xóa record thủ công.</p>
+      </section>
+    </div>
     <p id="message" role="status" aria-live="polite"></p>
-    <section id="library" aria-label="Danh sách gist" hidden>
-      <div class="toolbar">
-        <div class="search-field"><label for="search">Tìm theo mô tả hoặc tên file</label><input id="search" type="search" placeholder="Gõ để lọc gist…" autocomplete="off"></div>
-        <div><label for="visibility">Hiển thị</label><select id="visibility"><option value="all">Tất cả</option><option value="secret">Secret</option><option value="public">Public</option></select></div>
-        <div><label for="language">Ngôn ngữ</label><select id="language"><option value="all">Tất cả</option></select></div>
-        <button id="refresh" type="button">Tải lại</button>
-      </div>
-      <div class="list-meta"><p id="count"></p><p id="expiry" class="muted"></p></div>
-      <div id="gists" class="gists"></div>
-      <p id="empty" hidden>Không có gist khớp bộ lọc.</p>
-      <p class="muted">Mới cập nhật đứng trước. Bộ lọc tìm trong metadata, không tìm toàn bộ nội dung file. Bấm tiêu đề để mở trên GitHub.</p>
+    <section id="library" class="workspace" aria-label="Kho gist" hidden>
+      <aside class="sidebar" aria-label="Danh sách gist">
+        <div class="sidebar-tools">
+          <div class="sidebar-heading"><h1>Ghi chú</h1><button id="refresh" type="button" title="Tải lại danh sách">Tải lại</button></div>
+          <label for="search" class="sr-only">Tìm mô tả hoặc tên file</label><input id="search" type="search" placeholder="Tìm ghi chú, tên file…" autocomplete="off">
+          <div class="filters"><label for="visibility" class="sr-only">Hiển thị</label><select id="visibility"><option value="all">Mọi gist</option><option value="secret">Secret</option><option value="public">Public</option></select><label for="language" class="sr-only">Ngôn ngữ</label><select id="language"><option value="all">Mọi ngôn ngữ</option></select></div>
+          <p id="count"></p>
+        </div>
+        <div class="list-scroll"><div id="gists"></div><p id="empty" hidden>Không có gist khớp bộ lọc.</p></div>
+      </aside>
+      <section id="preview" class="preview" aria-label="Nội dung gist">
+        <div id="preview-empty" class="preview-empty"><span aria-hidden="true">{ }</span><h2>Chọn một ghi chú</h2><p>Nội dung hiện ở đây. Không cần mở thêm tab.</p></div>
+        <div id="preview-detail" class="preview-detail" hidden>
+          <header class="preview-header"><button id="back-to-list" type="button">← Danh sách</button><div class="preview-heading"><h2 id="preview-title"></h2><a id="gist-source" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div><p id="preview-meta"></p></header>
+          <div id="file-bar" class="file-bar" hidden><label for="file-select" class="sr-only">File</label><select id="file-select"></select><button id="view-source" type="button" aria-pressed="false">Mã nguồn</button></div>
+          <p id="preview-status" role="status" aria-live="polite"></p>
+          <div id="preview-content" class="preview-content" tabindex="0"></div>
+        </div>
+      </section>
     </section>
   </main>
 </body>

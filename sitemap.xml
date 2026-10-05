@@ -459,14 +459,18 @@
   </url>
   <url>
     <loc>https://read.hihudson.com/gist/gist.css</loc>
-    <lastmod>2026-10-05T07:15:56.209Z</lastmod>
+    <lastmod>2026-10-05T07:44:07.154Z</lastmod>
   </url>
   <url>
     <loc>https://read.hihudson.com/gist/</loc>
-    <lastmod>2026-10-05T07:15:22.535Z</lastmod>
+    <lastmod>2026-10-05T07:38:31.317Z</lastmod>
   </url>
   <url>
     <loc>https://read.hihudson.com/gist/gist.js</loc>
-    <lastmod>2026-10-05T07:17:53.176Z</lastmod>
+    <lastmod>2026-10-05T07:38:57.785Z</lastmod>
+  </url>
+  <url>
+    <loc>https://read.hihudson.com/gist/vendor/marked.min.js</loc>
+    <lastmod>2026-10-05T07:38:18.508Z</lastmod>
   </url>
 </urlset>

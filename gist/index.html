@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; connect-src https://api-sirrista-singapore.com; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>Gist của Hudson</title>
+  <link rel="stylesheet" href="/gist/gist.css?v=1">
+  <script src="/gist/gist.js?v=1" defer></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+<body>
+  <main>
+    <header>
+      <div><a class="back" href="/blog/">← Blog</a><h1>Gist của Hudson</h1><p class="muted">Một chỗ để tìm lại ghi chú.</p></div>
+      <button id="logout" type="button" hidden>Khóa lại</button>
+    </header>
+    <section id="login-panel" class="login-panel" aria-labelledby="login-title">
+      <h2 id="login-title">Mở kho Gist</h2>
+      <p>Phiên truy cập kéo dài 1 giờ, kể cả khi đóng rồi mở lại trình duyệt.</p>
+      <form id="login-form">
+        <label for="code">Mã truy cập 6 chữ số</label>
+        <div class="login-fields"><input id="code" type="password" inputmode="numeric" pattern="[0-9]{6}" minlength="6" maxlength="6" autocomplete="off" required aria-describedby="login-warning"><button id="login-button" type="submit">Mở khóa</button></div>
+      </form>
+      <p id="login-warning" class="muted">Sai tổng cộng 5 lần: IP bị chặn đến khi record được xóa thủ công.</p>
+    </section>
+    <p id="message" role="status" aria-live="polite"></p>
+    <section id="library" aria-label="Danh sách gist" hidden>
+      <div class="toolbar">
+        <div class="search-field"><label for="search">Tìm theo mô tả hoặc tên file</label><input id="search" type="search" placeholder="Gõ để lọc gist…" autocomplete="off"></div>
+        <div><label for="visibility">Hiển thị</label><select id="visibility"><option value="all">Tất cả</option><option value="secret">Secret</option><option value="public">Public</option></select></div>
+        <div><label for="language">Ngôn ngữ</label><select id="language"><option value="all">Tất cả</option></select></div>
+        <button id="refresh" type="button">Tải lại</button>
+      </div>
+      <div class="list-meta"><p id="count"></p><p id="expiry" class="muted"></p></div>
+      <div id="gists" class="gists"></div>
+      <p id="empty" hidden>Không có gist khớp bộ lọc.</p>
+      <p class="muted">Mới cập nhật đứng trước. Bộ lọc tìm trong metadata, không tìm toàn bộ nội dung file. Bấm tiêu đề để mở trên GitHub.</p>
+    </section>
+  </main>
+</body>
+</html>
+

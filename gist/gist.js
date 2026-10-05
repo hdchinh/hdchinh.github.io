@@ -23,7 +23,7 @@
     try {
       const value = JSON.parse(localStorage.getItem(STORAGE_KEY));
       const remaining = Date.parse(value && value.expiresAt) - Date.now();
-      return value && /^[0-9a-f]{64}$/.test(value.sessionId) && remaining > 0 && remaining <= 3600000 ? value : null;
+      return value && /^[0-9a-f]{64}$/.test(value.sessionId) && remaining > 0 && remaining <= 2 * 24 * 60 * 60 * 1000 ? value : null;
     } catch (_) {
       return null;
     }
@@ -59,7 +59,7 @@
     $('login-panel').hidden = true;
     $('library').hidden = false;
     $('logout').hidden = false;
-    $('expiry').textContent = `Khóa lúc ${new Date(value.expiresAt).toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' })}`;
+    $('expiry').textContent = `Hết hạn: ${dateFormat.format(new Date(value.expiresAt))}`;
     clearTimeout(expiryTimer);
     expiryTimer = setTimeout(() => lock('Phiên đã hết hạn. Nhập mã để mở lại.'), Math.max(0, Date.parse(value.expiresAt) - Date.now()));
   }
@@ -347,7 +347,7 @@
       await api('/session', { method: 'DELETE', sessionId });
     } catch (error) {
       if (!session && !['gist_session_expired', 'gist_ip_blocked'].includes(error.code)) {
-        $('message').textContent = 'Đã khóa trên trình duyệt nhưng chưa xác nhận hủy phiên ở server. Phiên cũ vẫn tự hết hạn sau 1 giờ từ lúc đăng nhập.';
+        $('message').textContent = 'Đã khóa trên trình duyệt nhưng chưa xác nhận hủy phiên ở server. Phiên cũ vẫn tự hết hạn theo thời điểm đã cấp.';
       }
     }
   });

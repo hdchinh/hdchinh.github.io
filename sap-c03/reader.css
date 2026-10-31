@@ -96,6 +96,7 @@ button:hover { border-color: var(--sap-accent); color: var(--sap-accent); }
 .sap-sidebar { min-width: 0; border-right: 1px solid var(--sap-line); }
 .sap-filters { padding: 1.2rem 1.2rem .7rem; border-bottom: 1px solid var(--sap-line); }
 .sap-filters h2 { display: flex; align-items: center; gap: .6rem; margin: 0 0 .8rem; font-size: 1rem; }
+.sap-guide-note { margin: 0 0 .8rem; font-size: .72rem; color: var(--sap-muted); }
 .sap-total { color: var(--sap-accent); background: var(--sap-tint); padding: 0 .5rem; border-radius: 4px; font-size: .8rem; }
 .sap-filters label:not(.sap-sr-only) { display: block; color: var(--sap-muted); font-size: .75rem; margin-bottom: .35rem; }
 .sap-filters input, .sap-filters select { display: block; width: 100%; padding: .6rem .65rem; font-size: .85rem; }

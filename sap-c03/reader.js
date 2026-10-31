@@ -11,6 +11,7 @@
   const group = document.getElementById('sap-group');
   const clear = document.getElementById('sap-clear');
   const results = document.getElementById('sap-results');
+  const routeNote = document.getElementById('sap-route-note');
   const previous = document.getElementById('sap-previous');
   const next = document.getElementById('sap-next');
   const showList = document.getElementById('sap-show-list');
@@ -111,7 +112,7 @@
     const article = byId.get(id);
     const title = article.querySelector('h1');
     document.getElementById('sap-current-group').textContent = article.dataset.groupLabel;
-    document.title = `${id}: ${title.textContent} | SAP-C02`;
+    document.title = `${id}: ${title.textContent} | SAP-C03`;
     pane.scrollTop = positions.get(id) || 0;
     updateSteps();
     revealActiveLink();
@@ -120,6 +121,7 @@
 
   function route() {
     let id = location.hash.slice(1).toUpperCase();
+    routeNote.hidden = !id || byId.has(id);
     if (!byId.has(id)) {
       id = ids[0];
       history.replaceState(history.state, '', `${location.pathname}${location.search}#${id}`);
@@ -170,6 +172,7 @@
   window.addEventListener('hashchange', route);
 
   const initial = location.hash.slice(1).toUpperCase();
+  routeNote.hidden = !initial || byId.has(initial);
   document.getElementById('sap-filter-controls').hidden = false;
   document.getElementById('sap-reading-tools').hidden = false;
   document.body.classList.add('sap-ready');

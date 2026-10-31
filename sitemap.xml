@@ -5,7 +5,7 @@
     <lastmod>2026-09-21T09:36:03.710Z</lastmod>
   </url>
   <url>
-    <loc>https://read.hihudson.com/sap-c02/</loc>
+    <loc>https://read.hihudson.com/sap-c03/</loc>
   </url>
   <url>
     <loc>https://read.hihudson.com/english-scenarios/</loc>
@@ -391,7 +391,7 @@
   </url>
   <url>
     <loc>https://read.hihudson.com/2026/08/25/2026-08-25-sap-c02-aws-service-keyword-reference/</loc>
-    <lastmod>2026-10-01T07:28:39.498Z</lastmod>
+    <lastmod>2026-10-31T09:50:36.871Z</lastmod>
   </url>
   <url>
     <loc>https://read.hihudson.com/2026/10/13/2026-10-13-khi-nguoi-yeu-ban-lai-so-ban-gioi-hon-ho/</loc>
@@ -411,7 +411,7 @@
   </url>
   <url>
     <loc>https://read.hihudson.com/english-scenarios/reader.css</loc>
-    <lastmod>2026-09-23T05:05:12.320Z</lastmod>
+    <lastmod>2026-10-31T09:45:01.610Z</lastmod>
   </url>
   <url>
     <loc>https://read.hihudson.com/english/</loc>
@@ -420,14 +420,6 @@
   <url>
     <loc>https://read.hihudson.com/projects/</loc>
     <lastmod>2026-08-14T07:11:23.793Z</lastmod>
-  </url>
-  <url>
-    <loc>https://read.hihudson.com/sap-c02/reader.css</loc>
-    <lastmod>2026-09-22T01:31:56.981Z</lastmod>
-  </url>
-  <url>
-    <loc>https://read.hihudson.com/sap-c02/reader.js</loc>
-    <lastmod>2026-09-23T05:19:58.515Z</lastmod>
   </url>
   <url>
     <loc>https://read.hihudson.com/til/</loc>
@@ -459,7 +451,7 @@
   </url>
   <url>
     <loc>https://read.hihudson.com/hdchinh/</loc>
-    <lastmod>2026-10-13T10:59:39.125Z</lastmod>
+    <lastmod>2026-10-31T09:45:01.610Z</lastmod>
   </url>
   <url>
     <loc>https://read.hihudson.com/gist/gist.css</loc>
@@ -476,5 +468,13 @@
   <url>
     <loc>https://read.hihudson.com/gist/vendor/marked.min.js</loc>
     <lastmod>2026-10-05T07:38:18.508Z</lastmod>
+  </url>
+  <url>
+    <loc>https://read.hihudson.com/sap-c03/reader.js</loc>
+    <lastmod>2026-10-31T09:52:38.191Z</lastmod>
+  </url>
+  <url>
+    <loc>https://read.hihudson.com/sap-c03/reader.css</loc>
+    <lastmod>2026-10-31T09:35:29.725Z</lastmod>
   </url>
 </urlset>

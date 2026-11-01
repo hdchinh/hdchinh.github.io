@@ -41,9 +41,9 @@
       status.textContent = '';
       try {
         await navigator.clipboard.writeText(article.querySelector('.sap-copy-source').content.textContent);
-        status.textContent = 'Đã copy';
+        status.textContent = 'Đã sao chép';
       } catch (error) {
-        status.textContent = 'Không copy được. Hãy chọn nội dung và sao chép thủ công.';
+        status.textContent = 'Không sao chép được. Hãy chọn nội dung và sao chép thủ công.';
       } finally {
         button.disabled = false;
       }

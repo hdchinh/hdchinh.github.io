@@ -14,11 +14,11 @@
 <meta property="og:description" content="Quy trình nâng cấp Sparrow Wallet trên macOS Apple Silicon, từ sao lưu cấu hình ví đến xác minh bộ cài và kiểm tra sau nâng cấp. Ví dụ sử dụng ví multisig 2-of-2, Native SegWit (P2WSH) với hai hardwar">
 <meta property="og:locale" content="vi_VN">
 <meta property="article:published_time" content="2026-11-01T17:00:00.000Z">
-<meta property="article:modified_time" content="2026-11-02T00:38:57.811Z">
+<meta property="article:modified_time" content="2026-11-02T01:21:02.293Z">
 <meta property="article:author" content="Hudson">
 <meta name="twitter:card" content="summary">
     <link rel="canonical" href="https://read.hihudson.com/2026/11/02/2026-11-02-sparrow-wallet-upgrade-backup-sop/">
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Sparrow Wallet: Hướng dẫn nâng cấp và sao lưu an toàn","description":"Quy trình nâng cấp Sparrow Wallet trên macOS Apple Silicon, từ sao lưu cấu hình ví đến xác minh bộ cài và kiểm tra sau nâng cấp. Ví dụ sử dụng ví multisig 2-of-2, Native SegWit (P2WSH) với hai hardwar","inLanguage":"vi","url":"https://read.hihudson.com/2026/11/02/2026-11-02-sparrow-wallet-upgrade-backup-sop/","mainEntityOfPage":{"@type":"WebPage","@id":"https://read.hihudson.com/2026/11/02/2026-11-02-sparrow-wallet-upgrade-backup-sop/"},"datePublished":"2026-11-01T17:00:00.000Z","dateModified":"2026-11-02T00:38:57.811Z","author":{"@type":"Person","name":"Hudson","url":"https://read.hihudson.com/"},"publisher":{"@type":"Person","name":"Hudson","url":"https://read.hihudson.com/"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Sparrow Wallet: Hướng dẫn nâng cấp và sao lưu an toàn","description":"Quy trình nâng cấp Sparrow Wallet trên macOS Apple Silicon, từ sao lưu cấu hình ví đến xác minh bộ cài và kiểm tra sau nâng cấp. Ví dụ sử dụng ví multisig 2-of-2, Native SegWit (P2WSH) với hai hardwar","inLanguage":"vi","url":"https://read.hihudson.com/2026/11/02/2026-11-02-sparrow-wallet-upgrade-backup-sop/","mainEntityOfPage":{"@type":"WebPage","@id":"https://read.hihudson.com/2026/11/02/2026-11-02-sparrow-wallet-upgrade-backup-sop/"},"datePublished":"2026-11-01T17:00:00.000Z","dateModified":"2026-11-02T01:21:02.293Z","author":{"@type":"Person","name":"Hudson","url":"https://read.hihudson.com/"},"publisher":{"@type":"Person","name":"Hudson","url":"https://read.hihudson.com/"}}</script>
     
     
       
@@ -168,14 +168,14 @@
     
     <p>Quy trình nâng cấp Sparrow Wallet trên <strong>macOS Apple Silicon</strong>, từ sao lưu cấu hình ví đến xác minh bộ cài và kiểm tra sau nâng cấp.</p>
 <p>Ví dụ sử dụng ví <strong>multisig 2-of-2, Native SegWit (P2WSH)</strong> với hai hardware wallet Ledger và Trezor. Với cấu hình khác, đối chiếu wallet policy, script type và số cosigner theo ví đang sử dụng.</p>
-<h2 id="1-Backup-truoc-khi-nang-cap"><a href="#1-Backup-truoc-khi-nang-cap" class="headerlink" title="1. Backup trước khi nâng cấp"></a>1. Backup trước khi nâng cấp</h2><ul>
-<li><input disabled="" type="checkbox"> Mở Sparrow → chọn ví cần sao lưu → <code>Settings</code>.</li>
-<li><input disabled="" type="checkbox"> Nhấn biểu tượng QR bên cạnh <code>Descriptor</code> → <code>Save PDF...</code> → lưu PDF với tên dễ nhận biết.</li>
-<li><input disabled="" type="checkbox"> Nhấn <code>Export...</code> ở góc dưới bên trái → chọn <code>Output Descriptor</code> → xuất file <code>.txt</code>.</li>
-<li><input disabled="" type="checkbox"> Kiểm tra descriptor có đầy đủ các cosigner, xpub, fingerprint, derivation path và nhánh receive/change.</li>
-<li><input disabled="" type="checkbox"> Thoát Sparrow (<code>Cmd + Q</code>), sao chép nguyên thư mục <code>~/.sparrow/wallets</code> sang ổ lưu trữ riêng được mã hóa.</li>
-<li><input disabled="" type="checkbox"> Xác nhận recovery seed và passphrase (nếu có) của từng hardware wallet được cất giữ an toàn, ngoại tuyến.</li>
-</ul>
+<h2 id="1-Backup-truoc-khi-nang-cap"><a href="#1-Backup-truoc-khi-nang-cap" class="headerlink" title="1. Backup trước khi nâng cấp"></a>1. Backup trước khi nâng cấp</h2><ol>
+<li>Mở Sparrow → chọn ví cần sao lưu → <code>Settings</code>.</li>
+<li>Nhấn biểu tượng QR bên cạnh <code>Descriptor</code> → <code>Save PDF...</code> → lưu PDF với tên dễ nhận biết.</li>
+<li>Nhấn <code>Export...</code> ở góc dưới bên trái → chọn <code>Output Descriptor</code> → xuất file <code>.txt</code>.</li>
+<li>Kiểm tra descriptor có đầy đủ các cosigner, xpub, fingerprint, derivation path và nhánh receive/change.</li>
+<li>Thoát Sparrow (<code>Cmd + Q</code>), sao chép nguyên thư mục <code>~/.sparrow/wallets</code> sang ổ lưu trữ riêng được mã hóa.</li>
+<li>Xác nhận recovery seed và passphrase (nếu có) của từng hardware wallet được cất giữ an toàn, ngoại tuyến.</li>
+</ol>
 <p>Ví dụ cấu trúc thư mục ví trên macOS; tên file phụ thuộc vào tên ví:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">~&#x2F;.sparrow&#x2F;wallets&#x2F;</span><br><span class="line">├── backup&#x2F;</span><br><span class="line">└── ExampleWallet.mv.db</span><br></pre></td></tr></table></figure>
 
@@ -198,11 +198,11 @@
 <li><strong>Public Key:</strong> Có thể bỏ trống nếu Sparrow đã nhận đúng khóa công khai.</li>
 </ul>
 <p>Kết quả yêu cầu:</p>
-<ul>
-<li><input disabled="" type="checkbox"> <code>Signed By: Craig Raw</code></li>
-<li><input disabled="" type="checkbox"> <code>Release Hash: Matched manifest hash</code></li>
-<li><input disabled="" type="checkbox"> <code>Verified: Ready to install</code></li>
-</ul>
+<ol>
+<li><code>Signed By: Craig Raw</code></li>
+<li><code>Release Hash: Matched manifest hash</code></li>
+<li><code>Verified: Ready to install</code></li>
+</ol>
 <p>Fingerprint tham chiếu của khóa ký Craig Raw dưới đây cần được đối chiếu với hướng dẫn xác minh chính thức, không chỉ dựa vào tên người ký:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">D4D0 D320 2FC0 6849 A257</span><br><span class="line">B38D E946 1833 4C67 4B40</span><br></pre></td></tr></table></figure>
 
@@ -210,23 +210,23 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shasum -a 256 Sparrow-X.Y.Z-aarch64.dmg</span><br></pre></td></tr></table></figure>
 
 <p>Đối chiếu kết quả với dòng tương ứng của file DMG trong <strong>manifest đã xác minh chữ ký</strong>. Hash phải đúng cả phiên bản lẫn kiến trúc bộ cài; không dùng lại hash của phiên bản cũ.</p>
-<h2 id="4-Cai-dat-nang-cap"><a href="#4-Cai-dat-nang-cap" class="headerlink" title="4. Cài đặt / nâng cấp"></a>4. Cài đặt / nâng cấp</h2><ul>
-<li><input disabled="" type="checkbox"> Thoát Sparrow bằng <code>Cmd + Q</code>.</li>
-<li><input disabled="" type="checkbox"> Mở file DMG đã xác minh.</li>
-<li><input disabled="" type="checkbox"> Kéo Sparrow vào <code>Applications</code>.</li>
-<li><input disabled="" type="checkbox"> Chọn <code>Replace</code> để thay ứng dụng cũ.</li>
-<li><input disabled="" type="checkbox"> Mở Sparrow mới và xác nhận số phiên bản.</li>
-</ul>
+<h2 id="4-Cai-dat-nang-cap"><a href="#4-Cai-dat-nang-cap" class="headerlink" title="4. Cài đặt / nâng cấp"></a>4. Cài đặt / nâng cấp</h2><ol>
+<li>Thoát Sparrow bằng <code>Cmd + Q</code>.</li>
+<li>Mở file DMG đã xác minh.</li>
+<li>Kéo Sparrow vào <code>Applications</code>.</li>
+<li>Chọn <code>Replace</code> để thay ứng dụng cũ.</li>
+<li>Mở Sparrow mới và xác nhận số phiên bản.</li>
+</ol>
 <p>Không cần nhập seed, kết nối hardware wallet hay chuyển BTC trong lúc cài đặt.</p>
 <h2 id="5-Kiem-tra-sau-nang-cap"><a href="#5-Kiem-tra-sau-nang-cap" class="headerlink" title="5. Kiểm tra sau nâng cấp"></a>5. Kiểm tra sau nâng cấp</h2><p>Mở lại ví đã sao lưu và đối chiếu với cấu hình trước nâng cấp:</p>
-<ul>
-<li><input disabled="" type="checkbox"> Số dư và lịch sử giao dịch hiển thị đúng.</li>
-<li><input disabled="" type="checkbox"> Wallet policy không thay đổi, chẳng hạn <code>2-of-2</code> trong ví dụ này.</li>
-<li><input disabled="" type="checkbox"> Script type không thay đổi, chẳng hạn <code>Native SegWit (P2WSH)</code>.</li>
-<li><input disabled="" type="checkbox"> Danh sách cosigner và cấu hình keystore không thay đổi.</li>
-<li><input disabled="" type="checkbox"> Địa chỉ nhận BTC tại cùng nhánh và chỉ số khớp với địa chỉ đã xác minh trước đó.</li>
-<li><input disabled="" type="checkbox"> Sparrow kết nối server và đồng bộ bình thường.</li>
-</ul>
+<ol>
+<li>Số dư và lịch sử giao dịch hiển thị đúng.</li>
+<li>Wallet policy không thay đổi, chẳng hạn <code>2-of-2</code> trong ví dụ này.</li>
+<li>Script type không thay đổi, chẳng hạn <code>Native SegWit (P2WSH)</code>.</li>
+<li>Danh sách cosigner và cấu hình keystore không thay đổi.</li>
+<li>Địa chỉ nhận BTC tại cùng nhánh và chỉ số khớp với địa chỉ đã xác minh trước đó.</li>
+<li>Sparrow kết nối server và đồng bộ bình thường.</li>
+</ol>
 <p>Nếu có bất thường, dừng thao tác và kiểm tra trước khi ký giao dịch.</p>
 <h2 id="6-Nguyen-tac-bao-mat"><a href="#6-Nguyen-tac-bao-mat" class="headerlink" title="6. Nguyên tắc bảo mật"></a>6. Nguyên tắc bảo mật</h2><ul>
 <li>Không nhập recovery seed Ledger/Trezor vào máy tính hoặc website.</li>
